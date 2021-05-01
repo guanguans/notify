@@ -1,0 +1,103 @@
+{
+    "name": "guanguans/notify",
+    "description": "Multi platform notification SDK. - 多平台通知 SDK。",
+    "keywords": [
+        "notification",
+        "notify",
+        "notifier",
+        "SDK"
+    ],
+    "homepage": "https://github.com/guanguans/notify",
+    "support": {
+        "issues": "https://github.com/guanguans/notify/issues",
+        "source": "https://github.com/guanguans/notify"
+    },
+    "authors": [
+        {
+            "name": "guanguans",
+            "email": "ityaozm@gmail.com",
+            "homepage": "https://www.guanguans.cn",
+            "role": "developer"
+        }
+    ],
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.2"
+    },
+    "require-dev": {
+        "brainmaestro/composer-git-hooks": "^2.7",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "mockery/mockery": "^1.2",
+        "overtrue/phplint": "^2.3",
+        "phpunit/phpunit": "^7 || ^8",
+        "vimeo/psalm": "^3.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "Guanguans\\Notify\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Guanguans\\Notify\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "funding": [
+        {
+            "type": "wechat",
+            "url": "https://www.guanguans.cn/images/wechat.jpeg"
+        }
+    ],
+    "extra": {
+        "hooks": {
+            "pre-commit": [
+                "composer lint",
+                "composer style-lint",
+                "composer md-lint",
+                "composer test"
+            ],
+            "pre-push": [
+                "composer lint",
+                "composer style-lint",
+                "composer md-lint",
+                "composer test"
+            ]
+        }
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "cghooks update"
+        ],
+        "post-merge": "composer install",
+        "post-install-cmd": [
+            "cghooks add --ignore-lock",
+            "cghooks update"
+        ],
+        "cghooks": "./vendor/bin/cghooks",
+        "lint": "./vendor/bin/phplint --no-cache --configuration=.phplint.yml --ansi",
+        "md-lint": "lint-md --config .lintmdrc *.md .github/*.md .github/ISSUE_TEMPLATE/*.md",
+        "md-fix": "lint-md --config .lintmdrc --fix *.md .github/*.md .github/ISSUE_TEMPLATE/*.md",
+        "style-lint": "./vendor/bin/php-cs-fixer fix --using-cache=no --diff --config=.php_cs.dist --dry-run --ansi",
+        "style-fix": "./vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist --ansi",
+        "psalm": "./vendor/bin/psalm",
+        "test": "./vendor/bin/phpunit --coverage-text --colors=always --verbose",
+        "test-coverage": "./vendor/bin/phpunit --coverage-html=coverage/ --coverage-clover=clover.xml --color=always --verbose"
+    },
+    "scripts-descriptions": {
+        "cghooks": "Run git cghooks.",
+        "lint": "Run phplint checks.",
+        "md-lint": "Run markdown checks.",
+        "md-fix": "Run markdown fixing.",
+        "style-lint": "Run style checks (only dry run - no fixing!).",
+        "style-fix": "Run style checks and fix violations.",
+        "psalm": "Run psalm checks.",
+        "test": "Run all tests.",
+        "test-coverage": "Run all tests with coverage."
+    }
+}
