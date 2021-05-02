@@ -25,7 +25,10 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.2"
+        "php": ">=7.2",
+        "overtrue/http": "^1.2",
+        "symfony/options-resolver": "^5.0",
+        "tightenco/collect": "^8.34"
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.7",
@@ -38,7 +41,10 @@
     "autoload": {
         "psr-4": {
             "Guanguans\\Notify\\": "src"
-        }
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

@@ -8,12 +8,13 @@
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify;
+namespace Guanguans\Notify\Contracts;
 
-class PackageSkeleton
+interface GatewayInterface
 {
-    public static function test()
-    {
-        return true;
-    }
+    public function getName();
+
+    public function getShortName();
+
+    public function getGateway();
 }
