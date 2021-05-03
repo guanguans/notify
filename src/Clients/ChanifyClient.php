@@ -22,37 +22,7 @@ class ChanifyClient extends AbstractClient
     /**
      * @var string
      */
-    protected $accessToken;
-
-    /**
-     * @var string
-     */
     protected $content;
-
-    public function getContent(): string
-    {
-        return $this->content;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setContent(string $content): self
-    {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $content);
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setAccessToken(string $accessToken): self
-    {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $accessToken);
-
-        return $this;
-    }
 
     /**
      * @return array|string[]
@@ -62,11 +32,6 @@ class ChanifyClient extends AbstractClient
         return [
             'text' => $this->getContent(),
         ];
-    }
-
-    public function getFormat(): string
-    {
-        return $this->format;
     }
 
     /**
@@ -97,6 +62,6 @@ class ChanifyClient extends AbstractClient
 
     public function getEndpointUrl(): string
     {
-        return sprintf(static::ENDPOINT_URL_TEMPLATE, $this->baseUri, $this->accessToken);
+        return sprintf(static::ENDPOINT_URL_TEMPLATE, $this->baseUri, $this->token);
     }
 }

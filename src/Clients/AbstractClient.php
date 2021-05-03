@@ -32,6 +32,30 @@ abstract class AbstractClient implements GatewayInterface, MessageInterface, Req
     protected $format = 'urlencoded';
 
     /**
+     * @var string
+     */
+    protected $token;
+
+    /**
+     * @var string
+     */
+    protected $content;
+
+    /**
+     * @var bool
+     */
+    protected $contentIsMarkdown = false;
+
+    /**
+     * @var string
+     */
+    protected $markdownTemplate = <<<"markdownTemplate"
+``` shell
+%s
+```
+markdownTemplate;
+
+    /**
      * AbstractClient constructor.
      */
     public function __construct(array $options = [])
@@ -56,18 +80,19 @@ abstract class AbstractClient implements GatewayInterface, MessageInterface, Req
     {
         $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
             $resolver->setDefined([
-                'access_token',
+                'token',
                 'content',
+                'contentIsMarkdown',
+                'markdownTemplate',
             ]);
-            $resolver->setAllowedTypes('access_token', 'string');
+            $resolver->setAllowedTypes('token', 'string');
             $resolver->setAllowedTypes('content', 'string');
+            $resolver->setAllowedTypes('contentIsMarkdown', 'bool');
+            $resolver->setAllowedTypes('markdownTemplate', 'string');
         });
 
         $this->options = array_merge($this->options, $diffOptions);
-        foreach ($this->options as $key => $value) {
-            $property = Str::camel($key);
-            property_exists($this, $property) && $this->{$property} = $value;
-        }
+        $this->setOptionsToProperties($this->options);
 
         return $this;
     }
@@ -89,9 +114,81 @@ abstract class AbstractClient implements GatewayInterface, MessageInterface, Req
         return $this;
     }
 
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setToken(string $value): self
+    {
+        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
+
+        return $this;
+    }
+
+    public function getContent(): string
+    {
+        if (true === $this->contentIsMarkdown) {
+            return sprintf($this->markdownTemplate, $this->content);
+        }
+
+        return $this->content;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setContent(string $value): self
+    {
+        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
+
+        return $this;
+    }
+
+    public function getContentIsMarkdown(): bool
+    {
+        return $this->contentIsMarkdown;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setContentIsMarkdown(bool $value): self
+    {
+        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
+
+        return $this;
+    }
+
+    public function getMarkdownTemplate(): string
+    {
+        return $this->markdownTemplate;
+    }
+
+    /**
+     * @param string $markdownTemplate
+     *
+     * @return $this
+     */
+    public function setMarkdownTemplate(string $value): self
+    {
+        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
+    }
+
     protected function getPropertyNameBySetMethod(string $setMethodName): string
     {
         return Str::snake(ltrim($setMethodName, 'set'));
+    }
+
+    protected function setOptionsToProperties(array $options): void
+    {
+        foreach ($options as $key => $value) {
+            $property = Str::camel($key);
+            property_exists($this, $key) && $this->{$property} = $value;
+        }
     }
 
     abstract public function send();

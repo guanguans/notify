@@ -16,6 +16,7 @@ use Guanguans\Notify\Support\Str;
  * Class Factory.
  *
  * @method static \Guanguans\Notify\Clients\ChanifyClient chanify(array $config = [])
+ * @method static \Guanguans\Notify\Clients\XiZhiClient   xiZhi(array $config = [])
  */
 class Factory
 {
