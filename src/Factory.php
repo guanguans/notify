@@ -21,6 +21,7 @@ use Guanguans\Notify\Support\Str;
  * @method static \Guanguans\Notify\Clients\BarkClient          bark(array $config = [])
  * @method static \Guanguans\Notify\Clients\DingTalkClient      dingTalk(array $config = [])
  * @method static \Guanguans\Notify\Clients\WeWorkClient        weWork(array $config = [])
+ * @method static \Guanguans\Notify\Clients\FeiShuClient        feiShu(array $config = [])
  */
 class Factory
 {
