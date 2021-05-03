@@ -131,6 +131,8 @@ markdownTemplate;
 
     public function getContent(): string
     {
+        $this->keyword && $this->content = sprintf("关键字: %s\n%s", $this->keyword, $this->content);
+
         if (true === $this->contentIsMarkdown) {
             return sprintf($this->markdownTemplate, $this->content);
         }
