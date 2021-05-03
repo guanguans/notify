@@ -13,6 +13,7 @@ namespace Guanguans\Notify\Clients;
 use Guanguans\Notify\Contracts\GatewayInterface;
 use Guanguans\Notify\Contracts\MessageInterface;
 use Guanguans\Notify\Contracts\RequestInterface;
+use Guanguans\Notify\Support\Str;
 use Guanguans\Notify\Traits\HasHttpClient;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -20,7 +21,15 @@ abstract class AbstractClient implements GatewayInterface, MessageInterface, Req
 {
     use HasHttpClient;
 
+    /**
+     * @var array
+     */
     protected $options = [];
+
+    /**
+     * @var string
+     */
+    protected $format = 'urlencoded';
 
     /**
      * AbstractClient constructor.
@@ -30,52 +39,59 @@ abstract class AbstractClient implements GatewayInterface, MessageInterface, Req
         $this->setOptions($options);
     }
 
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
-        return '\\'.get_class($this);
+        return str_replace([__NAMESPACE__.'\\', 'Client'], '', get_class($this));
+    }
+
+    public function getFormat(): string
+    {
+        return $this->format;
     }
 
     /**
-     * @return false|string|string[]
+     * @return $this
      */
-    public function getShortName()
+    public function setOptions(array $options): self
     {
-        return str_replace([__NAMESPACE__.'\\', 'Client'], '', \get_class($this));
-    }
-
-    public function setOptions(array $options)
-    {
-        $this->options = configure_options(array_merge($this->options, $options), function (OptionsResolver $resolver) {
+        $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
             $resolver->setDefined([
-                'token',
+                'access_token',
                 'content',
             ]);
-            $resolver->setAllowedTypes('token', 'string');
+            $resolver->setAllowedTypes('access_token', 'string');
             $resolver->setAllowedTypes('content', 'string');
         });
 
+        $this->options = array_merge($this->options, $diffOptions);
         foreach ($this->options as $key => $value) {
-            property_exists($this, $key) && $this->{$key} = $value;
+            $property = Str::camel($key);
+            property_exists($this, $property) && $this->{$property} = $value;
         }
 
         return $this;
     }
 
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->options;
     }
 
-    public function setOption($key, $value)
+    /**
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setOption(string $key, $value): self
     {
-        $this->setOptions([
-            $key => $value,
-        ]);
+        $this->setOptions([$key => $value]);
 
         return $this;
+    }
+
+    protected function getPropertyNameBySetMethod(string $setMethodName): string
+    {
+        return Str::snake(ltrim($setMethodName, 'set'));
     }
 
     abstract public function send();

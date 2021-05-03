@@ -24,22 +24,22 @@ trait HasHttpClient
      */
     protected static $httpOptions = [];
 
-    /**
-     * @param array $httpOptions
-     */
-    public static function setHttpOptions($httpOptions = [])
+    public function setHttpOptions(array $httpOptions): self
     {
-        self::$httpOptions = $httpOptions;
+        static::$httpOptions = array_merge(static::$httpOptions, $httpOptions);
+
+        return $this;
     }
 
     public static function getHttpOptions(): array
     {
-        return self::$httpOptions;
+        return static::$httpOptions;
     }
 
     public function getHttpClient(array $config = []): Client
     {
-        $config && self::$httpOptions = array_merge($config);
+        $config && $this->setHttpOptions($config);
+
         if ($config || ! $this->httpClient instanceof Client) {
             $this->httpClient = Client::create(self::$httpOptions);
         }

@@ -12,7 +12,7 @@ namespace Guanguans\Notify\Clients;
 
 class ChanifyClient extends AbstractClient
 {
-    public const GATEWAY_TEMPLATE = '%s/%s';
+    public const ENDPOINT_URL_TEMPLATE = '%s/%s';
 
     /**
      * @var string
@@ -22,36 +22,42 @@ class ChanifyClient extends AbstractClient
     /**
      * @var string
      */
-    protected $token;
+    protected $accessToken;
 
     /**
      * @var string
      */
     protected $content;
 
-    /**
-     * @return string
-     */
-    public function getContent(): ?string
+    public function getContent(): string
     {
         return $this->content;
     }
 
-    public function setContent(string $content)
+    /**
+     * @return $this
+     */
+    public function setContent(string $content): self
     {
-        $this->setOption('content', $content);
+        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $content);
 
         return $this;
     }
 
-    public function setToken(string $token)
+    /**
+     * @return $this
+     */
+    public function setAccessToken(string $accessToken): self
     {
-        $this->setOption('token', $token);
+        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $accessToken);
 
         return $this;
     }
 
-    public function getData()
+    /**
+     * @return array|string[]
+     */
+    public function getData(): array
     {
         return [
             'text' => $this->getContent(),
@@ -60,28 +66,37 @@ class ChanifyClient extends AbstractClient
 
     public function getFormat(): string
     {
-        return 'array';
+        return $this->format;
     }
 
-    public function getParams()
+    /**
+     * @return array|string[]
+     */
+    public function getParams(): array
     {
         return $this->getData();
     }
 
-    public function getGateway()
+    /**
+     * @return $this
+     */
+    public function setBaseUri(string $baseUri): self
     {
-        return sprintf(static::GATEWAY_TEMPLATE, $this->baseUri, $this->token);
+        $this->baseUri = trim($baseUri, '/');
+
+        return $this;
     }
 
-    public function setBaseUri(string $baseUri): void
-    {
-        $this->baseUri = $baseUri;
-    }
-
+    /**
+     * @return array|\GuzzleHttp\Promise\PromiseInterface|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string
+     */
     public function send()
     {
-        return $this->getHttpClient()->post($this->getGateway(),
-            $this->getParams()
-        );
+        return $this->getHttpClient()->post($this->getEndpointUrl(), $this->getParams());
+    }
+
+    public function getEndpointUrl(): string
+    {
+        return sprintf(static::ENDPOINT_URL_TEMPLATE, $this->baseUri, $this->accessToken);
     }
 }

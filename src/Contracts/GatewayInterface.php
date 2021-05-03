@@ -12,9 +12,7 @@ namespace Guanguans\Notify\Contracts;
 
 interface GatewayInterface
 {
-    public function getName();
+    public function getName(): string;
 
-    public function getShortName();
-
-    public function getGateway();
+    public function getEndpointUrl(): string;
 }
