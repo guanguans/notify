@@ -237,7 +237,6 @@ class DingTalkClient extends AbstractClient
                 break;
         }
 
-        // dd($data);
         return $data;
     }
 
