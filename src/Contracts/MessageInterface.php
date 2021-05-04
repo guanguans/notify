@@ -12,7 +12,7 @@ namespace Guanguans\Notify\Contracts;
 
 interface MessageInterface
 {
-    public function getContent(): string;
+    public function getType();
 
-    public function getData(): array;
+    public function getData();
 }

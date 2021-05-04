@@ -10,105 +10,108 @@
 
 namespace Guanguans\Notify\Clients;
 
+use Guanguans\Notify\Exceptions\Exception;
+use Guanguans\Notify\Messages\Message;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class XiZhiClient extends AbstractClient
 {
-    public const ENDPOINT_URL_TEMPLATE = [
+    public const REQUEST_URL_TEMPLATE = [
         'single_point' => 'https://xizhi.qqoq.net/%s.send',
         'channel' => 'https://xizhi.qqoq.net/%s.channel',
     ];
 
-    protected $contentIsMarkdown = true;
+    /**
+     * @var array[]
+     */
+    protected $initOptions = [
+        [
+            'name' => 'push_type',
+            'allowed_types' => ['string'],
+            'default' => 'single_point',
+            'allowed_values' => ['single_point', 'channel'],
+        ],
+    ];
 
-    protected $pushType = 'single_point';
+    public function __construct(array $options = [])
+    {
+        parent::__construct($options);
+    }
 
     /**
-     * @var string
+     * @return $this
      */
-    protected $title;
-
-    public function setOptions(array $options): AbstractClient
+    public function setOptions(array $options): self
     {
         $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
             $resolver->setDefined([
                 'token',
+                'message',
                 'push_type',
-                'title',
-                'content',
-                'content_is_markdown',
-                'markdown_template',
             ]);
-            $resolver->setAllowedTypes('push_type', 'string');
+
             $resolver->setAllowedTypes('token', 'string');
-            $resolver->setAllowedTypes('title', 'string');
-            $resolver->setAllowedTypes('content', 'string');
-            $resolver->setAllowedTypes('content_is_markdown', 'bool');
-            $resolver->setAllowedTypes('markdown_template', 'string');
+            $resolver->setAllowedTypes('message', 'object');
+            $resolver->setAllowedTypes('push_type', 'string');
 
             $resolver->setAllowedValues('push_type', ['single_point', 'channel']);
         });
 
         $this->options = array_merge($this->options, $diffOptions);
-        $this->setOptionsToProperties($this->options);
 
         return $this;
     }
 
-    public function send()
+    /**
+     * @return array|string[]
+     */
+    public function getParams(): array
     {
-        return $this->getHttpClient()->post($this->getEndpointUrl(), $this->getParams());
-    }
-
-    public function getEndpointUrl(): string
-    {
-        if ('channel' === $this->pushType) {
-            return sprintf(static::ENDPOINT_URL_TEMPLATE['channel'], $this->token);
+        if (empty($this->getMessage())) {
+            throw new Exception('No Message!');
         }
 
-        return sprintf(static::ENDPOINT_URL_TEMPLATE['single_point'], $this->token);
-    }
+        if (! $this->getMessage() instanceof Message) {
+            throw new Exception(sprintf('The message no instanceof %s', Message::class));
+        }
 
-    public function getData(): array
-    {
-        return [
-            'title' => $this->title,
-            'content' => $this->getContent(),
-        ];
-    }
-
-    public function getParams()
-    {
-        return $this->getData();
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
+        return $this->getMessage()->getData();
     }
 
     /**
      * @return $this
      */
-    public function setTitle(string $value): self
+    public function setBaseUri(string $baseUri): self
     {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
+        $this->setOption('base_uri', trim($baseUri, '/'));
 
         return $this;
     }
 
-    public function getPushType(): string
+    public function getBaseUri(): string
     {
-        return $this->pushType;
+        return $this->getOptions('base_uri');
     }
 
     /**
-     * @return $this
+     * @param null $message
+     *
+     * @return array|\GuzzleHttp\Promise\PromiseInterface|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string
+     *
+     * @throws \Guanguans\Notify\Exceptions\Exception
      */
-    public function setPushType(string $value): self
+    public function send($message = null)
     {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
+        $message && $this->message = $message;
 
-        return $this;
+        return $this->getHttpClient()->post($this->getRequestUrl(), $this->getParams());
+    }
+
+    public function getRequestUrl(): string
+    {
+        'single_point' === $this->getOptions('push_type') && $url = sprintf(static::REQUEST_URL_TEMPLATE['single_point'], $this->getToken());
+        'channel' === $this->getOptions('push_type') && $url = sprintf(static::REQUEST_URL_TEMPLATE['channel'], $this->getToken());
+
+        return $url;
     }
 }

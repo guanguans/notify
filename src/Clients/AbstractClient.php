@@ -11,66 +11,23 @@
 namespace Guanguans\Notify\Clients;
 
 use Guanguans\Notify\Contracts\GatewayInterface;
-use Guanguans\Notify\Contracts\MessageInterface;
 use Guanguans\Notify\Contracts\RequestInterface;
-use Guanguans\Notify\Support\Str;
 use Guanguans\Notify\Traits\HasHttpClient;
+use Guanguans\Notify\Traits\HasOptions;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-abstract class AbstractClient implements GatewayInterface, MessageInterface, RequestInterface
+abstract class AbstractClient implements GatewayInterface, RequestInterface
 {
     use HasHttpClient;
-
-    /**
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * @var string
-     */
-    protected $format = 'urlencoded';
-
-    /**
-     * @var string
-     */
-    protected $token;
-
-    /**
-     * @var string
-     */
-    protected $content;
-
-    /**
-     * @var bool
-     */
-    protected $contentIsMarkdown = false;
-
-    /**
-     * @var string
-     */
-    protected $markdownTemplate = <<<"markdownTemplate"
-``` shell
-%s
-```
-markdownTemplate;
+    use HasOptions;
 
     /**
      * AbstractClient constructor.
      */
     public function __construct(array $options = [])
     {
+        $this->initOptions($this->initOptions);
         $this->setOptions($options);
-    }
-
-    public function getName(): string
-    {
-        return str_replace([__NAMESPACE__.'\\', 'Client'], '', get_class($this));
-    }
-
-    public function getFormat(): string
-    {
-        return $this->format;
     }
 
     /**
@@ -81,117 +38,51 @@ markdownTemplate;
         $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
             $resolver->setDefined([
                 'token',
-                'content',
-                'contentIsMarkdown',
-                'markdownTemplate',
+                'message',
             ]);
             $resolver->setAllowedTypes('token', 'string');
-            $resolver->setAllowedTypes('content', 'string');
-            $resolver->setAllowedTypes('contentIsMarkdown', 'bool');
-            $resolver->setAllowedTypes('markdownTemplate', 'string');
+            $resolver->setAllowedTypes('message', 'object');
         });
 
         $this->options = array_merge($this->options, $diffOptions);
-        $this->setOptionsToProperties($this->options);
 
         return $this;
     }
 
-    public function getOptions(): array
+    public function getName(): string
     {
-        return $this->options;
-    }
-
-    /**
-     * @param $value
-     *
-     * @return $this
-     */
-    public function setOption(string $key, $value): self
-    {
-        $this->setOptions([$key => $value]);
-
-        return $this;
+        return str_replace([__NAMESPACE__.'\\', 'Client'], '', get_class($this));
     }
 
     public function getToken(): string
     {
-        return $this->token;
+        return $this->options['token'];
     }
 
     /**
      * @return $this
      */
-    public function setToken(string $value): self
+    public function setToken(string $token): self
     {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
+        $this->setOption('token', $token);
 
         return $this;
     }
 
-    public function getContent(): string
+    public function getMessage(): object
     {
-        $this->keyword && $this->content = sprintf("关键字: %s\n%s", $this->keyword, $this->content);
-
-        if (true === $this->contentIsMarkdown) {
-            return sprintf($this->markdownTemplate, $this->content);
-        }
-
-        return $this->content;
+        return $this->getOptions('message');
     }
 
     /**
      * @return $this
      */
-    public function setContent(string $value): self
+    public function setMessage($message): self
     {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
+        $this->setOption('message', $message);
 
         return $this;
     }
 
-    public function getContentIsMarkdown(): bool
-    {
-        return $this->contentIsMarkdown;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setContentIsMarkdown(bool $value): self
-    {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
-
-        return $this;
-    }
-
-    public function getMarkdownTemplate(): string
-    {
-        return $this->markdownTemplate;
-    }
-
-    /**
-     * @param string $markdownTemplate
-     *
-     * @return $this
-     */
-    public function setMarkdownTemplate(string $value): self
-    {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
-    }
-
-    protected function getPropertyNameBySetMethod(string $setMethodName): string
-    {
-        return Str::snake(ltrim($setMethodName, 'set'));
-    }
-
-    protected function setOptionsToProperties(array $options): void
-    {
-        foreach ($options as $key => $value) {
-            $property = Str::camel($key);
-            property_exists($this, $key) && $this->{$property} = $value;
-        }
-    }
-
-    abstract public function send();
+    abstract public function send($message = null);
 }

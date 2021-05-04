@@ -10,28 +10,51 @@
 
 namespace Guanguans\Notify\Clients;
 
+use Guanguans\Notify\Exceptions\Exception;
+use Guanguans\Notify\Messages\Message;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 class ChanifyClient extends AbstractClient
 {
-    public const ENDPOINT_URL_TEMPLATE = '%s/%s';
+    public const REQUEST_URL_TEMPLATE = '%s/%s';
 
     /**
-     * @var string
+     * @var array[]
      */
-    protected $baseUri = 'https://api.chanify.net/v1/sender';
+    protected $initOptions = [
+        [
+            'name' => 'base_uri',
+            'allowed_types' => ['string'],
+            'default' => 'https://api.chanify.net/v1/sender',
+            'info' => '请求地址',
+            'is_required' => true,
+        ],
+    ];
 
-    /**
-     * @var string
-     */
-    protected $content;
-
-    /**
-     * @return array|string[]
-     */
-    public function getData(): array
+    public function __construct(array $options = [])
     {
-        return [
-            'text' => $this->getContent(),
-        ];
+        parent::__construct($options);
+    }
+
+    /**
+     * @return $this
+     */
+    public function setOptions(array $options): self
+    {
+        $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
+            $resolver->setDefined([
+                'token',
+                'message',
+                'base_uri',
+            ]);
+            $resolver->setAllowedTypes('token', 'string');
+            $resolver->setAllowedTypes('message', 'object');
+            $resolver->setAllowedTypes('base_uri', 'string');
+        });
+
+        $this->options = array_merge($this->options, $diffOptions);
+
+        return $this;
     }
 
     /**
@@ -39,7 +62,15 @@ class ChanifyClient extends AbstractClient
      */
     public function getParams(): array
     {
-        return $this->getData();
+        if (empty($this->getMessage())) {
+            throw new Exception('No Message!');
+        }
+
+        if (! $this->getMessage() instanceof Message) {
+            throw new Exception(sprintf('The message no instanceof %s', Message::class));
+        }
+
+        return $this->getMessage()->getData();
     }
 
     /**
@@ -47,21 +78,32 @@ class ChanifyClient extends AbstractClient
      */
     public function setBaseUri(string $baseUri): self
     {
-        $this->baseUri = trim($baseUri, '/');
+        $this->setOption('base_uri', trim($baseUri, '/'));
 
         return $this;
     }
 
-    /**
-     * @return array|\GuzzleHttp\Promise\PromiseInterface|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string
-     */
-    public function send()
+    public function getBaseUri(): string
     {
-        return $this->getHttpClient()->post($this->getEndpointUrl(), $this->getParams());
+        return $this->getOptions('base_uri');
     }
 
-    public function getEndpointUrl(): string
+    /**
+     * @param null $message
+     *
+     * @return array|\GuzzleHttp\Promise\PromiseInterface|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string
+     *
+     * @throws \Guanguans\Notify\Exceptions\Exception
+     */
+    public function send($message = null)
     {
-        return sprintf(static::ENDPOINT_URL_TEMPLATE, $this->baseUri, $this->token);
+        $message && $this->message = $message;
+
+        return $this->getHttpClient()->post($this->getRequestUrl(), $this->getParams());
+    }
+
+    public function getRequestUrl(): string
+    {
+        return sprintf(static::REQUEST_URL_TEMPLATE, $this->getBaseUri(), $this->getToken());
     }
 }

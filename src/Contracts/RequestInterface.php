@@ -12,7 +12,7 @@ namespace Guanguans\Notify\Contracts;
 
 interface RequestInterface
 {
-    public function getFormat(): string;
-
     public function getParams();
+
+    public function getRequestUrl();
 }

@@ -13,3 +13,4 @@ vendor/
 tests.php
 .DS_Store
 .history/
+test.php

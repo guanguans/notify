@@ -10,110 +10,101 @@
 
 namespace Guanguans\Notify\Clients;
 
+use Guanguans\Notify\Exceptions\Exception;
+use Guanguans\Notify\Messages\Message;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ServerChanClient extends AbstractClient
 {
-    public const ENDPOINT_URL_TEMPLATE = 'https://sctapi.ftqq.com/%s.send';
+    public const REQUEST_URL_TEMPLATE = 'https://sctapi.ftqq.com/%s.send';
 
-    protected $contentIsMarkdown = true;
-
-    /**
-     * @var string
-     */
-    protected $title;
+    public const CHECK_REQUEST_URL_TEMPLATE = 'https://sctapi.ftqq.com/push?id=%s&readkey=%s';
 
     /**
-     * @var string
+     * @var array[]
      */
-    protected $keyword;
+    protected $initOptions = [];
 
-    public function setOptions(array $options): AbstractClient
+    public function __construct(array $options = [])
+    {
+        parent::__construct($options);
+    }
+
+    /**
+     * @return $this
+     */
+    public function setOptions(array $options): self
     {
         $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
             $resolver->setDefined([
                 'token',
-                'keyword',
-                'title',
-                'content',
-                'content_is_markdown',
-                'markdown_template',
+                'message',
             ]);
-            $resolver->setAllowedTypes('keyword', 'string');
             $resolver->setAllowedTypes('token', 'string');
-            $resolver->setAllowedTypes('title', 'string');
-            $resolver->setAllowedTypes('content', 'string');
-            $resolver->setAllowedTypes('content_is_markdown', 'bool');
-            $resolver->setAllowedTypes('markdown_template', 'string');
+            $resolver->setAllowedTypes('message', 'object');
         });
 
         $this->options = array_merge($this->options, $diffOptions);
-        $this->setOptionsToProperties($this->options);
 
         return $this;
     }
 
-    public function send()
+    /**
+     * @return array|string[]
+     */
+    public function getParams(): array
     {
-        return $this->getHttpClient()->post($this->getEndpointUrl(), $this->getParams());
-    }
-
-    public function getEndpointUrl(): string
-    {
-        return sprintf(static::ENDPOINT_URL_TEMPLATE, $this->token);
-    }
-
-    public function getData(): array
-    {
-        return [
-            'title' => $this->title,
-            'content' => $this->getContent(),
-        ];
-    }
-
-    public function getParams()
-    {
-        return $this->getData();
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
-    }
-
-    public function getContent(): string
-    {
-        $this->keyword && $this->content = sprintf("关键字: %s\n%s", $this->keyword, $this->content);
-
-        if (true === $this->contentIsMarkdown) {
-            return sprintf($this->markdownTemplate, $this->content);
+        if (empty($this->getMessage())) {
+            throw new Exception('No Message!');
         }
 
-        return $this->content;
+        if (! $this->getMessage() instanceof Message) {
+            throw new Exception(sprintf('The message no instanceof %s', Message::class));
+        }
+
+        $data = $this->getMessage()->getData();
+
+        isset($data['keyword']) && $data['keyword'] && $data['desp'] = sprintf("关键字: %s\n %s", $data['keyword'], $data['desp']);
+
+        return $data;
     }
 
     /**
      * @return $this
      */
-    public function setTitle(string $value): self
+    public function setBaseUri(string $baseUri): self
     {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
+        $this->setOption('base_uri', trim($baseUri, '/'));
 
         return $this;
     }
 
-    public function getKeyword(): string
+    public function getBaseUri(): string
     {
-        return $this->keyword;
+        return $this->getOptions('base_uri');
     }
 
     /**
-     * @return $this
+     * @param null $message
+     *
+     * @return array|\GuzzleHttp\Promise\PromiseInterface|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string
+     *
+     * @throws \Guanguans\Notify\Exceptions\Exception
      */
-    public function setKeyword(string $value): self
+    public function send($message = null)
     {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
+        $message && $this->message = $message;
 
-        return $this;
+        return $this->getHttpClient()->post($this->getRequestUrl(), $this->getParams());
+    }
+
+    public function check(string $pushId, string $readKey)
+    {
+        return $this->getHttpClient()->get(sprintf(static::CHECK_REQUEST_URL_TEMPLATE, $pushId, $readKey));
+    }
+
+    public function getRequestUrl(): string
+    {
+        return sprintf(static::REQUEST_URL_TEMPLATE, $this->getToken());
     }
 }

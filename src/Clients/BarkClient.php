@@ -10,100 +10,52 @@
 
 namespace Guanguans\Notify\Clients;
 
+use Guanguans\Notify\Exceptions\Exception;
+use Guanguans\Notify\Messages\Message;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BarkClient extends AbstractClient
 {
-    public const ENDPOINT_URL_TEMPLATE = '%s/%s/%s';
+    public const REQUEST_URL_TEMPLATE = '%s/%s/%s?%s';
 
     /**
-     * @var string
+     * @var array[]
      */
-    protected $baseUri = 'https://api.day.app';
+    protected $initOptions = [
+        [
+            'name' => 'base_uri',
+            'allowed_types' => ['string'],
+            'default' => 'https://api.day.app',
+            'info' => '请求地址',
+            'is_required' => true,
+        ],
+    ];
+
+    public function __construct(array $options = [])
+    {
+        parent::__construct($options);
+    }
 
     /**
-     * @var string
+     * @return $this
      */
-    protected $title;
-
-    /**
-     * @var string
-     */
-    protected $sound = 'bell';
-
-    /**
-     * @var string
-     */
-    protected $content;
-
-    /**
-     * @var string
-     */
-    protected $url;
-
-    /**
-     * @var string
-     */
-    protected $copy;
-
-    /**
-     * @var int
-     */
-    protected $isAutomaticallyCopy = 1;
-
-    /**
-     * @var int
-     */
-    protected $isArchive = 1;
-
-    public function setOptions(array $options): AbstractClient
+    public function setOptions(array $options): self
     {
         $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
             $resolver->setDefined([
                 'token',
-                'title',
-                'content',
-                'sound',
-                'is_archive',
-                'url',
-                'copy',
-                'is_automatically_copy',
+                'message',
+                'base_uri',
             ]);
-            $resolver->setAllowedTypes('token', 'string');
-            $resolver->setAllowedTypes('title', 'string');
-            $resolver->setAllowedTypes('content', 'string');
-            $resolver->setAllowedTypes('sound', 'string');
-            $resolver->setAllowedTypes('is_archive', 'int');
-            $resolver->setAllowedTypes('url', 'string');
-            $resolver->setAllowedTypes('copy', 'string');
-            $resolver->setAllowedTypes('is_automatically_copy', 'int');
 
-            $resolver->setAllowedValues('is_archive', [0, 1]);
-            $resolver->setAllowedValues('is_automatically_copy', [0, 1]);
-            $resolver->setAllowedValues('url', function ($value) {
-                return false !== filter_var($value, FILTER_VALIDATE_URL);
-            });
+            $resolver->setAllowedTypes('token', 'string');
+            $resolver->setAllowedTypes('message', 'object');
+            $resolver->setAllowedTypes('base_uri', 'string');
         });
 
         $this->options = array_merge($this->options, $diffOptions);
-        $this->setOptionsToProperties($this->options);
 
         return $this;
-    }
-
-    /**
-     * @return array|string[]
-     */
-    public function getData(): array
-    {
-        return [
-            'title' => $this->getTitle(),
-            'sound' => $this->getSound(),
-            'isArchive' => $this->getIsArchive(),
-            'url' => $this->getUrl(),
-            'copy' => $this->getCopy(),
-            'automaticallyCopy' => $this->getIsAutomaticallyCopy(),
-        ];
     }
 
     /**
@@ -111,126 +63,54 @@ class BarkClient extends AbstractClient
      */
     public function getParams(): array
     {
-        return $this->getData();
+        if (empty($this->getMessage())) {
+            throw new Exception('No Message!');
+        }
+
+        if (! $this->getMessage() instanceof Message) {
+            throw new Exception(sprintf('The message no instanceof %s', Message::class));
+        }
+
+        return $this->getMessage()->getData();
     }
 
     /**
      * @return $this
      */
-    public function setBaseUri(string $value): self
+    public function setBaseUri(string $baseUri): self
     {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), trim($value, '/'));
+        $this->setOption('base_uri', trim($baseUri, '/'));
 
         return $this;
     }
 
-    public function getTitle(): ?string
+    public function getBaseUri(): string
     {
-        return $this->title;
+        return $this->getOptions('base_uri');
     }
 
     /**
-     * @return $this
-     */
-    public function setTitle(string $value): self
-    {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
-
-        return $this;
-    }
-
-    public function getSound(): string
-    {
-        return $this->sound;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setSound(string $value): self
-    {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
-
-        return $this;
-    }
-
-    public function getIsArchive(): int
-    {
-        return $this->isArchive;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setIsArchive(int $value): self
-    {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUrl(): ?string
-    {
-        return $this->url;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setUrl(string $value): self
-    {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
-
-        return $this;
-    }
-
-    public function getCopy(): string
-    {
-        return $this->copy;
-    }
-
-    /**
-     * @param $copy
+     * @param null $message
      *
-     * @return $this
-     */
-    public function setCopy(string $value): self
-    {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
-
-        return $this;
-    }
-
-    public function getIsAutomaticallyCopy(): int
-    {
-        return $this->isAutomaticallyCopy;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setIsAutomaticallyCopy(int $value): self
-    {
-        $this->setOption($this->getPropertyNameBySetMethod(__FUNCTION__), $value);
-
-        return $this;
-    }
-
-    /**
      * @return array|\GuzzleHttp\Promise\PromiseInterface|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string
+     *
+     * @throws \Guanguans\Notify\Exceptions\Exception
      */
-    public function send()
+    public function send($message = null)
     {
-        $httpQueryParams = http_build_query($this->getParams());
+        $message && $this->message = $message;
 
-        return $this->getHttpClient()->get($this->getEndpointUrl().'?'.$httpQueryParams);
+        return $this->getHttpClient()->get($this->getRequestUrl());
     }
 
-    public function getEndpointUrl(): string
+    public function getRequestUrl(): string
     {
-        return sprintf(static::ENDPOINT_URL_TEMPLATE, $this->baseUri, $this->token, $this->getContent());
+        return sprintf(
+            static::REQUEST_URL_TEMPLATE,
+            $this->getBaseUri(),
+            $this->getToken(),
+            $this->getMessage()->getData()['text'],
+            http_build_query($this->getParams())
+        );
     }
 }

@@ -15,13 +15,13 @@ use Guanguans\Notify\Support\Str;
 /**
  * Class Factory.
  *
- * @method static \Guanguans\Notify\Clients\ChanifyClient       chanify(array $config = [])
- * @method static \Guanguans\Notify\Clients\XiZhiClient         xiZhi(array $config = [])
- * @method static \Guanguans\Notify\Clients\ServerChanClient    serverChan(array $config = [])
- * @method static \Guanguans\Notify\Clients\BarkClient          bark(array $config = [])
- * @method static \Guanguans\Notify\Clients\DingTalkClient      dingTalk(array $config = [])
- * @method static \Guanguans\Notify\Clients\WeWorkClient        weWork(array $config = [])
- * @method static \Guanguans\Notify\Clients\FeiShuClient        feiShu(array $config = [])
+ * @method static \Guanguans\Notify\Clients\ChanifyClient       chanify(array $options = [], $message = null)
+ * @method static \Guanguans\Notify\Clients\XiZhiClient         xiZhi(array $options = [], $message = null)
+ * @method static \Guanguans\Notify\Clients\ServerChanClient    serverChan(array $options = [], $message = null)
+ * @method static \Guanguans\Notify\Clients\BarkClient          bark(array $options = [], $message = null)
+ * @method static \Guanguans\Notify\Clients\DingTalkClient      dingTalk(array $options = [], $message = null)
+ * @method static \Guanguans\Notify\Clients\WeWorkClient        weWork(array $options = [], $message = null)
+ * @method static \Guanguans\Notify\Clients\FeiShuClient        feiShu(array $options = [], $message = null)
  */
 class Factory
 {
@@ -30,11 +30,11 @@ class Factory
      *
      * @return mixed
      */
-    public static function make($name, array $config = [])
+    public static function make($name, array $options = [], $message = null)
     {
         $gateway = sprintf('\\Guanguans\\Notify\\Clients\\%sClient', Str::studly($name));
 
-        return new $gateway($config);
+        return new $gateway($options);
     }
 
     /**
