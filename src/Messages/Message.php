@@ -19,6 +19,19 @@ class Message implements MessageInterface
 
     protected $type;
 
+    protected $initOptions = [];
+
+    /**
+     * TextMessage constructor.
+     *
+     * @param string $text
+     */
+    public function __construct(array $options = [])
+    {
+        $this->initOptions($this->initOptions);
+        $this->setOptions($options);
+    }
+
     public function getData()
     {
         return $this->options;

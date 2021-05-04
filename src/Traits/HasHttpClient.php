@@ -10,12 +10,12 @@
 
 namespace Guanguans\Notify\Traits;
 
-use Overtrue\Http\Client;
+use Guanguans\Notify\Http\Client;
 
 trait HasHttpClient
 {
     /**
-     * @var \Overtrue\Http\Client
+     * @var \Guanguans\Notify\Http\Client
      */
     protected $httpClient;
 
