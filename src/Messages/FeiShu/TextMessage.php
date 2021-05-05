@@ -64,17 +64,20 @@ class TextMessage extends Message
 
         if ($this->options['secret']) {
             $data['timestamp'] = $time = time();
-            // $data['timestamp'] = $time = 1620162702;
             $data['sign'] = $this->getSign($this->options['secret'], $time);
         }
 
         return $data;
     }
 
+    /**
+     * @return string
+     */
     protected function getSign(string $secret, int $timestamp)
     {
         $stringToSign = sprintf("%s\n%s", $timestamp, $secret);
-        $hash = hash_hmac('sha256', '', $stringToSign);
+
+        $hash = hash_hmac('sha256', '', $stringToSign, true);
 
         return base64_encode($hash);
     }
