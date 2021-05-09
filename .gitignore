@@ -11,6 +11,6 @@ phpunit.xml
 psalm.xml
 vendor/
 tests.php
+test.php
 .DS_Store
 .history/
-test.php

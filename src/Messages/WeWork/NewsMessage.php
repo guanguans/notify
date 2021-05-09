@@ -17,51 +17,23 @@ class NewsMessage extends Message
 {
     protected $type = 'news';
 
-    protected $initOptions = [];
-
-    /**
-     * TextMessage constructor.
-     *
-     * @param string $text
-     */
-    public function __construct(array $options = [])
+    public function configureOptionsResolver()
     {
-        parent::__construct($options);
-    }
+        parent::configureOptionsResolver();
 
-    /**
-     * @return $this
-     */
-    public function setOptions(array $options): self
-    {
-        $diffOptions = array_diff($options, $this->options);
-        $diffOptions = configure_options($diffOptions, function (OptionsResolver $resolver) use ($diffOptions) {
+        tap(static::$resolver, function ($resolver) {
             $resolver->setDefined([
                 'articles',
             ]);
-
-            $resolver->setAllowedTypes('articles', 'array');
-
-            foreach ($diffOptions['articles'] as $article) {
-                configure_options($article, function (OptionsResolver $resolver) {
-                    $resolver->setDefined([
-                        'title',
-                        'description',
-                        'url',
-                        'picurl',
-                    ]);
-
-                    $resolver->setRequired(['title', 'url']);
-
-                    $resolver->setAllowedTypes('title', 'string');
-                    $resolver->setAllowedTypes('description', 'string');
-                    $resolver->setAllowedTypes('url', 'string');
-                    $resolver->setAllowedTypes('picurl', 'string');
-                });
-            }
         });
 
-        $this->options = array_merge($this->options, $diffOptions);
+        tap(static::$resolver, function ($resolver) {
+            $resolver->setDefault('articles', []);
+        });
+
+        tap(static::$resolver, function ($resolver) {
+            $resolver->setAllowedTypes('articles', 'array');
+        });
 
         return $this;
     }
@@ -104,5 +76,15 @@ class NewsMessage extends Message
         });
 
         return $this;
+    }
+
+    public function transformToRequestParams()
+    {
+        return [
+            'msgtype' => 'news',
+            'news' => [
+                'articles' => $this->options['articles'],
+            ],
+        ];
     }
 }

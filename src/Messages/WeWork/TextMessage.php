@@ -12,40 +12,30 @@ namespace Guanguans\Notify\Messages\WeWork;
 
 use Guanguans\Notify\Messages\Message;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TextMessage extends Message
 {
     protected $type = 'text';
 
-    protected $initOptions = [];
-
-    /**
-     * TextMessage constructor.
-     *
-     * @param string $text
-     */
-    public function __construct(array $options = [])
+    public function configureOptionsResolver()
     {
-        parent::__construct($options);
-    }
+        parent::configureOptionsResolver();
 
-    /**
-     * @return $this
-     */
-    public function setOptions(array $options): self
-    {
-        $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
+        tap(static::$resolver, function ($resolver) {
             $resolver->setDefined([
                 'content',
                 'mentioned_list',
                 'mentioned_mobile_list',
             ]);
+        });
 
+        tap(static::$resolver, function ($resolver) {
             $resolver->setAllowedTypes('content', 'string');
             $resolver->setAllowedTypes('mentioned_list', ['string', 'array']);
             $resolver->setAllowedTypes('mentioned_mobile_list', ['string', 'array']);
+        });
 
+        tap(static::$resolver, function ($resolver) {
             $resolver->setNormalizer('mentioned_list', function (Options $options, $value) {
                 return (array) $value;
             });
@@ -54,8 +44,14 @@ class TextMessage extends Message
             });
         });
 
-        $this->options = array_merge($this->options, $diffOptions);
-
         return $this;
+    }
+
+    public function transformToRequestParams()
+    {
+        return [
+            'msgtype' => 'text',
+            'text' => $this->options,
+        ];
     }
 }

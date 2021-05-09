@@ -11,40 +11,47 @@
 namespace Guanguans\Notify\Clients;
 
 use Guanguans\Notify\Contracts\GatewayInterface;
+use Guanguans\Notify\Contracts\MessageInterface;
 use Guanguans\Notify\Contracts\RequestInterface;
+use Guanguans\Notify\Exceptions\Exception;
+use Guanguans\Notify\Messages\Message;
 use Guanguans\Notify\Traits\HasHttpClient;
 use Guanguans\Notify\Traits\HasOptions;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
-abstract class AbstractClient implements GatewayInterface, RequestInterface
+abstract class Client implements GatewayInterface, RequestInterface
 {
     use HasHttpClient;
     use HasOptions;
+
+    /**
+     * @var string
+     */
+    protected $requestMethod = 'post';
 
     /**
      * AbstractClient constructor.
      */
     public function __construct(array $options = [])
     {
-        $this->initOptions($this->initOptions);
         $this->setOptions($options);
     }
 
     /**
      * @return $this
      */
-    public function setOptions(array $options): self
+    protected function configureOptionsResolver()
     {
-        $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
+        tap(static::$resolver, function ($resolver) {
             $resolver->setDefined([
                 'token',
                 'message',
             ]);
+        });
+
+        tap(static::$resolver, function ($resolver) {
             $resolver->setAllowedTypes('token', 'string');
             $resolver->setAllowedTypes('message', 'object');
         });
-
-        $this->options = array_merge($this->options, $diffOptions);
 
         return $this;
     }
@@ -52,6 +59,11 @@ abstract class AbstractClient implements GatewayInterface, RequestInterface
     public function getName(): string
     {
         return str_replace([__NAMESPACE__.'\\', 'Client'], '', get_class($this));
+    }
+
+    public function getRequestMethod(): string
+    {
+        return $this->requestMethod;
     }
 
     public function getToken(): string
@@ -84,5 +96,26 @@ abstract class AbstractClient implements GatewayInterface, RequestInterface
         return $this;
     }
 
-    abstract public function send($message = null);
+    /**
+     * @return array|string[]
+     */
+    public function getRequestParams(): array
+    {
+        if (empty($this->getMessage())) {
+            throw new Exception('No Message!');
+        }
+
+        if (! $this->getMessage() instanceof Message) {
+            throw new Exception(sprintf('The message no instanceof %s', Message::class));
+        }
+
+        return $this->getMessage()->transformToRequestParams();
+    }
+
+    public function send(MessageInterface $message = null)
+    {
+        $message && $this->setMessage($message);
+
+        return $this->getHttpClient()->{$this->getRequestMethod()}($this->getRequestUrl(), $this->getRequestParams());
+    }
 }

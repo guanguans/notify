@@ -12,30 +12,16 @@ namespace Guanguans\Notify\Messages\DingTalk;
 
 use Guanguans\Notify\Messages\Message;
 use Symfony\Component\OptionsResolver\Options;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TextMessage extends Message
 {
     protected $type = 'text';
 
-    protected $initOptions = [];
-
-    /**
-     * TextMessage constructor.
-     *
-     * @param string $text
-     */
-    public function __construct(array $options = [])
+    public function configureOptionsResolver()
     {
-        parent::__construct($options);
-    }
+        parent::configureOptionsResolver();
 
-    /**
-     * @return $this
-     */
-    public function setOptions(array $options): self
-    {
-        $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
+        tap(static::$resolver, function ($resolver) {
             $resolver->setDefined([
                 'content',
                 'atMobiles',
@@ -43,13 +29,17 @@ class TextMessage extends Message
                 'isAtAll',
                 'secret',
             ]);
+        });
 
+        tap(static::$resolver, function ($resolver) {
             $resolver->setAllowedTypes('secret', 'string');
             $resolver->setAllowedTypes('content', 'string');
             $resolver->setAllowedTypes('atMobiles', ['string', 'array']);
             $resolver->setAllowedTypes('atUserIds', ['string', 'array']);
             $resolver->setAllowedTypes('isAtAll', 'bool');
+        });
 
+        tap(static::$resolver, function ($resolver) {
             $resolver->setNormalizer('atMobiles', function (Options $options, $value) {
                 return (array) $value;
             });
@@ -58,12 +48,10 @@ class TextMessage extends Message
             });
         });
 
-        $this->options = array_merge($this->options, $diffOptions);
-
         return $this;
     }
 
-    public function getData()
+    public function transformToRequestParams()
     {
         $data = [
             'msgtype' => $this->type,

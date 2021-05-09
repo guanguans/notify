@@ -13,4 +13,6 @@ namespace Guanguans\Notify\Contracts;
 interface GatewayInterface
 {
     public function getName(): string;
+
+    public function send(MessageInterface $message = null);
 }

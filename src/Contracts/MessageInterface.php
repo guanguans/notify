@@ -12,7 +12,5 @@ namespace Guanguans\Notify\Contracts;
 
 interface MessageInterface
 {
-    public function getType();
-
-    public function getData();
+    public function transformToRequestParams();
 }

@@ -11,13 +11,10 @@
 namespace Guanguans\Notify\Messages\WeWork;
 
 use Guanguans\Notify\Messages\Message;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MarkdownMessage extends Message
 {
     protected $type = 'markdown';
-
-    protected $initOptions = [];
 
     /**
      * TextMessage constructor.
@@ -29,21 +26,28 @@ class MarkdownMessage extends Message
         parent::__construct($options);
     }
 
-    /**
-     * @return $this
-     */
-    public function setOptions(array $options): self
+    public function configureOptionsResolver()
     {
-        $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
+        parent::configureOptionsResolver();
+
+        tap(static::$resolver, function ($resolver) {
             $resolver->setDefined([
                 'content',
             ]);
+        });
 
+        tap(static::$resolver, function ($resolver) {
             $resolver->setAllowedTypes('content', 'string');
         });
 
-        $this->options = array_merge($this->options, $diffOptions);
-
         return $this;
+    }
+
+    public function transformToRequestParams()
+    {
+        return [
+            'msgtype' => 'markdown',
+            'markdown' => $this->options,
+        ];
     }
 }

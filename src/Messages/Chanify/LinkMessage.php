@@ -11,56 +11,37 @@
 namespace Guanguans\Notify\Messages\Chanify;
 
 use Guanguans\Notify\Messages\Message;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LinkMessage extends Message
 {
     protected $type = 'link';
 
-    protected $initOptions = [
-        [
-            'name' => 'sound',
-            'allowed_types' => ['int'],
-            'default' => 1,
-        ],
-        [
-            'name' => 'priority',
-            'allowed_types' => ['int'],
-            'default' => 10,
-        ],
-    ];
-
-    /**
-     * TextMessage constructor.
-     *
-     * @param string $text
-     */
-    public function __construct(array $options = [])
+    public function configureOptionsResolver()
     {
-        $this->initOptions($this->initOptions);
-        $this->setOptions($options);
-    }
+        parent::configureOptionsResolver();
 
-    /**
-     * @return $this
-     */
-    public function setOptions(array $options): self
-    {
-        $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
+        tap(static::$resolver, function ($resolver) {
             $resolver->setDefined([
                 'link',
                 'sound',
                 'priority',
             ]);
+        });
 
+        tap(static::$resolver, function ($resolver) {
+            $resolver->setDefault('sound', 1);
+            $resolver->setDefault('priority', 10);
+        });
+
+        tap(static::$resolver, function ($resolver) {
             $resolver->setAllowedTypes('link', 'string');
             $resolver->setAllowedTypes('sound', 'int');
             $resolver->setAllowedTypes('priority', 'int');
-
-            $resolver->setAllowedTypes('sound', [0, 1]);
         });
 
-        $this->options = array_merge($this->options, $diffOptions);
+        tap(static::$resolver, function ($resolver) {
+            $resolver->setAllowedValues('sound', [0, 1]);
+        });
 
         return $this;
     }

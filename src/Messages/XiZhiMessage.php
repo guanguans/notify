@@ -8,11 +8,11 @@
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Messages\FeiShu;
+namespace Guanguans\Notify\Messages;
 
-class ImageMessage extends Message
+class XiZhiMessage extends Message
 {
-    protected $type = 'image';
+    protected $type = 'text';
 
     public function configureOptionsResolver()
     {
@@ -20,14 +20,14 @@ class ImageMessage extends Message
 
         tap(static::$resolver, function ($resolver) {
             $resolver->setDefined([
-                'image_key',
-                'secret',
+                'title',
+                'content',
             ]);
         });
 
         tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('image_key', 'string');
-            $resolver->setAllowedTypes('secret', 'string');
+            $resolver->setAllowedTypes('title', 'string');
+            $resolver->setAllowedTypes('content', 'string');
         });
 
         return $this;

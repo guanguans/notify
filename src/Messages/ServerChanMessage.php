@@ -8,26 +8,29 @@
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Messages\FeiShu;
+namespace Guanguans\Notify\Messages;
 
-class ImageMessage extends Message
+class ServerChanMessage extends Message
 {
-    protected $type = 'image';
+    protected $type = 'text';
 
+    /**
+     * {@inheritDoc}
+     */
     public function configureOptionsResolver()
     {
         parent::configureOptionsResolver();
 
         tap(static::$resolver, function ($resolver) {
             $resolver->setDefined([
-                'image_key',
-                'secret',
+                'title',
+                'desp',
             ]);
         });
 
         tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('image_key', 'string');
-            $resolver->setAllowedTypes('secret', 'string');
+            $resolver->setAllowedTypes('title', 'string');
+            $resolver->setAllowedTypes('desp', 'string');
         });
 
         return $this;

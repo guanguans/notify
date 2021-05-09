@@ -8,11 +8,9 @@
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Messages\Chanify;
+namespace Guanguans\Notify\Messages;
 
-use Guanguans\Notify\Messages\Message;
-
-class TextMessage extends Message
+class BarkMessage extends Message
 {
     protected $type = 'text';
 
@@ -24,31 +22,33 @@ class TextMessage extends Message
             $resolver->setDefined([
                 'title',
                 'text',
-                'copy',
-                'autocopy',
                 'sound',
-                'priority',
+                'isArchive',
+                'url',
+                'copy',
+                'automaticallyCopy',
             ]);
         });
 
         tap(static::$resolver, function ($resolver) {
-            $resolver->setDefault('autocopy', 1);
-            $resolver->setDefault('sound', 1);
-            $resolver->setDefault('priority', 10);
+            $resolver->setDefault('sound', 'bell');
+            $resolver->setDefault('isArchive', 1);
+            $resolver->setDefault('automaticallyCopy', 1);
         });
 
         tap(static::$resolver, function ($resolver) {
             $resolver->setAllowedTypes('title', 'string');
             $resolver->setAllowedTypes('text', 'string');
+            $resolver->setAllowedTypes('sound', 'string');
+            $resolver->setAllowedTypes('isArchive', 'int');
+            $resolver->setAllowedTypes('url', 'string');
             $resolver->setAllowedTypes('copy', 'string');
-            $resolver->setAllowedTypes('autocopy', 'int');
-            $resolver->setAllowedTypes('sound', 'int');
-            $resolver->setAllowedTypes('priority', 'int');
+            $resolver->setAllowedTypes('automaticallyCopy', 'int');
         });
 
         tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedValues('autocopy', [0, 1]);
-            $resolver->setAllowedValues('sound', [0, 1]);
+            $resolver->setAllowedValues('isArchive', [0, 1]);
+            $resolver->setAllowedValues('automaticallyCopy', [0, 1]);
         });
 
         return $this;

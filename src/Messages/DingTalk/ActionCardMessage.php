@@ -11,38 +11,16 @@
 namespace Guanguans\Notify\Messages\DingTalk;
 
 use Guanguans\Notify\Messages\Message;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ActionCardMessage extends Message
 {
     protected $type = 'actionCard';
 
-    protected $initOptions = [
-        [
-            'name' => 'pushType',
-            'allowed_types' => ['string'],
-            'allowed_values' => ['single', 'btns'],
-            'default' => 'single',
-        ],
-    ];
-
-    /**
-     * TextMessage constructor.
-     *
-     * @param string $text
-     */
-    public function __construct(array $options = [])
+    public function configureOptionsResolver()
     {
-        parent::__construct($options);
-    }
+        parent::configureOptionsResolver();
 
-    /**
-     * @return $this
-     */
-    public function setOptions(array $options): self
-    {
-        $defaultOptions = $this->options;
-        $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
+        tap(static::$resolver, function ($resolver) {
             $resolver->setDefined([
                 'pushType',
                 'title',
@@ -54,7 +32,13 @@ class ActionCardMessage extends Message
                 'hideAvatar',
                 'btns',
             ]);
+        });
 
+        tap(static::$resolver, function ($resolver) {
+            $resolver->setDefault('pushType', 'single');
+        });
+
+        tap(static::$resolver, function ($resolver) {
             $resolver->setAllowedTypes('title', 'string');
             $resolver->setAllowedTypes('text', 'string');
             $resolver->setAllowedTypes('btnOrientation', 'string');
@@ -63,16 +47,16 @@ class ActionCardMessage extends Message
             $resolver->setAllowedTypes('hideAvatar', 'string');
             $resolver->setAllowedTypes('btns', 'array');
             $resolver->setAllowedTypes('secret', 'string');
-
-            $resolver->setAllowedValues('pushType', ['single', 'btns']);
         });
 
-        $this->options = array_merge($this->options, $diffOptions);
+        tap(static::$resolver, function ($resolver) {
+            $resolver->setAllowedValues('pushType', ['single', 'btns']);
+        });
 
         return $this;
     }
 
-    public function getData()
+    public function transformToRequestParams()
     {
         if ('single' === $this->options['pushType']) {
             unset($this->options['btns']);

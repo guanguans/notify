@@ -10,71 +10,26 @@
 
 namespace Guanguans\Notify\Messages\FeiShu;
 
-use Guanguans\Notify\Messages\Message;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
 class PostMessage extends Message
 {
     protected $type = 'post';
 
-    protected $initOptions = [];
-
-    /**
-     * TextMessage constructor.
-     *
-     * @param string $text
-     */
-    public function __construct(array $options = [])
+    public function configureOptionsResolver()
     {
-        parent::__construct($options);
-    }
+        parent::configureOptionsResolver();
 
-    /**
-     * @return $this
-     */
-    public function setOptions(array $options): self
-    {
-        $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
+        tap(static::$resolver, function ($resolver) {
             $resolver->setDefined([
                 'post',
-                'keyword',
                 'secret',
             ]);
+        });
 
+        tap(static::$resolver, function ($resolver) {
             $resolver->setAllowedTypes('post', 'array');
-            $resolver->setAllowedTypes('keyword', 'string');
             $resolver->setAllowedTypes('secret', 'string');
         });
 
-        $this->options = array_merge($this->options, $diffOptions);
-
         return $this;
-    }
-
-    public function getData()
-    {
-        $data = [
-            'msg_type' => $this->type,
-            'content' => $this->options,
-        ];
-
-        if ($this->options['secret']) {
-            $data['timestamp'] = $time = time();
-            $data['sign'] = $this->getSign($this->options['secret'], $time);
-        }
-
-        return $data;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getSign(string $secret, int $timestamp)
-    {
-        $stringToSign = sprintf("%s\n%s", $timestamp, $secret);
-
-        $hash = hash_hmac('sha256', '', $stringToSign, true);
-
-        return base64_encode($hash);
     }
 }

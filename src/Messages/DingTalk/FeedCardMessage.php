@@ -11,45 +11,31 @@
 namespace Guanguans\Notify\Messages\DingTalk;
 
 use Guanguans\Notify\Messages\Message;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FeedCardMessage extends Message
 {
     protected $type = 'feedCard';
 
-    protected $initOptions = [];
-
-    /**
-     * TextMessage constructor.
-     *
-     * @param string $text
-     */
-    public function __construct(array $options = [])
+    public function configureOptionsResolver()
     {
-        parent::__construct($options);
-    }
+        parent::configureOptionsResolver();
 
-    /**
-     * @return $this
-     */
-    public function setOptions(array $options): self
-    {
-        $diffOptions = configure_options(array_diff($options, $this->options), function (OptionsResolver $resolver) {
+        tap(static::$resolver, function ($resolver) {
             $resolver->setDefined([
                 'links',
                 'secret',
             ]);
+        });
 
+        tap(static::$resolver, function ($resolver) {
             $resolver->setAllowedTypes('links', 'array');
             $resolver->setAllowedTypes('secret', 'string');
         });
 
-        $this->options = array_merge($this->options, $diffOptions);
-
         return $this;
     }
 
-    public function getData()
+    public function transformToRequestParams()
     {
         $data = [
             'msgtype' => $this->type,

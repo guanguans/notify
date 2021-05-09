@@ -17,29 +17,17 @@ class Message implements MessageInterface
 {
     use HasOptions;
 
-    protected $type;
-
-    protected $initOptions = [];
-
     /**
-     * TextMessage constructor.
-     *
-     * @param string $text
+     * AbstractClient constructor.
      */
     public function __construct(array $options = [])
     {
-        $this->initOptions($this->initOptions);
         $this->setOptions($options);
     }
 
-    public function getData()
+    public function transformToRequestParams()
     {
         return $this->options;
-    }
-
-    public function getType()
-    {
-        return $this->type;
     }
 
     public function __toString()
