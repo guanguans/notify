@@ -27,7 +27,6 @@ class MarkdownMessage extends Message
         'atMobiles',
         'atUserIds',
         'isAtAll',
-        'secret',
     ];
 
     public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
@@ -35,8 +34,8 @@ class MarkdownMessage extends Message
         $resolver = parent::configureOptionsResolver($resolver);
 
         return tap($resolver, function ($resolver) {
-            $resolver->setAllowedTypes('atMobiles', ['string', 'array']);
-            $resolver->setAllowedTypes('atUserIds', ['string', 'array']);
+            $resolver->setAllowedTypes('atMobiles', ['int', 'string', 'array']);
+            $resolver->setAllowedTypes('atUserIds', ['int', 'string', 'array']);
             $resolver->setAllowedTypes('isAtAll', 'bool');
             $resolver->setNormalizer('atMobiles', function (Options $options, $value) {
                 return (array) $value;
@@ -49,29 +48,10 @@ class MarkdownMessage extends Message
 
     public function transformToRequestParams()
     {
-        $data = [
+        return [
             'msgtype' => $this->type,
-            $this->type => $this->options,
-            'at' => $this->options,
+            $this->type => $this->getOptions(),
+            'at' => $this->getOptions(),
         ];
-
-        if ($this->options['secret']) {
-            $data['timestamp'] = $time = time().sprintf('%03d', rand(1, 999));
-            $data['sign'] = $this->getSign($this->options['secret'], $time);
-        }
-
-        return $data;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getSign(string $secret, int $timestamp)
-    {
-        $data = sprintf("%s\n%s", $timestamp, $secret);
-
-        $hash = hash_hmac('sha256', $data, $secret, true);
-
-        return urlencode(base64_encode($hash));
     }
 }

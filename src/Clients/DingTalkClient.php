@@ -12,20 +12,51 @@ namespace Guanguans\Notify\Clients;
 
 class DingTalkClient extends Client
 {
-    public const REQUEST_URL_TEMPLATE = 'https://oapi.dingtalk.com/robot/send?access_token=%s';
+    public const REQUEST_URL_TEMPLATE = 'https://oapi.dingtalk.com/robot/send?access_token=%s&%s';
 
     protected $requestMethod = 'postJson';
 
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'token',
+        'message',
+        'secret',
+    ];
+
+    /**
+     * @return $this
+     */
+    public function setSecret(string $secret)
+    {
+        $this->setOption('secret', $secret);
+
+        return $this;
+    }
+
     public function getRequestUrl(): string
     {
-        $params = $this->getRequestParams();
-        if (isset($params['timestamp'])) {
+        $urlParams = '';
+        if (isset($this->options['secret']) && $this->getOptions('secret')) {
             $urlParams = http_build_query([
-                'timestamp' => $params['timestamp'],
-                'sign' => $params['sign'],
+                'timestamp' => $timestamp = time().sprintf('%03d', random_int(1, 999)),
+                'sign' => $this->getSign($this->getOptions('secret'), $timestamp),
             ]);
         }
 
-        return sprintf(static::REQUEST_URL_TEMPLATE, $this->getToken()).'&'.$urlParams;
+        return sprintf(static::REQUEST_URL_TEMPLATE, $this->getToken(), $urlParams);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getSign(string $secret, int $timestamp)
+    {
+        $data = sprintf("%s\n%s", $timestamp, $secret);
+
+        $hash = hash_hmac('sha256', $data, $secret, true);
+
+        return urlencode(base64_encode($hash));
     }
 }

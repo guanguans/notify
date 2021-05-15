@@ -8,31 +8,33 @@
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Messages\WeWork;
+namespace Guanguans\Notify\Messages\DingTalk;
 
 use Guanguans\Notify\Messages\Message;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class NewsMessage extends Message
+class BtnsActionCardMessage extends Message
 {
-    protected $type = 'news';
+    protected $type = 'actionCard';
 
     /**
      * @var string[]
      */
     protected $defined = [
-        'articles',
         'title',
-        'description',
-        'url',
-        'picurl',
+        'text',
+        'hideAvatar',
+        'btnOrientation',
+        'btns',
     ];
 
     /**
-     * @var array[]
+     * @var array
      */
     protected $options = [
-        'articles' => [],
+        'btnOrientation' => 0,
+        'hideAvatar' => 0,
+        'btns' => [],
     ];
 
     public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
@@ -40,37 +42,35 @@ class NewsMessage extends Message
         $resolver = parent::configureOptionsResolver($resolver);
 
         return tap($resolver, function ($resolver) {
-            $resolver->setAllowedTypes('articles', 'array');
+            $resolver->setAllowedTypes('btns', 'array');
         });
     }
 
-    public function setArticles(array $articles)
+    public function setBtns(array $Btns)
     {
-        return $this->addArticles($articles);
+        return $this->addBtns($Btns);
     }
 
-    public function addArticles(array $articles)
+    public function addBtns(array $Btns)
     {
-        foreach ($articles as $article) {
-            $this->addArticle($article);
+        foreach ($Btns as $Btn) {
+            $this->addBtn($Btn);
         }
 
         return $this;
     }
 
-    public function setArticle(array $article)
+    public function setBtn(array $Btn)
     {
-        return $this->addArticle($article);
+        return $this->addBtn($Btn);
     }
 
-    public function addArticle(array $article)
+    public function addBtn(array $Btn)
     {
-        $this->options['articles'][] = configure_options($article, function (OptionsResolver $resolver) {
+        $this->options['btns'][] = configure_options($Btn, function (OptionsResolver $resolver) {
             $resolver->setDefined([
                 'title',
-                'description',
-                'url',
-                'picurl',
+                'actionURL',
             ]);
         });
 
@@ -81,9 +81,7 @@ class NewsMessage extends Message
     {
         return [
             'msgtype' => $this->type,
-            $this->type => [
-                'articles' => [$this->getOptions()],
-            ],
+            $this->type => $this->options,
         ];
     }
 }

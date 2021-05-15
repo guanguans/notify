@@ -12,9 +12,9 @@ namespace Guanguans\Notify\Messages\DingTalk;
 
 use Guanguans\Notify\Messages\Message;
 
-class LinkMessage extends Message
+class SingleActionCardMessage extends Message
 {
-    protected $type = 'link';
+    protected $type = 'actionCard';
 
     /**
      * @var string[]
@@ -22,15 +22,23 @@ class LinkMessage extends Message
     protected $defined = [
         'title',
         'text',
-        'messageUrl',
-        'picUrl',
+        'singleTitle',
+        'singleURL',
+        'btnOrientation',
+    ];
+
+    /**
+     * @var array
+     */
+    protected $options = [
+        'btnOrientation' => 0,
     ];
 
     public function transformToRequestParams()
     {
         return [
             'msgtype' => $this->type,
-            $this->type => $this->getOptions(),
+            $this->type => $this->options,
         ];
     }
 }

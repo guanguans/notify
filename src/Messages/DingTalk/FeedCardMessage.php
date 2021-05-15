@@ -22,8 +22,21 @@ class FeedCardMessage extends Message
      */
     protected $defined = [
         'links',
-        'secret',
     ];
+
+    /**
+     * @var array[]
+     */
+    protected $options = [
+        'links' => [],
+    ];
+
+    public function __construct(array $links = [])
+    {
+        parent::__construct([
+            'links' => isset($links[0]) ? $links : [$links],
+        ]);
+    }
 
     public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
@@ -34,30 +47,43 @@ class FeedCardMessage extends Message
         });
     }
 
-    public function transformToRequestParams()
+    public function setLinks(array $Links)
     {
-        $data = [
-            'msgtype' => $this->type,
-            $this->type => $this->options,
-        ];
-
-        if ($this->options['secret']) {
-            $data['timestamp'] = $time = time().sprintf('%03d', random_int(1, 999));
-            $data['sign'] = $this->getSign($this->options['secret'], $time);
-        }
-
-        return $data;
+        return $this->addLinks($Links);
     }
 
-    /**
-     * @return string
-     */
-    protected function getSign(string $secret, int $timestamp)
+    public function addLinks(array $Links)
     {
-        $data = sprintf("%s\n%s", $timestamp, $secret);
+        foreach ($Links as $Link) {
+            $this->addLink($Link);
+        }
 
-        $hash = hash_hmac('sha256', $data, $secret, true);
+        return $this;
+    }
 
-        return urlencode(base64_encode($hash));
+    public function setLink(array $Link)
+    {
+        return $this->addLink($Link);
+    }
+
+    public function addLink(array $Link)
+    {
+        $this->options['links'][] = configure_options($Link, function (OptionsResolver $resolver) {
+            $resolver->setDefined([
+                'title',
+                'messageURL',
+                'picURL',
+            ]);
+        });
+
+        return $this;
+    }
+
+    public function transformToRequestParams()
+    {
+        return [
+            'msgtype' => $this->type,
+            $this->type => $this->getOptions(),
+        ];
     }
 }
