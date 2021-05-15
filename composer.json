@@ -1,6 +1,6 @@
 {
     "name": "guanguans/notify",
-    "description": "Multi platform notification SDK. - 多平台通知 SDK。",
+    "description": "Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、ServerChan、WeWork、XiZhi). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Server 酱、企业微信群机器人、息知)。",
     "keywords": [
         "notification",
         "notify",
