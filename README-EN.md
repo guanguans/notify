@@ -11,7 +11,7 @@
 [![Total Downloads](https://poser.pugx.org/guanguans/notify/downloads)](//packagist.org/packages/guanguans/notify)
 [![License](https://poser.pugx.org/guanguans/notify/license)](//packagist.org/packages/guanguans/notify)
 
-## 平台支持
+## Platform support
 
 * [Bark](https://github.com/Finb/Bark)
 * [Chanify](https://github.com/chanify/chanify-ios)
@@ -21,17 +21,17 @@
 * [WeWork](https://work.weixin.qq.com/help?doc_id=13376)
 * [XiZhi](https://xz.qqoq.net/#/index)
 
-## 环境要求
+## Requirement
 
 * PHP >= 7.2
 
-## 安装
+## Installation
 
 ``` bash
 $ composer require guanguans/notify -vvv
 ```
 
-## 使用
+## Usage
 
 ### Bark
 
@@ -83,7 +83,7 @@ Factory::chanify()
     ->send();
 ```
 
-### 钉钉群机器人
+### DingTalk
 
 ``` php
 // Text Message
@@ -170,7 +170,7 @@ Factory::dingTalk()
     ->send();
 ```
 
-### 飞书群机器人
+### FeiShu
 
 ``` php
 // Text Message
@@ -233,7 +233,7 @@ Factory::feiShu()
     ->send();
 ```
 
-### Server 酱
+### ServerChan
 
 ``` php
 Factory::serverChan()
@@ -245,7 +245,7 @@ Factory::serverChan()
 Factory::serverChan()->check(3334849, 'SCTJlJV1J87hS');
 ```
 
-### 企业微信群机器人
+### WeWork
 
 ``` php
 // Text Message
@@ -289,7 +289,7 @@ Factory::weWork()
     ->send();
 ```
 
-### 息知
+### XiZhi
 
 ``` php
 // Single
@@ -307,29 +307,29 @@ Factory::xiZhi()
     ->send();
 ```
 
-## 测试
+## Testing
 
 ``` bash
 $ composer test
 ```
 
-## 变更日志
+## Changelog
 
-请参阅 [CHANGELOG](CHANGELOG.md) 获取最近有关更改的更多信息。
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-## 贡献指南
+## Contributing
 
-请参阅 [CONTRIBUTING](.github/CONTRIBUTING.md) 有关详细信息。
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-## 安全漏洞
+## Security Vulnerabilities
 
-请查看[我们的安全政策](../../security/policy)了解如何报告安全漏洞。
+Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
-## 贡献者
+## Credits
 
 * [guanguans](https://github.com/guanguans)
-* [所有贡献者](../../contributors)
+* [All Contributors](../../contributors)
 
-## 协议
+## License
 
-MIT 许可证（MIT）。有关更多信息，请参见[协议文件](LICENSE)。
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
