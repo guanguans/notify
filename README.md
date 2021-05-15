@@ -23,8 +23,23 @@ $ composer require guanguans/notify -vvv
 
 ## Usage
 
+### Bark
+
 ``` php
-// todo
+use Guanguans\Notify\Factory;
+
+Factory::bark()
+    ->setToken('csZcrvJeJCTcHEr8LvNSND')
+    ->setMessage((new \Guanguans\Notify\Messages\BarkMessage([
+        'title'             => 'This is title.',
+        'text'              => 'This is text.',
+        // 'copy'              => 'This is copy.',
+        // 'url'               => 'https://github.com/guanguans/notify',
+        // 'sound'             => 'bell',
+        // 'isArchive'         => 1,
+        // 'automaticallyCopy' => 1,
+    ])))
+    ->send();
 ```
 
 ## Testing

@@ -23,14 +23,14 @@ class BarkClient extends Client
     protected $defined = [
         'token',
         'message',
-        'base_uri',
+        'baseUri',
     ];
 
     /**
      * @var string[]
      */
     protected $options = [
-        'base_uri' => 'https://api.day.app',
+        'baseUri' => 'https://api.day.app',
     ];
 
     protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
@@ -38,7 +38,7 @@ class BarkClient extends Client
         $resolver = parent::configureOptionsResolver($resolver);
 
         return tap($resolver, function (OptionsResolver $resolver) {
-            $resolver->setNormalizer('base_uri', function (Options $options, $value) {
+            $resolver->setNormalizer('baseUri', function (Options $options, $value) {
                 return trim($value, '/');
             });
         });
@@ -51,7 +51,7 @@ class BarkClient extends Client
     {
         return sprintf(
             static::REQUEST_URL_TEMPLATE,
-            $this->getOptions('base_uri'),
+            $this->getOptions('baseUri'),
             $this->getToken(),
             $this->getMessage()->getOptions('text'),
             http_build_query($this->getRequestParams())

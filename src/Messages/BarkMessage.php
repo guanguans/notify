@@ -18,10 +18,10 @@ class BarkMessage extends Message
     protected $defined = [
         'title',
         'text',
+        'copy',
+        'url',
         'sound',
         'isArchive',
-        'url',
-        'copy',
         'automaticallyCopy',
     ];
 
@@ -30,7 +30,7 @@ class BarkMessage extends Message
      */
     protected $options = [
         'sound' => 'bell',
-        'isArchive' => '1',
+        'isArchive' => 1,
         'automaticallyCopy' => 1,
     ];
 }
