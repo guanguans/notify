@@ -44,6 +44,21 @@ class XiZhiClient extends Client
         });
     }
 
+    public function getType(): string
+    {
+        return $this->getOptions('type');
+    }
+
+    /**
+     * @return $this
+     */
+    public function setType(string $type)
+    {
+        $this->setOption('type', $type);
+
+        return $this;
+    }
+
     public function getRequestUrl(): string
     {
         return sprintf(static::REQUEST_URL_TEMPLATE[$this->getOptions('type')], $this->getToken());
