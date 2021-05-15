@@ -21,10 +21,7 @@ class ServerChanTest extends TestCase
 
         Factory::serverChan()
             ->setToken('SCT35149Thtf1g2Bc14QJuQ6HFpW5Y')
-            ->setMessage((new \Guanguans\Notify\Messages\ServerChanMessage([
-                'title' => 'This is title.',
-                'desp' => 'This is desp.',
-            ])))
+            ->setMessage(new \Guanguans\Notify\Messages\ServerChanMessage('This is title.', 'This is desp.'))
             ->send();
     }
 

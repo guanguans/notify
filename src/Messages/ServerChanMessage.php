@@ -19,4 +19,12 @@ class ServerChanMessage extends Message
         'title',
         'desp',
     ];
+
+    public function __construct(string $title, string $desp = '')
+    {
+        parent::__construct([
+            'title' => $title,
+            'desp' => $desp,
+        ]);
+    }
 }
