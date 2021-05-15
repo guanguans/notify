@@ -15,13 +15,13 @@ use Guanguans\Notify\Support\Str;
 /**
  * Class Factory.
  *
- * @method static \Guanguans\Notify\Clients\ChanifyClient       chanify(array $options = [])
- * @method static \Guanguans\Notify\Clients\XiZhiClient         xiZhi(array $options = [])
- * @method static \Guanguans\Notify\Clients\ServerChanClient    serverChan(array $options = [])
  * @method static \Guanguans\Notify\Clients\BarkClient          bark(array $options = [])
+ * @method static \Guanguans\Notify\Clients\ChanifyClient       chanify(array $options = [])
  * @method static \Guanguans\Notify\Clients\DingTalkClient      dingTalk(array $options = [])
- * @method static \Guanguans\Notify\Clients\WeWorkClient        weWork(array $options = [])
  * @method static \Guanguans\Notify\Clients\FeiShuClient        feiShu(array $options = [])
+ * @method static \Guanguans\Notify\Clients\ServerChanClient    serverChan(array $options = [])
+ * @method static \Guanguans\Notify\Clients\WeWorkClient        weWork(array $options = [])
+ * @method static \Guanguans\Notify\Clients\XiZhiClient         xiZhi(array $options = [])
  */
 class Factory
 {

@@ -20,9 +20,40 @@ class WeWorkTest extends TestCase
         $this->expectOutputString('93000');
 
         $ret = Factory::weWork()
-            ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
+            ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778f')
             ->setMessage((new \Guanguans\Notify\Messages\WeWork\TextMessage([
-                'content' => 'content',
+                'content' => 'This is content.',
+                // 'mentioned_list'        => ["wangqing", "@all"],
+                // 'mentioned_mobile_list' => ["13800001111", "@all"],
+            ])))
+            ->send();
+
+        echo $ret['errcode'];
+    }
+
+    public function testMarkdown()
+    {
+        $this->expectOutputString('93000');
+
+        $ret = Factory::weWork()
+            ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
+            ->setMessage((new \Guanguans\Notify\Messages\WeWork\MarkdownMessage([
+                'content' => "# This is title.\n This is content.",
+            ])))
+            ->send();
+
+        echo $ret['errcode'];
+    }
+
+    public function testImage()
+    {
+        $this->expectOutputString('93000');
+
+        $ret = Factory::weWork()
+            ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
+            ->setMessage((new \Guanguans\Notify\Messages\WeWork\ImageMessage([
+                // 'imagePath' => '/Users/yaozm/Downloads/image.png',
+                'imagePath' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
             ])))
             ->send();
 
@@ -41,34 +72,6 @@ class WeWorkTest extends TestCase
                 'url' => 'https://github.com/guanguans/notify',
                 'picurl' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
             ]))
-            ->send();
-
-        echo $ret['errcode'];
-    }
-
-    public function testMarkdown()
-    {
-        $this->expectOutputString('93000');
-
-        $ret = Factory::weWork()
-            ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
-            ->setMessage((new \Guanguans\Notify\Messages\WeWork\MarkdownMessage([
-                'content' => 'content',
-            ])))
-            ->send();
-
-        echo $ret['errcode'];
-    }
-
-    public function testImage()
-    {
-        $this->expectOutputString('93000');
-
-        $ret = Factory::weWork()
-            ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
-            ->setMessage((new \Guanguans\Notify\Messages\WeWork\ImageMessage([
-                'imagePath' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
-            ])))
             ->send();
 
         echo $ret['errcode'];

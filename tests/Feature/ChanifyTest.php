@@ -19,10 +19,19 @@ class ChanifyTest extends TestCase
     {
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
-        $ret = Factory::chanify()
-            ->setToken('CIDfh4gGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFGhR7vAyf8Uj5UQhhK4n6QfVzih96QyIECAEQAQ.')
+        Factory::chanify()
+            ->setToken('CIDfh4gGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFGhR7vAyf8Uj5UQhhK4n6QfVzih96QyIECAEQAQ.E0eBnLbfNwWrWZ1YSAZfkCQWZAPdBl6pVr26lRf6')
             ->setMessage((new \Guanguans\Notify\Messages\Chanify\TextMessage([
-                'text' => __CLASS__,
+                'title' => 'This is title.',
+                'text' => 'This is text.',
+                // 'copy'     => 'This is copy.',
+                // 'actions'  => [
+                //     "ActionName1|http://<action host>/<action1>",
+                //     "ActionName2|http://<action host>/<action2>",
+                // ],
+                // 'autocopy' => 0,
+                // 'sound'    => 0,
+                // 'priority' => 10,
             ])))
             ->send();
     }
@@ -31,10 +40,12 @@ class ChanifyTest extends TestCase
     {
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
-        $ret = Factory::chanify()
-            ->setToken('CIDfh4gGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFGhR7vAyf8Uj5UQhhK4n6QfVzih96QyIECAEQAQ.')
+        Factory::chanify()
+            ->setToken('CIDfh4gGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFGhR7vAyf8Uj5UQhhK4n6QfVzih96QyIECAEQAQ.E0eBnLbfNwWrWZ1YSAZfkCQWZAPdBl6pVr26lRf6')
             ->setMessage((new \Guanguans\Notify\Messages\Chanify\LinkMessage([
-                'link' => 'https://www.baidu.com',
+                'link' => 'https://github.com/guanguans/notify',
+                // 'sound'    => 0,
+                // 'priority' => 10,
             ])))
             ->send();
     }

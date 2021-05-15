@@ -19,10 +19,16 @@ class BarkTest extends TestCase
     {
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
-        $ret = Factory::bark()
-            ->setToken('tU2mk6FvyiScEyWrt6xGF')
+        Factory::bark()
+            ->setToken('csZcrvJeJCTcHEr8LvN')
             ->setMessage((new \Guanguans\Notify\Messages\BarkMessage([
-                'text' => 'text',
+                'title' => 'This is title.',
+                'text' => 'This is text.',
+                'copy' => 'This is copy.',
+                'url' => 'https://github.com/guanguans/notify',
+                'sound' => 'bell',
+                'isArchive' => 1,
+                'automaticallyCopy' => 1,
             ])))
             ->send();
     }

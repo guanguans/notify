@@ -15,15 +15,32 @@ use Guanguans\Notify\Tests\TestCase;
 
 class XiZhiTest extends TestCase
 {
-    public function testXiZhi()
+    public function testSingle()
     {
         $this->expectOutputString('用户不存在');
 
         $ret = Factory::xiZhi()
+            // ->setType('single')
             ->setToken('XZd60aea56567ae39a1b1920cbc42bb')
             ->setMessage((new \Guanguans\Notify\Messages\XiZhiMessage([
-                'title' => 'title',
-                'content' => 'content',
+                'title' => 'This is title.',
+                'content' => 'This is content.',
+            ])))
+            ->send();
+
+        echo $ret['msg'];
+    }
+
+    public function testChannel()
+    {
+        $this->expectOutputString('未知错误');
+
+        $ret = Factory::xiZhi()
+            ->setType('channel')
+            ->setToken('XZ8da15b55a6725497232d87298bcd3')
+            ->setMessage((new \Guanguans\Notify\Messages\XiZhiMessage([
+                'title' => 'This is title.',
+                'content' => 'This is content.',
             ])))
             ->send();
 

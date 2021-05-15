@@ -15,16 +15,23 @@ use Guanguans\Notify\Tests\TestCase;
 
 class ServerChanTest extends TestCase
 {
-    public function testServerChan()
+    public function testSendMessage()
     {
         $this->expectException(\GuzzleHttp\Exception\ServerException::class);
 
-        $ret = Factory::serverChan()
-            ->setToken('SCT35149Thtf1g2Bc14QJuQ6HFpW5')
+        Factory::serverChan()
+            ->setToken('SCT35149Thtf1g2Bc14QJuQ6HFpW5Y')
             ->setMessage((new \Guanguans\Notify\Messages\ServerChanMessage([
-                'title' => 'title',
-                'desp' => 'desp',
+                'title' => 'This is title.',
+                'desp' => 'This is desp.',
             ])))
             ->send();
+    }
+
+    public function testCheckMessage()
+    {
+        $ret = Factory::serverChan()->check(333484, 'SCTJlJV1J87hS6F');
+
+        $this->assertNull($ret['data']);
     }
 }
