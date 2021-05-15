@@ -42,7 +42,7 @@ Factory::bark()
     ->send();
 ```
 
-## Chanify
+### Chanify
 
 ``` php
 // Text Message
@@ -73,7 +73,7 @@ Factory::chanify()
     ->send();
 ```
 
-## XiZhi
+### XiZhi
 
 ``` php
 // Single
@@ -95,6 +95,21 @@ Factory::xiZhi()
         'content' => 'This is content.',
     ])))
     ->send();
+```
+
+### ServerChan
+
+``` php
+Factory::serverChan()
+    ->setToken('SCT35149Thtf1g2Bc14QJuQ6HFpW5YG')
+    ->setMessage((new \Guanguans\Notify\Messages\ServerChanMessage([
+        'title' => 'This is title.',
+        'desp'  => 'This is desp.',
+    ])))
+    ->send();
+
+// Check
+Factory::serverChan()->check(3334849, 'SCTJlJV1J87hS');
 ```
 
 ## Testing
