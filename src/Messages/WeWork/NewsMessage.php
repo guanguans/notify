@@ -17,25 +17,21 @@ class NewsMessage extends Message
 {
     protected $type = 'news';
 
-    public function configureOptionsResolver()
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'articles',
+    ];
+
+    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        parent::configureOptionsResolver();
+        $resolver = parent::configureOptionsResolver($resolver);
 
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'articles',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
+        return tap($resolver, function ($resolver) {
             $resolver->setDefault('articles', []);
-        });
-
-        tap(static::$resolver, function ($resolver) {
             $resolver->setAllowedTypes('articles', 'array');
         });
-
-        return $this;
     }
 
     public function setArticles(array $articles)
@@ -66,13 +62,6 @@ class NewsMessage extends Message
                 'url',
                 'picurl',
             ]);
-
-            $resolver->setRequired(['title', 'url']);
-
-            $resolver->setAllowedTypes('title', 'string');
-            $resolver->setAllowedTypes('description', 'string');
-            $resolver->setAllowedTypes('url', 'string');
-            $resolver->setAllowedTypes('picurl', 'string');
         });
 
         return $this;

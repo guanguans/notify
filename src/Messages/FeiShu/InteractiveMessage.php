@@ -14,22 +14,11 @@ class InteractiveMessage extends Message
 {
     protected $type = 'interactive';
 
-    public function configureOptionsResolver()
-    {
-        parent::configureOptionsResolver();
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'card',
-                'secret',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('card', 'array');
-            $resolver->setAllowedTypes('secret', 'string');
-        });
-
-        return $this;
-    }
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'card',
+        'secret',
+    ];
 }

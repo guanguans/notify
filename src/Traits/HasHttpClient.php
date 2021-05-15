@@ -24,7 +24,7 @@ trait HasHttpClient
      */
     protected static $httpOptions = [];
 
-    public function setHttpOptions(array $httpOptions): self
+    public function setHttpOptions(array $httpOptions)
     {
         static::$httpOptions = array_merge(static::$httpOptions, $httpOptions);
 

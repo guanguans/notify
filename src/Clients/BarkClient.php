@@ -10,31 +10,43 @@
 
 namespace Guanguans\Notify\Clients;
 
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 class BarkClient extends Client
 {
     public const REQUEST_URL_TEMPLATE = '%s/%s/%s?%s';
 
-    protected function configureOptionsResolver()
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'token',
+        'message',
+        'base_uri',
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $options = [
+        'base_uri' => 'https://api.day.app',
+    ];
+
+    protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        parent::configureOptionsResolver();
+        $resolver = parent::configureOptionsResolver($resolver);
 
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'base_uri',
-            ]);
+        return tap($resolver, function (OptionsResolver $resolver) {
+            $resolver->setNormalizer('base_uri', function (Options $options, $value) {
+                return trim($value, '/');
+            });
         });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefault('base_uri', 'https://api.day.app');
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('base_uri', 'string');
-        });
-
-        return $this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getRequestUrl(): string
     {
         return sprintf(

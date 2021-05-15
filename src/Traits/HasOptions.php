@@ -24,10 +24,7 @@ trait HasOptions
      */
     protected $options = [];
 
-    /**
-     * @return \Symfony\Component\OptionsResolver\OptionsResolver
-     */
-    protected function createOptionsResolver()
+    protected function createOptionsResolver(): OptionsResolver
     {
         if (static::$resolver instanceof OptionsResolver) {
             return static::$resolver;
@@ -36,18 +33,16 @@ trait HasOptions
         return static::$resolver = new OptionsResolver();
     }
 
-    /**
-     * @return $this
-     */
-    protected function configureOptionsResolver()
+    protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        return $this;
+        // To do something.
+        return $resolver;
     }
 
     /**
      * @return $this
      */
-    public function setOptions(array $options): self
+    public function setOptions(array $options)
     {
         return $this->addOptions($options);
     }
@@ -55,13 +50,11 @@ trait HasOptions
     /**
      * @return $this
      */
-    public function addOptions(array $options): self
+    public function addOptions(array $options)
     {
-        $this->createOptionsResolver();
+        $resolver = $this->configureOptionsResolver($this->createOptionsResolver());
 
-        $this->configureOptionsResolver();
-
-        $this->options = array_merge($this->options, static::$resolver->resolve($options));
+        $this->options = array_merge($this->options, $resolver->resolve($options));
 
         return $this;
     }
@@ -83,7 +76,7 @@ trait HasOptions
      *
      * @return $this
      */
-    public function setOption(string $key, $value): self
+    public function setOption(string $key, $value)
     {
         $this->setOptions([$key => $value]);
 

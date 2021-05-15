@@ -14,22 +14,11 @@ class ShareChatMessage extends Message
 {
     protected $type = 'share_chat';
 
-    public function configureOptionsResolver()
-    {
-        parent::configureOptionsResolver();
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'share_chat_id',
-                'secret',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('share_chat_id', 'string');
-            $resolver->setAllowedTypes('secret', 'string');
-        });
-
-        return $this;
-    }
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'share_chat_id',
+        'secret',
+    ];
 }

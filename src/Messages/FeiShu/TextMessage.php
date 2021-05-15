@@ -14,22 +14,11 @@ class TextMessage extends Message
 {
     protected $type = 'text';
 
-    public function configureOptionsResolver()
-    {
-        parent::configureOptionsResolver();
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'text',
-                'secret',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('text', 'string');
-            $resolver->setAllowedTypes('secret', 'string');
-        });
-
-        return $this;
-    }
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'text',
+        'secret',
+    ];
 }

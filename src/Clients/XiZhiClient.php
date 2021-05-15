@@ -10,43 +10,42 @@
 
 namespace Guanguans\Notify\Clients;
 
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 class XiZhiClient extends Client
 {
     public const REQUEST_URL_TEMPLATE = [
-        'single_point' => 'https://xizhi.qqoq.net/%s.send',
+        'single' => 'https://xizhi.qqoq.net/%s.send',
         'channel' => 'https://xizhi.qqoq.net/%s.channel',
     ];
 
-    protected function configureOptionsResolver()
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'token',
+        'message',
+        'type',
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $options = [
+        'type' => 'single',
+    ];
+
+    protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        parent::configureOptionsResolver();
+        $resolver = parent::configureOptionsResolver($resolver);
 
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'push_type',
-            ]);
+        return tap($resolver, function ($resolver) {
+            $resolver->setAllowedValues('type', ['single', 'channel']);
         });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefault('push_type', 'single_point');
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('push_type', 'string');
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedValues('push_type', ['single_point', 'channel']);
-        });
-
-        return $this;
     }
 
     public function getRequestUrl(): string
     {
-        'single_point' === $this->getOptions('push_type') && $url = sprintf(static::REQUEST_URL_TEMPLATE['single_point'], $this->getToken());
-        'channel' === $this->getOptions('push_type') && $url = sprintf(static::REQUEST_URL_TEMPLATE['channel'], $this->getToken());
-
-        return $url;
+        return sprintf(static::REQUEST_URL_TEMPLATE[$this->getOptions('type')], $this->getToken());
     }
 }

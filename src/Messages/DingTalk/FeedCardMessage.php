@@ -11,28 +11,27 @@
 namespace Guanguans\Notify\Messages\DingTalk;
 
 use Guanguans\Notify\Messages\Message;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FeedCardMessage extends Message
 {
     protected $type = 'feedCard';
 
-    public function configureOptionsResolver()
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'links',
+        'secret',
+    ];
+
+    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        parent::configureOptionsResolver();
+        $resolver = parent::configureOptionsResolver($resolver);
 
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'links',
-                'secret',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
+        return tap($resolver, function ($resolver) {
             $resolver->setAllowedTypes('links', 'array');
-            $resolver->setAllowedTypes('secret', 'string');
         });
-
-        return $this;
     }
 
     public function transformToRequestParams()
@@ -43,7 +42,7 @@ class FeedCardMessage extends Message
         ];
 
         if ($this->options['secret']) {
-            $data['timestamp'] = $time = time().sprintf('%03d', rand(1, 999));
+            $data['timestamp'] = $time = time().sprintf('%03d', random_int(1, 999));
             $data['sign'] = $this->getSign($this->options['secret'], $time);
         }
 

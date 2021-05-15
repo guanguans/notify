@@ -12,26 +12,40 @@ namespace Guanguans\Notify\Messages;
 
 use Guanguans\Notify\Contracts\MessageInterface;
 use Guanguans\Notify\Traits\HasOptions;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class Message implements MessageInterface
 {
     use HasOptions;
 
     /**
-     * AbstractClient constructor.
+     * @var string[]
+     */
+    protected $defined = [];
+
+    /**
+     * Message constructor.
      */
     public function __construct(array $options = [])
     {
         $this->setOptions($options);
     }
 
-    public function transformToRequestParams()
+    /**
+     * {@inheritDoc}
+     */
+    protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        return $this->options;
+        return tap($resolver, function ($resolver) {
+            $resolver->setDefined($this->defined);
+        });
     }
 
-    public function __toString()
+    /**
+     * {@inheritDoc}
+     */
+    public function transformToRequestParams()
     {
-        return get_class($this);
+        return $this->getOptions();
     }
 }

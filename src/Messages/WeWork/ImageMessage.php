@@ -16,6 +16,15 @@ class ImageMessage extends Message
 {
     protected $type = 'image';
 
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'image_path',
+        'base64',
+        'md5',
+    ];
+
     public function getBase64File(string $imagePath)
     {
         return base64_encode(file_get_contents($imagePath));
@@ -24,27 +33,6 @@ class ImageMessage extends Message
     public function getMd5File(string $imagePath)
     {
         return md5_file($imagePath);
-    }
-
-    public function configureOptionsResolver()
-    {
-        parent::configureOptionsResolver();
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'image_path',
-                'base64',
-                'md5',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('image_path', 'string');
-            $resolver->setAllowedTypes('base64', 'string');
-            $resolver->setAllowedTypes('md5', 'string');
-        });
-
-        return $this;
     }
 
     public function transformToRequestParams()

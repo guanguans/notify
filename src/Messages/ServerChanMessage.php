@@ -12,27 +12,11 @@ namespace Guanguans\Notify\Messages;
 
 class ServerChanMessage extends Message
 {
-    protected $type = 'text';
-
     /**
-     * {@inheritDoc}
+     * @var string[]
      */
-    public function configureOptionsResolver()
-    {
-        parent::configureOptionsResolver();
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'title',
-                'desp',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('title', 'string');
-            $resolver->setAllowedTypes('desp', 'string');
-        });
-
-        return $this;
-    }
+    protected $defined = [
+        'title',
+        'desp',
+    ];
 }

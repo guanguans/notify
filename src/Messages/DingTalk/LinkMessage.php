@@ -16,30 +16,16 @@ class LinkMessage extends Message
 {
     protected $type = 'link';
 
-    public function configureOptionsResolver()
-    {
-        parent::configureOptionsResolver();
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'title',
-                'text',
-                'picUrl',
-                'messageUrl',
-                'secret',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('title', 'string');
-            $resolver->setAllowedTypes('text', 'string');
-            $resolver->setAllowedTypes('picUrl', 'string');
-            $resolver->setAllowedTypes('messageUrl', 'string');
-            $resolver->setAllowedTypes('secret', 'string');
-        });
-
-        return $this;
-    }
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'title',
+        'text',
+        'picUrl',
+        'messageUrl',
+        'secret',
+    ];
 
     public function transformToRequestParams()
     {

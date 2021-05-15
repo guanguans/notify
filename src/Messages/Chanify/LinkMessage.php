@@ -14,35 +14,20 @@ use Guanguans\Notify\Messages\Message;
 
 class LinkMessage extends Message
 {
-    protected $type = 'link';
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'link',
+        'sound',
+        'priority',
+    ];
 
-    public function configureOptionsResolver()
-    {
-        parent::configureOptionsResolver();
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'link',
-                'sound',
-                'priority',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefault('sound', 1);
-            $resolver->setDefault('priority', 10);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('link', 'string');
-            $resolver->setAllowedTypes('sound', 'int');
-            $resolver->setAllowedTypes('priority', 'int');
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedValues('sound', [0, 1]);
-        });
-
-        return $this;
-    }
+    /**
+     * @var string[]
+     */
+    protected $options = [
+        'sound' => 1,
+        'priority' => 10,
+    ];
 }

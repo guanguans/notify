@@ -12,24 +12,11 @@ namespace Guanguans\Notify\Messages;
 
 class XiZhiMessage extends Message
 {
-    protected $type = 'text';
-
-    public function configureOptionsResolver()
-    {
-        parent::configureOptionsResolver();
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'title',
-                'content',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('title', 'string');
-            $resolver->setAllowedTypes('content', 'string');
-        });
-
-        return $this;
-    }
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'title',
+        'content',
+    ];
 }

@@ -12,30 +12,28 @@ namespace Guanguans\Notify\Messages\WeWork;
 
 use Guanguans\Notify\Messages\Message;
 use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TextMessage extends Message
 {
     protected $type = 'text';
 
-    public function configureOptionsResolver()
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'content',
+        'mentioned_list',
+        'mentioned_mobile_list',
+    ];
+
+    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        parent::configureOptionsResolver();
+        $resolver = parent::configureOptionsResolver($resolver);
 
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'content',
-                'mentioned_list',
-                'mentioned_mobile_list',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('content', 'string');
+        return tap($resolver, function ($resolver) {
             $resolver->setAllowedTypes('mentioned_list', ['string', 'array']);
             $resolver->setAllowedTypes('mentioned_mobile_list', ['string', 'array']);
-        });
-
-        tap(static::$resolver, function ($resolver) {
             $resolver->setNormalizer('mentioned_list', function (Options $options, $value) {
                 return (array) $value;
             });
@@ -43,8 +41,6 @@ class TextMessage extends Message
                 return (array) $value;
             });
         });
-
-        return $this;
     }
 
     public function transformToRequestParams()

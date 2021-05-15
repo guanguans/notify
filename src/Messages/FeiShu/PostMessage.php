@@ -14,22 +14,11 @@ class PostMessage extends Message
 {
     protected $type = 'post';
 
-    public function configureOptionsResolver()
-    {
-        parent::configureOptionsResolver();
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'post',
-                'secret',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('post', 'array');
-            $resolver->setAllowedTypes('secret', 'string');
-        });
-
-        return $this;
-    }
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'post',
+        'secret',
+    ];
 }

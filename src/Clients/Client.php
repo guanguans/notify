@@ -17,6 +17,7 @@ use Guanguans\Notify\Exceptions\Exception;
 use Guanguans\Notify\Messages\Message;
 use Guanguans\Notify\Traits\HasHttpClient;
 use Guanguans\Notify\Traits\HasOptions;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class Client implements GatewayInterface, RequestInterface
 {
@@ -29,31 +30,26 @@ abstract class Client implements GatewayInterface, RequestInterface
     protected $requestMethod = 'post';
 
     /**
-     * AbstractClient constructor.
+     * @var string[]
+     */
+    protected $defined = [
+        'token',
+        'message',
+    ];
+
+    /**
+     * Client constructor.
      */
     public function __construct(array $options = [])
     {
         $this->setOptions($options);
     }
 
-    /**
-     * @return $this
-     */
-    protected function configureOptionsResolver()
+    protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'token',
-                'message',
-            ]);
+        return tap($resolver, function ($resolver) {
+            $resolver->setDefined($this->defined);
         });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('token', 'string');
-            $resolver->setAllowedTypes('message', 'object');
-        });
-
-        return $this;
     }
 
     public function getName(): string
@@ -68,20 +64,20 @@ abstract class Client implements GatewayInterface, RequestInterface
 
     public function getToken(): string
     {
-        return $this->options['token'];
+        return $this->getOptions('token');
     }
 
     /**
      * @return $this
      */
-    public function setToken(string $token): self
+    public function setToken(string $token)
     {
         $this->setOption('token', $token);
 
         return $this;
     }
 
-    public function getMessage(): object
+    public function getMessage(): Message
     {
         return $this->getOptions('message');
     }
@@ -89,7 +85,7 @@ abstract class Client implements GatewayInterface, RequestInterface
     /**
      * @return $this
      */
-    public function setMessage($message): self
+    public function setMessage($message)
     {
         $this->setOption('message', $message);
 
@@ -97,21 +93,26 @@ abstract class Client implements GatewayInterface, RequestInterface
     }
 
     /**
-     * @return array|string[]
+     * @throws \Guanguans\Notify\Exceptions\Exception
      */
     public function getRequestParams(): array
     {
-        if (empty($this->getMessage())) {
+        if (null === $this->getMessage()) {
             throw new Exception('No Message!');
         }
 
-        if (! $this->getMessage() instanceof Message) {
-            throw new Exception(sprintf('The message no instanceof %s', Message::class));
+        if (! $this->getMessage() instanceof MessageInterface) {
+            throw new Exception(sprintf('The message no instanceof %s', MessageInterface::class));
         }
 
         return $this->getMessage()->transformToRequestParams();
     }
 
+    /**
+     * @return mixed
+     *
+     * @throws \Guanguans\Notify\Exceptions\Exception
+     */
     public function send(MessageInterface $message = null)
     {
         $message && $this->setMessage($message);

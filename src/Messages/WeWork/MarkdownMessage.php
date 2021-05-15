@@ -17,31 +17,11 @@ class MarkdownMessage extends Message
     protected $type = 'markdown';
 
     /**
-     * TextMessage constructor.
-     *
-     * @param string $text
+     * @var string[]
      */
-    public function __construct(array $options = [])
-    {
-        parent::__construct($options);
-    }
-
-    public function configureOptionsResolver()
-    {
-        parent::configureOptionsResolver();
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'content',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('content', 'string');
-        });
-
-        return $this;
-    }
+    protected $defined = [
+        'content',
+    ];
 
     public function transformToRequestParams()
     {

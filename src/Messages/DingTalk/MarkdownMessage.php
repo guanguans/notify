@@ -12,36 +12,32 @@ namespace Guanguans\Notify\Messages\DingTalk;
 
 use Guanguans\Notify\Messages\Message;
 use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MarkdownMessage extends Message
 {
     protected $type = 'markdown';
 
-    public function configureOptionsResolver()
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'title',
+        'text',
+        'atMobiles',
+        'atUserIds',
+        'isAtAll',
+        'secret',
+    ];
+
+    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        parent::configureOptionsResolver();
+        $resolver = parent::configureOptionsResolver($resolver);
 
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'title',
-                'text',
-                'atMobiles',
-                'atUserIds',
-                'isAtAll',
-                'secret',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('secret', 'string');
-            $resolver->setAllowedTypes('title', 'string');
-            $resolver->setAllowedTypes('text', 'string');
+        return tap($resolver, function ($resolver) {
             $resolver->setAllowedTypes('atMobiles', ['string', 'array']);
             $resolver->setAllowedTypes('atUserIds', ['string', 'array']);
             $resolver->setAllowedTypes('isAtAll', 'bool');
-        });
-
-        tap(static::$resolver, function ($resolver) {
             $resolver->setNormalizer('atMobiles', function (Options $options, $value) {
                 return (array) $value;
             });
@@ -49,8 +45,6 @@ class MarkdownMessage extends Message
                 return (array) $value;
             });
         });
-
-        return $this;
     }
 
     public function transformToRequestParams()

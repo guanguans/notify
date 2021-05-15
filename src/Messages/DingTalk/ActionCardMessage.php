@@ -11,49 +11,42 @@
 namespace Guanguans\Notify\Messages\DingTalk;
 
 use Guanguans\Notify\Messages\Message;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ActionCardMessage extends Message
 {
     protected $type = 'actionCard';
 
-    public function configureOptionsResolver()
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'pushType',
+        'title',
+        'text',
+        'btnOrientation',
+        'singleTitle',
+        'singleURL',
+        'secret',
+        'hideAvatar',
+        'btns',
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $options = [
+        'pushType' => 'single',
+    ];
+
+    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        parent::configureOptionsResolver();
+        $resolver = parent::configureOptionsResolver($resolver);
 
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefined([
-                'pushType',
-                'title',
-                'text',
-                'btnOrientation',
-                'singleTitle',
-                'singleURL',
-                'secret',
-                'hideAvatar',
-                'btns',
-            ]);
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setDefault('pushType', 'single');
-        });
-
-        tap(static::$resolver, function ($resolver) {
-            $resolver->setAllowedTypes('title', 'string');
-            $resolver->setAllowedTypes('text', 'string');
-            $resolver->setAllowedTypes('btnOrientation', 'string');
-            $resolver->setAllowedTypes('singleTitle', 'string');
-            $resolver->setAllowedTypes('singleURL', 'string');
-            $resolver->setAllowedTypes('hideAvatar', 'string');
+        return tap($resolver, function ($resolver) {
             $resolver->setAllowedTypes('btns', 'array');
-            $resolver->setAllowedTypes('secret', 'string');
-        });
-
-        tap(static::$resolver, function ($resolver) {
             $resolver->setAllowedValues('pushType', ['single', 'btns']);
         });
-
-        return $this;
     }
 
     public function transformToRequestParams()
@@ -71,7 +64,7 @@ class ActionCardMessage extends Message
         ];
 
         if ($this->options['secret']) {
-            $data['timestamp'] = $time = time().sprintf('%03d', rand(1, 999));
+            $data['timestamp'] = $time = time().sprintf('%03d', random_int(1, 999));
             $data['sign'] = $this->getSign($this->options['secret'], $time);
         }
 
