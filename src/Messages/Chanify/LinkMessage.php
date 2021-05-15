@@ -27,7 +27,7 @@ class LinkMessage extends Message
      * @var string[]
      */
     protected $options = [
-        'sound' => 1,
+        'sound' => 0,
         'priority' => 10,
     ];
 }

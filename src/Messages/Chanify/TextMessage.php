@@ -11,6 +11,7 @@
 namespace Guanguans\Notify\Messages\Chanify;
 
 use Guanguans\Notify\Messages\Message;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TextMessage extends Message
 {
@@ -21,6 +22,7 @@ class TextMessage extends Message
         'title',
         'text',
         'copy',
+        'actions',
         'autocopy',
         'sound',
         'priority',
@@ -30,8 +32,20 @@ class TextMessage extends Message
      * @var string[]
      */
     protected $options = [
-        'autocopy' => 1,
-        'sound' => 1,
+        'autocopy' => 0,
+        'sound' => 0,
         'priority' => 10,
     ];
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
+    {
+        $resolver = parent::configureOptionsResolver($resolver);
+
+        return tap($resolver, function (OptionsResolver $resolver) {
+            $resolver->setAllowedTypes('actions', 'array');
+        });
+    }
 }

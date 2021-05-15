@@ -42,6 +42,37 @@ Factory::bark()
     ->send();
 ```
 
+## Chanify
+
+``` php
+// Text Message
+Factory::chanify()
+    ->setToken('fh4gGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFGhR7vAyf8Uj5UQhhK4n6QfVzih96QyIECAEQAQ.E0eBnLbfNwWrWZ1YSAZfkCQWZAPdBl6pVr26lRf6Srs')
+    ->setMessage((new \Guanguans\Notify\Messages\Chanify\TextMessage([
+        'title'    => 'This is title.',
+        'text'     => 'This is text.',
+        // 'copy'     => 'This is copy.',
+        // 'actions'  => [
+        //     "ActionName1|http://<action host>/<action1>",
+        //     "ActionName2|http://<action host>/<action2>",
+        // ],
+        // 'autocopy' => 0,
+        // 'sound'    => 0,
+        // 'priority' => 10,
+    ])))
+    ->send();
+
+// Link Message
+Factory::chanify()
+    ->setToken('fh4gGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFGhR7vAyf8Uj5UQhhK4n6QfVzih96QyIECAEQAQ.E0eBnLbfNwWrWZ1YSAZfkCQWZAPdBl6pVr26lRf6Srs')
+    ->setMessage((new \Guanguans\Notify\Messages\Chanify\LinkMessage([
+        'link'     => 'https://github.com/guanguans/notify',
+        // 'sound'    => 0,
+        // 'priority' => 10,
+    ])))
+    ->send();
+```
+
 ## Testing
 
 ``` bash
