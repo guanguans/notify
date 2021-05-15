@@ -46,8 +46,7 @@
     "require": {
         "php": ">=7.2",
         "overtrue/http": "^1.2",
-        "symfony/options-resolver": "^5.0",
-        "tightenco/collect": "^8.34"
+        "symfony/options-resolver": "^5.0"
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.7",
