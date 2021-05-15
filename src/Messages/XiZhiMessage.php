@@ -19,4 +19,12 @@ class XiZhiMessage extends Message
         'title',
         'content',
     ];
+
+    public function __construct(string $title, string $content = '')
+    {
+        parent::__construct([
+            'title' => $title,
+            'content' => $content,
+        ]);
+    }
 }

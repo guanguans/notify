@@ -289,20 +289,14 @@ Factory::weWork()
 Factory::xiZhi()
     // ->setType('single')
     ->setToken('XZd60aea56567ae39a1b1920cbc42bb5')
-    ->setMessage((new \Guanguans\Notify\Messages\XiZhiMessage([
-        'title'   => 'This is title.',
-        'content' => 'This is content.',
-    ])))
+    ->setMessage(new \Guanguans\Notify\Messages\XiZhiMessage('This is title.', 'This is content.'))
     ->send();
 
 // Channel
 Factory::xiZhi()
     ->setType('channel')
     ->setToken('XZ8da15b55a6725497232d87298bcd34')
-    ->setMessage((new \Guanguans\Notify\Messages\XiZhiMessage([
-        'title'   => 'This is title.',
-        'content' => 'This is content.',
-    ])))
+    ->setMessage(new \Guanguans\Notify\Messages\XiZhiMessage('This is title.', 'This is content.'))
     ->send();
 ```
 
