@@ -26,8 +26,8 @@ class MarkdownMessage extends Message
     public function transformToRequestParams()
     {
         return [
-            'msgtype' => 'markdown',
-            'markdown' => $this->options,
+            'msgtype' => $this->type,
+            $this->type => $this->getOptions(),
         ];
     }
 }

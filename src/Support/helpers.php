@@ -27,3 +27,10 @@ if (! function_exists('configure_options')) {
         return $resolver->resolve($options);
     }
 }
+
+if (! function_exists('base64_file')) {
+    function base64_file(string $file): string
+    {
+        return base64_encode(file_get_contents($file));
+    }
+}

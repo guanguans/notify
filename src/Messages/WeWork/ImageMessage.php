@@ -20,28 +20,16 @@ class ImageMessage extends Message
      * @var string[]
      */
     protected $defined = [
-        'image_path',
-        'base64',
-        'md5',
+        'imagePath',
     ];
-
-    public function getBase64File(string $imagePath)
-    {
-        return base64_encode(file_get_contents($imagePath));
-    }
-
-    public function getMd5File(string $imagePath)
-    {
-        return md5_file($imagePath);
-    }
 
     public function transformToRequestParams()
     {
         return [
-            'msgtype' => 'image',
-            'image' => [
-                'base64' => $this->getBase64File($this->options['image_path']),
-                'md5' => $this->getMd5File($this->options['image_path']),
+            'msgtype' => $this->type,
+            $this->type => [
+                'base64' => base64_file($this->getOptions('imagePath')),
+                'md5' => md5_file($this->getOptions('imagePath')),
             ],
         ];
     }

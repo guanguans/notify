@@ -112,6 +112,48 @@ Factory::serverChan()
 Factory::serverChan()->check(3334849, 'SCTJlJV1J87hS');
 ```
 
+### WeWork
+
+``` php
+// Text Message
+Factory::weWork()
+    ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778f')
+    ->setMessage((new \Guanguans\Notify\Messages\WeWork\TextMessage([
+        'content'               => 'This is content.',
+        // 'mentioned_list'        => ["wangqing", "@all"],
+        // 'mentioned_mobile_list' => ["13800001111", "@all"],
+    ])))
+    ->send();
+
+// Markdown Message
+Factory::weWork()
+    ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778f')
+    ->setMessage((new \Guanguans\Notify\Messages\WeWork\MarkdownMessage([
+        'content' => "# This is title.\n This is content.",
+    ])))
+    ->send();
+
+// Image Message
+Factory::weWork()
+    ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778f')
+    ->setMessage((new \Guanguans\Notify\Messages\WeWork\ImageMessage([
+        // 'imagePath' => '/Users/yaozm/Downloads/image.png',
+        'imagePath' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+    ])))
+    ->send();
+
+// News Message
+Factory::weWork()
+    ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778f')
+    ->setMessage(new \Guanguans\Notify\Messages\WeWork\NewsMessage([
+        'title'       => 'This is title.',
+        // 'description' => 'This is description.',
+        'url'         => 'https://github.com/guanguans/notify',
+        // 'picurl'      => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+    ]))
+    ->send();
+```
+
 ## Testing
 
 ``` bash

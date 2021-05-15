@@ -33,17 +33,14 @@ class WeWorkTest extends TestCase
     {
         $this->expectOutputString('93000');
 
-        $newsMessage = new \Guanguans\Notify\Messages\WeWork\NewsMessage();
-        $newsMessage->setArticle([
-            'title' => 'title',
-            'description' => 'description',
-            'url' => 'https://www.baidu.com',
-            'picurl' => 'https://www.baidu.com',
-        ]);
-
         $ret = Factory::weWork()
             ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
-            ->setMessage($newsMessage)
+            ->setMessage(new \Guanguans\Notify\Messages\WeWork\NewsMessage([
+                'title' => 'This is title.',
+                'description' => 'This is description.',
+                'url' => 'https://github.com/guanguans/notify',
+                'picurl' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+            ]))
             ->send();
 
         echo $ret['errcode'];
@@ -70,7 +67,7 @@ class WeWorkTest extends TestCase
         $ret = Factory::weWork()
             ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
             ->setMessage((new \Guanguans\Notify\Messages\WeWork\ImageMessage([
-                'image_path' => 'https://upload-images.jianshu.io/upload_images/8889419-1a08be936dc39675.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1080/format/webp',
+                'imagePath' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
             ])))
             ->send();
 

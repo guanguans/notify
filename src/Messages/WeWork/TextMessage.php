@@ -43,11 +43,41 @@ class TextMessage extends Message
         });
     }
 
+    /**
+     * @return $this
+     */
+    public function setContent(string $content)
+    {
+        $this->setOption('content', $content);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setMentionedList(array $mentionedList)
+    {
+        $this->setOption('mentioned_list', $mentionedList);
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setMentionedMobileList(array $mentionedMobileList)
+    {
+        $this->setOption('mentioned_mobile_list', $mentionedMobileList);
+
+        return $this;
+    }
+
     public function transformToRequestParams()
     {
         return [
-            'msgtype' => 'text',
-            'text' => $this->options,
+            'msgtype' => $this->type,
+            $this->type => $this->getOptions(),
         ];
     }
 }

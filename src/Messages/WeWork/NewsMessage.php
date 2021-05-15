@@ -22,6 +22,17 @@ class NewsMessage extends Message
      */
     protected $defined = [
         'articles',
+        'title',
+        'description',
+        'url',
+        'picurl',
+    ];
+
+    /**
+     * @var array[]
+     */
+    protected $options = [
+        'articles' => [],
     ];
 
     public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
@@ -29,7 +40,6 @@ class NewsMessage extends Message
         $resolver = parent::configureOptionsResolver($resolver);
 
         return tap($resolver, function ($resolver) {
-            $resolver->setDefault('articles', []);
             $resolver->setAllowedTypes('articles', 'array');
         });
     }
@@ -70,9 +80,9 @@ class NewsMessage extends Message
     public function transformToRequestParams()
     {
         return [
-            'msgtype' => 'news',
-            'news' => [
-                'articles' => $this->options['articles'],
+            'msgtype' => $this->type,
+            $this->type => [
+                'articles' => [$this->getOptions()],
             ],
         ];
     }
