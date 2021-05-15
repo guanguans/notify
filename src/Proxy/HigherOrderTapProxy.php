@@ -10,6 +10,9 @@
 
 namespace Guanguans\Notify\Proxy;
 
+/**
+ * This file from `Illuminate\Support`.
+ */
 class HigherOrderTapProxy
 {
     /**

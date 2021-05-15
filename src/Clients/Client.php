@@ -13,7 +13,7 @@ namespace Guanguans\Notify\Clients;
 use Guanguans\Notify\Contracts\GatewayInterface;
 use Guanguans\Notify\Contracts\MessageInterface;
 use Guanguans\Notify\Contracts\RequestInterface;
-use Guanguans\Notify\Exceptions\Exception;
+use Guanguans\Notify\Exceptions\RuntimeException;
 use Guanguans\Notify\Messages\Message;
 use Guanguans\Notify\Traits\HasHttpClient;
 use Guanguans\Notify\Traits\HasOptions;
@@ -93,16 +93,16 @@ abstract class Client implements GatewayInterface, RequestInterface
     }
 
     /**
-     * @throws \Guanguans\Notify\Exceptions\Exception
+     * @throws \Guanguans\Notify\Exceptions\RuntimeException
      */
     public function getRequestParams(): array
     {
         if (null === $this->getMessage()) {
-            throw new Exception('No Message!');
+            throw new RuntimeException('No Message!');
         }
 
         if (! $this->getMessage() instanceof MessageInterface) {
-            throw new Exception(sprintf('The message no instanceof %s', MessageInterface::class));
+            throw new RuntimeException(sprintf('The message no instanceof %s', MessageInterface::class));
         }
 
         return $this->getMessage()->transformToRequestParams();

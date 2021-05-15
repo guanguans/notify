@@ -38,10 +38,12 @@ if (! function_exists('base64_file')) {
 
 if (! function_exists('tap')) {
     /**
-     * @param $value
-     * @param null $callback
+     * Call the given Closure with the given value then return the value.
      *
-     * @return \Guanguans\Notify\Proxy\HigherOrderTapProxy
+     * @param mixed         $value
+     * @param callable|null $callback
+     *
+     * @return mixed
      */
     function tap($value, $callback = null)
     {
