@@ -10,6 +10,8 @@
 
 namespace Guanguans\Notify\Messages\FeiShu;
 
+use Guanguans\Notify\Messages\Message;
+
 class TextMessage extends Message
 {
     protected $type = 'text';
@@ -19,6 +21,20 @@ class TextMessage extends Message
      */
     protected $defined = [
         'text',
-        'secret',
     ];
+
+    public function __construct(string $text = '')
+    {
+        parent::__construct([
+            'text' => $text,
+        ]);
+    }
+
+    public function transformToRequestParams()
+    {
+        return [
+            'msg_type' => $this->type,
+            'content' => $this->getOptions(),
+        ];
+    }
 }

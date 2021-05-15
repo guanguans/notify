@@ -10,15 +10,31 @@
 
 namespace Guanguans\Notify\Messages\FeiShu;
 
+use Guanguans\Notify\Messages\Message;
+
 class ShareChatMessage extends Message
 {
     protected $type = 'share_chat';
+
+    public function __construct(string $shareChatId = '')
+    {
+        parent::__construct([
+            'share_chat_id' => $shareChatId,
+        ]);
+    }
 
     /**
      * @var string[]
      */
     protected $defined = [
         'share_chat_id',
-        'secret',
     ];
+
+    public function transformToRequestParams()
+    {
+        return [
+            'msg_type' => $this->type,
+            'content' => $this->getOptions(),
+        ];
+    }
 }

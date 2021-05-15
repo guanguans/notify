@@ -154,6 +154,69 @@ Factory::weWork()
     ->send();
 ```
 
+### FeiShu
+
+``` php
+// Text Message
+Factory::feiShu()
+    ->setToken('b6eb70d9-6e19-4f87-af48-348b028186')
+    ->setSecret('iigDOvnsIn6aFS1pYHHEHh')
+    ->setMessage(new \Guanguans\Notify\Messages\FeiShu\TextMessage('This is title(keyword).'))
+    ->send();
+
+// Post Message
+$post = [
+    'zh_cn' => [
+        'title'   => '项目更新通知',
+        'content' => [
+            [
+                [
+                    "tag"  => "text",
+                    "text" => "项目有更新(keyword)"
+                ]
+            ]
+        ]
+    ]
+];
+Factory::feiShu()
+    ->setToken('b6eb70d9-6e19-4f87-af48-348b028186')
+    ->setSecret('iigDOvnsIn6aFS1pYHHEHh')
+    ->setMessage(new \Guanguans\Notify\Messages\FeiShu\PostMessage($post))
+    ->send();
+
+// Image Message
+Factory::feiShu()
+    ->setToken('b6eb70d9-6e19-4f87-af48-348b028186')
+    ->setSecret('iigDOvnsIn6aFS1pYHHEHh')
+    ->setMessage(new \Guanguans\Notify\Messages\FeiShu\ImageMessage('img_ecffc3b9-8f14-400f-a014-05eca1a4xxxx'))
+    ->send();
+
+// ShareChat Message
+Factory::feiShu()
+    ->setToken('b6eb70d9-6e19-4f87-af48-348b028186')
+    ->setSecret('iigDOvnsIn6aFS1pYHHEHh')
+    ->setMessage(new \Guanguans\Notify\Messages\FeiShu\ShareChatMessage('oc_f5b1a7eb27ae2c7b6adc2a74fafxxxxx'))
+    ->send();
+
+// Card Message
+$card = [
+    'elements' => [
+        [
+            'tag'  => 'div',
+            'text' => [
+                'content' => '**西湖(keyword)**，位于浙江省杭州市西湖区龙井路1号，杭州市区西部，景区总面积49平方千米，汇水面积为21.22平方千米，湖面面积为6.38平方千米。',
+                'tag'     => 'lark_md',
+            ],
+        ],
+    ],
+];
+Factory::feiShu()
+    ->setToken('b6eb70d9-6e19-4f87-af48-348b0281866c')
+    ->setSecret('iigDOvnsIn6aFS1pYHHEHh')
+    ->setMessage(new \Guanguans\Notify\Messages\FeiShu\CardMessage($card))
+    ->send();
+```
+
 ## Testing
 
 ``` bash

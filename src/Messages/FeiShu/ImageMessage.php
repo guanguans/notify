@@ -10,6 +10,8 @@
 
 namespace Guanguans\Notify\Messages\FeiShu;
 
+use Guanguans\Notify\Messages\Message;
+
 class ImageMessage extends Message
 {
     protected $type = 'image';
@@ -19,6 +21,20 @@ class ImageMessage extends Message
      */
     protected $defined = [
         'image_key',
-        'secret',
     ];
+
+    public function __construct(string $imageKey = '')
+    {
+        parent::__construct([
+            'image_key' => $imageKey,
+        ]);
+    }
+
+    public function transformToRequestParams()
+    {
+        return [
+            'msg_type' => $this->type,
+            'content' => $this->getOptions(),
+        ];
+    }
 }

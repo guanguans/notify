@@ -16,8 +16,54 @@ class FeiShuClient extends Client
 
     protected $requestMethod = 'postJson';
 
+    /**
+     * @var string[]
+     */
+    protected $defined = [
+        'token',
+        'message',
+        'secret',
+    ];
+
     public function getRequestUrl(): string
     {
         return sprintf(static::REQUEST_URL_TEMPLATE, $this->getToken());
+    }
+
+    /**
+     * @return $this
+     */
+    public function setSecret(string $secret)
+    {
+        $this->setOption('secret', $secret);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRequestParams(): array
+    {
+        $requestParams = parent::getRequestParams();
+
+        if (array_key_exists('secret', $this->getOptions()) && $this->getOptions('secret')) {
+            $requestParams['timestamp'] = time();
+            $requestParams['sign'] = $this->getSign($this->options['secret'], $requestParams['timestamp']);
+        }
+
+        return $requestParams;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getSign(string $secret, int $timestamp)
+    {
+        $stringToSign = sprintf("%s\n%s", $timestamp, $secret);
+
+        $hash = hash_hmac('sha256', '', $stringToSign, true);
+
+        return base64_encode($hash);
     }
 }

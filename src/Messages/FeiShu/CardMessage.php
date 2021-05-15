@@ -13,24 +13,21 @@ namespace Guanguans\Notify\Messages\FeiShu;
 use Guanguans\Notify\Messages\Message;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PostMessage extends Message
+class CardMessage extends Message
 {
-    protected $type = 'post';
+    protected $type = 'card';
 
     /**
      * @var string[]
      */
     protected $defined = [
-        'post',
+        'card',
     ];
 
-    /**
-     * PostMessage constructor.
-     */
-    public function __construct(array $post = [])
+    public function __construct(array $card = [])
     {
         parent::__construct([
-            'post' => $post,
+            'card' => $card,
         ]);
     }
 
@@ -39,15 +36,15 @@ class PostMessage extends Message
         $resolver = parent::configureOptionsResolver($resolver);
 
         return tap($resolver, function ($resolver) {
-            $resolver->setAllowedTypes('post', 'array');
+            $resolver->setAllowedTypes('card', 'array');
         });
     }
 
     public function transformToRequestParams()
     {
         return [
-            'msg_type' => $this->type,
-            'content' => $this->getOptions(),
+            'msg_type' => 'interactive',
+            $this->type => $this->getOptions('card'),
         ];
     }
 }
