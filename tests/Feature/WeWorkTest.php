@@ -37,9 +37,7 @@ class WeWorkTest extends TestCase
 
         $ret = Factory::weWork()
             ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
-            ->setMessage((new \Guanguans\Notify\Messages\WeWork\MarkdownMessage([
-                'content' => "# This is title.\n This is content.",
-            ])))
+            ->setMessage(new \Guanguans\Notify\Messages\WeWork\MarkdownMessage("# This is title.\n This is content."))
             ->send();
 
         echo $ret['errcode'];
@@ -51,10 +49,7 @@ class WeWorkTest extends TestCase
 
         $ret = Factory::weWork()
             ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
-            ->setMessage((new \Guanguans\Notify\Messages\WeWork\ImageMessage([
-                // 'imagePath' => '/Users/yaozm/Downloads/image.png',
-                'imagePath' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
-            ])))
+            ->setMessage(new \Guanguans\Notify\Messages\WeWork\ImageMessage('https://avatars.githubusercontent.com/u/22309277?v=4'))
             ->send();
 
         echo $ret['errcode'];
@@ -64,14 +59,21 @@ class WeWorkTest extends TestCase
     {
         $this->expectOutputString('93000');
 
+        $message = new \Guanguans\Notify\Messages\WeWork\NewsMessage([
+            'title' => 'This is title1.',
+            'description' => 'This is description.',
+            'url' => 'https://github.com/guanguans/notify',
+            'picurl' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+        ]);
+        $message->addArticle([
+            'title' => 'This is title2.',
+            'description' => 'This is description.',
+            'url' => 'https://github.com/guanguans/notify',
+            'picurl' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+        ]);
         $ret = Factory::weWork()
-            ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
-            ->setMessage(new \Guanguans\Notify\Messages\WeWork\NewsMessage([
-                'title' => 'This is title.',
-                'description' => 'This is description.',
-                'url' => 'https://github.com/guanguans/notify',
-                'picurl' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
-            ]))
+            ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778f')
+            ->setMessage($message)
             ->send();
 
         echo $ret['errcode'];

@@ -23,6 +23,13 @@ class ImageMessage extends Message
         'imagePath',
     ];
 
+    public function __construct(string $imagePath)
+    {
+        parent::__construct([
+            'imagePath' => $imagePath,
+        ]);
+    }
+
     public function transformToRequestParams()
     {
         return [

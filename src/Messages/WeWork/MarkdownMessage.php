@@ -23,6 +23,13 @@ class MarkdownMessage extends Message
         'content',
     ];
 
+    public function __construct(string $content)
+    {
+        parent::__construct([
+            'content' => $content,
+        ]);
+    }
+
     public function transformToRequestParams()
     {
         return [

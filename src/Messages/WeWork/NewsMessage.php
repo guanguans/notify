@@ -22,10 +22,6 @@ class NewsMessage extends Message
      */
     protected $defined = [
         'articles',
-        'title',
-        'description',
-        'url',
-        'picurl',
     ];
 
     /**
@@ -34,6 +30,13 @@ class NewsMessage extends Message
     protected $options = [
         'articles' => [],
     ];
+
+    public function __construct(array $articles = [])
+    {
+        parent::__construct([
+            'articles' => isset($articles[0]) ? $articles : [$articles],
+        ]);
+    }
 
     public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
@@ -81,9 +84,7 @@ class NewsMessage extends Message
     {
         return [
             'msgtype' => $this->type,
-            $this->type => [
-                'articles' => [$this->getOptions()],
-            ],
+            $this->type => $this->getOptions(),
         ];
     }
 }
