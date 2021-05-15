@@ -15,11 +15,11 @@
 
 * [Bark](https://github.com/Finb/Bark)
 * [Chanify](https://github.com/chanify/chanify-ios)
-* [DingTalk](https://developers.dingtalk.com/document/app/custom-robot-access)
-* [FeiShu](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
-* [ServerChan](https://sct.ftqq.com)
-* [WeWork](https://work.weixin.qq.com/help?doc_id=13376)
-* [XiZhi](https://xz.qqoq.net/#/index)
+* [钉钉群机器人](https://developers.dingtalk.com/document/app/custom-robot-access)
+* [飞书群机器人](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
+* [Server 酱](https://sct.ftqq.com)
+* [企业微信群机器人](https://work.weixin.qq.com/help?doc_id=13376)
+* [息知](https://xz.qqoq.net/#/index)
 
 ## 环境要求
 
