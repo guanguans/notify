@@ -10,8 +10,6 @@
 
 namespace Guanguans\Notify\Clients;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
 class XiZhiClient extends Client
 {
     public const REQUEST_URL_TEMPLATE = [
@@ -35,14 +33,12 @@ class XiZhiClient extends Client
         'type' => 'single',
     ];
 
-    protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
-    {
-        $resolver = parent::configureOptionsResolver($resolver);
-
-        return tap($resolver, function ($resolver) {
-            $resolver->setAllowedValues('type', ['single', 'channel']);
-        });
-    }
+    /**
+     * @var \string[][]
+     */
+    protected $allowedValues = [
+        'type' => ['single', 'channel'],
+    ];
 
     public function getType(): string
     {
@@ -61,6 +57,6 @@ class XiZhiClient extends Client
 
     public function getRequestUrl(): string
     {
-        return sprintf(static::REQUEST_URL_TEMPLATE[$this->getOptions('type')], $this->getToken());
+        return sprintf(static::REQUEST_URL_TEMPLATE[$this->getType()], $this->getToken());
     }
 }

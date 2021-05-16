@@ -60,9 +60,9 @@ class FeiShuClient extends Client
      */
     protected function getSign(string $secret, int $timestamp)
     {
-        $stringToSign = sprintf("%s\n%s", $timestamp, $secret);
+        $key = sprintf("%s\n%s", $timestamp, $secret);
 
-        $hash = hash_hmac('sha256', '', $stringToSign, true);
+        $hash = hash_hmac('sha256', '', $key, true);
 
         return base64_encode($hash);
     }

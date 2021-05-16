@@ -23,14 +23,14 @@ class ChanifyClient extends Client
     protected $defined = [
         'token',
         'message',
-        'base_uri',
+        'baseUri',
     ];
 
     /**
      * @var string[]
      */
     protected $options = [
-        'base_uri' => 'https://api.chanify.net/v1/sender',
+        'baseUri' => 'https://api.chanify.net/v1/sender',
     ];
 
     protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
@@ -38,14 +38,32 @@ class ChanifyClient extends Client
         $resolver = parent::configureOptionsResolver($resolver);
 
         return tap($resolver, function (OptionsResolver $resolver) {
-            $resolver->setNormalizer('base_uri', function (Options $options, $value) {
+            $resolver->setNormalizer('baseUri', function (Options $options, $value) {
                 return trim($value, '/');
             });
         });
     }
 
+    /**
+     * @return $this
+     */
+    public function setBaseUri(string $baseUri)
+    {
+        $this->setOption('baseUri', $baseUri);
+
+        return $this;
+    }
+
+    public function getBaseUri(): string
+    {
+        return $this->getOptions('baseUri');
+    }
+
     public function getRequestUrl(): string
     {
-        return sprintf(static::REQUEST_URL_TEMPLATE, $this->getOptions('base_uri'), $this->getToken());
+        return sprintf(
+            static::REQUEST_URL_TEMPLATE,
+            $this->getBaseUri(),
+            $this->getToken());
     }
 }
