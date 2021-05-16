@@ -85,7 +85,7 @@ abstract class Client implements GatewayInterface, RequestInterface
     /**
      * @return $this
      */
-    public function setMessage($message)
+    public function setMessage(MessageInterface $message)
     {
         $this->setOption('message', $message);
 

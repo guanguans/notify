@@ -45,15 +45,30 @@ class BarkClient extends Client
     }
 
     /**
+     * @return $this
+     */
+    public function setBaseUri(string $baseUri)
+    {
+        $this->setOption('baseUri', $baseUri);
+
+        return $this;
+    }
+
+    public function getBaseUri(): string
+    {
+        return $this->getOptions('baseUri');
+    }
+
+    /**
      * {@inheritDoc}
      */
     public function getRequestUrl(): string
     {
         return sprintf(
             static::REQUEST_URL_TEMPLATE,
-            $this->getOptions('baseUri'),
+            $this->getBaseUri(),
             $this->getToken(),
-            $this->getMessage()->getOptions('text'),
+            $this->getRequestParams()['text'] ?? '',
             http_build_query($this->getRequestParams())
         );
     }

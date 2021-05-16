@@ -32,9 +32,9 @@ class Factory
      */
     public static function make($name, array $options = [])
     {
-        $gateway = sprintf('\\Guanguans\\Notify\\Clients\\%sClient', Str::studly($name));
+        $client = sprintf('\\Guanguans\\Notify\\Clients\\%sClient', Str::studly($name));
 
-        return new $gateway($options);
+        return new $client($options);
     }
 
     /**

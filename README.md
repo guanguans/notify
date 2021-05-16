@@ -38,17 +38,19 @@ $ composer require guanguans/notify -vvv
 ``` php
 use Guanguans\Notify\Factory;
 
+$barkMessage = new \Guanguans\Notify\Messages\BarkMessage([
+    'title' => 'This is title.',
+    'text'  => 'This is text.',
+    'copy'  => 'This is copy.',
+    'url'   => 'https://github.com/guanguans/notify',
+    // 'sound'             => 'bell',
+    // 'isArchive'         => 1,
+    // 'automaticallyCopy' => 1,
+]);
 Factory::bark()
-    ->setToken('csZcrvJeJCTcHEr8LvNSND')
-    ->setMessage((new \Guanguans\Notify\Messages\BarkMessage([
-        'title'             => 'This is title.',
-        'text'              => 'This is text.',
-        // 'copy'              => 'This is copy.',
-        // 'url'               => 'https://github.com/guanguans/notify',
-        // 'sound'             => 'bell',
-        // 'isArchive'         => 1,
-        // 'automaticallyCopy' => 1,
-    ])))
+    // ->setBaseUri('The server address of your own deployment.')
+    ->setToken('ihnPXb8KDj9dHStfQ5c')
+    ->setMessage($barkMessage)
     ->send();
 ```
 
