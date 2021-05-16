@@ -11,6 +11,7 @@
 namespace Guanguans\Notify\Messages\DingTalk;
 
 use Guanguans\Notify\Messages\Message;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FeedCardMessage extends Message
@@ -34,7 +35,7 @@ class FeedCardMessage extends Message
     public function __construct(array $links = [])
     {
         parent::__construct([
-            'links' => isset($links[0]) ? $links : [$links],
+            'links' => $links,
         ]);
     }
 
@@ -44,6 +45,9 @@ class FeedCardMessage extends Message
 
         return tap($resolver, function ($resolver) {
             $resolver->setAllowedTypes('links', 'array');
+            $resolver->setNormalizer('links', function (Options $options, $value) {
+                return isset($value[0]) ? $value : [$value];
+            });
         });
     }
 

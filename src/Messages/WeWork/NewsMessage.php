@@ -11,6 +11,7 @@
 namespace Guanguans\Notify\Messages\WeWork;
 
 use Guanguans\Notify\Messages\Message;
+use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class NewsMessage extends Message
@@ -34,7 +35,7 @@ class NewsMessage extends Message
     public function __construct(array $articles = [])
     {
         parent::__construct([
-            'articles' => isset($articles[0]) ? $articles : [$articles],
+            'articles' => $articles,
         ]);
     }
 
@@ -44,6 +45,9 @@ class NewsMessage extends Message
 
         return tap($resolver, function ($resolver) {
             $resolver->setAllowedTypes('articles', 'array');
+            $resolver->setNormalizer('articles', function (Options $options, $value) {
+                return isset($value[0]) ? $value : [$value];
+            });
         });
     }
 

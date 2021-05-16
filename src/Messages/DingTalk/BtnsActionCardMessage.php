@@ -46,28 +46,28 @@ class BtnsActionCardMessage extends Message
         });
     }
 
-    public function setBtns(array $Btns)
+    public function setBtns(array $btns)
     {
-        return $this->addBtns($Btns);
+        return $this->addBtns($btns);
     }
 
-    public function addBtns(array $Btns)
+    public function addBtns(array $btns)
     {
-        foreach ($Btns as $Btn) {
-            $this->addBtn($Btn);
+        foreach ($btns as $btn) {
+            $this->addBtn($btn);
         }
 
         return $this;
     }
 
-    public function setBtn(array $Btn)
+    public function setBtn(array $btn)
     {
-        return $this->addBtn($Btn);
+        return $this->addBtn($btn);
     }
 
-    public function addBtn(array $Btn)
+    public function addBtn(array $btn)
     {
-        $this->options['btns'][] = configure_options($Btn, function (OptionsResolver $resolver) {
+        $this->options['btns'][] = configure_options($btn, function (OptionsResolver $resolver) {
             $resolver->setDefined([
                 'title',
                 'actionURL',
