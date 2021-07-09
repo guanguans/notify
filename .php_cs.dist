@@ -8,29 +8,34 @@ This file is part of the guanguans/notify.
 This source file is subject to the MIT license that is bundled.
 EOF;
 
-$finder = Symfony\Component\Finder\Finder::create()
+$finder = PhpCsFixer\Finder::create()
     ->in([
+        __DIR__,
         __DIR__ . '/src',
         __DIR__ . '/tests',
     ])
+    ->exclude([
+        __DIR__.'/vendor',
+    ])
     ->name('*.php')
     ->notName('*.blade.php')
+    ->notName('_ide_helper.php')
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRules([
         // '@PSR2' => true,
         '@Symfony' => true,
         'header_comment' => [
             'header' => $header,
-            'commentType' => 'PHPDoc'
+            'comment_type' => 'PHPDoc'
         ],
         'array_syntax' => ['syntax' => 'short'],
-        'ordered_imports' => ['sortAlgorithm' => 'alpha'],
+        'ordered_imports' => ['sort_algorithm' => 'alpha'],
         'no_unused_imports' => true,
         'not_operator_with_successor_space' => true,
-        'trailing_comma_in_multiline_array' => true,
+        // 'trailing_comma_in_multiline' => true,
         'no_useless_else' => true,
         'no_useless_return' => true,
         'single_quote' => true,
