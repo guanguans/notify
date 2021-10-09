@@ -17,7 +17,7 @@ class ServerChanTest extends TestCase
 {
     public function testSendMessage()
     {
-        $this->expectException(\GuzzleHttp\Exception\ServerException::class);
+        $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
         Factory::serverChan()
             ->setToken('SCT35149Thtf1g2Bc14QJuQ6HFpW5Y')
