@@ -46,7 +46,7 @@
     "require": {
         "php": ">=7.2",
         "overtrue/http": "^1.2",
-        "symfony/options-resolver": "^5.0"
+        "symfony/options-resolver": "^5.3"
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.7",
@@ -107,8 +107,8 @@
         "lint": "./vendor/bin/phplint --no-cache --configuration=.phplint.yml --ansi",
         "md-lint": "lint-md --config .lintmdrc *.md .github/*.md .github/ISSUE_TEMPLATE/*.md",
         "md-fix": "lint-md --config .lintmdrc --fix *.md .github/*.md .github/ISSUE_TEMPLATE/*.md",
-        "style-lint": "./vendor/bin/php-cs-fixer fix --using-cache=no --diff --config=.php_cs.dist --dry-run --ansi",
-        "style-fix": "./vendor/bin/php-cs-fixer fix --using-cache=no --config=.php_cs.dist --ansi",
+        "style-lint": "./vendor/bin/php-cs-fixer fix --using-cache=no --diff --config=.php-cs-fixer.php --dry-run --ansi",
+        "style-fix": "./vendor/bin/php-cs-fixer fix --using-cache=no --config=.php-cs-fixer.php --ansi",
         "psalm": "./vendor/bin/psalm",
         "test": "./vendor/bin/phpunit --coverage-text --colors=always --verbose",
         "test-coverage": "./vendor/bin/phpunit --coverage-html=coverage/ --coverage-clover=clover.xml --color=always --verbose"
