@@ -54,7 +54,7 @@
         "mockery/mockery": "^1.2",
         "overtrue/phplint": "^2.3",
         "phpunit/phpunit": "^7 || ^8",
-        "vimeo/psalm": "^3.11"
+        "vimeo/psalm": "^4.10"
     },
     "autoload": {
         "psr-4": {
