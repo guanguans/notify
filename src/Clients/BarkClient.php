@@ -35,9 +35,7 @@ class BarkClient extends Client
 
     protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        $resolver = parent::configureOptionsResolver($resolver);
-
-        return tap($resolver, function (OptionsResolver $resolver) {
+        return tap(parent::configureOptionsResolver($resolver), function (OptionsResolver $resolver) {
             $resolver->setNormalizer('baseUri', function (Options $options, $value) {
                 return trim($value, '/');
             });

@@ -24,6 +24,26 @@ trait HasOptions
      */
     protected $options = [];
 
+    /**
+     * @var string[]
+     */
+    protected $defined = [];
+
+    /**
+     * @var string[]
+     */
+    protected $required = [];
+
+    /**
+     * @var array
+     */
+    protected $allowedTypes = [];
+
+    /**
+     * @var array
+     */
+    protected $allowedValues = [];
+
     protected function createOptionsResolver(): OptionsResolver
     {
         if (static::$resolver instanceof OptionsResolver) {
@@ -35,7 +55,18 @@ trait HasOptions
 
     protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        // To do something.
+        $resolver->setDefined($this->defined);
+
+        $resolver->setRequired($this->required);
+
+        foreach ($this->allowedTypes as $option => $allowedType) {
+            $resolver->setAllowedTypes($option, $allowedType);
+        }
+
+        foreach ($this->allowedValues as $option => $allowedValue) {
+            $resolver->setAllowedValues($option, $allowedValue);
+        }
+
         return $resolver;
     }
 

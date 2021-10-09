@@ -29,9 +29,7 @@ class TextMessage extends Message
 
     public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        $resolver = parent::configureOptionsResolver($resolver);
-
-        return tap($resolver, function ($resolver) {
+        return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
             $resolver->setAllowedTypes('mentioned_list', ['int', 'string', 'array']);
             $resolver->setAllowedTypes('mentioned_mobile_list', ['int', 'string', 'array']);
             $resolver->setNormalizer('mentioned_list', function (Options $options, $value) {

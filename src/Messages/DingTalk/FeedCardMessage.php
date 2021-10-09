@@ -41,9 +41,7 @@ class FeedCardMessage extends Message
 
     public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        $resolver = parent::configureOptionsResolver($resolver);
-
-        return tap($resolver, function ($resolver) {
+        return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
             $resolver->setAllowedTypes('links', 'array');
             $resolver->setNormalizer('links', function (Options $options, $value) {
                 return isset($value[0]) ? $value : [$value];

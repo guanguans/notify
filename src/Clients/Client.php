@@ -17,7 +17,6 @@ use Guanguans\Notify\Exceptions\RuntimeException;
 use Guanguans\Notify\Messages\Message;
 use Guanguans\Notify\Traits\HasHttpClient;
 use Guanguans\Notify\Traits\HasOptions;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class Client implements GatewayInterface, RequestInterface
 {
@@ -30,50 +29,11 @@ abstract class Client implements GatewayInterface, RequestInterface
     protected $requestMethod = 'post';
 
     /**
-     * @var string[]
-     */
-    protected $defined = [
-        'token',
-        'message',
-    ];
-
-    /**
-     * @var string[]
-     */
-    protected $required = [];
-
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [];
-
-    /**
-     * @var array
-     */
-    protected $allowedValues = [];
-
-    /**
      * Client constructor.
      */
     public function __construct(array $options = [])
     {
         $this->setOptions($options);
-    }
-
-    protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
-    {
-        return tap($resolver, function (OptionsResolver $resolver) {
-            $resolver->setDefined($this->defined);
-            $resolver->setRequired($this->required);
-
-            foreach ($this->allowedTypes as $option => $allowedType) {
-                $resolver->setAllowedTypes($option, $allowedType);
-            }
-
-            foreach ($this->allowedValues as $option => $allowedValue) {
-                $resolver->setAllowedValues($option, $allowedValue);
-            }
-        });
     }
 
     public function getName(): string

@@ -43,9 +43,7 @@ class TextMessage extends Message
      */
     protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        $resolver = parent::configureOptionsResolver($resolver);
-
-        return tap($resolver, function (OptionsResolver $resolver) {
+        return tap(parent::configureOptionsResolver($resolver), function (OptionsResolver $resolver) {
             $resolver->setAllowedTypes('actions', ['string', 'array']);
             $resolver->setNormalizer('actions', function (Options $options, $value) {
                 return (array) $value;
