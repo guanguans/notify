@@ -11,6 +11,11 @@
 [![Total Downloads](https://poser.pugx.org/guanguans/notify/downloads)](//packagist.org/packages/guanguans/notify)
 [![License](https://poser.pugx.org/guanguans/notify/license)](//packagist.org/packages/guanguans/notify)
 
+## 相关项目
+
+* [https://github.com/guanguans/laravel-exception-notify](https://github.com/guanguans/laravel-exception-notify)
+* [https://github.com/guanguans/yii-log-target](https://github.com/guanguans/yii-log-target)
+
 ## 平台支持
 
 * [Bark](https://github.com/Finb/Bark)
