@@ -41,7 +41,7 @@ class PostMessage extends Message
     {
         return [
             'msg_type' => $this->type,
-            'content' => $this->getOptions(),
+            'content' => $this->getOption(),
         ];
     }
 }

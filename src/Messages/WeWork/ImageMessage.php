@@ -35,8 +35,8 @@ class ImageMessage extends Message
         return [
             'msgtype' => $this->type,
             $this->type => [
-                'base64' => base64_file($this->getOptions('imagePath')),
-                'md5' => md5_file($this->getOptions('imagePath')),
+                'base64' => base64_file($this->getOption('imagePath')),
+                'md5' => md5_file($this->getOption('imagePath')),
             ],
         ];
     }

@@ -30,7 +30,7 @@ class LinkMessage extends Message
     {
         return [
             'msgtype' => $this->type,
-            $this->type => $this->getOptions(),
+            $this->type => $this->getOption(),
         ];
     }
 }

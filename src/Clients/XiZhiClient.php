@@ -42,7 +42,7 @@ class XiZhiClient extends Client
 
     public function getType(): string
     {
-        return $this->getOptions('type');
+        return $this->getOption('type');
     }
 
     /**

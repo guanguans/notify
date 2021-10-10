@@ -54,8 +54,8 @@ class MarkdownMessage extends Message
     {
         return [
             'msgtype' => $this->type,
-            $this->type => $this->getOptions(),
-            'at' => $this->getOptions(),
+            $this->type => $this->getOption(),
+            'at' => $this->getOption(),
         ];
     }
 }

@@ -38,10 +38,10 @@ class DingTalkClient extends Client
     public function getRequestUrl(): string
     {
         $urlParams = '';
-        if (isset($this->options['secret']) && $this->getOptions('secret')) {
+        if (isset($this->options['secret']) && $this->getOption('secret')) {
             $urlParams = http_build_query([
                 'timestamp' => $timestamp = time().sprintf('%03d', random_int(1, 999)),
-                'sign' => $this->getSign($this->getOptions('secret'), $timestamp),
+                'sign' => $this->getSign($this->getOption('secret'), $timestamp),
             ]);
         }
 

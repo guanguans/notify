@@ -54,7 +54,7 @@ class BarkClient extends Client
 
     public function getBaseUri(): string
     {
-        return $this->getOptions('baseUri');
+        return $this->getOption('baseUri');
     }
 
     /**

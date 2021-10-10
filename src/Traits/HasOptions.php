@@ -32,6 +32,16 @@ trait HasOptions
     /**
      * @var string[]
      */
+    protected $info = [];
+
+    /**
+     * @var array
+     */
+    protected $default = [];
+
+    /**
+     * @var string[]
+     */
     protected $required = [];
 
     /**
@@ -59,6 +69,12 @@ trait HasOptions
 
         $resolver->setRequired($this->required);
 
+        $resolver->setDefaults($this->default);
+
+        foreach ($this->info as $option => $info) {
+            $resolver->setInfo($option, $info);
+        }
+
         foreach ($this->allowedTypes as $option => $allowedType) {
             $resolver->setAllowedTypes($option, $allowedType);
         }
@@ -71,6 +87,42 @@ trait HasOptions
     }
 
     /**
+     * @param $value
+     *
+     * @return $this
+     */
+    public function addOption(string $option, $value)
+    {
+        $resolver = $this->configureOptionsResolver($this->createOptionsResolver());
+
+        $this->options = array_merge($this->options, $resolver->resolve([$option => $value]));
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function addOptions(array $options)
+    {
+        foreach ($options as $option => $value) {
+            $this->addOption($option, $value);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setOption(string $option, $value)
+    {
+        return $this->addOption($option, $value);
+    }
+
+    /**
      * @return $this
      */
     public function setOptions(array $options)
@@ -79,27 +131,23 @@ trait HasOptions
     }
 
     /**
-     * @return $this
-     */
-    public function addOptions(array $options)
-    {
-        $resolver = $this->configureOptionsResolver($this->createOptionsResolver());
-
-        $this->options = array_merge($this->options, $resolver->resolve($options));
-
-        return $this;
-    }
-
-    /**
      * @return array|mixed
      */
-    public function getOptions(string $key = null)
+    public function getOption(string $option = null)
     {
-        if (is_null($key)) {
+        if (is_null($option)) {
             return $this->options;
         }
 
-        return $this->options[$key];
+        return $this->options[$option];
+    }
+
+    /**
+     * @return array
+     */
+    public function getOptions()
+    {
+        return $this->options;
     }
 
     /**
@@ -107,10 +155,57 @@ trait HasOptions
      *
      * @return $this
      */
-    public function setOption(string $key, $value)
+    public function set(string $option, $value)
     {
-        $this->setOptions([$key => $value]);
+        $this->setOption($option, $value);
 
         return $this;
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function get(string $option = null)
+    {
+        return $this->getOption($option);
+    }
+
+    /**
+     * @return bool
+     */
+    public function has(string $option)
+    {
+        return array_key_exists($option, $this->options);
+    }
+
+    /**
+     * @param $option
+     *
+     * @return array|mixed
+     */
+    public function __get($option)
+    {
+        return $this->get($option);
+    }
+
+    /**
+     * @param $option
+     * @param $value
+     *
+     * @return $this
+     */
+    public function __set($option, $value)
+    {
+        return $this->set($option, $value);
+    }
+
+    /**
+     * @param $option
+     *
+     * @return bool
+     */
+    public function __isset($option)
+    {
+        return isset($this->options[$option]);
     }
 }

@@ -38,7 +38,7 @@ class CardMessage extends Message
     {
         return [
             'msg_type' => 'interactive',
-            $this->type => $this->getOptions('card'),
+            $this->type => $this->getOption('card'),
         ];
     }
 }

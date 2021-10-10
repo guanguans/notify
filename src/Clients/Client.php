@@ -48,7 +48,7 @@ abstract class Client implements GatewayInterface, RequestInterface
 
     public function getToken(): string
     {
-        return $this->getOptions('token');
+        return $this->getOption('token');
     }
 
     /**
@@ -63,7 +63,7 @@ abstract class Client implements GatewayInterface, RequestInterface
 
     public function getMessage(): Message
     {
-        return $this->getOptions('message');
+        return $this->getOption('message');
     }
 
     /**

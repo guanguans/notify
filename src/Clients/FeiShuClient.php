@@ -47,7 +47,7 @@ class FeiShuClient extends Client
     {
         $requestParams = parent::getRequestParams();
 
-        if (array_key_exists('secret', $this->getOptions()) && $this->getOptions('secret')) {
+        if (array_key_exists('secret', $this->getOption()) && $this->getOption('secret')) {
             $requestParams['timestamp'] = time();
             $requestParams['sign'] = $this->getSign($this->options['secret'], $requestParams['timestamp']);
         }
