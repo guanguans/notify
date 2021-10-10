@@ -27,11 +27,14 @@ class TextMessage extends Message
         'mentioned_mobile_list',
     ];
 
+    protected $allowedTypes = [
+        'mentioned_list' => ['int', 'string', 'array'],
+        'mentioned_mobile_list' => ['int', 'string', 'array'],
+    ];
+
     public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setAllowedTypes('mentioned_list', ['int', 'string', 'array']);
-            $resolver->setAllowedTypes('mentioned_mobile_list', ['int', 'string', 'array']);
             $resolver->setNormalizer('mentioned_list', function (Options $options, $value) {
                 return (array) $value;
             });

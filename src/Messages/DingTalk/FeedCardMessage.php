@@ -25,6 +25,10 @@ class FeedCardMessage extends Message
         'links',
     ];
 
+    protected $allowedTypes = [
+        'links' => 'array',
+    ];
+
     /**
      * @var array[]
      */
@@ -42,7 +46,6 @@ class FeedCardMessage extends Message
     public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setAllowedTypes('links', 'array');
             $resolver->setNormalizer('links', function (Options $options, $value) {
                 return isset($value[0]) ? $value : [$value];
             });

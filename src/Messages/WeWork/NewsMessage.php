@@ -25,6 +25,10 @@ class NewsMessage extends Message
         'articles',
     ];
 
+    protected $allowedTypes = [
+        'articles' => 'array',
+    ];
+
     /**
      * @var array[]
      */
@@ -42,7 +46,6 @@ class NewsMessage extends Message
     public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setAllowedTypes('articles', 'array');
             $resolver->setNormalizer('articles', function (Options $options, $value) {
                 return isset($value[0]) ? $value : [$value];
             });

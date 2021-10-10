@@ -11,7 +11,6 @@
 namespace Guanguans\Notify\Messages\FeiShu;
 
 use Guanguans\Notify\Messages\Message;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CardMessage extends Message
 {
@@ -24,18 +23,15 @@ class CardMessage extends Message
         'card',
     ];
 
+    protected $allowedTypes = [
+        'card' => 'array',
+    ];
+
     public function __construct(array $card = [])
     {
         parent::__construct([
             'card' => $card,
         ]);
-    }
-
-    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setAllowedTypes('card', 'array');
-        });
     }
 
     public function transformToRequestParams()

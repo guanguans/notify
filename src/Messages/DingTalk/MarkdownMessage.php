@@ -29,12 +29,18 @@ class MarkdownMessage extends Message
         'isAtAll',
     ];
 
+    /**
+     * @var array
+     */
+    protected $allowedTypes = [
+        'atMobiles' => ['int', 'string', 'array'],
+        'atUserIds' => ['int', 'string', 'array'],
+        'isAtAll' => 'bool',
+    ];
+
     public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setAllowedTypes('atMobiles', ['int', 'string', 'array']);
-            $resolver->setAllowedTypes('atUserIds', ['int', 'string', 'array']);
-            $resolver->setAllowedTypes('isAtAll', 'bool');
             $resolver->setNormalizer('atMobiles', function (Options $options, $value) {
                 return (array) $value;
             });

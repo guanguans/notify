@@ -30,6 +30,13 @@ class TextMessage extends Message
     ];
 
     /**
+     * @var \string[][]
+     */
+    protected $allowedTypes = [
+        'actions' => ['string', 'array'],
+    ];
+
+    /**
      * @var string[]
      */
     protected $options = [
@@ -44,7 +51,6 @@ class TextMessage extends Message
     protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($resolver), function (OptionsResolver $resolver) {
-            $resolver->setAllowedTypes('actions', ['string', 'array']);
             $resolver->setNormalizer('actions', function (Options $options, $value) {
                 return (array) $value;
             });

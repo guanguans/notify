@@ -11,7 +11,6 @@
 namespace Guanguans\Notify\Messages\FeiShu;
 
 use Guanguans\Notify\Messages\Message;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PostMessage extends Message
 {
@@ -24,6 +23,10 @@ class PostMessage extends Message
         'post',
     ];
 
+    protected $allowedTypes = [
+        'post' => 'array',
+    ];
+
     /**
      * PostMessage constructor.
      */
@@ -32,13 +35,6 @@ class PostMessage extends Message
         parent::__construct([
             'post' => $post,
         ]);
-    }
-
-    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setAllowedTypes('post', 'array');
-        });
     }
 
     public function transformToRequestParams()

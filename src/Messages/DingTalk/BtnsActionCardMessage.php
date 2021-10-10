@@ -29,6 +29,13 @@ class BtnsActionCardMessage extends Message
     ];
 
     /**
+     * @var string[]
+     */
+    protected $allowedTypes = [
+        'btns' => 'array',
+    ];
+
+    /**
      * @var array
      */
     protected $options = [
@@ -36,13 +43,6 @@ class BtnsActionCardMessage extends Message
         'hideAvatar' => 0,
         'btns' => [],
     ];
-
-    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setAllowedTypes('btns', 'array');
-        });
-    }
 
     public function setBtns(array $btns)
     {
