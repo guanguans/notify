@@ -2,12 +2,21 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
-## 1.0.0 - 2021-05-16
+## 1.0.2 - 2021-10-10
 
-* Initial release.
+* Update overtrue/phplint requirement || ^3.0.
+* Update vimeo/psalm requirement || ^4.0.
+* Update tests.
+* Bump codecov/codecov-action from 1 to 2.1.0.
+* Optimize `HasOptions` trait.
+* Optimize messages.
 
 ## 1.0.1 - 2021-05-16
 
-Add separate method for separate setting option.
-Perf messages.
-Perf clients.
+* Add separate method for separate setting option.
+* Perf messages.
+* Perf clients.
+
+## 1.0.0 - 2021-05-16
+
+* Initial release.
