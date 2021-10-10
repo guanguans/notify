@@ -16,19 +16,19 @@ class ShareChatMessage extends Message
 {
     protected $type = 'share_chat';
 
-    public function __construct(string $shareChatId = '')
-    {
-        parent::__construct([
-            'share_chat_id' => $shareChatId,
-        ]);
-    }
-
     /**
      * @var string[]
      */
     protected $defined = [
         'share_chat_id',
     ];
+
+    public function __construct(string $shareChatId = '')
+    {
+        parent::__construct([
+            'share_chat_id' => $shareChatId,
+        ]);
+    }
 
     public function transformToRequestParams()
     {
