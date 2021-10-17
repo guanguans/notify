@@ -30,6 +30,9 @@ if (! function_exists('configure_options')) {
 }
 
 if (! function_exists('base64_file')) {
+    /**
+     * Base64 encode file content.
+     */
     function base64_file(string $file): string
     {
         return base64_encode(file_get_contents($file));

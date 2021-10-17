@@ -19,21 +19,18 @@ trait HasHttpClient
      */
     protected $httpClient;
 
-    /**
-     * @var array
-     */
-    protected static $httpOptions = [];
+    protected $httpOptions = [];
 
     public function setHttpOptions(array $httpOptions)
     {
-        static::$httpOptions = array_merge(static::$httpOptions, $httpOptions);
+        $this->httpOptions = array_merge($this->httpOptions, $httpOptions);
 
         return $this;
     }
 
-    public static function getHttpOptions(): array
+    public function getHttpOptions(): array
     {
-        return static::$httpOptions;
+        return $this->httpOptions;
     }
 
     public function getHttpClient(array $config = []): Client
@@ -41,7 +38,7 @@ trait HasHttpClient
         $config && $this->setHttpOptions($config);
 
         if ($config || ! $this->httpClient instanceof Client) {
-            $this->httpClient = Client::create(self::$httpOptions);
+            $this->httpClient = Client::create($this->httpOptions);
         }
 
         return $this->httpClient;
