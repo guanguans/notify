@@ -17,7 +17,8 @@ class XiZhiTest extends TestCase
 {
     public function testSingle()
     {
-        $this->expectOutputString('用户不存在');
+        // $this->expectOutputString('用户不存在');
+        $this->expectOutputRegex('/^用户不存在|触发访问频率限制$/');
 
         $ret = Factory::xiZhi()
             // ->setType('single')
@@ -30,7 +31,8 @@ class XiZhiTest extends TestCase
 
     public function testChannel()
     {
-        $this->expectOutputString('未知错误');
+        // $this->expectOutputString('未知错误');
+        $this->expectOutputRegex('/^未知错误|触发访问频率限制$/');
 
         $ret = Factory::xiZhi()
             ->setType('channel')
