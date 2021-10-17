@@ -2,6 +2,13 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.0.3 - 2021-10-17
+
+* Update friendsofphp/php-cs-fixer requirement || ^3.0.
+* Fix tests.
+* Optimize `HasHttpClient` trait.
+* Optimize `HasOptions` trait.
+
 ## 1.0.2 - 2021-10-10
 
 * Update overtrue/phplint requirement || ^3.0.
