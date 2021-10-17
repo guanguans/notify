@@ -29,6 +29,14 @@ abstract class Client implements GatewayInterface, RequestInterface
     protected $requestMethod = 'post';
 
     /**
+     * @var string[]
+     */
+    protected $defined = [
+        'token',
+        'message',
+    ];
+
+    /**
      * Client constructor.
      */
     public function __construct(array $options = [])

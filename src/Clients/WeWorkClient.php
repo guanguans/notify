@@ -12,14 +12,6 @@ namespace Guanguans\Notify\Clients;
 
 class WeWorkClient extends Client
 {
-    /**
-     * @var string[]
-     */
-    protected $defined = [
-        'token',
-        'message',
-    ];
-
     protected $requestMethod = 'postJson';
 
     public const REQUEST_URL_TEMPLATE = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=%s';

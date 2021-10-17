@@ -20,39 +20,16 @@ trait HasOptions
     protected static $resolver;
 
     /**
-     * @var array
+     * @var string[]
      */
     protected $options = [];
 
-    /**
-     * @var string[]
-     */
-    protected $defined = [];
-
-    /**
-     * @var string[]
-     */
-    protected $info = [];
-
-    /**
-     * @var array
-     */
-    protected $default = [];
-
-    /**
-     * @var string[]
-     */
-    protected $required = [];
-
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [];
-
-    /**
-     * @var array
-     */
-    protected $allowedValues = [];
+    // protected $defined = [];
+    // protected $info = [];
+    // protected $default = [];
+    // protected $required = [];
+    // protected $allowedTypes = [];
+    // protected $allowedValues = [];
 
     protected function createOptionsResolver(): OptionsResolver
     {
@@ -65,22 +42,28 @@ trait HasOptions
 
     protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        $resolver->setDefined($this->defined);
+        property_exists($this, 'defined') and $resolver->setDefined((array) $this->defined);
 
-        $resolver->setRequired($this->required);
+        property_exists($this, 'required') and $resolver->setRequired((array) $this->required);
 
-        $resolver->setDefaults($this->default);
+        property_exists($this, 'default') and $resolver->setDefaults((array) $this->default);
 
-        foreach ($this->info as $option => $info) {
-            $resolver->setInfo($option, $info);
+        if (property_exists($this, 'info')) {
+            foreach ((array) $this->info as $option => $info) {
+                $resolver->setInfo($option, $info);
+            }
         }
 
-        foreach ($this->allowedTypes as $option => $allowedType) {
-            $resolver->setAllowedTypes($option, $allowedType);
+        if (property_exists($this, 'allowedTypes')) {
+            foreach ((array) $this->allowedTypes as $option => $allowedType) {
+                $resolver->setAllowedTypes($option, $allowedType);
+            }
         }
 
-        foreach ($this->allowedValues as $option => $allowedValue) {
-            $resolver->setAllowedValues($option, $allowedValue);
+        if (property_exists($this, 'allowedValues')) {
+            foreach ((array) $this->allowedValues as $option => $allowedValue) {
+                $resolver->setAllowedValues($option, $allowedValue);
+            }
         }
 
         return $resolver;
@@ -93,9 +76,7 @@ trait HasOptions
      */
     public function addOption(string $option, $value)
     {
-        $resolver = $this->configureOptionsResolver($this->createOptionsResolver());
-
-        $this->options = array_merge($this->options, $resolver->resolve([$option => $value]));
+        $this->addOptions([$option => $value]);
 
         return $this;
     }
@@ -105,9 +86,9 @@ trait HasOptions
      */
     public function addOptions(array $options)
     {
-        foreach ($options as $option => $value) {
-            $this->addOption($option, $value);
-        }
+        $resolver = $this->configureOptionsResolver($this->createOptionsResolver());
+
+        $this->options = array_merge($this->options, $resolver->resolve($options));
 
         return $this;
     }
