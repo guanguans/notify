@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.0.4 - 2021-10-24
+
+* `HasOptions` added `preConfigureOptionsResolver` method.
+
 ## 1.0.3 - 2021-10-17
 
 * Update friendsofphp/php-cs-fixer requirement || ^3.0.
