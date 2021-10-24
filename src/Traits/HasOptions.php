@@ -42,6 +42,12 @@ trait HasOptions
 
     protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
+        // configure options resolver...
+        return $resolver;
+    }
+
+    protected function preConfigureOptionsResolver(OptionsResolver $resolver): OptionsResolver
+    {
         property_exists($this, 'defined') and $resolver->setDefined((array) $this->defined);
 
         property_exists($this, 'required') and $resolver->setRequired((array) $this->required);
@@ -86,7 +92,11 @@ trait HasOptions
      */
     public function addOptions(array $options)
     {
-        $resolver = $this->configureOptionsResolver($this->createOptionsResolver());
+        $resolver = $this->configureOptionsResolver(
+            $this->preConfigureOptionsResolver(
+                $this->createOptionsResolver()
+            )
+        );
 
         $this->options = array_merge($this->options, $resolver->resolve($options));
 
