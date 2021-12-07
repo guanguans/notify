@@ -10,7 +10,9 @@
 
 namespace Guanguans\Notify\Http;
 
-class Client extends \Overtrue\Http\Client
+use Overtrue\Http\Client as OvertrueClient;
+
+class Client extends OvertrueClient
 {
     /**
      * @param bool $async
