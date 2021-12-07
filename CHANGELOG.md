@@ -2,6 +2,11 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.0.5 - 2021-12-07
+
+* Add github config files.
+* Fix style.
+
 ## 1.0.4 - 2021-10-24
 
 * `HasOptions` added `preConfigureOptionsResolver` method.
