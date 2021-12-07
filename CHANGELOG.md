@@ -2,6 +2,11 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.1.0 - 2021-12-07
+
+* Add `gitter`.
+* Update composer.json.
+
 ## 1.0.5 - 2021-12-07
 
 * Add github config files.
