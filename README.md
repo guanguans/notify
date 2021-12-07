@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、ServerChan、WeWork、XiZhi). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Server 酱、企业微信群机器人、息知)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、Gitter、ServerChan、WeWork、XiZhi). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Gitter、Server 酱、企业微信群机器人、息知)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -22,6 +22,7 @@
 * [Chanify](https://github.com/chanify/chanify-ios)
 * [钉钉群机器人](https://developers.dingtalk.com/document/app/custom-robot-access)
 * [飞书群机器人](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
+* [Gitter](https://developer.gitter.im/docs/messages-resource)
 * [Server 酱](https://sct.ftqq.com)
 * [企业微信群机器人](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
 * [息知](https://xz.qqoq.net/#/index)
@@ -239,6 +240,16 @@ Factory::feiShu()
     ->setToken('b6eb70d9-6e19-4f87-af48-348b0281866c')
     ->setSecret('iigDOvnsIn6aFS1pYHHEHh')
     ->setMessage(new \Guanguans\Notify\Messages\FeiShu\CardMessage($card))
+    ->send();
+```
+
+### Gitter
+
+```php
+Factory::gitter()
+    ->setToken('b9e7931ecacb08b7ab4df5e98bc149d33d7faf1')
+    ->setRoomId('61af21b96da03739848bfef')
+    ->setMessage(new \Guanguans\Notify\Messages\GitterMessage('This is testing.'))
     ->send();
 ```
 
