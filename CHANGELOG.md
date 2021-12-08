@@ -2,6 +2,11 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.1.2 - 2021-12-08
+
+* Add support for `sending and sended`.
+* Optimize client for Gitter.
+
 ## 1.1.1 - 2021-12-08
 
 * Add support for asynchronous sending.
