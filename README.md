@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、Gitter、ServerChan、WeWork、XiZhi). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Gitter、Server 酱、企业微信群机器人、息知)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、Gitter、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Gitter、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -26,6 +26,7 @@
 * [Server 酱](https://sct.ftqq.com)
 * [企业微信群机器人](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
 * [息知](https://xz.qqoq.net/#/index)
+* [Zulip](https://zulip.com/api/send-message)
 
 ## 环境要求
 
@@ -331,6 +332,32 @@ Factory::xiZhi()
     ->setType('channel')
     ->setToken('XZ8da15b55a6725497232d87298bcd34')
     ->setMessage(new \Guanguans\Notify\Messages\XiZhiMessage('This is title.', 'This is content.'))
+    ->send();
+```
+
+### Zulip
+
+```php
+// Private Message
+Factory::zulip()
+    ->setToken('Mc0b7YBmibOVjLdk7KKSpT9SJLi1h')
+    ->setEmail('798314049@qq.com')
+    ->setHost('https://coole.zulipchat.com')
+    ->setMessage(new \Guanguans\Notify\Messages\Zulip\PrivateMessage('798314049@qq.com', 'This is testing.'))
+    ->send();
+
+// Stream Message
+Factory::zulip()
+    ->setToken('Mc0b7YBmibOVjLdk7KKSpT9SJLi1h')
+    ->setEmail('798314049@qq.com')
+    ->setHost('https://coole.zulipchat.com')
+    ->setMessage(new \Guanguans\Notify\Messages\Zulip\StreamMessage([
+        'to' => 'coole',
+        'content' => 'This is testing.',
+        'topic' => 'bug',
+        //'queue_id' => '1593114627:0',
+        //'local_id' => '100.01',
+    ]))
     ->send();
 ```
 
