@@ -29,6 +29,11 @@ abstract class Client implements GatewayInterface, RequestInterface
     protected $requestMethod = 'post';
 
     /**
+     * @var bool
+     */
+    protected $requestAsync = false;
+
+    /**
      * @var string[]
      */
     protected $defined = [
@@ -62,7 +67,7 @@ abstract class Client implements GatewayInterface, RequestInterface
     /**
      * @return $this
      */
-    public function setToken(string $token)
+    public function setToken(string $token): self
     {
         $this->setOption('token', $token);
 
@@ -77,9 +82,21 @@ abstract class Client implements GatewayInterface, RequestInterface
     /**
      * @return $this
      */
-    public function setMessage(MessageInterface $message)
+    public function setMessage(MessageInterface $message): self
     {
         $this->setOption('message', $message);
+
+        return $this;
+    }
+
+    public function isRequestAsync(): bool
+    {
+        return $this->requestAsync;
+    }
+
+    public function setRequestAsync(bool $requestAsync): self
+    {
+        $this->requestAsync = $requestAsync;
 
         return $this;
     }
@@ -107,8 +124,18 @@ abstract class Client implements GatewayInterface, RequestInterface
      */
     public function send(MessageInterface $message = null)
     {
-        $message && $this->setMessage($message);
+        $message and $this->setMessage($message);
 
-        return $this->getHttpClient()->{$this->getRequestMethod()}($this->getRequestUrl(), $this->getRequestParams());
+        $response = $this->getHttpClient()
+            ->{$this->getRequestMethod()}(
+                $this->getRequestUrl(),
+                $this->getRequestParams(),
+                [],
+                $this->requestAsync
+            );
+
+        $this->requestAsync and $response = $response->wait();
+
+        return $response;
     }
 }
