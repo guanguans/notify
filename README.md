@@ -43,6 +43,7 @@ $ composer require guanguans/notify -vvv
 
 ```php
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Clients\Client;
 
 $barkMessage = new \Guanguans\Notify\Messages\BarkMessage([
     'title' => 'This is title.',
@@ -57,6 +58,12 @@ Factory::bark()
     // ->setBaseUri('The server address of your own deployment.')
     ->setToken('ihnPXb8KDj9dHStfQ5c')
     ->setMessage($barkMessage)
+    ->sending(function (Client $client){
+        // do something for before send
+    })
+    ->sended(function (Client $client){
+        // do something for after send
+    })
     ->send();
 ```
 
