@@ -10,8 +10,6 @@
 
 namespace Guanguans\Notify\Clients;
 
-use Guanguans\Notify\Contracts\MessageInterface;
-
 class GitterClient extends Client
 {
     public const REQUEST_URL_TEMPLATE = 'https://api.gitter.im/v1/rooms/%s/chatMessages';
@@ -26,6 +24,19 @@ class GitterClient extends Client
         'message',
         'room_id',
     ];
+
+    public function __construct(array $options = [])
+    {
+        $this->sending(function (self $client) {
+            $client->setHttpOptions([
+                'headers' => [
+                    'Authorization' => 'Bearer '.$client->getToken(),
+                ],
+            ]);
+        });
+
+        parent::__construct($options);
+    }
 
     public function getRequestUrl(): string
     {
@@ -45,19 +56,5 @@ class GitterClient extends Client
         $this->setOption('room_id', $token);
 
         return $this;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function send(MessageInterface $message = null)
-    {
-        $this->setHttpOptions([
-            'headers' => [
-                'Authorization' => 'Bearer '.$this->getToken(),
-            ],
-        ]);
-
-        return parent::send($message);
     }
 }
