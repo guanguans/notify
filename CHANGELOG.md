@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.1.1 - 2021-12-08
+
+* Add support for asynchronous sending.
+
 ## 1.1.0 - 2021-12-07
 
 * Add `gitter`.
