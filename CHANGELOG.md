@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.2.0 - 2021-12-08
+
+* Add support for `Zulip`.
+
 ## 1.1.2 - 2021-12-08
 
 * Add support for `sending and sended`.
