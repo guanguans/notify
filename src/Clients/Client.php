@@ -42,6 +42,21 @@ abstract class Client implements GatewayInterface, RequestInterface
     ];
 
     /**
+     * @var array
+     */
+    protected $sendingCallbacks = [];
+
+    /**
+     * @var array
+     */
+    protected $sendedCallbacks = [];
+
+    /**
+     * @var \Psr\Http\Message\ResponseInterface|\Overtrue\Http\Support\Collection|array|object|string
+     */
+    protected $response;
+
+    /**
      * Client constructor.
      */
     public function __construct(array $options = [])
@@ -102,6 +117,14 @@ abstract class Client implements GatewayInterface, RequestInterface
     }
 
     /**
+     * @return array|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+
+    /**
      * @throws \Guanguans\Notify\Exceptions\RuntimeException
      */
     public function getRequestParams(): array
@@ -117,14 +140,39 @@ abstract class Client implements GatewayInterface, RequestInterface
         return $this->getMessage()->transformToRequestParams();
     }
 
-    /**
-     * @return mixed
-     *
-     * @throws \Guanguans\Notify\Exceptions\Exception
-     */
+    public function sending(callable $callback): self
+    {
+        $this->sendingCallbacks[] = $callback;
+
+        return $this;
+    }
+
+    public function sended(callable $callback): self
+    {
+        $this->sendedCallbacks[] = $callback;
+
+        return $this;
+    }
+
+    protected function callSendingCallbacks()
+    {
+        foreach ($this->sendingCallbacks as $callback) {
+            call_user_func($callback, $this);
+        }
+    }
+
+    protected function callSendedCallbacks()
+    {
+        foreach ($this->sendedCallbacks as $callback) {
+            call_user_func($callback, $this);
+        }
+    }
+
     public function send(MessageInterface $message = null)
     {
         $message and $this->setMessage($message);
+
+        $this->callSendingCallbacks();
 
         $response = $this->getHttpClient()
             ->{$this->getRequestMethod()}(
@@ -135,6 +183,10 @@ abstract class Client implements GatewayInterface, RequestInterface
             );
 
         $this->requestAsync and $response = $response->wait();
+
+        $this->response = $response;
+
+        $this->callSendedCallbacks();
 
         return $response;
     }
