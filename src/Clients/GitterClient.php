@@ -51,9 +51,9 @@ class GitterClient extends Client
     /**
      * @return $this
      */
-    public function setRoomId(string $token)
+    public function setRoomId(string $roomId)
     {
-        $this->setOption('room_id', $token);
+        $this->setOption('room_id', $roomId);
 
         return $this;
     }

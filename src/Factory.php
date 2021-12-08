@@ -23,6 +23,7 @@ use Guanguans\Notify\Support\Str;
  * @method static \Guanguans\Notify\Clients\ServerChanClient    serverChan(array $options = [])
  * @method static \Guanguans\Notify\Clients\WeWorkClient        weWork(array $options = [])
  * @method static \Guanguans\Notify\Clients\XiZhiClient         xiZhi(array $options = [])
+ * @method static \Guanguans\Notify\Clients\ZulipClient         zulip(array $options = [])
  */
 class Factory
 {
