@@ -44,6 +44,13 @@ class BtnsActionCardMessage extends Message
         'btns' => [],
     ];
 
+    public function __construct(array $options = [])
+    {
+        parent::__construct($options);
+
+        $this->addBtns($options['btns'] ?? []);
+    }
+
     public function setBtns(array $btns)
     {
         return $this->addBtns($btns);
