@@ -11,6 +11,13 @@
 namespace Guanguans\Notify\Clients;
 
 /**
+ * @see https://docs.rocket.chat/guides/administration/admin-panel/integrations
+ *
+ * ```
+ * curl --location --request POST 'https://guanguans.rocket.chat/hooks/{{token}}' \
+ * --header 'Content-Type: application/json' \
+ * --data-raw '{"alias":"chatbot","emoji":":ghost:","text":"This is a testing.","attachments":[]}'
+ * ```
  * @see https://developer.rocket.chat/reference/api
  *
  * ```
@@ -35,7 +42,7 @@ namespace Guanguans\Notify\Clients;
  */
 class RocketChatClient extends Client
 {
-    public const REQUEST_URL_TEMPLATE = '%s/api/v1/chat.postMessage';
+    public const REQUEST_URL_TEMPLATE = '%s/hooks/%s';
 
     protected $requestMethod = 'postJson';
 
@@ -46,27 +53,11 @@ class RocketChatClient extends Client
         'token',
         'message',
         'host',
-        'userId',
-        'roomId',
     ];
-
-    public function __construct(array $options = [])
-    {
-        $this->sending(function (self $client) {
-            $client->setHttpOptions([
-                'headers' => [
-                    'X-Auth-Token' => $client->getToken(),
-                    'X-User-Id' => $client->getUserId(),
-                ],
-            ]);
-        });
-
-        parent::__construct($options);
-    }
 
     public function getRequestUrl(): string
     {
-        return sprintf(self::REQUEST_URL_TEMPLATE, $this->getHost());
+        return sprintf(self::REQUEST_URL_TEMPLATE, $this->getHost(), $this->getToken());
     }
 
     public function getHost(): string
@@ -82,43 +73,5 @@ class RocketChatClient extends Client
         $this->setOption('host', $host);
 
         return $this;
-    }
-
-    public function getUserId(): string
-    {
-        return $this->getOption('userId');
-    }
-
-    /**
-     * @return $this
-     */
-    public function setUserId(string $userId): self
-    {
-        $this->setOption('userId', $userId);
-
-        return $this;
-    }
-
-    public function getRoomId(): string
-    {
-        return $this->getOption('roomId');
-    }
-
-    /**
-     * @return $this
-     */
-    public function setRoomId(string $roomId): self
-    {
-        $this->setOption('roomId', $roomId);
-
-        return $this;
-    }
-
-    /**
-     * @throws \Guanguans\Notify\Exceptions\RuntimeException
-     */
-    public function getRequestParams(): array
-    {
-        return array_merge(parent::getRequestParams(), ['roomId' => $this->getRoomId()]);
     }
 }
