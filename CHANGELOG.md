@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.3.1 - 2021-12-09
+
+* Optimize `BtnsActionCard` Message for DingTalk.
+
 ## 1.3.0 - 2021-12-09
 
 * Add support for `RocketChat`.
