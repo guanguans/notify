@@ -29,8 +29,8 @@ class ZulipClient extends Client
         $this->sending(function (self $client) {
             $client->setHttpOptions([
                 'auth' => [
-                    $client->getOption('email'),
-                    $client->getOption('token'),
+                    $client->getEmail(),
+                    $client->getToken(),
                 ],
             ]);
         });
