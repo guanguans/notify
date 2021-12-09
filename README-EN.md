@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、Gitter、RocketChat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Gitter、RocketChat、Server 酱、企业微信群机器人、息知、Zulip)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、Gitter、Mattermost、RocketChat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Gitter、Mattermost、RocketChat、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -23,6 +23,7 @@
 * [DingTalk](https://developers.dingtalk.com/document/app/custom-robot-access)
 * [FeiShu](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
 * [Gitter](https://developer.gitter.im/docs/messages-resource)
+* [Mattermost](https://api.mattermost.com)
 * [RocketChat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [ServerChan](https://sct.ftqq.com)
 * [WeWork](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
@@ -261,6 +262,31 @@ Factory::gitter()
     ->setToken('b9e7931ecacb08b7ab4df5e98bc149d33d7faf1')
     ->setRoomId('61af21b96da03739848bfef')
     ->setMessage(new \Guanguans\Notify\Messages\GitterMessage('This is testing.'))
+    ->send();
+```
+
+### Mattermost
+
+```php
+$ret = Factory::mattermost()
+    ->setHost('https://guanguans.cloud.mattermost.com')
+    ->setToken('r7jezodttibgueijpahyyfh1qa')
+    ->setChannelId('sat5ohbs5byixd86tmxtk13b5w')
+    ->setMessage(
+        new \Guanguans\Notify\Messages\MattermostMessage([
+            'message' => 'This is a testing.',
+            // 'is_pinned' => true,
+            // 'create_at' => 1639041968509,
+            // 'edit_at' => 1639041968509,
+            // 'root_id' => '',
+            // 'original_id' => '',
+            // 'type' => '',
+            // 'pending_post_id' => '1639041968509abc',
+            // 'participants' => null,
+            // 'props' => ['key' => 'value'],
+            // 'file_ids' => ['o3x4y157jff5xydf5m91bft1oo'],
+        ])
+    )
     ->send();
 ```
 
