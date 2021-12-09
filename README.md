@@ -173,10 +173,12 @@ $message = new \Guanguans\Notify\Messages\DingTalk\BtnsActionCardMessage([
     'text'           => 'This is text.',
     // 'hideAvatar'     => 1,
     // 'btnOrientation' => 1,
-]);
-$message->addBtn([
-    'title'     => 'This is title 1',
-    'actionURL' => 'https://github.com/guanguans/notify',
+    'btns' => [
+        [
+            'title'     => 'This is title 1',
+            'actionURL' => 'https://github.com/guanguans/notify',
+        ]
+    ]
 ]);
 $message->addBtn([
     'title'     => 'This is title 2',
