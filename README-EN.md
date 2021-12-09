@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、Gitter、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Gitter、Server 酱、企业微信群机器人、息知、Zulip)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、Gitter、RocketChat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Gitter、RocketChat、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -23,6 +23,7 @@
 * [DingTalk](https://developers.dingtalk.com/document/app/custom-robot-access)
 * [FeiShu](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
 * [Gitter](https://developer.gitter.im/docs/messages-resource)
+* [RocketChat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [ServerChan](https://sct.ftqq.com)
 * [WeWork](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
 * [XiZhi](https://xz.qqoq.net/#/index)
@@ -258,6 +259,31 @@ Factory::gitter()
     ->setToken('b9e7931ecacb08b7ab4df5e98bc149d33d7faf1')
     ->setRoomId('61af21b96da03739848bfef')
     ->setMessage(new \Guanguans\Notify\Messages\GitterMessage('This is testing.'))
+    ->send();
+```
+
+### RocketChat
+
+```php
+Factory::rocketChat()
+    ->setToken('EemSHx9ioqdmrWouS/yYpmhqDSyd7CqmSAnyBfKezLyzotswbRSpkD9MCNxqtPL')
+    ->setHost('https://guanguans.rocket.chat')
+    ->setMessage(
+        new \Guanguans\Notify\Messages\RocketChatMessage([
+            'alias' => '报警机器人',
+            'emoji' => ':warning:',
+            'text' => 'This is a testing. ',
+            // 'attachments' => [
+            //     [
+            //         'title' => 'This is a title.',
+            //         'title_link' => 'https://rocket.chat',
+            //         'text' => 'This is a text.',
+            //         'image_url' => 'http://www.xxx.png',
+            //         'color' => '#764FA5',
+            //     ],
+            // ],
+        ])
+    )
     ->send();
 ```
 
