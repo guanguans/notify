@@ -2,6 +2,13 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.4.1 - 2021-12-10
+
+* Optimize messages.
+* Optimize base class for client.
+* Update composer.json.
+* Update github config files.
+
 ## 1.4.0 - 2021-12-09
 
 * Add support for `Mattermost`.
