@@ -10,6 +10,10 @@
 
 namespace Guanguans\Notify\Clients;
 
+/**
+ * @see https://developers.google.com/hangouts/chat/how-tos/webhooks
+ * @see https://developers.google.com/hangouts/chat/reference/rest/v1/spaces.messages/create#query-parameters
+ */
 class GoogleChatClient extends Client
 {
     public const REQUEST_URL_TEMPLATE = 'https://chat.googleapis.com/v1/spaces/%s/messages?key=%s&token=%s%s';
