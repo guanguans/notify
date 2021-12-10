@@ -2,6 +2,12 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.4.4 - 2021-12-10
+
+* Rename `default` -> `defaults`.
+* Optimize src/Traits/HasOptions.php.
+* Fix style.
+
 ## 1.4.3 - 2021-12-10
 
 * Rename `'baseUri'` -> `'base_uri'`.
