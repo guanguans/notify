@@ -52,11 +52,8 @@ trait HasOptions
     protected function preConfigureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
         property_exists($this, 'defined') and $resolver->setDefined($this->defined);
-
         property_exists($this, 'required') and $resolver->setRequired($this->required);
-
         property_exists($this, 'defaults') and $resolver->setDefaults((array) $this->defaults);
-
         property_exists($this, 'prototype') and $resolver->setPrototype((bool) $this->prototype);
 
         if (property_exists($this, 'deprecated')) {
