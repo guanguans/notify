@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、Gitter、Mattermost、RocketChat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Gitter、Mattermost、RocketChat、Server 酱、企业微信群机器人、息知、Zulip)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、Gitter、GoogleChat、Mattermost、RocketChat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Gitter、GoogleChat、Mattermost、RocketChat、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -23,6 +23,7 @@
 * [钉钉群机器人](https://developers.dingtalk.com/document/app/custom-robot-access)
 * [飞书群机器人](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
 * [Gitter](https://developer.gitter.im/docs/messages-resource)
+* [GoogleChat](https://developers.google.com/hangouts/chat/how-tos/webhooks)
 * [Mattermost](https://api.mattermost.com)
 * [RocketChat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [Server 酱](https://sct.ftqq.com)
@@ -262,6 +263,20 @@ Factory::gitter()
     ->setToken('b9e7931ecacb08b7ab4df5e98bc149d33d7faf1')
     ->setRoomId('61af21b96da03739848bfef')
     ->setMessage(new \Guanguans\Notify\Messages\GitterMessage('This is testing.'))
+    ->send();
+```
+
+### GoogleChat
+
+```php
+Factory::googleChat()
+    ->setToken('accessToken')
+    ->setKey('accessKey')
+    ->setSpace('space')
+    // ->setThreadKey('threadKey')
+    ->setMessage(new \Guanguans\Notify\Messages\GoogleChatMessage([
+        'text' => 'This is a testing.',
+    ]))
     ->send();
 ```
 
