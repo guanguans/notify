@@ -25,11 +25,11 @@ trait HasOptions
     protected $options = [];
 
     // protected $defined = [];
-    // protected $info = [];
-    // protected $default = [];
     // protected $required = [];
-    // protected $allowedTypes = [];
+    // protected $default = [];
     // protected $allowedValues = [];
+    // protected $allowedTypes = [];
+    // protected $info = [];
 
     protected function createOptionsResolver(): OptionsResolver
     {
@@ -54,9 +54,9 @@ trait HasOptions
 
         property_exists($this, 'default') and $resolver->setDefaults((array) $this->default);
 
-        if (property_exists($this, 'info')) {
-            foreach ((array) $this->info as $option => $info) {
-                $resolver->setInfo($option, $info);
+        if (property_exists($this, 'allowedValues')) {
+            foreach ((array) $this->allowedValues as $option => $allowedValue) {
+                $resolver->setAllowedValues($option, $allowedValue);
             }
         }
 
@@ -66,9 +66,9 @@ trait HasOptions
             }
         }
 
-        if (property_exists($this, 'allowedValues')) {
-            foreach ((array) $this->allowedValues as $option => $allowedValue) {
-                $resolver->setAllowedValues($option, $allowedValue);
+        if (property_exists($this, 'info')) {
+            foreach ((array) $this->info as $option => $info) {
+                $resolver->setInfo($option, $info);
             }
         }
 
