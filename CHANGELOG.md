@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.5.0 - 2021-12-10
+
+* Add support for `Google Chat`.
+
 ## 1.4.4 - 2021-12-10
 
 * Rename `default` -> `defaults`.
