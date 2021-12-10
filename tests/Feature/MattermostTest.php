@@ -20,7 +20,7 @@ class MattermostTest extends TestCase
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
         Factory::mattermost()
-            ->setHost('https://guanguans.cloud.mattermost.com')
+            ->setBaseUri('https://guanguans.cloud.mattermost.com')
             ->setToken('r7jezodttibgueijpahyyfh')
             ->setChannelId('sat5ohbs5byixd86tmxtk13')
             ->setMessage(

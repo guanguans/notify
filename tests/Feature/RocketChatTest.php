@@ -21,7 +21,7 @@ class RocketChatTest extends TestCase
 
         Factory::rocketChat()
             ->setToken('EemSHx9ioqdmrWouS/yYpmhqDSyd7CqmSAnyBfKezLyzotswbRSpkD9MCNxqtPL')
-            ->setHost('https://guanguans.rocket.chat')
+            ->setBaseUri('https://guanguans.rocket.chat')
             ->setMessage(
                 new \Guanguans\Notify\Messages\RocketChatMessage([
                     'alias' => '报警机器人',

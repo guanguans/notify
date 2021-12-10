@@ -23,7 +23,7 @@ class ZulipTest extends TestCase
         Factory::zulip()
             ->setToken('Mc0b7YBmibOVjLdk7KKSpT9SJLi1h')
             ->setEmail('798314049@qq.com')
-            ->setHost('https://coole.zulipchat.com')
+            ->setBaseUri('https://coole.zulipchat.com')
             ->setMessage(new \Guanguans\Notify\Messages\Zulip\PrivateMessage('798314049@qq.com', 'This is testing.'))
             ->send();
     }
@@ -35,7 +35,7 @@ class ZulipTest extends TestCase
         Factory::zulip()
             ->setToken('Mc0b7YBmibOVjLdk7KKSpT9SJLi1h')
             ->setEmail('798314049@qq.com')
-            ->setHost('https://coole.zulipchat.com')
+            ->setBaseUri('https://coole.zulipchat.com')
             ->setMessage(new \Guanguans\Notify\Messages\Zulip\StreamMessage([
                 'to' => 'coole',
                 'content' => 'This is testing.',

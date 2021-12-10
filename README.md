@@ -269,7 +269,7 @@ Factory::gitter()
 
 ```php
 $ret = Factory::mattermost()
-    ->setHost('https://guanguans.cloud.mattermost.com')
+    ->setBaseUri('https://guanguans.cloud.mattermost.com')
     ->setToken('r7jezodttibgueijpahyyfh1qa')
     ->setChannelId('sat5ohbs5byixd86tmxtk13b5w')
     ->setMessage(
@@ -295,7 +295,7 @@ $ret = Factory::mattermost()
 ```php
 Factory::rocketChat()
     ->setToken('EemSHx9ioqdmrWouS/yYpmhqDSyd7CqmSAnyBfKezLyzotswbRSpkD9MCNxqtPL')
-    ->setHost('https://guanguans.rocket.chat')
+    ->setBaseUri('https://guanguans.rocket.chat')
     ->setMessage(
         new \Guanguans\Notify\Messages\RocketChatMessage([
             'alias' => '报警机器人',
@@ -396,7 +396,7 @@ Factory::xiZhi()
 Factory::zulip()
     ->setToken('Mc0b7YBmibOVjLdk7KKSpT9SJLi1h')
     ->setEmail('798314049@qq.com')
-    ->setHost('https://coole.zulipchat.com')
+    ->setBaseUri('https://coole.zulipchat.com')
     ->setMessage(new \Guanguans\Notify\Messages\Zulip\PrivateMessage('798314049@qq.com', 'This is testing.'))
     ->send();
 
@@ -404,7 +404,7 @@ Factory::zulip()
 Factory::zulip()
     ->setToken('Mc0b7YBmibOVjLdk7KKSpT9SJLi1h')
     ->setEmail('798314049@qq.com')
-    ->setHost('https://coole.zulipchat.com')
+    ->setBaseUri('https://coole.zulipchat.com')
     ->setMessage(new \Guanguans\Notify\Messages\Zulip\StreamMessage([
         'to' => 'coole',
         'content' => 'This is testing.',

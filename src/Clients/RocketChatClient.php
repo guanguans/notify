@@ -52,25 +52,25 @@ class RocketChatClient extends Client
     protected $defined = [
         'token',
         'message',
-        'host',
+        'baseUri',
     ];
 
     public function getRequestUrl(): string
     {
-        return sprintf(self::REQUEST_URL_TEMPLATE, $this->getHost(), $this->getToken());
+        return sprintf(self::REQUEST_URL_TEMPLATE, $this->getBaseUri(), $this->getToken());
     }
 
-    public function getHost(): string
+    public function getBaseUri(): string
     {
-        return $this->getOption('host');
+        return $this->getOption('baseUri');
     }
 
     /**
      * @return $this
      */
-    public function setHost(string $host): self
+    public function setBaseUri(string $baseUri): self
     {
-        $this->setOption('host', $host);
+        $this->setOption('baseUri', $baseUri);
 
         return $this;
     }
