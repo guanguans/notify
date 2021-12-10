@@ -51,6 +51,7 @@
     "require": {
         "php": ">=7.2.5",
         "overtrue/http": "^1.2",
+        "psr/log": "^1.1",
         "symfony/options-resolver": "^5.3"
     },
     "require-dev": {

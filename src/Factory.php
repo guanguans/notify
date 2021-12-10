@@ -21,6 +21,7 @@ use Guanguans\Notify\Support\Str;
  * @method static \Guanguans\Notify\Clients\FeiShuClient        feiShu(array $options = [])
  * @method static \Guanguans\Notify\Clients\GitterClient        gitter(array $options = [])
  * @method static \Guanguans\Notify\Clients\GoogleChatClient    googleChat(array $options = [])
+ * @method static \Guanguans\Notify\Clients\LoggerClient        logger(array $options = [])
  * @method static \Guanguans\Notify\Clients\MattermostClient    mattermost(array $options = [])
  * @method static \Guanguans\Notify\Clients\RocketChatClient    rocketChat(array $options = [])
  * @method static \Guanguans\Notify\Clients\ServerChanClient    serverChan(array $options = [])
