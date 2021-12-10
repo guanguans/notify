@@ -14,12 +14,9 @@ use Guanguans\Notify\Messages\Message;
 
 class PrivateMessage extends Message
 {
-    protected $type = 'private';
-
     public function __construct(string $to, string $content)
     {
         parent::__construct([
-            'type' => $this->type,
             'to' => $to,
             'content' => $content,
         ]);
@@ -41,5 +38,19 @@ class PrivateMessage extends Message
         'type',
         'to',
         'content',
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $default = [
+        'type' => 'private',
+    ];
+
+    /**
+     * @var \string[][]
+     */
+    protected $allowedValues = [
+        'type' => ['private'],
     ];
 }

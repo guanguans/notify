@@ -14,13 +14,6 @@ use Guanguans\Notify\Messages\Message;
 
 class StreamMessage extends Message
 {
-    protected $type = 'stream';
-
-    public function __construct(array $options = [])
-    {
-        parent::__construct(array_merge($options, ['type' => $this->type]));
-    }
-
     /**
      * @var string[]
      */
@@ -52,5 +45,19 @@ class StreamMessage extends Message
         'topic' => 'string',
         'queue_id' => 'string',
         'local_id' => 'string',
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $default = [
+        'type' => 'stream',
+    ];
+
+    /**
+     * @var \string[][]
+     */
+    protected $allowedValues = [
+        'type' => ['stream'],
     ];
 }

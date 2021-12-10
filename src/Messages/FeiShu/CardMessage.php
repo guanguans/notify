@@ -27,7 +27,7 @@ class CardMessage extends Message
         'card' => 'array',
     ];
 
-    public function __construct(array $card = [])
+    public function __construct(array $card)
     {
         parent::__construct([
             'card' => $card,

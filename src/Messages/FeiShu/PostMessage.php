@@ -30,7 +30,7 @@ class PostMessage extends Message
     /**
      * PostMessage constructor.
      */
-    public function __construct(array $post = [])
+    public function __construct(array $post)
     {
         parent::__construct([
             'post' => $post,
