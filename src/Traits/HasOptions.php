@@ -26,10 +26,13 @@ trait HasOptions
 
     // protected $defined = [];
     // protected $required = [];
+    // protected $deprecated = [];
     // protected $defaults = [];
+    // protected $prototype = false;
     // protected $allowedValues = [];
     // protected $allowedTypes = [];
-    // protected $info = [];
+    // protected $normalizers = [];
+    // protected $infos = [];
 
     protected function createOptionsResolver(): OptionsResolver
     {
@@ -48,11 +51,20 @@ trait HasOptions
 
     protected function preConfigureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
-        property_exists($this, 'defined') and $resolver->setDefined((array) $this->defined);
+        property_exists($this, 'defined') and $resolver->setDefined($this->defined);
 
-        property_exists($this, 'required') and $resolver->setRequired((array) $this->required);
+        property_exists($this, 'required') and $resolver->setRequired($this->required);
 
         property_exists($this, 'defaults') and $resolver->setDefaults((array) $this->defaults);
+
+        property_exists($this, 'prototype') and $resolver->setPrototype((bool) $this->prototype);
+
+        if (property_exists($this, 'deprecated')) {
+            foreach ((array) $this->deprecated as $option => $deprecated) {
+                array_unshift($deprecated, $option);
+                $resolver->setDeprecated(...$deprecated);
+            }
+        }
 
         if (property_exists($this, 'allowedValues')) {
             foreach ((array) $this->allowedValues as $option => $allowedValue) {
@@ -66,8 +78,14 @@ trait HasOptions
             }
         }
 
-        if (property_exists($this, 'info')) {
-            foreach ((array) $this->info as $option => $info) {
+        if (property_exists($this, 'normalizers')) {
+            foreach ((array) $this->normalizers as $option => $normalizer) {
+                $resolver->setNormalizer($option, $normalizer);
+            }
+        }
+
+        if (property_exists($this, 'infos')) {
+            foreach ((array) $this->infos as $option => $info) {
                 $resolver->setInfo($option, $info);
             }
         }
