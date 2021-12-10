@@ -23,20 +23,20 @@ class BarkClient extends Client
     protected $defined = [
         'token',
         'message',
-        'baseUri',
+        'base_uri',
     ];
 
     /**
      * @var string[]
      */
     protected $options = [
-        'baseUri' => 'https://api.day.app',
+        'base_uri' => 'https://api.day.app',
     ];
 
     protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($resolver), function (OptionsResolver $resolver) {
-            $resolver->setNormalizer('baseUri', function (Options $options, $value) {
+            $resolver->setNormalizer('base_uri', function (Options $options, $value) {
                 return trim($value, '/');
             });
         });
@@ -47,14 +47,14 @@ class BarkClient extends Client
      */
     public function setBaseUri(string $baseUri)
     {
-        $this->setOption('baseUri', $baseUri);
+        $this->setOption('base_uri', $baseUri);
 
         return $this;
     }
 
     public function getBaseUri(): string
     {
-        return $this->getOption('baseUri');
+        return $this->getOption('base_uri');
     }
 
     /**

@@ -43,7 +43,7 @@ class MattermostClient extends Client
     protected $defined = [
         'token',
         'message',
-        'baseUri',
+        'base_uri',
         'channel_id',
     ];
 
@@ -67,7 +67,7 @@ class MattermostClient extends Client
 
     public function getBaseUri(): string
     {
-        return $this->getOption('baseUri');
+        return $this->getOption('base_uri');
     }
 
     /**
@@ -75,7 +75,7 @@ class MattermostClient extends Client
      */
     public function setBaseUri(string $baseUri): self
     {
-        $this->setOption('baseUri', $baseUri);
+        $this->setOption('base_uri', $baseUri);
 
         return $this;
     }

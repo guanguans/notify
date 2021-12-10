@@ -20,7 +20,7 @@ class ZulipClient extends Client
     protected $defined = [
         'token',
         'message',
-        'baseUri',
+        'base_uri',
         'email',
     ];
 
@@ -45,7 +45,7 @@ class ZulipClient extends Client
 
     public function getBaseUri(): string
     {
-        return $this->getOption('baseUri');
+        return $this->getOption('base_uri');
     }
 
     /**
@@ -53,7 +53,7 @@ class ZulipClient extends Client
      */
     public function setBaseUri(string $baseUri): self
     {
-        $this->setOption('baseUri', $baseUri);
+        $this->setOption('base_uri', $baseUri);
 
         return $this;
     }
