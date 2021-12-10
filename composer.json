@@ -88,15 +88,11 @@
     "extra": {
         "hooks": {
             "pre-commit": [
-                "composer lint",
                 "composer style-lint",
-                "composer md-lint",
                 "composer test"
             ],
             "pre-push": [
-                "composer lint",
                 "composer style-lint",
-                "composer md-lint",
                 "composer test"
             ]
         }
