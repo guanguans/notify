@@ -50,7 +50,7 @@ class StreamMessage extends Message
     /**
      * @var string[]
      */
-    protected $default = [
+    protected $defaults = [
         'type' => 'stream',
     ];
 

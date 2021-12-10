@@ -43,7 +43,7 @@ class PrivateMessage extends Message
     /**
      * @var string[]
      */
-    protected $default = [
+    protected $defaults = [
         'type' => 'private',
     ];
 

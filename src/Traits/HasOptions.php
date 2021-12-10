@@ -26,7 +26,7 @@ trait HasOptions
 
     // protected $defined = [];
     // protected $required = [];
-    // protected $default = [];
+    // protected $defaults = [];
     // protected $allowedValues = [];
     // protected $allowedTypes = [];
     // protected $info = [];
@@ -52,7 +52,7 @@ trait HasOptions
 
         property_exists($this, 'required') and $resolver->setRequired((array) $this->required);
 
-        property_exists($this, 'default') and $resolver->setDefaults((array) $this->default);
+        property_exists($this, 'defaults') and $resolver->setDefaults((array) $this->defaults);
 
         if (property_exists($this, 'allowedValues')) {
             foreach ((array) $this->allowedValues as $option => $allowedValue) {
