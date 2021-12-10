@@ -49,8 +49,6 @@ class MattermostClient extends Client
 
     public function __construct(array $options = [])
     {
-        parent::__construct($options);
-
         $this->sending(function (self $client) {
             $client->setHttpOptions([
                 'headers' => [
@@ -58,6 +56,8 @@ class MattermostClient extends Client
                 ],
             ]);
         });
+
+        parent::__construct($options);
     }
 
     public function getRequestUrl(): string
