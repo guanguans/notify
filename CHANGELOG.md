@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.4.3 - 2021-12-10
+
+* Rename `'baseUri'` -> `'base_uri'`.
+
 ## 1.4.2 - 2021-12-10
 
 * Rename `host` -> `baseUri`.
