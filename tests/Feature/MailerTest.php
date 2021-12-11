@@ -18,7 +18,8 @@ class MailerTest extends TestCase
     public function testMailer()
     {
         $this->expectException(\Symfony\Component\Mailer\Exception\TransportException::class);
-        $email = (new \Guanguans\Notify\Messages\EmailMessage())
+
+        $email = \Guanguans\Notify\Messages\EmailMessage::create()
             ->from('from@qq.com')
             ->to('to@qq.com')
             //->cc('cc@example.com')

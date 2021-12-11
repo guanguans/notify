@@ -11,12 +11,14 @@
 namespace Guanguans\Notify\Messages;
 
 use Guanguans\Notify\Contracts\MessageInterface;
+use Guanguans\Notify\Traits\CreateStaticAble;
 use Guanguans\Notify\Traits\HasOptions;
 use Symfony\Component\Mime\Email;
 
 class EmailMessage extends Email implements MessageInterface
 {
     use HasOptions;
+    use CreateStaticAble;
 
     public function transformToRequestParams()
     {
