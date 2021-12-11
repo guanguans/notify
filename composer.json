@@ -51,19 +51,19 @@
     "require": {
         "php": ">=7.2.5",
         "overtrue/http": "^1.2",
-        "psr/log": "^1.1",
+        "psr/log": "^1.1||^2.0||^3.0",
         "symfony/options-resolver": "^5.3"
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.7",
-        "friendsofphp/php-cs-fixer": "^2.16 || ^3.0",
+        "friendsofphp/php-cs-fixer": "^3.0",
         "mockery/mockery": "^1.2",
-        "overtrue/phplint": "^2.4 || ^3.0",
-        "phpunit/phpunit": "^7 || ^8 || ^9",
+        "overtrue/phplint": "^3.0",
+        "phpunit/phpunit": "^7.0||^8.0||^9.0",
         "vimeo/psalm": "^4.10"
     },
     "conflict": {
-        "phpunit/phpunit": "9.5.10"
+        "phpunit/phpunit": "~9.5.0"
     },
     "autoload": {
         "psr-4": {
