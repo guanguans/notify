@@ -2,6 +2,11 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.7.0 - 2021-12-12
+
+* Add support for `Email`.
+* Add `CreateStaticAble` trait.
+
 ## 1.6.0 - 2021-12-11
 
 * Add support for `PSR Logger`.
