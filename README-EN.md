@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、FeiShu、Gitter、GoogleChat、Logger、Mattermost、RocketChat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、飞书群机器人、Gitter、GoogleChat、Logger、Mattermost、RocketChat、Server 酱、企业微信群机器人、息知、Zulip)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、GoogleChat、Logger、Mattermost、RocketChat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、GoogleChat、Logger、Mattermost、RocketChat、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -21,6 +21,7 @@
 * [Bark](https://github.com/Finb/Bark)
 * [Chanify](https://github.com/chanify/chanify-ios)
 * [DingTalk](https://developers.dingtalk.com/document/app/custom-robot-access)
+* [Email](https://symfony.com/doc/current/mailer.html)
 * [FeiShu](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
 * [Gitter](https://developer.gitter.im/docs/messages-resource)
 * [GoogleChat](https://developers.google.com/hangouts/chat/how-tos/webhooks)
@@ -191,6 +192,27 @@ Factory::dingTalk()
     ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
     ->setSecret('SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee51730')
     ->setMessage($message)
+    ->send();
+```
+
+### Email
+
+```php
+$email = \Guanguans\Notify\Messages\EmailMessage::create()
+    ->from('from@qq.com')
+    ->to('to@qq.com')
+    //->cc('cc@example.com')
+    //->bcc('bcc@example.com')
+    //->replyTo('replyTo@example.com')
+    // ->priority(\Guanguans\Notify\Messages\EmailMessage::PRIORITY_HIGH)
+    ->subject('This is a testing for notify.')
+    // ->html('<p>Sending emails is fun again!</p>')
+    ->text('This is a testing.');
+
+Factory::mailer()
+    // ->setDsn('smtp://53222411@qq.com:kisvmysjlnipbigg@smtp.qq.com:465?verify_peer=0')
+    ->setDsn('smtp://user:pass@smtp.qq.com:465?verify_peer=0')
+    ->setMessage($email)
     ->send();
 ```
 
