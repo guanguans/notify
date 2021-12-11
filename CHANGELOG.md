@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.6.0 - 2021-12-11
+
+* Add support for `PSR Logger`.
+
 ## 1.5.0 - 2021-12-10
 
 * Add support for `Google Chat`.
