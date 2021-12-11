@@ -13,7 +13,6 @@ namespace Guanguans\Notify\Clients;
 use Guanguans\Notify\Contracts\GatewayInterface;
 use Guanguans\Notify\Contracts\MessageInterface;
 use Guanguans\Notify\Contracts\RequestInterface;
-use Guanguans\Notify\Messages\Message;
 use Guanguans\Notify\Traits\HasHttpClient;
 use Guanguans\Notify\Traits\HasOptions;
 
@@ -88,7 +87,7 @@ abstract class Client implements GatewayInterface, RequestInterface
         return $this;
     }
 
-    public function getMessage(): Message
+    public function getMessage(): MessageInterface
     {
         return $this->getOption('message');
     }
