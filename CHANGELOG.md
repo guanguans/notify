@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.7.1 - 2021-12-12
+
+* Add `CreateStaticAble` for client and message.
+
 ## 1.7.0 - 2021-12-12
 
 * Add support for `Email`.
