@@ -25,6 +25,11 @@ class DingTalkClient extends Client
         'secret',
     ];
 
+    public function getSecret(): string
+    {
+        return $this->getOption('secret');
+    }
+
     /**
      * @return $this
      */
@@ -38,10 +43,10 @@ class DingTalkClient extends Client
     public function getRequestUrl(): string
     {
         $urlParams = '';
-        if (isset($this->options['secret']) && $this->getOption('secret')) {
+        if ($this->has('secret') && $this->getSecret()) {
             $urlParams = http_build_query([
                 'timestamp' => $timestamp = time().sprintf('%03d', random_int(1, 999)),
-                'sign' => $this->getSign($this->getOption('secret'), $timestamp),
+                'sign' => $this->getSign($this->getSecret(), $timestamp),
             ]);
         }
 

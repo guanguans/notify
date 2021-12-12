@@ -62,8 +62,7 @@ class BarkClient extends Client
      */
     public function getRequestUrl(): string
     {
-        return sprintf(
-            static::REQUEST_URL_TEMPLATE,
+        return sprintf(static::REQUEST_URL_TEMPLATE,
             $this->getBaseUri(),
             $this->getToken(),
             $this->getRequestParams()['text'] ?? '',

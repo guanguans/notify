@@ -30,6 +30,11 @@ class FeiShuClient extends Client
         return sprintf(static::REQUEST_URL_TEMPLATE, $this->getToken());
     }
 
+    public function getSecret(): string
+    {
+        return $this->getOption('secret');
+    }
+
     /**
      * @return $this
      */
@@ -46,10 +51,9 @@ class FeiShuClient extends Client
     public function getRequestParams(): array
     {
         $requestParams = parent::getRequestParams();
-
-        if (array_key_exists('secret', $this->getOption()) && $this->getOption('secret')) {
+        if ($this->has('secret') && $this->getSecret()) {
             $requestParams['timestamp'] = time();
-            $requestParams['sign'] = $this->getSign($this->options['secret'], $requestParams['timestamp']);
+            $requestParams['sign'] = $this->getSign($this->getSecret(), $requestParams['timestamp']);
         }
 
         return $requestParams;
