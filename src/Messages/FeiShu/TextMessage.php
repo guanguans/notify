@@ -34,7 +34,7 @@ class TextMessage extends Message
     {
         return [
             'msg_type' => $this->type,
-            'content' => $this->getOption(),
+            'content' => $this->getOptions(),
         ];
     }
 }

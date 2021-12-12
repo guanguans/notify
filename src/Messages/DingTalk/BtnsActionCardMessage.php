@@ -86,7 +86,7 @@ class BtnsActionCardMessage extends Message
     {
         return [
             'msgtype' => $this->type,
-            $this->type => $this->options,
+            $this->type => $this->getOptions(),
         ];
     }
 }

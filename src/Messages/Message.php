@@ -32,6 +32,6 @@ class Message implements MessageInterface
      */
     public function transformToRequestParams()
     {
-        return $this->getOption();
+        return $this->getOptions();
     }
 }
