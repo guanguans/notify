@@ -210,7 +210,6 @@ $email = \Guanguans\Notify\Messages\EmailMessage::create()
     ->text('This is a testing.');
 
 Factory::mailer()
-    // ->setDsn('smtp://53222411@qq.com:kisvmysjlnipbigg@smtp.qq.com:465?verify_peer=0')
     ->setDsn('smtp://user:pass@smtp.qq.com:465?verify_peer=0')
     ->setMessage($email)
     ->send();
