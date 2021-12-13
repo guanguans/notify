@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、GoogleChat、Logger、Mattermost、RocketChat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、GoogleChat、Logger、Mattermost、RocketChat、Server 酱、企业微信群机器人、息知、Zulip)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、Logger、Mattermost、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、Logger、Mattermost、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -24,10 +24,10 @@
 * [邮件](https://symfony.com/doc/current/mailer.html)
 * [飞书群机器人](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
 * [Gitter](https://developer.gitter.im/docs/messages-resource)
-* [GoogleChat](https://developers.google.com/hangouts/chat/how-tos/webhooks)
+* [Google Chat](https://developers.google.com/hangouts/chat/how-tos/webhooks)
 * [Logger](https://github.com/php-fig/log)
 * [Mattermost](https://api.mattermost.com)
-* [RocketChat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
+* [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [Server 酱](https://sct.ftqq.com)
 * [企业微信群机器人](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
 * [息知](https://xz.qqoq.net/#/index)
@@ -288,7 +288,7 @@ Factory::gitter()
     ->send();
 ```
 
-### GoogleChat
+### Google Chat
 
 ```php
 Factory::googleChat()
@@ -337,7 +337,7 @@ $ret = Factory::mattermost()
     ->send();
 ```
 
-### RocketChat
+### Rocket Chat
 
 ```php
 Factory::rocketChat()
