@@ -24,6 +24,7 @@ use Guanguans\Notify\Support\Str;
  * @method static \Guanguans\Notify\Clients\LoggerClient        logger(array $options = [])
  * @method static \Guanguans\Notify\Clients\MailerClient        mailer(array $options = [])
  * @method static \Guanguans\Notify\Clients\MattermostClient    mattermost(array $options = [])
+ * @method static \Guanguans\Notify\Clients\PushPlusClient      pushPlus(array $options = [])
  * @method static \Guanguans\Notify\Clients\RocketChatClient    rocketChat(array $options = [])
  * @method static \Guanguans\Notify\Clients\ServerChanClient    serverChan(array $options = [])
  * @method static \Guanguans\Notify\Clients\WeWorkClient        weWork(array $options = [])
