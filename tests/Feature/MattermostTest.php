@@ -17,9 +17,9 @@ class MattermostTest extends TestCase
 {
     public function testMattermost()
     {
-        $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        // $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
-        Factory::mattermost()
+        $ret = Factory::mattermost()
             ->setBaseUri('https://guanguans.cloud.mattermost.com')
             ->setToken('r7jezodttibgueijpahyyfh')
             ->setChannelId('sat5ohbs5byixd86tmxtk13')
@@ -39,5 +39,7 @@ class MattermostTest extends TestCase
                 ])
             )
             ->send();
+
+        $this->assertIsArray($ret);
     }
 }
