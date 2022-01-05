@@ -17,22 +17,6 @@ class PushPlusClient extends Client
     /**
      * {@inheritdoc}
      */
-    public function __construct(array $options = [])
-    {
-        $this->sending(function (self $client) {
-            $client->setHttpOptions([
-                'headers' => [
-                    'Accept' => 'application/json',
-                ],
-            ]);
-        });
-
-        parent::__construct($options);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getRequestUrl(): string
     {
         return sprintf(self::REQUEST_URL_TEMPLATE, $this->getToken());
