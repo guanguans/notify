@@ -342,7 +342,7 @@ Factory::mattermost()
 
 ```php
 Factory::pushPlus()
-    ->setToken('762e3f7efd764ad5acaa9cc26ac20278')
+    ->setToken('762e3f7efd764ad5acaa9cc26ac20')
     ->setMessage(new \Guanguans\Notify\Messages\PushPlusMessage([
         'content' => 'This is content.',
         // 'title' => 'This is title.',
