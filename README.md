@@ -47,7 +47,7 @@ $ composer require guanguans/notify -vvv
 ## 使用
 
 <details>
-<summary><b style="display: inline">Bark</b></summary>
+<summary><b>Bark</b></summary>
 
 ```php
 use Guanguans\Notify\Factory;
@@ -77,7 +77,7 @@ Factory::bark()
 </details>
 
 <details>
-<summary><b style="display: inline">Chanify</b></summary>
+<summary><b>Chanify</b></summary>
 
 ```php
 // Text Message
@@ -112,7 +112,7 @@ Factory::chanify()
 </details>
 
 <details>
-<summary><b style="display: inline">钉钉群机器人</b></summary>
+<summary><b>钉钉群机器人</b></summary>
 
 ```php
 // Text Message
@@ -203,7 +203,7 @@ Factory::dingTalk()
 </details>
 
 <details>
-<summary><b style="display: inline">邮件</b></summary>
+<summary><b>邮件</b></summary>
 
 ```php
 $email = \Guanguans\Notify\Messages\EmailMessage::create()
@@ -225,7 +225,7 @@ Factory::mailer()
 </details>
 
 <details>
-<summary><b style="display: inline">飞书群机器人</b></summary>
+<summary><b>飞书群机器人</b></summary>
 
 ```php
 // Text Message
@@ -290,7 +290,7 @@ Factory::feiShu()
 </details>
 
 <details>
-<summary><b style="display: inline">Gitter</b></summary>
+<summary><b>Gitter</b></summary>
 
 ```php
 Factory::gitter()
@@ -302,7 +302,7 @@ Factory::gitter()
 </details>
 
 <details>
-<summary><b style="display: inline">Google Chat</b></summary>
+<summary><b>Google Chat</b></summary>
 
 ```php
 Factory::googleChat()
@@ -318,7 +318,7 @@ Factory::googleChat()
 </details>
 
 <details>
-<summary><b style="display: inline">Logger</b></summary>
+<summary><b>Logger</b></summary>
 
 ```php
 Factory::logger()
@@ -330,7 +330,7 @@ Factory::logger()
 </details>
 
 <details>
-<summary><b style="display: inline">Mattermost</b></summary>
+<summary><b>Mattermost</b></summary>
 
 ```php
 Factory::mattermost()
@@ -357,7 +357,7 @@ Factory::mattermost()
 </details>
 
 <details>
-<summary><b style="display: inline">PushPlus</b></summary>
+<summary><b>PushPlus</b></summary>
 
 ```php
 Factory::pushPlus()
@@ -373,7 +373,7 @@ Factory::pushPlus()
 </details>
 
 <details>
-<summary><b style="display: inline">Rocket Chat</b></summary>
+<summary><b>Rocket Chat</b></summary>
 
 ```php
 Factory::rocketChat()
@@ -400,7 +400,7 @@ Factory::rocketChat()
 </details>
 
 <details>
-<summary><b style="display: inline">Server 酱</b></summary>
+<summary><b>Server 酱</b></summary>
 
 ```php
 Factory::serverChan()
@@ -414,7 +414,7 @@ Factory::serverChan()->check(3334849, 'SCTJlJV1J87hS');
 </details>
 
 <details>
-<summary><b style="display: inline">企业微信群机器人</b></summary>
+<summary><b>企业微信群机器人</b></summary>
 
 ```php
 // Text Message
@@ -460,7 +460,7 @@ Factory::weWork()
 </details>
 
 <details>
-<summary><b style="display: inline">息知</b></summary>
+<summary><b>息知</b></summary>
 
 ```php
 // Single
@@ -480,7 +480,7 @@ Factory::xiZhi()
 </details>
 
 <details>
-<summary><b style="display: inline">Zulip</b></summary>
+<summary><b>Zulip</b></summary>
 
 ```php
 // Private Message

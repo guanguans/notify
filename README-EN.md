@@ -46,7 +46,8 @@ $ composer require guanguans/notify -vvv
 
 ## Usage
 
-### Bark
+<details>
+<summary><b>Bark</b></summary>
 
 ```php
 use Guanguans\Notify\Factory;
@@ -73,8 +74,10 @@ Factory::bark()
     })
     ->send();
 ```
+</details>
 
-### Chanify
+<details>
+<summary><b>Chanify</b></summary>
 
 ```php
 // Text Message
@@ -106,8 +109,10 @@ Factory::chanify()
     ])))
     ->send();
 ```
+</details>
 
-### DingTalk
+<details>
+<summary><b>DingTalk</b></summary>
 
 ```php
 // Text Message
@@ -195,8 +200,10 @@ Factory::dingTalk()
     ->setMessage($message)
     ->send();
 ```
+</details>
 
-### Email
+<details>
+<summary><b>Email</b></summary>
 
 ```php
 $email = \Guanguans\Notify\Messages\EmailMessage::create()
@@ -215,8 +222,10 @@ Factory::mailer()
     ->setMessage($email)
     ->send();
 ```
+</details>
 
-### FeiShu
+<details>
+<summary><b>FeiShu</b></summary>
 
 ```php
 // Text Message
@@ -278,8 +287,10 @@ Factory::feiShu()
     ->setMessage(new \Guanguans\Notify\Messages\FeiShu\CardMessage($card))
     ->send();
 ```
+</details>
 
-### Gitter
+<details>
+<summary><b>Gitter</b></summary>
 
 ```php
 Factory::gitter()
@@ -288,8 +299,10 @@ Factory::gitter()
     ->setMessage(new \Guanguans\Notify\Messages\GitterMessage('This is testing.'))
     ->send();
 ```
+</details>
 
-### Google Chat
+<details>
+<summary><b>Google Chat</b></summary>
 
 ```php
 Factory::googleChat()
@@ -302,8 +315,10 @@ Factory::googleChat()
     ]))
     ->send();
 ```
+</details>
 
-### Logger
+<details>
+<summary><b>Logger</b></summary>
 
 ```php
 Factory::logger()
@@ -312,8 +327,10 @@ Factory::logger()
     ->setMessage(new \Guanguans\Notify\Messages\LoggerMessage('This is a testing.'))
     ->send();
 ```
+</details>
 
-### Mattermost
+<details>
+<summary><b>Mattermost</b></summary>
 
 ```php
 Factory::mattermost()
@@ -337,8 +354,10 @@ Factory::mattermost()
     )
     ->send();
 ```
+</details>
 
-### PushPlus
+<details>
+<summary><b>PushPlus</b></summary>
 
 ```php
 Factory::pushPlus()
@@ -351,8 +370,10 @@ Factory::pushPlus()
     ]))
     ->send();
 ```
+</details>
 
-### Rocket Chat
+<details>
+<summary><b>Rocket Chat</b></summary>
 
 ```php
 Factory::rocketChat()
@@ -376,8 +397,10 @@ Factory::rocketChat()
     )
     ->send();
 ```
+</details>
 
-### ServerChan
+<details>
+<summary><b>Server Chan</b></summary>
 
 ```php
 Factory::serverChan()
@@ -388,8 +411,10 @@ Factory::serverChan()
 // Check
 Factory::serverChan()->check(3334849, 'SCTJlJV1J87hS');
 ```
+</details>
 
-### WeWork
+<details>
+<summary><b>WeWork</b></summary>
 
 ```php
 // Text Message
@@ -432,8 +457,10 @@ Factory::weWork()
     ->setMessage($message)
     ->send();
 ```
+</details>
 
-### XiZhi
+<details>
+<summary><b>XiZhi</b></summary>
 
 ```php
 // Single
@@ -450,8 +477,10 @@ Factory::xiZhi()
     ->setMessage(new \Guanguans\Notify\Messages\XiZhiMessage('This is title.', 'This is content.'))
     ->send();
 ```
+</details>
 
-### Zulip
+<details>
+<summary><b>Zulip</b></summary>
 
 ```php
 // Private Message
@@ -476,6 +505,7 @@ Factory::zulip()
     ]))
     ->send();
 ```
+</details>
 
 ## Testing
 
