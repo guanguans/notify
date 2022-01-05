@@ -1,6 +1,6 @@
 {
     "name": "guanguans/notify",
-    "description": "Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、Logger、Mattermost、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、Logger、Mattermost、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。",
+    "description": "Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、Logger、Mattermost、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、Logger、Mattermost、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。",
     "keywords": [
         "notification",
         "notify",
@@ -16,6 +16,7 @@
         "googleChat",
         "Logger",
         "mattermost",
+        "pushPlus",
         "rocketChat",
         "serverChan",
         "weWork",

@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、Logger、Mattermost、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、Logger、Mattermost、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、Logger、Mattermost、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、Logger、Mattermost、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -27,6 +27,7 @@
 * [Google Chat](https://developers.google.com/hangouts/chat/how-tos/webhooks)
 * [Logger](https://github.com/php-fig/log)
 * [Mattermost](https://api.mattermost.com)
+* [PushPlus](https://pushplus.hxtrip.com/index)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [Server 酱](https://sct.ftqq.com)
 * [企业微信群机器人](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
@@ -315,7 +316,7 @@ Factory::logger()
 ### Mattermost
 
 ```php
-$ret = Factory::mattermost()
+Factory::mattermost()
     ->setBaseUri('https://guanguans.cloud.mattermost.com')
     ->setToken('r7jezodttibgueijpahyyfh1qa')
     ->setChannelId('sat5ohbs5byixd86tmxtk13b5w')
@@ -334,6 +335,20 @@ $ret = Factory::mattermost()
             // 'file_ids' => ['o3x4y157jff5xydf5m91bft1oo'],
         ])
     )
+    ->send();
+```
+
+### PushPlus
+
+```php
+Factory::pushPlus()
+    ->setToken('762e3f7efd764ad5acaa9cc26ac20278')
+    ->setMessage(new \Guanguans\Notify\Messages\PushPlusMessage([
+        'content' => 'This is content.',
+        // 'title' => 'This is title.',
+        // 'template' => 'html',
+        // 'topic' => 'topic',
+    ]))
     ->send();
 ```
 
