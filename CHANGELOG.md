@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.8.1 - 2022-01-05
+
+* Optimize `PushPlus` client.
+
 ## 1.8.0 - 2022-01-05
 
 * Add support for `pushplus`.
