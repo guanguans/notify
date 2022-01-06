@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、Logger、Mattermost、Now Push、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、Logger、Mattermost、Now Push、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、Logger、Mattermost、Now Push、Push、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、Logger、Mattermost、Now Push、Push、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -28,6 +28,7 @@
 * [Logger](https://github.com/php-fig/log)
 * [Mattermost](https://api.mattermost.com)
 * [Now Push](https://nowpush.io/api-docs/)
+* [Push](https://docs.push.techulus.com/api-documentation)
 * [PushPlus](https://pushplus.hxtrip.com/index)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [ServerChan](https://sct.ftqq.com)
@@ -383,6 +384,24 @@ Factory::nowPush()
 Factory::nowPush()
     ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
     ->getUser();
+```
+</details>
+
+<details>
+<summary><b>Push</b></summary>
+
+```php
+Factory::push()
+    ->setToken('5db80e8a-1f9b-4f98-929a-75892cedc')
+    ->setMessage(
+        new \Guanguans\Notify\Messages\PushMessage([
+            'title' => 'This is a title.',
+            'body' => 'This is a body.',
+            // 'link' => 'https://github.com/guanguans/notify',
+            // 'image' => 'https://www.nowpush.app/assets/img/welcome/welcome-mockup.png',
+        ])
+    )
+    ->send();
 ```
 </details>
 
