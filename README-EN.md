@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、Logger、Mattermost、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、Logger、Mattermost、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、Logger、Mattermost、Now Push、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、Logger、Mattermost、Now Push、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -27,6 +27,7 @@
 * [Google Chat](https://developers.google.com/hangouts/chat/how-tos/webhooks)
 * [Logger](https://github.com/php-fig/log)
 * [Mattermost](https://api.mattermost.com)
+* [Now Push](https://nowpush.io/api-docs/)
 * [PushPlus](https://pushplus.hxtrip.com/index)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [ServerChan](https://sct.ftqq.com)
@@ -353,6 +354,35 @@ Factory::mattermost()
         ])
     )
     ->send();
+```
+</details>
+
+<details>
+<summary><b>Now Push</b></summary>
+
+```php
+// Note Message
+Factory::nowPush()
+    ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
+    ->setMessage(new \Guanguans\Notify\Messages\NowPush\NoteMessage('This is a note.'))
+    ->send();
+
+// Image Message
+Factory::nowPush()
+    ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
+    ->setMessage(new \Guanguans\Notify\Messages\NowPush\ImageMessage('https://www.nowpush.app/assets/img/welcome/welcome-mockup.png'))
+    ->send();
+
+// Link Message
+Factory::nowPush()
+    ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
+    ->setMessage(new \Guanguans\Notify\Messages\NowPush\LinkMessage('https://github.com/guanguans/notify'))
+    ->send();
+
+// User Info
+Factory::nowPush()
+    ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
+    ->getUser();
 ```
 </details>
 
