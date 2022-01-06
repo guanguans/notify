@@ -66,12 +66,8 @@ class MailerClient extends Client
     {
         $message and $this->setMessage($message);
 
-        $this->callSendingCallbacks();
-
-        $this->response = $this->createMailer()->send($this->getMessage(), $this->getEnvelope());
-
-        $this->callSendedCallbacks();
-
-        return $this->response;
+        return $this->wrapSendCallbacks(function () {
+            return $this->response = $this->createMailer()->send($this->getMessage(), $this->getEnvelope());
+        });
     }
 }

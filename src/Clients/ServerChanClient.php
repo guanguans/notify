@@ -16,13 +16,15 @@ class ServerChanClient extends Client
 
     public const CHECK_REQUEST_URL_TEMPLATE = 'https://sctapi.ftqq.com/push?id=%s&readkey=%s';
 
-    public function check(int $pushId, string $readKey)
-    {
-        return $this->getHttpClient()->get(sprintf(static::CHECK_REQUEST_URL_TEMPLATE, $pushId, $readKey));
-    }
-
     public function getRequestUrl(): string
     {
         return sprintf(static::REQUEST_URL_TEMPLATE, $this->getToken());
+    }
+
+    public function check(int $pushId, string $readKey)
+    {
+        return $this->wrapSendCallbacksWithRequestAsync(function () use ($pushId, $readKey) {
+            return $this->getHttpClient()->get(sprintf(static::CHECK_REQUEST_URL_TEMPLATE, $pushId, $readKey));
+        });
     }
 }

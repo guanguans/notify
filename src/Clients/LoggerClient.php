@@ -78,16 +78,12 @@ class LoggerClient extends Client
     {
         $message and $this->setMessage($message);
 
-        $this->callSendingCallbacks();
-
-        $this->response = $this->getLogger()
-            ->{$this->getLevel()}(
-                $this->getRequestParams()['message'],
-                $this->getRequestParams()['context']
-            );
-
-        $this->callSendedCallbacks();
-
-        return $this->response;
+        return $this->wrapSendCallbacks(function () {
+            return $this->response = $this->getLogger()
+                ->{$this->getLevel()}(
+                    $this->getRequestParams()['message'],
+                    $this->getRequestParams()['context']
+                );
+        });
     }
 }

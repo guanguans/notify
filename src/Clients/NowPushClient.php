@@ -33,16 +33,12 @@ class NowPushClient extends Client
     }
 
     /**
-     * @return array|\GuzzleHttp\Promise\PromiseInterface|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string
+     * @return mixed
      */
     public function getUser()
     {
-        $this->callSendingCallbacks();
-
-        $response = $this->getHttpClient()->get(sprintf(self::REQUEST_URL_TEMPLATE, 'getUser'));
-
-        $this->callSendedCallbacks();
-
-        return $response;
+        return $this->wrapSendCallbacksWithRequestAsync(function () {
+            return $this->getHttpClient()->get(sprintf(self::REQUEST_URL_TEMPLATE, 'getUser'));
+        });
     }
 }
