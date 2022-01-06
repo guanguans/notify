@@ -2,6 +2,11 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.9.1 - 2022-01-06
+
+* Add `wrapSendCallbacks` for client.
+* Optimize Logger、Mailer、NowPush、ServerChan clients.
+
 ## 1.9.0 - 2022-01-06
 
 * Add support for `now push`.
