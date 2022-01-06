@@ -10,6 +10,7 @@
 
 namespace Guanguans\Notify\Clients;
 
+use Closure;
 use Guanguans\Notify\Contracts\GatewayInterface;
 use Guanguans\Notify\Contracts\MessageInterface;
 use Guanguans\Notify\Contracts\RequestInterface;
@@ -157,26 +158,48 @@ abstract class Client implements GatewayInterface, RequestInterface
         }
     }
 
+    /**
+     * @return mixed
+     */
+    protected function wrapSendCallbacks(Closure $handler)
+    {
+        $this->callSendingCallbacks();
+
+        $handled = $handler();
+
+        $this->callSendedCallbacks();
+
+        return $handled;
+    }
+
+    /**
+     * @return mixed
+     */
+    protected function wrapSendCallbacksWithRequestAsync(Closure $handler)
+    {
+        return $this->wrapSendCallbacks(function () use ($handler) {
+            $handled = $handler();
+
+            $this->requestAsync and $handled = $handled->wait();
+
+            $this->response = $handled;
+
+            return $handled;
+        });
+    }
+
     public function send(MessageInterface $message = null)
     {
         $message and $this->setMessage($message);
 
-        $this->callSendingCallbacks();
-
-        $response = $this->getHttpClient()
-            ->{$this->getRequestMethod()}(
-                $this->getRequestUrl(),
-                $this->getRequestParams(),
-                [],
-                $this->requestAsync
-            );
-
-        $this->requestAsync and $response = $response->wait();
-
-        $this->response = $response;
-
-        $this->callSendedCallbacks();
-
-        return $response;
+        return $this->wrapSendCallbacksWithRequestAsync(function () {
+            return $this->getHttpClient()
+                ->{$this->getRequestMethod()}(
+                    $this->getRequestUrl(),
+                    $this->getRequestParams(),
+                    [],
+                    $this->requestAsync
+                );
+        });
     }
 }
