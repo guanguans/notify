@@ -67,9 +67,6 @@
         "phpunit/phpunit": "^7.0||^8.0||^9.0",
         "vimeo/psalm": "^4.10"
     },
-    "conflict": {
-        "phpunit/phpunit": "~9.5.0"
-    },
     "autoload": {
         "psr-4": {
             "Guanguans\\Notify\\": "src"
