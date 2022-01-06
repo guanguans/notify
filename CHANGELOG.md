@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.8.2 - 2022-01-06
+
+* Remove phpunit conflict(fix #5).
+
 ## 1.8.1 - 2022-01-05
 
 * Optimize `PushPlus` client.
