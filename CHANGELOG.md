@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.10.0 - 2022-01-06
+
+* Add support for `push`.
+
 ## 1.9.1 - 2022-01-06
 
 * Add `wrapSendCallbacks` for client.
