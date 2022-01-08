@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.11.0 - 2022-01-08
+
+* Add support for `pushback`.
+
 ## 1.10.0 - 2022-01-06
 
 * Add support for `push`.
