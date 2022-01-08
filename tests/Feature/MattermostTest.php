@@ -19,6 +19,8 @@ class MattermostTest extends TestCase
     {
         // $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
+        $this->markTestSkipped(__CLASS__.' is skipped.');
+
         $ret = Factory::mattermost()
             ->setBaseUri('https://guanguans.cloud.mattermost.com')
             ->setToken('r7jezodttibgueijpahyyfh')
