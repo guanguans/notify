@@ -21,11 +21,17 @@ class BarkTest extends TestCase
 
         $barkMessage = new \Guanguans\Notify\Messages\BarkMessage([
             'title' => 'This is title.',
-            'text' => 'This is text.',
+            'body' => 'This is body.',
             'copy' => 'This is copy.',
             'url' => 'https://github.com/guanguans/notify',
-            // 'sound'             => 'bell',
-            // 'isArchive'         => 1,
+            'sound' => 'bell',
+            'group' => 'group',
+            // 'icon' => 'https://avatars0.githubusercontent.com/u/25671453?s=200&v=4',
+            // 'group' => 'group',
+            // 'level' => 'passive',
+            // 'badge' => 5,
+            // 'isArchive' => 1,
+            // 'autoCopy' => 1,
             // 'automaticallyCopy' => 1,
         ]);
         Factory::bark()

@@ -17,21 +17,44 @@ class BarkMessage extends Message
      */
     protected $defined = [
         'title',
-        'text',
+        'body',
         'copy',
         'url',
         'sound',
+        'icon',
+        'group',
+        'level',
+        'badge',
         'isArchive',
+        'autoCopy',
         'automaticallyCopy',
+    ];
+
+    /**
+     * @var string[]
+     */
+    protected $allowedTypes = [
+        'badge' => 'int',
+        'isArchive' => 'int',
+        'autoCopy' => 'int',
+        'automaticallyCopy' => 'int',
+    ];
+
+    /**
+     * @var \string[][]
+     */
+    protected $allowedValues = [
+        'level' => ['active', 'timeSensitive', 'passive'],
     ];
 
     /**
      * @var array
      */
     protected $options = [
-        'sound' => 'bell',
-        'isArchive' => 1,
-        'automaticallyCopy' => 1,
+        // 'sound' => 'bell',
+        // 'isArchive' => 1,
+        // 'autoCopy' => 1,
+        // 'automaticallyCopy' => 1,
     ];
 
     /**
