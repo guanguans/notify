@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.12.1 - 2022-01-09
+
+* Fix `HasOptions`.
+
 ## 1.12.0 - 2022-01-09
 
 * Add support for `iGot`.
