@@ -15,11 +15,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 trait HasOptions
 {
     /**
-     * @var OptionsResolver
-     */
-    protected static $resolver;
-
-    /**
      * @var string[]
      */
     protected $options = [];
@@ -34,13 +29,9 @@ trait HasOptions
     // protected $normalizers = [];
     // protected $infos = [];
 
-    protected function createOptionsResolver(): OptionsResolver
+    public static function createOptionsResolver(): OptionsResolver
     {
-        if (static::$resolver instanceof OptionsResolver) {
-            return static::$resolver;
-        }
-
-        return static::$resolver = new OptionsResolver();
+        return new OptionsResolver();
     }
 
     protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
@@ -109,7 +100,7 @@ trait HasOptions
     {
         $resolver = $this->configureOptionsResolver(
             $this->preConfigureOptionsResolver(
-                $this->createOptionsResolver()
+                static::createOptionsResolver()
             )
         );
 

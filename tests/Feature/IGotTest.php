@@ -17,7 +17,7 @@ class IGotTest extends TestCase
 {
     public function testIGot()
     {
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        // $this->markTestSkipped(__CLASS__.' is skipped.');
 
         $ret = Factory::iGot()
             ->setToken('5dcd2f91d38cc47447414')

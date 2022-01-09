@@ -17,7 +17,7 @@ class LoggerTest extends TestCase
 {
     public function testLogger()
     {
-        $this->markTestSkipped(__METHOD__.' is skipped.');
+        // $this->markTestSkipped(__CLASS__.' is skipped.');
 
         $ret = Factory::logger()
             ->setLogger(new \Psr\Log\NullLogger())

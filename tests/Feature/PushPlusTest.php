@@ -17,7 +17,7 @@ class PushPlusTest extends TestCase
 {
     public function testPushPlus()
     {
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        // $this->markTestSkipped(__CLASS__.' is skipped.');
 
         $ret = Factory::pushPlus()
             ->setToken('762e3f7efd764ad5acaa9cc26ac20')

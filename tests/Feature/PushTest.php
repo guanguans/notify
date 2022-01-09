@@ -19,7 +19,7 @@ class PushTest extends TestCase
     {
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        // $this->markTestSkipped(__CLASS__.' is skipped.');
 
         Factory::push()
             ->setToken('5db80e8a-1f9b-4f98-929a-75892cedc')
