@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.11.1 - 2022-01-09
+
+* Fix message for Bark.
+
 ## 1.11.0 - 2022-01-08
 
 * Add support for `pushback`.
