@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、Logger、Mattermost、Now Push、PushBack、Push、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、Logger、Mattermost、Now Push、PushBack、Push、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -25,6 +25,7 @@
 * [FeiShu](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
 * [Gitter](https://developer.gitter.im/docs/messages-resource)
 * [Google Chat](https://developers.google.com/hangouts/chat/how-tos/webhooks)
+* [iGot](http://hellyw.com/#/)
 * [Logger](https://github.com/php-fig/log)
 * [Mattermost](https://api.mattermost.com)
 * [Now Push](https://nowpush.io/api-docs/)
@@ -324,6 +325,30 @@ Factory::googleChat()
     ->setMessage(new \Guanguans\Notify\Messages\GoogleChatMessage([
         'text' => 'This is a testing.',
     ]))
+    ->send();
+```
+</details>
+
+<details>
+<summary><b>iGot</b></summary>
+
+```php
+Factory::iGot()
+    ->setToken('5dcd2f91d38cc47447414')
+    ->setMessage(
+        new \Guanguans\Notify\Messages\IGotMessage([
+            'content' => 'This is content.',
+            // 'title' => 'This is title.',
+            // 'url' => 'https://www.github.com/guanguans/notify',
+            // 'automaticallyCopy' => 1,
+            // 'urgent' => 1,
+            // 'copy' => 'This is copy.',
+            // 'detail' => [
+            //     'title' => 'This is detail title.',
+            //     'content' => 'This is detail content.',
+            // ],
+        ])
+    )
     ->send();
 ```
 </details>
