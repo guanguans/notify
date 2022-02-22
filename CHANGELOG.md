@@ -2,155 +2,159 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## v1.13.1 - 2022-02-22
+
+**Full Changelog**: https://github.com/guanguans/notify/compare/v1.13.0...v1.13.1
+
 ## 1.13.0 - 2022-02-22
 
-* Support symfony6.
+- Support symfony6.
 
 ## 1.12.1 - 2022-01-09
 
-* Fix `HasOptions`.
+- Fix `HasOptions`.
 
 ## 1.12.0 - 2022-01-09
 
-* Add support for `iGot`.
+- Add support for `iGot`.
 
 ## 1.11.1 - 2022-01-09
 
-* Fix message for Bark.
+- Fix message for Bark.
 
 ## 1.11.0 - 2022-01-08
 
-* Add support for `pushback`.
+- Add support for `pushback`.
 
 ## 1.10.0 - 2022-01-06
 
-* Add support for `push`.
+- Add support for `push`.
 
 ## 1.9.1 - 2022-01-06
 
-* Add `wrapSendCallbacks` for client.
-* Optimize Logger、Mailer、NowPush、ServerChan clients.
+- Add `wrapSendCallbacks` for client.
+- Optimize Logger、Mailer、NowPush、ServerChan clients.
 
 ## 1.9.0 - 2022-01-06
 
-* Add support for `now push`.
+- Add support for `now push`.
 
 ## 1.8.2 - 2022-01-06
 
-* Remove phpunit conflict(fix #5).
+- Remove phpunit conflict(fix #5).
 
 ## 1.8.1 - 2022-01-05
 
-* Optimize `PushPlus` client.
+- Optimize `PushPlus` client.
 
 ## 1.8.0 - 2022-01-05
 
-* Add support for `pushplus`.
+- Add support for `pushplus`.
 
 ## 1.7.2 - 2021-12-12
 
-* Optimize clients.
-* Optimize messages.
+- Optimize clients.
+- Optimize messages.
 
 ## 1.7.1 - 2021-12-12
 
-* Add `CreateStaticAble` for client and message.
+- Add `CreateStaticAble` for client and message.
 
 ## 1.7.0 - 2021-12-12
 
-* Add support for `Email`.
-* Add `CreateStaticAble` trait.
+- Add support for `Email`.
+- Add `CreateStaticAble` trait.
 
 ## 1.6.0 - 2021-12-11
 
-* Add support for `PSR Logger`.
+- Add support for `PSR Logger`.
 
 ## 1.5.0 - 2021-12-10
 
-* Add support for `Google Chat`.
+- Add support for `Google Chat`.
 
 ## 1.4.4 - 2021-12-10
 
-* Rename `default` -> `defaults`.
-* Optimize src/Traits/HasOptions.php.
-* Fix style.
+- Rename `default` -> `defaults`.
+- Optimize src/Traits/HasOptions.php.
+- Fix style.
 
 ## 1.4.3 - 2021-12-10
 
-* Rename `'baseUri'` -> `'base_uri'`.
+- Rename `'baseUri'` -> `'base_uri'`.
 
 ## 1.4.2 - 2021-12-10
 
-* Rename `host` -> `baseUri`.
+- Rename `host` -> `baseUri`.
 
 ## 1.4.1 - 2021-12-10
 
-* Optimize messages.
-* Optimize base class for client.
-* Update composer.json.
-* Update github config files.
+- Optimize messages.
+- Optimize base class for client.
+- Update composer.json.
+- Update github config files.
 
 ## 1.4.0 - 2021-12-09
 
-* Add support for `Mattermost`.
+- Add support for `Mattermost`.
 
 ## 1.3.1 - 2021-12-09
 
-* Optimize `BtnsActionCard` Message for DingTalk.
+- Optimize `BtnsActionCard` Message for DingTalk.
 
 ## 1.3.0 - 2021-12-09
 
-* Add support for `RocketChat`.
+- Add support for `RocketChat`.
 
 ## 1.2.0 - 2021-12-08
 
-* Add support for `Zulip`.
+- Add support for `Zulip`.
 
 ## 1.1.2 - 2021-12-08
 
-* Add support for `sending and sended`.
-* Optimize client for Gitter.
+- Add support for `sending and sended`.
+- Optimize client for Gitter.
 
 ## 1.1.1 - 2021-12-08
 
-* Add support for asynchronous sending.
+- Add support for asynchronous sending.
 
 ## 1.1.0 - 2021-12-07
 
-* Add `gitter`.
-* Update composer.json.
+- Add `gitter`.
+- Update composer.json.
 
 ## 1.0.5 - 2021-12-07
 
-* Add github config files.
-* Fix style.
+- Add github config files.
+- Fix style.
 
 ## 1.0.4 - 2021-10-24
 
-* `HasOptions` added `preConfigureOptionsResolver` method.
+- `HasOptions` added `preConfigureOptionsResolver` method.
 
 ## 1.0.3 - 2021-10-17
 
-* Update friendsofphp/php-cs-fixer requirement || ^3.0.
-* Fix tests.
-* Optimize `HasHttpClient` trait.
-* Optimize `HasOptions` trait.
+- Update friendsofphp/php-cs-fixer requirement || ^3.0.
+- Fix tests.
+- Optimize `HasHttpClient` trait.
+- Optimize `HasOptions` trait.
 
 ## 1.0.2 - 2021-10-10
 
-* Update overtrue/phplint requirement || ^3.0.
-* Update vimeo/psalm requirement || ^4.0.
-* Update tests.
-* Bump codecov/codecov-action from 1 to 2.1.0.
-* Optimize `HasOptions` trait.
-* Optimize messages.
+- Update overtrue/phplint requirement || ^3.0.
+- Update vimeo/psalm requirement || ^4.0.
+- Update tests.
+- Bump codecov/codecov-action from 1 to 2.1.0.
+- Optimize `HasOptions` trait.
+- Optimize messages.
 
 ## 1.0.1 - 2021-05-16
 
-* Add separate method for separate setting option.
-* Perf messages.
-* Perf clients.
+- Add separate method for separate setting option.
+- Perf messages.
+- Perf clients.
 
 ## 1.0.0 - 2021-05-16
 
-* Initial release.
+- Initial release.
