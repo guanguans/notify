@@ -59,16 +59,16 @@
     "require": {
         "php": ">=7.2.5",
         "overtrue/http": "^1.2",
-        "psr/log": "^1.1||^2.0||^3.0",
-        "symfony/mailer": "^5.3",
-        "symfony/options-resolver": "^5.3"
+        "psr/log": "^1.1|^2.0|^3.0",
+        "symfony/mailer": "^5.3|^6.0",
+        "symfony/options-resolver": "^5.3|^6.0"
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.7",
         "friendsofphp/php-cs-fixer": "^3.0",
         "mockery/mockery": "^1.2",
         "overtrue/phplint": "^3.0",
-        "phpunit/phpunit": "^7.0||^8.0||^9.0",
+        "phpunit/phpunit": "^7.0|^8.0|^9.0",
         "vimeo/psalm": "^4.10"
     },
     "autoload": {
