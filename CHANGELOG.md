@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## 1.13.0 - 2022-02-22
+
+* Support symfony6.
+
 ## 1.12.1 - 2022-01-09
 
 * Fix `HasOptions`.
