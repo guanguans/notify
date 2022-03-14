@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BarkClient extends Client
 {
-    public const REQUEST_URL_TEMPLATE = '%s/%s/%s?%s';
+    public const REQUEST_URL_TEMPLATE = '%s/%s';
 
     /**
      * @var string[]
@@ -62,11 +62,10 @@ class BarkClient extends Client
      */
     public function getRequestUrl(): string
     {
-        return sprintf(static::REQUEST_URL_TEMPLATE,
+        return sprintf(
+            static::REQUEST_URL_TEMPLATE,
             $this->getBaseUri(),
-            $this->getToken(),
-            $this->getRequestParams()['body'] ?? '',
-            http_build_query($this->getRequestParams())
+            $this->getToken()
         );
     }
 }
