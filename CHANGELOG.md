@@ -2,6 +2,16 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## v1.13.2 - 2022-03-14
+
+## What's Changed
+
+- Bump dependabot/fetch-metadata from 1.2.0 to 1.2.1 by @dependabot in https://github.com/guanguans/notify/pull/7
+- Bump dependabot/fetch-metadata from 1.2.1 to 1.3.0 by @dependabot in https://github.com/guanguans/notify/pull/9
+- Bump actions/checkout from 2 to 3 by @dependabot in https://github.com/guanguans/notify/pull/8
+
+**Full Changelog**: https://github.com/guanguans/notify/compare/v1.13.1...v1.13.2
+
 ## v1.13.1 - 2022-02-22
 
 **Full Changelog**: https://github.com/guanguans/notify/compare/v1.13.0...v1.13.1
