@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushPlus、PushDeer、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -32,6 +32,7 @@
 * [PushBack](https://pushback.io/docs/getting-started)
 * [Push](https://docs.push.techulus.com/api-documentation)
 * [PushPlus](https://pushplus.hxtrip.com/index)
+* [PushDeer](http://pushdeer.com)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [ServerChan](https://sct.ftqq.com)
 * [WeWork](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
@@ -472,6 +473,45 @@ Factory::pushPlus()
         // 'template' => 'html',
         // 'topic' => 'topic',
     ]))
+    ->send();
+```
+</details>
+
+<details>
+<summary><b>PushDeer</b></summary>
+
+```php
+$this->token = 'Your PushDeer Token';
+
+# Normal
+Factory::pushDeer()
+    ->setToken($this->token)
+    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('This is title.', 'This is desp. **normal**.', ''))
+    ->send();
+
+# Markdown
+$markdown = "## Head2
+
+- **Bump** dependabot/fetch-metadata from 1.2.0 to 1.2.1 by @dependabot in https://github.com/guanguans/notify/pull/7
+- Bump dependabot/fetch-metadata from 1.2.1 to 1.3.0 by @dependabot 
+- Bump actions/checkout from 2 to 3 by @dependabot in ";
+
+Factory::pushDeer()
+    ->setToken($this->token)
+    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('**This is title.**', $markdown, 'markdown'))
+    ->send();
+
+# Image
+Factory::pushDeer()
+    ->setToken($this->token)
+    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png', 'This is desp.', 'image'))
+    ->send();
+
+# Custom URL
+Factory::pushDeer()
+    ->setBaseUri('https://api2.pushdeer.com')
+    ->setToken($this->token)
+    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('This is title.', 'This is desp. **Custom URL**.', ''))
     ->send();
 ```
 </details>
