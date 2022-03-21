@@ -15,52 +15,33 @@ use Guanguans\Notify\Tests\TestCase;
 
 class PushDeerTest extends TestCase
 {
-    private $token = 'PDU5530TH1sn4HMhMdIJjc8pMxpIMPKnGMTJcgvX';
-
-    public function testPushDeerNormal()
+    public function testText()
     {
         $ret = Factory::pushDeer()
-            ->setToken($this->token)
-            ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('This is title.', 'This is desp. **normal**.', ''))
+            ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
+            ->setMessage(new \Guanguans\Notify\Messages\PushDeer\TextMessage('This is text.', 'This is desp.'))
             ->send();
 
-        $this->assertNotEquals(0, count($ret['content']['result']));
+        $this->assertEmpty($ret['content']['result']);
     }
 
-    public function testPushDeerMarkdown()
+    public function testMarkdown()
     {
-        $markdown = "## What's Changed
-
-- Bump dependabot/fetch-metadata from 1.2.0 to 1.2.1 by @dependabot in https://github.com/guanguans/notify/pull/7
-- Bump dependabot/fetch-metadata from 1.2.1 to 1.3.0 by @dependabot in https://github.com/guanguans/notify/pull/9
-- Bump actions/checkout from 2 to 3 by @dependabot in https://github.com/guanguans/notify/pull/8";
-
         $ret = Factory::pushDeer()
-            ->setToken('PDU5530TCmH0SgCFIqjPtIhYpSXXUso1BwEdR5ak')
-            ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('**This is title.**', $markdown, 'markdown'))
+            ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
+            ->setMessage(new \Guanguans\Notify\Messages\PushDeer\MarkdownMessage('## This is markdown.', '## This is desp.'))
             ->send();
 
-        $this->assertNotEquals(0, count($ret['content']['result']));
+        $this->assertEmpty($ret['content']['result']);
     }
 
-    public function testPushDeerImage()
+    public function testImage()
     {
         $ret = Factory::pushDeer()
-            ->setToken($this->token)
-            ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png', 'This is desp.', 'image'))
+            ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
+            ->setMessage(new \Guanguans\Notify\Messages\PushDeer\ImageMessage('https://avatars.githubusercontent.com/u/22309277?v=4', 'This is desp.'))
             ->send();
 
-        $this->assertNotEquals(0, count($ret['content']['result']));
-    }
-
-    public function testPushDeerUrl()
-    {
-        $ret = Factory::pushDeer()
-            ->setBaseUri('https://api2.pushdeer.com')
-            ->setToken($this->token)
-            ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('This is title.', 'This is desp. **Custom URL**.', ''))
-            ->send();
-
-        $this->assertNotEquals(0, count($ret['content']['result']));
+        $this->assertEmpty($ret['content']['result']);
     }
 }
