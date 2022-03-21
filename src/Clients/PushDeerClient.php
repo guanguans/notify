@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * This file is part of the guanguans/notify.
+ *
+ * (c) guanguans <ityaozm@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled.
+ */
+
 namespace Guanguans\Notify\Clients;
 
 use Symfony\Component\OptionsResolver\Options;
@@ -31,6 +39,7 @@ class PushDeerClient extends Client
     public function setBaseUri(string $baseUri)
     {
         $this->setOption('base_uri', $baseUri);
+
         return $this;
     }
 
