@@ -2,6 +2,18 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## v1.14.0 - 2022-03-21
+
+## What's Changed
+
+- Add: pushdeer by @jetsung in https://github.com/guanguans/notify/pull/10
+
+## New Contributors
+
+- @jetsung made their first contribution in https://github.com/guanguans/notify/pull/10
+
+**Full Changelog**: https://github.com/guanguans/notify/compare/v1.13.2...v1.14.0
+
 ## v1.13.2 - 2022-03-14
 
 ## What's Changed
