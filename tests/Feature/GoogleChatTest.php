@@ -17,7 +17,7 @@ class GoogleChatTest extends TestCase
 {
     public function testGoogleChat()
     {
-        // $this->markTestSkipped(__CLASS__.' is skipped.');
+        $this->markTestSkipped(__CLASS__.' is skipped.');
 
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
