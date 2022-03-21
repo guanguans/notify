@@ -465,23 +465,23 @@ Factory::push()
 <summary><b>PushDeer</b></summary>
 
 ```php
-// Normal
+// Text
 Factory::pushDeer()
     // ->setBaseUri('The server address of your own deployment.')
-    ->setToken('Your PushDeer Token')
-    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('This is title.', 'This is desp. **normal**.', ''))
+    ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
+    ->setMessage(new \Guanguans\Notify\Messages\PushDeer\TextMessage('This is text.', 'This is desp.'))
     ->send();
 
 // Markdown
 Factory::pushDeer()
-    ->setToken('Your PushDeer Token')
-    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('**This is title.**', '## Head2', 'markdown'))
+    ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
+    ->setMessage(new \Guanguans\Notify\Messages\PushDeer\MarkdownMessage('## This is markdown.', '## This is desp.'))
     ->send();
 
 // Image
 Factory::pushDeer()
-    ->setToken('Your PushDeer Token')
-    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png', 'This is desp.', 'image'))
+    ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
+    ->setMessage(new \Guanguans\Notify\Messages\PushDeer\ImageMessage('https://avatars.githubusercontent.com/u/22309277?v=4', 'This is desp.'))
     ->send();
 ```
 </details>
