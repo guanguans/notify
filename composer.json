@@ -1,6 +1,8 @@
 {
     "name": "guanguans/notify",
     "description": "多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。",
+    "license": "MIT",
+    "type": "library",
     "keywords": [
         "notification",
         "notify",
@@ -40,11 +42,6 @@
         "微信",
         "息知"
     ],
-    "homepage": "https://github.com/guanguans/notify",
-    "support": {
-        "issues": "https://github.com/guanguans/notify/issues",
-        "source": "https://github.com/guanguans/notify"
-    },
     "authors": [
         {
             "name": "guanguans",
@@ -53,25 +50,34 @@
             "role": "developer"
         }
     ],
-    "type": "library",
-    "license": "MIT",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "homepage": "https://github.com/guanguans/notify",
+    "support": {
+        "issues": "https://github.com/guanguans/notify/issues",
+        "source": "https://github.com/guanguans/notify"
+    },
+    "funding": [
+        {
+            "type": "wechat",
+            "url": "https://www.guanguans.cn/images/wechat.jpeg"
+        }
+    ],
     "require": {
         "php": ">=7.2.5",
         "overtrue/http": "^1.2",
-        "psr/log": "^1.1|^2.0|^3.0",
-        "symfony/mailer": "^5.3|^6.0",
-        "symfony/options-resolver": "^5.3|^6.0"
+        "psr/log": "^1.1 || ^2.0 || ^3.0",
+        "symfony/mailer": "^5.3 || ^6.0",
+        "symfony/options-resolver": "^5.3 || ^6.0"
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.7",
         "friendsofphp/php-cs-fixer": "^3.0",
         "mockery/mockery": "^1.2",
         "overtrue/phplint": "^3.0",
-        "phpunit/phpunit": "^7.0|^8.0|^9.0",
+        "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
         "vimeo/psalm": "^4.10"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Guanguans\\Notify\\": "src"
@@ -88,12 +94,6 @@
     "config": {
         "sort-packages": true
     },
-    "funding": [
-        {
-            "type": "wechat",
-            "url": "https://www.guanguans.cn/images/wechat.jpeg"
-        }
-    ],
     "extra": {
         "hooks": {
             "pre-commit": [
@@ -107,32 +107,32 @@
         }
     },
     "scripts": {
-        "post-update-cmd": [
-            "cghooks update"
-        ],
-        "post-merge": "composer install",
         "post-install-cmd": [
             "cghooks add --ignore-lock",
             "cghooks update"
         ],
+        "post-update-cmd": [
+            "cghooks update"
+        ],
         "cghooks": "./vendor/bin/cghooks",
         "lint": "./vendor/bin/phplint --no-cache --configuration=.phplint.yml --ansi",
-        "md-lint": "lint-md --config .lintmdrc *.md .github/*.md .github/ISSUE_TEMPLATE/*.md",
         "md-fix": "lint-md --config .lintmdrc --fix *.md .github/*.md .github/ISSUE_TEMPLATE/*.md",
-        "style-lint": "./vendor/bin/php-cs-fixer fix --using-cache=no --diff --config=.php-cs-fixer.php --dry-run --ansi",
-        "style-fix": "./vendor/bin/php-cs-fixer fix --using-cache=no --config=.php-cs-fixer.php --ansi",
+        "md-lint": "lint-md --config .lintmdrc *.md .github/*.md .github/ISSUE_TEMPLATE/*.md",
+        "post-merge": "composer install",
         "psalm": "./vendor/bin/psalm",
+        "style-fix": "./vendor/bin/php-cs-fixer fix --using-cache=no --config=.php-cs-fixer.php --ansi",
+        "style-lint": "./vendor/bin/php-cs-fixer fix --using-cache=no --diff --config=.php-cs-fixer.php --dry-run --ansi",
         "test": "./vendor/bin/phpunit --coverage-text --colors=always --verbose",
         "test-coverage": "./vendor/bin/phpunit --coverage-html=coverage/ --coverage-clover=clover.xml --color=always --verbose"
     },
     "scripts-descriptions": {
         "cghooks": "Run git cghooks.",
         "lint": "Run phplint checks.",
-        "md-lint": "Run markdown checks.",
         "md-fix": "Run markdown fixing.",
-        "style-lint": "Run style checks (only dry run - no fixing!).",
-        "style-fix": "Run style checks and fix violations.",
+        "md-lint": "Run markdown checks.",
         "psalm": "Run psalm checks.",
+        "style-fix": "Run style checks and fix violations.",
+        "style-lint": "Run style checks (only dry run - no fixing!).",
         "test": "Run all tests.",
         "test-coverage": "Run all tests with coverage."
     }
