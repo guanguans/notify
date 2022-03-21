@@ -1,6 +1,6 @@
 {
     "name": "guanguans/notify",
-    "description": "多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。",
+    "description": "多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、Server 酱、Slack、企业微信群机器人、息知、Zulip)。",
     "license": "MIT",
     "type": "library",
     "keywords": [
@@ -26,6 +26,7 @@
         "pushPlus",
         "rocketChat",
         "serverChan",
+        "slack",
         "weWork",
         "xiZhi",
         "zulip",

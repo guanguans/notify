@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
+> 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、Server 酱、Slack、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -35,6 +35,7 @@
 * [PushPlus](https://pushplus.hxtrip.com/index)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [Server 酱](https://sct.ftqq.com)
+* [Slack](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [企业微信群机器人](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
 * [息知](https://xz.qqoq.net/#/index)
 * [Zulip](https://zulip.com/api/send-message)
@@ -540,6 +541,39 @@ Factory::serverChan()
 
 // Check
 Factory::serverChan()->check(3334849, 'SCTJlJV1J87hS');
+```
+</details>
+
+<details>
+<summary><b>Slack</b></summary>
+
+```php
+$message = new \Guanguans\Notify\Messages\SlackMessage([
+    'text' => 'This is text.',
+    //'channel' => '#general',
+    //'username' => 'notify bot',
+    //'icon_emoji' => ':ghost:',
+    //'icon_url' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+    //'unfurl_links' => true,
+    //'attachments' => $attachment = [
+    //    'fallback' => 'Required text summary of the attachment',
+    //    'text' => 'Optional text that should appear within the attachment',
+    //    'pretext' => 'Optional text that should appear above the formatted data',
+    //    'color' => '#36a64f',
+    //    'fields' => [
+    //        [
+    //            'title' => 'Required Field Title',
+    //            'value' => 'Text value of the field.',
+    //            'short' => false,
+    //        ],
+    //    ],
+    //],
+]);
+
+Factory::slack()
+    ->setWebhookUrl('https://hooks.slack.com/services/TPU9A98MT/B038KNUC0GY/6pKH3vfa3mjlUPcgLSjzR')
+    ->setMessage($message)
+    ->send();
 ```
 </details>
 
