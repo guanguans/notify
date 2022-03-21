@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushPlus、PushDeer、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、ServerChan、WeWork、XiZhi、Zulip). - 多平台通知 SDK(Bark、Chanify、钉钉群机器人、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、Server 酱、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -31,8 +31,8 @@
 * [Now Push](https://nowpush.io/api-docs/)
 * [PushBack](https://pushback.io/docs/getting-started)
 * [Push](https://docs.push.techulus.com/api-documentation)
-* [PushPlus](https://pushplus.hxtrip.com/index)
 * [PushDeer](http://pushdeer.com)
+* [PushPlus](https://pushplus.hxtrip.com/index)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [Server 酱](https://sct.ftqq.com)
 * [企业微信群机器人](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
@@ -462,6 +462,31 @@ Factory::push()
 </details>
 
 <details>
+<summary><b>PushDeer</b></summary>
+
+```php
+// Normal
+Factory::pushDeer()
+    // ->setBaseUri('The server address of your own deployment.')
+    ->setToken('Your PushDeer Token')
+    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('This is title.', 'This is desp. **normal**.', ''))
+    ->send();
+
+// Markdown
+Factory::pushDeer()
+    ->setToken('Your PushDeer Token')
+    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('**This is title.**', '## Head2', 'markdown'))
+    ->send();
+
+// Image
+Factory::pushDeer()
+    ->setToken('Your PushDeer Token')
+    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png', 'This is desp.', 'image'))
+    ->send();
+```
+</details>
+
+<details>
 <summary><b>PushPlus</b></summary>
 
 ```php
@@ -473,74 +498,6 @@ Factory::pushPlus()
         // 'template' => 'html',
         // 'topic' => 'topic',
     ]))
-    ->send();
-```
-</details>
-
-<details>
-<summary><b>Now Push</b></summary>
-
-```php
-// Note Message
-Factory::nowPush()
-    ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
-    ->setMessage(new \Guanguans\Notify\Messages\NowPush\NoteMessage('This is a note.'))
-    ->send();
-
-// Image Message
-Factory::nowPush()
-    ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
-    ->setMessage(new \Guanguans\Notify\Messages\NowPush\ImageMessage('https://www.nowpush.app/assets/img/welcome/welcome-mockup.png'))
-    ->send();
-
-// Link Message
-Factory::nowPush()
-    ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
-    ->setMessage(new \Guanguans\Notify\Messages\NowPush\LinkMessage('https://github.com/guanguans/notify'))
-    ->send();
-
-// User Info
-Factory::nowPush()
-    ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
-    ->getUser();
-```
-</details>
-
-<details>
-<summary><b>PushDeer</b></summary>
-
-```php
-$this->token = 'Your PushDeer Token';
-
-# Normal
-Factory::pushDeer()
-    ->setToken($this->token)
-    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('This is title.', 'This is desp. **normal**.', ''))
-    ->send();
-
-# Markdown
-$markdown = "## Head2
-
-- **Bump** dependabot/fetch-metadata from 1.2.0 to 1.2.1 by @dependabot in https://github.com/guanguans/notify/pull/7
-- Bump dependabot/fetch-metadata from 1.2.1 to 1.3.0 by @dependabot 
-- Bump actions/checkout from 2 to 3 by @dependabot in ";
-
-Factory::pushDeer()
-    ->setToken($this->token)
-    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('**This is title.**', $markdown, 'markdown'))
-    ->send();
-
-# Image
-Factory::pushDeer()
-    ->setToken($this->token)
-    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png', 'This is desp.', 'image'))
-    ->send();
-
-# Custom URL
-Factory::pushDeer()
-    ->setBaseUri('https://api2.pushdeer.com')
-    ->setToken($this->token)
-    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('This is title.', 'This is desp. **Custom URL**.', ''))
     ->send();
 ```
 </details>
