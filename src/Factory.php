@@ -32,6 +32,7 @@ use Guanguans\Notify\Support\Str;
  * @method static \Guanguans\Notify\Clients\PushPlusClient      pushPlus(array $options = [])
  * @method static \Guanguans\Notify\Clients\RocketChatClient    rocketChat(array $options = [])
  * @method static \Guanguans\Notify\Clients\ServerChanClient    serverChan(array $options = [])
+ * @method static \Guanguans\Notify\Clients\SlackClient         slack(array $options = [])
  * @method static \Guanguans\Notify\Clients\WeWorkClient        weWork(array $options = [])
  * @method static \Guanguans\Notify\Clients\XiZhiClient         xiZhi(array $options = [])
  * @method static \Guanguans\Notify\Clients\ZulipClient         zulip(array $options = [])
