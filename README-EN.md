@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、ServerChan、Slack、Webhook、WeWork、XiZhi、Zulip).
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、ServerChan、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip).
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -37,6 +37,7 @@
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [ServerChan](https://sct.ftqq.com)
 * [Slack](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
+* [Telegram](https://core.telegram.org/bots/api#sendmessage)
 * Webhook
 * [WeWork](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
 * [XiZhi](https://xz.qqoq.net/#/index)
@@ -621,6 +622,30 @@ $message = new \Guanguans\Notify\Messages\SlackMessage([
 
 Factory::slack()
     ->setWebhookUrl('https://hooks.slack.com/services/TPU9A98MT/B038KNUC0GY/6pKH3vfa3mjlUPcgLSjzR')
+    ->setMessage($message)
+    ->send();
+```
+</details>
+
+<details>
+<summary><b>Telegram</b></summary>
+
+```php
+\Guanguans\Notify\Messages\Telegram\TextMessage::create([
+    'chat_id' => 50443416,
+    'text' => '*This is text*',
+    'parse_mode' => 'MarkdownV2',
+    // 'entities' => [],
+    // 'disable_web_page_preview' => true,
+    // 'disable_notification' => true,
+    // 'protect_content' => true,
+    // 'reply_to_message_id' => 5,
+    // 'allow_sending_without_reply' => true,
+    // 'reply_markup' => [],
+]);
+
+Factory::telegram()
+    ->setToken('5146570195:AAF-Pi1MBPa46wdyobfZZdZL')
     ->setMessage($message)
     ->send();
 ```
