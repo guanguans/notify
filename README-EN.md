@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、ServerChan、Slack、WeWork、XiZhi、Zulip).
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、ServerChan、Slack、WeWork、XiZhi、Zulip).
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -21,6 +21,7 @@
 * [Bark](https://github.com/Finb/Bark)
 * [Chanify](https://github.com/chanify/chanify-ios)
 * [DingTalk](https://developers.dingtalk.com/document/app/custom-robot-access)
+* [Discord](https://discord.com/developers/docs/resources/webhook#edit-webhook-message)
 * [Email](https://symfony.com/doc/current/mailer.html)
 * [FeiShu](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
 * [Gitter](https://developer.gitter.im/docs/messages-resource)
@@ -211,6 +212,53 @@ $message->addBtn([
 Factory::dingTalk()
     ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
     ->setSecret('SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee51730')
+    ->setMessage($message)
+    ->send();
+```
+</details>
+
+<details>
+<summary><b>Discord</b></summary>
+
+```php
+$message = new \Guanguans\Notify\Messages\DiscordMessage([
+    'content' => 'This is content.',
+    //'username' => 'notify bot.',
+    //'avatar_url' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+    //'tts' => false,
+    //'embeds' => $embed = [
+    //    'title' => 'This is title.',
+    //    'type' => 'This is type.',
+    //    'description' => 'This is description.',
+    //    'url' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+    //    'color' => '0365D6',
+    //    'footer' => [
+    //        'text' => 'This is text.',
+    //        'icon_url' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+    //    ],
+    //    'image' => [
+    //        'url' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+    //    ],
+    //    'thumbnail' => [
+    //        'url' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+    //    ],
+    //    'author' => [
+    //        'name' => 'This is name.',
+    //        'url' => 'https://avatars.githubusercontent.com/u/22309277?v=4.',
+    //        'icon_url' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+    //    ],
+    //    'fields' => [
+    //        [
+    //            'name' => 'This is name.',
+    //            'value' => 'This is value.',
+    //            'inline' => false,
+    //        ],
+    //    ],
+    ],
+]);
+
+Factory::discord()
+    ->setWebhookUrl('https://discord.com/api/webhooks/955407924304425000/o7RfCGxek_o8kfR6Q9i')
     ->setMessage($message)
     ->send();
 ```
