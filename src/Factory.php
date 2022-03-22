@@ -18,6 +18,7 @@ use Guanguans\Notify\Support\Str;
  * @method static \Guanguans\Notify\Clients\BarkClient          bark(array $options = [])
  * @method static \Guanguans\Notify\Clients\ChanifyClient       chanify(array $options = [])
  * @method static \Guanguans\Notify\Clients\DingTalkClient      dingTalk(array $options = [])
+ * @method static \Guanguans\Notify\Clients\DiscordClient       discord(array $options = [])
  * @method static \Guanguans\Notify\Clients\FeiShuClient        feiShu(array $options = [])
  * @method static \Guanguans\Notify\Clients\GitterClient        gitter(array $options = [])
  * @method static \Guanguans\Notify\Clients\GoogleChatClient    googleChat(array $options = [])
