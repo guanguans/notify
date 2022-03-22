@@ -54,21 +54,21 @@ class DiscordMessage extends Message
 
     public function addEmbeds(array $embeds)
     {
-        foreach ($embeds as $attachment) {
-            $this->addEmbed($attachment);
+        foreach ($embeds as $embed) {
+            $this->addEmbed($embed);
         }
 
         return $this;
     }
 
-    public function setEmbed(array $attachment)
+    public function setEmbed(array $embed)
     {
-        return $this->addEmbed($attachment);
+        return $this->addEmbed($embed);
     }
 
-    public function addEmbed(array $attachment)
+    public function addEmbed(array $embed)
     {
-        $this->options['embeds'][] = configure_options($attachment, function (OptionsResolver $resolver) {
+        $this->options['embeds'][] = configure_options($embed, function (OptionsResolver $resolver) {
             $resolver
                 ->setDefined([
                     'title',
