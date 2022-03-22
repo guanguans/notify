@@ -44,7 +44,7 @@ class SlackTest extends TestCase
 
         Factory::slack()
             ->setWebhookUrl('https://hooks.slack.com/services/TPU9A98MT/B038KNUC0GY/6pKH3vfa3mjlUPcgLSjzR')
-            ->setMessage($message)
+            ->setMessage($message->addAttachment($attachment))
             ->send();
     }
 }

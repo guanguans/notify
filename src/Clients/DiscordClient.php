@@ -10,6 +10,9 @@
 
 namespace Guanguans\Notify\Clients;
 
+/**
+ * @see https://discord.com/developers/docs/resources/webhook#edit-webhook-message
+ */
 class DiscordClient extends Client
 {
     /**
