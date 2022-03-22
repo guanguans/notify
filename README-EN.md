@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、ServerChan、Slack、WeWork、XiZhi、Zulip).
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、ServerChan、Slack、Webhook、WeWork、XiZhi、Zulip).
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -37,6 +37,7 @@
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [ServerChan](https://sct.ftqq.com)
 * [Slack](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
+* Webhook
 * [WeWork](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
 * [XiZhi](https://xz.qqoq.net/#/index)
 * [Zulip](https://zulip.com/api/send-message)
@@ -620,6 +621,26 @@ $message = new \Guanguans\Notify\Messages\SlackMessage([
 
 Factory::slack()
     ->setWebhookUrl('https://hooks.slack.com/services/TPU9A98MT/B038KNUC0GY/6pKH3vfa3mjlUPcgLSjzR')
+    ->setMessage($message)
+    ->send();
+```
+</details>
+
+<details>
+<summary><b>Webhook</b></summary>
+
+```php
+$message = \Guanguans\Notify\Messages\WebhookMessage::create([
+    'content' => 'This is content.',
+    'username' => 'notify bot.',
+])
+// ->setHeaders(['Accept' => '*/*'])
+// ->setQuery([['foo' => 'bar']])
+->setVerify(false);
+
+Factory::webhook()
+    ->setUrl('https://discord.com/api/webhooks/955407924304425000/o7RfCGxek_o8kfR6Q9iGKtTdRJ')
+    // ->setRequestMethod('postJson')
     ->setMessage($message)
     ->send();
 ```
