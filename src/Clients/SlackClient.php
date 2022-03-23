@@ -11,7 +11,7 @@
 namespace Guanguans\Notify\Clients;
 
 /**
- * @see https://docs.rocket.chat/guides/administration/admin-panel/integrations
+ * @see https://api.slack.com/messaging/webhooks
  *
  * ```
  * curl --location --request POST 'https://hooks.slack.com/services/TPU9A9/B038KNUC/6pKH3vfa3mjlUP' \

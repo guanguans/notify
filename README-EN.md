@@ -36,7 +36,7 @@
 * [PushPlus](https://pushplus.hxtrip.com/index)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [ServerChan](https://sct.ftqq.com)
-* [Slack](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
+* [Slack](https://api.slack.com/messaging/webhooks)
 * [Telegram](https://core.telegram.org/bots/api#sendmessage)
 * Webhook
 * [WeWork](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
