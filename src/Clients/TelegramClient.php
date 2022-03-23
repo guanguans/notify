@@ -21,8 +21,21 @@ class TelegramClient extends Client
 {
     public const REQUEST_URL_TEMPLATE = 'https://api.telegram.org/bot%s/sendMessage';
 
+    public const UPDATES_REQUEST_URL_TEMPLATE = 'https://api.telegram.org/bot%s/getUpdates';
+
     public function getRequestUrl(): string
     {
         return sprintf(self::REQUEST_URL_TEMPLATE, $this->getToken());
+    }
+
+    public function getUpdates(array $params = ['limit' => 3])
+    {
+        return $this->wrapSendCallbacksWithRequestAsync(function () use ($params) {
+            return $this->getHttpClient()
+                ->{$this->getRequestMethod()}(
+                    sprintf(static::UPDATES_REQUEST_URL_TEMPLATE, $this->getToken()),
+                    $params
+                );
+        });
     }
 }

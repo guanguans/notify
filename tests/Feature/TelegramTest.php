@@ -16,6 +16,15 @@ use GuzzleHttp\Exception\ClientException;
 
 class TelegramTest extends TestCase
 {
+    public function testgetUpdates()
+    {
+        $this->expectException(ClientException::class);
+
+        Factory::telegram()
+            ->setToken('5146570:AAF-Pi1MBPa46wdyobfZZdZL1-PlDfrZ')
+            ->getUpdates();
+    }
+
     public function testText()
     {
         $message = \Guanguans\Notify\Messages\Telegram\TextMessage::create([

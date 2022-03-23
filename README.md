@@ -631,6 +631,12 @@ Factory::slack()
 <summary><b>Telegram</b></summary>
 
 ```php
+// getUpdates(Chat ID)
+Factory::telegram()
+    ->setToken('5146570:AAF-Pi1MBPa46wdyobfZZdZL1-PlDfrZ')
+    ->getUpdates();
+
+// Text
 \Guanguans\Notify\Messages\Telegram\TextMessage::create([
     'chat_id' => 50443416,
     'text' => '*This is text*',
