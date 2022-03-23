@@ -34,7 +34,7 @@ class MattermostMessage extends Message
      * @var string[]
      */
     protected $required = [
-        // 'channel_id',
+        'channel_id',
     ];
 
     /**

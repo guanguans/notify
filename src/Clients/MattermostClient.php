@@ -44,7 +44,6 @@ class MattermostClient extends Client
         'token',
         'message',
         'base_uri',
-        'channel_id',
     ];
 
     public function __construct(array $options = [])
@@ -78,27 +77,5 @@ class MattermostClient extends Client
         $this->setOption('base_uri', $baseUri);
 
         return $this;
-    }
-
-    public function getChannelId(): string
-    {
-        return $this->getOption('channel_id');
-    }
-
-    /**
-     * @return $this
-     */
-    public function setChannelId(string $channelId): self
-    {
-        $this->setOption('channel_id', $channelId);
-
-        return $this;
-    }
-
-    public function getRequestParams(): array
-    {
-        return array_merge(parent::getRequestParams(), [
-            'channel_id' => $this->getChannelId(),
-        ]);
     }
 }
