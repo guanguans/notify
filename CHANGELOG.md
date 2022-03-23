@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## v1.18.0 - 2022-03-23
+
+**Full Changelog**: https://github.com/guanguans/notify/compare/v1.17.0...v1.18.0
+
 ## v1.15.0 - 2022-03-21
 
 **Full Changelog**: https://github.com/guanguans/notify/compare/v1.14.1...v1.15.0
