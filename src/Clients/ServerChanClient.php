@@ -24,7 +24,9 @@ class ServerChanClient extends Client
     public function check(int $pushId, string $readKey)
     {
         return $this->wrapSendCallbacksWithRequestAsync(function () use ($pushId, $readKey) {
-            return $this->getHttpClient()->get(sprintf(static::CHECK_REQUEST_URL_TEMPLATE, $pushId, $readKey));
+            return $this->getHttpClient()->{$this->getRequestMethod()}(
+                sprintf(static::CHECK_REQUEST_URL_TEMPLATE, $pushId, $readKey)
+            );
         });
     }
 }
