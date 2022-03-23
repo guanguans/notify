@@ -15,31 +15,11 @@ use Guanguans\Notify\Tests\TestCase;
 
 class PushDeerTest extends TestCase
 {
-    public function testText()
+    public function testPushDeer()
     {
         $ret = Factory::pushDeer()
             ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
-            ->setMessage(new \Guanguans\Notify\Messages\PushDeer\TextMessage('This is text.', 'This is desp.'))
-            ->send();
-
-        $this->assertEmpty($ret['content']['result']);
-    }
-
-    public function testMarkdown()
-    {
-        $ret = Factory::pushDeer()
-            ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
-            ->setMessage(new \Guanguans\Notify\Messages\PushDeer\MarkdownMessage('## This is markdown.', '## This is desp.'))
-            ->send();
-
-        $this->assertEmpty($ret['content']['result']);
-    }
-
-    public function testImage()
-    {
-        $ret = Factory::pushDeer()
-            ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
-            ->setMessage(new \Guanguans\Notify\Messages\PushDeer\ImageMessage('https://avatars.githubusercontent.com/u/22309277?v=4', 'This is desp.'))
+            ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('## This is text.', '> This is desp.', 'markdown'))
             ->send();
 
         $this->assertEmpty($ret['content']['result']);

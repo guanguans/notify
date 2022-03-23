@@ -516,23 +516,9 @@ Factory::push()
 <summary><b>PushDeer</b></summary>
 
 ```php
-// Text
-Factory::pushDeer()
-    // ->setBaseUri('The server address of your own deployment.')
-    ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
-    ->setMessage(new \Guanguans\Notify\Messages\PushDeer\TextMessage('This is text.', 'This is desp.'))
-    ->send();
-
-// Markdown
 Factory::pushDeer()
     ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
-    ->setMessage(new \Guanguans\Notify\Messages\PushDeer\MarkdownMessage('## This is markdown.', '## This is desp.'))
-    ->send();
-
-// Image
-Factory::pushDeer()
-    ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
-    ->setMessage(new \Guanguans\Notify\Messages\PushDeer\ImageMessage('https://avatars.githubusercontent.com/u/22309277?v=4', 'This is desp.'))
+    ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('## This is text.', '> This is desp.', 'markdown'))
     ->send();
 ```
 </details>
