@@ -424,9 +424,9 @@ Factory::logger()
 Factory::mattermost()
     ->setBaseUri('https://guanguans.cloud.mattermost.com')
     ->setToken('r7jezodttibgueijpahyyfh1qa')
-    ->setChannelId('sat5ohbs5byixd86tmxtk13b5w')
     ->setMessage(
         new \Guanguans\Notify\Messages\MattermostMessage([
+            'channel_id' => 'sat5ohbs5byixd86tmxtk13',
             'message' => 'This is a testing.',
             // 'is_pinned' => true,
             // 'create_at' => 1639041968509,
