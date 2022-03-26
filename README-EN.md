@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、Rocket Chat、ServerChan、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip).
+> Multi platform notification SDK(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip).
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -34,6 +34,7 @@
 * [Push](https://docs.push.techulus.com/api-documentation)
 * [PushDeer](http://pushdeer.com)
 * [PushPlus](https://pushplus.hxtrip.com/index)
+* [QQ Channel Bot](https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [ServerChan](https://sct.ftqq.com)
 * [Slack](https://api.slack.com/messaging/webhooks)
@@ -535,6 +536,31 @@ Factory::pushPlus()
         // 'template' => 'html',
         // 'topic' => 'topic',
     ]))
+    ->send();
+```
+</details>
+
+<details>
+<summary><b>QQ Channel Bot</b></summary>
+
+```php
+Factory::qqChannelBot()
+    ->setAppid('102001')
+    ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
+    ->setChannelId('4317')
+    // ->sandboxEnvironment()
+    // ->setSecret('3yfBSaUCfy3zlQr5')
+    ->setMessage(
+        \Guanguans\Notify\Messages\QQChannelBotMessage::create([
+            'content' => 'This is content.',
+            'image' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+            // 'msg_id' => 0,
+            // 'embed' => [],
+            // 'ark' => [],
+            // 'message_reference' => [],
+            // 'markdown' => [],
+        ])
+    )
     ->send();
 ```
 </details>
