@@ -18,6 +18,8 @@ class WebhookTest extends TestCase
 {
     public function testWebhook()
     {
+        $this->markTestSkipped(__CLASS__.' is skipped.');
+
         $message = \Guanguans\Notify\Messages\WebhookMessage::create([
             'content' => 'This is content.',
             'username' => 'notify bot.',

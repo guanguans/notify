@@ -18,6 +18,8 @@ class TelegramTest extends TestCase
 {
     public function testgetUpdates()
     {
+        $this->markTestSkipped(__CLASS__.' is skipped.');
+
         $this->expectException(ClientException::class);
 
         Factory::telegram()
@@ -27,6 +29,8 @@ class TelegramTest extends TestCase
 
     public function testText()
     {
+        $this->markTestSkipped(__CLASS__.' is skipped.');
+
         $message = \Guanguans\Notify\Messages\Telegram\TextMessage::create([
             'chat_id' => 5044341,
             'text' => '*This is text*',

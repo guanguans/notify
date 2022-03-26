@@ -67,10 +67,12 @@
     ],
     "require": {
         "php": ">=7.2.5",
+        "ext-json": "*",
         "overtrue/http": "^1.2",
         "psr/log": "^1.1 || ^2.0 || ^3.0",
         "symfony/mailer": "^5.3 || ^6.0",
-        "symfony/options-resolver": "^5.3 || ^6.0"
+        "symfony/options-resolver": "^5.3 || ^6.0",
+        "wrench/wrench": "^3.0.0-rc1"
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.7",

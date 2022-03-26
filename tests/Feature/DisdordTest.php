@@ -18,6 +18,8 @@ class DisdordTest extends TestCase
 {
     public function testDisdord()
     {
+        $this->markTestSkipped(__CLASS__.' is skipped.');
+
         $message = new \Guanguans\Notify\Messages\DiscordMessage([
             'content' => 'This is content.',
             'username' => 'notify bot.',
