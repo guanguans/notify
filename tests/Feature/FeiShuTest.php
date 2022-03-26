@@ -30,6 +30,8 @@ class FeiShuTest extends TestCase
 
     public function testPost()
     {
+        $this->markTestSkipped(__CLASS__.' is skipped.');
+
         $this->expectOutputString('19001');
 
         $post = [
@@ -56,6 +58,8 @@ class FeiShuTest extends TestCase
 
     public function testShareChat()
     {
+        $this->markTestSkipped(__CLASS__.' is skipped.');
+
         $this->expectOutputString('19001');
 
         $ret = Factory::feiShu()
@@ -69,6 +73,8 @@ class FeiShuTest extends TestCase
 
     public function testImage()
     {
+        $this->markTestSkipped(__CLASS__.' is skipped.');
+
         $this->expectOutputString('19001');
 
         $ret = Factory::feiShu()
@@ -82,6 +88,8 @@ class FeiShuTest extends TestCase
 
     public function testCard()
     {
+        $this->markTestSkipped(__CLASS__.' is skipped.');
+
         $this->expectOutputString('19001');
 
         $card = [
