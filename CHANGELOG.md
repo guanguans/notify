@@ -2,6 +2,10 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## v1.19.1 - 2022-03-26
+
+**Full Changelog**: https://github.com/guanguans/notify/compare/v1.19.0...v1.19.1
+
 ## v1.19.0 - 2022-03-26
 
 - 支持 QQ 频道机器人
