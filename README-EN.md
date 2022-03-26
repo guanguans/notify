@@ -544,10 +544,23 @@ Factory::pushPlus()
 <summary><b>QQ Channel Bot</b></summary>
 
 ```php
+// Get the list of user channels
 Factory::qqChannelBot()
     ->setAppid('102001')
     ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
-    ->setChannelId('4317')
+    ->getUserChannels();
+
+// Get the subchannel list
+Factory::qqChannelBot()
+    ->setAppid('102001')
+    ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
+    ->getSubChannels(5099581822453968); // Channel ID
+
+// Send a channel message
+Factory::qqChannelBot()
+    ->setAppid('102001')
+    ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
+    ->setChannelId('4317') // Sub Channel ID
     // ->sandboxEnvironment()
     // ->setSecret('3yfBSaUCfy3zlQr5')
     ->setMessage(

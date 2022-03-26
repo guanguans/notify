@@ -544,10 +544,23 @@ Factory::pushPlus()
 <summary><b>QQ 频道机器人</b></summary>
 
 ```php
+// 获取用户频道列表
 Factory::qqChannelBot()
     ->setAppid('102001')
     ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
-    ->setChannelId('4317')
+    ->getUserChannels();
+
+// 获取子频道列表    
+Factory::qqChannelBot()
+    ->setAppid('102001')
+    ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
+    ->getSubChannels(5099581822453968); // 频道 ID
+
+// 发送频道消息
+Factory::qqChannelBot()
+    ->setAppid('102001')
+    ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
+    ->setChannelId('4317') // 子频道 ID
     // ->sandboxEnvironment()
     // ->setSecret('3yfBSaUCfy3zlQr5')
     ->setMessage(
