@@ -197,4 +197,39 @@ class QqChannelBotClient extends Client
 
         return $this;
     }
+
+    public function requestApi(string $uri, string $method = 'get', array $data = [])
+    {
+        return $this->wrapSendCallbacksWithRequestAsync(function () use ($data, $uri, $method) {
+            return $this->getHttpClient()
+                ->{$method}(
+                    str_replace('channels/%s/messages', ltrim($uri, '/'), self::REQUEST_URL_TEMPLATE[$this->getEnvironment()]),
+                    $data
+                );
+        });
+    }
+
+    /**
+     * 获取用户频道列表.
+     */
+    public function getUserChannels()
+    {
+        return $this->requestApi('users/@me/guilds');
+    }
+
+    /**
+     * 创建子频道.
+     */
+    public function createSubChannel(int $guildId, array $data)
+    {
+        return $this->requestApi("guilds/$guildId/channels", 'post', $data);
+    }
+
+    /**
+     * 获取子频道列表.
+     */
+    public function getSubChannels(int $guildId)
+    {
+        return $this->requestApi("guilds/$guildId/channels");
+    }
 }
