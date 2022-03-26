@@ -64,6 +64,11 @@ class QQChannelBotClient extends Client
      */
     protected static $webSocketClient;
 
+    /**
+     * @var array
+     */
+    protected $webSocketOptions = [];
+
     public const REQUEST_URL_TEMPLATE = [
         'production' => 'https://api.sgroup.qq.com/channels/%s/messages',
         'sandbox' => 'https://sandbox.api.sgroup.qq.com/channels/%s/messages',
@@ -107,19 +112,19 @@ class QQChannelBotClient extends Client
             if (! self::$webSocketClient instanceof WrenchClient) {
                 self::$webSocketClient = new WrenchClient(
                     $wssGateway = self::WSS_GATEWAY[$this->getEnvironment()],
-                    str_replace('wss://', 'https://', $wssGateway)
+                    str_replace('wss://', 'https://', $wssGateway),
+                    $this->webSocketOptions
                 );
             }
 
             self::$webSocketClient->connect();
-            $identifyData = [
+            self::$webSocketClient->sendData(json_encode([
                 'op' => 2, // https://bot.q.qq.com/wiki/develop/api/gateway/opcode.html
                 'd' => [
                     'token' => $client->getAppid().'.'.$client->getToken(),
                     'intents' => 0 | 1 << 9, // https://bot.q.qq.com/wiki/develop/api/gateway/intents.html
                 ],
-            ];
-            self::$webSocketClient->sendData(json_encode($identifyData));
+            ]));
             self::$webSocketClient->disconnect();
         });
 
@@ -184,5 +189,12 @@ class QQChannelBotClient extends Client
     public function getChannelId(): string
     {
         return $this->getOption('channel_id');
+    }
+
+    public function setWebSocketOptions(array $webSocketOptions)
+    {
+        $this->webSocketOptions = $webSocketOptions;
+
+        return $this;
     }
 }

@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * This file is part of the guanguans/notify.
+ *
+ * (c) guanguans <ityaozm@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled.
+ */
+
+namespace Guanguans\Notify\Tests\Feature;
+
+use Guanguans\Notify\Factory;
+use Guanguans\Notify\Tests\TestCase;
+use GuzzleHttp\Exception\ClientException;
+
+class QQChannelBotTest extends TestCase
+{
+    public function testQQChannelBot()
+    {
+        $this->expectException(ClientException::class);
+
+        Factory::qqChannelBot()
+            ->setAppid('102001')
+            ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
+            ->setChannelId('4317')
+            // ->sandboxEnvironment()
+            // ->setSecret('3yfBSaUCfy3zlQr5')
+            ->setMessage(\Guanguans\Notify\Messages\QQChannelBotMessage::create([
+                'content' => 'This is content.',
+                'image' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+                // 'msg_id' => 0,
+                // 'embed' => [],
+                // 'ark' => [],
+                // 'message_reference' => [],
+                // 'markdown' => [],
+            ]))
+            ->send();
+    }
+}

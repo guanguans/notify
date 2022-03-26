@@ -36,6 +36,7 @@ class QQChannelBotMessage extends Message
     protected $allowedTypes = [
         'embed' => 'array',
         'ark' => 'array',
+        'message_reference' => 'array',
         'markdown' => 'array',
     ];
 
