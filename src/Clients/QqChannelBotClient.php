@@ -57,7 +57,7 @@ use Wrench\Client as WrenchClient;
  * --form 'content="This is content."'
  * ```
  */
-class QQChannelBotClient extends Client
+class QqChannelBotClient extends Client
 {
     /**
      * @var \Wrench\Client

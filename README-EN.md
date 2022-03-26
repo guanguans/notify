@@ -551,10 +551,10 @@ Factory::qqChannelBot()
     // ->sandboxEnvironment()
     // ->setSecret('3yfBSaUCfy3zlQr5')
     ->setMessage(
-        \Guanguans\Notify\Messages\QQChannelBotMessage::create([
+        \Guanguans\Notify\Messages\QqChannelBotMessage::create([
             'content' => 'This is content.',
             'image' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
-            // 'msg_id' => 0,
+            // 'msg_id' => '3yfBSa',
             // 'embed' => [],
             // 'ark' => [],
             // 'message_reference' => [],

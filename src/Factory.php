@@ -31,7 +31,7 @@ use Guanguans\Notify\Support\Str;
  * @method static \Guanguans\Notify\Clients\PushClient          push(array $options = [])
  * @method static \Guanguans\Notify\Clients\PushDeerClient      pushDeer(array $options = [])
  * @method static \Guanguans\Notify\Clients\PushPlusClient      pushPlus(array $options = [])
- * @method static \Guanguans\Notify\Clients\QQChannelBotClient  qqChannelBot(array $options = [])
+ * @method static \Guanguans\Notify\Clients\QqChannelBotClient  qqChannelBot(array $options = [])
  * @method static \Guanguans\Notify\Clients\RocketChatClient    rocketChat(array $options = [])
  * @method static \Guanguans\Notify\Clients\ServerChanClient    serverChan(array $options = [])
  * @method static \Guanguans\Notify\Clients\TelegramClient      telegram(array $options = [])

@@ -14,9 +14,9 @@ use Guanguans\Notify\Factory;
 use Guanguans\Notify\Tests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
-class QQChannelBotTest extends TestCase
+class QqChannelBotTest extends TestCase
 {
-    public function testQQChannelBot()
+    public function testQqChannelBot()
     {
         $this->expectException(ClientException::class);
 
@@ -26,10 +26,10 @@ class QQChannelBotTest extends TestCase
             ->setChannelId('4317')
             // ->sandboxEnvironment()
             // ->setSecret('3yfBSaUCfy3zlQr5')
-            ->setMessage(\Guanguans\Notify\Messages\QQChannelBotMessage::create([
+            ->setMessage(\Guanguans\Notify\Messages\QqChannelBotMessage::create([
                 'content' => 'This is content.',
                 'image' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
-                // 'msg_id' => 0,
+                // 'msg_id' => '3yfBSa',
                 // 'embed' => [],
                 // 'ark' => [],
                 // 'message_reference' => [],

@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @see https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html#%E5%8F%82%E6%95%B0
  */
-class QQChannelBotMessage extends Message
+class QqChannelBotMessage extends Message
 {
     /**
      * @var string[]
