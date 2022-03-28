@@ -10,7 +10,7 @@
 
 namespace Guanguans\Notify\Clients;
 
-use Wrench\Client as WrenchClient;
+use WebSocket\Client as WebSocketClient;
 
 /**
  * @see https://bot.q.qq.com/wiki
@@ -60,7 +60,7 @@ use Wrench\Client as WrenchClient;
 class QqChannelBotClient extends Client
 {
     /**
-     * @var \Wrench\Client
+     * @var \WebSocket\Client
      */
     protected static $webSocketClient;
 
@@ -109,23 +109,22 @@ class QqChannelBotClient extends Client
         });
 
         $this->sending(function (self $client) {
-            if (! self::$webSocketClient instanceof WrenchClient) {
-                self::$webSocketClient = new WrenchClient(
-                    $wssGateway = self::WSS_GATEWAY[$this->getEnvironment()],
-                    str_replace('wss://', 'https://', $wssGateway),
+            if (! self::$webSocketClient instanceof WebSocketClient) {
+                self::$webSocketClient = new WebSocketClient(
+                    self::WSS_GATEWAY[$this->getEnvironment()],
                     $this->webSocketOptions
                 );
             }
 
-            self::$webSocketClient->connect();
-            self::$webSocketClient->sendData(json_encode([
+            self::$webSocketClient->text(json_encode([
                 'op' => 2, // https://bot.q.qq.com/wiki/develop/api/gateway/opcode.html
                 'd' => [
                     'token' => $client->getAppid().'.'.$client->getToken(),
                     'intents' => 0 | 1 << 9, // https://bot.q.qq.com/wiki/develop/api/gateway/intents.html
                 ],
             ]));
-            self::$webSocketClient->disconnect();
+
+            self::$webSocketClient->close();
         });
 
         parent::__construct($options);
