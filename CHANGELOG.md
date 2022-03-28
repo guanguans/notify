@@ -2,6 +2,18 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## v1.9.2 - 2022-03-28
+
+## What's Changed
+
+- Replace `wrench/wrench` -> `textalk/websocket`(#12) by @guanguans in https://github.com/guanguans/notify/pull/13
+
+## New Contributors
+
+- @guanguans made their first contribution in https://github.com/guanguans/notify/pull/13
+
+**Full Changelog**: https://github.com/guanguans/notify/compare/v1.19.1...v1.9.2
+
 ## v1.19.1 - 2022-03-26
 
 **Full Changelog**: https://github.com/guanguans/notify/compare/v1.19.0...v1.19.1
