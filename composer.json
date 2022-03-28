@@ -77,7 +77,7 @@
         "psr/log": "^1.1 || ^2.0 || ^3.0",
         "symfony/mailer": "^5.3 || ^6.0",
         "symfony/options-resolver": "^5.3 || ^6.0",
-        "wrench/wrench": "^3.0.0-rc1"
+        "textalk/websocket": "^1.5"
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.7",
