@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Multi platform notification SDK(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip).
+> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip).
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)

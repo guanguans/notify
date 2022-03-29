@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> 多平台通知 SDK(Bark、Chanify、钉钉群机器人、Discord、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、QQ 频道机器人、Rocket Chat、Server 酱、Slack、Telegram、Webhook、企业微信群机器人、息知、Zulip)。
+> 推送通知 sdk(Bark、Chanify、钉钉群机器人、Discord、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、QQ 频道机器人、Rocket Chat、Server 酱、Slack、Telegram、Webhook、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
