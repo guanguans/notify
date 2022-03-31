@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> 推送通知 sdk(Bark、Chanify、钉钉群机器人、Discord、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、QQ 频道机器人、Rocket Chat、Server 酱、Slack、Telegram、Webhook、企业微信群机器人、息知、Zulip)。
+> 推送通知 sdk(Bark、Chanify、钉钉群机器人、Discord、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、QQ 频道机器人、Rocket Chat、Server 酱、Showdoc Push、Slack、Telegram、Webhook、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -37,6 +37,7 @@
 * [QQ 频道机器人](https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [Server 酱](https://sct.ftqq.com)
+* [Showdoc Push](https://push.showdoc.com.cn/#/)
 * [Slack](https://api.slack.com/messaging/webhooks)
 * [Telegram](https://core.telegram.org/bots/api#sendmessage)
 * Webhook
@@ -616,6 +617,17 @@ Factory::serverChan()
 
 // Check
 Factory::serverChan()->check(3334849, 'SCTJlJV1J87hS');
+```
+</details>
+
+<details>
+<summary><b>Showdoc Push</b></summary>
+
+```php
+Factory::showdocPush()
+    ->setToken('f096edb95f92540219a41e47060eeb6d9461')
+    ->setMessage(new \Guanguans\Notify\Messages\ShowdocPushMessage('This is title.', 'This is content.'))
+    ->send();
 ```
 </details>
 
