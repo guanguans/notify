@@ -34,6 +34,7 @@ use Guanguans\Notify\Support\Str;
  * @method static \Guanguans\Notify\Clients\QqChannelBotClient  qqChannelBot(array $options = [])
  * @method static \Guanguans\Notify\Clients\RocketChatClient    rocketChat(array $options = [])
  * @method static \Guanguans\Notify\Clients\ServerChanClient    serverChan(array $options = [])
+ * @method static \Guanguans\Notify\Clients\ShowdocPushClient   showdocPush(array $options = [])
  * @method static \Guanguans\Notify\Clients\TelegramClient      telegram(array $options = [])
  * @method static \Guanguans\Notify\Clients\SlackClient         slack(array $options = [])
  * @method static \Guanguans\Notify\Clients\WebhookClient       webhook(array $options = [])
