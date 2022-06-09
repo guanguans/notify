@@ -25,7 +25,7 @@ class MarkdownMessage extends Message
         'title',
         'text',
         'atMobiles',
-        'atUserIds',
+        'atDingtalkIds',
         'isAtAll',
     ];
 
@@ -34,7 +34,7 @@ class MarkdownMessage extends Message
      */
     protected $allowedTypes = [
         'atMobiles' => ['int', 'string', 'array'],
-        'atUserIds' => ['int', 'string', 'array'],
+        'atDingtalkIds' => ['int', 'string', 'array'],
         'isAtAll' => 'bool',
     ];
 
@@ -44,7 +44,7 @@ class MarkdownMessage extends Message
             $resolver->setNormalizer('atMobiles', function (Options $options, $value) {
                 return (array) $value;
             });
-            $resolver->setNormalizer('atUserIds', function (Options $options, $value) {
+            $resolver->setNormalizer('atDingtalkIds', function (Options $options, $value) {
                 return (array) $value;
             });
         });

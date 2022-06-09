@@ -18,6 +18,7 @@ class NowPushTest extends TestCase
     public function testNote()
     {
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        // $this->expectException(\GuzzleHttp\Exception\ServerException::class);
 
         Factory::nowPush()
             ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
@@ -28,6 +29,7 @@ class NowPushTest extends TestCase
     public function testImage()
     {
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        // $this->expectException(\GuzzleHttp\Exception\ServerException::class);
 
         Factory::nowPush()
             ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
@@ -38,6 +40,7 @@ class NowPushTest extends TestCase
     public function testLink()
     {
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        // $this->expectException(\GuzzleHttp\Exception\ServerException::class);
 
         Factory::nowPush()
             ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
@@ -48,6 +51,7 @@ class NowPushTest extends TestCase
     public function testGetUser()
     {
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        // $this->expectException(\GuzzleHttp\Exception\ServerException::class);
 
         Factory::nowPush()
             ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')

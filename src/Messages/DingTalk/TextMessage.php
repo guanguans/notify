@@ -24,7 +24,7 @@ class TextMessage extends Message
     protected $defined = [
         'content',
         'atMobiles',
-        'atUserIds',
+        'atDingtalkIds',
         'isAtAll',
     ];
 
@@ -33,7 +33,7 @@ class TextMessage extends Message
      */
     protected $allowedTypes = [
         'atMobiles' => ['int', 'string', 'array'],
-        'atUserIds' => ['int', 'string', 'array'],
+        'atDingtalkIds' => ['int', 'string', 'array'],
         'isAtAll' => 'bool',
     ];
 
@@ -43,7 +43,7 @@ class TextMessage extends Message
             $resolver->setNormalizer('atMobiles', function (Options $options, $value) {
                 return (array) $value;
             });
-            $resolver->setNormalizer('atUserIds', function (Options $options, $value) {
+            $resolver->setNormalizer('atDingtalkIds', function (Options $options, $value) {
                 return (array) $value;
             });
         });
