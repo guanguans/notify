@@ -88,6 +88,10 @@
         "textalk/websocket": "^1.5",
         "vimeo/psalm": "^4.10"
     },
+    "suggest": {
+        "symfony/mailer": "Required to use the email.",
+        "textalk/websocket": "Required to use the QQ channel bot."
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {
