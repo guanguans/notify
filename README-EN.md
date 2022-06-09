@@ -141,7 +141,7 @@ Factory::dingTalk()
     ->setMessage((new \Guanguans\Notify\Messages\DingTalk\TextMessage([
         'content'   => 'This is content(keyword).',
         // 'atMobiles' => [13948484984],
-        // 'atUserIds' => [123456],
+        // 'atDingtalkIds' => [123456],
         // 'isAtAll'   => false,
     ])))
     ->send();
@@ -166,7 +166,7 @@ Factory::dingTalk()
         'title' => 'This is title.',
         'text'  => '> This is text(keyword).',
         // 'atMobiles' => [13948484984],
-        // 'atUserIds' => [123456],
+        // 'atDingtalkIds' => [123456],
         // 'isAtAll'   => false,
     ])))
     ->send();
