@@ -271,6 +271,11 @@ Factory::discord()
 <details>
 <summary><b>Email</b></summary>
 
+```bash
+# Install dependencies
+$ composer require symfony/mailer -vvv
+```
+
 ```php
 $email = \Guanguans\Notify\Messages\EmailMessage::create()
     ->from('from@qq.com')
@@ -543,6 +548,11 @@ Factory::pushPlus()
 
 <details>
 <summary><b>QQ Channel Bot</b></summary>
+
+```bash
+# Install dependencies
+$ composer require textalk/websocket -vvv
+```
 
 ```php
 // Get the list of user channels

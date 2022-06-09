@@ -271,6 +271,11 @@ Factory::discord()
 <details>
 <summary><b>邮件</b></summary>
 
+```bash
+# 安装依赖
+$ composer require symfony/mailer -vvv
+```
+
 ```php
 $email = \Guanguans\Notify\Messages\EmailMessage::create()
     ->from('from@qq.com')
@@ -543,6 +548,11 @@ Factory::pushPlus()
 
 <details>
 <summary><b>QQ 频道机器人</b></summary>
+
+```bash
+# 安装依赖
+$ composer require textalk/websocket -vvv
+```
 
 ```php
 // 获取用户频道列表
