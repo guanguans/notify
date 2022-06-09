@@ -2,6 +2,15 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## v1.20.1 - 2022-06-09
+
+### What's Changed
+
+- Bump codecov/codecov-action from 2.1.0 to 3 by @dependabot in https://github.com/guanguans/notify/pull/16
+- Bump dependabot/fetch-metadata from 1.3.0 to 1.3.1 by @dependabot in https://github.com/guanguans/notify/pull/17
+
+**Full Changelog**: https://github.com/guanguans/notify/compare/v1.20.0...v1.20.1
+
 ## v1.20.0 - 2022-03-31
 
 **Full Changelog**: https://github.com/guanguans/notify/compare/v1.19.2...v1.20.0
