@@ -12,11 +12,14 @@ namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
 use Guanguans\Notify\Tests\TestCase;
+use GuzzleHttp\Exception\ServerException;
 
 class PushDeerTest extends TestCase
 {
     public function testPushDeer()
     {
+        $this->expectException(ServerException::class);
+
         $ret = Factory::pushDeer()
             ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
             ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('## This is text.', '> This is desp.', 'markdown'))

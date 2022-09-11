@@ -17,6 +17,8 @@ class NowPushTest extends TestCase
 {
     public function testNote()
     {
+        $this->markTestSkipped(__METHOD__.' is skipped.');
+
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
         // $this->expectException(\GuzzleHttp\Exception\ServerException::class);
 
@@ -28,6 +30,8 @@ class NowPushTest extends TestCase
 
     public function testImage()
     {
+        $this->markTestSkipped(__METHOD__.' is skipped.');
+
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
         // $this->expectException(\GuzzleHttp\Exception\ServerException::class);
 
@@ -39,6 +43,8 @@ class NowPushTest extends TestCase
 
     public function testLink()
     {
+        $this->markTestSkipped(__METHOD__.' is skipped.');
+
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
         // $this->expectException(\GuzzleHttp\Exception\ServerException::class);
 
@@ -50,6 +56,8 @@ class NowPushTest extends TestCase
 
     public function testGetUser()
     {
+        $this->markTestSkipped(__METHOD__.' is skipped.');
+
         $this->expectException(\GuzzleHttp\Exception\ClientException::class);
         // $this->expectException(\GuzzleHttp\Exception\ServerException::class);
 

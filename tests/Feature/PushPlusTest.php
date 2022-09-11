@@ -12,12 +12,15 @@ namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
 use Guanguans\Notify\Tests\TestCase;
+use GuzzleHttp\Exception\ClientException;
 
 class PushPlusTest extends TestCase
 {
     public function testPushPlus()
     {
         // $this->markTestSkipped(__CLASS__.' is skipped.');
+
+        $this->expectException(ClientException::class);
 
         $ret = Factory::pushPlus()
             ->setToken('762e3f7efd764ad5acaa9cc26ac20')
