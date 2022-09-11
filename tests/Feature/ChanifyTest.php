@@ -21,7 +21,7 @@ class ChanifyTest extends TestCase
 
         Factory::chanify()
             ->setToken('CIDfh4gGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFGhR7vAyf8Uj5UQhhK4n6QfVzih96QyIECAEQAQ.E0eBnLbfNwWrWZ1YSAZfkCQWZAPdBl6pVr26lRf6')
-            ->setMessage((new \Guanguans\Notify\Messages\Chanify\TextMessage([
+            ->setMessage(new \Guanguans\Notify\Messages\Chanify\TextMessage([
                 'title' => 'This is title.',
                 'text' => 'This is text.',
                 // 'copy'     => 'This is copy.',
@@ -32,7 +32,7 @@ class ChanifyTest extends TestCase
                 // 'autocopy' => 0,
                 // 'sound'    => 0,
                 // 'priority' => 10,
-            ])))
+            ]))
             ->send();
     }
 
@@ -42,11 +42,11 @@ class ChanifyTest extends TestCase
 
         Factory::chanify()
             ->setToken('CIDfh4gGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFGhR7vAyf8Uj5UQhhK4n6QfVzih96QyIECAEQAQ.E0eBnLbfNwWrWZ1YSAZfkCQWZAPdBl6pVr26lRf6')
-            ->setMessage((new \Guanguans\Notify\Messages\Chanify\LinkMessage([
+            ->setMessage(new \Guanguans\Notify\Messages\Chanify\LinkMessage([
                 'link' => 'https://github.com/guanguans/notify',
                 // 'sound'    => 0,
                 // 'priority' => 10,
-            ])))
+            ]))
             ->send();
     }
 }

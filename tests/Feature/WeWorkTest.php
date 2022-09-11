@@ -21,11 +21,11 @@ class WeWorkTest extends TestCase
 
         $ret = Factory::weWork()
             ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778f')
-            ->setMessage((new \Guanguans\Notify\Messages\WeWork\TextMessage([
+            ->setMessage(new \Guanguans\Notify\Messages\WeWork\TextMessage([
                 'content' => 'This is content.',
                 // 'mentioned_list'        => ["wangqing", "@all"],
                 // 'mentioned_mobile_list' => ["13800001111", "@all"],
-            ])))
+            ]))
             ->send();
 
         echo $ret['errcode'];

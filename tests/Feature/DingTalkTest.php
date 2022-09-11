@@ -23,12 +23,12 @@ class DingTalkTest extends TestCase
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
             ->setSecret('SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee517')
-            ->setMessage((new \Guanguans\Notify\Messages\DingTalk\TextMessage([
+            ->setMessage(new \Guanguans\Notify\Messages\DingTalk\TextMessage([
                 'content' => 'This is content(keyword).',
                 // 'atMobiles' => [13948484984],
                 // 'atDingtalkIds' => [123456],
                 // 'isAtAll'   => false,
-            ])))
+            ]))
             ->send();
 
         echo $ret['errcode'];
@@ -42,12 +42,12 @@ class DingTalkTest extends TestCase
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
             ->setSecret('SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee517')
-            ->setMessage((new \Guanguans\Notify\Messages\DingTalk\LinkMessage([
+            ->setMessage(new \Guanguans\Notify\Messages\DingTalk\LinkMessage([
                 'title' => 'This is content.',
                 'text' => 'This is text(keyword).',
                 'messageUrl' => 'https://github.com/guanguans/notify',
                 'picUrl' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
-            ])))
+            ]))
             ->send();
 
         echo $ret['errcode'];
@@ -61,13 +61,13 @@ class DingTalkTest extends TestCase
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
             ->setSecret('SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee517')
-            ->setMessage((new \Guanguans\Notify\Messages\DingTalk\MarkdownMessage([
+            ->setMessage(new \Guanguans\Notify\Messages\DingTalk\MarkdownMessage([
                 'title' => 'This is title.',
                 'text' => '> This is text(keyword).',
                 // 'atMobiles' => [13948484984],
                 // 'atDingtalkIds' => [123456],
                 // 'isAtAll'   => false,
-            ])))
+            ]))
             ->send();
 
         echo $ret['errcode'];
