@@ -53,7 +53,7 @@ abstract class Client implements GatewayInterface, RequestInterface
     protected $sendedCallbacks = [];
 
     /**
-     * @var \Psr\Http\Message\ResponseInterface|\Overtrue\Http\Support\Collection|array|object|string
+     * @var \Psr\Http\Message\ResponseInterface|\Overtrue\Http\Support\Collection|array|object|string|null
      */
     protected $response;
 
@@ -90,6 +90,9 @@ abstract class Client implements GatewayInterface, RequestInterface
         return $this;
     }
 
+    /**
+     * @return \Guanguans\Notify\Contracts\MessageInterface|\Symfony\Component\Mime\RawMessage|\Guanguans\Notify\Messages\Message
+     */
     public function getMessage(): MessageInterface
     {
         return $this->getOption('message');
@@ -118,7 +121,7 @@ abstract class Client implements GatewayInterface, RequestInterface
     }
 
     /**
-     * @return array|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string
+     * @return array|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string|null
      */
     public function getResponse()
     {

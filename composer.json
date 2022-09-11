@@ -146,7 +146,7 @@
         "post-merge": [
             "composer install"
         ],
-        "psalm": "./vendor/bin/psalm",
+        "psalm": "./vendor/bin/psalm --long-progress",
         "psalm-baseline": "@psalm --update-baseline",
         "rector": "./vendor/bin/rector --clear-cache --ansi -v",
         "rector-dry-run": "@rector --dry-run",

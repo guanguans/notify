@@ -29,7 +29,7 @@ class LoggerClient extends Client
     ];
 
     /**
-     * @var string[]
+     * @var string[]|array[]
      */
     protected $allowedValues = [
         'level' => [

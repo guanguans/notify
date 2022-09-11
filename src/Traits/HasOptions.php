@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 trait HasOptions
 {
     /**
-     * @var string[]
+     * @var array<array-key, mixed>
      */
     protected $options = [];
 

@@ -25,7 +25,7 @@ class RocketChatMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var string|array[]
      */
     protected $allowedTypes = [
         'attachments' => ['array'],

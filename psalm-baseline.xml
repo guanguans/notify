@@ -1,2 +1,156 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.26.0@6998fabb2bf528b65777bf9941920888d23c03ac"/>
+<files psalm-version="4.26.0@6998fabb2bf528b65777bf9941920888d23c03ac">
+  <file src="src/Clients/BarkClient.php">
+    <UnusedClosureParam occurrences="1">
+      <code>$options</code>
+    </UnusedClosureParam>
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('base_uri')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/ChanifyClient.php">
+    <UnusedClosureParam occurrences="1">
+      <code>$options</code>
+    </UnusedClosureParam>
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('base_uri')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/Client.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('token')</code>
+    </InvalidReturnStatement>
+    <MismatchingDocblockReturnType occurrences="1"/>
+  </file>
+  <file src="src/Clients/DingTalkClient.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('secret')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/DiscordClient.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('webhook_url')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/FeiShuClient.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('secret')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/GitterClient.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('room_id')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/GoogleChatClient.php">
+    <InvalidReturnStatement occurrences="3">
+      <code>$this-&gt;getOption('key')</code>
+      <code>$this-&gt;getOption('space')</code>
+      <code>$this-&gt;getOption('thread_key')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/LoggerClient.php">
+    <InvalidReturnStatement occurrences="2">
+      <code>$this-&gt;getOption('level')</code>
+      <code>$this-&gt;getOption('logger')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/MailerClient.php">
+    <InvalidReturnStatement occurrences="2">
+      <code>$this-&gt;getOption('dsn')</code>
+      <code>$this-&gt;getOption('envelope')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/MattermostClient.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('base_uri')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/PushBackClient.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('synchronous_mode')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/PushDeerClient.php">
+    <UnusedClosureParam occurrences="1">
+      <code>$options</code>
+    </UnusedClosureParam>
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('base_uri')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/QqChannelBotClient.php">
+    <InvalidReturnStatement occurrences="4">
+      <code>$this-&gt;getOption('appid')</code>
+      <code>$this-&gt;getOption('channel_id')</code>
+      <code>$this-&gt;getOption('environment')</code>
+      <code>$this-&gt;getOption('secret')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/RocketChatClient.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('base_uri')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/SlackClient.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('webhook_url')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/WebhookClient.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('url')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/XiZhiClient.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('type')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Clients/ZulipClient.php">
+    <InvalidReturnStatement occurrences="2">
+      <code>$this-&gt;getOption('base_uri')</code>
+      <code>$this-&gt;getOption('email')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Messages/Chanify/TextMessage.php">
+    <UnusedClosureParam occurrences="1">
+      <code>$options</code>
+    </UnusedClosureParam>
+  </file>
+  <file src="src/Messages/DingTalk/FeedCardMessage.php">
+    <UnusedClosureParam occurrences="1">
+      <code>$options</code>
+    </UnusedClosureParam>
+  </file>
+  <file src="src/Messages/DingTalk/MarkdownMessage.php">
+    <UnusedClosureParam occurrences="2">
+      <code>$options</code>
+    </UnusedClosureParam>
+  </file>
+  <file src="src/Messages/DingTalk/TextMessage.php">
+    <UnusedClosureParam occurrences="2">
+      <code>$options</code>
+    </UnusedClosureParam>
+  </file>
+  <file src="src/Messages/DiscordMessage.php">
+    <UnusedClosureParam occurrences="2">
+      <code>$options</code>
+    </UnusedClosureParam>
+  </file>
+  <file src="src/Messages/SlackMessage.php">
+    <UnusedClosureParam occurrences="1">
+      <code>$options</code>
+    </UnusedClosureParam>
+  </file>
+  <file src="src/Messages/WeWork/NewsMessage.php">
+    <UnusedClosureParam occurrences="1">
+      <code>$options</code>
+    </UnusedClosureParam>
+  </file>
+  <file src="src/Messages/WeWork/TextMessage.php">
+    <UnusedClosureParam occurrences="2">
+      <code>$options</code>
+    </UnusedClosureParam>
+  </file>
+</files>

@@ -37,7 +37,7 @@ class TextMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var mixed[]
      */
     protected $options = [
         'autocopy' => 0,

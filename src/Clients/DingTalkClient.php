@@ -56,7 +56,7 @@ class DingTalkClient extends Client
     /**
      * @return string
      */
-    protected function getSign(string $secret, int $timestamp)
+    protected function getSign(string $secret, string $timestamp)
     {
         $data = sprintf("%s\n%s", $timestamp, $secret);
 
