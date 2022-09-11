@@ -84,6 +84,7 @@
         "mockery/mockery": "^1.2",
         "overtrue/phplint": "^3.0",
         "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+        "rector/rector": "^0.14",
         "symfony/mailer": "^5.3 || ^6.0",
         "textalk/websocket": "^1.5",
         "vimeo/psalm": "^4.10"
@@ -112,44 +113,46 @@
     },
     "extra": {
         "hooks": {
-            "pre-commit": [
-                "composer style-lint",
-                "composer test"
+            "post-merge": [
+                "composer checks"
             ],
-            "pre-push": [
-                "composer style-lint",
-                "composer test"
+            "pre-commit": [
+                "composer checks"
             ]
         }
     },
     "scripts": {
         "post-install-cmd": [
-            "cghooks add --ignore-lock",
-            "cghooks update"
+            "@cghooks add --ignore-lock",
+            "@cghooks update"
         ],
         "post-update-cmd": [
-            "cghooks update"
+            "@cghooks update"
         ],
         "cghooks": "./vendor/bin/cghooks",
+        "checks": [
+            "@mark-start",
+            "@style-lint",
+            "@mark-separate",
+            "@test",
+            "@mark-finish"
+        ],
         "lint": "./vendor/bin/phplint --no-cache --configuration=.phplint.yml --ansi",
+        "mark-finish": "printf '\\n!\\n!\\t\\033[0;32m%s\\033[0m\\n!\\n\\n' \"Finished\"",
+        "mark-separate": "printf '\\n!\\n!\\t\\033[0;33m%s\\033[0m\\n!\\n\\n' \"----------------\"",
+        "mark-start": "printf '\\n!\\n!\\t\\033[0;36m%s\\033[0m\\n!\\n\\n' \"Started\"",
         "md-fix": "lint-md --config .lintmdrc --fix *.md .github/*.md .github/ISSUE_TEMPLATE/*.md",
         "md-lint": "lint-md --config .lintmdrc *.md .github/*.md .github/ISSUE_TEMPLATE/*.md",
-        "post-merge": "composer install",
+        "post-merge": [
+            "composer install"
+        ],
         "psalm": "./vendor/bin/psalm",
+        "psalm-baseline": "@psalm --update-baseline",
+        "rector": "./vendor/bin/rector --clear-cache --ansi -v",
+        "rector-dry-run": "@rector --dry-run",
         "style-fix": "./vendor/bin/php-cs-fixer fix --using-cache=no --config=.php-cs-fixer.php --ansi",
-        "style-lint": "./vendor/bin/php-cs-fixer fix --using-cache=no --diff --config=.php-cs-fixer.php --dry-run --ansi",
+        "style-lint": "@style-fix --diff --dry-run",
         "test": "./vendor/bin/phpunit --coverage-text --colors=always --verbose",
         "test-coverage": "./vendor/bin/phpunit --coverage-html=coverage/ --coverage-clover=clover.xml --color=always --verbose"
-    },
-    "scripts-descriptions": {
-        "cghooks": "Run git cghooks.",
-        "lint": "Run phplint checks.",
-        "md-fix": "Run markdown fixing.",
-        "md-lint": "Run markdown checks.",
-        "psalm": "Run psalm checks.",
-        "style-fix": "Run style checks and fix violations.",
-        "style-lint": "Run style checks (only dry run - no fixing!).",
-        "test": "Run all tests.",
-        "test-coverage": "Run all tests with coverage."
     }
 }
