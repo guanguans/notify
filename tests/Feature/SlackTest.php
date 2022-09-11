@@ -11,14 +11,15 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\SlackMessage;
 use Guanguans\Notify\Tests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
 class SlackTest extends TestCase
 {
-    public function testSlack()
+    public function testSlack(): void
     {
-        $message = new \Guanguans\Notify\Messages\SlackMessage([
+        $slackMessage = new SlackMessage([
             'text' => 'This is text.',
             'channel' => '#general',
             'username' => 'notify bot',
@@ -44,7 +45,7 @@ class SlackTest extends TestCase
 
         Factory::slack()
             ->setWebhookUrl('https://hooks.slack.com/services/TPU9A98MT/B038KNUC0GY/6pKH3vfa3mjlUPcgLSjzR')
-            ->setMessage($message->addAttachment($attachment))
+            ->setMessage($slackMessage->addAttachment($attachment))
             ->send();
     }
 }

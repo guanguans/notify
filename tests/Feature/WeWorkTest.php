@@ -11,17 +11,21 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\WeWork\ImageMessage;
+use Guanguans\Notify\Messages\WeWork\MarkdownMessage;
+use Guanguans\Notify\Messages\WeWork\NewsMessage;
+use Guanguans\Notify\Messages\WeWork\TextMessage;
 use Guanguans\Notify\Tests\TestCase;
 
 class WeWorkTest extends TestCase
 {
-    public function testText()
+    public function testText(): void
     {
         $this->expectOutputString('93000');
 
         $ret = Factory::weWork()
             ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778f')
-            ->setMessage(new \Guanguans\Notify\Messages\WeWork\TextMessage([
+            ->setMessage(new TextMessage([
                 'content' => 'This is content.',
                 // 'mentioned_list'        => ["wangqing", "@all"],
                 // 'mentioned_mobile_list' => ["13800001111", "@all"],
@@ -31,41 +35,41 @@ class WeWorkTest extends TestCase
         echo $ret['errcode'];
     }
 
-    public function testMarkdown()
+    public function testMarkdown(): void
     {
         $this->expectOutputString('93000');
 
         $ret = Factory::weWork()
             ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
-            ->setMessage(new \Guanguans\Notify\Messages\WeWork\MarkdownMessage("# This is title.\n This is content."))
+            ->setMessage(new MarkdownMessage("# This is title.\n This is content."))
             ->send();
 
         echo $ret['errcode'];
     }
 
-    public function testImage()
+    public function testImage(): void
     {
         $this->expectOutputString('93000');
 
         $ret = Factory::weWork()
             ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778')
-            ->setMessage(new \Guanguans\Notify\Messages\WeWork\ImageMessage('https://avatars.githubusercontent.com/u/22309277?v=4'))
+            ->setMessage(new ImageMessage('https://avatars.githubusercontent.com/u/22309277?v=4'))
             ->send();
 
         echo $ret['errcode'];
     }
 
-    public function testNews()
+    public function testNews(): void
     {
         $this->expectOutputString('93000');
 
-        $message = new \Guanguans\Notify\Messages\WeWork\NewsMessage([
+        $newsMessage = new NewsMessage([
             'title' => 'This is title1.',
             'description' => 'This is description.',
             'url' => 'https://github.com/guanguans/notify',
             'picurl' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
         ]);
-        $message->addArticle([
+        $newsMessage->addArticle([
             'title' => 'This is title2.',
             'description' => 'This is description.',
             'url' => 'https://github.com/guanguans/notify',
@@ -73,7 +77,7 @@ class WeWorkTest extends TestCase
         ]);
         $ret = Factory::weWork()
             ->setToken('73a3d5a3-ceff-4da8-bcf3-ff5891778f')
-            ->setMessage($message)
+            ->setMessage($newsMessage)
             ->send();
 
         echo $ret['errcode'];

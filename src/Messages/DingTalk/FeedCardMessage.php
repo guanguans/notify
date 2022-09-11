@@ -16,6 +16,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FeedCardMessage extends Message
 {
+    /**
+     * @var string
+     */
     protected $type = 'feedCard';
 
     /**
@@ -25,6 +28,9 @@ class FeedCardMessage extends Message
         'links',
     ];
 
+    /**
+     * @var array<string, string>
+     */
     protected $allowedTypes = [
         'links' => 'array',
     ];
@@ -43,21 +49,21 @@ class FeedCardMessage extends Message
         ]);
     }
 
-    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setNormalizer('links', function (Options $options, $value) {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function ($resolver): void {
+            $resolver->setNormalizer('links', static function (Options $options, $value) {
                 return isset($value[0]) ? $value : [$value];
             });
         });
     }
 
-    public function setLinks(array $Links)
+    public function setLinks(array $Links): self
     {
         return $this->addLinks($Links);
     }
 
-    public function addLinks(array $Links)
+    public function addLinks(array $Links): self
     {
         foreach ($Links as $Link) {
             $this->addLink($Link);
@@ -66,15 +72,15 @@ class FeedCardMessage extends Message
         return $this;
     }
 
-    public function setLink(array $Link)
+    public function setLink(array $Link): self
     {
         return $this->addLink($Link);
     }
 
-    public function addLink(array $Link)
+    public function addLink(array $Link): self
     {
-        $this->options['links'][] = configure_options($Link, function (OptionsResolver $resolver) {
-            $resolver->setDefined([
+        $this->options['links'][] = configure_options($Link, static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver->setDefined([
                 'title',
                 'messageURL',
                 'picURL',
@@ -84,7 +90,10 @@ class FeedCardMessage extends Message
         return $this;
     }
 
-    public function transformToRequestParams()
+    /**
+     * @return array<int|string, mixed>
+     */
+    public function transformToRequestParams(): array
     {
         return [
             'msgtype' => $this->type,

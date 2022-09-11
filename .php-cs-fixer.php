@@ -8,6 +8,9 @@
  * This source file is subject to the MIT license that is bundled.
  */
 
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
+
 $header = <<<EOF
 This file is part of the guanguans/notify.
 
@@ -16,7 +19,7 @@ This file is part of the guanguans/notify.
 This source file is subject to the MIT license that is bundled.
 EOF;
 
-$finder = PhpCsFixer\Finder::create()
+$finder = Finder::create()
     ->in([
         __DIR__.'/src',
         __DIR__.'/tests',
@@ -34,7 +37,7 @@ $finder = PhpCsFixer\Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true);
 
-return (new PhpCsFixer\Config())
+return (new Config())
     ->setRules([
         // '@PSR12' => true,
         '@Symfony' => true,

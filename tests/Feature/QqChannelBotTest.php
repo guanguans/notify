@@ -16,7 +16,7 @@ use GuzzleHttp\Exception\ClientException;
 
 class QqChannelBotTest extends TestCase
 {
-    public function testQqChannelBot()
+    public function testQqChannelBot(): void
     {
         $this->expectException(ClientException::class);
 

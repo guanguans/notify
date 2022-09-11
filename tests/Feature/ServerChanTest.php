@@ -11,21 +11,23 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\ServerChanMessage;
 use Guanguans\Notify\Tests\TestCase;
+use GuzzleHttp\Exception\ClientException;
 
 class ServerChanTest extends TestCase
 {
-    public function testSendMessage()
+    public function testSendMessage(): void
     {
-        $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        $this->expectException(ClientException::class);
 
         Factory::serverChan()
             ->setToken('SCT35149Thtf1g2Bc14QJuQ6HFpW5Y')
-            ->setMessage(new \Guanguans\Notify\Messages\ServerChanMessage('This is title.', 'This is desp.'))
+            ->setMessage(new ServerChanMessage('This is title.', 'This is desp.'))
             ->send();
     }
 
-    public function testCheckMessage()
+    public function testCheckMessage(): void
     {
         $ret = Factory::serverChan()->check(333484, 'SCTJlJV1J87hS6F');
 

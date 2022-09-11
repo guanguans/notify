@@ -12,8 +12,14 @@ namespace Guanguans\Notify\Clients;
 
 class DingTalkClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = 'https://oapi.dingtalk.com/robot/send?access_token=%s&%s';
 
+    /**
+     * @var string
+     */
     protected $requestMethod = 'postJson';
 
     /**
@@ -33,7 +39,7 @@ class DingTalkClient extends Client
     /**
      * @return $this
      */
-    public function setSecret(string $secret)
+    public function setSecret(string $secret): self
     {
         $this->setOption('secret', $secret);
 
@@ -53,10 +59,7 @@ class DingTalkClient extends Client
         return sprintf(static::REQUEST_URL_TEMPLATE, $this->getToken(), $urlParams);
     }
 
-    /**
-     * @return string
-     */
-    protected function getSign(string $secret, string $timestamp)
+    protected function getSign(string $secret, string $timestamp): string
     {
         $data = sprintf("%s\n%s", $timestamp, $secret);
 

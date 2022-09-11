@@ -11,17 +11,20 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\Chanify\LinkMessage;
+use Guanguans\Notify\Messages\Chanify\TextMessage;
 use Guanguans\Notify\Tests\TestCase;
+use GuzzleHttp\Exception\ClientException;
 
 class ChanifyTest extends TestCase
 {
-    public function testText()
+    public function testText(): void
     {
-        $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        $this->expectException(ClientException::class);
 
         Factory::chanify()
             ->setToken('CIDfh4gGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFGhR7vAyf8Uj5UQhhK4n6QfVzih96QyIECAEQAQ.E0eBnLbfNwWrWZ1YSAZfkCQWZAPdBl6pVr26lRf6')
-            ->setMessage(new \Guanguans\Notify\Messages\Chanify\TextMessage([
+            ->setMessage(new TextMessage([
                 'title' => 'This is title.',
                 'text' => 'This is text.',
                 // 'copy'     => 'This is copy.',
@@ -36,13 +39,13 @@ class ChanifyTest extends TestCase
             ->send();
     }
 
-    public function testLink()
+    public function testLink(): void
     {
-        $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        $this->expectException(ClientException::class);
 
         Factory::chanify()
             ->setToken('CIDfh4gGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFGhR7vAyf8Uj5UQhhK4n6QfVzih96QyIECAEQAQ.E0eBnLbfNwWrWZ1YSAZfkCQWZAPdBl6pVr26lRf6')
-            ->setMessage(new \Guanguans\Notify\Messages\Chanify\LinkMessage([
+            ->setMessage(new LinkMessage([
                 'link' => 'https://github.com/guanguans/notify',
                 // 'sound'    => 0,
                 // 'priority' => 10,

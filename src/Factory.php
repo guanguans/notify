@@ -49,7 +49,7 @@ class Factory
      *
      * @return mixed
      */
-    public static function make($name, array $options = [])
+    public static function make(string $name, array $options = []): object
     {
         $client = sprintf('\\Guanguans\\Notify\\Clients\\%sClient', Str::studly($name));
 
@@ -62,7 +62,7 @@ class Factory
      *
      * @return mixed
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic(string $name, array $arguments)
     {
         return self::make($name, ...$arguments);
     }

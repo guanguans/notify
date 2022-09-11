@@ -60,7 +60,7 @@ class BarkMessage extends Message
     /**
      * @return $this
      */
-    public function setTitle(string $title)
+    public function setTitle(string $title): self
     {
         $this->setOption('title', $title);
 
@@ -70,7 +70,7 @@ class BarkMessage extends Message
     /**
      * @return $this
      */
-    public function setText(string $text)
+    public function setText(string $text): self
     {
         $this->setOption('text', $text);
 
@@ -80,7 +80,7 @@ class BarkMessage extends Message
     /**
      * @return $this
      */
-    public function setCopy(string $copy)
+    public function setCopy(string $copy): self
     {
         $this->setOption('copy', $copy);
 
@@ -90,7 +90,7 @@ class BarkMessage extends Message
     /**
      * @return $this
      */
-    public function setUrl(string $url)
+    public function setUrl(string $url): self
     {
         $this->setOption('url', $url);
 
@@ -100,7 +100,7 @@ class BarkMessage extends Message
     /**
      * @return $this
      */
-    public function setSound(string $sound)
+    public function setSound(string $sound): self
     {
         $this->setOption('sound', $sound);
 
@@ -110,7 +110,7 @@ class BarkMessage extends Message
     /**
      * @return $this
      */
-    public function setIsArchive(int $isArchive)
+    public function setIsArchive(int $isArchive): self
     {
         $this->setOption('isArchive', $isArchive);
 
@@ -120,7 +120,7 @@ class BarkMessage extends Message
     /**
      * @return $this
      */
-    public function setAutomaticallyCopy(int $automaticallyCopy)
+    public function setAutomaticallyCopy(int $automaticallyCopy): self
     {
         $this->setOption('automaticallyCopy', $automaticallyCopy);
 

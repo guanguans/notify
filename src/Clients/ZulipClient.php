@@ -12,6 +12,9 @@ namespace Guanguans\Notify\Clients;
 
 class ZulipClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = '%s/api/v1/messages';
 
     /**
@@ -26,7 +29,7 @@ class ZulipClient extends Client
 
     public function __construct(array $options = [])
     {
-        $this->sending(function (self $client) {
+        $this->sending(static function (self $client): void {
             $client->setHttpOptions([
                 'auth' => [
                     $client->getEmail(),

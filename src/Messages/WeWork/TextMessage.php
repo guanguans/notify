@@ -16,6 +16,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TextMessage extends Message
 {
+    /**
+     * @var string
+     */
     protected $type = 'text';
 
     /**
@@ -27,18 +30,21 @@ class TextMessage extends Message
         'mentioned_mobile_list',
     ];
 
+    /**
+     * @var array<string, array<string>>
+     */
     protected $allowedTypes = [
         'mentioned_list' => ['int', 'string', 'array'],
         'mentioned_mobile_list' => ['int', 'string', 'array'],
     ];
 
-    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setNormalizer('mentioned_list', function (Options $options, $value) {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function ($resolver): void {
+            $resolver->setNormalizer('mentioned_list', static function (Options $options, $value): array {
                 return (array) $value;
             });
-            $resolver->setNormalizer('mentioned_mobile_list', function (Options $options, $value) {
+            $resolver->setNormalizer('mentioned_mobile_list', static function (Options $options, $value): array {
                 return (array) $value;
             });
         });
@@ -47,7 +53,7 @@ class TextMessage extends Message
     /**
      * @return $this
      */
-    public function setContent(string $content)
+    public function setContent(string $content): self
     {
         $this->setOption('content', $content);
 
@@ -57,7 +63,7 @@ class TextMessage extends Message
     /**
      * @return $this
      */
-    public function setMentionedList(array $mentionedList)
+    public function setMentionedList(array $mentionedList): self
     {
         $this->setOption('mentioned_list', $mentionedList);
 
@@ -67,14 +73,17 @@ class TextMessage extends Message
     /**
      * @return $this
      */
-    public function setMentionedMobileList(array $mentionedMobileList)
+    public function setMentionedMobileList(array $mentionedMobileList): self
     {
         $this->setOption('mentioned_mobile_list', $mentionedMobileList);
 
         return $this;
     }
 
-    public function transformToRequestParams()
+    /**
+     * @return array<int|string, mixed>
+     */
+    public function transformToRequestParams(): array
     {
         return [
             'msgtype' => $this->type,

@@ -69,11 +69,17 @@ class QqChannelBotClient extends Client
      */
     protected $webSocketOptions = [];
 
+    /**
+     * @var array<string, string>
+     */
     public const REQUEST_URL_TEMPLATE = [
         'production' => 'https://api.sgroup.qq.com/channels/%s/messages',
         'sandbox' => 'https://sandbox.api.sgroup.qq.com/channels/%s/messages',
     ];
 
+    /**
+     * @var array<string, string>
+     */
     public const WSS_GATEWAY = [
         'production' => 'wss://api.sgroup.qq.com/websocket',
         'sandbox' => 'wss://sandbox.api.sgroup.qq.com/websocket',
@@ -100,7 +106,7 @@ class QqChannelBotClient extends Client
 
     public function __construct(array $options = [])
     {
-        $this->sending(function (self $client) {
+        $this->sending(static function (self $client): void {
             $client->setHttpOptions([
                 'headers' => [
                     'Authorization' => sprintf('Bot %s.%s', $client->getAppid(), $client->getToken()),
@@ -108,7 +114,7 @@ class QqChannelBotClient extends Client
             ]);
         });
 
-        $this->sending(function (self $client) {
+        $this->sending(function (self $client): void {
             if (! self::$webSocketClient instanceof WebSocketClient) {
                 self::$webSocketClient = new WebSocketClient(
                     self::WSS_GATEWAY[$this->getEnvironment()],
@@ -135,14 +141,14 @@ class QqChannelBotClient extends Client
         return sprintf(self::REQUEST_URL_TEMPLATE[$this->getEnvironment()], $this->getChannelId());
     }
 
-    public function sandboxEnvironment(bool $sandboxEnvironment = true)
+    public function sandboxEnvironment(bool $sandboxEnvironment = true): self
     {
         $this->setOption('environment', $sandboxEnvironment ? 'sandbox' : 'production');
 
         return $this;
     }
 
-    public function productionEnvironment(bool $productionEnvironment = true)
+    public function productionEnvironment(bool $productionEnvironment = true): self
     {
         $this->setOption('environment', $productionEnvironment ? 'production' : 'sandbox');
 
@@ -154,7 +160,7 @@ class QqChannelBotClient extends Client
         return $this->getOption('environment');
     }
 
-    public function setAppid(int $appid)
+    public function setAppid(int $appid): self
     {
         $this->setOption('appid', $appid);
 
@@ -166,7 +172,7 @@ class QqChannelBotClient extends Client
         return $this->getOption('appid');
     }
 
-    public function setSecret(string $secret)
+    public function setSecret(string $secret): self
     {
         $this->setOption('secret', $secret);
 
@@ -178,7 +184,7 @@ class QqChannelBotClient extends Client
         return $this->getOption('secret');
     }
 
-    public function setChannelId(string $channelId)
+    public function setChannelId(string $channelId): self
     {
         $this->setOption('channel_id', $channelId);
 
@@ -190,7 +196,10 @@ class QqChannelBotClient extends Client
         return $this->getOption('channel_id');
     }
 
-    public function setWebSocketOptions(array $webSocketOptions)
+    /**
+     * @param mixed[] $webSocketOptions
+     */
+    public function setWebSocketOptions(array $webSocketOptions): self
     {
         $this->webSocketOptions = $webSocketOptions;
 
@@ -221,7 +230,7 @@ class QqChannelBotClient extends Client
      */
     public function createSubChannel(int $guildId, array $data)
     {
-        return $this->requestApi("guilds/$guildId/channels", 'post', $data);
+        return $this->requestApi(sprintf('guilds/%d/channels', $guildId), 'post', $data);
     }
 
     /**
@@ -229,6 +238,6 @@ class QqChannelBotClient extends Client
      */
     public function getSubChannels(int $guildId)
     {
-        return $this->requestApi("guilds/$guildId/channels");
+        return $this->requestApi(sprintf('guilds/%d/channels', $guildId));
     }
 }

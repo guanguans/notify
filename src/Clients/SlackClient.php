@@ -21,6 +21,9 @@ namespace Guanguans\Notify\Clients;
  */
 class SlackClient extends Client
 {
+    /**
+     * @var string
+     */
     protected $requestMethod = 'postJson';
 
     /**

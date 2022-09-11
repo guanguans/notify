@@ -14,6 +14,9 @@ use Guanguans\Notify\Messages\Message;
 
 class SingleActionCardMessage extends Message
 {
+    /**
+     * @var string
+     */
     protected $type = 'actionCard';
 
     /**
@@ -34,7 +37,10 @@ class SingleActionCardMessage extends Message
         'btnOrientation' => 0,
     ];
 
-    public function transformToRequestParams()
+    /**
+     * @return array<int|string, mixed>
+     */
+    public function transformToRequestParams(): array
     {
         return [
             'msgtype' => $this->type,

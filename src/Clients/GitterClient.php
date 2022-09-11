@@ -29,8 +29,14 @@ namespace Guanguans\Notify\Clients;
  */
 class GitterClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = 'https://api.gitter.im/v1/rooms/%s/chatMessages';
 
+    /**
+     * @var string
+     */
     public $requestMethod = 'postJson';
 
     /**
@@ -44,7 +50,7 @@ class GitterClient extends Client
 
     public function __construct(array $options = [])
     {
-        $this->sending(function (self $client) {
+        $this->sending(static function (self $client): void {
             $client->setHttpOptions([
                 'headers' => [
                     'Authorization' => 'Bearer '.$client->getToken(),
@@ -68,7 +74,7 @@ class GitterClient extends Client
     /**
      * @return $this
      */
-    public function setRoomId(string $roomId)
+    public function setRoomId(string $roomId): self
     {
         $this->setOption('room_id', $roomId);
 

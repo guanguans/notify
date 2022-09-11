@@ -12,11 +12,14 @@ namespace Guanguans\Notify\Clients;
 
 class NowPushClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = 'https://www.api.nowpush.app/v3/%s';
 
     public function __construct(array $options = [])
     {
-        $this->sending(function (self $client) {
+        $this->sending(static function (self $client): void {
             $client->setHttpOptions([
                 'headers' => [
                     'Authorization' => 'Bearer '.$client->getToken(),

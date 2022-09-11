@@ -14,6 +14,9 @@ use Guanguans\Notify\Messages\Message;
 
 class PostMessage extends Message
 {
+    /**
+     * @var string
+     */
     protected $type = 'post';
 
     /**
@@ -23,6 +26,9 @@ class PostMessage extends Message
         'post',
     ];
 
+    /**
+     * @var array<string, string>
+     */
     protected $allowedTypes = [
         'post' => 'array',
     ];
@@ -37,7 +43,10 @@ class PostMessage extends Message
         ]);
     }
 
-    public function transformToRequestParams()
+    /**
+     * @return array{msg_type: mixed, content: mixed[]}
+     */
+    public function transformToRequestParams(): array
     {
         return [
             'msg_type' => $this->type,

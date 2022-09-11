@@ -28,6 +28,9 @@ trait HasHttpClient
         return $this;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getHttpOptions(): array
     {
         return $this->httpOptions;

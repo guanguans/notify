@@ -42,8 +42,14 @@ namespace Guanguans\Notify\Clients;
  */
 class RocketChatClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = '%s/hooks/%s';
 
+    /**
+     * @var string
+     */
     protected $requestMethod = 'postJson';
 
     /**

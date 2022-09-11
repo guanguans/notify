@@ -18,13 +18,17 @@ use Rector\CodeQuality\Rector\Expression\InlineIfToExplicitIfRector;
 use Rector\CodeQuality\Rector\Identical\SimplifyBoolIdenticalTrueRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
 use Rector\CodingStyle\Enum\PreferenceSelfThis;
+use Rector\CodingStyle\Rector\ClassMethod\UnSpreadOperatorRector;
+use Rector\CodingStyle\Rector\FuncCall\ConsistentPregDelimiterRector;
 use Rector\CodingStyle\Rector\MethodCall\PreferThisOrSelfMethodCallRector;
 use Rector\Config\RectorConfig;
 use Rector\Core\Configuration\Option;
 use Rector\Core\ValueObject\PhpVersion;
+use Rector\DeadCode\Rector\Assign\RemoveUnusedVariableAssignRector;
 use Rector\DeadCode\Rector\MethodCall\RemoveEmptyMethodCallRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
+use Rector\Php56\Rector\FunctionLike\AddDefaultValueForUndefinedVariableRector;
 use Rector\PHPUnit\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitLevelSetList;
 use Rector\PHPUnit\Set\PHPUnitSetList;
@@ -46,6 +50,9 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__.'/tests',
         __DIR__.'/.php-cs-fixer.php',
         __DIR__.'/rector.php',
+
+        // __DIR__.'/src/Traits/CreateStaticAble.php',
+        // __DIR__.'/src/Clients/MailerClient.php',
     ]);
 
     $rectorConfig->skip([
@@ -60,6 +67,12 @@ return static function (RectorConfig $rectorConfig): void {
         ChangeAndIfToEarlyReturnRector::class,
         ReturnBinaryOrToEarlyReturnRector::class,
 
+        // fix
+        AddDefaultValueForUndefinedVariableRector::class,
+        RemoveUnusedVariableAssignRector::class,
+        UnSpreadOperatorRector::class,
+        ConsistentPregDelimiterRector::class,
+
         // paths
         '**/Fixture*',
         '**/Fixture/*',
@@ -71,7 +84,7 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->sets([
-        LevelSetList::UP_TO_PHP_80,
+        LevelSetList::UP_TO_PHP_72,
         SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
@@ -86,7 +99,7 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::TYPE_DECLARATION_STRICT,
         SetList::EARLY_RETURN,
 
-        PHPUnitLevelSetList::UP_TO_PHPUNIT_90,
+        PHPUnitLevelSetList::UP_TO_PHPUNIT_70,
         // PHPUnitSetList::PHPUNIT80_DMS,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
         PHPUnitSetList::PHPUNIT_EXCEPTION,

@@ -15,11 +15,9 @@ use Overtrue\Http\Client as OvertrueClient;
 class Client extends OvertrueClient
 {
     /**
-     * @param bool $async
-     *
      * @return \Psr\Http\Message\ResponseInterface|\Overtrue\Http\Support\Collection|array|object|string
      */
-    public function postJson(string $uri, array $data = [], array $options = [], $async = false)
+    public function postJson(string $uri, array $data = [], array $options = [], bool $async = false)
     {
         return $this->request($uri, 'POST', \array_merge($options, ['json' => $data]), $async);
     }

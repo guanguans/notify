@@ -14,6 +14,9 @@ use Guanguans\Notify\Messages\Message;
 
 class CardMessage extends Message
 {
+    /**
+     * @var string
+     */
     protected $type = 'card';
 
     /**
@@ -23,6 +26,9 @@ class CardMessage extends Message
         'card',
     ];
 
+    /**
+     * @var array<string, string>
+     */
     protected $allowedTypes = [
         'card' => 'array',
     ];
@@ -34,7 +40,10 @@ class CardMessage extends Message
         ]);
     }
 
-    public function transformToRequestParams()
+    /**
+     * @return array<int|string, mixed>
+     */
+    public function transformToRequestParams(): array
     {
         return [
             'msg_type' => 'interactive',

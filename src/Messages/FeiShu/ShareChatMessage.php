@@ -14,6 +14,9 @@ use Guanguans\Notify\Messages\Message;
 
 class ShareChatMessage extends Message
 {
+    /**
+     * @var string
+     */
     protected $type = 'share_chat';
 
     /**
@@ -30,7 +33,10 @@ class ShareChatMessage extends Message
         ]);
     }
 
-    public function transformToRequestParams()
+    /**
+     * @return array{msg_type: mixed, content: mixed[]}
+     */
+    public function transformToRequestParams(): array
     {
         return [
             'msg_type' => $this->type,

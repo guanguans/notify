@@ -11,15 +11,17 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\EmailMessage;
 use Guanguans\Notify\Tests\TestCase;
+use Symfony\Component\Mailer\Exception\TransportException;
 
 class MailerTest extends TestCase
 {
-    public function testMailer()
+    public function testMailer(): void
     {
-        $this->expectException(\Symfony\Component\Mailer\Exception\TransportException::class);
+        $this->expectException(TransportException::class);
 
-        $email = \Guanguans\Notify\Messages\EmailMessage::create()
+        $emailMessage = EmailMessage::create()
             ->from('from@qq.com')
             ->to('to@qq.com')
             // ->cc('cc@example.com')
@@ -33,7 +35,7 @@ class MailerTest extends TestCase
         Factory::mailer()
             // ->setDsn('smtp://53222411@qq.com:kisvmysjlnipbigg@smtp.qq.com:465?verify_peer=0')
             ->setDsn('smtp://user:pass@smtp.qq.com:465?verify_peer=0')
-            ->setMessage($email)
+            ->setMessage($emailMessage)
             ->send();
     }
 }

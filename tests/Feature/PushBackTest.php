@@ -11,13 +11,15 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\PushBackMessage;
 use Guanguans\Notify\Tests\TestCase;
+use GuzzleHttp\Exception\ClientException;
 
 class PushBackTest extends TestCase
 {
-    public function testPushBack()
+    public function testPushBack(): void
     {
-        $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        $this->expectException(ClientException::class);
 
         // $this->markTestSkipped(__CLASS__.' is skipped.');
 
@@ -25,7 +27,7 @@ class PushBackTest extends TestCase
             ->setToken('at_uDCCK8gdHJPN613lASV')
             // ->setSynchonousMode()
             ->setMessage(
-                new \Guanguans\Notify\Messages\PushBackMessage([
+                new PushBackMessage([
                     'id' => 'User_1730',
                     'title' => 'This is title.',
                     // 'body' => 'This is body.',

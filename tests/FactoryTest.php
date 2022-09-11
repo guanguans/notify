@@ -28,7 +28,7 @@ use Guanguans\Notify\Factory;
 
 class FactoryTest extends TestCase
 {
-    public function testFactory()
+    public function testFactory(): void
     {
         $this->assertInstanceOf(BarkClient::class, Factory::bark());
         $this->assertInstanceOf(ChanifyClient::class, Factory::chanify());

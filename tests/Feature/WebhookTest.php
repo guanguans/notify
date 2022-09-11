@@ -11,16 +11,17 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\WebhookMessage;
 use Guanguans\Notify\Tests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
 class WebhookTest extends TestCase
 {
-    public function testWebhook()
+    public function testWebhook(): void
     {
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        $this->markTestSkipped(self::class.' is skipped.');
 
-        $message = \Guanguans\Notify\Messages\WebhookMessage::create([
+        $webhookMessage = WebhookMessage::create([
             'content' => 'This is content.',
             'username' => 'notify bot.',
         ])
@@ -33,7 +34,7 @@ class WebhookTest extends TestCase
         Factory::webhook()
             ->setUrl('https://discord.com/api/webhooks/955407924304425000/o7RfCGxek_o8kfR6Q9iGKtTdRJ')
             // ->setRequestMethod('postJson')
-            ->setMessage($message)
+            ->setMessage($webhookMessage)
             ->send();
     }
 }

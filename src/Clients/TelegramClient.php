@@ -19,8 +19,14 @@ namespace Guanguans\Notify\Clients;
  */
 class TelegramClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = 'https://api.telegram.org/bot%s/sendMessage';
 
+    /**
+     * @var string
+     */
     public const UPDATES_REQUEST_URL_TEMPLATE = 'https://api.telegram.org/bot%s/getUpdates';
 
     public function getRequestUrl(): string

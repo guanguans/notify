@@ -11,18 +11,19 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\IGotMessage;
 use Guanguans\Notify\Tests\TestCase;
 
 class IGotTest extends TestCase
 {
-    public function testIGot()
+    public function testIGot(): void
     {
         // $this->markTestSkipped(__CLASS__.' is skipped.');
 
         $ret = Factory::iGot()
             ->setToken('5dcd2f91d38cc47447414')
             ->setMessage(
-                new \Guanguans\Notify\Messages\IGotMessage([
+                new IGotMessage([
                     'content' => 'This is content.',
                     // 'title' => 'This is title.',
                     // 'url' => 'https://www.github.com/guanguans/notify',
@@ -37,6 +38,6 @@ class IGotTest extends TestCase
             )
             ->send();
 
-        $this->assertEquals('201', $ret['ret']);
+        $this->assertSame(201, $ret['ret']);
     }
 }

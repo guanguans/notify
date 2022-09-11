@@ -12,6 +12,9 @@ namespace Guanguans\Notify\Clients;
 
 class IGotClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = 'https://push.hellyw.com/%s';
 
     /**

@@ -33,8 +33,14 @@ namespace Guanguans\Notify\Clients;
  */
 class MattermostClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = '%s/api/v4/posts';
 
+    /**
+     * @var string
+     */
     public $requestMethod = 'postJson';
 
     /**
@@ -48,7 +54,7 @@ class MattermostClient extends Client
 
     public function __construct(array $options = [])
     {
-        $this->sending(function (self $client) {
+        $this->sending(static function (self $client): void {
             $client->setHttpOptions([
                 'headers' => [
                     'Authorization' => 'Bearer '.$client->getToken(),

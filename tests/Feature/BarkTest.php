@@ -11,15 +11,17 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\BarkMessage;
 use Guanguans\Notify\Tests\TestCase;
+use GuzzleHttp\Exception\ClientException;
 
 class BarkTest extends TestCase
 {
-    public function testBark()
+    public function testBark(): void
     {
-        $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        $this->expectException(ClientException::class);
 
-        $barkMessage = new \Guanguans\Notify\Messages\BarkMessage([
+        $barkMessage = new BarkMessage([
             'title' => 'This is title.',
             'body' => 'This is body.',
             'copy' => 'This is copy.',

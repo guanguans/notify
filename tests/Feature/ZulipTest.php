@@ -16,7 +16,7 @@ use GuzzleHttp\Exception\ClientException;
 
 class ZulipTest extends TestCase
 {
-    public function testPrivate()
+    public function testPrivate(): void
     {
         $this->expectException(ClientException::class);
 
@@ -28,7 +28,7 @@ class ZulipTest extends TestCase
             ->send();
     }
 
-    public function testStream()
+    public function testStream(): void
     {
         $this->expectException(ClientException::class);
 

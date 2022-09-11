@@ -12,6 +12,9 @@ namespace Guanguans\Notify\Clients;
 
 class PushPlusClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = 'https://pushplus.hxtrip.com/send?token=%s';
 
     /**

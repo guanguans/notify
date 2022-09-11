@@ -11,14 +11,15 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\Telegram\TextMessage;
 use Guanguans\Notify\Tests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
 class TelegramTest extends TestCase
 {
-    public function testgetUpdates()
+    public function testgetUpdates(): void
     {
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        $this->markTestSkipped(self::class.' is skipped.');
 
         $this->expectException(ClientException::class);
 
@@ -27,11 +28,11 @@ class TelegramTest extends TestCase
             ->getUpdates();
     }
 
-    public function testText()
+    public function testText(): void
     {
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        $this->markTestSkipped(self::class.' is skipped.');
 
-        $message = \Guanguans\Notify\Messages\Telegram\TextMessage::create([
+        $textMessage = TextMessage::create([
             'chat_id' => 5044341,
             'text' => '*This is text*',
             'parse_mode' => 'MarkdownV2',
@@ -48,7 +49,7 @@ class TelegramTest extends TestCase
 
         Factory::telegram()
             ->setToken('5146570:AAF-Pi1MBPa46wdyobfZZdZL1-PlDfrZ')
-            ->setMessage($message)
+            ->setMessage($textMessage)
             ->send();
     }
 }

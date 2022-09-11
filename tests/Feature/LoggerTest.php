@@ -11,18 +11,20 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\LoggerMessage;
 use Guanguans\Notify\Tests\TestCase;
+use Psr\Log\NullLogger;
 
 class LoggerTest extends TestCase
 {
-    public function testLogger()
+    public function testLogger(): void
     {
         // $this->markTestSkipped(__CLASS__.' is skipped.');
 
         $ret = Factory::logger()
-            ->setLogger(new \Psr\Log\NullLogger())
+            ->setLogger(new NullLogger())
             // ->setLevel('warning')
-            ->setMessage(new \Guanguans\Notify\Messages\LoggerMessage('This is a testing.'))
+            ->setMessage(new LoggerMessage('This is a testing.'))
             ->send();
 
         $this->assertNull($ret);

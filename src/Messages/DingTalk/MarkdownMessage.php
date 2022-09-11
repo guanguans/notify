@@ -16,6 +16,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MarkdownMessage extends Message
 {
+    /**
+     * @var string
+     */
     protected $type = 'markdown';
 
     /**
@@ -38,19 +41,22 @@ class MarkdownMessage extends Message
         'isAtAll' => 'bool',
     ];
 
-    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setNormalizer('atMobiles', function (Options $options, $value) {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function ($resolver): void {
+            $resolver->setNormalizer('atMobiles', static function (Options $options, $value): array {
                 return (array) $value;
             });
-            $resolver->setNormalizer('atDingtalkIds', function (Options $options, $value) {
+            $resolver->setNormalizer('atDingtalkIds', static function (Options $options, $value): array {
                 return (array) $value;
             });
         });
     }
 
-    public function transformToRequestParams()
+    /**
+     * @return array<int|string, mixed>
+     */
+    public function transformToRequestParams(): array
     {
         return [
             'msgtype' => $this->type,

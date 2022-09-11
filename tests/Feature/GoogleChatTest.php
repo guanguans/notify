@@ -12,14 +12,15 @@ namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
 use Guanguans\Notify\Tests\TestCase;
+use GuzzleHttp\Exception\ClientException;
 
 class GoogleChatTest extends TestCase
 {
-    public function testGoogleChat()
+    public function testGoogleChat(): void
     {
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        $this->markTestSkipped(self::class.' is skipped.');
 
-        $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        $this->expectException(ClientException::class);
 
         Factory::googleChat()
             ->setToken('accessToken')

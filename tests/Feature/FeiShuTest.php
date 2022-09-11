@@ -11,26 +11,33 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\FeiShu\CardMessage;
+use Guanguans\Notify\Messages\FeiShu\ImageMessage;
+use Guanguans\Notify\Messages\FeiShu\PostMessage;
+use Guanguans\Notify\Messages\FeiShu\ShareChatMessage;
+use Guanguans\Notify\Messages\FeiShu\TextMessage;
 use Guanguans\Notify\Tests\TestCase;
 
 class FeiShuTest extends TestCase
 {
-    public function testText()
+    public function testText(): void
     {
         $this->expectOutputString('19001');
 
         $ret = Factory::feiShu()
             ->setToken('b6eb70d9-6e19-4f87-af48-348b028186')
             ->setSecret('iigDOvnsIn6aFS1pYHHEH')
-            ->setMessage(new \Guanguans\Notify\Messages\FeiShu\TextMessage('This is title(keyword).'))
+            ->setMessage(new TextMessage('This is title(keyword).'))
             ->send();
 
         echo $ret['code'];
     }
 
-    public function testPost()
+    public function testPost(): void
     {
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        $post = null;
+        $ret = [];
+        $this->markTestSkipped(self::class.' is skipped.');
 
         $this->expectOutputString('19001');
 
@@ -50,45 +57,49 @@ class FeiShuTest extends TestCase
         $ret = Factory::feiShu()
             ->setToken('b6eb70d9-6e19-4f87-af48-348b028186')
             ->setSecret('iigDOvnsIn6aFS1pYHHEH')
-            ->setMessage(new \Guanguans\Notify\Messages\FeiShu\PostMessage($post))
+            ->setMessage(new PostMessage($post))
             ->send();
 
         echo $ret['code'];
     }
 
-    public function testShareChat()
+    public function testShareChat(): void
     {
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        $ret = [];
+        $this->markTestSkipped(self::class.' is skipped.');
 
         $this->expectOutputString('19001');
 
         $ret = Factory::feiShu()
             ->setToken('b6eb70d9-6e19-4f87-af48-348b028186')
             ->setSecret('iigDOvnsIn6aFS1pYHHE')
-            ->setMessage(new \Guanguans\Notify\Messages\FeiShu\ShareChatMessage('oc_f5b1a7eb27ae2c7b6adc2a74fafxxxxx'))
+            ->setMessage(new ShareChatMessage('oc_f5b1a7eb27ae2c7b6adc2a74fafxxxxx'))
             ->send();
 
         echo $ret['code'];
     }
 
-    public function testImage()
+    public function testImage(): void
     {
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        $ret = [];
+        $this->markTestSkipped(self::class.' is skipped.');
 
         $this->expectOutputString('19001');
 
         $ret = Factory::feiShu()
             ->setToken('b6eb70d9-6e19-4f87-af48-348b028186')
             ->setSecret('iigDOvnsIn6aFS1pYHHE')
-            ->setMessage(new \Guanguans\Notify\Messages\FeiShu\ImageMessage('img_ecffc3b9-8f14-400f-a014-05eca1a4xxxx'))
+            ->setMessage(new ImageMessage('img_ecffc3b9-8f14-400f-a014-05eca1a4xxxx'))
             ->send();
 
         echo $ret['code'];
     }
 
-    public function testCard()
+    public function testCard(): void
     {
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        $card = null;
+        $ret = [];
+        $this->markTestSkipped(self::class.' is skipped.');
 
         $this->expectOutputString('19001');
 
@@ -106,7 +117,7 @@ class FeiShuTest extends TestCase
         $ret = Factory::feiShu()
             ->setToken('b6eb70d9-6e19-4f87-af48-348b028186')
             ->setSecret('iigDOvnsIn6aFS1pYHHE')
-            ->setMessage(new \Guanguans\Notify\Messages\FeiShu\CardMessage($card))
+            ->setMessage(new CardMessage($card))
             ->send();
 
         echo $ret['code'];

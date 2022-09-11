@@ -11,11 +11,17 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\DingTalk\BtnsActionCardMessage;
+use Guanguans\Notify\Messages\DingTalk\FeedCardMessage;
+use Guanguans\Notify\Messages\DingTalk\LinkMessage;
+use Guanguans\Notify\Messages\DingTalk\MarkdownMessage;
+use Guanguans\Notify\Messages\DingTalk\SingleActionCardMessage;
+use Guanguans\Notify\Messages\DingTalk\TextMessage;
 use Guanguans\Notify\Tests\TestCase;
 
 class DingTalkTest extends TestCase
 {
-    public function testText()
+    public function testText(): void
     {
         // $this->expectOutputString('300001');
         $this->expectOutputRegex('/^300001|130101$/');
@@ -23,7 +29,7 @@ class DingTalkTest extends TestCase
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
             ->setSecret('SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee517')
-            ->setMessage(new \Guanguans\Notify\Messages\DingTalk\TextMessage([
+            ->setMessage(new TextMessage([
                 'content' => 'This is content(keyword).',
                 // 'atMobiles' => [13948484984],
                 // 'atDingtalkIds' => [123456],
@@ -34,7 +40,7 @@ class DingTalkTest extends TestCase
         echo $ret['errcode'];
     }
 
-    public function testLink()
+    public function testLink(): void
     {
         // $this->expectOutputString('300001');
         $this->expectOutputRegex('/^300001|130101$/');
@@ -42,7 +48,7 @@ class DingTalkTest extends TestCase
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
             ->setSecret('SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee517')
-            ->setMessage(new \Guanguans\Notify\Messages\DingTalk\LinkMessage([
+            ->setMessage(new LinkMessage([
                 'title' => 'This is content.',
                 'text' => 'This is text(keyword).',
                 'messageUrl' => 'https://github.com/guanguans/notify',
@@ -53,7 +59,7 @@ class DingTalkTest extends TestCase
         echo $ret['errcode'];
     }
 
-    public function testMarkdown()
+    public function testMarkdown(): void
     {
         // $this->expectOutputString('300001');
         $this->expectOutputRegex('/^300001|130101$/');
@@ -61,7 +67,7 @@ class DingTalkTest extends TestCase
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
             ->setSecret('SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee517')
-            ->setMessage(new \Guanguans\Notify\Messages\DingTalk\MarkdownMessage([
+            ->setMessage(new MarkdownMessage([
                 'title' => 'This is title.',
                 'text' => '> This is text(keyword).',
                 // 'atMobiles' => [13948484984],
@@ -73,7 +79,7 @@ class DingTalkTest extends TestCase
         echo $ret['errcode'];
     }
 
-    public function testSingleActionCard()
+    public function testSingleActionCard(): void
     {
         // $this->expectOutputString('300001');
         $this->expectOutputRegex('/^300001|130101$/');
@@ -81,7 +87,7 @@ class DingTalkTest extends TestCase
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
             ->setSecret('SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee517')
-            ->setMessage(new \Guanguans\Notify\Messages\DingTalk\SingleActionCardMessage([
+            ->setMessage(new SingleActionCardMessage([
                 'title' => 'This is title(keyword).',
                 'text' => 'This is text.',
                 'singleTitle' => 'This is singleTitle.',
@@ -93,40 +99,40 @@ class DingTalkTest extends TestCase
         echo $ret['errcode'];
     }
 
-    public function testBtnsActionCard()
+    public function testBtnsActionCard(): void
     {
         // $this->expectOutputString('300001');
         $this->expectOutputRegex('/^300001|130101$/');
 
-        $message = new \Guanguans\Notify\Messages\DingTalk\BtnsActionCardMessage([
+        $btnsActionCardMessage = new BtnsActionCardMessage([
             'title' => 'This is title(keyword).',
             'text' => 'This is text.',
             // 'hideAvatar'     => 1,
             // 'btnOrientation' => 1,
         ]);
-        $message->addBtn([
+        $btnsActionCardMessage->addBtn([
             'title' => 'This is title 1',
             'actionURL' => 'https://github.com/guanguans/notify',
         ]);
-        $message->addBtn([
+        $btnsActionCardMessage->addBtn([
             'title' => 'This is title 2',
             'actionURL' => 'https://github.com/guanguans/notify',
         ]);
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
             ->setSecret('SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee517')
-            ->setMessage($message)
+            ->setMessage($btnsActionCardMessage)
             ->send();
 
         echo $ret['errcode'];
     }
 
-    public function testFeedCard()
+    public function testFeedCard(): void
     {
         // $this->expectOutputString('300001');
         $this->expectOutputRegex('/^300001|130101$/');
 
-        $message = new \Guanguans\Notify\Messages\DingTalk\FeedCardMessage([
+        $feedCardMessage = new FeedCardMessage([
             'title' => 'This is title(keyword) 0.',
             'messageURL' => 'https://github.com/guanguans/notify',
             'picURL' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
@@ -134,7 +140,7 @@ class DingTalkTest extends TestCase
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
             ->setSecret('SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee517')
-            ->setMessage($message)
+            ->setMessage($feedCardMessage)
             ->send();
 
         echo $ret['errcode'];

@@ -14,6 +14,9 @@ use Guanguans\Notify\Messages\Message;
 
 class LinkMessage extends Message
 {
+    /**
+     * @var string
+     */
     protected $type = 'link';
 
     /**
@@ -26,7 +29,10 @@ class LinkMessage extends Message
         'picUrl',
     ];
 
-    public function transformToRequestParams()
+    /**
+     * @return array<int|string, mixed>
+     */
+    public function transformToRequestParams(): array
     {
         return [
             'msgtype' => $this->type,

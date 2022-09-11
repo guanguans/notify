@@ -22,6 +22,9 @@ class WebhookMessage extends Message
         'verify',
     ];
 
+    /**
+     * @var array<string, mixed>
+     */
     protected $options = [
         'verify' => false,
     ];
@@ -40,28 +43,28 @@ class WebhookMessage extends Message
         ]);
     }
 
-    public function setHeaders(array $headers)
+    public function setHeaders(array $headers): self
     {
         $this->setOption('headers', $headers);
 
         return $this;
     }
 
-    public function setQuery(array $query)
+    public function setQuery(array $query): self
     {
         $this->setOption('query', $query);
 
         return $this;
     }
 
-    public function setBody(array $body)
+    public function setBody(array $body): self
     {
         $this->setOption('body', $body);
 
         return $this;
     }
 
-    public function setVerify(bool $verify)
+    public function setVerify(bool $verify): self
     {
         $this->setOption('verify', $verify);
 

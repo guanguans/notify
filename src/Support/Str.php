@@ -39,11 +39,9 @@ class Str
     /**
      * Convert a value to camel case.
      *
-     * @param string $value
-     *
      * @return string
      */
-    public static function camel($value)
+    public static function camel(string $value)
     {
         if (isset(static::$camelCache[$value])) {
             return static::$camelCache[$value];
@@ -56,12 +54,8 @@ class Str
      * Generate a "random" alpha-numeric string.
      *
      * Should not be considered sufficient for cryptography, etc.
-     *
-     * @param int $length
-     *
-     * @return string
      */
-    public static function quickRandom($length = 16)
+    public static function quickRandom(int $length = 16): string
     {
         $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
@@ -70,24 +64,16 @@ class Str
 
     /**
      * Convert the given string to upper-case.
-     *
-     * @param string $value
-     *
-     * @return string
      */
-    public static function upper($value)
+    public static function upper(string $value): string
     {
         return mb_strtoupper($value);
     }
 
     /**
      * Convert the given string to title case.
-     *
-     * @param string $value
-     *
-     * @return string
      */
-    public static function title($value)
+    public static function title(string $value): string
     {
         return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
     }
@@ -95,12 +81,9 @@ class Str
     /**
      * Convert a string to snake case.
      *
-     * @param string $value
-     * @param string $delimiter
-     *
      * @return string
      */
-    public static function snake($value, $delimiter = '_')
+    public static function snake(string $value, string $delimiter = '_')
     {
         $key = $value.$delimiter;
 
@@ -118,11 +101,9 @@ class Str
     /**
      * Convert a value to studly caps case.
      *
-     * @param string $value
-     *
      * @return string
      */
-    public static function studly($value)
+    public static function studly(string $value)
     {
         $key = $value;
 

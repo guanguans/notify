@@ -14,6 +14,9 @@ use Guanguans\Notify\Messages\Message;
 
 class MarkdownMessage extends Message
 {
+    /**
+     * @var string
+     */
     protected $type = 'markdown';
 
     /**
@@ -30,7 +33,10 @@ class MarkdownMessage extends Message
         ]);
     }
 
-    public function transformToRequestParams()
+    /**
+     * @return array<int|string, mixed>
+     */
+    public function transformToRequestParams(): array
     {
         return [
             'msgtype' => $this->type,

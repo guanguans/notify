@@ -15,6 +15,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BtnsActionCardMessage extends Message
 {
+    /**
+     * @var string
+     */
     protected $type = 'actionCard';
 
     /**
@@ -53,12 +56,12 @@ class BtnsActionCardMessage extends Message
         $this->addBtns($btns);
     }
 
-    public function setBtns(array $btns)
+    public function setBtns(array $btns): self
     {
         return $this->addBtns($btns);
     }
 
-    public function addBtns(array $btns)
+    public function addBtns(array $btns): self
     {
         foreach ($btns as $btn) {
             $this->addBtn($btn);
@@ -67,15 +70,15 @@ class BtnsActionCardMessage extends Message
         return $this;
     }
 
-    public function setBtn(array $btn)
+    public function setBtn(array $btn): self
     {
         return $this->addBtn($btn);
     }
 
-    public function addBtn(array $btn)
+    public function addBtn(array $btn): self
     {
-        $this->options['btns'][] = configure_options($btn, function (OptionsResolver $resolver) {
-            $resolver->setDefined([
+        $this->options['btns'][] = configure_options($btn, static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver->setDefined([
                 'title',
                 'actionURL',
             ]);
@@ -84,7 +87,10 @@ class BtnsActionCardMessage extends Message
         return $this;
     }
 
-    public function transformToRequestParams()
+    /**
+     * @return array<int|string, mixed>
+     */
+    public function transformToRequestParams(): array
     {
         return [
             'msgtype' => $this->type,

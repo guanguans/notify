@@ -11,21 +11,23 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\MattermostMessage;
 use Guanguans\Notify\Tests\TestCase;
 
 class MattermostTest extends TestCase
 {
-    public function testMattermost()
+    public function testMattermost(): void
     {
+        $ret = null;
         // $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        $this->markTestSkipped(self::class.' is skipped.');
 
         $ret = Factory::mattermost()
             ->setBaseUri('https://guanguans.cloud.mattermost.com')
             ->setToken('r7jezodttibgueijpahyyfh')
             ->setMessage(
-                new \Guanguans\Notify\Messages\MattermostMessage([
+                new MattermostMessage([
                     'channel_id' => 'sat5ohbs5byixd86tmxtk13',
                     'message' => 'This is a testing.',
                     // 'is_pinned' => true,

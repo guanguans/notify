@@ -16,8 +16,14 @@ namespace Guanguans\Notify\Clients;
  */
 class GoogleChatClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = 'https://chat.googleapis.com/v1/spaces/%s/messages?key=%s&token=%s%s';
 
+    /**
+     * @var string
+     */
     public $requestMethod = 'postJson';
 
     /**

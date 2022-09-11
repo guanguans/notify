@@ -12,8 +12,14 @@ namespace Guanguans\Notify\Clients;
 
 class FeiShuClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = 'https://open.feishu.cn/open-apis/bot/v2/hook/%s';
 
+    /**
+     * @var string
+     */
     protected $requestMethod = 'postJson';
 
     /**
@@ -38,7 +44,7 @@ class FeiShuClient extends Client
     /**
      * @return $this
      */
-    public function setSecret(string $secret)
+    public function setSecret(string $secret): self
     {
         $this->setOption('secret', $secret);
 
@@ -59,10 +65,7 @@ class FeiShuClient extends Client
         return $requestParams;
     }
 
-    /**
-     * @return string
-     */
-    protected function getSign(string $secret, int $timestamp)
+    protected function getSign(string $secret, int $timestamp): string
     {
         $key = sprintf("%s\n%s", $timestamp, $secret);
 

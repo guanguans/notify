@@ -12,6 +12,9 @@ namespace Guanguans\Notify\Clients;
 
 class XiZhiClient extends Client
 {
+    /**
+     * @var array<string, string>
+     */
     public const REQUEST_URL_TEMPLATE = [
         'single' => 'https://xizhi.qqoq.net/%s.send',
         'channel' => 'https://xizhi.qqoq.net/%s.channel',
@@ -48,7 +51,7 @@ class XiZhiClient extends Client
     /**
      * @return $this
      */
-    public function setType(string $type)
+    public function setType(string $type): self
     {
         $this->setOption('type', $type);
 

@@ -12,8 +12,14 @@ namespace Guanguans\Notify\Clients;
 
 class ServerChanClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = 'https://sctapi.ftqq.com/%s.send';
 
+    /**
+     * @var string
+     */
     public const CHECK_REQUEST_URL_TEMPLATE = 'https://sctapi.ftqq.com/push?id=%s&readkey=%s';
 
     public function getRequestUrl(): string

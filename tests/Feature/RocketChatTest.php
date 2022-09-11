@@ -11,11 +11,12 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\RocketChatMessage;
 use Guanguans\Notify\Tests\TestCase;
 
 class RocketChatTest extends TestCase
 {
-    public function testRocketChat()
+    public function testRocketChat(): void
     {
         // $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
@@ -23,7 +24,7 @@ class RocketChatTest extends TestCase
             ->setToken('EemSHx9ioqdmrWouS/yYpmhqDSyd7CqmSAnyBfKezLyzotswbRSpkD9MCNxqtPL')
             ->setBaseUri('https://guanguans.rocket.chat')
             ->setMessage(
-                new \Guanguans\Notify\Messages\RocketChatMessage([
+                new RocketChatMessage([
                     'alias' => '报警机器人',
                     'emoji' => ':warning:',
                     'text' => 'This is a testing. ',

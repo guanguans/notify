@@ -15,6 +15,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ChanifyClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = '%s/%s';
 
     /**
@@ -33,10 +36,10 @@ class ChanifyClient extends Client
         'base_uri' => 'https://api.chanify.net/v1/sender',
     ];
 
-    protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($resolver), function (OptionsResolver $resolver) {
-            $resolver->setNormalizer('base_uri', function (Options $options, $value) {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver->setNormalizer('base_uri', static function (Options $options, $value): string {
                 return trim($value, '/');
             });
         });
@@ -45,7 +48,7 @@ class ChanifyClient extends Client
     /**
      * @return $this
      */
-    public function setBaseUri(string $baseUri)
+    public function setBaseUri(string $baseUri): self
     {
         $this->setOption('base_uri', $baseUri);
 

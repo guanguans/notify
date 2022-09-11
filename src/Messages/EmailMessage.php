@@ -20,7 +20,10 @@ class EmailMessage extends Email implements MessageInterface
     use HasOptions;
     use CreateStaticAble;
 
-    public function transformToRequestParams()
+    /**
+     * @return array{subject: string|null, html: resource|string|null, text: resource|string|null, from: \Symfony\Component\Mime\Address[], to: \Symfony\Component\Mime\Address[], cc: \Symfony\Component\Mime\Address[], bcc: \Symfony\Component\Mime\Address[], reply_to: \Symfony\Component\Mime\Address[], attachments: \Symfony\Component\Mime\Part\DataPart[]}
+     */
+    public function transformToRequestParams(): array
     {
         return [
             'subject' => $this->getSubject(),

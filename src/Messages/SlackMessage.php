@@ -28,6 +28,9 @@ class SlackMessage extends Message
         'attachments',
     ];
 
+    /**
+     * @var array<string, mixed>
+     */
     protected $options = [
         'unfurl_links' => false,
         'attachments' => [],
@@ -41,21 +44,21 @@ class SlackMessage extends Message
         'attachments' => 'array',
     ];
 
-    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setNormalizer('attachments', function (Options $options, $value) {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function ($resolver): void {
+            $resolver->setNormalizer('attachments', static function (Options $options, $value) {
                 return isset($value[0]) ? $value : [$value];
             });
         });
     }
 
-    public function setAttachments(array $attachments)
+    public function setAttachments(array $attachments): self
     {
         return $this->addAttachments($attachments);
     }
 
-    public function addAttachments(array $attachments)
+    public function addAttachments(array $attachments): self
     {
         foreach ($attachments as $attachment) {
             $this->addAttachment($attachment);
@@ -64,15 +67,15 @@ class SlackMessage extends Message
         return $this;
     }
 
-    public function setAttachment(array $attachment)
+    public function setAttachment(array $attachment): self
     {
         return $this->addAttachment($attachment);
     }
 
-    public function addAttachment(array $attachment)
+    public function addAttachment(array $attachment): self
     {
-        $this->options['attachments'][] = configure_options($attachment, function (OptionsResolver $resolver) {
-            $resolver->setDefined([
+        $this->options['attachments'][] = configure_options($attachment, static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver->setDefined([
                 'fallback',
                 'text',
                 'pretext',

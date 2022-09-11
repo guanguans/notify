@@ -24,6 +24,9 @@ class LoggerClient extends Client
         'level',
     ];
 
+    /**
+     * @var array<string, string>
+     */
     protected $options = [
         'level' => 'info',
     ];

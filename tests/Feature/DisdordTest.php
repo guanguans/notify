@@ -11,16 +11,17 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\DiscordMessage;
 use Guanguans\Notify\Tests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
 class DisdordTest extends TestCase
 {
-    public function testDisdord()
+    public function testDisdord(): void
     {
-        $this->markTestSkipped(__CLASS__.' is skipped.');
+        $this->markTestSkipped(self::class.' is skipped.');
 
-        $message = new \Guanguans\Notify\Messages\DiscordMessage([
+        new DiscordMessage([
             'content' => 'This is content.',
             'username' => 'notify bot.',
             'avatar_url' => 'https://avatars.githubusercontent.com/u/22309277?v=4',

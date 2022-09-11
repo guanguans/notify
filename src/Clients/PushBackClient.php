@@ -26,6 +26,9 @@ namespace Guanguans\Notify\Clients;
  */
 class PushBackClient extends Client
 {
+    /**
+     * @var string
+     */
     public const REQUEST_URL_TEMPLATE = 'https://api.pushback.io/v1/%s';
 
     /**
@@ -56,7 +59,7 @@ class PushBackClient extends Client
      */
     public function __construct(array $options = [])
     {
-        $this->sending(function (self $client) {
+        $this->sending(function (self $client): void {
             $this->setHttpOptions([
                 'auth' => [
                     $client->getToken(),

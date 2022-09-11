@@ -149,15 +149,15 @@ abstract class Client implements GatewayInterface, RequestInterface
 
     protected function callSendingCallbacks()
     {
-        foreach ($this->sendingCallbacks as $callback) {
-            call_user_func($callback, $this);
+        foreach ($this->sendingCallbacks as $sendingCallback) {
+            call_user_func($sendingCallback, $this);
         }
     }
 
     protected function callSendedCallbacks()
     {
-        foreach ($this->sendedCallbacks as $callback) {
-            call_user_func($callback, $this);
+        foreach ($this->sendedCallbacks as $sendedCallback) {
+            call_user_func($sendedCallback, $this);
         }
     }
 

@@ -34,51 +34,51 @@ trait HasOptions
         return new OptionsResolver();
     }
 
-    protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
         // configure options resolver...
-        return $resolver;
+        return $optionsResolver;
     }
 
-    protected function preConfigureOptionsResolver(OptionsResolver $resolver): OptionsResolver
+    protected function preConfigureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        property_exists($this, 'defined') and $resolver->setDefined($this->defined);
-        property_exists($this, 'required') and $resolver->setRequired($this->required);
-        property_exists($this, 'defaults') and $resolver->setDefaults((array) $this->defaults);
-        property_exists($this, 'prototype') and $resolver->setPrototype((bool) $this->prototype);
+        property_exists($this, 'defined') and $optionsResolver->setDefined($this->defined);
+        property_exists($this, 'required') and $optionsResolver->setRequired($this->required);
+        property_exists($this, 'defaults') and $optionsResolver->setDefaults((array) $this->defaults);
+        property_exists($this, 'prototype') and $optionsResolver->setPrototype((bool) $this->prototype);
 
         if (property_exists($this, 'deprecated')) {
             foreach ((array) $this->deprecated as $option => $deprecated) {
                 array_unshift($deprecated, $option);
-                $resolver->setDeprecated(...$deprecated);
+                $optionsResolver->setDeprecated(...$deprecated);
             }
         }
 
         if (property_exists($this, 'allowedValues')) {
             foreach ((array) $this->allowedValues as $option => $allowedValue) {
-                $resolver->setAllowedValues($option, $allowedValue);
+                $optionsResolver->setAllowedValues($option, $allowedValue);
             }
         }
 
         if (property_exists($this, 'allowedTypes')) {
             foreach ((array) $this->allowedTypes as $option => $allowedType) {
-                $resolver->setAllowedTypes($option, $allowedType);
+                $optionsResolver->setAllowedTypes($option, $allowedType);
             }
         }
 
         if (property_exists($this, 'normalizers')) {
             foreach ((array) $this->normalizers as $option => $normalizer) {
-                $resolver->setNormalizer($option, $normalizer);
+                $optionsResolver->setNormalizer($option, $normalizer);
             }
         }
 
         if (property_exists($this, 'infos')) {
             foreach ((array) $this->infos as $option => $info) {
-                $resolver->setInfo($option, $info);
+                $optionsResolver->setInfo($option, $info);
             }
         }
 
-        return $resolver;
+        return $optionsResolver;
     }
 
     /**
@@ -167,10 +167,7 @@ trait HasOptions
         return $this->getOption($option);
     }
 
-    /**
-     * @return bool
-     */
-    public function has(string $option)
+    public function has(string $option): bool
     {
         return array_key_exists($option, $this->options);
     }

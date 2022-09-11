@@ -48,10 +48,10 @@ class TextMessage extends Message
     /**
      * {@inheritDoc}
      */
-    protected function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($resolver), function (OptionsResolver $resolver) {
-            $resolver->setNormalizer('actions', function (Options $options, $value) {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver->setNormalizer('actions', static function (Options $options, $value): array {
                 return (array) $value;
             });
         });

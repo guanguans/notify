@@ -26,6 +26,9 @@ class DiscordMessage extends Message
         'embeds',
     ];
 
+    /**
+     * @var array<string, mixed[]>
+     */
     protected $options = [
         'embeds' => [],
     ];
@@ -38,21 +41,21 @@ class DiscordMessage extends Message
         'embeds' => 'array',
     ];
 
-    public function configureOptionsResolver(OptionsResolver $resolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($resolver), function ($resolver) {
-            $resolver->setNormalizer('embeds', function (Options $options, $value) {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function ($resolver): void {
+            $resolver->setNormalizer('embeds', static function (Options $options, $value) {
                 return isset($value[0]) ? $value : [$value];
             });
         });
     }
 
-    public function setEmbeds(array $embeds)
+    public function setEmbeds(array $embeds): self
     {
         return $this->addEmbeds($embeds);
     }
 
-    public function addEmbeds(array $embeds)
+    public function addEmbeds(array $embeds): self
     {
         foreach ($embeds as $embed) {
             $this->addEmbed($embed);
@@ -61,15 +64,15 @@ class DiscordMessage extends Message
         return $this;
     }
 
-    public function setEmbed(array $embed)
+    public function setEmbed(array $embed): self
     {
         return $this->addEmbed($embed);
     }
 
-    public function addEmbed(array $embed)
+    public function addEmbed(array $embed): self
     {
-        $this->options['embeds'][] = configure_options($embed, function (OptionsResolver $resolver) {
-            $resolver
+        $this->options['embeds'][] = configure_options($embed, static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver
                 ->setDefined([
                     'title',
                     'type',

@@ -22,7 +22,7 @@ class WebhookClient extends Client
 
     public function __construct(array $options = [])
     {
-        $this->sending(function (self $client) {
+        $this->sending(function (self $client): void {
             $options = $this->getMessage()->getOptions();
             unset($options['body']);
             $client->setHttpOptions($options);
@@ -31,7 +31,7 @@ class WebhookClient extends Client
         parent::__construct($options);
     }
 
-    public function setRequestMethod(string $requestMethod)
+    public function setRequestMethod(string $requestMethod): self
     {
         $this->requestMethod = $requestMethod;
 

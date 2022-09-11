@@ -11,12 +11,13 @@
 namespace Guanguans\Notify\Tests\Feature;
 
 use Guanguans\Notify\Factory;
+use Guanguans\Notify\Messages\PushPlusMessage;
 use Guanguans\Notify\Tests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
 class PushPlusTest extends TestCase
 {
-    public function testPushPlus()
+    public function testPushPlus(): void
     {
         // $this->markTestSkipped(__CLASS__.' is skipped.');
 
@@ -24,7 +25,7 @@ class PushPlusTest extends TestCase
 
         $ret = Factory::pushPlus()
             ->setToken('762e3f7efd764ad5acaa9cc26ac20')
-            ->setMessage(new \Guanguans\Notify\Messages\PushPlusMessage([
+            ->setMessage(new PushPlusMessage([
                 'content' => 'This is content.',
                 // 'title' => 'This is title.',
                 // 'template' => 'html',
@@ -32,6 +33,6 @@ class PushPlusTest extends TestCase
             ]))
             ->send();
 
-        $this->assertNotEquals(200, $ret['code']);
+        $this->assertNotSame(200, $ret['code']);
     }
 }

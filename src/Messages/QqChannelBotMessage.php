@@ -40,10 +40,10 @@ class QqChannelBotMessage extends Message
         'markdown' => 'array',
     ];
 
-    public function setEmbed(array $embed)
+    public function setEmbed(array $embed): self
     {
-        $this->options['embed'] = configure_options($embed, function (OptionsResolver $resolver) {
-            $resolver
+        $this->options['embed'] = configure_options($embed, static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver
                 ->setDefined([
                     'title',
                     'prompt',
@@ -55,10 +55,10 @@ class QqChannelBotMessage extends Message
         return $this;
     }
 
-    public function setArk(array $ark)
+    public function setArk(array $ark): self
     {
-        $this->options['ark'] = configure_options($ark, function (OptionsResolver $resolver) {
-            $resolver
+        $this->options['ark'] = configure_options($ark, static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver
                 ->setDefined([
                     'template_id',
                     'kv',
@@ -68,10 +68,10 @@ class QqChannelBotMessage extends Message
         return $this;
     }
 
-    public function setMessageReference(array $messageReference)
+    public function setMessageReference(array $messageReference): self
     {
-        $this->options['message_reference'] = configure_options($messageReference, function (OptionsResolver $resolver) {
-            $resolver
+        $this->options['message_reference'] = configure_options($messageReference, static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver
                 ->setDefined([
                     'template_id',
                     'ignore_get_message_error',
@@ -81,10 +81,10 @@ class QqChannelBotMessage extends Message
         return $this;
     }
 
-    public function setMarkdown(array $markdown)
+    public function setMarkdown(array $markdown): self
     {
-        $this->options['markdown'] = configure_options($markdown, function (OptionsResolver $resolver) {
-            $resolver
+        $this->options['markdown'] = configure_options($markdown, static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver
                 ->setDefined([
                     'template_id',
                     'params',

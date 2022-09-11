@@ -15,7 +15,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Tear down the test case.
      */
-    public function tearDown(): void
+    protected function tearDown(): void
     {
         $this->finish();
         parent::tearDown();
@@ -24,7 +24,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * Run extra tear down code.
      */
-    protected function finish()
+    protected function finish(): void
     {
         // call more tear down methods
     }

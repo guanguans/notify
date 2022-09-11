@@ -45,12 +45,12 @@ class RocketChatMessage extends Message
         $this->addAttachments($options['attachments'] ?? []);
     }
 
-    public function setAttachments(array $attachments)
+    public function setAttachments(array $attachments): self
     {
         return $this->addAttachments($attachments);
     }
 
-    public function addAttachments(array $attachments)
+    public function addAttachments(array $attachments): self
     {
         foreach ($attachments as $attachment) {
             $this->addAttachment($attachment);
@@ -59,15 +59,15 @@ class RocketChatMessage extends Message
         return $this;
     }
 
-    public function setAttachment(array $attachment)
+    public function setAttachment(array $attachment): self
     {
         return $this->addAttachment($attachment);
     }
 
-    public function addAttachment(array $attachment)
+    public function addAttachment(array $attachment): self
     {
-        $this->options['attachments'][] = configure_options($attachment, function (OptionsResolver $resolver) {
-            $resolver->setDefined([
+        $this->options['attachments'][] = configure_options($attachment, static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver->setDefined([
                 'title',
                 'title_link',
                 'text',
