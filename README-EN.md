@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip).
+> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip).
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -33,6 +33,7 @@
 * [PushBack](https://pushback.io/docs/getting-started)
 * [Push](https://docs.push.techulus.com/api-documentation)
 * [PushDeer](http://pushdeer.com)
+* [Pushover](https://pushover.net)
 * [PushPlus](https://pushplus.hxtrip.com/index)
 * [QQ Channel Bot](https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
@@ -526,6 +527,35 @@ Factory::push()
 Factory::pushDeer()
     ->setToken('PDU8024TTt9Yvx4wkm08SmSXAY9pnPycl5RrB')
     ->setMessage(new \Guanguans\Notify\Messages\PushDeerMessage('## This is text.', '> This is desp.', 'markdown'))
+    ->send();
+```
+</details>
+
+<details>
+<summary><b>Pushover</b></summary>
+
+```php
+Factory::pushover()
+    ->setToken('abs9tevjnpu2p7x1yii8uf23qq9cr5')
+    ->setUserToken('uz86ivgu7xkizpdpdo65vw2c7d5qdb')
+    ->setMessage(
+        new \Guanguans\Notify\Messages\PushoverMessage([
+            'message' => 'This is message.',
+            // 'title' => 'This is title.',
+            // 'timestamp' => time(),
+            // 'priority' => 2,
+            // 'url' => 'https://www.guanguans.cn',
+            // 'url_title' => 'This is URL title.',
+            // 'sound' => 'none',
+            // 'retry' => 60,
+            // 'expire' => 3600,
+            // 'html' => 1,
+            // 'monospace' => 0,
+            // 'callback' => 'https://www.guanguans.cn/',
+            // 'device' => 'This is device.',
+            // 'attachment' => 'This is attachment.',
+        ])
+    )
     ->send();
 ```
 </details>
