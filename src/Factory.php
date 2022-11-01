@@ -30,6 +30,7 @@ use Guanguans\Notify\Support\Str;
  * @method static \Guanguans\Notify\Clients\PushBackClient     pushBack(array $options = [])
  * @method static \Guanguans\Notify\Clients\PushClient         push(array $options = [])
  * @method static \Guanguans\Notify\Clients\PushDeerClient     pushDeer(array $options = [])
+ * @method static \Guanguans\Notify\Clients\PushoverClient     pushover(array $options = [])
  * @method static \Guanguans\Notify\Clients\PushPlusClient     pushPlus(array $options = [])
  * @method static \Guanguans\Notify\Clients\QqChannelBotClient qqChannelBot(array $options = [])
  * @method static \Guanguans\Notify\Clients\RocketChatClient   rocketChat(array $options = [])

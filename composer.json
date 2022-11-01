@@ -75,8 +75,10 @@
         "php": ">=7.2.5",
         "ext-json": "*",
         "overtrue/http": "^1.2",
+        "php-pushover/php-pushover": "^1.0",
         "psr/log": "^1.1 || ^2.0 || ^3.0",
-        "symfony/options-resolver": "^5.0 || ^6.0"
+        "symfony/options-resolver": "^5.0 || ^6.0",
+        "symfony/var-dumper": "^5.0||^6.0"
     },
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.8",
