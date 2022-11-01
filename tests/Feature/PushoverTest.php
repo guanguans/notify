@@ -44,4 +44,23 @@ class PushoverTest extends TestCase
             ->setMessage($pushoverMessage)
             ->send();
     }
+
+    public function testValidateUser(): void
+    {
+        $this->expectException(ClientException::class);
+
+        Factory::pushover()
+            ->setToken('abs9tevjnpu2p7x1yii8uf23')
+            ->setUserToken('uz86ivgu7xkizpdpdo65vw2c')
+            ->validateUser();
+    }
+
+    public function testSounds(): void
+    {
+        $this->expectException(ClientException::class);
+
+        Factory::pushover()
+            ->setToken('abs9tevjnpu2p7x1yii8uf23')
+            ->sounds();
+    }
 }

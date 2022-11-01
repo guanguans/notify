@@ -27,6 +27,38 @@ class PushoverClient extends Client
     public const REQUEST_URL_TEMPLATE = 'https://api.pushover.net/1/messages.json';
 
     /**
+     * @var string
+     */
+    public const VALIDATION_USER_REQUEST_URL_TEMPLATE = 'https://api.pushover.net/1/users/validate.json';
+
+    /**
+     * @var string
+     */
+    public const SOUNDS_REQUEST_URL_TEMPLATE = 'https://api.pushover.net/1/sounds.json?token=%s';
+
+    public function validateUser()
+    {
+        return $this->wrapSendCallbacksWithRequestAsync(function () {
+            return $this->getHttpClient()->{$this->getRequestMethod()}(
+                static::VALIDATION_USER_REQUEST_URL_TEMPLATE,
+                [
+                    'token' => $this->options['token'] ?? null,
+                    'user' => $this->options['user_token'] ?? null,
+                ]
+            );
+        });
+    }
+
+    public function sounds()
+    {
+        return $this->wrapSendCallbacksWithRequestAsync(function () {
+            return $this->getHttpClient()->get(
+                sprintf(static::SOUNDS_REQUEST_URL_TEMPLATE, $this->options['token'] ?? '')
+            );
+        });
+    }
+
+    /**
      * @return $this
      */
     public function setUserToken(string $userToken): self
