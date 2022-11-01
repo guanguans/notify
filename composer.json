@@ -81,6 +81,7 @@
     "require-dev": {
         "brainmaestro/composer-git-hooks": "^2.7",
         "friendsofphp/php-cs-fixer": "^3.0",
+        "jetbrains/phpstorm-attributes": "^1.0",
         "mockery/mockery": "^1.2",
         "overtrue/phplint": "^3.0",
         "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
@@ -137,14 +138,16 @@
             "@style-lint",
             "@mark-separate",
             "@test",
+            "@mark-separate",
+            "@psalm",
             "@mark-finish"
         ],
         "lint": "./vendor/bin/phplint --no-cache --configuration=.phplint.yml --ansi",
         "mark-finish": "printf '\\n!\\n!\\t\\033[0;32m%s\\033[0m\\n!\\n\\n' \"Finished\"",
         "mark-separate": "printf '\\n!\\n!\\t\\033[0;33m%s\\033[0m\\n!\\n\\n' \"----------------\"",
         "mark-start": "printf '\\n!\\n!\\t\\033[0;36m%s\\033[0m\\n!\\n\\n' \"Started\"",
-        "md-fix": "lint-md --config .lintmdrc --fix *.md .github/*.md .github/ISSUE_TEMPLATE/*.md",
-        "md-lint": "lint-md --config .lintmdrc *.md .github/*.md .github/ISSUE_TEMPLATE/*.md",
+        "md-fix": "@md-lint --fix",
+        "md-lint": "lint-md --config .lintmdrc ./*.md ./.github/ ./docs/",
         "post-merge": [
             "composer install"
         ],
@@ -153,8 +156,8 @@
         "rector": "./vendor/bin/rector --clear-cache --ansi -v",
         "rector-dry-run": "@rector --dry-run",
         "style-fix": "./vendor/bin/php-cs-fixer fix --using-cache=no --config=.php-cs-fixer.php --ansi",
-        "style-lint": "@style-fix --diff --dry-run",
-        "test": "./vendor/bin/phpunit --coverage-text --colors=always --verbose",
-        "test-coverage": "./vendor/bin/phpunit --coverage-html=coverage/ --coverage-clover=clover.xml --color=always --verbose"
+        "style-lint": "@style-fix --dry-run --diff",
+        "test": "./vendor/bin/phpunit --cache-result-file=./build/phpunit/.phpunit.result.cache",
+        "test-coverage": "@test --coverage-html=./build/phpunit/ --coverage-clover=clover.xml"
     }
 }

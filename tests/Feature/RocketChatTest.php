@@ -18,7 +18,7 @@ class RocketChatTest extends TestCase
 {
     public function testRocketChat(): void
     {
-        // $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        $this->expectException(\GuzzleHttp\Exception\ClientException::class);
 
         $ret = Factory::rocketChat()
             ->setToken('EemSHx9ioqdmrWouS/yYpmhqDSyd7CqmSAnyBfKezLyzotswbRSpkD9MCNxqtPL')

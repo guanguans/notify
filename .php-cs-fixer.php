@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the guanguans/notify.
  *
@@ -19,6 +21,7 @@ This file is part of the guanguans/notify.
 This source file is subject to the MIT license that is bundled.
 EOF;
 
+/** @noinspection PhpParamsInspection */
 $finder = Finder::create()
     ->in([
         __DIR__.'/src',
@@ -59,5 +62,5 @@ return (new Config())
         // 'php_unit_strict' => true,
         // 'declare_strict_types' => true,
     ])
-    // ->setRiskyAllowed(true)
+    ->setRiskyAllowed(true)
     ->setFinder($finder);
