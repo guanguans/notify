@@ -22,8 +22,6 @@ class HigherOrderTapProxy
 
     /**
      * HigherOrderTapProxy constructor.
-     *
-     * @param $target
      */
     public function __construct($target)
     {
@@ -31,9 +29,6 @@ class HigherOrderTapProxy
     }
 
     /**
-     * @param $method
-     * @param $parameters
-     *
      * @return mixed
      */
     public function __call($method, $parameters)

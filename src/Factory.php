@@ -45,8 +45,6 @@ use Guanguans\Notify\Support\Str;
 class Factory
 {
     /**
-     * @param $name
-     *
      * @return mixed
      */
     public static function make(string $name, array $options = []): object
@@ -57,9 +55,6 @@ class Factory
     }
 
     /**
-     * @param $name
-     * @param $arguments
-     *
      * @return mixed
      */
     public static function __callStatic(string $name, array $arguments)

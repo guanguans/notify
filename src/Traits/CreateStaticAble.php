@@ -13,8 +13,6 @@ namespace Guanguans\Notify\Traits;
 trait CreateStaticAble
 {
     /**
-     * @param ...$parameters
-     *
      * @return static
      */
     /** @noRector \Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromReturnNewRector */

@@ -82,8 +82,6 @@ trait HasOptions
     }
 
     /**
-     * @param $value
-     *
      * @return $this
      */
     public function addOption(string $option, $value)
@@ -110,8 +108,6 @@ trait HasOptions
     }
 
     /**
-     * @param $value
-     *
      * @return $this
      */
     public function setOption(string $option, $value)
@@ -148,8 +144,6 @@ trait HasOptions
     }
 
     /**
-     * @param $value
-     *
      * @return $this
      */
     public function set(string $option, $value)
@@ -173,8 +167,6 @@ trait HasOptions
     }
 
     /**
-     * @param $option
-     *
      * @return array|mixed
      */
     public function __get($option)
@@ -183,9 +175,6 @@ trait HasOptions
     }
 
     /**
-     * @param $option
-     * @param $value
-     *
      * @return $this
      */
     public function __set($option, $value)
@@ -194,8 +183,6 @@ trait HasOptions
     }
 
     /**
-     * @param $option
-     *
      * @return bool
      */
     public function __isset($option)
