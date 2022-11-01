@@ -19,7 +19,7 @@ class PushPlusTest extends TestCase
 {
     public function testPushPlus(): void
     {
-        // $this->markTestSkipped(__CLASS__.' is skipped.');
+        $this->markTestSkipped(__CLASS__.' is skipped.');
 
         $this->expectException(ClientException::class);
 
