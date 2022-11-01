@@ -536,8 +536,8 @@ Factory::pushDeer()
 
 ```php
 Factory::pushover()
-    ->setToken('abs9tevjnpu2p7x1yii8uf23qq9cr5')
-    ->setUserToken('uz86ivgu7xkizpdpdo65vw2c7d5qdb')
+    ->setToken('abs9tevjnpu2p7x1yii8uf23')
+    ->setUserToken('uz86ivgu7xkizpdpdo65vw2c')
     ->setMessage(
         new \Guanguans\Notify\Messages\PushoverMessage([
             'message' => 'This is message.',
@@ -557,6 +557,11 @@ Factory::pushover()
         ])
     )
     ->send();
+
+// sounds
+Factory::pushover()
+    ->setToken('abs9tevjnpu2p7x1yii8uf23')
+    ->sounds();
 ```
 </details>
 
