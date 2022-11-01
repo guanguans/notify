@@ -19,10 +19,12 @@ use Rector\CodeQuality\Rector\Identical\SimplifyBoolIdenticalTrueRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
 use Rector\CodingStyle\Enum\PreferenceSelfThis;
 use Rector\CodingStyle\Rector\ClassMethod\UnSpreadOperatorRector;
+use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
 use Rector\CodingStyle\Rector\FuncCall\ConsistentPregDelimiterRector;
 use Rector\CodingStyle\Rector\MethodCall\PreferThisOrSelfMethodCallRector;
+use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\Core\Configuration\Option;
 use Rector\Core\ValueObject\PhpVersion;
@@ -52,40 +54,39 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__.'/tests',
         __DIR__.'/.php-cs-fixer.php',
         __DIR__.'/rector.php',
-
-        // __DIR__.'/src/Traits/CreateStaticAble.php',
-        // __DIR__.'/src/Clients/MailerClient.php',
     ]);
 
     $rectorConfig->skip([
         // rules
-        CallableThisArrayToAnonymousFunctionRector::class,
-        InlineIfToExplicitIfRector::class,
+        // CallableThisArrayToAnonymousFunctionRector::class,
+        // InlineIfToExplicitIfRector::class,
         LogicalToBooleanRector::class,
-        SimplifyBoolIdenticalTrueRector::class,
-        RemoveEmptyMethodCallRector::class,
+        // SimplifyBoolIdenticalTrueRector::class,
+        // RemoveEmptyMethodCallRector::class,
         AddSeeTestAnnotationRector::class,
         NormalizeNamespaceByPSR4ComposerAutoloadRector::class,
-        ChangeAndIfToEarlyReturnRector::class,
-        ReturnBinaryOrToEarlyReturnRector::class,
+        // ChangeAndIfToEarlyReturnRector::class,
+        // ReturnBinaryOrToEarlyReturnRector::class,
         EncapsedStringsToSprintfRector::class,
-        WrapEncapsedVariableInCurlyBracesRector::class,
+        // WrapEncapsedVariableInCurlyBracesRector::class,
 
         // optional rules
         AddDefaultValueForUndefinedVariableRector::class,
         RemoveUnusedVariableAssignRector::class,
-        UnSpreadOperatorRector::class,
         ConsistentPregDelimiterRector::class,
-        // StaticClosureRector::class,
+        UnSpreadOperatorRector::class,
+        StaticClosureRector::class,
+        // NewlineAfterStatementRector::class,
 
         // paths
+        '**/fixtures*',
+        '**/fixtures/*',
         '**/Fixture*',
         '**/Fixture/*',
         '**/Source*',
         '**/Source/*',
         '**/Expected/*',
         '**/Expected*',
-        __DIR__.'/src/foundation/tests/AppTest.php',
     ]);
 
     $rectorConfig->sets([
@@ -104,8 +105,8 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::TYPE_DECLARATION_STRICT,
         SetList::EARLY_RETURN,
 
-        PHPUnitLevelSetList::UP_TO_PHPUNIT_70,
-        // PHPUnitSetList::PHPUNIT80_DMS,
+        PHPUnitLevelSetList::UP_TO_PHPUNIT_80,
+        PHPUnitSetList::PHPUNIT80_DMS,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
         PHPUnitSetList::PHPUNIT_EXCEPTION,
         PHPUnitSetList::REMOVE_MOCKS,
@@ -117,18 +118,22 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->importNames(true, false);
     $rectorConfig->nestedChainMethodCallLimit(3);
     // $rectorConfig->phpstanConfig(__DIR__.'/phpstan.neon');
-    // $rectorConfig->parameters()->set(Option::APPLY_AUTO_IMPORT_NAMES_ON_CHANGED_FILES_ONLY, true);
-    // $rectorConfig->phpVersion(PhpVersion::PHP_80);
     // $rectorConfig->cacheClass(FileCacheStorage::class);
     // $rectorConfig->cacheDirectory(__DIR__.'/build/rector');
-    // $rectorConfig->indent(' ', 4);
+    // $rectorConfig->fileExtensions(['php']);
+    // $rectorConfig->parameters()->set(Option::APPLY_AUTO_IMPORT_NAMES_ON_CHANGED_FILES_ONLY, true);
+    // $rectorConfig->phpVersion(PhpVersion::PHP_80);
     // $rectorConfig->parallel();
+    // $rectorConfig->indent(' ', 4);
 
     $rectorConfig->rules([
         InlineConstructorDefaultToPropertyRector::class,
     ]);
 
-    $rectorConfig->ruleWithConfiguration(PreferThisOrSelfMethodCallRector::class, [
-        TestCase::class => PreferenceSelfThis::PREFER_THIS,
-    ]);
+    $rectorConfig->ruleWithConfiguration(
+        PreferThisOrSelfMethodCallRector::class,
+        [
+            TestCase::class => PreferenceSelfThis::PREFER_THIS,
+        ]
+    );
 };

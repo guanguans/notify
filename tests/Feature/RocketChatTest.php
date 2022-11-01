@@ -13,12 +13,13 @@ namespace Guanguans\Notify\Tests\Feature;
 use Guanguans\Notify\Factory;
 use Guanguans\Notify\Messages\RocketChatMessage;
 use Guanguans\Notify\Tests\TestCase;
+use GuzzleHttp\Exception\ClientException;
 
 class RocketChatTest extends TestCase
 {
     public function testRocketChat(): void
     {
-        $this->expectException(\GuzzleHttp\Exception\ClientException::class);
+        $this->expectException(ClientException::class);
 
         $ret = Factory::rocketChat()
             ->setToken('EemSHx9ioqdmrWouS/yYpmhqDSyd7CqmSAnyBfKezLyzotswbRSpkD9MCNxqtPL')

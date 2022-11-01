@@ -63,17 +63,21 @@ class MailerClient extends Client
         return $this->setOption('envelope', $envelope);
     }
 
-    /** @noRector \Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector */
+    /**
+     * @noRector \Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector
+     */
     protected function createMailer(): MailerInterface
     {
         return new Mailer(Transport::fromDsn($this->getDsn()));
     }
 
+    /**
+     * @noRector \Rector\CodingStyle\Rector\Closure\StaticClosureRector
+     */
     public function send(MessageInterface $message = null)
     {
         $message and $this->setMessage($message);
 
-        /* @noRector \Rector\CodingStyle\Rector\Closure\StaticClosureRector */
         return $this->wrapSendCallbacks(function (): void {
             $this->createMailer()->send($this->getMessage(), $this->getEnvelope());
         });
