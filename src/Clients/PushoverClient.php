@@ -10,8 +10,15 @@
 
 namespace Guanguans\Notify\Clients;
 
+use Guanguans\Notify\Contracts\MessageInterface;
+
 class PushoverClient extends Client
 {
+    /**
+     * @var string
+     */
+    protected $requestMethod = 'upload';
+
     /**
      * @var string[]
      */
@@ -36,10 +43,30 @@ class PushoverClient extends Client
      */
     public const SOUNDS_REQUEST_URL_TEMPLATE = 'https://api.pushover.net/1/sounds.json?token=%s';
 
+    public function send(MessageInterface $message = null)
+    {
+        $message and $this->setMessage($message);
+
+        return $this->wrapSendCallbacksWithRequestAsync(function () {
+            $requestParams = $this->getRequestParams();
+            $files = $requestParams['attachment'] ?? [];
+            unset($requestParams['attachment']);
+
+            return $this->getHttpClient()
+                ->{$this->getRequestMethod()}(
+                    $this->getRequestUrl(),
+                    $files,
+                    $requestParams,
+                    [],
+                    $this->requestAsync
+                );
+        });
+    }
+
     public function validateUser()
     {
         return $this->wrapSendCallbacksWithRequestAsync(function () {
-            return $this->getHttpClient()->{$this->getRequestMethod()}(
+            return $this->getHttpClient()->post(
                 static::VALIDATION_USER_REQUEST_URL_TEMPLATE,
                 [
                     'token' => $this->options['token'] ?? null,
@@ -76,19 +103,19 @@ class PushoverClient extends Client
     /**
      * {@inheritDoc}
      */
-    public function getRequestParams(): array
+    public function getRequestUrl(): string
     {
-        return parent::getRequestParams() + [
-            'token' => $this->options['token'] ?? null,
-            'user' => $this->options['user_token'] ?? null,
-        ];
+        return static::REQUEST_URL_TEMPLATE;
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getRequestUrl(): string
+    public function getRequestParams(): array
     {
-        return static::REQUEST_URL_TEMPLATE;
+        return parent::getRequestParams() + [
+            'token' => $this->options['token'] ?? '',
+            'user' => $this->options['user_token'] ?? '',
+        ];
     }
 }

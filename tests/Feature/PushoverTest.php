@@ -23,19 +23,19 @@ class PushoverTest extends TestCase
 
         $pushoverMessage = new PushoverMessage([
             'message' => 'This is message.',
-            // 'title'      => 'This is title.',
-            // 'timestamp'  => time(),
-            // 'priority'   => 2,
-            // 'url'        => 'https://www.guanguans.cn',
-            // 'url_title'  => 'This is URL title.',
-            // 'sound'      => 'none',
-            // 'retry'      => 60,
-            // 'expire'     => 3600,
-            // 'html'       => 1,
-            // 'monospace'  => 0,
-            // 'callback'   => 'https://www.guanguans.cn/',
-            // 'device'     => 'This is device.',
-            // 'attachment' => 'This is attachment.',
+            // 'title' => 'This is title.',
+            // 'timestamp' => time(),
+            // 'priority' => 2,
+            // 'url' => 'https://www.guanguans.cn',
+            // 'url_title' => 'This is URL title.',
+            // 'sound' => 'bike',
+            // 'retry' => 60,
+            // 'expire' => 3600,
+            // 'html' => 1,
+            // 'monospace' => 0,
+            // 'callback' => 'https://www.guanguans.cn/',
+            // 'device' => 'iphone',
+            // 'attachment' => '/Users/yaozm/Downloads/xxx.png',
         ]);
 
         Factory::pushover()
