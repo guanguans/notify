@@ -11,7 +11,6 @@
 namespace Guanguans\Notify\Messages\WeWork;
 
 use Guanguans\Notify\Messages\Message;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TextMessage extends Message
@@ -40,11 +39,11 @@ class TextMessage extends Message
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function ($resolver): void {
-            $resolver->setNormalizer('mentioned_list', static function (Options $options, $value): array {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('mentioned_list', static function (OptionsResolver $optionsResolver, $value): array {
                 return (array) $value;
             });
-            $resolver->setNormalizer('mentioned_mobile_list', static function (Options $options, $value): array {
+            $resolver->setNormalizer('mentioned_mobile_list', static function (OptionsResolver $optionsResolver, $value): array {
                 return (array) $value;
             });
         });

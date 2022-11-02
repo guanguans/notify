@@ -10,7 +10,6 @@
 
 namespace Guanguans\Notify\Messages;
 
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class DiscordMessage extends Message
@@ -43,8 +42,8 @@ class DiscordMessage extends Message
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function ($resolver): void {
-            $resolver->setNormalizer('embeds', static function (Options $options, $value) {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('embeds', static function (OptionsResolver $optionsResolver, $value) {
                 return isset($value[0]) ? $value : [$value];
             });
         });
@@ -91,7 +90,7 @@ class DiscordMessage extends Message
                 ->setAllowedTypes('thumbnail', 'array')
                 ->setAllowedTypes('author', 'array')
                 ->setAllowedTypes('fields', 'array')
-                ->setNormalizer('color', function (Options $options, $value) {
+                ->setNormalizer('color', function (OptionsResolver $optionsResolver, $value) {
                     return is_int($value) ? $value : hexdec($value);
                 });
         });

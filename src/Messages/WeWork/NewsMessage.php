@@ -11,7 +11,6 @@
 namespace Guanguans\Notify\Messages\WeWork;
 
 use Guanguans\Notify\Messages\Message;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class NewsMessage extends Message
@@ -51,8 +50,8 @@ class NewsMessage extends Message
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function ($resolver): void {
-            $resolver->setNormalizer('articles', static function (Options $options, $value) {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('articles', static function (OptionsResolver $optionsResolver, $value) {
                 return isset($value[0]) ? $value : [$value];
             });
         });

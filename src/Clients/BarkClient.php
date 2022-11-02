@@ -10,7 +10,6 @@
 
 namespace Guanguans\Notify\Clients;
 
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BarkClient extends Client
@@ -39,7 +38,7 @@ class BarkClient extends Client
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver->setNormalizer('base_uri', static function (Options $options, $value): string {
+            $optionsResolver->setNormalizer('base_uri', static function (OptionsResolver $optionsResolver, $value): string {
                 return trim($value, '/');
             });
         });

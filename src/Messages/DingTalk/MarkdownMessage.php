@@ -11,7 +11,6 @@
 namespace Guanguans\Notify\Messages\DingTalk;
 
 use Guanguans\Notify\Messages\Message;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MarkdownMessage extends Message
@@ -43,11 +42,11 @@ class MarkdownMessage extends Message
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function ($resolver): void {
-            $resolver->setNormalizer('atMobiles', static function (Options $options, $value): array {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('atMobiles', static function (OptionsResolver $optionsResolver, $value): array {
                 return (array) $value;
             });
-            $resolver->setNormalizer('atDingtalkIds', static function (Options $options, $value): array {
+            $resolver->setNormalizer('atDingtalkIds', static function (OptionsResolver $optionsResolver, $value): array {
                 return (array) $value;
             });
         });

@@ -71,24 +71,31 @@ class PushoverMessage extends Message
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('priority', static function (OptionsResolver $resolver, $value) {
-                if (2 === $value && ! isset($resolver['retry'], $resolver['expire'])) {
-                    throw new MissingOptionsException('The required option "retry" or "expire" is missing.');
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver->setNormalizer('priority', static function (OptionsResolver $optionsResolver, $value): int {
+                if (2 !== $value) {
+                    return $value;
                 }
-
-                return $value;
+                if (isset($optionsResolver['retry'], $optionsResolver['expire'])) {
+                    return $value;
+                }
+                throw new MissingOptionsException('The required option "retry" or "expire" is missing.');
             });
 
-            $resolver->setNormalizer('html', static function (OptionsResolver $resolver, $value) {
-                if (1 === $value && isset($resolver['monospace']) && 1 === $resolver['monospace']) {
-                    throw new InvalidOptionsException('Html cannot be set with monospace, Monospace cannot be set with html, Html and monospace are mutually.');
+            $optionsResolver->setNormalizer('html', static function (OptionsResolver $optionsResolver, $value): int {
+                if (1 !== $value) {
+                    return $value;
                 }
-
-                return $value;
+                if (! isset($optionsResolver['monospace'])) {
+                    return $value;
+                }
+                if (1 !== $optionsResolver['monospace']) {
+                    return $value;
+                }
+                throw new InvalidOptionsException('Html cannot be set with monospace, Monospace cannot be set with html, Html and monospace are mutually.');
             });
 
-            $resolver->setNormalizer('attachment', static function (OptionsResolver $resolver, $value) {
+            $optionsResolver->setNormalizer('attachment', static function (OptionsResolver $optionsResolver, $value): array {
                 if (is_string($value)) {
                     if (empty($value)) {
                         throw new InvalidOptionsException('The attachment cannot be empty.');
@@ -96,7 +103,7 @@ class PushoverMessage extends Message
 
                     $value = fopen($value, 'rb');
                     if (false === $value) {
-                        throw new InvalidOptionsException("The attachment resource file does not exist: $value.");
+                        throw new InvalidOptionsException("The attachment resource file does not exist: {$value}.");
                     }
                 }
 

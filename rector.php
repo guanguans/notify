@@ -32,6 +32,7 @@ use Rector\DeadCode\Rector\Assign\RemoveUnusedVariableAssignRector;
 use Rector\DeadCode\Rector\MethodCall\RemoveEmptyMethodCallRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
+use Rector\Php55\Rector\Class_\ClassConstantToSelfClassRector;
 use Rector\Php56\Rector\FunctionLike\AddDefaultValueForUndefinedVariableRector;
 use Rector\PHPUnit\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitLevelSetList;
@@ -69,6 +70,7 @@ return static function (RectorConfig $rectorConfig): void {
         // ReturnBinaryOrToEarlyReturnRector::class,
         EncapsedStringsToSprintfRector::class,
         // WrapEncapsedVariableInCurlyBracesRector::class,
+        ClassConstantToSelfClassRector::class,
 
         // optional rules
         AddDefaultValueForUndefinedVariableRector::class,

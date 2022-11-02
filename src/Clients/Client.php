@@ -10,6 +10,7 @@
 
 namespace Guanguans\Notify\Clients;
 
+use Closure;
 use Guanguans\Notify\Contracts\GatewayInterface;
 use Guanguans\Notify\Contracts\MessageInterface;
 use Guanguans\Notify\Contracts\RequestInterface;
@@ -163,7 +164,7 @@ abstract class Client implements GatewayInterface, RequestInterface
     /**
      * @return mixed
      */
-    protected function wrapSendCallbacks(\Closure $handler)
+    protected function wrapSendCallbacks(Closure $handler)
     {
         $this->callSendingCallbacks();
 
@@ -177,7 +178,7 @@ abstract class Client implements GatewayInterface, RequestInterface
     /**
      * @return mixed
      */
-    protected function wrapSendCallbacksWithRequestAsync(\Closure $handler)
+    protected function wrapSendCallbacksWithRequestAsync(Closure $handler)
     {
         return $this->wrapSendCallbacks(function () use ($handler) {
             $handled = $handler();

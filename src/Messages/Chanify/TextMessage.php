@@ -11,7 +11,6 @@
 namespace Guanguans\Notify\Messages\Chanify;
 
 use Guanguans\Notify\Messages\Message;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TextMessage extends Message
@@ -51,7 +50,7 @@ class TextMessage extends Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver->setNormalizer('actions', static function (Options $options, $value): array {
+            $optionsResolver->setNormalizer('actions', static function (OptionsResolver $optionsResolver, $value): array {
                 return (array) $value;
             });
         });
