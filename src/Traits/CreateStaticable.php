@@ -10,12 +10,13 @@
 
 namespace Guanguans\Notify\Traits;
 
-trait CreateStaticAble
+trait CreateStaticable
 {
     /**
+     * @noRector \Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromReturnNewRector
+     *
      * @return static
      */
-    /** @noRector \Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromReturnNewRector */
     public static function create(...$parameters)
     {
         return new static(...$parameters);

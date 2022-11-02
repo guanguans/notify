@@ -13,7 +13,7 @@ namespace Guanguans\Notify\Clients;
 use Guanguans\Notify\Contracts\GatewayInterface;
 use Guanguans\Notify\Contracts\MessageInterface;
 use Guanguans\Notify\Contracts\RequestInterface;
-use Guanguans\Notify\Traits\CreateStaticAble;
+use Guanguans\Notify\Traits\CreateStaticable;
 use Guanguans\Notify\Traits\HasHttpClient;
 use Guanguans\Notify\Traits\HasOptions;
 
@@ -21,7 +21,7 @@ abstract class Client implements GatewayInterface, RequestInterface
 {
     use HasHttpClient;
     use HasOptions;
-    use CreateStaticAble;
+    use CreateStaticable;
 
     /**
      * @var string

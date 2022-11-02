@@ -61,7 +61,9 @@ class GoogleChatClient extends Client
 
     public function setSpace(string $space): self
     {
-        return $this->setOption('space', $space);
+        $this->setOption('space', $space);
+
+        return $this;
     }
 
     public function getKey(): string
@@ -71,7 +73,9 @@ class GoogleChatClient extends Client
 
     public function setKey(string $key): self
     {
-        return $this->setOption('key', $key);
+        $this->setOption('key', $key);
+
+        return $this;
     }
 
     public function getThreadKey(): ?string
@@ -81,6 +85,8 @@ class GoogleChatClient extends Client
 
     public function setThreadKey(?string $threadKey): self
     {
-        return $this->setOption('thread_key', $threadKey);
+        $this->setOption('thread_key', $threadKey);
+
+        return $this;
     }
 }

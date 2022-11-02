@@ -50,7 +50,9 @@ class MailerClient extends Client
 
     public function setDsn(string $dsn): self
     {
-        return $this->setOption('dsn', $dsn);
+        $this->setOption('dsn', $dsn);
+
+        return $this;
     }
 
     public function getEnvelope(): ?Envelope
@@ -60,7 +62,9 @@ class MailerClient extends Client
 
     public function setEnvelope(?Envelope $envelope): self
     {
-        return $this->setOption('envelope', $envelope);
+        $this->setOption('envelope', $envelope);
+
+        return $this;
     }
 
     /**

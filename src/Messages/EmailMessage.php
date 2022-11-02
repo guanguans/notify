@@ -11,14 +11,14 @@
 namespace Guanguans\Notify\Messages;
 
 use Guanguans\Notify\Contracts\MessageInterface;
-use Guanguans\Notify\Traits\CreateStaticAble;
+use Guanguans\Notify\Traits\CreateStaticable;
 use Guanguans\Notify\Traits\HasOptions;
 use Symfony\Component\Mime\Email;
 
 class EmailMessage extends Email implements MessageInterface
 {
     use HasOptions;
-    use CreateStaticAble;
+    use CreateStaticable;
 
     /**
      * @return array{subject: string|null, html: resource|string|null, text: resource|string|null, from: \Symfony\Component\Mime\Address[], to: \Symfony\Component\Mime\Address[], cc: \Symfony\Component\Mime\Address[], bcc: \Symfony\Component\Mime\Address[], reply_to: \Symfony\Component\Mime\Address[], attachments: \Symfony\Component\Mime\Part\DataPart[]}

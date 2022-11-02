@@ -11,13 +11,13 @@
 namespace Guanguans\Notify\Messages;
 
 use Guanguans\Notify\Contracts\MessageInterface;
-use Guanguans\Notify\Traits\CreateStaticAble;
+use Guanguans\Notify\Traits\CreateStaticable;
 use Guanguans\Notify\Traits\HasOptions;
 
 class Message implements MessageInterface
 {
     use HasOptions;
-    use CreateStaticAble;
+    use CreateStaticable;
 
     /**
      * Message constructor.

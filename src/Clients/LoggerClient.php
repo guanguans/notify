@@ -64,7 +64,9 @@ class LoggerClient extends Client
 
     public function setLogger(LoggerInterface $logger): self
     {
-        return $this->setOption('logger', $logger);
+        $this->setOption('logger', $logger);
+
+        return $this;
     }
 
     public function getLevel(): string
@@ -74,7 +76,9 @@ class LoggerClient extends Client
 
     public function setLevel(string $level): self
     {
-        return $this->setOption('level', $level);
+        $this->setOption('level', $level);
+
+        return $this;
     }
 
     public function send(MessageInterface $message = null)
