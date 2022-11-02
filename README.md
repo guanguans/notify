@@ -553,7 +553,7 @@ Factory::pushover()
             // 'monospace' => 0,
             // 'callback' => 'https://www.guanguans.cn/',
             // 'device' => 'This is device.',
-            // 'attachment' => 'This is attachment.',
+            // 'attachment' => '/Users/yaozm/Downloads/xxx.png',
         ])
     )
     ->send();
