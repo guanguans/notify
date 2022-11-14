@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Now Push、PushBack、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip).
+> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、PushBack、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip).
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -29,6 +29,7 @@
 * [iGot](http://hellyw.com/#/)
 * [Logger](https://github.com/php-fig/log)
 * [Mattermost](https://api.mattermost.com)
+* [Microsoft Teams](https://www.microsoft.com/zh-cn/microsoft-teams/teams-for-work)
 * [Now Push](https://nowpush.io/api-docs/)
 * [PushBack](https://pushback.io/docs/getting-started)
 * [Push](https://docs.push.techulus.com/api-documentation)
@@ -448,6 +449,104 @@ Factory::mattermost()
             // 'file_ids' => ['o3x4y157jff5xydf5m91bft1oo'],
         ])
     )
+    ->send();
+```
+</details>
+
+<details>
+<summary><b>Microsoft Teams</b></summary>
+
+```php
+$microsoftTeamsMessage = new MicrosoftTeamsMessage([
+    'correlationId' => 'This is correlationId.',
+    'expectedActors' => [
+        'john@contoso.com',
+    ],
+    'originator' => 'This is originator.',
+    'summary' => 'This is summary.',
+    'themeColor' => '0076D7',
+    'hideOriginalBody' => false,
+    'title' => 'This is title.',
+    'text' => 'This is text.',
+    'sections' => [],
+    'potentialAction' => [],
+]);
+
+$microsoftTeamsMessage
+    ->addSection([
+        'title' => 'This is title.',
+        'startGroup' => true,
+        'activityImage' => 'This is activityImage.',
+        'activityTitle' => 'This is activityTitle.',
+        'activitySubtitle' => 'This is activitySubtitle.',
+        'activityText' => 'This is activityText.',
+        'heroImage' => 'This is heroImage.',
+        'text' => 'This is text.',
+        'facts' => [
+            [
+                'name' => 'This is name.',
+                'value' => 'This is value.',
+            ],
+        ],
+        'images' => [
+            'This is images.',
+        ],
+        'potentialAction' => [],
+    ])
+    ->addPotentialAction([
+        '@type' => 'OpenUri',
+        'name' => 'This is name.',
+        'targets' => [
+            [
+                'os' => 'default',
+                'uri' => 'https://learn.microsoft.com/outlook/actionable-messages',
+            ],
+        ],
+    ])
+    ->addPotentialAction([
+        '@type' => 'HttpPOST',
+        'name' => 'This is name.',
+        'target' => 'https://learn.microsoft.com/outlook/actionable-messages',
+        'headers' => [
+            [
+                'name' => 'X-Version',
+                'value' => 'v1.0.0',
+            ],
+        ],
+        'body' => [
+            'field' => 'value',
+        ],
+        'bodyContentType' => 'application/x-www-form-urlencoded',
+    ])
+    ->addPotentialAction([
+        '@type' => 'ActionCard',
+        'name' => 'This is name.',
+        'inputs' => [
+            [
+                '@type' => 'TextInput',
+                'id' => 'comment',
+                'isRequired' => true,
+                'title' => 'This is title.',
+                'value' => 'This is value.',
+                'isMultiline' => true,
+            ],
+        ],
+        'actions' => [],
+    ])
+    ->addPotentialAction([
+        '@type' => 'InvokeAddInCommand',
+        'name' => 'This is name.',
+        'addInId' => '527104a1-f1a5-475a-9199-7a968161c870',
+        'desktopCommandId' => 'show',
+        'initializationContext' => [
+            'property1' => 'This is property1.',
+            'property2' => 'This is property2.',
+        ],
+    ]);
+
+Factory::microsoftTeams()
+    ->setWebhookUrl('url')
+    ->setMessage($microsoftTeamsMessage)
     ->send();
 ```
 </details>
