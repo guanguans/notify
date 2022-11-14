@@ -163,4 +163,12 @@
       <code>$optionsResolver</code>
     </UnusedClosureParam>
   </file>
+  <file src="src/Clients/MicrosoftTeamsClient.php">
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('webhook_url')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Messages/MicrosoftTeamsMessage.php">
+    <UnusedClosureParam occurrences="2"/>
+  </file>
 </files>
