@@ -28,6 +28,7 @@ use Guanguans\Notify\Support\Str;
  * @method static \Guanguans\Notify\Clients\MattermostClient     mattermost(array $options = [])
  * @method static \Guanguans\Notify\Clients\MicrosoftTeamsClient microsoftTeams(array $options = [])
  * @method static \Guanguans\Notify\Clients\NowPushClient        nowPush(array $options = [])
+ * @method static \Guanguans\Notify\Clients\NtfyClient           ntfy(array $options = [])
  * @method static \Guanguans\Notify\Clients\PushBackClient       pushBack(array $options = [])
  * @method static \Guanguans\Notify\Clients\PushClient           push(array $options = [])
  * @method static \Guanguans\Notify\Clients\PushDeerClient       pushDeer(array $options = [])

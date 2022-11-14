@@ -169,6 +169,21 @@
     </InvalidReturnStatement>
   </file>
   <file src="src/Messages/MicrosoftTeamsMessage.php">
-    <UnusedClosureParam occurrences="2"/>
+    <UnusedClosureParam occurrences="2">
+      <code>$optionsResolver</code>
+    </UnusedClosureParam>
+  </file>
+  <file src="src/Clients/NtfyClient.php">
+    <UnusedClosureParam occurrences="1">
+      <code>$optionsResolver</code>
+    </UnusedClosureParam>
+    <InvalidReturnStatement occurrences="1">
+      <code>$this-&gt;getOption('base_uri')</code>
+    </InvalidReturnStatement>
+  </file>
+  <file src="src/Messages/NtfyMessage.php">
+    <UnusedClosureParam occurrences="1">
+      <code>$optionsResolver</code>
+    </UnusedClosureParam>
   </file>
 </files>
