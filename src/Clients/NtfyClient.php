@@ -10,8 +10,6 @@
 
 namespace Guanguans\Notify\Clients;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
 /**
  * @see https://ntfy.sh
  * @see https://docs.ntfy.sh/publish/
@@ -32,17 +30,8 @@ class NtfyClient extends Client
      * @var string[]
      */
     protected $options = [
-        'base_uri' => 'https://ntfy.sh/',
+        'base_uri' => 'https://ntfy.sh',
     ];
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $optionsResolver): void {
-            // $optionsResolver->setNormalizer('base_uri', static function (OptionsResolver $optionsResolver, $value): string {
-            //     return trim($value, '/');
-            // });
-        });
-    }
 
     /**
      * @return $this

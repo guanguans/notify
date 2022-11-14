@@ -63,15 +63,6 @@ class NtfyMessage extends Message
         'actions' => [],
     ];
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('actions', static function (OptionsResolver $optionsResolver, $value) {
-                return isset($value[0]) ? $value : [$value];
-            });
-        });
-    }
-
     public function setActions(array $actions): self
     {
         return $this->addActions($actions);
