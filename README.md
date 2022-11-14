@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> 推送通知 sdk(Bark、Chanify、钉钉群机器人、Discord、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、PushBack、Push、PushDeer、Pushover、PushPlus、QQ 频道机器人、Rocket Chat、Server 酱、Showdoc Push、Slack、Telegram、Webhook、企业微信群机器人、息知、Zulip)。
+> 推送通知 sdk(Bark、Chanify、钉钉群机器人、Discord、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、PushBack、Push、PushDeer、Pushover、PushPlus、QQ 频道机器人、Rocket Chat、Server 酱、Showdoc Push、Slack、Telegram、Webhook、企业微信群机器人、息知、Zulip)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -31,6 +31,7 @@
 * [Mattermost](https://api.mattermost.com)
 * [Microsoft Teams](https://www.microsoft.com/zh-cn/microsoft-teams/teams-for-work)
 * [Now Push](https://nowpush.io/api-docs/)
+* [Ntfy](https://ntfy.sh/)
 * [PushBack](https://pushback.io/docs/getting-started)
 * [Push](https://docs.push.techulus.com/api-documentation)
 * [PushDeer](http://pushdeer.com)
@@ -577,6 +578,60 @@ Factory::nowPush()
 Factory::nowPush()
     ->setToken('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL')
     ->getUser();
+```
+</details>
+
+<details>
+<summary><b>Ntfy</b></summary>
+
+```php
+$ntfyMessage = new NtfyMessage([
+    'topic' => 'guanguans',
+    'message' => 'This is message.',
+    'title' => 'This is title.',
+    'priority' => 1,
+    'tags' => ['tag1', 'tag2'],
+    'click' => 'https://example.com',
+    'attach' => 'https://www.guanguans.cn',
+    'icon' => 'https://www.guanguans.cn',
+    'filename' => 'file.jpg',
+    'cache' => 'no',
+    'firebase' => 'no',
+    // 'actions' => [],
+    // 'delay' => '30min, 9am',
+    // 'email' => 'xxx@qq.com',
+]);
+
+$ntfyMessage
+    ->addAction([
+        'action' => 'broadcast',
+        'label' => 'This is label.',
+        'intent' => 'This is intent.',
+        'extras' => [
+            'field' => 'value',
+        ],
+    ])
+    ->addAction([
+        'action' => 'http',
+        'label' => 'This is label.',
+        'url' => 'https://www.guanguans.cn',
+        'method' => 'POST',
+        'headers' => [
+            'Authorization' => 'Bearer ...',
+        ],
+        'body' => '{"field":"value"}',
+    ])
+    ->addAction([
+        'action' => 'view',
+        'label' => 'This is label.',
+        'url' => 'https://www.guanguans.cn',
+        'clear' => true,
+    ]);
+
+Factory::ntfy()
+    // ->setBaseUri('The server address of your own deployment.')
+    ->setMessage($ntfyMessage)
+    ->send();
 ```
 </details>
 
