@@ -21,6 +21,7 @@ use Guanguans\Notify\Clients\IGotClient;
 use Guanguans\Notify\Clients\LoggerClient;
 use Guanguans\Notify\Clients\MailerClient;
 use Guanguans\Notify\Clients\MattermostClient;
+use Guanguans\Notify\Clients\MicrosoftTeamsClient;
 use Guanguans\Notify\Clients\NowPushClient;
 use Guanguans\Notify\Clients\PushBackClient;
 use Guanguans\Notify\Clients\PushClient;
@@ -54,6 +55,7 @@ class FactoryTest extends TestCase
         $this->assertInstanceOf(LoggerClient::class, Factory::logger());
         $this->assertInstanceOf(MailerClient::class, Factory::mailer());
         $this->assertInstanceOf(MattermostClient::class, Factory::mattermost());
+        $this->assertInstanceOf(MicrosoftTeamsClient::class, Factory::microsoftTeams());
         $this->assertInstanceOf(NowPushClient::class, Factory::nowPush());
         $this->assertInstanceOf(PushBackClient::class, Factory::pushBack());
         $this->assertInstanceOf(PushClient::class, Factory::push());

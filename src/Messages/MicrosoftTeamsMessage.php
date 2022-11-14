@@ -162,6 +162,10 @@ class MicrosoftTeamsMessage extends Message
                     'ActionCard',
                     'HttpPOST',
                     'InvokeAddInCommand',
+                ])
+                ->addAllowedValues('bodyContentType', [
+                    'application/x-www-form-urlencoded',
+                    'application/json',
                 ]);
         });
 
