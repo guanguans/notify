@@ -66,6 +66,8 @@ class NtfyTest extends TestCase
 
         Factory::ntfy()
             // ->setBaseUri('The server address of your own deployment.')
+            // ->setUsername('username')
+            // ->setPassword('password')
             ->setMessage($ntfyMessage)
             ->send();
     }

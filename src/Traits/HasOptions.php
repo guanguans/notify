@@ -124,15 +124,17 @@ trait HasOptions
     }
 
     /**
+     * @param mixed|null $default
+     *
      * @return array|mixed
      */
-    public function getOption(string $option = null)
+    public function getOption(?string $option = null, $default = null)
     {
         if (is_null($option)) {
             return $this->options;
         }
 
-        return $this->options[$option];
+        return $this->options[$option] ?? $default;
     }
 
     /**

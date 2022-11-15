@@ -177,8 +177,10 @@
     <UnusedClosureParam occurrences="1">
       <code>$optionsResolver</code>
     </UnusedClosureParam>
-    <InvalidReturnStatement occurrences="1">
+    <InvalidReturnStatement occurrences="3">
       <code>$this-&gt;getOption('base_uri')</code>
+      <code>$this-&gt;getOption('username')</code>
+      <code>$this-&gt;getOption('password')</code>
     </InvalidReturnStatement>
   </file>
   <file src="src/Messages/NtfyMessage.php">

@@ -10,6 +10,8 @@
 
 namespace Guanguans\Notify\Clients;
 
+use GuzzleHttp\RequestOptions;
+
 /**
  * @see https://ntfy.sh
  * @see https://docs.ntfy.sh/publish/
@@ -24,6 +26,8 @@ class NtfyClient extends Client
     protected $defined = [
         'message',
         'base_uri',
+        'username',
+        'password',
     ];
 
     /**
@@ -32,6 +36,22 @@ class NtfyClient extends Client
     protected $options = [
         'base_uri' => 'https://ntfy.sh',
     ];
+
+    public function __construct(array $options = [])
+    {
+        $this->sending(function (self $client): void {
+            if ($this->getUsername() || $this->getPassword()) {
+                $client->setHttpOptions([
+                    RequestOptions::AUTH => [
+                        $this->getUsername(),
+                        $this->getPassword(),
+                    ],
+                ]);
+            }
+        });
+
+        parent::__construct($options);
+    }
 
     /**
      * @return $this
@@ -46,6 +66,36 @@ class NtfyClient extends Client
     public function getBaseUri(): string
     {
         return $this->getOption('base_uri');
+    }
+
+    /**
+     * @return $this
+     */
+    public function setUsername(string $username): self
+    {
+        $this->setOption('username', $username);
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->getOption('username');
+    }
+
+    /**
+     * @return $this
+     */
+    public function setPassword(string $password): self
+    {
+        $this->setOption('password', $password);
+
+        return $this;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->getOption('password');
     }
 
     public function getRequestUrl(): string
