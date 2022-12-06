@@ -87,7 +87,7 @@
         "jetbrains/phpstorm-attributes": "^1.0",
         "mockery/mockery": "^1.3",
         "phpunit/phpunit": "^8.0 || ^9.0",
-        "rector/rector": "^0.14",
+        "rector/rector": "^0.14 || ^0.15",
         "symfony/mailer": "^5.0 || ^6.0",
         "symfony/var-dumper": "^5.0 || ^6.0",
         "textalk/websocket": "^1.5",
