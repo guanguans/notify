@@ -26,5 +26,4 @@ class YiFengChuanHuaMessage extends Message
     protected $required = [
         'head',
     ];
-
 }

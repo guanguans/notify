@@ -28,5 +28,4 @@ class YiFengChuanHuaTest extends TestCase
             ->send();
         $this->assertEquals(0, $ret['code']);
     }
-
 }

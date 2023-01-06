@@ -1,24 +1,17 @@
 <?php
 
 /**
- * @see http://push.phprm.com/api.html
+ * This file is part of the guanguans/notify.
  *
- * ```
- * // send a get.
- * curl --location --request GET 'https://www.phprm.com/services/push/trigger/{{token}}?head=title&body=content' \
+ * (c) guanguans <ityaozm@gmail.com>
  *
- * // send a post.
- * curl --location --request POST 'https://www.phprm.com/services/push/trigger/{{token}}' \
- * --header 'Content-Type: application/json' \
- * --data-raw '{"head":"This is title.","body":"This is content."}'
- * ```
- * mobile manage url: https://www.phprm.com/push/h5/
+ * This source file is subject to the MIT license that is bundled.
  */
+
 namespace Guanguans\Notify\Clients;
 
 class YiFengChuanHuaClient extends Client
 {
-
     public const REQUEST_URL_TEMPLATE = 'https://www.phprm.com/services/push/trigger/%s';
 
     public $requestMethod = 'postJson';
