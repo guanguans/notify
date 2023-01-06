@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> 推送通知 sdk(Bark、Chanify、钉钉群机器人、Discord、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、PushBack、Push、PushDeer、Pushover、PushPlus、QQ 频道机器人、Rocket Chat、Server 酱、Showdoc Push、Slack、Telegram、Webhook、企业微信群机器人、息知、Zulip)。
+> 推送通知 sdk(Bark、Chanify、钉钉群机器人、Discord、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、PushBack、Push、PushDeer、Pushover、PushPlus、QQ 频道机器人、Rocket Chat、Server 酱、Showdoc Push、Slack、Telegram、Webhook、企业微信群机器人、息知、Zulip、一封传话聚合推送)。
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -47,6 +47,7 @@
 * [企业微信群机器人](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
 * [息知](https://xz.qqoq.net/#/index)
 * [Zulip](https://zulip.com/api/send-message)
+* [一封传话聚合推送](https://www.phprm.com/push/h5/)
 
 ## 环境要求
 
@@ -1004,6 +1005,20 @@ Factory::zulip()
         'topic' => 'bug',
         //'queue_id' => '1593114627:0',
         //'local_id' => '100.01',
+    ]))
+    ->send();
+```
+</details>
+
+<details>
+<summary><b>一封传话聚合推送</b></summary>
+
+```php
+Factory::yiFengChuanHua()
+    ->setToken('204dd77ce4a6f221')
+    ->setMessage(new \Guanguans\Notify\Messages\YiFengChuanHuaMessage([
+        'head' => 'This is title.',
+        'body' => 'This is content.',
     ]))
     ->send();
 ```
