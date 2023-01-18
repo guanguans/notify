@@ -46,8 +46,8 @@ use Guanguans\Notify\Support\Str;
  * @method static \Guanguans\Notify\Clients\WebhookClient        webhook(array $options = [])
  * @method static \Guanguans\Notify\Clients\WeWorkClient         weWork(array $options = [])
  * @method static \Guanguans\Notify\Clients\XiZhiClient          xiZhi(array $options = [])
- * @method static \Guanguans\Notify\Clients\ZulipClient          zulip(array $options = [])
  * @method static \Guanguans\Notify\Clients\YiFengChuanHuaClient yiFengChuanHua(array $options = [])
+ * @method static \Guanguans\Notify\Clients\ZulipClient          zulip(array $options = [])
  */
 class Factory
 {

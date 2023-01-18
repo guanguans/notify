@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、PushBack、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip、YiFengChuanHua).
+> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、PushBack、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、YiFengChuanHua、Zulip).
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -46,8 +46,8 @@
 * Webhook
 * [WeWork](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
 * [XiZhi](https://xz.qqoq.net/#/index)
-* [Zulip](https://zulip.com/api/send-message)
 * [YiFengChuanHua](https://www.phprm.com/push/h5/)
+* [Zulip](https://zulip.com/api/send-message)
 
 ## Requirement
 
@@ -983,6 +983,20 @@ Factory::xiZhi()
 </details>
 
 <details>
+<summary><b>YiFengChuanHua</b></summary>
+
+```php
+Factory::yiFengChuanHua()
+    ->setToken('204dd77ce4a6f221')
+    ->setMessage(new \Guanguans\Notify\Messages\YiFengChuanHuaMessage([
+        'head' => 'This is title.',
+        'body' => 'This is content.',
+    ]))
+    ->send();
+```
+</details>
+
+<details>
 <summary><b>Zulip</b></summary>
 
 ```php
@@ -1005,20 +1019,6 @@ Factory::zulip()
         'topic' => 'bug',
         //'queue_id' => '1593114627:0',
         //'local_id' => '100.01',
-    ]))
-    ->send();
-```
-</details>
-
-<details>
-<summary><b>YiFengChuanHua</b></summary>
-
-```php
-Factory::yiFengChuanHua()
-    ->setToken('204dd77ce4a6f221')
-    ->setMessage(new \Guanguans\Notify\Messages\YiFengChuanHuaMessage([
-        'head' => 'This is title.',
-        'body' => 'This is content.',
     ]))
     ->send();
 ```
