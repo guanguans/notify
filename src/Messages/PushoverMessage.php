@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the guanguans/notify.
  *
@@ -79,6 +81,7 @@ class PushoverMessage extends Message
                 if (isset($optionsResolver['retry'], $optionsResolver['expire'])) {
                     return $value;
                 }
+
                 throw new MissingOptionsException('The required option "retry" or "expire" is missing.');
             });
 
@@ -92,6 +95,7 @@ class PushoverMessage extends Message
                 if (1 !== $optionsResolver['monospace']) {
                     return $value;
                 }
+
                 throw new InvalidOptionsException('Html cannot be set with monospace, Monospace cannot be set with html, Html and monospace are mutually.');
             });
 

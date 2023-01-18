@@ -16,23 +16,25 @@ use Rector\CodeQuality\Rector\Array_\CallableThisArrayToAnonymousFunctionRector;
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
 use Rector\CodeQuality\Rector\Expression\InlineIfToExplicitIfRector;
 use Rector\CodeQuality\Rector\Identical\SimplifyBoolIdenticalTrueRector;
+use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
 use Rector\CodingStyle\Enum\PreferenceSelfThis;
+use Rector\CodingStyle\Rector\Class_\AddArrayDefaultToArrayPropertyRector;
 use Rector\CodingStyle\Rector\ClassMethod\UnSpreadOperatorRector;
 use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
 use Rector\CodingStyle\Rector\FuncCall\ConsistentPregDelimiterRector;
 use Rector\CodingStyle\Rector\MethodCall\PreferThisOrSelfMethodCallRector;
-use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\Core\Configuration\Option;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\DeadCode\Rector\Assign\RemoveUnusedVariableAssignRector;
+use Rector\DeadCode\Rector\ClassMethod\RemoveEmptyClassMethodRector;
 use Rector\DeadCode\Rector\MethodCall\RemoveEmptyMethodCallRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
+use Rector\EarlyReturn\Rector\Return_\ReturnBinaryAndToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
-use Rector\Php55\Rector\Class_\ClassConstantToSelfClassRector;
 use Rector\Php56\Rector\FunctionLike\AddDefaultValueForUndefinedVariableRector;
 use Rector\PHPUnit\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitLevelSetList;
@@ -55,40 +57,50 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__.'/tests',
         __DIR__.'/.php-cs-fixer.php',
         __DIR__.'/rector.php',
+        __DIR__.'/examples/soar.options.example.php',
     ]);
 
     $rectorConfig->skip([
         // rules
-        // CallableThisArrayToAnonymousFunctionRector::class,
-        // InlineIfToExplicitIfRector::class,
+        CallableThisArrayToAnonymousFunctionRector::class,
+        InlineIfToExplicitIfRector::class,
         LogicalToBooleanRector::class,
-        // SimplifyBoolIdenticalTrueRector::class,
-        // RemoveEmptyMethodCallRector::class,
+        SimplifyBoolIdenticalTrueRector::class,
+        RemoveEmptyMethodCallRector::class,
         AddSeeTestAnnotationRector::class,
         NormalizeNamespaceByPSR4ComposerAutoloadRector::class,
-        // ChangeAndIfToEarlyReturnRector::class,
-        // ReturnBinaryOrToEarlyReturnRector::class,
+        ChangeAndIfToEarlyReturnRector::class,
+        ReturnBinaryOrToEarlyReturnRector::class,
         EncapsedStringsToSprintfRector::class,
-        // WrapEncapsedVariableInCurlyBracesRector::class,
-        ClassConstantToSelfClassRector::class,
+        WrapEncapsedVariableInCurlyBracesRector::class,
 
         // optional rules
-        AddDefaultValueForUndefinedVariableRector::class,
-        RemoveUnusedVariableAssignRector::class,
+        // AddDefaultValueForUndefinedVariableRector::class,
+        // RemoveUnusedVariableAssignRector::class,
+        // UnSpreadOperatorRector::class,
         ConsistentPregDelimiterRector::class,
-        UnSpreadOperatorRector::class,
-        StaticClosureRector::class,
-        // NewlineAfterStatementRector::class,
+        // StaticClosureRector::class,
+        ReturnBinaryAndToEarlyReturnRector::class,
+        AddArrayDefaultToArrayPropertyRector::class,
+        RemoveEmptyClassMethodRector::class,
+        ExplicitBoolCompareRector::class,
 
         // paths
-        '**/fixtures*',
-        '**/fixtures/*',
         '**/Fixture*',
         '**/Fixture/*',
+        '**/Fixtures*',
+        '**/Fixtures/*',
+        '**/Stub*',
+        '**/Stub/*',
+        '**/Stubs*',
+        '**/Stubs/*',
         '**/Source*',
         '**/Source/*',
         '**/Expected/*',
         '**/Expected*',
+        '**/__snapshots__/*',
+        '**/__snapshots__*',
+        __DIR__.'/src/foundation/tests/AppTest.php',
     ]);
 
     $rectorConfig->sets([
@@ -104,11 +116,11 @@ return static function (RectorConfig $rectorConfig): void {
         // SetList::PRIVATIZATION,
         SetList::PSR_4,
         SetList::TYPE_DECLARATION,
-        SetList::TYPE_DECLARATION_STRICT,
+        // SetList::TYPE_DECLARATION_STRICT,
         SetList::EARLY_RETURN,
 
         PHPUnitLevelSetList::UP_TO_PHPUNIT_80,
-        PHPUnitSetList::PHPUNIT80_DMS,
+        // PHPUnitSetList::PHPUNIT80_DMS,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
         PHPUnitSetList::PHPUNIT_EXCEPTION,
         PHPUnitSetList::REMOVE_MOCKS,
@@ -119,7 +131,7 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->disableParallel();
     $rectorConfig->importNames(true, false);
     $rectorConfig->nestedChainMethodCallLimit(3);
-    // $rectorConfig->phpstanConfig(__DIR__.'/phpstan.neon');
+    $rectorConfig->phpstanConfig(__DIR__.'/phpstan.neon');
     // $rectorConfig->cacheClass(FileCacheStorage::class);
     // $rectorConfig->cacheDirectory(__DIR__.'/build/rector');
     // $rectorConfig->fileExtensions(['php']);

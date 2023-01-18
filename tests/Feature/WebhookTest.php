@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the guanguans/notify.
  *
@@ -25,9 +27,9 @@ class WebhookTest extends TestCase
             'content' => 'This is content.',
             'username' => 'notify bot.',
         ])
-        // ->setHeaders(['Accept' => '*/*'])
-        // ->setQuery([['foo' => 'bar']])
-        ->setVerify(false);
+            // ->setHeaders(['Accept' => '*/*'])
+            // ->setQuery([['foo' => 'bar']])
+            ->setVerify(false);
 
         $this->expectException(ClientException::class);
 

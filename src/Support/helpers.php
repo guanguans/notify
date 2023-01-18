@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the guanguans/notify.
  *
@@ -48,7 +50,7 @@ if (! function_exists('tap')) {
      */
     function tap($value, $callback = null)
     {
-        if (is_null($callback)) {
+        if (null === $callback) {
             return new HigherOrderTapProxy($value);
         }
 

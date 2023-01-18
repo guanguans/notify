@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the guanguans/notify.
  *
@@ -64,6 +66,7 @@ class ChanifyClient extends Client
         return sprintf(
             static::REQUEST_URL_TEMPLATE,
             $this->getBaseUri(),
-            $this->getToken());
+            $this->getToken()
+        );
     }
 }

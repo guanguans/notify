@@ -749,19 +749,19 @@ $ composer require textalk/websocket -vvv
 ```php
 // Get the list of user channels
 Factory::qqChannelBot()
-    ->setAppid('102001')
+    ->setAppid(102001)
     ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
     ->getUserChannels();
 
 // Get the subchannel list
 Factory::qqChannelBot()
-    ->setAppid('102001')
+    ->setAppid(102001)
     ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
     ->getSubChannels(5099581822453968); // Channel ID
 
 // Send a channel message
 Factory::qqChannelBot()
-    ->setAppid('102001')
+    ->setAppid(102001)
     ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
     ->setChannelId('4317') // Sub Channel ID
     // ->sandboxEnvironment()

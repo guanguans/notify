@@ -749,19 +749,19 @@ $ composer require textalk/websocket -vvv
 ```php
 // 获取用户频道列表
 Factory::qqChannelBot()
-    ->setAppid('102001')
+    ->setAppid(102001)
     ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
     ->getUserChannels();
 
 // 获取子频道列表    
 Factory::qqChannelBot()
-    ->setAppid('102001')
+    ->setAppid(102001)
     ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
     ->getSubChannels(5099581822453968); // 频道 ID
 
 // 发送频道消息
 Factory::qqChannelBot()
-    ->setAppid('102001')
+    ->setAppid(102001)
     ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
     ->setChannelId('4317') // 子频道 ID
     // ->sandboxEnvironment()

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the guanguans/notify.
  *
@@ -46,7 +48,8 @@ class GoogleChatClient extends Client
 
     public function getRequestUrl(): string
     {
-        return sprintf(self::REQUEST_URL_TEMPLATE,
+        return sprintf(
+            self::REQUEST_URL_TEMPLATE,
             $this->getSpace(),
             $this->getKey(),
             $this->getToken(),

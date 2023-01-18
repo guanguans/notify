@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * This file is part of the guanguans/notify.
  *
@@ -21,7 +23,7 @@ class QqChannelBotTest extends TestCase
         $this->expectException(ClientException::class);
 
         Factory::qqChannelBot()
-            ->setAppid('102001')
+            ->setAppid(102001)
             ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
             ->setChannelId('4317')
             // ->sandboxEnvironment()

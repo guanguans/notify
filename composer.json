@@ -53,7 +53,8 @@
         "企业微信群机器人",
         "企业微信",
         "微信",
-        "息知"
+        "息知",
+        "一封传话"
     ],
     "authors": [
         {
@@ -79,19 +80,30 @@
         "ext-json": "*",
         "overtrue/http": "^1.2",
         "psr/log": "^1.1 || ^2.0 || ^3.0",
-        "symfony/options-resolver": "^5.0 || ^6.0"
+        "symfony/options-resolver": "^5.4 || ^6.0"
     },
     "require-dev": {
-        "brainmaestro/composer-git-hooks": "^2.8",
+        "brainmaestro/composer-git-hooks": "^2.8 || ^3.0",
+        "dms/phpunit-arraysubset-asserts": "^0.4.0",
         "friendsofphp/php-cs-fixer": "^3.4",
         "jetbrains/phpstorm-attributes": "^1.0",
+        "johnkary/phpunit-speedtrap": "^4.0",
         "mockery/mockery": "^1.3",
-        "phpunit/phpunit": "^8.0 || ^9.0",
-        "rector/rector": "^0.14 || ^0.15",
-        "symfony/mailer": "^5.0 || ^6.0",
-        "symfony/var-dumper": "^5.0 || ^6.0",
+        "nyholm/nsa": "^1.3",
+        "php-mock/php-mock-phpunit": "^2.6",
+        "phpbench/phpbench": "^1.1",
+        "phpstan/extension-installer": "^1.2",
+        "phpstan/phpstan": "^1.9",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "phpstan/phpstan-phpunit": "^1.3",
+        "phpunit/phpunit": "^8.5 || ^9.5",
+        "rector/rector": "^0.15.7",
+        "roave/security-advisories": "dev-latest",
+        "spatie/phpunit-snapshot-assertions": "^3.0 || ^4.2",
+        "symfony/mailer": "^5.4 || ^6.0",
+        "symfony/var-dumper": "^5.4 || ^6.0",
         "textalk/websocket": "^1.5",
-        "vimeo/psalm": "^4.29"
+        "vimeo/psalm": "^4.30 || ^5.4"
     },
     "suggest": {
         "symfony/mailer": "Required to use the email.",
@@ -113,15 +125,30 @@
         }
     },
     "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        },
+        "apcu-autoloader": true,
+        "classmap-authoritative": false,
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
         "sort-packages": true
     },
     "extra": {
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        },
         "hooks": {
             "post-merge": [
                 "composer checks"
             ],
             "pre-commit": [
                 "composer checks"
+            ]
+        },
+        "phpstan": {
+            "includes": [
+                "extension.neon"
             ]
         }
     },
@@ -133,9 +160,16 @@
         "post-update-cmd": [
             "@cghooks update"
         ],
-        "cghooks": "./vendor/bin/cghooks",
+        "benchmark": "@php ./vendor/bin/phpbench run --warmup=1 --retry-threshold=1 --iterations=3 --revs=5",
+        "cghooks": "@php ./vendor/bin/cghooks",
         "checks": [
             "@mark-start",
+            "@composer-validate",
+            "@mark-separate",
+            "@md-lint",
+            "@mark-separate",
+            "@lint",
+            "@mark-separate",
             "@style-lint",
             "@mark-separate",
             "@test",
@@ -143,21 +177,32 @@
             "@psalm",
             "@mark-finish"
         ],
+        "composer-validate": "@composer validate --check-lock --strict",
+        "dump-soar-config": "Guanguans\\SoarPHP\\Support\\ComposerScript::dumpSoarConfig",
+        "dump-soar-docblock": "Guanguans\\SoarPHP\\Support\\ComposerScript::dumpSoarDocblock",
+        "lint": [
+            "for DIR in .; do find $DIR -maxdepth 1 -type f -name '*.php' -type f ! -name 'xxx.php' -exec php -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done",
+            "for DIR in ./src ./tests; do find $DIR -type f -name '*.php' -type f ! -name 'xxx.php' -exec php -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done"
+        ],
         "mark-finish": "printf '\\n!\\n!\\t\\033[0;32m%s\\033[0m\\n!\\n\\n' \"Finished\"",
         "mark-separate": "printf '\\n!\\n!\\t\\033[0;33m%s\\033[0m\\n!\\n\\n' \"----------------\"",
         "mark-start": "printf '\\n!\\n!\\t\\033[0;36m%s\\033[0m\\n!\\n\\n' \"Started\"",
         "md-fix": "@md-lint --fix",
         "md-lint": "lint-md --config .lintmdrc ./*.md ./.github/ ./docs/",
+        "pest": "@php ./vendor/bin/pest --cache-result-file=./build//phpunit/.phpunit.result.cache",
+        "pest-coverage": "@pest --coverage-html=./build/phpunit/ --coverage-clover=clover.xml --coverage",
+        "phpstan": "@php ./vendor/bin/phpstan analyse -vv",
+        "phpstan-baseline": "@phpstan --generate-baseline --allow-empty-baseline",
         "post-merge": [
             "composer install"
         ],
-        "psalm": "./vendor/bin/psalm --long-progress",
+        "psalm": "@php ./vendor/bin/psalm",
         "psalm-baseline": "@psalm --update-baseline",
-        "rector": "./vendor/bin/rector --clear-cache --ansi -v",
+        "rector": "@php ./vendor/bin/rector --clear-cache --ansi -v",
         "rector-dry-run": "@rector --dry-run",
-        "style-fix": "./vendor/bin/php-cs-fixer fix --using-cache=no --config=.php-cs-fixer.php --ansi",
-        "style-lint": "@style-fix --dry-run --diff",
-        "test": "./vendor/bin/phpunit --cache-result-file=./build/phpunit/.phpunit.result.cache",
+        "style-fix": "@php ./vendor/bin/php-cs-fixer fix --using-cache=yes --config=.php-cs-fixer.php --ansi",
+        "style-lint": "@style-fix --diff --dry-run",
+        "test": "@php ./vendor/bin/phpunit --cache-result-file=./build/phpunit/.phpunit.result.cache --coverage-text",
         "test-coverage": "@test --coverage-html=./build/phpunit/ --coverage-clover=clover.xml"
     }
 }
