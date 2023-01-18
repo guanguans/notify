@@ -14,14 +14,14 @@ class YiFengChuanHuaClient extends Client
 {
     public const REQUEST_URL_TEMPLATE = 'https://www.phprm.com/services/push/trigger/%s';
 
-    public $requestMethod = 'postJson';
+    protected $requestMethod = 'postJson';
 
     public function getRequestUrl(): string
     {
         return sprintf(static::REQUEST_URL_TEMPLATE, $this->getToken());
     }
 
-    public function setRequestMethod(string $requestMethod)
+    public function setRequestMethod(string $requestMethod): self
     {
         $this->requestMethod = $requestMethod;
 

@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | [ENGLISH](README-EN.md)
 
-> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、PushBack、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip、一封传话聚合推送).
+> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、PushBack、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、Zulip、YiFengChuanHua).
 
 [![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
 [![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
@@ -47,7 +47,7 @@
 * [WeWork](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
 * [XiZhi](https://xz.qqoq.net/#/index)
 * [Zulip](https://zulip.com/api/send-message)
-* [一封传话聚合推送](https://www.phprm.com/push/h5/)
+* [YiFengChuanHua](https://www.phprm.com/push/h5/)
 
 ## Requirement
 
@@ -56,7 +56,7 @@
 ## Installation
 
 ```bash
-$ composer require guanguans/notify -vvv
+composer require guanguans/notify -vvv
 ```
 
 ## Usage
@@ -1011,7 +1011,7 @@ Factory::zulip()
 </details>
 
 <details>
-<summary><b>一封传话聚合推送</b></summary>
+<summary><b>YiFengChuanHua</b></summary>
 
 ```php
 Factory::yiFengChuanHua()
@@ -1027,7 +1027,7 @@ Factory::yiFengChuanHua()
 ## Testing
 
 ```bash
-$ composer test
+composer test
 ```
 
 ## Changelog

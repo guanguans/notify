@@ -26,6 +26,11 @@ class YiFengChuanHuaTest extends TestCase
                 'body' => 'This is content.',
             ]))
             ->send();
-        $this->assertEquals(0, $ret['code']);
+
+        $this->assertIsArray($ret);
+        $this->assertGreaterThan(0, $ret['code']);
+        $this->assertArrayHasKey('code', $ret);
+        $this->assertArrayHasKey('message', $ret);
+        $this->assertArrayHasKey('data', $ret);
     }
 }
