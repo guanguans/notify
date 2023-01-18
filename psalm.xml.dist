@@ -17,12 +17,16 @@
     </projectFiles>
     <issueHandlers>
         <PropertyNotSetInConstructor errorLevel="info"/>
-        <!--<UndefinedDocblockClass>
+        <InvalidReturnStatement>
             <errorLevel type="suppress">
-                <directory name="src/Concerns"/>
-                <file name="src/Soar.php"/>
+                <directory name="src/Clients"/>
             </errorLevel>
-        </UndefinedDocblockClass>-->
+        </InvalidReturnStatement>
+        <UnusedClosureParam>
+            <errorLevel type="suppress">
+                <directory name="src/Messages"/>
+            </errorLevel>
+        </UnusedClosureParam>
     </issueHandlers>
     <plugins>
         <!--<pluginClass class="Psalm\LaravelPlugin\Plugin"/>-->
