@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify;
 
+use Guanguans\Notify\Clients\Client;
 use Guanguans\Notify\Support\Str;
 
 /**
@@ -50,10 +51,7 @@ use Guanguans\Notify\Support\Str;
  */
 class Factory
 {
-    /**
-     * @return mixed
-     */
-    public static function make(string $name, array $options = []): object
+    public static function make(string $name, array $options = []): Client
     {
         $client = sprintf('\\Guanguans\\Notify\\Clients\\%sClient', Str::studly($name));
 
@@ -61,7 +59,7 @@ class Factory
     }
 
     /**
-     * @return mixed
+     * @return \Guanguans\Notify\Clients\Client
      */
     public static function __callStatic(string $name, array $arguments)
     {

@@ -1,11 +1,111 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Result of && is always false\\.$#"
-			count: 2
-			path: src/Soar.php
+			message: "#^PHPDoc tag @return with type Guanguans\\\\Notify\\\\Contracts\\\\MessageInterface\\|Symfony\\\\Component\\\\Mime\\\\RawMessage is not subtype of native type Guanguans\\\\Notify\\\\Contracts\\\\MessageInterface\\.$#"
+			count: 1
+			path: src/Clients/Client.php
 
 		-
 			message: "#^Unsafe usage of new static\\(\\)\\.$#"
-			count: 2
-			path: src/Soar.php
+			count: 1
+			path: src/Clients/Client.php
+
+		-
+			message: "#^Parameter \\#1 \\$message of method Symfony\\\\Component\\\\Mailer\\\\MailerInterface\\:\\:send\\(\\) expects Symfony\\\\Component\\\\Mime\\\\RawMessage, Guanguans\\\\Notify\\\\Contracts\\\\MessageInterface given\\.$#"
+			count: 1
+			path: src/Clients/MailerClient.php
+
+		-
+			message: "#^Call to an undefined method Guanguans\\\\Notify\\\\Contracts\\\\MessageInterface\\:\\:getOptions\\(\\)\\.$#"
+			count: 1
+			path: src/Clients/WebhookClient.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Clients\\\\XiZhiClient\\:\\:\\$allowedValues \\(array\\<array\\<string\\>\\>\\) does not accept default value of type array\\<string, array\\<int, string\\>\\>\\.$#"
+			count: 1
+			path: src/Clients/XiZhiClient.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Clients\\\\XiZhiClient\\:\\:\\$allowedValues has unknown class string as its type\\.$#"
+			count: 1
+			path: src/Clients/XiZhiClient.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\BarkMessage\\:\\:\\$allowedValues \\(array\\<array\\<string\\>\\>\\) does not accept default value of type array\\<string, array\\<int, string\\>\\>\\.$#"
+			count: 1
+			path: src/Messages/BarkMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\BarkMessage\\:\\:\\$allowedValues has unknown class string as its type\\.$#"
+			count: 1
+			path: src/Messages/BarkMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\Chanify\\\\TextMessage\\:\\:\\$allowedTypes \\(array\\<array\\<string\\>\\>\\) does not accept default value of type array\\<string, array\\<int, string\\>\\>\\.$#"
+			count: 1
+			path: src/Messages/Chanify/TextMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\Chanify\\\\TextMessage\\:\\:\\$allowedTypes has unknown class string as its type\\.$#"
+			count: 1
+			path: src/Messages/Chanify/TextMessage.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: src/Messages/EmailMessage.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 1
+			path: src/Messages/Message.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\PushPlusMessage\\:\\:\\$allowedValues \\(array\\<array\\<string\\>\\>\\) does not accept default value of type array\\<string, array\\<int, string\\>\\>\\.$#"
+			count: 1
+			path: src/Messages/PushPlusMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\PushPlusMessage\\:\\:\\$allowedValues has unknown class string as its type\\.$#"
+			count: 1
+			path: src/Messages/PushPlusMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\PushoverMessage\\:\\:\\$allowedValues \\(array\\<array\\<int\\>\\>\\) does not accept default value of type array\\<string, array\\<int, int\\>\\>\\.$#"
+			count: 1
+			path: src/Messages/PushoverMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\PushoverMessage\\:\\:\\$allowedValues has unknown class int as its type\\.$#"
+			count: 1
+			path: src/Messages/PushoverMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\Telegram\\\\TextMessage\\:\\:\\$allowedValues \\(array\\<array\\<string\\>\\>\\) does not accept default value of type array\\<string, array\\<int, string\\>\\>\\.$#"
+			count: 1
+			path: src/Messages/Telegram/TextMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\Telegram\\\\TextMessage\\:\\:\\$allowedValues has unknown class string as its type\\.$#"
+			count: 1
+			path: src/Messages/Telegram/TextMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\Zulip\\\\PrivateMessage\\:\\:\\$allowedValues \\(array\\<array\\<string\\>\\>\\) does not accept default value of type array\\<string, array\\<int, string\\>\\>\\.$#"
+			count: 1
+			path: src/Messages/Zulip/PrivateMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\Zulip\\\\PrivateMessage\\:\\:\\$allowedValues has unknown class string as its type\\.$#"
+			count: 1
+			path: src/Messages/Zulip/PrivateMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\Zulip\\\\StreamMessage\\:\\:\\$allowedValues \\(array\\<array\\<string\\>\\>\\) does not accept default value of type array\\<string, array\\<int, string\\>\\>\\.$#"
+			count: 1
+			path: src/Messages/Zulip/StreamMessage.php
+
+		-
+			message: "#^Property Guanguans\\\\Notify\\\\Messages\\\\Zulip\\\\StreamMessage\\:\\:\\$allowedValues has unknown class string as its type\\.$#"
+			count: 1
+			path: src/Messages/Zulip/StreamMessage.php

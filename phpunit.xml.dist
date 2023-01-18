@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit backupGlobals="false"
-     backupStaticAttributes="false"
-     bootstrap="vendor/autoload.php"
-     colors="true"
-     convertErrorsToExceptions="true"
-     convertNoticesToExceptions="true"
-     convertWarningsToExceptions="true"
-     processIsolation="false"
-     stopOnFailure="false"
-     verbose="true"
+<phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        bootstrap="vendor/autoload.php"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        processIsolation="false"
+        stopOnFailure="false"
+        verbose="true"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.5/phpunit.xsd"
 >
     <testsuites>
         <testsuite name="Guanguans Test Suite">
@@ -20,8 +23,26 @@
         <whitelist>
             <directory suffix=".php">src/</directory>
             <exclude>
+                <directory>src/Support</directory>
                 <file>src/Skeleton.php</file>
             </exclude>
         </whitelist>
     </filter>
+    <listeners>
+        <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
+            <arguments>
+                <array>
+                    <element key="slowThreshold">
+                        <integer>500</integer>
+                    </element>
+                    <element key="reportLength">
+                        <integer>10</integer>
+                    </element>
+                    <element key="stopOnSlow">
+                        <boolean>false</boolean>
+                    </element>
+                </array>
+            </arguments>
+        </listener>
+    </listeners>
 </phpunit>
