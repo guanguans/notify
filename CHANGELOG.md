@@ -2,6 +2,19 @@
 
 All notable changes to `guanguans/notify` will be documented in this file.
 
+## v1.25.0 - 2023-01-18
+
+### What's Changed
+
+- Update rector/rector requirement from ^0.14 to ^0.14 || ^0.15 by @dependabot in https://github.com/guanguans/notify/pull/26
+- Add new client: 一封传话聚合推送, 支持微信公众号、企业微信应用、企业微信群、钉钉群、飞书群、邮箱等, 一次调用多端推送。 by @teakong in https://github.com/guanguans/notify/pull/29
+
+### New Contributors
+
+- @teakong made their first contribution in https://github.com/guanguans/notify/pull/29
+
+**Full Changelog**: https://github.com/guanguans/notify/compare/v1.24.1...v1.25.0
+
 ## v1.24.1 - 2022-11-15
 
 **Full Changelog**: https://github.com/guanguans/notify/compare/v1.24.0...v1.24.1
