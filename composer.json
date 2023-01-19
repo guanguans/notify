@@ -145,11 +145,6 @@
             "pre-commit": [
                 "composer checks"
             ]
-        },
-        "phpstan": {
-            "includes": [
-                "extension.neon"
-            ]
         }
     },
     "scripts": {
