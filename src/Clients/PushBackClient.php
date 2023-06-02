@@ -56,9 +56,6 @@ class PushBackClient extends Client
         'synchronous_mode' => 'bool',
     ];
 
-    /**
-     * {@inheritdoc}
-     */
     public function __construct(array $options = [])
     {
         $this->sending(function (self $client): void {
@@ -73,9 +70,6 @@ class PushBackClient extends Client
         parent::__construct($options);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRequestUrl(): string
     {
         return sprintf(self::REQUEST_URL_TEMPLATE, $this->isSynchronousMode() ? 'send_sync' : 'send');

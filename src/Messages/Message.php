@@ -29,9 +29,6 @@ class Message implements MessageInterface
         $this->setOptions($options);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function transformToRequestParams()
     {
         return $this->getOptions();

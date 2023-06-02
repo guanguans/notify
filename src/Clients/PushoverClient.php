@@ -102,17 +102,11 @@ class PushoverClient extends Client
         return $this->getOption('user_token');
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getRequestUrl(): string
     {
         return static::REQUEST_URL_TEMPLATE;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getRequestParams(): array
     {
         return parent::getRequestParams() + [

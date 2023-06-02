@@ -18,8 +18,5 @@ interface RequestInterface
 
     public function getRequestUrl(): string;
 
-    /**
-     * @return mixed
-     */
     public function getRequestParams();
 }

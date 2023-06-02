@@ -61,9 +61,6 @@ class BarkClient extends Client
         return $this->getOption('base_uri');
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getRequestUrl(): string
     {
         return sprintf(

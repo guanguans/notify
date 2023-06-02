@@ -46,9 +46,6 @@ class TextMessage extends Message
         'priority' => 10,
     ];
 
-    /**
-     * {@inheritDoc}
-     */
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $optionsResolver): void {

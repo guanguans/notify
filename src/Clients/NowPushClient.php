@@ -37,9 +37,6 @@ class NowPushClient extends Client
         return sprintf(self::REQUEST_URL_TEMPLATE, 'sendMessage');
     }
 
-    /**
-     * @return mixed
-     */
     public function getUser()
     {
         return $this->wrapSendCallbacksWithRequestAsync(function () {

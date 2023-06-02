@@ -40,9 +40,6 @@ class NoteMessage extends Message
         'message_type' => 'nowpush_note',
     ];
 
-    /**
-     * {@inheritdoc}
-     */
     public function __construct(string $note, string $deviceType = 'api')
     {
         parent::__construct([

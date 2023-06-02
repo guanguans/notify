@@ -18,8 +18,6 @@ interface GatewayInterface
 
     /**
      * @param \Guanguans\Notify\Contracts\MessageInterface|null $message
-     *
-     * @return mixed
      */
     public function send(MessageInterface $message = null);
 }

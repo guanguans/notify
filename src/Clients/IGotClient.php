@@ -19,14 +19,8 @@ class IGotClient extends Client
      */
     public const REQUEST_URL_TEMPLATE = 'https://push.hellyw.com/%s';
 
-    /**
-     * {@inheritdoc}
-     */
     protected $requestMethod = 'postJson';
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRequestUrl(): string
     {
         return sprintf(self::REQUEST_URL_TEMPLATE, $this->getToken());

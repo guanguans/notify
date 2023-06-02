@@ -19,9 +19,6 @@ class PushPlusClient extends Client
      */
     public const REQUEST_URL_TEMPLATE = 'https://pushplus.hxtrip.com/send?token=%s';
 
-    /**
-     * {@inheritdoc}
-     */
     public function getRequestUrl(): string
     {
         return sprintf(self::REQUEST_URL_TEMPLATE, $this->getToken());

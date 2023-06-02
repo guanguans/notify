@@ -14,8 +14,5 @@ namespace Guanguans\Notify\Contracts;
 
 interface MessageInterface
 {
-    /**
-     * @return mixed
-     */
     public function transformToRequestParams();
 }

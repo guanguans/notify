@@ -17,9 +17,6 @@ namespace Guanguans\Notify\Proxy;
  */
 class HigherOrderTapProxy
 {
-    /**
-     * @var mixed
-     */
     public $target;
 
     /**
@@ -30,9 +27,6 @@ class HigherOrderTapProxy
         $this->target = $target;
     }
 
-    /**
-     * @return mixed
-     */
     public function __call($method, $parameters)
     {
         $this->target->{$method}(...$parameters);

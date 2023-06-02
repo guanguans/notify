@@ -53,9 +53,6 @@ class FeiShuClient extends Client
         return $this;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getRequestParams(): array
     {
         $requestParams = parent::getRequestParams();

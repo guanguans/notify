@@ -40,9 +40,6 @@ class ImageMessage extends Message
         'message_type' => 'nowpush_img',
     ];
 
-    /**
-     * {@inheritdoc}
-     */
     public function __construct(string $url, string $deviceType = 'api')
     {
         parent::__construct([

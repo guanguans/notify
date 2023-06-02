@@ -40,9 +40,6 @@ class LinkMessage extends Message
         'message_type' => 'nowpush_link',
     ];
 
-    /**
-     * {@inheritdoc}
-     */
     public function __construct(string $url, string $deviceType = 'api')
     {
         parent::__construct([

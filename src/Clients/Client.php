@@ -162,9 +162,6 @@ abstract class Client implements GatewayInterface, RequestInterface
         }
     }
 
-    /**
-     * @return mixed
-     */
     protected function wrapSendCallbacks(\Closure $handler)
     {
         $this->callSendingCallbacks();
@@ -176,9 +173,6 @@ abstract class Client implements GatewayInterface, RequestInterface
         return $handled;
     }
 
-    /**
-     * @return mixed
-     */
     protected function wrapSendCallbacksWithRequestAsync(\Closure $handler)
     {
         return $this->wrapSendCallbacks(function () use ($handler) {
