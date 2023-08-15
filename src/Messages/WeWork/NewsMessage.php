@@ -53,7 +53,7 @@ class NewsMessage extends Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('articles', static function (OptionsResolver $optionsResolver, $value) {
+            $resolver->setNormalizer('articles', static function (OptionsResolver $optionsResolver, array $value): array {
                 return isset($value[0]) ? $value : [$value];
             });
         });

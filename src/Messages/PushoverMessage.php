@@ -78,6 +78,7 @@ class PushoverMessage extends Message
                 if (2 !== $value) {
                     return $value;
                 }
+
                 if (isset($optionsResolver['retry'], $optionsResolver['expire'])) {
                     return $value;
                 }
@@ -89,9 +90,11 @@ class PushoverMessage extends Message
                 if (1 !== $value) {
                     return $value;
                 }
+
                 if (! isset($optionsResolver['monospace'])) {
                     return $value;
                 }
+
                 if (1 !== $optionsResolver['monospace']) {
                     return $value;
                 }
@@ -101,7 +104,7 @@ class PushoverMessage extends Message
 
             $optionsResolver->setNormalizer('attachment', static function (OptionsResolver $optionsResolver, $value): array {
                 if (is_string($value)) {
-                    if (empty($value)) {
+                    if ('' === $value) {
                         throw new InvalidOptionsException('The attachment cannot be empty.');
                     }
 

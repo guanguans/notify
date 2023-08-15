@@ -17,7 +17,7 @@ use Guanguans\Notify\Tests\TestCase;
 
 class YiFengChuanHuaTest extends TestCase
 {
-    public function testYiFengChuanHua()
+    public function testYiFengChuanHua(): void
     {
         // $this->markTestSkipped(__CLASS__.' is skipped.');
 

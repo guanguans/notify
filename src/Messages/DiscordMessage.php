@@ -45,7 +45,7 @@ class DiscordMessage extends Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('embeds', static function (OptionsResolver $optionsResolver, $value) {
+            $resolver->setNormalizer('embeds', static function (OptionsResolver $optionsResolver, array $value): array {
                 return isset($value[0]) ? $value : [$value];
             });
         });
@@ -92,7 +92,7 @@ class DiscordMessage extends Message
                 ->setAllowedTypes('thumbnail', 'array')
                 ->setAllowedTypes('author', 'array')
                 ->setAllowedTypes('fields', 'array')
-                ->setNormalizer('color', function (OptionsResolver $optionsResolver, $value) {
+                ->setNormalizer('color', static function (OptionsResolver $optionsResolver, $value) {
                     return is_int($value) ? $value : hexdec($value);
                 });
         });
