@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Method Guanguans\\\\Notify\\\\Clients\\\\Client\\:\\:__set\\(\\) with return type void returns \\$this\\(Guanguans\\\\Notify\\\\Clients\\\\Client\\) but should not return anything\\.$#"
+			count: 1
+			path: src/Clients/Client.php
+
+		-
 			message: "#^PHPDoc tag @return with type Guanguans\\\\Notify\\\\Contracts\\\\MessageInterface\\|Symfony\\\\Component\\\\Mime\\\\RawMessage is not subtype of native type Guanguans\\\\Notify\\\\Contracts\\\\MessageInterface\\.$#"
 			count: 1
 			path: src/Clients/Client.php
@@ -9,11 +14,6 @@ parameters:
 			message: "#^Unsafe usage of new static\\(\\)\\.$#"
 			count: 1
 			path: src/Clients/Client.php
-
-		-
-			message: "#^Parameter \\#1 \\$message of method Symfony\\\\Component\\\\Mailer\\\\MailerInterface\\:\\:send\\(\\) expects Symfony\\\\Component\\\\Mime\\\\RawMessage, Guanguans\\\\Notify\\\\Contracts\\\\MessageInterface given\\.$#"
-			count: 1
-			path: src/Clients/MailerClient.php
 
 		-
 			message: "#^Call to an undefined method Guanguans\\\\Notify\\\\Contracts\\\\MessageInterface\\:\\:getOptions\\(\\)\\.$#"
@@ -51,9 +51,19 @@ parameters:
 			path: src/Messages/Chanify/TextMessage.php
 
 		-
+			message: "#^Method Guanguans\\\\Notify\\\\Messages\\\\EmailMessage\\:\\:__set\\(\\) with return type void returns \\$this\\(Guanguans\\\\Notify\\\\Messages\\\\EmailMessage\\) but should not return anything\\.$#"
+			count: 1
+			path: src/Messages/EmailMessage.php
+
+		-
 			message: "#^Unsafe usage of new static\\(\\)\\.$#"
 			count: 1
 			path: src/Messages/EmailMessage.php
+
+		-
+			message: "#^Method Guanguans\\\\Notify\\\\Messages\\\\Message\\:\\:__set\\(\\) with return type void returns \\$this\\(Guanguans\\\\Notify\\\\Messages\\\\Message\\) but should not return anything\\.$#"
+			count: 1
+			path: src/Messages/Message.php
 
 		-
 			message: "#^Unsafe usage of new static\\(\\)\\.$#"

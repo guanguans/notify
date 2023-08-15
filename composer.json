@@ -199,7 +199,8 @@
         "release-patch-dry-run": "@release-patch --dry-run",
         "style-fix": "@php ./vendor/bin/php-cs-fixer fix --using-cache=yes --config=.php-cs-fixer.php --ansi",
         "style-lint": "@style-fix --diff --dry-run",
-        "test": "@php ./vendor/bin/phpunit --cache-result-file=./build/phpunit/.phpunit.result.cache --coverage-text",
-        "test-coverage": "@test --coverage-html=./build/phpunit/ --coverage-clover=clover.xml"
+        "test": "@php ./vendor/bin/phpunit --coverage-text -v",
+        "test-coverage": "@test --coverage-html=./build/phpunit/ --coverage-clover=clover.xml",
+        "test-migrate-configuration": "@test --migrate-configuration"
     }
 }

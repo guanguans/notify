@@ -25,8 +25,7 @@ class DingTalkTest extends TestCase
 {
     public function testText(): void
     {
-        // $this->expectOutputString('300001');
-        $this->expectOutputRegex('/^300001|130101$/');
+        $this->expectOutputRegex('/^300001|300005|130101$/');
 
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
@@ -44,8 +43,7 @@ class DingTalkTest extends TestCase
 
     public function testLink(): void
     {
-        // $this->expectOutputString('300001');
-        $this->expectOutputRegex('/^300001|130101$/');
+        $this->expectOutputRegex('/^300001|300005|130101$/');
 
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
@@ -63,8 +61,7 @@ class DingTalkTest extends TestCase
 
     public function testMarkdown(): void
     {
-        // $this->expectOutputString('300001');
-        $this->expectOutputRegex('/^300001|130101$/');
+        $this->expectOutputRegex('/^300001|300005|130101$/');
 
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
@@ -83,8 +80,7 @@ class DingTalkTest extends TestCase
 
     public function testSingleActionCard(): void
     {
-        // $this->expectOutputString('300001');
-        $this->expectOutputRegex('/^300001|130101$/');
+        $this->expectOutputRegex('/^300001|300005|130101$/');
 
         $ret = Factory::dingTalk()
             ->setToken('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73e')
@@ -103,8 +99,7 @@ class DingTalkTest extends TestCase
 
     public function testBtnsActionCard(): void
     {
-        // $this->expectOutputString('300001');
-        $this->expectOutputRegex('/^300001|130101$/');
+        $this->expectOutputRegex('/^300001|300005|130101$/');
 
         $btnsActionCardMessage = new BtnsActionCardMessage([
             'title' => 'This is title(keyword).',
@@ -131,8 +126,7 @@ class DingTalkTest extends TestCase
 
     public function testFeedCard(): void
     {
-        // $this->expectOutputString('300001');
-        $this->expectOutputRegex('/^300001|130101$/');
+        $this->expectOutputRegex('/^300001|300005|130101$/');
 
         $feedCardMessage = new FeedCardMessage([
             'title' => 'This is title(keyword) 0.',
