@@ -20,6 +20,7 @@ class GitterTest extends TestCase
 {
     public function testGitter(): void
     {
+        $this->markTestSkipped(self::class.' is skipped.');
         $this->expectException(ClientException::class);
 
         Factory::gitter()

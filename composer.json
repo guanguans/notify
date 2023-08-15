@@ -83,27 +83,22 @@
         "symfony/options-resolver": "^5.4 || ^6.0"
     },
     "require-dev": {
+        "bamarni/composer-bin-plugin": "^1.8",
         "brainmaestro/composer-git-hooks": "^2.8 || ^3.0",
-        "dms/phpunit-arraysubset-asserts": "^0.4.0 || ^0.5.0",
+        "dms/phpunit-arraysubset-asserts": "^0.5",
+        "ergebnis/composer-normalize": "^2.19",
         "friendsofphp/php-cs-fixer": "^3.4",
-        "jetbrains/phpstorm-attributes": "^1.0",
-        "johnkary/phpunit-speedtrap": "^4.0",
         "mockery/mockery": "^1.3",
-        "nyholm/nsa": "^1.3",
-        "php-mock/php-mock-phpunit": "^2.6",
-        "phpbench/phpbench": "^1.1",
-        "phpstan/extension-installer": "^1.2",
-        "phpstan/phpstan": "^1.9",
+        "php-mock/php-mock-phpunit": "^2.7",
+        "phpstan/extension-installer": "^1.3",
+        "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-deprecation-rules": "^1.1",
-        "phpstan/phpstan-phpunit": "^1.3",
-        "phpunit/phpunit": "^8.5 || ^9.5",
-        "rector/rector": "^0.15.7 || ^0.16.0 || ^0.17.0",
-        "roave/security-advisories": "dev-latest",
-        "spatie/phpunit-snapshot-assertions": "^3.0 || ^4.2",
+        "phpunit/phpunit": "^8.5 || ^9.0 || ^10.0",
+        "rector/rector": "^0.17",
         "symfony/mailer": "^5.4 || ^6.0",
         "symfony/var-dumper": "^5.4 || ^6.0",
         "textalk/websocket": "^1.5",
-        "vimeo/psalm": "^4.30 || ^5.4"
+        "vimeo/psalm": "^4.30 || ^5.0"
     },
     "suggest": {
         "symfony/mailer": "Required to use the email.",
@@ -126,6 +121,8 @@
     },
     "config": {
         "allow-plugins": {
+            "bamarni/composer-bin-plugin": true,
+            "ergebnis/composer-normalize": true,
             "phpstan/extension-installer": true
         },
         "apcu-autoloader": true,
@@ -155,26 +152,24 @@
         "post-update-cmd": [
             "@cghooks update"
         ],
+        "ai-commit": "/usr/local/opt/php@7.3/bin/php ./vendor/bin/ai-commit commit --generator=bito_cli --ansi",
+        "ai-commit-no-verify": "@ai-commit --commit-options=--no-verify",
         "benchmark": "@php ./vendor/bin/phpbench run --warmup=1 --retry-threshold=1 --iterations=3 --revs=5",
         "cghooks": "@php ./vendor/bin/cghooks",
         "checks": [
-            "@mark-start",
+            "@composer-normalize",
             "@composer-validate",
-            "@mark-separate",
             "@md-lint",
-            "@mark-separate",
             "@lint",
-            "@mark-separate",
             "@style-lint",
-            "@mark-separate",
             "@test",
-            "@mark-separate",
-            "@psalm",
-            "@mark-finish"
+            "@psalm"
         ],
-        "composer-validate": "@composer validate --check-lock --strict",
-        "dump-soar-config": "Guanguans\\SoarPHP\\Support\\ComposerScript::dumpSoarConfig",
-        "dump-soar-docblock": "Guanguans\\SoarPHP\\Support\\ComposerScript::dumpSoarDocblock",
+        "composer-bin-all-update": "@composer bin all update --ansi -v",
+        "composer-check-platform-reqs": "@composer check-platform-reqs --lock --ansi -v",
+        "composer-normalize": "@composer normalize --dry-run --diff --ansi -v",
+        "composer-unused": "@php ./vendor/bin/composer-unused --ansi -v",
+        "composer-validate": "@composer validate --check-lock --strict --ansi -v",
         "lint": [
             "for DIR in .; do find $DIR -maxdepth 1 -type f -name '*.php' -type f ! -name 'xxx.php' -exec php -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done",
             "for DIR in ./src ./tests; do find $DIR -type f -name '*.php' -type f ! -name 'xxx.php' -exec php -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done"
@@ -195,6 +190,13 @@
         "psalm-baseline": "@psalm --update-baseline",
         "rector": "@php ./vendor/bin/rector --clear-cache --ansi -v",
         "rector-dry-run": "@rector --dry-run",
+        "release": "/usr/local/opt/php@7.3/bin/php ./vendor/bin/monorepo-builder release --ansi -v",
+        "release-major": "@release major",
+        "release-major-dry-run": "@release-major --dry-run",
+        "release-minor": "@release minor",
+        "release-minor-dry-run": "@release-minor --dry-run",
+        "release-patch": "@release patch",
+        "release-patch-dry-run": "@release-patch --dry-run",
         "style-fix": "@php ./vendor/bin/php-cs-fixer fix --using-cache=yes --config=.php-cs-fixer.php --ansi",
         "style-lint": "@style-fix --diff --dry-run",
         "test": "@php ./vendor/bin/phpunit --cache-result-file=./build/phpunit/.phpunit.result.cache --coverage-text",
