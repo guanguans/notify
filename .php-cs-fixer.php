@@ -35,16 +35,7 @@ $finder = Finder::create()
         'vendor/',
         '__snapshots__/',
     ])
-    ->append([
-        __DIR__.'/.php-cs-fixer.php',
-        __DIR__.'/.phpstorm.meta.php',
-        __DIR__.'/composer-unused.php',
-        __DIR__.'/doctum.php',
-        __DIR__.'/rector.php',
-        __DIR__.'/rector-laravel.php',
-        __DIR__.'/monorepo-builder.php',
-        __DIR__.'/phparkitect.php',
-    ])
+    ->append(glob(__DIR__.'/{*,.*}.php', GLOB_BRACE))
     ->notPath([
         'bootstrap/*',
         'storage/*',
