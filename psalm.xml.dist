@@ -3,6 +3,8 @@
   cacheDirectory="./build/psalm/"
   errorBaseline="psalm-baseline.xml"
   errorLevel="4"
+  findUnusedBaselineEntry="true"
+  findUnusedCode="false"
   findUnusedVariablesAndParams="true"
   resolveFromConfigFile="true"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
