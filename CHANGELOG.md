@@ -1,308 +1,372 @@
+<!--- BEGIN HEADER -->
 # Changelog
 
-All notable changes to `guanguans/notify` will be documented in this file.
+All notable changes to this project will be documented in this file.
+<!--- END HEADER -->
 
-## v1.25.1 - 2023-01-19
+<a name="unreleased"></a>
+## [Unreleased]
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.25.0...v1.25.1
 
-## v1.25.0 - 2023-01-18
+<a name="1.26.0"></a>
+## [1.26.0] - 2023-08-16
+### CI
+- **psalm.xml.dist:** update psalm config file
 
-### What's Changed
+### Docs
+- **readme:** update README-EN.md and README.md
 
-- Update rector/rector requirement from ^0.14 to ^0.14 || ^0.15 by @dependabot in https://github.com/guanguans/notify/pull/26
-- Add new client: 一封传话聚合推送, 支持微信公众号、企业微信应用、企业微信群、钉钉群、飞书群、邮箱等, 一次调用多端推送。 by @teakong in https://github.com/guanguans/notify/pull/29
+### Feat
+- **monorepo-builder:** add new monorepo-builder.php file
 
-### New Contributors
+### Fix
+- **composer:** Resolve conflict with symplify/monorepo-builder
 
-- @teakong made their first contribution in https://github.com/guanguans/notify/pull/29
+### Refactor
+- **src:** apply rector
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.24.1...v1.25.0
+### Pull Requests
+- Merge pull request [#38](https://github.com/guanguans/monorepo-builder-worker/issues/38) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.6.0
+- Merge pull request [#37](https://github.com/guanguans/monorepo-builder-worker/issues/37) from guanguans/dependabot/composer/dms/phpunit-arraysubset-asserts-tw-0.4.0or-tw-0.5.0
+- Merge pull request [#36](https://github.com/guanguans/monorepo-builder-worker/issues/36) from guanguans/dependabot/composer/rector/rector-tw-0.15.7or-tw-0.16.0or-tw-0.17.0
+- Merge pull request [#35](https://github.com/guanguans/monorepo-builder-worker/issues/35) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.5.1
+- Merge pull request [#34](https://github.com/guanguans/monorepo-builder-worker/issues/34) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.5.0
+- Merge pull request [#33](https://github.com/guanguans/monorepo-builder-worker/issues/33) from guanguans/dependabot/composer/rector/rector-tw-0.15.7or-tw-0.16.0
+- Merge pull request [#32](https://github.com/guanguans/monorepo-builder-worker/issues/32) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.4.0
+- Merge pull request [#30](https://github.com/guanguans/monorepo-builder-worker/issues/30) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.6
 
-## v1.24.1 - 2022-11-15
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.24.0...v1.24.1
+<a name="v1.25.1"></a>
+## [v1.25.1] - 2023-01-19
 
-## v1.24.0 - 2022-11-14
+<a name="v1.25.0"></a>
+## [v1.25.0] - 2023-01-18
+### Pull Requests
+- Merge pull request [#29](https://github.com/guanguans/monorepo-builder-worker/issues/29) from teakong/feature-yifengchuanhua
+- Merge pull request [#26](https://github.com/guanguans/monorepo-builder-worker/issues/26) from guanguans/dependabot/composer/rector/rector-tw-0.14or-tw-0.15
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.23.0...v1.24.0
 
-## v1.23.0 - 2022-11-14
+<a name="v1.24.1"></a>
+## [v1.24.1] - 2022-11-15
 
-### What's Changed
+<a name="v1.24.0"></a>
+## [v1.24.0] - 2022-11-14
 
-- Bump dependabot/fetch-metadata from 1.3.4 to 1.3.5 by @dependabot in https://github.com/guanguans/notify/pull/24
+<a name="v1.23.0"></a>
+## [v1.23.0] - 2022-11-14
+### Pull Requests
+- Merge pull request [#24](https://github.com/guanguans/monorepo-builder-worker/issues/24) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.5
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.22.2...v1.23.0
 
-## v1.22.2 - 2022-11-02
+<a name="v1.22.2"></a>
+## [v1.22.2] - 2022-11-02
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.22.1...v1.22.2
+<a name="v1.22.1"></a>
+## [v1.22.1] - 2022-11-01
 
-## v1.22.1 - 2022-11-01
+<a name="v1.22.0"></a>
+## [v1.22.0] - 2022-11-01
+### Pull Requests
+- Merge pull request [#23](https://github.com/guanguans/monorepo-builder-worker/issues/23) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.4
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.22.0...v1.22.1
 
-## v1.22.0 - 2022-11-01
+<a name="v1.21.3"></a>
+## [v1.21.3] - 2022-09-12
 
-### What's Changed
+<a name="v1.21.2"></a>
+## [v1.21.2] - 2022-09-11
+### Pull Requests
+- Merge pull request [#21](https://github.com/guanguans/monorepo-builder-worker/issues/21) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.3
+- Merge pull request [#20](https://github.com/guanguans/monorepo-builder-worker/issues/20) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.2
 
-- Added pushover
-- Bump dependabot/fetch-metadata from 1.3.3 to 1.3.4 by @dependabot in https://github.com/guanguans/notify/pull/23
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.21.3...v1.22.0
+<a name="v1.21.1"></a>
+## [v1.21.1] - 2022-06-09
 
-## v1.21.3 - 2022-09-11
+<a name="v1.21.0"></a>
+## [v1.21.0] - 2022-06-09
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.21.2...v1.21.3
+<a name="v1.20.1"></a>
+## [v1.20.1] - 2022-06-09
+### Pull Requests
+- Merge pull request [#17](https://github.com/guanguans/monorepo-builder-worker/issues/17) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.1
+- Merge pull request [#16](https://github.com/guanguans/monorepo-builder-worker/issues/16) from guanguans/dependabot/github_actions/codecov/codecov-action-3
 
-## v1.21.2 - 2022-09-11
 
-### What's Changed
+<a name="v1.20.0"></a>
+## [v1.20.0] - 2022-03-31
 
-- Bump dependabot/fetch-metadata from 1.3.1 to 1.3.2 by @dependabot in https://github.com/guanguans/notify/pull/20
-- Bump dependabot/fetch-metadata from 1.3.2 to 1.3.3 by @dependabot in https://github.com/guanguans/notify/pull/21
+<a name="v1.19.2"></a>
+## [v1.19.2] - 2022-03-28
+### Pull Requests
+- Merge pull request [#13](https://github.com/guanguans/monorepo-builder-worker/issues/13) from guanguans/issue-12-替换wrench/wrench为Textalk/websocket-php
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.21.1...v1.21.2
 
-## v1.21.1 - 2022-06-09
+<a name="v1.19.1"></a>
+## [v1.19.1] - 2022-03-26
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.21.0...v1.21.1
+<a name="v1.19.0"></a>
+## [v1.19.0] - 2022-03-26
 
-## v1.21.0 - 2022-06-09
+<a name="v1.18.2"></a>
+## [v1.18.2] - 2022-03-23
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.20.1...v1.21.0
+<a name="v1.18.1"></a>
+## [v1.18.1] - 2022-03-23
 
-## v1.20.1 - 2022-06-09
+<a name="v1.18.0"></a>
+## [v1.18.0] - 2022-03-22
 
-### What's Changed
+<a name="v1.17.0"></a>
+## [v1.17.0] - 2022-03-22
 
-- Bump codecov/codecov-action from 2.1.0 to 3 by @dependabot in https://github.com/guanguans/notify/pull/16
-- Bump dependabot/fetch-metadata from 1.3.0 to 1.3.1 by @dependabot in https://github.com/guanguans/notify/pull/17
+<a name="v1.16.0"></a>
+## [v1.16.0] - 2022-03-22
+### Pull Requests
+- Merge pull request [#11](https://github.com/guanguans/monorepo-builder-worker/issues/11) from guanguans/dependabot/github_actions/actions/cache-3
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.20.0...v1.20.1
 
-## v1.20.0 - 2022-03-31
+<a name="v1.15.0"></a>
+## [v1.15.0] - 2022-03-21
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.19.2...v1.20.0
+<a name="v1.14.1"></a>
+## [v1.14.1] - 2022-03-21
 
-## v1.19.2 - 2022-03-29
+<a name="v1.14.0"></a>
+## [v1.14.0] - 2022-03-21
+### Pull Requests
+- Merge pull request [#10](https://github.com/guanguans/monorepo-builder-worker/issues/10) from devcto/pushdeer
 
-## What's Changed
 
-- Replace `wrench/wrench` -> `textalk/websocket`(#12) by @guanguans in https://github.com/guanguans/notify/pull/13
+<a name="v1.13.2"></a>
+## [v1.13.2] - 2022-03-14
+### Pull Requests
+- Merge pull request [#8](https://github.com/guanguans/monorepo-builder-worker/issues/8) from guanguans/dependabot/github_actions/actions/checkout-3
+- Merge pull request [#9](https://github.com/guanguans/monorepo-builder-worker/issues/9) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.0
+- Merge pull request [#7](https://github.com/guanguans/monorepo-builder-worker/issues/7) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.2.1
 
-## New Contributors
 
-- @guanguans made their first contribution in https://github.com/guanguans/notify/pull/13
+<a name="v1.13.1"></a>
+## [v1.13.1] - 2022-02-22
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.19.1...v1.19.2
+<a name="v1.13.0"></a>
+## [v1.13.0] - 2022-02-22
 
-## v1.19.1 - 2022-03-26
+<a name="v1.12.1"></a>
+## [v1.12.1] - 2022-01-09
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.19.0...v1.19.1
+<a name="v1.12.0"></a>
+## [v1.12.0] - 2022-01-09
 
-## v1.19.0 - 2022-03-26
+<a name="v1.11.1"></a>
+## [v1.11.1] - 2022-01-09
 
-- 支持 QQ 频道机器人
+<a name="v1.11.0"></a>
+## [v1.11.0] - 2022-01-08
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.18.2...v1.19.0
+<a name="v1.10.0"></a>
+## [v1.10.0] - 2022-01-06
 
-## v1.18.2 - 2022-03-23
+<a name="v1.9.1"></a>
+## [v1.9.1] - 2022-01-06
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.18.1...v1.18.2
+<a name="v1.9.0"></a>
+## [v1.9.0] - 2022-01-06
 
-## v1.18.1 - 2022-03-23
+<a name="v1.8.2"></a>
+## [v1.8.2] - 2022-01-06
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.18.0...v1.18.1
+<a name="v1.8.1"></a>
+## [v1.8.1] - 2022-01-05
 
-## v1.18.0 - 2022-03-23
+<a name="v1.8.0"></a>
+## [v1.8.0] - 2022-01-05
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.17.0...v1.18.0
+<a name="v1.7.2"></a>
+## [v1.7.2] - 2021-12-12
 
-## v1.15.0 - 2022-03-21
+<a name="v1.7.1"></a>
+## [v1.7.1] - 2021-12-12
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.14.1...v1.15.0
+<a name="v1.7.0"></a>
+## [v1.7.0] - 2021-12-12
 
-## v1.14.1 - 2022-03-21
+<a name="v1.6.0"></a>
+## [v1.6.0] - 2021-12-11
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.14.0...v1.14.1
+<a name="v1.5.0"></a>
+## [v1.5.0] - 2021-12-10
 
-## v1.14.0 - 2022-03-21
+<a name="v1.4.4"></a>
+## [v1.4.4] - 2021-12-10
 
-## What's Changed
+<a name="v1.4.3"></a>
+## [v1.4.3] - 2021-12-10
 
-- Add: pushdeer by @jetsung in https://github.com/guanguans/notify/pull/10
+<a name="v1.4.2"></a>
+## [v1.4.2] - 2021-12-10
 
-## New Contributors
+<a name="v1.4.1"></a>
+## [v1.4.1] - 2021-12-10
 
-- @jetsung made their first contribution in https://github.com/guanguans/notify/pull/10
+<a name="v1.4.0"></a>
+## [v1.4.0] - 2021-12-09
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.13.2...v1.14.0
+<a name="v1.3.1"></a>
+## [v1.3.1] - 2021-12-09
 
-## v1.13.2 - 2022-03-14
+<a name="v1.3.0"></a>
+## [v1.3.0] - 2021-12-09
 
-## What's Changed
+<a name="v1.2.0"></a>
+## [v1.2.0] - 2021-12-08
 
-- Bump dependabot/fetch-metadata from 1.2.0 to 1.2.1 by @dependabot in https://github.com/guanguans/notify/pull/7
-- Bump dependabot/fetch-metadata from 1.2.1 to 1.3.0 by @dependabot in https://github.com/guanguans/notify/pull/9
-- Bump actions/checkout from 2 to 3 by @dependabot in https://github.com/guanguans/notify/pull/8
+<a name="v1.1.2"></a>
+## [v1.1.2] - 2021-12-08
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.13.1...v1.13.2
+<a name="v1.1.1"></a>
+## [v1.1.1] - 2021-12-08
 
-## v1.13.1 - 2022-02-22
+<a name="v1.1.0"></a>
+## [v1.1.0] - 2021-12-07
 
-**Full Changelog**: https://github.com/guanguans/notify/compare/v1.13.0...v1.13.1
+<a name="v1.0.5"></a>
+## [v1.0.5] - 2021-12-07
 
-## 1.13.0 - 2022-02-22
+<a name="v1.0.4"></a>
+## [v1.0.4] - 2021-10-24
 
-- Support symfony6.
+<a name="v1.0.3"></a>
+## [v1.0.3] - 2021-10-17
+### Pull Requests
+- Merge pull request [#4](https://github.com/guanguans/monorepo-builder-worker/issues/4) from guanguans/dependabot/composer/friendsofphp/php-cs-fixer-tw-2.16or-tw-3.0
 
-## 1.12.1 - 2022-01-09
 
-- Fix `HasOptions`.
-
-## 1.12.0 - 2022-01-09
-
-- Add support for `iGot`.
-
-## 1.11.1 - 2022-01-09
-
-- Fix message for Bark.
-
-## 1.11.0 - 2022-01-08
-
-- Add support for `pushback`.
-
-## 1.10.0 - 2022-01-06
-
-- Add support for `push`.
-
-## 1.9.1 - 2022-01-06
-
-- Add `wrapSendCallbacks` for client.
-- Optimize Logger、Mailer、NowPush、ServerChan clients.
-
-## 1.9.0 - 2022-01-06
-
-- Add support for `now push`.
-
-## 1.8.2 - 2022-01-06
-
-- Remove phpunit conflict(fix #5).
-
-## 1.8.1 - 2022-01-05
-
-- Optimize `PushPlus` client.
-
-## 1.8.0 - 2022-01-05
-
-- Add support for `pushplus`.
-
-## 1.7.2 - 2021-12-12
-
-- Optimize clients.
-- Optimize messages.
-
-## 1.7.1 - 2021-12-12
-
-- Add `CreateStaticAble` for client and message.
-
-## 1.7.0 - 2021-12-12
-
-- Add support for `Email`.
-- Add `CreateStaticAble` trait.
-
-## 1.6.0 - 2021-12-11
-
-- Add support for `PSR Logger`.
-
-## 1.5.0 - 2021-12-10
-
-- Add support for `Google Chat`.
-
-## 1.4.4 - 2021-12-10
-
-- Rename `default` -> `defaults`.
-- Optimize src/Traits/HasOptions.php.
-- Fix style.
-
-## 1.4.3 - 2021-12-10
-
-- Rename `'baseUri'` -> `'base_uri'`.
-
-## 1.4.2 - 2021-12-10
-
-- Rename `host` -> `baseUri`.
-
-## 1.4.1 - 2021-12-10
-
-- Optimize messages.
-- Optimize base class for client.
-- Update composer.json.
-- Update github config files.
-
-## 1.4.0 - 2021-12-09
-
-- Add support for `Mattermost`.
-
-## 1.3.1 - 2021-12-09
-
-- Optimize `BtnsActionCard` Message for DingTalk.
-
-## 1.3.0 - 2021-12-09
-
-- Add support for `RocketChat`.
-
-## 1.2.0 - 2021-12-08
-
-- Add support for `Zulip`.
-
-## 1.1.2 - 2021-12-08
-
-- Add support for `sending and sended`.
-- Optimize client for Gitter.
-
-## 1.1.1 - 2021-12-08
-
-- Add support for asynchronous sending.
-
-## 1.1.0 - 2021-12-07
-
-- Add `gitter`.
-- Update composer.json.
-
-## 1.0.5 - 2021-12-07
-
-- Add github config files.
-- Fix style.
-
-## 1.0.4 - 2021-10-24
-
-- `HasOptions` added `preConfigureOptionsResolver` method.
-
-## 1.0.3 - 2021-10-17
-
-- Update friendsofphp/php-cs-fixer requirement || ^3.0.
-- Fix tests.
-- Optimize `HasHttpClient` trait.
-- Optimize `HasOptions` trait.
-
-## 1.0.2 - 2021-10-10
-
-- Update overtrue/phplint requirement || ^3.0.
-- Update vimeo/psalm requirement || ^4.0.
-- Update tests.
-- Bump codecov/codecov-action from 1 to 2.1.0.
-- Optimize `HasOptions` trait.
-- Optimize messages.
-
-## 1.0.1 - 2021-05-16
-
-- Add separate method for separate setting option.
-- Perf messages.
-- Perf clients.
-
-## 1.0.0 - 2021-05-16
-
-- Initial release.
+<a name="v1.0.2"></a>
+## [v1.0.2] - 2021-10-10
+### Pull Requests
+- Merge pull request [#3](https://github.com/guanguans/monorepo-builder-worker/issues/3) from guanguans/dependabot/composer/overtrue/phplint-tw-2.3or-tw-3.0
+- Merge pull request [#1](https://github.com/guanguans/monorepo-builder-worker/issues/1) from guanguans/dependabot/github_actions/codecov/codecov-action-2.1.0
+- Merge pull request [#2](https://github.com/guanguans/monorepo-builder-worker/issues/2) from guanguans/dependabot/composer/vimeo/psalm-tw-3.11or-tw-4.0
+
+
+<a name="v1.0.1"></a>
+## [v1.0.1] - 2021-05-16
+### Docs
+- Update docs
+
+### Feat
+- Add separate method for separate setting option
+
+### Perf
+- Perf messages
+- Perf clients
+
+
+<a name="v1.0.0"></a>
+## v1.0.0 - 2021-05-16
+### Docs
+- Update docs
+- Add global `tap` function
+- Update README.md
+- Update README.md
+
+### Feat
+- Add some messages for FeiShu
+- Add FeiShu client
+- Add WeWork client
+- Add DingTalk client
+- Add Bark client
+- Add ServerChan client
+- Add XiZhi client
+- Add Chanify client
+
+### Fix
+- Fix message with secret
+
+### Perf
+- Perf ServerChan
+- Perf XiZhi
+- Perf WeWork
+- Finish DingTalk
+- Finish FeiShu
+- Finish WeWork
+- Finish ServerChan
+- Finish XiZhi
+- Finish Chanify
+- Finish Bark
+
+### Refactor
+- Refactor
+- Refactor
+- Refactor FeiShu
+- Refactor FeiShu client
+- Refactor WeWork client
+- Refactor clients
+- Refactor Chanify client
+
+### Test
+- Finish tests
+
+
+[Unreleased]: https://github.com/guanguans/monorepo-builder-worker/compare/1.26.0...HEAD
+[1.26.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.25.1...1.26.0
+[v1.25.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.25.0...v1.25.1
+[v1.25.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.24.1...v1.25.0
+[v1.24.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.24.0...v1.24.1
+[v1.24.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.23.0...v1.24.0
+[v1.23.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.22.2...v1.23.0
+[v1.22.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.22.1...v1.22.2
+[v1.22.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.22.0...v1.22.1
+[v1.22.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.21.3...v1.22.0
+[v1.21.3]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.21.2...v1.21.3
+[v1.21.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.21.1...v1.21.2
+[v1.21.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.21.0...v1.21.1
+[v1.21.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.20.1...v1.21.0
+[v1.20.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.20.0...v1.20.1
+[v1.20.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.19.2...v1.20.0
+[v1.19.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.19.1...v1.19.2
+[v1.19.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.19.0...v1.19.1
+[v1.19.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.18.2...v1.19.0
+[v1.18.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.18.1...v1.18.2
+[v1.18.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.18.0...v1.18.1
+[v1.18.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.17.0...v1.18.0
+[v1.17.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.16.0...v1.17.0
+[v1.16.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.15.0...v1.16.0
+[v1.15.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.14.1...v1.15.0
+[v1.14.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.14.0...v1.14.1
+[v1.14.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.13.2...v1.14.0
+[v1.13.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.13.1...v1.13.2
+[v1.13.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.13.0...v1.13.1
+[v1.13.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.12.1...v1.13.0
+[v1.12.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.12.0...v1.12.1
+[v1.12.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.11.1...v1.12.0
+[v1.11.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.11.0...v1.11.1
+[v1.11.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.10.0...v1.11.0
+[v1.10.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.9.1...v1.10.0
+[v1.9.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.9.0...v1.9.1
+[v1.9.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.8.2...v1.9.0
+[v1.8.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.8.1...v1.8.2
+[v1.8.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.8.0...v1.8.1
+[v1.8.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.7.2...v1.8.0
+[v1.7.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.7.1...v1.7.2
+[v1.7.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.7.0...v1.7.1
+[v1.7.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.6.0...v1.7.0
+[v1.6.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.5.0...v1.6.0
+[v1.5.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.4.4...v1.5.0
+[v1.4.4]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.4.3...v1.4.4
+[v1.4.3]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.4.2...v1.4.3
+[v1.4.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.4.1...v1.4.2
+[v1.4.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.4.0...v1.4.1
+[v1.4.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.3.1...v1.4.0
+[v1.3.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.3.0...v1.3.1
+[v1.3.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.2.0...v1.3.0
+[v1.2.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.1.2...v1.2.0
+[v1.1.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.1.1...v1.1.2
+[v1.1.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.1.0...v1.1.1
+[v1.1.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.5...v1.1.0
+[v1.0.5]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.4...v1.0.5
+[v1.0.4]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.3...v1.0.4
+[v1.0.3]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.2...v1.0.3
+[v1.0.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.1...v1.0.2
+[v1.0.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.0...v1.0.1
