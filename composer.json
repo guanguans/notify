@@ -94,7 +94,7 @@
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-deprecation-rules": "^1.1",
         "phpunit/phpunit": "^8.5 || ^9.0 || ^10.0",
-        "rector/rector": "^0.17",
+        "rector/rector": "^0.17 || ^0.18",
         "symfony/mailer": "^5.4 || ^6.0",
         "symfony/var-dumper": "^5.4 || ^6.0",
         "textalk/websocket": "^1.5",
