@@ -99,7 +99,7 @@ All notable changes to this project will be documented in this file.
 <a name="v1.19.2"></a>
 ## [v1.19.2] - 2022-03-28
 ### Pull Requests
-- Merge pull request [#13](https://github.com/guanguans/monorepo-builder-worker/issues/13) from guanguans/issue-12-替换wrench/wrench为Textalk/websocket-php
+- Merge pull request [#13](https://github.com/guanguans/monorepo-builder-worker/issues/13) from guanguans/issue-12-替换 wrench/wrench 为 Textalk/websocket-php
 
 
 <a name="v1.19.1"></a>
