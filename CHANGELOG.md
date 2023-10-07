@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="1.27.0"></a>
+## [1.27.0] - 2023-10-07
+### Fix
+- **client:** Update PushPlus request URL
+
+### Test
+- **QqChannelBotTest:** Skip testQqChannelBot
+
+
 <a name="1.26.1"></a>
 ## [1.26.1] - 2023-10-07
 ### Pull Requests
@@ -318,7 +327,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/monorepo-builder-worker/compare/1.26.1...HEAD
+[Unreleased]: https://github.com/guanguans/monorepo-builder-worker/compare/1.27.0...HEAD
+[1.27.0]: https://github.com/guanguans/monorepo-builder-worker/compare/1.26.1...1.27.0
 [1.26.1]: https://github.com/guanguans/monorepo-builder-worker/compare/1.26.0...1.26.1
 [1.26.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.25.1...1.26.0
 [v1.25.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.25.0...v1.25.1
