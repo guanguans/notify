@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="1.26.1"></a>
+## [1.26.1] - 2023-10-07
+### Pull Requests
+- Merge pull request [#45](https://github.com/guanguans/monorepo-builder-worker/issues/45) from guanguans/dependabot/github_actions/stefanzweifel/git-auto-commit-action-5
+- Merge pull request [#43](https://github.com/guanguans/monorepo-builder-worker/issues/43) from guanguans/dependabot/github_actions/codecov/codecov-action-4
+- Merge pull request [#42](https://github.com/guanguans/monorepo-builder-worker/issues/42) from guanguans/dependabot/github_actions/actions/checkout-4
+- Merge pull request [#40](https://github.com/guanguans/monorepo-builder-worker/issues/40) from guanguans/dependabot/composer/rector/rector-tw-0.17or-tw-0.18
+
+
 <a name="1.26.0"></a>
 ## [1.26.0] - 2023-08-16
 ### CI
@@ -99,7 +108,7 @@ All notable changes to this project will be documented in this file.
 <a name="v1.19.2"></a>
 ## [v1.19.2] - 2022-03-28
 ### Pull Requests
-- Merge pull request [#13](https://github.com/guanguans/monorepo-builder-worker/issues/13) from guanguans/issue-12-替换 wrench/wrench 为 Textalk/websocket-php
+- Merge pull request [#13](https://github.com/guanguans/monorepo-builder-worker/issues/13) from guanguans/issue-12-替换wrench/wrench为Textalk/websocket-php
 
 
 <a name="v1.19.1"></a>
@@ -309,7 +318,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/monorepo-builder-worker/compare/1.26.0...HEAD
+[Unreleased]: https://github.com/guanguans/monorepo-builder-worker/compare/1.26.1...HEAD
+[1.26.1]: https://github.com/guanguans/monorepo-builder-worker/compare/1.26.0...1.26.1
 [1.26.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.25.1...1.26.0
 [v1.25.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.25.0...v1.25.1
 [v1.25.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.24.1...v1.25.0
