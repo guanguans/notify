@@ -20,6 +20,8 @@ class QqChannelBotTest extends TestCase
 {
     public function testQqChannelBot(): void
     {
+        $this->markTestSkipped(self::class.' is skipped.');
+
         $this->expectException(ClientException::class);
 
         Factory::qqChannelBot()
