@@ -2,7 +2,8 @@
     "excludeFiles": [
         "src/",
         "tests/",
-        "vendor/"
+        "vendor/",
+        "./CHANGELOG.md"
     ],
     "rules": {
         "space-around-alphabet": 2,

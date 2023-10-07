@@ -17,7 +17,7 @@ class PushPlusClient extends Client
     /**
      * @var string
      */
-    public const REQUEST_URL_TEMPLATE = 'https://pushplus.hxtrip.com/send?token=%s';
+    public const REQUEST_URL_TEMPLATE = 'https://www.pushplus.plus/send?token=%s';
 
     public function getRequestUrl(): string
     {
