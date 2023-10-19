@@ -1,14 +1,17 @@
-name: psalm
+name: rector
 
 on:
   push:
     paths:
       - '**.php'
-      - 'psalm.xml.dist'
+      - '.github/**.yml'
+      - '.github/**.yaml'
+      - '*.xml'
+      - '*.xml.dist'
 
 jobs:
-  psalm:
-    name: psalm
+  rector:
+    name: rector
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,7 +30,7 @@ jobs:
           key: composer-${{ hashFiles('composer.lock') }}
 
       - name: Run composer install
-        run: composer install -n --prefer-dist
+        run: composer install --no-interaction --prefer-dist --ansi -v
 
-      - name: Run psalm
-        run: ./vendor/bin/psalm
+      - name: Run rector
+        run: composer rector-dry-run
