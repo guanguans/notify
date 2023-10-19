@@ -18,7 +18,6 @@ use Rector\CodeQuality\Rector\Identical\SimplifyBoolIdenticalTrueRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
 use Rector\CodingStyle\Rector\Class_\AddArrayDefaultToArrayPropertyRector;
-use Rector\CodingStyle\Rector\ClassMethod\UnSpreadOperatorRector;
 use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
@@ -82,12 +81,10 @@ return static function (RectorConfig $rectorConfig): void {
 
         // optional rules
         // RemoveUnusedVariableAssignRector::class,
-        // UnSpreadOperatorRector::class,
         // StaticClosureRector::class,
         AddArrayDefaultToArrayPropertyRector::class,
         RemoveEmptyClassMethodRector::class,
         ExplicitBoolCompareRector::class,
-        UnSpreadOperatorRector::class,
         AddSeeTestAnnotationRector::class,
 
         // paths
