@@ -1,29 +1,30 @@
 # notify
 
-[简体中文](README.md) | [ENGLISH](README-EN.md)
+[简体中文](README-zh_CN.md) | [ENGLISH](README.md)
 
-> 推送通知 sdk(Bark、Chanify、钉钉群机器人、Discord、邮件、飞书群机器人、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、PushBack、Push、PushDeer、Pushover、PushPlus、QQ 频道机器人、Rocket Chat、Server 酱、Showdoc Push、Slack、Telegram、Webhook、企业微信群机器人、息知、一封传话、Zulip)。
+> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、PushBack、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、YiFengChuanHua、Zulip).
 
-[![Tests](https://github.com/guanguans/notify/workflows/Tests/badge.svg)](https://github.com/guanguans/notify/actions)
-[![Check & fix styling](https://github.com/guanguans/notify/workflows/Check%20&%20fix%20styling/badge.svg)](https://github.com/guanguans/notify/actions)
+[![tests](https://github.com/guanguans/notify/actions/workflows/tests.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/tests.yml)
+[![check & fix styling](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml)
 [![codecov](https://codecov.io/gh/guanguans/notify/branch/main/graph/badge.svg?token=URGFAWS6S4)](https://codecov.io/gh/guanguans/notify)
 [![Latest Stable Version](https://poser.pugx.org/guanguans/notify/v)](https://packagist.org/packages/guanguans/notify)
+[![GitHub release (with filter)](https://img.shields.io/github/v/release/guanguans/notify)](https://github.com/guanguans/notify/releases)
 [![Total Downloads](https://poser.pugx.org/guanguans/notify/downloads)](https://packagist.org/packages/guanguans/notify)
 [![License](https://poser.pugx.org/guanguans/notify/license)](https://packagist.org/packages/guanguans/notify)
 
-## 相关项目
+## Related project
 
 * [https://github.com/guanguans/laravel-exception-notify](https://github.com/guanguans/laravel-exception-notify)
 * [https://github.com/guanguans/yii-log-target](https://github.com/guanguans/yii-log-target)
 
-## 平台支持
+## Platform support
 
 * [Bark](https://github.com/Finb/Bark)
 * [Chanify](https://github.com/chanify/chanify-ios)
-* [钉钉群机器人](https://developers.dingtalk.com/document/app/custom-robot-access)
+* [DingTalk](https://developers.dingtalk.com/document/app/custom-robot-access)
 * [Discord](https://discord.com/developers/docs/resources/webhook#edit-webhook-message)
-* [邮件](https://symfony.com/doc/current/mailer.html)
-* [飞书群机器人](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
+* [Email](https://symfony.com/doc/current/mailer.html)
+* [FeiShu](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
 * [Gitter](https://developer.gitter.im/docs/messages-resource)
 * [Google Chat](https://developers.google.com/hangouts/chat/how-tos/webhooks)
 * [iGot](http://hellyw.com/#/)
@@ -37,29 +38,29 @@
 * [PushDeer](http://pushdeer.com)
 * [Pushover](https://pushover.net)
 * [PushPlus](https://pushplus.hxtrip.com/index)
-* [QQ 频道机器人](https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html)
+* [QQ Channel Bot](https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
-* [Server 酱](https://sct.ftqq.com)
+* [ServerChan](https://sct.ftqq.com)
 * [Showdoc Push](https://push.showdoc.com.cn/#/)
 * [Slack](https://api.slack.com/messaging/webhooks)
 * [Telegram](https://core.telegram.org/bots/api#sendmessage)
 * Webhook
-* [企业微信群机器人](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
-* [息知](https://xz.qqoq.net/#/index)
-* [一封传话](https://www.phprm.com/push/h5/)
+* [WeWork](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
+* [XiZhi](https://xz.qqoq.net/#/index)
+* [YiFengChuanHua](https://www.phprm.com/push/h5/)
 * [Zulip](https://zulip.com/api/send-message)
 
-## 环境要求
+## Requirement
 
 * PHP >= 7.2
 
-## 安装
+## Installation
 
 ```bash
 composer require guanguans/notify -vvv
 ```
 
-## 使用
+## Usage
 
 <details>
 <summary><b>Bark</b></summary>
@@ -135,7 +136,7 @@ Factory::chanify()
 </details>
 
 <details>
-<summary><b>钉钉群机器人</b></summary>
+<summary><b>DingTalk</b></summary>
 
 ```php
 // Text Message
@@ -273,10 +274,10 @@ Factory::discord()
 </details>
 
 <details>
-<summary><b>邮件</b></summary>
+<summary><b>Email</b></summary>
 
 ```bash
-# 安装依赖
+# Install dependencies
 $ composer require symfony/mailer -vvv
 ```
 
@@ -300,7 +301,7 @@ Factory::mailer()
 </details>
 
 <details>
-<summary><b>飞书群机器人</b></summary>
+<summary><b>FeiShu</b></summary>
 
 ```php
 // Text Message
@@ -739,31 +740,31 @@ Factory::pushPlus()
 </details>
 
 <details>
-<summary><b>QQ 频道机器人</b></summary>
+<summary><b>QQ Channel Bot</b></summary>
 
 ```bash
-# 安装依赖
+# Install dependencies
 $ composer require textalk/websocket -vvv
 ```
 
 ```php
-// 获取用户频道列表
+// Get the list of user channels
 Factory::qqChannelBot()
     ->setAppid(102001)
     ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
     ->getUserChannels();
 
-// 获取子频道列表    
+// Get the subchannel list
 Factory::qqChannelBot()
     ->setAppid(102001)
     ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
-    ->getSubChannels(5099581822453968); // 频道 ID
+    ->getSubChannels(5099581822453968); // Channel ID
 
-// 发送频道消息
+// Send a channel message
 Factory::qqChannelBot()
     ->setAppid(102001)
     ->setToken('eghXYBXQH0QXBByb8Zj4VeRGterQG')
-    ->setChannelId('4317') // 子频道 ID
+    ->setChannelId('4317') // Sub Channel ID
     // ->sandboxEnvironment()
     // ->setSecret('3yfBSaUCfy3zlQr5')
     ->setMessage(
@@ -809,7 +810,7 @@ Factory::rocketChat()
 </details>
 
 <details>
-<summary><b>Server 酱</b></summary>
+<summary><b>Server Chan</b></summary>
 
 ```php
 Factory::serverChan()
@@ -917,7 +918,7 @@ Factory::webhook()
 </details>
 
 <details>
-<summary><b>企业微信群机器人</b></summary>
+<summary><b>WeWork</b></summary>
 
 ```php
 // Text Message
@@ -963,7 +964,7 @@ Factory::weWork()
 </details>
 
 <details>
-<summary><b>息知</b></summary>
+<summary><b>XiZhi</b></summary>
 
 ```php
 // Single
@@ -983,7 +984,7 @@ Factory::xiZhi()
 </details>
 
 <details>
-<summary><b>一封传话</b></summary>
+<summary><b>YiFengChuanHua</b></summary>
 
 ```php
 Factory::yiFengChuanHua()
@@ -1024,29 +1025,29 @@ Factory::zulip()
 ```
 </details>
 
-## 测试
+## Testing
 
 ```bash
 composer test
 ```
 
-## 变更日志
+## Changelog
 
-请参阅 [CHANGELOG](CHANGELOG.md) 获取最近有关更改的更多信息。
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-## 贡献指南
+## Contributing
 
-请参阅 [CONTRIBUTING](.github/CONTRIBUTING.md) 有关详细信息。
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
-## 安全漏洞
+## Security Vulnerabilities
 
-请查看[我们的安全政策](../../security/policy)了解如何报告安全漏洞。
+Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
-## 贡献者
+## Credits
 
 * [guanguans](https://github.com/guanguans)
-* [所有贡献者](../../contributors)
+* [All Contributors](../../contributors)
 
-## 协议
+## License
 
-MIT 许可证（MIT）。有关更多信息，请参见[协议文件](LICENSE)。
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
