@@ -209,6 +209,8 @@
         "test": "@php ./vendor/bin/phpunit --coverage-text -v",
         "test-coverage": "@test --coverage-html=./build/phpunit/ --coverage-clover=clover.xml",
         "test-migrate-configuration": "@test --migrate-configuration",
-        "yaml-lint": "@php ./vendor/bin/yaml-lint .github --ansi -v"
+        "yaml-lint": "@php ./vendor/bin/yaml-lint .github --ansi -v",
+        "zh-fix": "@zh-lint --fix",
+        "zh-lint": "zhlint *-zh_CN.md docs/*-zh_CN.md docs/**/*-zh_CN.md"
     }
 }
