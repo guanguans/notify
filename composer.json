@@ -165,6 +165,7 @@
             "@composer-normalize",
             "@composer-validate",
             "@md-lint",
+            "@zh-lint",
             "@lint",
             "@style-lint",
             "@test",
@@ -211,6 +212,6 @@
         "test-migrate-configuration": "@test --migrate-configuration",
         "yaml-lint": "@php ./vendor/bin/yaml-lint .github --ansi -v",
         "zh-fix": "@zh-lint --fix",
-        "zh-lint": "zhlint *-zh_CN.md docs/*-zh_CN.md docs/**/*-zh_CN.md"
+        "zh-lint": "zhlint {./,docs/,docs/**/}*-zh_CN.md"
     }
 }

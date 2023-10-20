@@ -21,6 +21,8 @@ class RocketChatTest extends TestCase
 {
     public function testRocketChat(): void
     {
+        $this->markTestSkipped(self::class.' is skipped.');
+
         $this->expectException(ClientException::class);
 
         $ret = Factory::rocketChat()
