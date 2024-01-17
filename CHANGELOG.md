@@ -8,6 +8,9 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="1.28.0"></a>
+## [1.28.0] - 2024-01-17
+
 <a name="1.27.2"></a>
 ## [1.27.2] - 2024-01-17
 ### Feat
@@ -17,9 +20,9 @@ All notable changes to this project will be documented in this file.
 - **rocketChat:** Skip RocketChat test
 
 ### Pull Requests
-- Merge pull request [#48](https://github.com/guanguans/monorepo-builder-worker/issues/48) from guanguans/dependabot/composer/rector/rector-tw-0.17or-tw-0.18or-tw-0.19
-- Merge pull request [#47](https://github.com/guanguans/monorepo-builder-worker/issues/47) from guanguans/dependabot/github_actions/actions/stale-9
-- Merge pull request [#46](https://github.com/guanguans/monorepo-builder-worker/issues/46) from guanguans/dependabot/github_actions/actions/labeler-5
+- Merge pull request [#48](https://github.com/guanguans/notify/issues/48) from guanguans/dependabot/composer/rector/rector-tw-0.17or-tw-0.18or-tw-0.19
+- Merge pull request [#47](https://github.com/guanguans/notify/issues/47) from guanguans/dependabot/github_actions/actions/stale-9
+- Merge pull request [#46](https://github.com/guanguans/notify/issues/46) from guanguans/dependabot/github_actions/actions/labeler-5
 
 
 <a name="1.27.1"></a>
@@ -40,10 +43,10 @@ All notable changes to this project will be documented in this file.
 <a name="1.26.1"></a>
 ## [1.26.1] - 2023-10-07
 ### Pull Requests
-- Merge pull request [#45](https://github.com/guanguans/monorepo-builder-worker/issues/45) from guanguans/dependabot/github_actions/stefanzweifel/git-auto-commit-action-5
-- Merge pull request [#43](https://github.com/guanguans/monorepo-builder-worker/issues/43) from guanguans/dependabot/github_actions/codecov/codecov-action-4
-- Merge pull request [#42](https://github.com/guanguans/monorepo-builder-worker/issues/42) from guanguans/dependabot/github_actions/actions/checkout-4
-- Merge pull request [#40](https://github.com/guanguans/monorepo-builder-worker/issues/40) from guanguans/dependabot/composer/rector/rector-tw-0.17or-tw-0.18
+- Merge pull request [#45](https://github.com/guanguans/notify/issues/45) from guanguans/dependabot/github_actions/stefanzweifel/git-auto-commit-action-5
+- Merge pull request [#43](https://github.com/guanguans/notify/issues/43) from guanguans/dependabot/github_actions/codecov/codecov-action-4
+- Merge pull request [#42](https://github.com/guanguans/notify/issues/42) from guanguans/dependabot/github_actions/actions/checkout-4
+- Merge pull request [#40](https://github.com/guanguans/notify/issues/40) from guanguans/dependabot/composer/rector/rector-tw-0.17or-tw-0.18
 
 
 <a name="1.26.0"></a>
@@ -64,14 +67,14 @@ All notable changes to this project will be documented in this file.
 - **src:** apply rector
 
 ### Pull Requests
-- Merge pull request [#38](https://github.com/guanguans/monorepo-builder-worker/issues/38) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.6.0
-- Merge pull request [#37](https://github.com/guanguans/monorepo-builder-worker/issues/37) from guanguans/dependabot/composer/dms/phpunit-arraysubset-asserts-tw-0.4.0or-tw-0.5.0
-- Merge pull request [#36](https://github.com/guanguans/monorepo-builder-worker/issues/36) from guanguans/dependabot/composer/rector/rector-tw-0.15.7or-tw-0.16.0or-tw-0.17.0
-- Merge pull request [#35](https://github.com/guanguans/monorepo-builder-worker/issues/35) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.5.1
-- Merge pull request [#34](https://github.com/guanguans/monorepo-builder-worker/issues/34) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.5.0
-- Merge pull request [#33](https://github.com/guanguans/monorepo-builder-worker/issues/33) from guanguans/dependabot/composer/rector/rector-tw-0.15.7or-tw-0.16.0
-- Merge pull request [#32](https://github.com/guanguans/monorepo-builder-worker/issues/32) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.4.0
-- Merge pull request [#30](https://github.com/guanguans/monorepo-builder-worker/issues/30) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.6
+- Merge pull request [#38](https://github.com/guanguans/notify/issues/38) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.6.0
+- Merge pull request [#37](https://github.com/guanguans/notify/issues/37) from guanguans/dependabot/composer/dms/phpunit-arraysubset-asserts-tw-0.4.0or-tw-0.5.0
+- Merge pull request [#36](https://github.com/guanguans/notify/issues/36) from guanguans/dependabot/composer/rector/rector-tw-0.15.7or-tw-0.16.0or-tw-0.17.0
+- Merge pull request [#35](https://github.com/guanguans/notify/issues/35) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.5.1
+- Merge pull request [#34](https://github.com/guanguans/notify/issues/34) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.5.0
+- Merge pull request [#33](https://github.com/guanguans/notify/issues/33) from guanguans/dependabot/composer/rector/rector-tw-0.15.7or-tw-0.16.0
+- Merge pull request [#32](https://github.com/guanguans/notify/issues/32) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.4.0
+- Merge pull request [#30](https://github.com/guanguans/notify/issues/30) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.6
 
 
 <a name="v1.25.1"></a>
@@ -80,8 +83,8 @@ All notable changes to this project will be documented in this file.
 <a name="v1.25.0"></a>
 ## [v1.25.0] - 2023-01-18
 ### Pull Requests
-- Merge pull request [#29](https://github.com/guanguans/monorepo-builder-worker/issues/29) from teakong/feature-yifengchuanhua
-- Merge pull request [#26](https://github.com/guanguans/monorepo-builder-worker/issues/26) from guanguans/dependabot/composer/rector/rector-tw-0.14or-tw-0.15
+- Merge pull request [#29](https://github.com/guanguans/notify/issues/29) from teakong/feature-yifengchuanhua
+- Merge pull request [#26](https://github.com/guanguans/notify/issues/26) from guanguans/dependabot/composer/rector/rector-tw-0.14or-tw-0.15
 
 
 <a name="v1.24.1"></a>
@@ -93,7 +96,7 @@ All notable changes to this project will be documented in this file.
 <a name="v1.23.0"></a>
 ## [v1.23.0] - 2022-11-14
 ### Pull Requests
-- Merge pull request [#24](https://github.com/guanguans/monorepo-builder-worker/issues/24) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.5
+- Merge pull request [#24](https://github.com/guanguans/notify/issues/24) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.5
 
 
 <a name="v1.22.2"></a>
@@ -105,7 +108,7 @@ All notable changes to this project will be documented in this file.
 <a name="v1.22.0"></a>
 ## [v1.22.0] - 2022-11-01
 ### Pull Requests
-- Merge pull request [#23](https://github.com/guanguans/monorepo-builder-worker/issues/23) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.4
+- Merge pull request [#23](https://github.com/guanguans/notify/issues/23) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.4
 
 
 <a name="v1.21.3"></a>
@@ -114,8 +117,8 @@ All notable changes to this project will be documented in this file.
 <a name="v1.21.2"></a>
 ## [v1.21.2] - 2022-09-11
 ### Pull Requests
-- Merge pull request [#21](https://github.com/guanguans/monorepo-builder-worker/issues/21) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.3
-- Merge pull request [#20](https://github.com/guanguans/monorepo-builder-worker/issues/20) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.2
+- Merge pull request [#21](https://github.com/guanguans/notify/issues/21) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.3
+- Merge pull request [#20](https://github.com/guanguans/notify/issues/20) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.2
 
 
 <a name="v1.21.1"></a>
@@ -127,8 +130,8 @@ All notable changes to this project will be documented in this file.
 <a name="v1.20.1"></a>
 ## [v1.20.1] - 2022-06-09
 ### Pull Requests
-- Merge pull request [#17](https://github.com/guanguans/monorepo-builder-worker/issues/17) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.1
-- Merge pull request [#16](https://github.com/guanguans/monorepo-builder-worker/issues/16) from guanguans/dependabot/github_actions/codecov/codecov-action-3
+- Merge pull request [#17](https://github.com/guanguans/notify/issues/17) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.1
+- Merge pull request [#16](https://github.com/guanguans/notify/issues/16) from guanguans/dependabot/github_actions/codecov/codecov-action-3
 
 
 <a name="v1.20.0"></a>
@@ -137,7 +140,7 @@ All notable changes to this project will be documented in this file.
 <a name="v1.19.2"></a>
 ## [v1.19.2] - 2022-03-28
 ### Pull Requests
-- Merge pull request [#13](https://github.com/guanguans/monorepo-builder-worker/issues/13) from guanguans/issue-12-替换wrench/wrench为Textalk/websocket-php
+- Merge pull request [#13](https://github.com/guanguans/notify/issues/13) from guanguans/issue-12-替换wrench/wrench为Textalk/websocket-php
 
 
 <a name="v1.19.1"></a>
@@ -161,7 +164,7 @@ All notable changes to this project will be documented in this file.
 <a name="v1.16.0"></a>
 ## [v1.16.0] - 2022-03-22
 ### Pull Requests
-- Merge pull request [#11](https://github.com/guanguans/monorepo-builder-worker/issues/11) from guanguans/dependabot/github_actions/actions/cache-3
+- Merge pull request [#11](https://github.com/guanguans/notify/issues/11) from guanguans/dependabot/github_actions/actions/cache-3
 
 
 <a name="v1.15.0"></a>
@@ -173,15 +176,15 @@ All notable changes to this project will be documented in this file.
 <a name="v1.14.0"></a>
 ## [v1.14.0] - 2022-03-21
 ### Pull Requests
-- Merge pull request [#10](https://github.com/guanguans/monorepo-builder-worker/issues/10) from devcto/pushdeer
+- Merge pull request [#10](https://github.com/guanguans/notify/issues/10) from devcto/pushdeer
 
 
 <a name="v1.13.2"></a>
 ## [v1.13.2] - 2022-03-14
 ### Pull Requests
-- Merge pull request [#8](https://github.com/guanguans/monorepo-builder-worker/issues/8) from guanguans/dependabot/github_actions/actions/checkout-3
-- Merge pull request [#9](https://github.com/guanguans/monorepo-builder-worker/issues/9) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.0
-- Merge pull request [#7](https://github.com/guanguans/monorepo-builder-worker/issues/7) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.2.1
+- Merge pull request [#8](https://github.com/guanguans/notify/issues/8) from guanguans/dependabot/github_actions/actions/checkout-3
+- Merge pull request [#9](https://github.com/guanguans/notify/issues/9) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.3.0
+- Merge pull request [#7](https://github.com/guanguans/notify/issues/7) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.2.1
 
 
 <a name="v1.13.1"></a>
@@ -277,15 +280,15 @@ All notable changes to this project will be documented in this file.
 <a name="v1.0.3"></a>
 ## [v1.0.3] - 2021-10-17
 ### Pull Requests
-- Merge pull request [#4](https://github.com/guanguans/monorepo-builder-worker/issues/4) from guanguans/dependabot/composer/friendsofphp/php-cs-fixer-tw-2.16or-tw-3.0
+- Merge pull request [#4](https://github.com/guanguans/notify/issues/4) from guanguans/dependabot/composer/friendsofphp/php-cs-fixer-tw-2.16or-tw-3.0
 
 
 <a name="v1.0.2"></a>
 ## [v1.0.2] - 2021-10-10
 ### Pull Requests
-- Merge pull request [#3](https://github.com/guanguans/monorepo-builder-worker/issues/3) from guanguans/dependabot/composer/overtrue/phplint-tw-2.3or-tw-3.0
-- Merge pull request [#1](https://github.com/guanguans/monorepo-builder-worker/issues/1) from guanguans/dependabot/github_actions/codecov/codecov-action-2.1.0
-- Merge pull request [#2](https://github.com/guanguans/monorepo-builder-worker/issues/2) from guanguans/dependabot/composer/vimeo/psalm-tw-3.11or-tw-4.0
+- Merge pull request [#3](https://github.com/guanguans/notify/issues/3) from guanguans/dependabot/composer/overtrue/phplint-tw-2.3or-tw-3.0
+- Merge pull request [#1](https://github.com/guanguans/notify/issues/1) from guanguans/dependabot/github_actions/codecov/codecov-action-2.1.0
+- Merge pull request [#2](https://github.com/guanguans/notify/issues/2) from guanguans/dependabot/composer/vimeo/psalm-tw-3.11or-tw-4.0
 
 
 <a name="v1.0.1"></a>
@@ -347,68 +350,69 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/monorepo-builder-worker/compare/1.27.2...HEAD
-[1.27.2]: https://github.com/guanguans/monorepo-builder-worker/compare/1.27.1...1.27.2
-[1.27.1]: https://github.com/guanguans/monorepo-builder-worker/compare/1.27.0...1.27.1
-[1.27.0]: https://github.com/guanguans/monorepo-builder-worker/compare/1.26.1...1.27.0
-[1.26.1]: https://github.com/guanguans/monorepo-builder-worker/compare/1.26.0...1.26.1
-[1.26.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.25.1...1.26.0
-[v1.25.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.25.0...v1.25.1
-[v1.25.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.24.1...v1.25.0
-[v1.24.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.24.0...v1.24.1
-[v1.24.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.23.0...v1.24.0
-[v1.23.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.22.2...v1.23.0
-[v1.22.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.22.1...v1.22.2
-[v1.22.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.22.0...v1.22.1
-[v1.22.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.21.3...v1.22.0
-[v1.21.3]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.21.2...v1.21.3
-[v1.21.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.21.1...v1.21.2
-[v1.21.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.21.0...v1.21.1
-[v1.21.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.20.1...v1.21.0
-[v1.20.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.20.0...v1.20.1
-[v1.20.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.19.2...v1.20.0
-[v1.19.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.19.1...v1.19.2
-[v1.19.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.19.0...v1.19.1
-[v1.19.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.18.2...v1.19.0
-[v1.18.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.18.1...v1.18.2
-[v1.18.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.18.0...v1.18.1
-[v1.18.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.17.0...v1.18.0
-[v1.17.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.16.0...v1.17.0
-[v1.16.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.15.0...v1.16.0
-[v1.15.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.14.1...v1.15.0
-[v1.14.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.14.0...v1.14.1
-[v1.14.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.13.2...v1.14.0
-[v1.13.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.13.1...v1.13.2
-[v1.13.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.13.0...v1.13.1
-[v1.13.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.12.1...v1.13.0
-[v1.12.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.12.0...v1.12.1
-[v1.12.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.11.1...v1.12.0
-[v1.11.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.11.0...v1.11.1
-[v1.11.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.10.0...v1.11.0
-[v1.10.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.9.1...v1.10.0
-[v1.9.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.9.0...v1.9.1
-[v1.9.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.8.2...v1.9.0
-[v1.8.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.8.1...v1.8.2
-[v1.8.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.8.0...v1.8.1
-[v1.8.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.7.2...v1.8.0
-[v1.7.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.7.1...v1.7.2
-[v1.7.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.7.0...v1.7.1
-[v1.7.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.6.0...v1.7.0
-[v1.6.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.5.0...v1.6.0
-[v1.5.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.4.4...v1.5.0
-[v1.4.4]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.4.3...v1.4.4
-[v1.4.3]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.4.2...v1.4.3
-[v1.4.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.4.1...v1.4.2
-[v1.4.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.4.0...v1.4.1
-[v1.4.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.3.1...v1.4.0
-[v1.3.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.3.0...v1.3.1
-[v1.3.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.2.0...v1.3.0
-[v1.2.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.1.2...v1.2.0
-[v1.1.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.1.1...v1.1.2
-[v1.1.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.1.0...v1.1.1
-[v1.1.0]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.5...v1.1.0
-[v1.0.5]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.4...v1.0.5
-[v1.0.4]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.3...v1.0.4
-[v1.0.3]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.2...v1.0.3
-[v1.0.2]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.1...v1.0.2
-[v1.0.1]: https://github.com/guanguans/monorepo-builder-worker/compare/v1.0.0...v1.0.1
+[Unreleased]: https://github.com/guanguans/notify/compare/1.28.0...HEAD
+[1.28.0]: https://github.com/guanguans/notify/compare/1.27.2...1.28.0
+[1.27.2]: https://github.com/guanguans/notify/compare/1.27.1...1.27.2
+[1.27.1]: https://github.com/guanguans/notify/compare/1.27.0...1.27.1
+[1.27.0]: https://github.com/guanguans/notify/compare/1.26.1...1.27.0
+[1.26.1]: https://github.com/guanguans/notify/compare/1.26.0...1.26.1
+[1.26.0]: https://github.com/guanguans/notify/compare/v1.25.1...1.26.0
+[v1.25.1]: https://github.com/guanguans/notify/compare/v1.25.0...v1.25.1
+[v1.25.0]: https://github.com/guanguans/notify/compare/v1.24.1...v1.25.0
+[v1.24.1]: https://github.com/guanguans/notify/compare/v1.24.0...v1.24.1
+[v1.24.0]: https://github.com/guanguans/notify/compare/v1.23.0...v1.24.0
+[v1.23.0]: https://github.com/guanguans/notify/compare/v1.22.2...v1.23.0
+[v1.22.2]: https://github.com/guanguans/notify/compare/v1.22.1...v1.22.2
+[v1.22.1]: https://github.com/guanguans/notify/compare/v1.22.0...v1.22.1
+[v1.22.0]: https://github.com/guanguans/notify/compare/v1.21.3...v1.22.0
+[v1.21.3]: https://github.com/guanguans/notify/compare/v1.21.2...v1.21.3
+[v1.21.2]: https://github.com/guanguans/notify/compare/v1.21.1...v1.21.2
+[v1.21.1]: https://github.com/guanguans/notify/compare/v1.21.0...v1.21.1
+[v1.21.0]: https://github.com/guanguans/notify/compare/v1.20.1...v1.21.0
+[v1.20.1]: https://github.com/guanguans/notify/compare/v1.20.0...v1.20.1
+[v1.20.0]: https://github.com/guanguans/notify/compare/v1.19.2...v1.20.0
+[v1.19.2]: https://github.com/guanguans/notify/compare/v1.19.1...v1.19.2
+[v1.19.1]: https://github.com/guanguans/notify/compare/v1.19.0...v1.19.1
+[v1.19.0]: https://github.com/guanguans/notify/compare/v1.18.2...v1.19.0
+[v1.18.2]: https://github.com/guanguans/notify/compare/v1.18.1...v1.18.2
+[v1.18.1]: https://github.com/guanguans/notify/compare/v1.18.0...v1.18.1
+[v1.18.0]: https://github.com/guanguans/notify/compare/v1.17.0...v1.18.0
+[v1.17.0]: https://github.com/guanguans/notify/compare/v1.16.0...v1.17.0
+[v1.16.0]: https://github.com/guanguans/notify/compare/v1.15.0...v1.16.0
+[v1.15.0]: https://github.com/guanguans/notify/compare/v1.14.1...v1.15.0
+[v1.14.1]: https://github.com/guanguans/notify/compare/v1.14.0...v1.14.1
+[v1.14.0]: https://github.com/guanguans/notify/compare/v1.13.2...v1.14.0
+[v1.13.2]: https://github.com/guanguans/notify/compare/v1.13.1...v1.13.2
+[v1.13.1]: https://github.com/guanguans/notify/compare/v1.13.0...v1.13.1
+[v1.13.0]: https://github.com/guanguans/notify/compare/v1.12.1...v1.13.0
+[v1.12.1]: https://github.com/guanguans/notify/compare/v1.12.0...v1.12.1
+[v1.12.0]: https://github.com/guanguans/notify/compare/v1.11.1...v1.12.0
+[v1.11.1]: https://github.com/guanguans/notify/compare/v1.11.0...v1.11.1
+[v1.11.0]: https://github.com/guanguans/notify/compare/v1.10.0...v1.11.0
+[v1.10.0]: https://github.com/guanguans/notify/compare/v1.9.1...v1.10.0
+[v1.9.1]: https://github.com/guanguans/notify/compare/v1.9.0...v1.9.1
+[v1.9.0]: https://github.com/guanguans/notify/compare/v1.8.2...v1.9.0
+[v1.8.2]: https://github.com/guanguans/notify/compare/v1.8.1...v1.8.2
+[v1.8.1]: https://github.com/guanguans/notify/compare/v1.8.0...v1.8.1
+[v1.8.0]: https://github.com/guanguans/notify/compare/v1.7.2...v1.8.0
+[v1.7.2]: https://github.com/guanguans/notify/compare/v1.7.1...v1.7.2
+[v1.7.1]: https://github.com/guanguans/notify/compare/v1.7.0...v1.7.1
+[v1.7.0]: https://github.com/guanguans/notify/compare/v1.6.0...v1.7.0
+[v1.6.0]: https://github.com/guanguans/notify/compare/v1.5.0...v1.6.0
+[v1.5.0]: https://github.com/guanguans/notify/compare/v1.4.4...v1.5.0
+[v1.4.4]: https://github.com/guanguans/notify/compare/v1.4.3...v1.4.4
+[v1.4.3]: https://github.com/guanguans/notify/compare/v1.4.2...v1.4.3
+[v1.4.2]: https://github.com/guanguans/notify/compare/v1.4.1...v1.4.2
+[v1.4.1]: https://github.com/guanguans/notify/compare/v1.4.0...v1.4.1
+[v1.4.0]: https://github.com/guanguans/notify/compare/v1.3.1...v1.4.0
+[v1.3.1]: https://github.com/guanguans/notify/compare/v1.3.0...v1.3.1
+[v1.3.0]: https://github.com/guanguans/notify/compare/v1.2.0...v1.3.0
+[v1.2.0]: https://github.com/guanguans/notify/compare/v1.1.2...v1.2.0
+[v1.1.2]: https://github.com/guanguans/notify/compare/v1.1.1...v1.1.2
+[v1.1.1]: https://github.com/guanguans/notify/compare/v1.1.0...v1.1.1
+[v1.1.0]: https://github.com/guanguans/notify/compare/v1.0.5...v1.1.0
+[v1.0.5]: https://github.com/guanguans/notify/compare/v1.0.4...v1.0.5
+[v1.0.4]: https://github.com/guanguans/notify/compare/v1.0.3...v1.0.4
+[v1.0.3]: https://github.com/guanguans/notify/compare/v1.0.2...v1.0.3
+[v1.0.2]: https://github.com/guanguans/notify/compare/v1.0.1...v1.0.2
+[v1.0.1]: https://github.com/guanguans/notify/compare/v1.0.0...v1.0.1
