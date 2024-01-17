@@ -17,7 +17,6 @@ use Rector\CodeQuality\Rector\Expression\InlineIfToExplicitIfRector;
 use Rector\CodeQuality\Rector\Identical\SimplifyBoolIdenticalTrueRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
-use Rector\CodingStyle\Rector\Class_\AddArrayDefaultToArrayPropertyRector;
 use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
@@ -31,10 +30,15 @@ use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitLevelSetList;
 use Rector\PHPUnit\Set\PHPUnitSetList;
+use Rector\Set\ValueObject\DowngradeLevelSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 
 return static function (RectorConfig $rectorConfig): void {
+    define('MHASH_XXH3', 2 << 0);
+    define('MHASH_XXH32', 2 << 1);
+    define('MHASH_XXH64', 2 << 2);
+    define('MHASH_XXH128', 2 << 3);
     $rectorConfig->importNames(false, false);
     $rectorConfig->importShortClasses(false);
     // $rectorConfig->disableParallel();
@@ -82,7 +86,6 @@ return static function (RectorConfig $rectorConfig): void {
         // optional rules
         // RemoveUnusedVariableAssignRector::class,
         // StaticClosureRector::class,
-        AddArrayDefaultToArrayPropertyRector::class,
         RemoveEmptyClassMethodRector::class,
         ExplicitBoolCompareRector::class,
         AddSeeTestAnnotationRector::class,
@@ -106,8 +109,8 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->sets([
+        DowngradeLevelSetList::DOWN_TO_PHP_72,
         LevelSetList::UP_TO_PHP_72,
-        SetList::PHP_72,
         // SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
@@ -123,7 +126,6 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::INSTANCEOF,
 
         PHPUnitLevelSetList::UP_TO_PHPUNIT_80,
-        PHPUnitSetList::PHPUNIT_80,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
     ]);
 

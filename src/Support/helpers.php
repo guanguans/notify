@@ -16,8 +16,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 if (! function_exists('configure_options')) {
     /**
      * Configuration options.
-     *
-     * @param \Closure $closure
      */
     function configure_options(array $options, Closure $closure): array
     {
