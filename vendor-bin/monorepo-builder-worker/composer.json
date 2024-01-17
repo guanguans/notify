@@ -1,8 +1,5 @@
 {
     "require-dev": {
-        "guanguans/monorepo-builder-worker": "^1.2"
-    },
-    "conflict": {
-        "symplify/monorepo-builder": "^11.2.5"
+        "guanguans/monorepo-builder-worker": "^1.4"
     }
 }

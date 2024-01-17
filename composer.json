@@ -157,7 +157,7 @@
         "post-update-cmd": [
             "@cghooks update"
         ],
-        "ai-commit": "/usr/local/opt/php@7.3/bin/php ./vendor/bin/ai-commit commit --generator=bito_cli --ansi",
+        "ai-commit": "/opt/homebrew/opt/php@7.3/bin/php ./vendor/bin/ai-commit commit --generator=bito_cli --ansi",
         "ai-commit-no-verify": "@ai-commit --commit-options=--no-verify",
         "benchmark": "@php ./vendor/bin/phpbench run --warmup=1 --retry-threshold=1 --iterations=3 --revs=5 --ansi -v",
         "cghooks": "@php ./vendor/bin/cghooks --ansi -v",
@@ -198,7 +198,7 @@
         "psalm-baseline": "@psalm --update-baseline",
         "rector": "@php ./vendor/bin/rector --ansi -v",
         "rector-dry-run": "@rector --dry-run",
-        "release": "/usr/local/opt/php@7.3/bin/php ./vendor/bin/monorepo-builder release --ansi -v",
+        "release": "/opt/homebrew/opt/php@7.3/bin/php ./vendor/bin/monorepo-builder release --ansi -v",
         "release-major": "@release major",
         "release-major-dry-run": "@release-major --dry-run",
         "release-minor": "@release minor",

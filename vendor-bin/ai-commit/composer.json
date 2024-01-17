@@ -1,5 +1,5 @@
 {
     "require-dev": {
-        "guanguans/ai-commit": "^1.7"
+        "guanguans/ai-commit": "^1.9"
     }
 }
