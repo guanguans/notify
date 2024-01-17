@@ -36,6 +36,9 @@ $finder = Finder::create()
         '__snapshots__/',
     ])
     ->append(glob(__DIR__.'/{*,.*}.php', GLOB_BRACE))
+    ->append([
+        __DIR__.'/composer-fixer',
+    ])
     ->notPath([
         'bootstrap/*',
         'storage/*',
