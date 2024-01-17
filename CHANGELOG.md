@@ -8,6 +8,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="1.27.2"></a>
+## [1.27.2] - 2024-01-17
+### Feat
+- **.zhlintrc:** add .zhlintrc file
+
+### Test
+- **rocketChat:** Skip RocketChat test
+
+### Pull Requests
+- Merge pull request [#48](https://github.com/guanguans/monorepo-builder-worker/issues/48) from guanguans/dependabot/composer/rector/rector-tw-0.17or-tw-0.18or-tw-0.19
+- Merge pull request [#47](https://github.com/guanguans/monorepo-builder-worker/issues/47) from guanguans/dependabot/github_actions/actions/stale-9
+- Merge pull request [#46](https://github.com/guanguans/monorepo-builder-worker/issues/46) from guanguans/dependabot/github_actions/actions/labeler-5
+
+
 <a name="1.27.1"></a>
 ## [1.27.1] - 2023-10-19
 ### Docs
@@ -333,7 +347,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/monorepo-builder-worker/compare/1.27.1...HEAD
+[Unreleased]: https://github.com/guanguans/monorepo-builder-worker/compare/1.27.2...HEAD
+[1.27.2]: https://github.com/guanguans/monorepo-builder-worker/compare/1.27.1...1.27.2
 [1.27.1]: https://github.com/guanguans/monorepo-builder-worker/compare/1.27.0...1.27.1
 [1.27.0]: https://github.com/guanguans/monorepo-builder-worker/compare/1.26.1...1.27.0
 [1.26.1]: https://github.com/guanguans/monorepo-builder-worker/compare/1.26.0...1.26.1
