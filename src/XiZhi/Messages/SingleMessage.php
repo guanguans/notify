@@ -29,17 +29,17 @@ class SingleMessage extends HttpMessage
         ]);
     }
 
-    public function method(): string
+    public function httpMethod(): string
     {
         return 'POST';
     }
 
-    public function uri(): string
+    public function httpUri(): string
     {
         return 'https://xizhi.qqoq.net/<access-token>.send';
     }
 
-    public function options(): array
+    public function httpOptions(): array
     {
         return [
             'json' => $this->toPayload(),

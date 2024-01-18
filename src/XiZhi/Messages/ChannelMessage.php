@@ -14,7 +14,7 @@ namespace Guanguans\Notify\XiZhi\Messages;
 
 class ChannelMessage extends SingleMessage
 {
-    public function uri(): string
+    public function httpUri(): string
     {
         return 'https://xizhi.qqoq.net/<access-token>.channel';
     }

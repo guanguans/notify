@@ -19,12 +19,12 @@ class Client extends HttpClient
     /**
      * @param Credential|string $credential
      */
-    public function __construct($credential)
+    public function __construct($credential, array $httpOptions = [])
     {
         if (! $credential instanceof Credential) {
             $credential = new Credential($credential);
         }
 
-        parent::__construct($credential);
+        parent::__construct($credential, $httpOptions);
     }
 }

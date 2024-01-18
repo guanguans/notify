@@ -25,10 +25,12 @@ class HttpClient
     use CreatesDefaultHttpClient;
 
     private Credential $credential;
+    private array $httpOptions;
 
-    public function __construct(Credential $credential = null)
+    public function __construct(Credential $credential = null, array $httpOptions = [])
     {
         $this->credential = $credential ?? new NullCredential();
+        $this->httpOptions = $httpOptions;
     }
 
     /**
@@ -38,7 +40,7 @@ class HttpClient
     {
         return $this
             ->pushMiddleware((new ApplyCredentialToRequest($this->credential))(), ApplyCredentialToRequest::name())
-            ->createDefaultHttClient([])
-            ->request($httpMessage->method(), $httpMessage->uri(), $httpMessage->options());
+            ->createDefaultHttClient($this->httpOptions)
+            ->request($httpMessage->httpMethod(), $httpMessage->httpUri(), $httpMessage->httpOptions());
     }
 }

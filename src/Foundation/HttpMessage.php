@@ -16,12 +16,12 @@ use Psr\Http\Message\UriInterface;
 
 abstract class HttpMessage extends Message
 {
-    abstract public function method(): string;
+    abstract public function httpMethod(): string;
 
     /**
      * @return string|UriInterface
      */
-    abstract public function uri();
+    abstract public function httpUri();
 
-    abstract public function options(): array;
+    abstract public function httpOptions(): array;
 }
