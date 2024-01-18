@@ -30,10 +30,10 @@ class ApplyCredentialToRequest
         return 'credential';
     }
 
-    public function __invoke(): callable
+    public function __invoke(callable $handler): callable
     {
         return Middleware::mapRequest(function (RequestInterface $request): RequestInterface {
             return $this->credential->applyToRequest($request);
-        });
+        })($handler);
     }
 }

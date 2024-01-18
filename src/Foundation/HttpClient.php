@@ -39,7 +39,7 @@ class HttpClient
     public function send(HttpMessage $httpMessage): ResponseInterface
     {
         return $this
-            ->pushMiddleware((new ApplyCredentialToRequest($this->credential))(), ApplyCredentialToRequest::name())
+            ->pushMiddleware(new ApplyCredentialToRequest($this->credential), ApplyCredentialToRequest::name())
             ->createDefaultHttClient($this->httpOptions)
             ->request($httpMessage->httpMethod(), $httpMessage->httpUri(), $httpMessage->httpOptions());
     }
