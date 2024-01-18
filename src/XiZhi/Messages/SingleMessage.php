@@ -13,8 +13,6 @@ declare(strict_types=1);
 namespace Guanguans\Notify\XiZhi\Messages;
 
 use Guanguans\Notify\Foundation\HttpMessage;
-use Psr\Http\Message\RequestInterface;
-use Psr\Http\Message\StreamInterface;
 
 class SingleMessage extends HttpMessage
 {
@@ -31,50 +29,13 @@ class SingleMessage extends HttpMessage
         ]);
     }
 
-    public function toRequest(): RequestInterface
-    {
-        $request = $this->requestFactory->createRequest($this->method(), $this->uri());
-        $protocolVersion = $this->protocolVersion();
-        if ($protocolVersion) {
-            $request->withProtocolVersion($protocolVersion);
-        }
-
-        $body = $this->body();
-        if ($body) {
-            $request = $request->withBody($this->body());
-        }
-
-        foreach ($this->headers() as $key => $value) {
-            $request = $request->withHeader($key, $value);
-        }
-
-        return $request;
-    }
-
-    protected function protocolVersion(): string
-    {
-        return '1.1';
-    }
-
-    protected function uri(): string
-    {
-        return 'https://xizhi.qqoq.net/token.send';
-    }
-
     protected function method(): string
     {
         return 'POST';
     }
 
-    protected function headers(): array
+    protected function uri(): string
     {
-        return [
-            'Content-Type' => 'application/json',
-        ];
-    }
-
-    protected function body(): ?StreamInterface
-    {
-        return $this->streamFactory->createStream((string) $this);
+        return 'https://xizhi.qqoq.net/token.send';
     }
 }
