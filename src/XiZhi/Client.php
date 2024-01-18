@@ -13,19 +13,18 @@ declare(strict_types=1);
 namespace Guanguans\Notify\XiZhi;
 
 use Guanguans\Notify\Foundation\HttpClient;
-use Psr\Http\Client\ClientInterface;
 
 class Client extends HttpClient
 {
     /**
      * @param Credential|string $credential
      */
-    public function __construct($credential, ClientInterface $httpClient = null)
+    public function __construct($credential)
     {
         if (! $credential instanceof Credential) {
             $credential = new Credential($credential);
         }
 
-        parent::__construct($credential, $httpClient);
+        parent::__construct($credential);
     }
 }

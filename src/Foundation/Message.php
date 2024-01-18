@@ -25,18 +25,22 @@ class Message implements Contracts\Message
         $this->setOptions($options);
     }
 
-    public function toArray(): array
+    /**
+     * @return string|false
+     * @noinspection JsonEncodingApiUsageInspection
+     */
+    public function toJson(int $options = 0)
+    {
+        return json_encode($this->toPayload(), $options);
+    }
+
+    public function toPayload(): array
     {
         return $this->options;
     }
 
-    public function toJson(int $options = 0)
-    {
-        return json_encode($this->options, $options);
-    }
-
     public function __toString(): string
     {
-        return $this->toJson();
+        return $this->toJson() ?: '';
     }
 }

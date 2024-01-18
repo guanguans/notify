@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Contracts;
 
-interface Message extends \ArrayAccess, Arrayable, \Stringable, Jsonable
+interface Message extends \ArrayAccess, \Stringable, Jsonable
 {
+    public function toPayload(): array;
 }

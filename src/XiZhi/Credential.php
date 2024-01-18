@@ -26,7 +26,11 @@ class Credential implements \Guanguans\Notify\Foundation\Contracts\Credential
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
         return $request->withUri(
-            $request->getUri()->withPath(str_replace('token', $this->accessToken, $request->getUri()->getPath()))
+            $request->getUri()->withPath(str_replace(
+                urlencode('<access-token>'),
+                $this->accessToken,
+                $request->getUri()->getPath()
+            ))
         );
     }
 }

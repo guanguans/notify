@@ -38,12 +38,12 @@ class TextMessage extends HttpMessage
         ]);
     }
 
-    protected function method(): string
+    public function method(): string
     {
         return 'POST';
     }
 
-    protected function uri(): string
+    public function uri(): string
     {
         return 'https://open.feishu.cn/open-apis/bot/v2/hook/token';
     }

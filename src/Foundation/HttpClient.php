@@ -12,34 +12,33 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
+use Guanguans\Notify\Foundation\Concerns\CreatesDefaultHttpClient;
 use Guanguans\Notify\Foundation\Concerns\Tappable;
 use Guanguans\Notify\Foundation\Contracts\Credential;
-use Guanguans\Notify\Foundation\Contracts\Message;
-use Http\Discovery\Psr18ClientDiscovery;
-use Psr\Http\Client\ClientExceptionInterface;
-use Psr\Http\Client\ClientInterface;
+use Guanguans\Notify\Foundation\Middleware\ApplyCredentialToRequest;
+use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
 class HttpClient
 {
     use Tappable;
+    use CreatesDefaultHttpClient;
 
     private Credential $credential;
-    private ClientInterface $httpClient;
 
-    public function __construct(Credential $credential = null, ClientInterface $httpClient = null)
+    public function __construct(Credential $credential = null)
     {
         $this->credential = $credential ?? new NullCredential();
-        $this->httpClient = $httpClient ?? Psr18ClientDiscovery::find();
     }
 
     /**
-     * @throws ClientExceptionInterface
+     * @throws GuzzleException
      */
-    public function sendMessage(Message $message): ResponseInterface
+    public function send(HttpMessage $httpMessage): ResponseInterface
     {
-        return $this->httpClient->sendRequest(
-            $this->credential->applyToRequest($message->toRequest())
-        );
+        return $this
+            ->pushMiddleware((new ApplyCredentialToRequest($this->credential))(), ApplyCredentialToRequest::name())
+            ->createDefaultHttClient([])
+            ->request($httpMessage->method(), $httpMessage->uri(), $httpMessage->options());
     }
 }

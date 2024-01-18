@@ -29,13 +29,20 @@ class SingleMessage extends HttpMessage
         ]);
     }
 
-    protected function method(): string
+    public function method(): string
     {
         return 'POST';
     }
 
-    protected function uri(): string
+    public function uri(): string
     {
-        return 'https://xizhi.qqoq.net/token.send';
+        return 'https://xizhi.qqoq.net/<access-token>.send';
+    }
+
+    public function options(): array
+    {
+        return [
+            'json' => $this->toPayload(),
+        ];
     }
 }
