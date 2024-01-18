@@ -12,12 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot;
 
-use Psr\Http\Client\ClientInterface;
+use Guanguans\Notify\Foundation\HttpClient;
 
-class Client extends Client
+class Client extends HttpClient
 {
-    public function __construct(Credential $credential, ClientInterface $httpClient = null)
+    public function __construct(Credential $credential, array $httpOptions = [])
     {
-        parent::__construct($credential, $httpClient);
+        parent::__construct($credential, $httpOptions);
     }
 }

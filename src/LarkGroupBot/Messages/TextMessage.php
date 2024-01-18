@@ -16,8 +16,6 @@ use Guanguans\Notify\Foundation\HttpMessage;
 
 class TextMessage extends HttpMessage
 {
-    protected string $type = 'text';
-
     protected array $defined = [
         'text',
     ];
@@ -27,15 +25,12 @@ class TextMessage extends HttpMessage
         parent::__construct(['text' => $text]);
     }
 
-    /**
-     * @noinspection JsonEncodingApiUsageInspection
-     */
-    public function __toString(): string
+    public function toPayload(): array
     {
-        return json_encode([
-            'msg_type' => $this->type,
-            'content' => $this->options,
-        ]);
+        return [
+            'msg_type' => 'text',
+            'content' => parent::toPayload(),
+        ];
     }
 
     public function httpMethod(): string
@@ -45,6 +40,13 @@ class TextMessage extends HttpMessage
 
     public function httpUri(): string
     {
-        return 'https://open.feishu.cn/open-apis/bot/v2/hook/token';
+        return 'https://open.feishu.cn/open-apis/bot/v2/hook/<access-token>';
+    }
+
+    public function httpOptions(): array
+    {
+        return [
+            'json' => $this->toPayload(),
+        ];
     }
 }
