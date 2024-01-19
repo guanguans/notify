@@ -12,12 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot;
 
-use Guanguans\Notify\Foundation\Client;
-
-class Client extends Client
+class Client extends \Guanguans\Notify\Foundation\Client
 {
-    public function __construct(Credential $credential, array $httpOptions = [])
-    {
-        parent::__construct($credential, $httpOptions);
-    }
 }

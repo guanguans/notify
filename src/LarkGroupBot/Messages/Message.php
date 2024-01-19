@@ -14,12 +14,10 @@ namespace Guanguans\Notify\LarkGroupBot\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Foundation\Concerns\AsSync;
-use Guanguans\Notify\Foundation\Message;
+use Guanguans\Notify\LarkGroupBot\Credential;
 
-abstract class Message extends Message
+abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsSync;
     use AsPost;
     use AsJson;
 
@@ -35,6 +33,6 @@ abstract class Message extends Message
 
     public function httpUri(): string
     {
-        return 'https://open.feishu.cn/open-apis/bot/v2/hook/<access-token>';
+        return sprintf('https://open.feishu.cn/open-apis/bot/v2/hook/%s', Credential::ACCESS_TOKEN_PLACEHOLDER);
     }
 }
