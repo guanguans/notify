@@ -14,5 +14,4 @@ namespace Guanguans\Notify\Foundation\Contracts;
 
 interface Message extends \ArrayAccess
 {
-    public function toPayload();
 }

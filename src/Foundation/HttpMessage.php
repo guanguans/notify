@@ -26,4 +26,12 @@ abstract class HttpMessage extends Message
     abstract public function httpUri();
 
     abstract public function httpOptions(): array;
+
+    /**
+     * @return array|mixed
+     */
+    public function toPayload()
+    {
+        return $this->options;
+    }
 }

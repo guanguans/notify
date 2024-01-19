@@ -17,19 +17,11 @@ use Guanguans\Notify\Traits\CreateStaticable;
 
 class Message implements Contracts\Message
 {
-    use HasOptions;
     use CreateStaticable;
+    use HasOptions;
 
     public function __construct(array $options = [])
     {
         $this->setOptions($options);
-    }
-
-    /**
-     * @return array|mixed
-     */
-    public function toPayload()
-    {
-        return $this->options;
     }
 }
