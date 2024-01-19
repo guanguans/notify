@@ -20,7 +20,7 @@ use GuzzleHttp\RequestOptions;
  */
 trait AsFormParams
 {
-    public function httpOptions(): array
+    public function toHttpOptions(): array
     {
         return [
             RequestOptions::FORM_PARAMS => $this->toPayload(),

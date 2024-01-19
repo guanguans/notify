@@ -12,12 +12,16 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Contracts;
 
-use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\UriInterface;
 
 interface Message extends \ArrayAccess
 {
+    public function httpMethod(): string;
+
     /**
-     * @return string|resource|array|object|StreamInterface
+     * @return string|UriInterface
      */
-    public function toPayload();
+    public function httpUri();
+
+    public function toHttpOptions(): array;
 }

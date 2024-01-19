@@ -20,7 +20,7 @@ use GuzzleHttp\RequestOptions;
  */
 trait AsJson
 {
-    public function httpOptions(): array
+    public function toHttpOptions(): array
     {
         return [
             RequestOptions::JSON => $this->toPayload(),

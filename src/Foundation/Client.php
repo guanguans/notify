@@ -44,10 +44,8 @@ class Client implements Contracts\Client
      */
     public function send(Contracts\Message $message): ResponseInterface
     {
-        assert($message instanceof Message);
-
         return $this
             ->httpClient
-            ->request($message->httpMethod(), $message->httpUri(), $message->httpOptions());
+            ->request($message->httpMethod(), $message->httpUri(), $message->toHttpOptions());
     }
 }

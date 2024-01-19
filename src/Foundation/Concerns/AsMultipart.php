@@ -20,7 +20,7 @@ use GuzzleHttp\RequestOptions;
  */
 trait AsMultipart
 {
-    public function httpOptions(): array
+    public function toHttpOptions(): array
     {
         return [
             RequestOptions::MULTIPART => $this->toPayload(),
