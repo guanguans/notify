@@ -17,6 +17,7 @@ use Guanguans\Notify\Foundation\Concerns\Tappable;
 use Guanguans\Notify\Foundation\Contracts\Credential;
 use Guanguans\Notify\Foundation\Middleware\ApplyCredentialToRequest;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class HttpClient
@@ -34,13 +35,19 @@ class HttpClient
     }
 
     /**
+     * @return ResponseInterface|PromiseInterface
+     *
      * @throws GuzzleException
      */
-    public function send(HttpMessage $httpMessage): ResponseInterface
+    public function send(HttpMessage $httpMessage)
     {
         return $this
             ->pushMiddleware(new ApplyCredentialToRequest($this->credential), ApplyCredentialToRequest::name())
             ->createDefaultHttClient($this->httpOptions)
-            ->request($httpMessage->httpMethod(), $httpMessage->httpUri(), $httpMessage->httpOptions());
+            ->{$httpMessage->async() ? 'requestAsync' : 'request'}(
+                $httpMessage->httpMethod(),
+                $httpMessage->httpUri(),
+                $httpMessage->httpOptions()
+            );
     }
 }
