@@ -12,10 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot;
 
+use Guanguans\Notify\Foundation\HttpCredential;
 use GuzzleHttp\Psr7\HttpFactory;
 use Psr\Http\Message\RequestInterface;
 
-class Credential implements \Guanguans\Notify\Foundation\Contracts\Credential
+class Credential extends HttpCredential
 {
     private string $accessToken;
     private ?string $secret;

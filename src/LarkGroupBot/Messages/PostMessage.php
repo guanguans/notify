@@ -12,9 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot\Messages;
 
-use Guanguans\Notify\Foundation\HttpMessage;
-
-class PostMessage extends HttpMessage
+class PostMessage extends Message
 {
     protected array $defined = [
         'post',
@@ -32,28 +30,8 @@ class PostMessage extends HttpMessage
         parent::__construct(['post' => $post]);
     }
 
-    public function toPayload(): array
+    public function type(): string
     {
-        return [
-            'msg_type' => 'post',
-            'content' => parent::toPayload(),
-        ];
-    }
-
-    public function httpMethod(): string
-    {
-        return 'POST';
-    }
-
-    public function httpUri(): string
-    {
-        return 'https://open.feishu.cn/open-apis/bot/v2/hook/<access-token>';
-    }
-
-    public function httpOptions(): array
-    {
-        return [
-            'json' => $this->toPayload(),
-        ];
+        return 'post';
     }
 }
