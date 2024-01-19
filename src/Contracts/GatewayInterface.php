@@ -16,8 +16,5 @@ interface GatewayInterface
 {
     public function getName(): string;
 
-    /**
-     * @param \Guanguans\Notify\Contracts\MessageInterface|null $message
-     */
     public function send(MessageInterface $message = null);
 }

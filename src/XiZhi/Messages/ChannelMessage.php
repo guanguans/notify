@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\XiZhi\Messages;
 
-class ChannelMessage extends SingleMessage
+class ChannelMessage extends Message
 {
     public function httpUri(): string
     {

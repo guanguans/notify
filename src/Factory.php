@@ -59,7 +59,7 @@ class Factory
     }
 
     /**
-     * @return \Guanguans\Notify\Clients\Client
+     * @return Client
      */
     public static function __callStatic(string $name, array $arguments)
     {

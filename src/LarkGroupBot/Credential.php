@@ -21,7 +21,7 @@ class Credential implements \Guanguans\Notify\Foundation\Contracts\Credential
     private ?string $secret;
     private HttpFactory $httpFactory;
 
-    public function __construct(string $accessToken, ?string $secret = null)
+    public function __construct(string $accessToken, string $secret = null)
     {
         $this->accessToken = $accessToken;
         $this->secret = $secret;

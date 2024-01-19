@@ -14,8 +14,5 @@ namespace Guanguans\Notify\Foundation\Contracts;
 
 interface Client
 {
-    /**
-     * @return mixed
-     */
     public function send(Message $message);
 }

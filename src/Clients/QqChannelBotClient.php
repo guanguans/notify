@@ -62,7 +62,7 @@ use WebSocket\Client as WebSocketClient;
 class QqChannelBotClient extends Client
 {
     /**
-     * @var \WebSocket\Client
+     * @var WebSocketClient
      */
     protected static $webSocketClient;
 

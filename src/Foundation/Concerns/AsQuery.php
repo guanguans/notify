@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation\Concerns;
 
 use Guanguans\Notify\Foundation\HttpMessage;
+use GuzzleHttp\RequestOptions;
 
 /**
  * @mixin HttpMessage
@@ -22,7 +23,7 @@ trait AsQuery
     public function httpOptions(): array
     {
         return [
-            'query' => $this->toPayload(),
+            RequestOptions::QUERY => $this->toPayload(),
         ];
     }
 }

@@ -17,7 +17,7 @@ use Guanguans\Notify\Http\Client;
 trait HasHttpClient
 {
     /**
-     * @var \Guanguans\Notify\Http\Client
+     * @var Client
      */
     protected $httpClient;
 

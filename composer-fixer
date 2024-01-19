@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * This file is part of the guanguans/soar-php.
+ * This file is part of the guanguans/notify.
  *
  * (c) guanguans <ityaozm@gmail.com>
  *
@@ -171,8 +171,8 @@ require __DIR__.'/vendor/autoload.php';
      */
     private function createAndMustRunProcess(
         $command,
-        ?string $cwd = null,
-        ?array $env = null,
+        string $cwd = null,
+        array $env = null,
         $input = null,
         ?float $timeout = 60
     ): Process {
