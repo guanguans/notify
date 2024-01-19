@@ -12,9 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot;
 
-use Guanguans\Notify\Foundation\HttpClient;
+use Guanguans\Notify\Foundation\Client;
 
-class Client extends HttpClient
+class Client extends Client
 {
     public function __construct(Credential $credential, array $httpOptions = [])
     {

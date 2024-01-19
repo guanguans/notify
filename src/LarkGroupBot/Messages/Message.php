@@ -15,9 +15,9 @@ namespace Guanguans\Notify\LarkGroupBot\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Concerns\AsSync;
-use Guanguans\Notify\Foundation\HttpMessage;
+use Guanguans\Notify\Foundation\Message;
 
-abstract class Message extends HttpMessage
+abstract class Message extends Message
 {
     use AsSync;
     use AsPost;

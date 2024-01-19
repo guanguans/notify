@@ -12,10 +12,10 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
-use Guanguans\Notify\Foundation\HttpMessage;
+use Guanguans\Notify\Foundation\Message;
 
 /**
- * @mixin HttpMessage
+ * @mixin Message
  */
 trait AsGet
 {

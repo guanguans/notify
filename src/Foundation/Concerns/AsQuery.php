@@ -12,11 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
-use Guanguans\Notify\Foundation\HttpMessage;
+use Guanguans\Notify\Foundation\Message;
 use GuzzleHttp\RequestOptions;
 
 /**
- * @mixin HttpMessage
+ * @mixin Message
  */
 trait AsQuery
 {

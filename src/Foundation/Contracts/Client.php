@@ -12,10 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Contracts;
 
+use Psr\Http\Message\ResponseInterface;
+
 interface Client
 {
-    /**
-     * @return mixed|void
-     */
-    public function send(Message $message);
+    public function send(Message $message): ResponseInterface;
 }

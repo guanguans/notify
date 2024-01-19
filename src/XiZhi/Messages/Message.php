@@ -14,14 +14,11 @@ namespace Guanguans\Notify\XiZhi\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Foundation\Concerns\AsSync;
-use Guanguans\Notify\Foundation\HttpMessage;
 
-abstract class Message extends HttpMessage
+abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;
     use AsJson;
-    use AsSync;
 
     protected array $defined = [
         'title',

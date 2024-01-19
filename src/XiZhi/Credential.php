@@ -12,11 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\XiZhi;
 
-use Guanguans\Notify\Foundation\HttpCredential;
 use Psr\Http\Message\RequestInterface;
 
-class Credential extends HttpCredential
+class Credential implements \Guanguans\Notify\Foundation\Contracts\Credential
 {
+    public const ACCESS_TOKEN_PLACEHOLDER = '<access-token>';
+
     private string $accessToken;
 
     public function __construct(string $accessToken)
@@ -28,7 +29,7 @@ class Credential extends HttpCredential
     {
         return $request->withUri(
             $request->getUri()->withPath(str_replace(
-                urlencode('<access-token>'),
+                urlencode(self::ACCESS_TOKEN_PLACEHOLDER),
                 $this->accessToken,
                 $request->getUri()->getPath()
             ))
