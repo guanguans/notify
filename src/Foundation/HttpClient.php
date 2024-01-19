@@ -12,15 +12,15 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
-use Guanguans\Notify\Foundation\Concerns\CreatesDefaultHttpClient;
-use Guanguans\Notify\Foundation\Concerns\Tappable;
+use Guanguans\Notify\Foundation\Contracts\Client;
 use Guanguans\Notify\Foundation\Contracts\Credential;
-use Guanguans\Notify\Foundation\Middleware\ApplyCredentialToRequest;
+use Guanguans\Notify\Foundation\Traits\CreatesDefaultHttpClient;
+use Guanguans\Notify\Foundation\Traits\Tappable;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class HttpClient
+class HttpClient implements Client
 {
     use Tappable;
     use CreatesDefaultHttpClient;
@@ -39,15 +39,18 @@ class HttpClient
      *
      * @throws GuzzleException
      */
-    public function send(HttpMessage $httpMessage)
+    public function send(Contracts\Message $message)
     {
+        assert($message instanceof HttpMessage);
+
         return $this
-            ->pushMiddleware(new ApplyCredentialToRequest($this->credential), ApplyCredentialToRequest::name())
+            ->credential
+            ->applyToClient($this)
             ->createDefaultHttClient($this->httpOptions)
-            ->{$httpMessage->async() ? 'requestAsync' : 'request'}(
-                $httpMessage->httpMethod(),
-                $httpMessage->httpUri(),
-                $httpMessage->httpOptions()
+            ->{$message->httpAsync() ? 'requestAsync' : 'request'}(
+                $message->httpMethod(),
+                $message->httpUri(),
+                $message->httpOptions()
             );
     }
 }

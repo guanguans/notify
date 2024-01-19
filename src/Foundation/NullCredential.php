@@ -12,12 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
-use Psr\Http\Message\RequestInterface;
+use Guanguans\Notify\Foundation\Contracts\Client;
 
 class NullCredential implements Contracts\Credential
 {
-    public function applyToRequest(RequestInterface $request): RequestInterface
+    public function applyToClient(Client $client): Client
     {
-        return $request;
+        return $client;
     }
 }

@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
-use Guanguans\Notify\Foundation\Concerns\HasOptions;
+use Guanguans\Notify\Foundation\Traits\HasOptions;
 use Guanguans\Notify\Traits\CreateStaticable;
 
 class Message implements Contracts\Message
@@ -26,21 +26,10 @@ class Message implements Contracts\Message
     }
 
     /**
-     * @return string|false
-     * @noinspection JsonEncodingApiUsageInspection
+     * @return array|mixed
      */
-    public function toJson(int $options = 0)
-    {
-        return json_encode($this->toPayload(), $options);
-    }
-
-    public function toPayload(): array
+    public function toPayload()
     {
         return $this->options;
-    }
-
-    public function __toString(): string
-    {
-        return $this->toJson() ?: '';
     }
 }

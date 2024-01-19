@@ -16,7 +16,7 @@ use Psr\Http\Message\UriInterface;
 
 abstract class HttpMessage extends Message
 {
-    abstract public function async(): bool;
+    abstract public function httpAsync(): bool;
 
     abstract public function httpMethod(): string;
 

@@ -12,10 +12,10 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Contracts;
 
-interface Jsonable
+interface Client
 {
     /**
-     * @return string|false
+     * @return mixed
      */
-    public function toJson(int $options = 0);
+    public function send(Message $message);
 }

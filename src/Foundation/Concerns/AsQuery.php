@@ -12,12 +12,17 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
-trait Tappable
-{
-    public function tap(callable $callback): self
-    {
-        $callback($this);
+use Guanguans\Notify\Foundation\HttpMessage;
 
-        return $this;
+/**
+ * @mixin HttpMessage
+ */
+trait AsQuery
+{
+    public function httpOptions(): array
+    {
+        return [
+            'query' => $this->toPayload(),
+        ];
     }
 }

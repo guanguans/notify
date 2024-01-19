@@ -12,10 +12,17 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\XiZhi\Messages;
 
+use Guanguans\Notify\Foundation\Concerns\AsGet;
+use Guanguans\Notify\Foundation\Concerns\AsJson;
+use Guanguans\Notify\Foundation\Concerns\AsSync;
 use Guanguans\Notify\Foundation\HttpMessage;
 
 class SingleMessage extends HttpMessage
 {
+    use AsGet;
+    use AsJson;
+    use AsSync;
+
     protected array $defined = [
         'title',
         'content',
@@ -29,20 +36,8 @@ class SingleMessage extends HttpMessage
         ]);
     }
 
-    public function httpMethod(): string
-    {
-        return 'POST';
-    }
-
     public function httpUri(): string
     {
         return 'https://xizhi.qqoq.net/<access-token>.send';
-    }
-
-    public function httpOptions(): array
-    {
-        return [
-            'json' => $this->toPayload(),
-        ];
     }
 }

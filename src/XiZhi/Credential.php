@@ -12,9 +12,10 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\XiZhi;
 
+use Guanguans\Notify\Foundation\HttpCredential;
 use Psr\Http\Message\RequestInterface;
 
-class Credential implements \Guanguans\Notify\Foundation\Contracts\Credential
+class Credential extends HttpCredential
 {
     private string $accessToken;
 
