@@ -23,7 +23,7 @@ trait AsBody
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::BODY => $this->toPayload(),
+            RequestOptions::BODY => $this->options,
         ];
     }
 }

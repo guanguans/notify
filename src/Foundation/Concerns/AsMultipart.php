@@ -23,7 +23,7 @@ trait AsMultipart
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::MULTIPART => $this->toPayload(),
+            RequestOptions::MULTIPART => $this->options,
         ];
     }
 }

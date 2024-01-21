@@ -23,7 +23,7 @@ trait AsFormParams
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::FORM_PARAMS => $this->toPayload(),
+            RequestOptions::FORM_PARAMS => $this->options,
         ];
     }
 }

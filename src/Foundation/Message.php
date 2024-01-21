@@ -14,7 +14,6 @@ namespace Guanguans\Notify\Foundation;
 
 use Guanguans\Notify\Foundation\Traits\HasOptions;
 use Guanguans\Notify\Traits\CreateStaticable;
-use Psr\Http\Message\StreamInterface;
 
 abstract class Message implements Contracts\Message
 {
@@ -24,15 +23,5 @@ abstract class Message implements Contracts\Message
     public function __construct(array $options = [])
     {
         $this->setOptions($options);
-    }
-
-    /**
-     * @return string|array|object|resource|StreamInterface
-     *
-     * @noinspection PhpReturnDocTypeMismatchInspection
-     */
-    public function toPayload()
-    {
-        return $this->options;
     }
 }

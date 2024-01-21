@@ -27,7 +27,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
     {
         return [
             'msg_type' => $this->type(),
-            'content' => parent::toPayload(),
+            'content' => $this->options,
         ];
     }
 
