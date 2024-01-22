@@ -30,7 +30,7 @@ class PostMessage extends Message
         parent::__construct(['post' => $post]);
     }
 
-    public function type(): string
+    protected function type(): string
     {
         return 'post';
     }

@@ -12,27 +12,28 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\LarkGroupBot\Credential;
+use GuzzleHttp\RequestOptions;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;
-    use AsJson;
 
-    abstract public function type(): string;
-
-    public function toPayload(): array
-    {
-        return [
-            'msg_type' => $this->type(),
-            'content' => $this->options,
-        ];
-    }
+    abstract protected function type(): string;
 
     public function httpUri(): string
     {
         return sprintf('https://open.feishu.cn/open-apis/bot/v2/hook/%s', Credential::ACCESS_TOKEN_PLACEHOLDER);
+    }
+
+    public function toHttpOptions(): array
+    {
+        return [
+            RequestOptions::JSON => [
+                'msg_type' => $this->type(),
+                'content' => $this->options,
+            ],
+        ];
     }
 }

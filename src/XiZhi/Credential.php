@@ -12,27 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\XiZhi;
 
-use Psr\Http\Message\RequestInterface;
+use Guanguans\Notify\Foundation\UriAccessTokenCredential;
 
-class Credential implements \Guanguans\Notify\Foundation\Contracts\Credential
+class Credential extends UriAccessTokenCredential
 {
-    public const ACCESS_TOKEN_PLACEHOLDER = '<access-token>';
-
-    private string $accessToken;
-
-    public function __construct(string $accessToken)
-    {
-        $this->accessToken = $accessToken;
-    }
-
-    public function applyToRequest(RequestInterface $request): RequestInterface
-    {
-        return $request->withUri(
-            $request->getUri()->withPath(str_replace(
-                urlencode(self::ACCESS_TOKEN_PLACEHOLDER),
-                $this->accessToken,
-                $request->getUri()->getPath()
-            ))
-        );
-    }
 }

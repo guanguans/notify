@@ -12,20 +12,18 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot;
 
+use Guanguans\Notify\Foundation\UriAccessTokenCredential;
 use GuzzleHttp\Psr7\HttpFactory;
 use Psr\Http\Message\RequestInterface;
 
-class Credential implements \Guanguans\Notify\Foundation\Contracts\Credential
+class Credential extends UriAccessTokenCredential
 {
-    public const ACCESS_TOKEN_PLACEHOLDER = '<access-token>';
-
-    private string $accessToken;
     private ?string $secret;
     private HttpFactory $httpFactory;
 
     public function __construct(string $accessToken, string $secret = null)
     {
-        $this->accessToken = $accessToken;
+        parent::__construct($accessToken);
         $this->secret = $secret;
         $this->httpFactory = new HttpFactory();
     }
@@ -35,13 +33,7 @@ class Credential implements \Guanguans\Notify\Foundation\Contracts\Credential
      */
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
-        $request = $request->withUri(
-            $request->getUri()->withPath(str_replace(
-                urlencode(self::ACCESS_TOKEN_PLACEHOLDER),
-                $this->accessToken,
-                $request->getUri()->getPath()
-            ))
-        );
+        $request = parent::applyToRequest($request);
 
         if ($this->secret) {
             $body = [

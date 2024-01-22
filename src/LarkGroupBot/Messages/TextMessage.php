@@ -23,7 +23,7 @@ class TextMessage extends Message
         parent::__construct(['text' => $text]);
     }
 
-    public function type(): string
+    protected function type(): string
     {
         return 'text';
     }

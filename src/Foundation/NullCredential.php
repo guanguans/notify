@@ -16,6 +16,11 @@ use Psr\Http\Message\RequestInterface;
 
 class NullCredential implements Contracts\Credential
 {
+    public function applyToOptions(array $options): array
+    {
+        return $options;
+    }
+
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
         return $request;

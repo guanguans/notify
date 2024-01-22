@@ -16,5 +16,7 @@ use Psr\Http\Message\RequestInterface;
 
 interface Credential
 {
+    public function applyToOptions(array $options): array;
+
     public function applyToRequest(RequestInterface $request): RequestInterface;
 }

@@ -79,6 +79,7 @@
         "php": ">=7.4",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.8",
+        "guzzlehttp/uri-template": "^1.0",
         "league/config": "^1.2",
         "overtrue/http": "^1.2",
         "php-http/discovery": "^1.19",
