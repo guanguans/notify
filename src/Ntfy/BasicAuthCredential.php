@@ -12,22 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Ntfy;
 
-use Guanguans\Notify\Foundation\Contracts\Credential;
-use Psr\Http\Message\RequestInterface;
-
-class BasicAuthCredential implements Credential
+class BasicAuthCredential extends \Guanguans\Notify\Foundation\BasicAuthCredential
 {
-    private string $username;
-    private string $password;
-
-    public function __construct(string $username, string $password)
-    {
-        $this->username = $username;
-        $this->password = $password;
-    }
-
-    public function applyToRequest(RequestInterface $request): RequestInterface
-    {
-        return $request->withHeader('Authorization', 'Basic '.base64_encode("$this->username:$this->password"));
-    }
 }

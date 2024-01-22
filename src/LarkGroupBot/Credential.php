@@ -12,20 +12,17 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot;
 
-use Guanguans\Notify\Foundation\UriAccessTokenCredential;
-use GuzzleHttp\Psr7\HttpFactory;
+use Guanguans\Notify\Foundation\UriTemplateTokenCredential;
 use Psr\Http\Message\RequestInterface;
 
-class Credential extends UriAccessTokenCredential
+class Credential extends UriTemplateTokenCredential
 {
     private ?string $secret;
-    private HttpFactory $httpFactory;
 
-    public function __construct(string $accessToken, string $secret = null)
+    public function __construct(string $token, string $secret = null)
     {
-        parent::__construct($accessToken);
+        parent::__construct($token);
         $this->secret = $secret;
-        $this->httpFactory = new HttpFactory();
     }
 
     /**

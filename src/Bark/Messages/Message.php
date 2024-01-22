@@ -56,6 +56,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://api.day.app/%s', Credential::ACCESS_TOKEN_PLACEHOLDER);
+        return sprintf('https://api.day.app/%s', Credential::TEMPLATE_TOKEN);
     }
 }

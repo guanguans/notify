@@ -16,23 +16,23 @@ use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\UriTemplate\UriTemplate;
 use Psr\Http\Message\RequestInterface;
 
-class UriAccessTokenCredential extends NullCredential
+class UriTemplateTokenCredential extends NullCredential
 {
-    public const ACCESS_TOKEN_PLACEHOLDER = '{token}';
+    public const TEMPLATE_TOKEN = '{token}';
 
-    protected string $accessToken;
-    private HttpFactory $httpFactory;
+    protected string $token;
+    protected HttpFactory $httpFactory;
 
-    public function __construct(string $accessToken)
+    public function __construct(string $token)
     {
-        $this->accessToken = $accessToken;
+        $this->token = $token;
         $this->httpFactory = new HttpFactory();
     }
 
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
         return $request->withUri($this->httpFactory->createUri(
-            UriTemplate::expand(urldecode((string) $request->getUri()), ['token' => $this->accessToken])
+            UriTemplate::expand(urldecode((string) $request->getUri()), ['token' => $this->token])
         ));
     }
 }

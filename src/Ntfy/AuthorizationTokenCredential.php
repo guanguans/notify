@@ -10,10 +10,8 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\XiZhi;
+namespace Guanguans\Notify\Ntfy;
 
-use Guanguans\Notify\Foundation\UriTemplateTokenCredential;
-
-class Credential extends UriTemplateTokenCredential
+class AuthorizationTokenCredential extends \Guanguans\Notify\Foundation\AuthorizationTokenCredential
 {
 }

@@ -12,10 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
-use Guanguans\Notify\Foundation\Contracts\Credential;
-use Psr\Http\Message\RequestInterface;
+use GuzzleHttp\RequestOptions;
 
-class BasicAuthCredential implements Credential
+class BasicAuthCredential extends NullCredential
 {
     private string $username;
     private string $password;
@@ -26,8 +25,10 @@ class BasicAuthCredential implements Credential
         $this->password = $password;
     }
 
-    public function applyToRequest(RequestInterface $request): RequestInterface
+    public function applyToOptions(array $options): array
     {
-        return $request->withHeader('Authorization', 'Basic '.base64_encode("$this->username:$this->password"));
+        return [
+            RequestOptions::AUTH => [$this->username, $this->password],
+        ] + $options;
     }
 }

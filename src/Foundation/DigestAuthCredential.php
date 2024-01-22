@@ -12,10 +12,10 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
-use Guanguans\Notify\Foundation\Contracts\Credential;
+use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\RequestInterface;
 
-class DigestAuthCredential implements Credential
+class DigestAuthCredential extends NullCredential
 {
     private string $username;
     private string $password;
@@ -29,5 +29,10 @@ class DigestAuthCredential implements Credential
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
         return $request->withHeader('Authorization', 'Basic '.base64_encode("$this->username:$this->password"));
+    }
+
+    public function applyToOptions(array $options): array
+    {
+        return [RequestOptions::AUTH => [$this->username, $this->password, 'digest']] + $options;
     }
 }

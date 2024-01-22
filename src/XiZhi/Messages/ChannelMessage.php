@@ -18,6 +18,6 @@ class ChannelMessage extends Message
 {
     public function httpUri(): string
     {
-        return sprintf('https://xizhi.qqoq.net/%s.channel', Credential::ACCESS_TOKEN_PLACEHOLDER);
+        return sprintf('https://xizhi.qqoq.net/%s.channel', Credential::TEMPLATE_TOKEN);
     }
 }
