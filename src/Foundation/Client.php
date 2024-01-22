@@ -46,6 +46,10 @@ class Client implements Contracts\Client
     {
         return $this
             ->httpClient
-            ->request($message->httpMethod(), $message->httpUri(), $message->toHttpOptions());
+            ->request(
+                $message->httpMethod(),
+                $message->httpUri(),
+                $this->credential->applyToOptions($message->toHttpOptions())
+            );
     }
 }
