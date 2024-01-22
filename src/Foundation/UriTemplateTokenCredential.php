@@ -29,8 +29,13 @@ class UriTemplateTokenCredential extends NullCredential
         $this->httpFactory = new HttpFactory();
     }
 
+    /**
+     * @see https://github.com/rize/UriTemplate
+     */
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
+        dd($request->getUri());
+
         return $request->withUri($this->httpFactory->createUri(
             UriTemplate::expand(urldecode((string) $request->getUri()), ['token' => $this->token])
         ));
