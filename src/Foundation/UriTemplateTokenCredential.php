@@ -34,8 +34,6 @@ class UriTemplateTokenCredential extends NullCredential
      */
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
-        dd($request->getUri());
-
         return $request->withUri($this->httpFactory->createUri(
             UriTemplate::expand(urldecode((string) $request->getUri()), ['token' => $this->token])
         ));
