@@ -1,5 +1,6 @@
 <?php
 
+/** @noinspection AnonymousFunctionStaticInspection */
 /** @noinspection DuplicateCustomExpectationInspection */
 
 declare(strict_types=1);
