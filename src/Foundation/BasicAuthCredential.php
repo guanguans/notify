@@ -17,9 +17,9 @@ use GuzzleHttp\RequestOptions;
 class BasicAuthCredential extends NullCredential
 {
     private string $username;
-    private string $password;
+    private ?string $password;
 
-    public function __construct(string $username, string $password)
+    public function __construct(string $username, ?string $password)
     {
         $this->username = $username;
         $this->password = $password;
