@@ -10,11 +10,11 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Tests\Feature;
+namespace Guanguans\NotifyTests\Feature;
 
 use Guanguans\Notify\Factory;
 use Guanguans\Notify\Messages\EmailMessage;
-use Guanguans\Notify\Tests\TestCase;
+use Guanguans\NotifyTests\TestCase;
 use Symfony\Component\Mailer\Exception\TransportException;
 
 class MailerTest extends TestCase

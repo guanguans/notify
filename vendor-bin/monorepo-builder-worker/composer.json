@@ -1,5 +1,0 @@
-{
-    "require-dev": {
-        "guanguans/monorepo-builder-worker": "^1.4"
-    }
-}

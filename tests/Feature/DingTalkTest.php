@@ -10,7 +10,7 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Tests\Feature;
+namespace Guanguans\NotifyTests\Feature;
 
 use Guanguans\Notify\Factory;
 use Guanguans\Notify\Messages\DingTalk\BtnsActionCardMessage;
@@ -19,7 +19,7 @@ use Guanguans\Notify\Messages\DingTalk\LinkMessage;
 use Guanguans\Notify\Messages\DingTalk\MarkdownMessage;
 use Guanguans\Notify\Messages\DingTalk\SingleActionCardMessage;
 use Guanguans\Notify\Messages\DingTalk\TextMessage;
-use Guanguans\Notify\Tests\TestCase;
+use Guanguans\NotifyTests\TestCase;
 
 class DingTalkTest extends TestCase
 {
