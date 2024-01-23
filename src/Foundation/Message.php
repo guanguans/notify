@@ -20,7 +20,7 @@ abstract class Message implements Contracts\Message
     use CreateStaticable;
     use HasOptions;
 
-    public function __construct(array $options = [])
+    public function __construct(array $options)
     {
         $this->setOptions($options);
     }
