@@ -10,8 +10,8 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Exceptions;
+namespace Guanguans\Notify\Foundation\Exceptions;
 
-class InvalidArgumentException extends Exception
+class Exception extends \Exception
 {
 }

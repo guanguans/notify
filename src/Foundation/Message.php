@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
+use Guanguans\Notify\Foundation\Traits\CreateStaticable;
 use Guanguans\Notify\Foundation\Traits\HasOptions;
-use Guanguans\Notify\Traits\CreateStaticable;
 
 abstract class Message implements Contracts\Message
 {

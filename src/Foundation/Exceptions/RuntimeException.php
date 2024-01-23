@@ -10,9 +10,8 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Contracts;
+namespace Guanguans\Notify\Foundation\Exceptions;
 
-interface MessageInterface
+class RuntimeException extends Exception
 {
-    public function transformToRequestParams();
 }

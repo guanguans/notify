@@ -115,7 +115,6 @@
             "Guanguans\\Notify\\": "src"
         },
         "files": [
-            "src/Support/helpers.php",
             "src/Foundation/Support/helpers.php"
         ]
     },
