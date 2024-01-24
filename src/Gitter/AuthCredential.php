@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Gitter;
 
-use Guanguans\Notify\Foundation\Credentials\AuthorizationTokenCredential;
+use Guanguans\Notify\Foundation\Credentials\TokenAuthCredential;
 
-class Credential extends AuthorizationTokenCredential
+class AuthCredential extends TokenAuthCredential
 {
 }

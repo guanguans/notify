@@ -15,12 +15,12 @@ namespace Guanguans\Notify\Gitter;
 class Client extends \Guanguans\Notify\Foundation\Client
 {
     /**
-     * @param Credential|string $credential
+     * @param AuthCredential|string $credential
      */
     public function __construct($credential, \GuzzleHttp\Client $httpClient = null)
     {
-        if (! $credential instanceof Credential) {
-            $this->credential = new Credential($credential);
+        if (! $credential instanceof AuthCredential) {
+            $this->credential = new AuthCredential($credential);
         }
 
         parent::__construct($credential, $httpClient);

@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Mattermost;
 
-use Guanguans\Notify\Ntfy\AuthorizationTokenCredential;
+use Guanguans\Notify\Ntfy\TokenAuthCredential;
 
-class Credential extends AuthorizationTokenCredential
+class Credential extends TokenAuthCredential
 {
 }

@@ -14,12 +14,12 @@ namespace Guanguans\Notify\Foundation\Credentials;
 
 use Psr\Http\Message\RequestInterface;
 
-class AuthorizationTokenCredential extends NullCredential
+class TokenAuthCredential extends NullCredential
 {
     private string $token;
     private string $type;
 
-    public function __construct(string $token, string $type = 'Bearer')
+    public function __construct(string $token, ?string $type = 'Bearer')
     {
         $this->token = $token;
         $this->type = $type;
