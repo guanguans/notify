@@ -12,27 +12,21 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Traits;
 
-use Guanguans\Notify\Http\Client;
+use GuzzleHttp\Client;
 
 trait HasHttpClient
 {
-    /**
-     * @var Client
-     */
-    protected $httpClient;
+    protected ?Client $httpClient;
 
-    protected $httpOptions = [];
+    protected array $httpOptions = [];
 
-    public function setHttpOptions(array $httpOptions)
+    public function setHttpOptions(array $httpOptions): self
     {
         $this->httpOptions = array_merge($this->httpOptions, $httpOptions);
 
         return $this;
     }
 
-    /**
-     * @return mixed[]
-     */
     public function getHttpOptions(): array
     {
         return $this->httpOptions;
@@ -43,7 +37,7 @@ trait HasHttpClient
         $config && $this->setHttpOptions($config);
 
         if ($config || ! $this->httpClient instanceof Client) {
-            $this->httpClient = Client::create($this->httpOptions);
+            $this->httpClient = new Client($this->httpOptions);
         }
 
         return $this->httpClient;
