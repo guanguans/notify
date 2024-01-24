@@ -16,20 +16,20 @@ use GuzzleHttp\RequestOptions;
 
 class ApiKeyCredential extends NullCredential
 {
-    private string $key;
+    private string $name;
     private string $value;
     private string $type;
 
-    public function __construct(string $key, string $value, string $type = RequestOptions::HEADERS)
+    public function __construct(string $name, string $value, string $type = RequestOptions::HEADERS)
     {
-        $this->key = $key;
+        $this->name = $name;
         $this->value = $value;
         $this->type = $type;
     }
 
     public function applyToOptions(array $options): array
     {
-        $options[$this->type][$this->key] = $this->value;
+        $options[$this->type][$this->name] = $this->value;
 
         return $options;
     }

@@ -18,17 +18,19 @@ class DigestAuthCredential extends NullCredential
 {
     private string $username;
     private string $password;
+    private string $digest;
 
-    public function __construct(string $username, string $password = null)
+    public function __construct(string $username, string $password, string $digest)
     {
         $this->username = $username;
         $this->password = $password;
+        $this->digest = $digest;
     }
 
     public function applyToOptions(array $options): array
     {
         return [
-            RequestOptions::AUTH => [$this->username, $this->password, 'digest'],
+            RequestOptions::AUTH => [$this->username, $this->password, $this->digest],
         ] + $options;
     }
 }
