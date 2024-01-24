@@ -16,6 +16,7 @@ use Guanguans\Notify\Foundation\Contracts\Credential;
 use Guanguans\Notify\Foundation\Credentials\NullCredential;
 use Guanguans\Notify\Foundation\Middleware\ApplyCredentialToRequest;
 use Guanguans\Notify\Foundation\Traits\Tappable;
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\HandlerStack;
 use Psr\Http\Message\ResponseInterface;
@@ -25,19 +26,14 @@ class Client implements Contracts\Client
     use Tappable;
 
     private Credential $credential;
-    private ?\GuzzleHttp\Client $httpClient;
+    private ?GuzzleClient $httpClient;
+    private HandlerStack $handlerStack;
 
-    public function __construct(Credential $credential = null, \GuzzleHttp\Client $httpClient = null)
+    public function __construct(Credential $credential = null, GuzzleClient $httpClient = null)
     {
         $this->credential = $credential ?? new NullCredential();
-        $this->httpClient = $httpClient ?? new \GuzzleHttp\Client([
-            'handler' => (function (): HandlerStack {
-                $handlerStack = HandlerStack::create();
-                $handlerStack->push(new ApplyCredentialToRequest($this->credential), ApplyCredentialToRequest::name());
-
-                return $handlerStack;
-            })(),
-        ]);
+        $this->httpClient = $httpClient;
+        $this->handlerStack = HandlerStack::create();
     }
 
     /**
@@ -46,11 +42,48 @@ class Client implements Contracts\Client
     public function send(Contracts\Message $message): ResponseInterface
     {
         return $this
-            ->httpClient
+            ->createHttpClient()
             ->request(
                 $message->httpMethod(),
                 $message->httpUri(),
                 $this->credential->applyToOptions($message->toHttpOptions())
             );
+    }
+
+    public function setHttpClient(?GuzzleClient $httpClient): self
+    {
+        $this->httpClient = $httpClient;
+
+        return $this;
+    }
+
+    public function setHandlerStack(HandlerStack $handlerStack): self
+    {
+        $this->handlerStack = $handlerStack;
+
+        return $this;
+    }
+
+    public function pushMiddleware(callable $callable, string $name = ''): self
+    {
+        $this->handlerStack->push($callable, $name);
+
+        return $this;
+    }
+
+    private function createHttpClient(): GuzzleClient
+    {
+        if (! $this->httpClient instanceof GuzzleClient) {
+            $this->handlerStack->push(
+                new ApplyCredentialToRequest($this->credential),
+                ApplyCredentialToRequest::name()
+            );
+
+            $this->httpClient = new GuzzleClient([
+                'handler' => $this->handlerStack,
+            ]);
+        }
+
+        return $this->httpClient;
     }
 }
