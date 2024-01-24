@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Gitter;
 
-use Guanguans\Notify\Foundation\AuthorizationTokenCredential;
+use Guanguans\Notify\Foundation\Credentials\AuthorizationTokenCredential;
 
 class Credential extends AuthorizationTokenCredential
 {

@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\MicrosoftTeams;
 
-use Guanguans\Notify\Foundation\NullCredential;
+use Guanguans\Notify\Foundation\Credentials\NullCredential;
 
 class Credential extends NullCredential
 {

@@ -12,6 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Ntfy;
 
-class BasicAuthCredential extends \Guanguans\Notify\Foundation\BasicAuthCredential
+class BasicAuthCredential extends \Guanguans\Notify\Foundation\Credentials\BasicAuthCredential
 {
 }

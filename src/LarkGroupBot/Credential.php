@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot;
 
-use Guanguans\Notify\Foundation\UriTemplateTokenCredential;
+use Guanguans\Notify\Foundation\Credentials\UriTemplateTokenCredential;
 use Psr\Http\Message\RequestInterface;
 
 class Credential extends UriTemplateTokenCredential

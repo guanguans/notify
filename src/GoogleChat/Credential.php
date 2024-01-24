@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\GoogleChat;
 
-use Guanguans\Notify\Foundation\NullCredential;
+use Guanguans\Notify\Foundation\Credentials\NullCredential;
 use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\UriTemplate\UriTemplate;
 use Psr\Http\Message\RequestInterface;

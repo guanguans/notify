@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\IGot;
 
-use Guanguans\Notify\Foundation\UriTemplateTokenCredential;
+use Guanguans\Notify\Foundation\Credentials\UriTemplateTokenCredential;
 
 class Credential extends UriTemplateTokenCredential
 {

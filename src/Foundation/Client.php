@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation;
 
 use Guanguans\Notify\Foundation\Contracts\Credential;
+use Guanguans\Notify\Foundation\Credentials\NullCredential;
 use Guanguans\Notify\Foundation\Middleware\ApplyCredentialToRequest;
 use Guanguans\Notify\Foundation\Traits\Tappable;
 use GuzzleHttp\Exception\GuzzleException;
