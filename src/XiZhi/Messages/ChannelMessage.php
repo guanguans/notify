@@ -12,12 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\XiZhi\Messages;
 
-use Guanguans\Notify\XiZhi\Credential;
+use Guanguans\Notify\XiZhi\UriTemplateCredential;
 
 class ChannelMessage extends Message
 {
     public function httpUri(): string
     {
-        return sprintf('https://xizhi.qqoq.net/%s.channel', Credential::TEMPLATE_TOKEN);
+        return sprintf('https://xizhi.qqoq.net/%s.channel', UriTemplateCredential::TEMPLATE_TOKEN);
     }
 }

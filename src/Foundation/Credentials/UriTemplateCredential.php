@@ -16,26 +16,22 @@ use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\UriTemplate\UriTemplate;
 use Psr\Http\Message\RequestInterface;
 
-class UriTemplateTokenCredential extends NullCredential
+class UriTemplateCredential extends NullCredential
 {
-    public const TEMPLATE_TOKEN = '{token}';
-
-    protected string $token;
+    private array $variables;
     protected HttpFactory $httpFactory;
 
-    public function __construct(string $token)
+    public function __construct(array $variables)
     {
-        $this->token = $token;
+        $this->variables = $variables;
         $this->httpFactory = new HttpFactory();
     }
 
-    /**
-     * @see https://github.com/rize/UriTemplate
-     */
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
         return $request->withUri($this->httpFactory->createUri(
-            UriTemplate::expand(urldecode((string) $request->getUri()), ['token' => $this->token])
+            /** @see https://github.com/rize/UriTemplate */
+            UriTemplate::expand(urldecode((string) $request->getUri()), $this->variables)
         ));
     }
 }

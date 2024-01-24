@@ -14,7 +14,7 @@ namespace Guanguans\Notify\YiFengChuanHua\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\YiFengChuanHua\Credential;
+use Guanguans\Notify\YiFengChuanHua\UriTemplateCredential;
 
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -38,6 +38,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://www.phprm.com/services/push/trigger/%s', Credential::TEMPLATE_TOKEN);
+        return sprintf('https://www.phprm.com/services/push/trigger/%s', UriTemplateCredential::TEMPLATE_TOKEN);
     }
 }

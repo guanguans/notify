@@ -14,7 +14,7 @@ namespace Guanguans\Notify\IGot\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\IGot\Credential;
+use Guanguans\Notify\IGot\UriTemplateCredential;
 
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -43,6 +43,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://push.hellyw.com/%s', Credential::TEMPLATE_TOKEN);
+        return sprintf('https://push.hellyw.com/%s', UriTemplateCredential::TEMPLATE_TOKEN);
     }
 }

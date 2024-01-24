@@ -14,7 +14,7 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Telegram\Credential;
+use Guanguans\Notify\Telegram\UriTemplateCredential;
 
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -23,6 +23,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://api.telegram.org/bot%s/sendMessage', Credential::TEMPLATE_TOKEN);
+        return sprintf('https://api.telegram.org/bot%s/sendMessage', UriTemplateCredential::TEMPLATE_TOKEN);
     }
 }
