@@ -17,6 +17,7 @@ use Guanguans\Notify\Foundation\Contracts\Message;
 use Guanguans\Notify\Foundation\Credentials\NullCredential;
 use Guanguans\Notify\Foundation\Traits\Conditionable;
 use Guanguans\Notify\Foundation\Traits\HasHttpClient;
+use Guanguans\Notify\Foundation\Traits\Macroable;
 use Guanguans\Notify\Foundation\Traits\Tappable;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
@@ -24,8 +25,11 @@ use Psr\Http\Message\ResponseInterface;
 class Client implements Contracts\Client
 {
     use Conditionable;
-    use HasHttpClient;
     use Tappable;
+    use HasHttpClient, Macroable {
+        HasHttpClient::__call as hasHttpClientCall;
+        Macroable::__call as macroableCall;
+    }
 
     private Credential $credential;
 
@@ -46,5 +50,16 @@ class Client implements Contracts\Client
             $message->httpUri(),
             $this->credential->applyToOptions($message->toHttpOptions())
         );
+    }
+
+    /**
+     * @noinspection MissingReturnTypeInspection
+     * @noinspection MissingParameterTypeDeclarationInspection
+     */
+    public function __call($name, $arguments)
+    {
+        return static::hasMacro($name) ?
+            $this->macroableCall($name, $arguments)
+            : $this->hasHttpClientCall($name, $arguments);
     }
 }

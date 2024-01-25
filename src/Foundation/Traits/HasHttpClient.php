@@ -113,7 +113,6 @@ trait HasHttpClient
 
     /**
      * @noinspection MissingReturnTypeInspection
-     * @noinspection PhpInconsistentReturnPointsInspection
      * @noinspection MissingParameterTypeDeclarationInspection
      */
     public function __call($name, $arguments)
@@ -128,6 +127,6 @@ trait HasHttpClient
             return $this->getHttpClient()->{$name}(...$arguments);
         }
 
-        new \BadMethodCallException(sprintf('Call to undefined method %s::%s', static::class, $name));
+        throw new \BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $name));
     }
 }

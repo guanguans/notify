@@ -12,9 +12,19 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Traits;
 
+/**
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Support/Traits/Tappable.php
+ */
 trait Tappable
 {
-    public function tap(callable $callback): self
+    /**
+     * Call the given Closure with this instance then return the instance.
+     *
+     * @param callable|null $callback
+     *
+     * @return $this|__anonymous
+     */
+    public function tap($callback = null)
     {
         return tap($this, $callback);
     }

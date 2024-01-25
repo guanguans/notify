@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Traits;
 
+/**
+ * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Conditionable/Traits/Conditionable.php
+ */
 trait Conditionable
 {
     /**

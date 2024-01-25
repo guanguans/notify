@@ -10,7 +10,6 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-use Guanguans\Notify\Proxy\HigherOrderTapProxy;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 if (! function_exists('configure_options')) {
@@ -49,9 +48,6 @@ if (! function_exists('tap')) {
             return new class($value) {
                 public $target;
 
-                /**
-                 * HigherOrderTapProxy constructor.
-                 */
                 public function __construct($target)
                 {
                     $this->target = $target;
