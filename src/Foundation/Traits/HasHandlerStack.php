@@ -15,13 +15,13 @@ namespace Guanguans\Notify\Foundation\Traits;
 use GuzzleHttp\HandlerStack;
 
 /**
- * @mixin HasHttpClient
+ * @mixin HandlerStack
  */
 trait HasHandlerStack
 {
     private ?HandlerStack $handlerStack;
 
-    public function getHandlerStack(): HandlerStack
+    private function getHandlerStack(): HandlerStack
     {
         return $this->handlerStack ?? HandlerStack::create();
     }
@@ -40,8 +40,8 @@ trait HasHandlerStack
      */
     public function __call($name, $arguments)
     {
-        if (method_exists($this->handlerStack, $name)) {
-            $this->handlerStack->{$name}(...$arguments);
+        if (method_exists($this->getHandlerStack(), $name)) {
+            $this->getHandlerStack()->{$name}(...$arguments);
 
             return $this;
         }

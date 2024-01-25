@@ -14,7 +14,7 @@ namespace Guanguans\Notify\Foundation\Contracts;
 
 use Psr\Http\Message\UriInterface;
 
-interface Message extends \ArrayAccess
+interface Message
 {
     public function httpMethod(): string;
 

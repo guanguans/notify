@@ -24,10 +24,10 @@ trait HasHttpClient
 
     private array $httpOptions = [];
     private Client $httpClient;
-    /** @var callable(self): Client */
+    /** @var (callable(self): Client)|null */
     private $httpClientResolver;
 
-    public function getHttpOptions(): array
+    private function getHttpOptions(): array
     {
         return $this->httpOptions;
     }
@@ -39,7 +39,7 @@ trait HasHttpClient
         return $this;
     }
 
-    public function getHttpClient(): Client
+    private function getHttpClient(): Client
     {
         return $this->httpClient;
     }
@@ -51,28 +51,30 @@ trait HasHttpClient
         return $this;
     }
 
-    public function getHttpClientResolver(): callable
+    private function getHttpClientResolver(): callable
     {
-        return $this->httpClientResolver ?: function (self $client) {
-            return $client->createHttpClient();
+        return $this->httpClientResolver ?: function () {
+            if (! $this->httpClient instanceof Client) {
+                $this->handlerStack->push(
+                    new ApplyCredentialToRequest($this->credential),
+                    ApplyCredentialToRequest::name()
+                );
+
+                $this->setHttpOptions([
+                    'handler' => $this->handlerStack,
+                ]);
+
+                $this->httpClient = new Client($this->httpOptions);
+            }
+
+            return $this->httpClient;
         };
     }
 
-    private function createHttpClient(array $httpOptions = []): Client
+    public function setHttpClientResolver(callable $httpClientResolver): self
     {
-        $httpOptions && $this->setHttpOptions($httpOptions);
+        $this->httpClientResolver = $httpClientResolver;
 
-        if ($httpOptions || ! $this->httpClient instanceof Client) {
-            $this->handlerStack->push(
-                new ApplyCredentialToRequest($this->credential),
-                ApplyCredentialToRequest::name()
-            );
-
-            $this->httpClient = new Client([
-                'handler' => $this->handlerStack,
-            ]);
-        }
-
-        return $this->httpClient;
+        return $this;
     }
 }

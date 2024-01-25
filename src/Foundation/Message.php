@@ -15,7 +15,7 @@ namespace Guanguans\Notify\Foundation;
 use Guanguans\Notify\Foundation\Traits\CreateStaticable;
 use Guanguans\Notify\Foundation\Traits\HasOptions;
 
-abstract class Message implements Contracts\Message
+abstract class Message implements Contracts\Message, \ArrayAccess
 {
     use CreateStaticable;
     use HasOptions;

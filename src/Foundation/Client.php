@@ -14,27 +14,21 @@ namespace Guanguans\Notify\Foundation;
 
 use Guanguans\Notify\Foundation\Contracts\Credential;
 use Guanguans\Notify\Foundation\Credentials\NullCredential;
-use Guanguans\Notify\Foundation\Middleware\ApplyCredentialToRequest;
+use Guanguans\Notify\Foundation\Traits\HasHttpClient;
 use Guanguans\Notify\Foundation\Traits\Tappable;
-use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class Client implements Contracts\Client
 {
     use Tappable;
+    use HasHttpClient;
 
     private Credential $credential;
-    private ?GuzzleClient $httpClient;
-    private HandlerStack $handlerStack;
 
-    public function __construct(Credential $credential = null, GuzzleClient $httpClient = null)
+    public function __construct(Credential $credential = null)
     {
         $this->credential = $credential ?? new NullCredential();
-        $this->httpClient = $httpClient;
-        $this->handlerStack = HandlerStack::create();
     }
 
     /**
@@ -42,49 +36,10 @@ class Client implements Contracts\Client
      */
     public function send(Contracts\Message $message): ResponseInterface
     {
-        return $this
-            ->createHttpClient()
-            ->request(
-                $message->httpMethod(),
-                $message->httpUri(),
-                $this->credential->applyToOptions($message->toHttpOptions())
-            );
-    }
-
-    /**
-     * @throws GuzzleException
-     */
-    public function sendAsync(Contracts\Message $message): PromiseInterface
-    {
-        return $this
-            ->createHttpClient()
-            ->requestAsync(
-                $message->httpMethod(),
-                $message->httpUri(),
-                $this->credential->applyToOptions($message->toHttpOptions())
-            );
-    }
-
-    public function setHttpClient(?GuzzleClient $httpClient): self
-    {
-        $this->httpClient = $httpClient;
-
-        return $this;
-    }
-
-    private function createHttpClient(): GuzzleClient
-    {
-        if (! $this->httpClient instanceof GuzzleClient) {
-            $this->handlerStack->push(
-                new ApplyCredentialToRequest($this->credential),
-                ApplyCredentialToRequest::name()
-            );
-
-            $this->httpClient = new GuzzleClient([
-                'handler' => $this->handlerStack,
-            ]);
-        }
-
-        return $this->httpClient;
+        return ($this->getHttpClientResolver())()->request(
+            $message->httpMethod(),
+            $message->httpUri(),
+            $this->credential->applyToOptions($message->toHttpOptions())
+        );
     }
 }
