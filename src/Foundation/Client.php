@@ -72,20 +72,6 @@ class Client implements Contracts\Client
         return $this;
     }
 
-    public function setHandlerStack(HandlerStack $handlerStack): self
-    {
-        $this->handlerStack = $handlerStack;
-
-        return $this;
-    }
-
-    public function pushMiddleware(callable $callable, string $name = ''): self
-    {
-        $this->handlerStack->push($callable, $name);
-
-        return $this;
-    }
-
     private function createHttpClient(): GuzzleClient
     {
         if (! $this->httpClient instanceof GuzzleClient) {

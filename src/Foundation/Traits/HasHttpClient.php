@@ -12,13 +12,25 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Traits;
 
+use Guanguans\Notify\Foundation\Middleware\ApplyCredentialToRequest;
 use GuzzleHttp\Client;
 
+/**
+ * @mixin \Guanguans\Notify\Foundation\Client
+ */
 trait HasHttpClient
 {
-    protected ?Client $httpClient;
+    use HasHandlerStack;
 
-    protected array $httpOptions = [];
+    private array $httpOptions = [];
+    private Client $httpClient;
+    /** @var callable(self): Client */
+    private $httpClientResolver;
+
+    public function getHttpOptions(): array
+    {
+        return $this->httpOptions;
+    }
 
     public function setHttpOptions(array $httpOptions): self
     {
@@ -27,17 +39,38 @@ trait HasHttpClient
         return $this;
     }
 
-    public function getHttpOptions(): array
+    public function getHttpClient(): Client
     {
-        return $this->httpOptions;
+        return $this->httpClient;
     }
 
-    public function getHttpClient(array $config = []): Client
+    public function setHttpClient(Client $httpClient): self
     {
-        $config && $this->setHttpOptions($config);
+        $this->httpClient = $httpClient;
 
-        if ($config || ! $this->httpClient instanceof Client) {
-            $this->httpClient = new Client($this->httpOptions);
+        return $this;
+    }
+
+    public function getHttpClientResolver(): callable
+    {
+        return $this->httpClientResolver ?: function (self $client) {
+            return $client->createHttpClient();
+        };
+    }
+
+    private function createHttpClient(array $httpOptions = []): Client
+    {
+        $httpOptions && $this->setHttpOptions($httpOptions);
+
+        if ($httpOptions || ! $this->httpClient instanceof Client) {
+            $this->handlerStack->push(
+                new ApplyCredentialToRequest($this->credential),
+                ApplyCredentialToRequest::name()
+            );
+
+            $this->httpClient = new Client([
+                'handler' => $this->handlerStack,
+            ]);
         }
 
         return $this->httpClient;
