@@ -19,6 +19,7 @@ use Guanguans\Notify\Foundation\Traits\Tappable;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class Client implements Contracts\Client
@@ -44,6 +45,20 @@ class Client implements Contracts\Client
         return $this
             ->createHttpClient()
             ->request(
+                $message->httpMethod(),
+                $message->httpUri(),
+                $this->credential->applyToOptions($message->toHttpOptions())
+            );
+    }
+
+    /**
+     * @throws GuzzleException
+     */
+    public function sendAsync(Contracts\Message $message): PromiseInterface
+    {
+        return $this
+            ->createHttpClient()
+            ->requestAsync(
                 $message->httpMethod(),
                 $message->httpUri(),
                 $this->credential->applyToOptions($message->toHttpOptions())
