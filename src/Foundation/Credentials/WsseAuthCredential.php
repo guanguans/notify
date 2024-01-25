@@ -14,9 +14,6 @@ namespace Guanguans\Notify\Foundation\Credentials;
 
 use Psr\Http\Message\RequestInterface;
 
-/**
- * @see https://github.com/kriswallsmith/Buzz/blob/master/lib/Middleware/WsseAuthMiddleware.php
- */
 class WsseAuthCredential extends NullCredential
 {
     private string $username;

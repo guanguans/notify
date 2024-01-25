@@ -16,9 +16,9 @@ use GuzzleHttp\RequestOptions;
 
 /**
  * @see https://github.com/saloonphp/saloon/blob/v3/src/Http/Auth/BasicAuthenticator.php
+ * @see https://github.com/phanxipang/fansipan/blob/main/src/Middleware/Auth/BasicAuthentication.php
  * @see https://github.com/kriswallsmith/Buzz/blob/master/lib/Middleware/BasicAuthMiddleware.php
  * @see https://github.com/guzzle/guzzle/blob/7.8/src/Client.php#L400
- * @see https://github.com/phanxipang/fansipan/blob/main/src/Middleware/Auth/BasicAuthentication.php
  */
 class BasicAuthCredential extends NullCredential
 {
