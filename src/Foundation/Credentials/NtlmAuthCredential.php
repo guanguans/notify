@@ -14,7 +14,7 @@ namespace Guanguans\Notify\Foundation\Credentials;
 
 use GuzzleHttp\RequestOptions;
 
-class DigestAuthCredential extends NullCredential
+class NtlmAuthCredential extends NullCredential
 {
     private string $username;
     private string $password;
@@ -28,7 +28,7 @@ class DigestAuthCredential extends NullCredential
     public function applyToOptions(array $options): array
     {
         return [
-            RequestOptions::AUTH => [$this->username, $this->password, 'digest'],
+            RequestOptions::AUTH => [$this->username, $this->password, 'ntlm'],
         ] + $options;
     }
 }
