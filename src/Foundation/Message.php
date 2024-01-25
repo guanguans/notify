@@ -12,12 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
-use Guanguans\Notify\Foundation\Traits\CreateStaticable;
 use Guanguans\Notify\Foundation\Traits\HasOptions;
+use Guanguans\Notify\Foundation\Traits\Makeable;
 
 abstract class Message implements Contracts\Message, \ArrayAccess
 {
-    use CreateStaticable;
+    use Makeable;
     use HasOptions;
 
     public function __construct(array $options)

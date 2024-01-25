@@ -15,6 +15,7 @@ namespace Guanguans\Notify\Foundation;
 use Guanguans\Notify\Foundation\Contracts\Credential;
 use Guanguans\Notify\Foundation\Contracts\Message;
 use Guanguans\Notify\Foundation\Credentials\NullCredential;
+use Guanguans\Notify\Foundation\Traits\Conditionable;
 use Guanguans\Notify\Foundation\Traits\HasHttpClient;
 use Guanguans\Notify\Foundation\Traits\Tappable;
 use GuzzleHttp\Exception\GuzzleException;
@@ -22,8 +23,9 @@ use Psr\Http\Message\ResponseInterface;
 
 class Client implements Contracts\Client
 {
-    use Tappable;
+    use Conditionable;
     use HasHttpClient;
+    use Tappable;
 
     private Credential $credential;
 
@@ -34,6 +36,8 @@ class Client implements Contracts\Client
 
     /**
      * @throws GuzzleException
+     *
+     * @noinspection PhpSignatureMismatchDuringInheritanceInspection
      */
     public function send(Message $message): ResponseInterface
     {

@@ -12,14 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Traits;
 
-trait CreateStaticable
+trait Makeable
 {
-    /**
-     * @noRector \Rector\TypeDeclaration\Rector\ClassMethod\ReturnTypeFromReturnNewRector
-     *
-     * @return static
-     */
-    public static function create(...$parameters): self
+    public static function make(...$parameters): self
     {
         return new static(...$parameters);
     }
