@@ -222,6 +222,7 @@
         "test-phpunit": "@php ./vendor/bin/phpunit --cache-result-file=./build/phpunit/.phpunit.result.cache --coverage-text --ansi -v",
         "test-phpunit-coverage": "@test --coverage-html=./build/phpunit/ --coverage-clover=clover.xml",
         "test-type-coverage": "@pest-type-coverage",
+        "trufflehog": "trufflehog git https://github.com/guanguans/notify --only-verified",
         "yaml-lint": "@php ./vendor/bin/yaml-lint .github --ansi -v",
         "zh-fix": "@zh-lint --fix",
         "zh-lint": "zhlint {./,docs/,docs/**/}*-zh_CN.md"

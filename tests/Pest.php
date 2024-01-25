@@ -16,7 +16,7 @@ declare(strict_types=1);
 use Guanguans\NotifyTests\TestCase;
 use Pest\Expectation;
 
-uses(TestCase::class)
+uses(TestCase::class, GuzzleHttp\Psr7\HttpFactory::class)
     ->beforeAll(function (): void {})
     ->beforeEach(function (): void {})
     ->afterEach(function (): void {})
