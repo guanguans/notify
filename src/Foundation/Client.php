@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation;
 
 use Guanguans\Notify\Foundation\Contracts\Credential;
+use Guanguans\Notify\Foundation\Contracts\Message;
 use Guanguans\Notify\Foundation\Credentials\NullCredential;
 use Guanguans\Notify\Foundation\Traits\HasHttpClient;
 use Guanguans\Notify\Foundation\Traits\Tappable;
@@ -34,9 +35,9 @@ class Client implements Contracts\Client
     /**
      * @throws GuzzleException
      */
-    public function send(Contracts\Message $message): ResponseInterface
+    public function send(Message $message): ResponseInterface
     {
-        return ($this->getHttpClientResolver())()->request(
+        return $this->getHttpClient()->request(
             $message->httpMethod(),
             $message->httpUri(),
             $this->credential->applyToOptions($message->toHttpOptions())

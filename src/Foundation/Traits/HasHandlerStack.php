@@ -19,7 +19,7 @@ use GuzzleHttp\HandlerStack;
  */
 trait HasHandlerStack
 {
-    private ?HandlerStack $handlerStack;
+    private ?HandlerStack $handlerStack = null;
 
     private function getHandlerStack(): HandlerStack
     {

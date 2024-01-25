@@ -23,14 +23,9 @@ trait HasHttpClient
     use HasHandlerStack;
 
     private array $httpOptions = [];
-    private Client $httpClient;
+    private ?Client $httpClient = null;
     /** @var (callable(self): Client)|null */
     private $httpClientResolver;
-
-    private function getHttpOptions(): array
-    {
-        return $this->httpOptions;
-    }
 
     public function setHttpOptions(array $httpOptions): self
     {
@@ -41,7 +36,7 @@ trait HasHttpClient
 
     private function getHttpClient(): Client
     {
-        return $this->httpClient;
+        return $this->callHttpClientResolver();
     }
 
     public function setHttpClient(Client $httpClient): self
@@ -55,7 +50,7 @@ trait HasHttpClient
     {
         return $this->httpClientResolver ?: function () {
             if (! $this->httpClient instanceof Client) {
-                $this->handlerStack->push(
+                $this->getHandlerStack()->push(
                     new ApplyCredentialToRequest($this->credential),
                     ApplyCredentialToRequest::name()
                 );
@@ -76,5 +71,10 @@ trait HasHttpClient
         $this->httpClientResolver = $httpClientResolver;
 
         return $this;
+    }
+
+    private function callHttpClientResolver(): Client
+    {
+        return $this->getHttpClientResolver()();
     }
 }
