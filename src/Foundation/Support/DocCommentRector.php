@@ -111,6 +111,8 @@ class DocCommentRector extends AbstractRector implements ConfigurableRectorInter
 
     private function createMethodPhpDocTagNode(string $class, string $defined): PhpDocTagNode
     {
+        $defined = Str::camel($defined);
+
         return new PhpDocTagNode('@method', new GenericTagValueNode("\\$class $defined(\$$defined)"));
     }
 

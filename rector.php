@@ -41,7 +41,7 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->importNames(false, false);
     $rectorConfig->importShortClasses(false);
     $rectorConfig->parallel(240);
-    // $rectorConfig->disableParallel();
+    $rectorConfig->disableParallel();
     $rectorConfig->phpstanConfig(__DIR__.'/phpstan.neon');
     $rectorConfig->phpVersion(PhpVersion::PHP_74);
     // $rectorConfig->cacheClass(FileCacheStorage::class);

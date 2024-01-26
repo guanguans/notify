@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Traits;
 
+use Guanguans\Notify\Foundation\Support\Str;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -151,8 +152,14 @@ trait HasOptions
 
     public function __call($name, $arguments)
     {
-        if (in_array($name, $this->defined ?? [], true)) {
-            return $this->setOption($name, $arguments[0] ?? null);
+        $defined = $this->defined ?? [];
+
+        foreach ([null, 'snake'] as $method) {
+            $name = $method ? Str::{$method}($name) : $name;
+
+            if (in_array($name, $defined, true)) {
+                return $this->setOption($name, $arguments[0] ?? null);
+            }
         }
 
         throw new \BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $name));

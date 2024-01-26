@@ -49,11 +49,11 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     private string $baseUri;
 
-    public function __construct(string $baseUri, array $options)
-    {
-        parent::__construct($options);
-        $this->baseUri = $baseUri;
-    }
+    // public function __construct(string $baseUri, array $options)
+    // {
+    //     parent::__construct($options);
+    //     $this->baseUri = $baseUri;
+    // }
 
     public function httpUri()
     {
