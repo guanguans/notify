@@ -37,11 +37,11 @@ trait HasOptions
 
     private function configureAndResolveOptions(array $options, callable $configurator): array
     {
-        $resolver = new OptionsResolver();
+        $optionsResolver = new OptionsResolver();
 
-        $configurator($resolver);
+        $configurator($optionsResolver);
 
-        return $resolver->resolve($options);
+        return $optionsResolver->resolve($options);
     }
 
     private function preConfigureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
@@ -129,7 +129,7 @@ trait HasOptions
         $this->offsetUnset($option);
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->options[$offset]);
     }
@@ -139,12 +139,12 @@ trait HasOptions
         return $this->getOption($offset);
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->setOption($offset, $value);
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->options[$offset]);
     }
@@ -152,7 +152,7 @@ trait HasOptions
     public function __call($name, $arguments)
     {
         if (in_array($name, $this->defined ?? [], true)) {
-            $this->setOption(...$arguments);
+            return $this->setOption($name, $arguments[0] ?? null);
         }
 
         throw new \BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $name));

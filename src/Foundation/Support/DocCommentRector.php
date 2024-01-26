@@ -37,6 +37,7 @@ class DocCommentRector extends AbstractRector implements ConfigurableRectorInter
     ];
 
     private DocBlockUpdater $docBlockUpdater;
+
     private PhpDocInfoFactory $phpDocInfoFactory;
 
     public function __construct(DocBlockUpdater $docBlockUpdater, PhpDocInfoFactory $phpDocInfoFactory)
@@ -91,29 +92,31 @@ class DocCommentRector extends AbstractRector implements ConfigurableRectorInter
             return null;
         }
 
-        $className = $node->getAttribute('scope')->getClassReflection()->getName();
-        if (! is_subclass_of($className, Message::class)) {
+        /** @var class-string $class */
+        $class = $node->getAttribute('scope')->getClassReflection()->getName();
+        if (! is_subclass_of($class, Message::class)) {
             return null;
         }
 
         $phpDocInfo = $this->phpDocInfoFactory->createFromNodeOrEmpty($node);
-        $defined = (new \ReflectionClass($className))->getDefaultProperties()['defined'] ?? [];
+        $defined = (new \ReflectionClass($class))->getDefaultProperties()['defined'] ?? [];
         foreach ($defined as $property) {
-            $phpDocInfo->addPhpDocTagNode($this->createMethodPhpDocTagNode($property));
+            $phpDocInfo->addPhpDocTagNode($this->createMethodPhpDocTagNode($class, $property));
         }
+
         $this->docBlockUpdater->updateRefactoredNodeWithPhpDocInfo($node);
 
         return $node;
     }
 
-    private function createMethodPhpDocTagNode(string $defined): PhpDocTagNode
+    private function createMethodPhpDocTagNode(string $class, string $defined): PhpDocTagNode
     {
-        return new PhpDocTagNode('@method', new GenericTagValueNode("self {$defined}(\${$defined})"));
+        return new PhpDocTagNode('@method', new GenericTagValueNode("\\$class $defined(\$$defined)"));
     }
 
     public function configure(array $configuration): void
     {
         Assert::allStringNotEmpty($configuration);
-        $this->except = [...$this->except, ...$configuration];
+        $this->except = array_merge($this->except, $configuration);
     }
 }

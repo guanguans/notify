@@ -40,8 +40,8 @@ return static function (RectorConfig $rectorConfig): void {
     define('MHASH_XXH128', 2 << 3);
     $rectorConfig->importNames(false, false);
     $rectorConfig->importShortClasses(false);
-    // $rectorConfig->disableParallel();
     $rectorConfig->parallel(240);
+    // $rectorConfig->disableParallel();
     $rectorConfig->phpstanConfig(__DIR__.'/phpstan.neon');
     $rectorConfig->phpVersion(PhpVersion::PHP_74);
     // $rectorConfig->cacheClass(FileCacheStorage::class);
@@ -108,29 +108,29 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->sets([
-        DowngradeLevelSetList::DOWN_TO_PHP_74,
-        LevelSetList::UP_TO_PHP_74,
-        // SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
-        SetList::CODE_QUALITY,
-        SetList::CODING_STYLE,
-        SetList::DEAD_CODE,
-        // SetList::STRICT_BOOLEANS,
-        // SetList::GMAGICK_TO_IMAGICK,
-        // SetList::MYSQL_TO_MYSQLI,
-        SetList::NAMING,
-        // SetList::PRIVATIZATION,
-        // SetList::PSR_4,
-        SetList::TYPE_DECLARATION,
-        SetList::EARLY_RETURN,
-        SetList::INSTANCEOF,
-
-        PHPUnitSetList::PHPUNIT_90,
-        PHPUnitSetList::PHPUNIT_CODE_QUALITY,
-        PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
+        // DowngradeLevelSetList::DOWN_TO_PHP_74,
+        // LevelSetList::UP_TO_PHP_74,
+        // // SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
+        // SetList::CODE_QUALITY,
+        // SetList::CODING_STYLE,
+        // SetList::DEAD_CODE,
+        // // SetList::STRICT_BOOLEANS,
+        // // SetList::GMAGICK_TO_IMAGICK,
+        // // SetList::MYSQL_TO_MYSQLI,
+        // SetList::NAMING,
+        // // SetList::PRIVATIZATION,
+        // // SetList::PSR_4,
+        // SetList::TYPE_DECLARATION,
+        // SetList::EARLY_RETURN,
+        // SetList::INSTANCEOF,
+        //
+        // PHPUnitSetList::PHPUNIT_90,
+        // PHPUnitSetList::PHPUNIT_CODE_QUALITY,
+        // PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
     ]);
 
     $rectorConfig->rules([
-        InlineConstructorDefaultToPropertyRector::class,
+        // InlineConstructorDefaultToPropertyRector::class,
         Guanguans\Notify\Foundation\Support\DocCommentRector::class,
     ]);
 };
