@@ -12,6 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Chanify\Messages;
 
+/**
+ * @method \Guanguans\Notify\Chanify\Messages\LinkMessage link($link)
+ * @method \Guanguans\Notify\Chanify\Messages\LinkMessage sound($sound)
+ * @method \Guanguans\Notify\Chanify\Messages\LinkMessage priority($priority)
+ */
 class LinkMessage extends Message
 {
     protected array $defined = [

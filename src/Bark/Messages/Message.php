@@ -16,6 +16,20 @@ use Guanguans\Notify\Bark\UriTemplateCredential;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
+/**
+ * @method \Guanguans\Notify\Bark\Messages\Message title($title)
+ * @method \Guanguans\Notify\Bark\Messages\Message body($body)
+ * @method \Guanguans\Notify\Bark\Messages\Message copy($copy)
+ * @method \Guanguans\Notify\Bark\Messages\Message url($url)
+ * @method \Guanguans\Notify\Bark\Messages\Message sound($sound)
+ * @method \Guanguans\Notify\Bark\Messages\Message icon($icon)
+ * @method \Guanguans\Notify\Bark\Messages\Message group($group)
+ * @method \Guanguans\Notify\Bark\Messages\Message level($level)
+ * @method \Guanguans\Notify\Bark\Messages\Message badge($badge)
+ * @method \Guanguans\Notify\Bark\Messages\Message isArchive($isArchive)
+ * @method \Guanguans\Notify\Bark\Messages\Message autoCopy($autoCopy)
+ * @method \Guanguans\Notify\Bark\Messages\Message automaticallyCopy($automaticallyCopy)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

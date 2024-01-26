@@ -14,6 +14,11 @@ namespace Guanguans\Notify\WeWorkGroupBot\Messages;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @method \Guanguans\Notify\WeWorkGroupBot\Messages\TextMessage content($content)
+ * @method \Guanguans\Notify\WeWorkGroupBot\Messages\TextMessage mentionedList($mentionedList)
+ * @method \Guanguans\Notify\WeWorkGroupBot\Messages\TextMessage mentionedMobileList($mentionedMobileList)
+ */
 class TextMessage extends Message
 {
     /**

@@ -16,6 +16,18 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message correlationId($correlationId)
+ * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message expectedActors($expectedActors)
+ * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message originator($originator)
+ * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message summary($summary)
+ * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message themeColor($themeColor)
+ * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message hideOriginalBody($hideOriginalBody)
+ * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message title($title)
+ * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message text($text)
+ * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message sections($sections)
+ * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message potentialAction($potentialAction)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

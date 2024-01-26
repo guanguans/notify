@@ -16,6 +16,10 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\YiFengChuanHua\UriTemplateCredential;
 
+/**
+ * @method \Guanguans\Notify\YiFengChuanHua\Messages\Message head($head)
+ * @method \Guanguans\Notify\YiFengChuanHua\Messages\Message body($body)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

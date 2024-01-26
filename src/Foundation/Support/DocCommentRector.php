@@ -98,7 +98,9 @@ class DocCommentRector extends AbstractRector implements ConfigurableRectorInter
             return null;
         }
 
+        $node->setAttribute('comments', null);
         $phpDocInfo = $this->phpDocInfoFactory->createFromNodeOrEmpty($node);
+
         $defined = (new \ReflectionClass($class))->getDefaultProperties()['defined'] ?? [];
         foreach ($defined as $property) {
             $phpDocInfo->addPhpDocTagNode($this->createMethodPhpDocTagNode($class, $property));

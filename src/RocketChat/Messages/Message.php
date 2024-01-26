@@ -16,6 +16,12 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @method \Guanguans\Notify\RocketChat\Messages\Message alias($alias)
+ * @method \Guanguans\Notify\RocketChat\Messages\Message emoji($emoji)
+ * @method \Guanguans\Notify\RocketChat\Messages\Message text($text)
+ * @method \Guanguans\Notify\RocketChat\Messages\Message attachments($attachments)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

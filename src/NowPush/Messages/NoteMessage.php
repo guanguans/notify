@@ -12,6 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\NowPush\Messages;
 
+/**
+ * @method \Guanguans\Notify\NowPush\Messages\NoteMessage messageType($messageType)
+ * @method \Guanguans\Notify\NowPush\Messages\NoteMessage note($note)
+ * @method \Guanguans\Notify\NowPush\Messages\NoteMessage deviceType($deviceType)
+ * @method \Guanguans\Notify\NowPush\Messages\NoteMessage url($url)
+ */
 class NoteMessage extends Message
 {
     /**

@@ -15,6 +15,20 @@ namespace Guanguans\Notify\Mattermost\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
+/**
+ * @method \Guanguans\Notify\Mattermost\Messages\Message channelId($channelId)
+ * @method \Guanguans\Notify\Mattermost\Messages\Message message($message)
+ * @method \Guanguans\Notify\Mattermost\Messages\Message fileIds($fileIds)
+ * @method \Guanguans\Notify\Mattermost\Messages\Message createAt($createAt)
+ * @method \Guanguans\Notify\Mattermost\Messages\Message editAt($editAt)
+ * @method \Guanguans\Notify\Mattermost\Messages\Message isPinned($isPinned)
+ * @method \Guanguans\Notify\Mattermost\Messages\Message rootId($rootId)
+ * @method \Guanguans\Notify\Mattermost\Messages\Message originalId($originalId)
+ * @method \Guanguans\Notify\Mattermost\Messages\Message type($type)
+ * @method \Guanguans\Notify\Mattermost\Messages\Message props($props)
+ * @method \Guanguans\Notify\Mattermost\Messages\Message pendingPostId($pendingPostId)
+ * @method \Guanguans\Notify\Mattermost\Messages\Message participants($participants)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

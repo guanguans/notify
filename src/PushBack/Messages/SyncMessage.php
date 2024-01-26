@@ -15,6 +15,14 @@ namespace Guanguans\Notify\PushBack\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
+/**
+ * @method \Guanguans\Notify\PushBack\Messages\SyncMessage id($id)
+ * @method \Guanguans\Notify\PushBack\Messages\SyncMessage title($title)
+ * @method \Guanguans\Notify\PushBack\Messages\SyncMessage body($body)
+ * @method \Guanguans\Notify\PushBack\Messages\SyncMessage action1($action1)
+ * @method \Guanguans\Notify\PushBack\Messages\SyncMessage action2($action2)
+ * @method \Guanguans\Notify\PushBack\Messages\SyncMessage reply($reply)
+ */
 class SyncMessage extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

@@ -14,6 +14,9 @@ namespace Guanguans\Notify\WeWorkGroupBot\Messages;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @method \Guanguans\Notify\WeWorkGroupBot\Messages\NewsMessage articles($articles)
+ */
 class NewsMessage extends Message
 {
     /**

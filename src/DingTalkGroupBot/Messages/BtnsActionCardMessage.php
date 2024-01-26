@@ -14,6 +14,13 @@ namespace Guanguans\Notify\DingTalkGroupBot\Messages;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\BtnsActionCardMessage title($title)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\BtnsActionCardMessage text($text)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\BtnsActionCardMessage hideAvatar($hideAvatar)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\BtnsActionCardMessage btnOrientation($btnOrientation)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\BtnsActionCardMessage btns($btns)
+ */
 class BtnsActionCardMessage extends Message
 {
     protected array $defined = [

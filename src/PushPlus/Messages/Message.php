@@ -16,6 +16,13 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\PushPlus\UriTemplateCredential;
 
+/**
+ * @method \Guanguans\Notify\PushPlus\Messages\Message title($title)
+ * @method \Guanguans\Notify\PushPlus\Messages\Message content($content)
+ * @method \Guanguans\Notify\PushPlus\Messages\Message template($template)
+ * @method \Guanguans\Notify\PushPlus\Messages\Message topic($topic)
+ * @method \Guanguans\Notify\PushPlus\Messages\Message token($token)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

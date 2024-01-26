@@ -15,7 +15,8 @@ namespace Guanguans\Notify\XiZhi\Messages;
 use Guanguans\Notify\XiZhi\Credential;
 
 /**
- * @method self title($title)
+ * @method \Guanguans\Notify\XiZhi\Messages\ChannelMessage title($title)
+ * @method \Guanguans\Notify\XiZhi\Messages\ChannelMessage content($content)
  */
 class ChannelMessage extends Message
 {

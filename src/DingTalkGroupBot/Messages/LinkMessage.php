@@ -12,6 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\DingTalkGroupBot\Messages;
 
+/**
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\LinkMessage title($title)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\LinkMessage text($text)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\LinkMessage messageUrl($messageUrl)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\LinkMessage picUrl($picUrl)
+ */
 class LinkMessage extends Message
 {
     protected array $defined = [

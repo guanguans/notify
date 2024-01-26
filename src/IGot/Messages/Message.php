@@ -16,6 +16,15 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\IGot\UriTemplateCredential;
 
+/**
+ * @method \Guanguans\Notify\IGot\Messages\Message title($title)
+ * @method \Guanguans\Notify\IGot\Messages\Message content($content)
+ * @method \Guanguans\Notify\IGot\Messages\Message url($url)
+ * @method \Guanguans\Notify\IGot\Messages\Message automaticallyCopy($automaticallyCopy)
+ * @method \Guanguans\Notify\IGot\Messages\Message urgent($urgent)
+ * @method \Guanguans\Notify\IGot\Messages\Message copy($copy)
+ * @method \Guanguans\Notify\IGot\Messages\Message detail($detail)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

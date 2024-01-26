@@ -15,6 +15,9 @@ namespace Guanguans\Notify\Gitter\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
+/**
+ * @method \Guanguans\Notify\Gitter\Messages\Message text($text)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

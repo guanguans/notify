@@ -16,6 +16,13 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @method \Guanguans\Notify\Discord\Messages\Message username($username)
+ * @method \Guanguans\Notify\Discord\Messages\Message avatarUrl($avatarUrl)
+ * @method \Guanguans\Notify\Discord\Messages\Message content($content)
+ * @method \Guanguans\Notify\Discord\Messages\Message tts($tts)
+ * @method \Guanguans\Notify\Discord\Messages\Message embeds($embeds)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

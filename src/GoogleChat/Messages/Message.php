@@ -16,6 +16,23 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\GoogleChat\Credential;
 
+/**
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message text($text)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message cards($cards)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message name($name)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message sender($sender)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message createTime($createTime)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message lastUpdateTime($lastUpdateTime)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message previewText($previewText)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message annotations($annotations)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message thread($thread)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message space($space)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message fallbackText($fallbackText)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message actionResponse($actionResponse)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message argumentText($argumentText)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message slashCommand($slashCommand)
+ * @method \Guanguans\Notify\GoogleChat\Messages\Message attachment($attachment)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

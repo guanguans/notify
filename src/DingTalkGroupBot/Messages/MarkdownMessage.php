@@ -14,6 +14,13 @@ namespace Guanguans\Notify\DingTalkGroupBot\Messages;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\MarkdownMessage title($title)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\MarkdownMessage text($text)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\MarkdownMessage atMobiles($atMobiles)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\MarkdownMessage atDingtalkIds($atDingtalkIds)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\MarkdownMessage isAtAll($isAtAll)
+ */
 class MarkdownMessage extends Message
 {
     protected array $defined = [

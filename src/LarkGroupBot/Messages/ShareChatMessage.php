@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot\Messages;
 
+/**
+ * @method \Guanguans\Notify\LarkGroupBot\Messages\ShareChatMessage shareChatId($shareChatId)
+ */
 class ShareChatMessage extends Message
 {
     protected array $defined = [

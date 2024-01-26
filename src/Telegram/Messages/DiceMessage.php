@@ -12,6 +12,15 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
+/**
+ * @method \Guanguans\Notify\Telegram\Messages\DiceMessage chatId($chatId)
+ * @method \Guanguans\Notify\Telegram\Messages\DiceMessage emoji($emoji)
+ * @method \Guanguans\Notify\Telegram\Messages\DiceMessage disableNotification($disableNotification)
+ * @method \Guanguans\Notify\Telegram\Messages\DiceMessage protectContent($protectContent)
+ * @method \Guanguans\Notify\Telegram\Messages\DiceMessage replyToMessageId($replyToMessageId)
+ * @method \Guanguans\Notify\Telegram\Messages\DiceMessage allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method \Guanguans\Notify\Telegram\Messages\DiceMessage replyMarkup($replyMarkup)
+ */
 class DiceMessage extends Message
 {
     /**

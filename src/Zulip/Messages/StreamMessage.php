@@ -12,6 +12,14 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Zulip\Messages;
 
+/**
+ * @method \Guanguans\Notify\Zulip\Messages\StreamMessage type($type)
+ * @method \Guanguans\Notify\Zulip\Messages\StreamMessage to($to)
+ * @method \Guanguans\Notify\Zulip\Messages\StreamMessage content($content)
+ * @method \Guanguans\Notify\Zulip\Messages\StreamMessage topic($topic)
+ * @method \Guanguans\Notify\Zulip\Messages\StreamMessage queueId($queueId)
+ * @method \Guanguans\Notify\Zulip\Messages\StreamMessage localId($localId)
+ */
 class StreamMessage extends Message
 {
     /**

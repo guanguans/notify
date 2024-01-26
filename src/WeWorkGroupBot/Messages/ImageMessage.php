@@ -14,6 +14,9 @@ namespace Guanguans\Notify\WeWorkGroupBot\Messages;
 
 use GuzzleHttp\RequestOptions;
 
+/**
+ * @method \Guanguans\Notify\WeWorkGroupBot\Messages\ImageMessage imagePath($imagePath)
+ */
 class ImageMessage extends Message
 {
     /**

@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot\Messages;
 
+/**
+ * @method \Guanguans\Notify\LarkGroupBot\Messages\ImageMessage imageKey($imageKey)
+ */
 class ImageMessage extends Message
 {
     protected array $defined = [

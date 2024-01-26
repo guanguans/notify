@@ -12,6 +12,19 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
+/**
+ * @method \Guanguans\Notify\Telegram\Messages\PhotoMessage chatId($chatId)
+ * @method \Guanguans\Notify\Telegram\Messages\PhotoMessage photo($photo)
+ * @method \Guanguans\Notify\Telegram\Messages\PhotoMessage caption($caption)
+ * @method \Guanguans\Notify\Telegram\Messages\PhotoMessage parseMode($parseMode)
+ * @method \Guanguans\Notify\Telegram\Messages\PhotoMessage captionEntities($captionEntities)
+ * @method \Guanguans\Notify\Telegram\Messages\PhotoMessage disableWebPagePreview($disableWebPagePreview)
+ * @method \Guanguans\Notify\Telegram\Messages\PhotoMessage disableNotification($disableNotification)
+ * @method \Guanguans\Notify\Telegram\Messages\PhotoMessage protectContent($protectContent)
+ * @method \Guanguans\Notify\Telegram\Messages\PhotoMessage replyToMessageId($replyToMessageId)
+ * @method \Guanguans\Notify\Telegram\Messages\PhotoMessage allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method \Guanguans\Notify\Telegram\Messages\PhotoMessage replyMarkup($replyMarkup)
+ */
 class PhotoMessage extends Message
 {
     /**

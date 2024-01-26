@@ -18,6 +18,22 @@ use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * @method \Guanguans\Notify\Pushover\Messages\Message message($message)
+ * @method \Guanguans\Notify\Pushover\Messages\Message title($title)
+ * @method \Guanguans\Notify\Pushover\Messages\Message timestamp($timestamp)
+ * @method \Guanguans\Notify\Pushover\Messages\Message priority($priority)
+ * @method \Guanguans\Notify\Pushover\Messages\Message url($url)
+ * @method \Guanguans\Notify\Pushover\Messages\Message urlTitle($urlTitle)
+ * @method \Guanguans\Notify\Pushover\Messages\Message sound($sound)
+ * @method \Guanguans\Notify\Pushover\Messages\Message retry($retry)
+ * @method \Guanguans\Notify\Pushover\Messages\Message expire($expire)
+ * @method \Guanguans\Notify\Pushover\Messages\Message html($html)
+ * @method \Guanguans\Notify\Pushover\Messages\Message monospace($monospace)
+ * @method \Guanguans\Notify\Pushover\Messages\Message callback($callback)
+ * @method \Guanguans\Notify\Pushover\Messages\Message device($device)
+ * @method \Guanguans\Notify\Pushover\Messages\Message attachment($attachment)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;

@@ -12,6 +12,22 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
+/**
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage chatId($chatId)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage audio($audio)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage caption($caption)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage parseMode($parseMode)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage captionEntities($captionEntities)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage duration($duration)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage performer($performer)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage title($title)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage thumb($thumb)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage disableNotification($disableNotification)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage protectContent($protectContent)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage replyToMessageId($replyToMessageId)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method \Guanguans\Notify\Telegram\Messages\AudioMessage replyMarkup($replyMarkup)
+ */
 class AudioMessage extends Message
 {
     /**

@@ -12,6 +12,13 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\DingTalkGroupBot\Messages;
 
+/**
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\SingleActionCardMessage title($title)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\SingleActionCardMessage text($text)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\SingleActionCardMessage singleTitle($singleTitle)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\SingleActionCardMessage singleURL($singleURL)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\SingleActionCardMessage btnOrientation($btnOrientation)
+ */
 class SingleActionCardMessage extends Message
 {
     protected array $defined = [

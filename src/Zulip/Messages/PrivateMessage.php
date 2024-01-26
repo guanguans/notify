@@ -12,6 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Zulip\Messages;
 
+/**
+ * @method \Guanguans\Notify\Zulip\Messages\PrivateMessage type($type)
+ * @method \Guanguans\Notify\Zulip\Messages\PrivateMessage to($to)
+ * @method \Guanguans\Notify\Zulip\Messages\PrivateMessage content($content)
+ */
 class PrivateMessage extends Message
 {
     public function __construct(string $to, string $content)
