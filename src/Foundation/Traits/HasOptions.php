@@ -148,4 +148,13 @@ trait HasOptions
     {
         unset($this->options[$offset]);
     }
+
+    public function __call($name, $arguments)
+    {
+        if (in_array($name, $this->defined ?? [], true)) {
+            $this->setOption(...$arguments);
+        }
+
+        throw new \BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $name));
+    }
 }
