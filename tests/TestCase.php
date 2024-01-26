@@ -24,7 +24,7 @@ use phpmock\phpunit\PHPMock;
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    use ArraySubsetAsserts;
+    // use ArraySubsetAsserts;
     use PHPMock;
 
     /**

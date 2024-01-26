@@ -14,6 +14,9 @@ namespace Guanguans\Notify\XiZhi\Messages;
 
 use Guanguans\Notify\XiZhi\Credential;
 
+/**
+ * @method self title($title)
+ */
 class ChannelMessage extends Message
 {
     public function httpUri(): string

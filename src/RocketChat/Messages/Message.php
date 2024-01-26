@@ -38,10 +38,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'attachments' => ['array'],
     ];
 
-    /**
-     * @var array
-     */
-    protected $options = [
+    protected array $options = [
         'attachments' => [],
     ];
 
