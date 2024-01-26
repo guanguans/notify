@@ -154,11 +154,15 @@ trait HasOptions
     {
         $defined = $this->defined ?? [];
 
-        foreach ([null, 'snake'] as $method) {
-            $name = $method ? Str::{$method}($name) : $name;
+        foreach ([null, 'snake', 'pascal'] as $case) {
+            $casedName = $case ? Str::{$case}($name) : $name;
 
-            if (in_array($name, $defined, true)) {
-                return $this->setOption($name, $arguments[0] ?? null);
+            if (in_array($casedName, $defined, true)) {
+                if (empty($arguments)) {
+                    throw new \InvalidArgumentException(sprintf('Method %s::%s requires an argument', static::class, $name));
+                }
+
+                return $this->setOption($casedName, $arguments[0]);
             }
         }
 

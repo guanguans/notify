@@ -42,6 +42,18 @@ class Str
      *
      * @return string
      */
+    public static function pascal($value)
+    {
+        return ucfirst(static::camel($value));
+    }
+
+    /**
+     * Convert a value to camel case.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
     public static function camel($value)
     {
         if (isset(static::$camelCache[$value])) {
