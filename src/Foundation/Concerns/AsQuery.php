@@ -23,7 +23,7 @@ trait AsQuery
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::QUERY => $this->options,
+            RequestOptions::QUERY => $this->getOptions(),
         ];
     }
 }

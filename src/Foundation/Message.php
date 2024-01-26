@@ -20,7 +20,7 @@ abstract class Message implements Contracts\Message, \ArrayAccess
     use Makeable;
     use HasOptions;
 
-    public function __construct(array $options)
+    public function __construct(array $options = [])
     {
         $this->setOptions($options);
     }

@@ -87,12 +87,7 @@ trait HasOptions
 
     public function setOptions(array $options): self
     {
-        $this->options = array_replace_recursive(
-            $this->options,
-            $this->configureAndResolveOptions($options, function (OptionsResolver $optionsResolver): void {
-                $this->configureOptionsResolver($this->preConfigureOptionsResolver($optionsResolver));
-            })
-        );
+        $this->options = array_replace_recursive($this->options, $options);
 
         return $this;
     }
@@ -104,12 +99,14 @@ trait HasOptions
 
     public function getOption(string $option, $default = null)
     {
-        return $this->options[$option] ?? $default;
+        return $this->getOptions()[$option] ?? $default;
     }
 
     public function getOptions(): array
     {
-        return $this->options;
+        return $this->options = $this->configureAndResolveOptions($this->options, function (OptionsResolver $optionsResolver): void {
+            $this->configureOptionsResolver($this->preConfigureOptionsResolver($optionsResolver));
+        });
     }
 
     public function __get($option)
