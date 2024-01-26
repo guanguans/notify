@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation\Traits;
 
 use Guanguans\Notify\Foundation\Middleware\ApplyCredentialToRequest;
+use Guanguans\Notify\Foundation\Middleware\EnsureResponse;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 
@@ -71,6 +72,10 @@ trait HasHttpClient
     {
         if (! $this->handlerStack instanceof HandlerStack) {
             $this->handlerStack = HandlerStack::create();
+            $this->handlerStack->push(
+                new EnsureResponse(),
+                EnsureResponse::name()
+            );
         }
 
         return $this->handlerStack = $this->ensureWithApplyCredentialToRequest($this->handlerStack);

@@ -39,6 +39,8 @@ class Client implements Contracts\Client
     }
 
     /**
+     * @return ResponseInterface|Response
+     *
      * @throws GuzzleException
      *
      * @noinspection PhpSignatureMismatchDuringInheritanceInspection
