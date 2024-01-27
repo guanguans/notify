@@ -16,13 +16,13 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method \Guanguans\Notify\Telegram\Messages\TextMessage chatId($chatId)
  * @method \Guanguans\Notify\Telegram\Messages\TextMessage text($text)
  * @method \Guanguans\Notify\Telegram\Messages\TextMessage parseMode($parseMode)
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage entities($entities)
+ * @method \Guanguans\Notify\Telegram\Messages\TextMessage entities(array $entities)
  * @method \Guanguans\Notify\Telegram\Messages\TextMessage disableWebPagePreview($disableWebPagePreview)
  * @method \Guanguans\Notify\Telegram\Messages\TextMessage disableNotification($disableNotification)
  * @method \Guanguans\Notify\Telegram\Messages\TextMessage protectContent($protectContent)
  * @method \Guanguans\Notify\Telegram\Messages\TextMessage replyToMessageId($replyToMessageId)
  * @method \Guanguans\Notify\Telegram\Messages\TextMessage allowSendingWithoutReply($allowSendingWithoutReply)
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage replyMarkup($replyMarkup)
+ * @method \Guanguans\Notify\Telegram\Messages\TextMessage replyMarkup(array $replyMarkup)
  */
 class TextMessage extends Message
 {

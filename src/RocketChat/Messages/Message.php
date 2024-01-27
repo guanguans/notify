@@ -20,7 +20,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method \Guanguans\Notify\RocketChat\Messages\Message alias($alias)
  * @method \Guanguans\Notify\RocketChat\Messages\Message emoji($emoji)
  * @method \Guanguans\Notify\RocketChat\Messages\Message text($text)
- * @method \Guanguans\Notify\RocketChat\Messages\Message attachments($attachments)
+ * @method \Guanguans\Notify\RocketChat\Messages\Message attachments(array $attachments)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

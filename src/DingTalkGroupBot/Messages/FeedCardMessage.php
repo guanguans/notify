@@ -15,7 +15,7 @@ namespace Guanguans\Notify\DingTalkGroupBot\Messages;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method \Guanguans\Notify\DingTalkGroupBot\Messages\FeedCardMessage links($links)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\FeedCardMessage links(array $links)
  */
 class FeedCardMessage extends Message
 {

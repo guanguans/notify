@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\LarkGroupBot\Messages;
 
 /**
- * @method \Guanguans\Notify\LarkGroupBot\Messages\CardMessage card($card)
+ * @method \Guanguans\Notify\LarkGroupBot\Messages\CardMessage card(array $card)
  */
 class CardMessage extends Message
 {

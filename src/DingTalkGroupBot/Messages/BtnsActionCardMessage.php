@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method \Guanguans\Notify\DingTalkGroupBot\Messages\BtnsActionCardMessage text($text)
  * @method \Guanguans\Notify\DingTalkGroupBot\Messages\BtnsActionCardMessage hideAvatar($hideAvatar)
  * @method \Guanguans\Notify\DingTalkGroupBot\Messages\BtnsActionCardMessage btnOrientation($btnOrientation)
- * @method \Guanguans\Notify\DingTalkGroupBot\Messages\BtnsActionCardMessage btns($btns)
+ * @method \Guanguans\Notify\DingTalkGroupBot\Messages\BtnsActionCardMessage btns(array $btns)
  */
 class BtnsActionCardMessage extends Message
 {

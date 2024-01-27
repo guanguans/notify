@@ -23,7 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method \Guanguans\Notify\Slack\Messages\Message iconEmoji($iconEmoji)
  * @method \Guanguans\Notify\Slack\Messages\Message iconUrl($iconUrl)
  * @method \Guanguans\Notify\Slack\Messages\Message unfurlLinks($unfurlLinks)
- * @method \Guanguans\Notify\Slack\Messages\Message attachments($attachments)
+ * @method \Guanguans\Notify\Slack\Messages\Message attachments(array $attachments)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

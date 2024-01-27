@@ -23,7 +23,7 @@ use Guanguans\Notify\IGot\UriTemplateCredential;
  * @method \Guanguans\Notify\IGot\Messages\Message automaticallyCopy($automaticallyCopy)
  * @method \Guanguans\Notify\IGot\Messages\Message urgent($urgent)
  * @method \Guanguans\Notify\IGot\Messages\Message copy($copy)
- * @method \Guanguans\Notify\IGot\Messages\Message detail($detail)
+ * @method \Guanguans\Notify\IGot\Messages\Message detail(array $detail)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

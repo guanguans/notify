@@ -10,6 +10,7 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+use Guanguans\Notify\Foundation\Support\UpdateHasOptionsDocCommentRector;
 use Rector\Caching\ValueObject\Storage\FileCacheStorage;
 use Rector\CodeQuality\Rector\Array_\CallableThisArrayToAnonymousFunctionRector;
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
@@ -131,6 +132,6 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->rules([
         // InlineConstructorDefaultToPropertyRector::class,
-        Guanguans\Notify\Foundation\Support\DocCommentRector::class,
+        UpdateHasOptionsDocCommentRector::class,
     ]);
 };
