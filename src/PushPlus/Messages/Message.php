@@ -14,7 +14,7 @@ namespace Guanguans\Notify\PushPlus\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\PushPlus\UriTemplateCredential;
+use Guanguans\Notify\PushPlus\Credential;
 
 /**
  * @method \Guanguans\Notify\PushPlus\Messages\Message title($title)
@@ -55,6 +55,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://www.pushplus.plus/send?token=%s', UriTemplateCredential::TEMPLATE_TOKEN);
+        return sprintf('https://www.pushplus.plus/send?token=%s', Credential::TEMPLATE_TOKEN);
     }
 }

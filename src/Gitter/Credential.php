@@ -10,8 +10,8 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Chanify;
+namespace Guanguans\Notify\Gitter;
 
-use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
+use Guanguans\Notify\Foundation\Credentials\TokenAuthCredential;
 
-class UriTemplateCredential extends TokenUriTemplateCredential {}
+class Credential extends TokenAuthCredential {}

@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Bark\Messages;
 
-use Guanguans\Notify\Bark\UriTemplateCredential;
+use Guanguans\Notify\Bark\Credential;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
@@ -70,6 +70,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://api.day.app/%s', UriTemplateCredential::TEMPLATE_TOKEN);
+        return sprintf('https://api.day.app/%s', Credential::TEMPLATE_TOKEN);
     }
 }

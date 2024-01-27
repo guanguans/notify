@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Chanify\Messages;
 
-use Guanguans\Notify\Chanify\UriTemplateCredential;
+use Guanguans\Notify\Chanify\Credential;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
@@ -26,7 +26,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     public function __construct(array $options = [])
     {
         parent::__construct($options);
-        $this->baseUri = sprintf('https://api.chanify.net/v1/sender/%s', UriTemplateCredential::TEMPLATE_TOKEN);
+        $this->baseUri = sprintf('https://api.chanify.net/v1/sender/%s', Credential::TEMPLATE_TOKEN);
     }
 
     public function httpUri()

@@ -15,7 +15,7 @@ namespace Guanguans\Notify\LarkGroupBot;
 use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 use Psr\Http\Message\RequestInterface;
 
-class UriTemplateCredential extends TokenUriTemplateCredential
+class Credential extends TokenUriTemplateCredential
 {
     private ?string $secret;
 

@@ -15,12 +15,12 @@ namespace Guanguans\Notify\Bark;
 class Client extends \Guanguans\Notify\Foundation\Client
 {
     /**
-     * @param \Guanguans\Notify\Bark\UriTemplateCredential|string $credential
+     * @param \Guanguans\Notify\Bark\Credential|string $credential
      */
     public function __construct($credential, ?\GuzzleHttp\Client $httpClient = null)
     {
-        if (! $credential instanceof UriTemplateCredential) {
-            $credential = new UriTemplateCredential($credential);
+        if (! $credential instanceof Credential) {
+            $credential = new Credential($credential);
         }
 
         parent::__construct($credential, $httpClient);

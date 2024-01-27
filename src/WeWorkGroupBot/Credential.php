@@ -14,4 +14,4 @@ namespace Guanguans\Notify\WeWorkGroupBot;
 
 use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
-class UriTemplateCredential extends TokenUriTemplateCredential {}
+class Credential extends TokenUriTemplateCredential {}

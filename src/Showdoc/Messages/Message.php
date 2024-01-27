@@ -14,7 +14,7 @@ namespace Guanguans\Notify\Showdoc\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Showdoc\UriTemplateCredential;
+use Guanguans\Notify\Showdoc\Credential;
 
 /**
  * @method \Guanguans\Notify\Showdoc\Messages\Message title($title)
@@ -43,6 +43,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://push.showdoc.com.cn/server/api/push/%s', UriTemplateCredential::TEMPLATE_TOKEN);
+        return sprintf('https://push.showdoc.com.cn/server/api/push/%s', Credential::TEMPLATE_TOKEN);
     }
 }
