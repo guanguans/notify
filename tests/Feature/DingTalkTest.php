@@ -21,6 +21,11 @@ use Guanguans\Notify\Messages\DingTalk\SingleActionCardMessage;
 use Guanguans\Notify\Messages\DingTalk\TextMessage;
 use Guanguans\NotifyTests\TestCase;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class DingTalkTest extends TestCase
 {
     public function testText(): void

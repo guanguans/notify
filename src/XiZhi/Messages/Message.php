@@ -21,15 +21,15 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
  */
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
     use AsJson;
+    use AsPost;
 
     protected array $defined = [
         'title',
         'content',
     ];
 
-    public function __construct(string $title, string $content = null)
+    public function __construct(string $title, ?string $content = null)
     {
         parent::__construct(['title' => $title, 'content' => $content]);
     }

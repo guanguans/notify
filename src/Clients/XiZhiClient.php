@@ -14,34 +14,31 @@ namespace Guanguans\Notify\Clients;
 
 class XiZhiClient extends Client
 {
-    /**
-     * @var array<string, string>
-     */
     public const REQUEST_URL_TEMPLATE = [
         'single' => 'https://xizhi.qqoq.net/%s.send',
         'channel' => 'https://xizhi.qqoq.net/%s.channel',
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'token',
         'message',
         'type',
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $options = [
+    protected array $options = [
         'type' => 'single',
     ];
 
     /**
-     * @var \string[][]
+     * @var array<array<\string>>
      */
-    protected $allowedValues = [
+    protected array $allowedValues = [
         'type' => ['single', 'channel'],
     ];
 

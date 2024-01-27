@@ -27,13 +27,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
     use AsJson;
+    use AsPost;
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'text',
         'channel',
         'username',
@@ -51,22 +51,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'attachments' => [],
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'unfurl_links' => 'bool',
         'attachments' => 'array',
     ];
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('attachments', static function (OptionsResolver $optionsResolver, array $value): array {
-                return isset($value[0]) ? $value : [$value];
-            });
-        });
-    }
 
     public function setAttachments(array $attachments): self
     {
@@ -105,5 +93,12 @@ class Message extends \Guanguans\Notify\Foundation\Message
     public function httpUri()
     {
         return 'webhook_url';
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('attachments', static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]);
+        });
     }
 }

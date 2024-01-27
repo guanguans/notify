@@ -18,9 +18,9 @@ namespace Guanguans\Notify\Clients;
 class DiscordClient extends Client
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'webhook_url',
         'message',
     ];

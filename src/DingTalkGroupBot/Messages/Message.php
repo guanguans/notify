@@ -19,8 +19,6 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;
 
-    abstract protected function type(): string;
-
     public function httpUri(): string
     {
         return 'https://oapi.dingtalk.com/robot/send';
@@ -36,4 +34,6 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
             ],
         ];
     }
+
+    abstract protected function type(): string;
 }

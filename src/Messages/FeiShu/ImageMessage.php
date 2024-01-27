@@ -16,15 +16,12 @@ use Guanguans\Notify\Messages\Message;
 
 class ImageMessage extends Message
 {
-    /**
-     * @var string
-     */
-    protected $type = 'image';
+    protected string $type = 'image';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'image_key',
     ];
 
@@ -36,7 +33,7 @@ class ImageMessage extends Message
     }
 
     /**
-     * @return array{msg_type: mixed, content: mixed[]}
+     * @return array{msg_type: mixed, content: array<mixed>}
      */
     public function transformToRequestParams(): array
     {

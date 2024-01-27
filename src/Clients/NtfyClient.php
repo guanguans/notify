@@ -23,9 +23,9 @@ class NtfyClient extends Client
     protected $requestMethod = 'postJson';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'message',
         'base_uri',
         'username',
@@ -33,9 +33,9 @@ class NtfyClient extends Client
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $options = [
+    protected array $options = [
         'base_uri' => 'https://ntfy.sh',
     ];
 

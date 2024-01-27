@@ -25,8 +25,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
     use AsJson;
+    use AsPost;
 
     protected array $defined = [
         'username',
@@ -44,21 +44,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'tts' => 'bool',
         'embeds' => 'array',
     ];
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(
-            parent::configureOptionsResolver($optionsResolver),
-            static function (OptionsResolver $resolver): void {
-                $resolver->setNormalizer(
-                    'embeds',
-                    static function (OptionsResolver $optionsResolver, array $value): array {
-                        return isset($value[0]) ? $value : [$value];
-                    }
-                );
-            }
-        );
-    }
 
     public function setEmbeds(array $embeds): self
     {
@@ -103,17 +88,28 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ->setAllowedTypes('thumbnail', 'array')
                     ->setAllowedTypes('author', 'array')
                     ->setAllowedTypes('fields', 'array')
-                    ->setNormalizer('color', static function (OptionsResolver $optionsResolver, $value) {
-                        return is_int($value) ? $value : hexdec($value);
-                    });
+                    ->setNormalizer('color', static fn (OptionsResolver $optionsResolver, $value) => \is_int($value) ? $value : hexdec($value));
             }
         );
 
         return $this;
     }
 
-    public function httpUri()
+    public function httpUri(): void
     {
         // TODO: Implement httpUri() method.
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    {
+        return tap(
+            parent::configureOptionsResolver($optionsResolver),
+            static function (OptionsResolver $resolver): void {
+                $resolver->setNormalizer(
+                    'embeds',
+                    static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]
+                );
+            }
+        );
     }
 }

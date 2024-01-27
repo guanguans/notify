@@ -25,21 +25,35 @@ use Psr\Http\Message\ResponseInterface;
 class Client implements Contracts\Client
 {
     use Conditionable;
-    use Tappable;
     use HasHttpClient, Macroable {
         HasHttpClient::__call as hasHttpClientCall;
         Macroable::__call as macroableCall;
     }
+    use Tappable;
 
     private Credential $credential;
 
-    public function __construct(Credential $credential = null)
+    public function __construct(?Credential $credential = null)
     {
-        $this->credential = $credential ?? new NullCredential();
+        $this->credential = $credential ?? new NullCredential;
     }
 
     /**
-     * @return ResponseInterface|Response
+     * @noinspection MissingReturnTypeInspection
+     * @noinspection MissingParameterTypeDeclarationInspection
+     *
+     * @param mixed $name
+     * @param mixed $arguments
+     */
+    public function __call($name, $arguments)
+    {
+        return static::hasMacro($name) ?
+            $this->macroableCall($name, $arguments)
+            : $this->hasHttpClientCall($name, $arguments);
+    }
+
+    /**
+     * @return Response|ResponseInterface
      *
      * @throws GuzzleException
      *
@@ -52,16 +66,5 @@ class Client implements Contracts\Client
             $message->httpUri(),
             $this->credential->applyToOptions($message->toHttpOptions())
         );
-    }
-
-    /**
-     * @noinspection MissingReturnTypeInspection
-     * @noinspection MissingParameterTypeDeclarationInspection
-     */
-    public function __call($name, $arguments)
-    {
-        return static::hasMacro($name) ?
-            $this->macroableCall($name, $arguments)
-            : $this->hasHttpClientCall($name, $arguments);
     }
 }

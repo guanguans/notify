@@ -17,9 +17,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class NtfyMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'topic',
         'message',
         'title',
@@ -41,26 +41,23 @@ class NtfyMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'tags' => 'array',
         'actions' => 'array',
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedValues = [
+    protected array $allowedValues = [
         'priority' => [5, 4, 3, 2, 1],
         'cache' => ['yes', 'no'],
         'firebase' => ['yes', 'no'],
     ];
 
     /**
-     * @var array[]
+     * @var array<array>
      */
-    protected $options = [
+    protected array $options = [
         'tags' => [],
         'actions' => [],
     ];

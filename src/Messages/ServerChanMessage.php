@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Messages;
 class ServerChanMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'title',
         'desp',
     ];

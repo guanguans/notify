@@ -19,6 +19,11 @@ use Guanguans\Notify\Messages\WeWork\NewsMessage;
 use Guanguans\Notify\Messages\WeWork\TextMessage;
 use Guanguans\NotifyTests\TestCase;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class WeWorkTest extends TestCase
 {
     public function testText(): void

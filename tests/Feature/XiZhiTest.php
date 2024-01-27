@@ -16,6 +16,11 @@ use Guanguans\Notify\Factory;
 use Guanguans\Notify\Messages\XiZhiMessage;
 use Guanguans\NotifyTests\TestCase;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class XiZhiTest extends TestCase
 {
     public function testSingle(): void

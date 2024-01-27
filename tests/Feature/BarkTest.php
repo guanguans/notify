@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\BarkMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class BarkTest extends TestCase
 {
     public function testBark(): void

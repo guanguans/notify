@@ -14,9 +14,6 @@ namespace Guanguans\Notify\Clients;
 
 class ShowdocPushClient extends Client
 {
-    /**
-     * @var string
-     */
     public const REQUEST_URL_TEMPLATE = 'https://push.showdoc.com.cn/server/api/push//%s';
 
     public function getRequestUrl(): string

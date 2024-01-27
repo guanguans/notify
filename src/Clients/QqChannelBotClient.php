@@ -61,36 +61,24 @@ use WebSocket\Client as WebSocketClient;
  */
 class QqChannelBotClient extends Client
 {
-    /**
-     * @var WebSocketClient
-     */
-    protected static $webSocketClient;
-
-    /**
-     * @var array
-     */
-    protected $webSocketOptions = [];
-
-    /**
-     * @var array<string, string>
-     */
     public const REQUEST_URL_TEMPLATE = [
         'production' => 'https://api.sgroup.qq.com/channels/%s/messages',
         'sandbox' => 'https://sandbox.api.sgroup.qq.com/channels/%s/messages',
     ];
 
-    /**
-     * @var array<string, string>
-     */
     public const WSS_GATEWAY = [
         'production' => 'wss://api.sgroup.qq.com/websocket',
         'sandbox' => 'wss://sandbox.api.sgroup.qq.com/websocket',
     ];
 
+    protected static WebSocketClient $webSocketClient;
+
+    protected array $webSocketOptions = [];
+
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'appid',
         'token',
         'secret',
@@ -100,9 +88,9 @@ class QqChannelBotClient extends Client
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $options = [
+    protected array $options = [
         'environment' => 'production',
     ];
 
@@ -199,7 +187,7 @@ class QqChannelBotClient extends Client
     }
 
     /**
-     * @param mixed[] $webSocketOptions
+     * @param array<mixed> $webSocketOptions
      */
     public function setWebSocketOptions(array $webSocketOptions): self
     {

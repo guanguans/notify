@@ -19,6 +19,11 @@ use Guanguans\Notify\Messages\NowPush\NoteMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class NowPushTest extends TestCase
 {
     public function testNote(): void

@@ -16,15 +16,12 @@ use Guanguans\Notify\Messages\Message;
 
 class SingleActionCardMessage extends Message
 {
-    /**
-     * @var string
-     */
-    protected $type = 'actionCard';
+    protected string $type = 'actionCard';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'title',
         'text',
         'singleTitle',
@@ -32,10 +29,7 @@ class SingleActionCardMessage extends Message
         'btnOrientation',
     ];
 
-    /**
-     * @var array
-     */
-    protected $options = [
+    protected array $options = [
         'btnOrientation' => 0,
     ];
 

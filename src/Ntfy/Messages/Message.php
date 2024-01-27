@@ -33,8 +33,8 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
     use AsJson;
+    use AsPost;
 
     protected array $defined = [
         'topic',
@@ -58,17 +58,14 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'tags' => 'array',
         'actions' => 'array',
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedValues = [
+    protected array $allowedValues = [
         'priority' => [5, 4, 3, 2, 1],
         'cache' => ['yes', 'no'],
         'firebase' => ['yes', 'no'],

@@ -14,6 +14,4 @@ namespace Guanguans\Notify\Mattermost;
 
 use Guanguans\Notify\Ntfy\TokenAuthCredential;
 
-class Credential extends TokenAuthCredential
-{
-}
+class Credential extends TokenAuthCredential {}

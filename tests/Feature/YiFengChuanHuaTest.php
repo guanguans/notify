@@ -15,6 +15,11 @@ namespace Guanguans\NotifyTests\Feature;
 use Guanguans\Notify\Factory;
 use Guanguans\NotifyTests\TestCase;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class YiFengChuanHuaTest extends TestCase
 {
     public function testYiFengChuanHua(): void

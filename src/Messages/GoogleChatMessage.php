@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Messages;
 class GoogleChatMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'text',
         'cards',
         'name',
@@ -36,9 +36,9 @@ class GoogleChatMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'cards' => 'array',
         'sender' => 'array',
         'annotations' => 'array',

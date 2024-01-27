@@ -24,13 +24,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
     use AsJson;
+    use AsPost;
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'alias',
         'emoji',
         'text',
@@ -38,7 +38,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     /**
-     * @var string|array[]
+     * @var array<array>|string
      */
     protected $allowedTypes = [
         'attachments' => ['array'],

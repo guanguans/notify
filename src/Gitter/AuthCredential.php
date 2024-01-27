@@ -14,6 +14,4 @@ namespace Guanguans\Notify\Gitter;
 
 use Guanguans\Notify\Foundation\Credentials\TokenAuthCredential;
 
-class AuthCredential extends TokenAuthCredential
-{
-}
+class AuthCredential extends TokenAuthCredential {}

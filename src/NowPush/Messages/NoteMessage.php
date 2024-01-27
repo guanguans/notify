@@ -21,9 +21,9 @@ namespace Guanguans\Notify\NowPush\Messages;
 class NoteMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'message_type',
         'note',
         'device_type',
@@ -35,9 +35,9 @@ class NoteMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defaults = [
+    protected array $defaults = [
         'message_type' => 'nowpush_note',
     ];
 

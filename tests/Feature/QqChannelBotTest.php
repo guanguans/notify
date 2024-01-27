@@ -16,6 +16,11 @@ use Guanguans\Notify\Factory;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class QqChannelBotTest extends TestCase
 {
     public function testQqChannelBot(): void

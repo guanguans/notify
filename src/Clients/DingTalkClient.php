@@ -14,20 +14,14 @@ namespace Guanguans\Notify\Clients;
 
 class DingTalkClient extends Client
 {
-    /**
-     * @var string
-     */
     public const REQUEST_URL_TEMPLATE = 'https://oapi.dingtalk.com/robot/send?access_token=%s&%s';
 
-    /**
-     * @var string
-     */
-    protected $requestMethod = 'postJson';
+    protected string $requestMethod = 'postJson';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'token',
         'message',
         'secret',

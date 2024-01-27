@@ -16,6 +16,11 @@ use Guanguans\Notify\Factory;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class ZulipTest extends TestCase
 {
     public function testPrivate(): void

@@ -17,7 +17,7 @@ class Client extends \Guanguans\Notify\Foundation\Client
     /**
      * @param AuthCredential|string $credential
      */
-    public function __construct($credential, \GuzzleHttp\Client $httpClient = null)
+    public function __construct($credential, ?\GuzzleHttp\Client $httpClient = null)
     {
         if (! $credential instanceof AuthCredential) {
             $this->credential = new AuthCredential($credential);

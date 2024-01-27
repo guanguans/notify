@@ -19,7 +19,7 @@ class CertificateCredential extends NullCredential
     private string $path;
     private ?string $password;
 
-    public function __construct(string $path, string $password = null)
+    public function __construct(string $path, ?string $password = null)
     {
         $this->path = $path;
         $this->password = $password;
@@ -28,7 +28,7 @@ class CertificateCredential extends NullCredential
     public function applyToOptions(array $options): array
     {
         return [
-            RequestOptions::CERT => is_string($this->password) ? [$this->path, $this->password] : $this->path,
+            RequestOptions::CERT => \is_string($this->password) ? [$this->path, $this->password] : $this->path,
         ] + $options;
     }
 }

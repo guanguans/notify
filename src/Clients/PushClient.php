@@ -14,9 +14,6 @@ namespace Guanguans\Notify\Clients;
 
 class PushClient extends Client
 {
-    /**
-     * @var string
-     */
     public const REQUEST_URL_TEMPLATE = 'https://push.techulus.com/api/v1/notify/%s';
 
     public function getRequestUrl(): string

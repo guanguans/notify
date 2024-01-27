@@ -38,12 +38,8 @@ class TextMessage extends Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('atMobiles', static function (OptionsResolver $optionsResolver, $value): array {
-                return (array) $value;
-            });
-            $resolver->setNormalizer('atDingtalkIds', static function (OptionsResolver $optionsResolver, $value): array {
-                return (array) $value;
-            });
+            $resolver->setNormalizer('atMobiles', static fn (OptionsResolver $optionsResolver, $value): array => (array) $value);
+            $resolver->setNormalizer('atDingtalkIds', static fn (OptionsResolver $optionsResolver, $value): array => (array) $value);
         });
     }
 

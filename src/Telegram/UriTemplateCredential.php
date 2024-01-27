@@ -14,6 +14,4 @@ namespace Guanguans\Notify\Telegram;
 
 use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
-class UriTemplateCredential extends TokenUriTemplateCredential
-{
-}
+class UriTemplateCredential extends TokenUriTemplateCredential {}

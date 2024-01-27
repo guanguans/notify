@@ -52,9 +52,7 @@ class TextMessage extends Message
             static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setNormalizer(
                     'actions',
-                    static function (OptionsResolver $optionsResolver, $value): array {
-                        return (array) $value;
-                    }
+                    static fn (OptionsResolver $optionsResolver, $value): array => (array) $value
                 );
             }
         );

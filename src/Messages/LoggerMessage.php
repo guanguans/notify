@@ -15,17 +15,17 @@ namespace Guanguans\Notify\Messages;
 class LoggerMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'message',
         'context',
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         'message',
     ];
 

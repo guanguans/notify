@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\ServerChanMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class ServerChanTest extends TestCase
 {
     public function testSendMessage(): void

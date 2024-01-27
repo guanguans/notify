@@ -17,15 +17,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BtnsActionCardMessage extends Message
 {
-    /**
-     * @var string
-     */
-    protected $type = 'actionCard';
+    protected string $type = 'actionCard';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'title',
         'text',
         'hideAvatar',
@@ -34,16 +31,13 @@ class BtnsActionCardMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'btns' => 'array',
     ];
 
-    /**
-     * @var array
-     */
-    protected $options = [
+    protected array $options = [
         'btnOrientation' => 0,
         'hideAvatar' => 0,
         'btns' => [],

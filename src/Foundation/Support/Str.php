@@ -16,45 +16,31 @@ class Str
 {
     /**
      * The cache of snake-cased words.
-     *
-     * @var array
      */
-    protected static $snakeCache = [];
+    protected static array $snakeCache = [];
 
     /**
      * The cache of camel-cased words.
-     *
-     * @var array
      */
-    protected static $camelCache = [];
+    protected static array $camelCache = [];
 
     /**
      * The cache of studly-cased words.
-     *
-     * @var array
      */
-    protected static $studlyCache = [];
+    protected static array $studlyCache = [];
 
     /**
      * Convert a value to camel case.
-     *
-     * @param string $value
-     *
-     * @return string
      */
-    public static function pascal($value)
+    public static function pascal(string $value): string
     {
         return ucfirst(static::camel($value));
     }
 
     /**
      * Convert a value to camel case.
-     *
-     * @param string $value
-     *
-     * @return string
      */
-    public static function camel($value)
+    public static function camel(string $value): string
     {
         if (isset(static::$camelCache[$value])) {
             return static::$camelCache[$value];
@@ -65,13 +51,8 @@ class Str
 
     /**
      * Convert a string to snake case.
-     *
-     * @param string $value
-     * @param string $delimiter
-     *
-     * @return string
      */
-    public static function snake($value, $delimiter = '_')
+    public static function snake(string $value, string $delimiter = '_'): string
     {
         $key = $value;
 
@@ -90,12 +71,8 @@ class Str
 
     /**
      * Convert a value to studly caps case.
-     *
-     * @param string $value
-     *
-     * @return string
      */
-    public static function studly($value)
+    public static function studly(string $value): string
     {
         $key = $value;
 
@@ -107,18 +84,15 @@ class Str
 
         $studlyWords = array_map(fn ($word) => static::ucfirst($word), $words);
 
-        return static::$studlyCache[$key] = implode($studlyWords);
+        return static::$studlyCache[$key] = implode('', $studlyWords);
     }
 
     /**
      * Determine if a given string matches a given pattern.
      *
-     * @param string|iterable<string> $pattern
-     * @param string                  $value
-     *
-     * @return bool
+     * @param iterable<string>|string $pattern
      */
-    public static function is($pattern, $value)
+    public static function is($pattern, string $value): bool
     {
         $value = (string) $value;
 
@@ -155,14 +129,13 @@ class Str
     /**
      * Replace the given value in the given string.
      *
-     * @param string|iterable<string> $search
-     * @param string|iterable<string> $replace
-     * @param string|iterable<string> $subject
-     * @param bool                    $caseSensitive
+     * @param iterable<string>|string $search
+     * @param iterable<string>|string $replace
+     * @param iterable<string>|string $subject
      *
-     * @return string|string[]
+     * @return array<string>|string
      */
-    public static function replace($search, $replace, $subject, $caseSensitive = true)
+    public static function replace($search, $replace, $subject, bool $caseSensitive = true)
     {
         // if ($search instanceof \Traversable) {
         //     $search = collect($search)->all();
@@ -183,73 +156,48 @@ class Str
 
     /**
      * Make a string's first character lowercase.
-     *
-     * @param string $string
-     *
-     * @return string
      */
-    public static function lcfirst($string)
+    public static function lcfirst(string $string): string
     {
         return static::lower(static::substr($string, 0, 1)).static::substr($string, 1);
     }
 
     /**
      * Make a string's first character uppercase.
-     *
-     * @param string $string
-     *
-     * @return string
      */
-    public static function ucfirst($string)
+    public static function ucfirst(string $string): string
     {
         return static::upper(static::substr($string, 0, 1)).static::substr($string, 1);
     }
 
     /**
      * Convert the given string to lower-case.
-     *
-     * @param string $value
-     *
-     * @return string
      */
-    public static function lower($value)
+    public static function lower(string $value): string
     {
         return mb_strtolower($value, 'UTF-8');
     }
 
     /**
      * Convert the given string to upper-case.
-     *
-     * @param string $value
-     *
-     * @return string
      */
-    public static function upper($value)
+    public static function upper(string $value): string
     {
         return mb_strtoupper($value, 'UTF-8');
     }
 
     /**
      * Returns the portion of the string specified by the start and length parameters.
-     *
-     * @param string   $string
-     * @param int      $start
-     * @param int|null $length
-     * @param string   $encoding
-     *
-     * @return string
      */
-    public static function substr($string, $start, $length = null, $encoding = 'UTF-8')
+    public static function substr(string $string, int $start, ?int $length = null, string $encoding = 'UTF-8'): string
     {
         return mb_substr($string, $start, $length, $encoding);
     }
 
     /**
      * Remove all strings from the casing caches.
-     *
-     * @return void
      */
-    public static function flushCache()
+    public static function flushCache(): void
     {
         static::$snakeCache = [];
         static::$camelCache = [];

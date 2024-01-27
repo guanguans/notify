@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Messages;
 class PushBackMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'id',
         'title',
         'body',
@@ -27,9 +27,9 @@ class PushBackMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         'id',
         'title',
     ];

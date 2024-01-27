@@ -16,15 +16,12 @@ use Guanguans\Notify\Messages\Message;
 
 class MarkdownMessage extends Message
 {
-    /**
-     * @var string
-     */
-    protected $type = 'markdown';
+    protected string $type = 'markdown';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'content',
     ];
 

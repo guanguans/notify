@@ -16,36 +16,24 @@ use Guanguans\Notify\Contracts\MessageInterface;
 
 class PushoverClient extends Client
 {
-    /**
-     * @var string
-     */
-    protected $requestMethod = 'upload';
+    public const REQUEST_URL_TEMPLATE = 'https://api.pushover.net/1/messages.json';
+
+    public const VALIDATION_USER_REQUEST_URL_TEMPLATE = 'https://api.pushover.net/1/users/validate.json';
+
+    public const SOUNDS_REQUEST_URL_TEMPLATE = 'https://api.pushover.net/1/sounds.json?token=%s';
+
+    protected string $requestMethod = 'upload';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'token',
         'user_token',
         'message',
     ];
 
-    /**
-     * @var string
-     */
-    public const REQUEST_URL_TEMPLATE = 'https://api.pushover.net/1/messages.json';
-
-    /**
-     * @var string
-     */
-    public const VALIDATION_USER_REQUEST_URL_TEMPLATE = 'https://api.pushover.net/1/users/validate.json';
-
-    /**
-     * @var string
-     */
-    public const SOUNDS_REQUEST_URL_TEMPLATE = 'https://api.pushover.net/1/sounds.json?token=%s';
-
-    public function send(MessageInterface $message = null)
+    public function send(?MessageInterface $message = null)
     {
         $message and $this->setMessage($message);
 

@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Messages;
 class WebhookMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'headers',
         'query',
         'body',
@@ -27,14 +27,11 @@ class WebhookMessage extends Message
     /**
      * @var array<string, mixed>
      */
-    protected $options = [
+    protected array $options = [
         'verify' => false,
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'verify' => 'bool',
     ];
 

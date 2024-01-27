@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Clients;
 class WebhookClient extends Client
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'url',
         'message',
     ];

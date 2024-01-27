@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\WebhookMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class WebhookTest extends TestCase
 {
     public function testWebhook(): void

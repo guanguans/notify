@@ -21,46 +21,31 @@ use Guanguans\Notify\Traits\HasOptions;
 
 abstract class Client implements GatewayInterface, RequestInterface
 {
+    use CreateStaticable;
     use HasHttpClient;
     use HasOptions;
-    use CreateStaticable;
+
+    protected string $requestMethod = 'post';
+
+    protected bool $requestAsync = false;
 
     /**
-     * @var string
+     * @var array<string>
      */
-    protected $requestMethod = 'post';
-
-    /**
-     * @var bool
-     */
-    protected $requestAsync = false;
-
-    /**
-     * @var string[]
-     */
-    protected $defined = [
+    protected array $defined = [
         'token',
         'message',
     ];
 
-    /**
-     * @var array
-     */
-    protected $sendingCallbacks = [];
+    protected array $sendingCallbacks = [];
+
+    protected array $sendedCallbacks = [];
 
     /**
-     * @var array
-     */
-    protected $sendedCallbacks = [];
-
-    /**
-     * @var \Psr\Http\Message\ResponseInterface|\Overtrue\Http\Support\Collection|array|object|string|null
+     * @var null|array|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string
      */
     protected $response;
 
-    /**
-     * Client constructor.
-     */
     public function __construct(array $options = [])
     {
         $this->setOptions($options);
@@ -68,7 +53,7 @@ abstract class Client implements GatewayInterface, RequestInterface
 
     public function getName(): string
     {
-        return str_replace([__NAMESPACE__.'\\', 'Client'], '', get_class($this));
+        return str_replace([__NAMESPACE__.'\\', 'Client'], '', static::class);
     }
 
     public function getRequestMethod(): string
@@ -92,7 +77,7 @@ abstract class Client implements GatewayInterface, RequestInterface
     }
 
     /**
-     * @return \Guanguans\Notify\Contracts\MessageInterface|\Symfony\Component\Mime\RawMessage|\Guanguans\Notify\Messages\Message
+     * @return \Guanguans\Notify\Contracts\MessageInterface|\Guanguans\Notify\Messages\Message|\Symfony\Component\Mime\RawMessage
      */
     public function getMessage(): MessageInterface
     {
@@ -122,7 +107,7 @@ abstract class Client implements GatewayInterface, RequestInterface
     }
 
     /**
-     * @return array|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string|null
+     * @return null|array|object|\Overtrue\Http\Support\Collection|\Psr\Http\Message\ResponseInterface|string
      */
     public function getResponse()
     {
@@ -148,17 +133,32 @@ abstract class Client implements GatewayInterface, RequestInterface
         return $this;
     }
 
-    protected function callSendingCallbacks()
+    public function send(?MessageInterface $message = null)
+    {
+        $message and $this->setMessage($message);
+
+        return $this->wrapSendCallbacksWithRequestAsync(function () {
+            return $this->getHttpClient()
+                ->{$this->getRequestMethod()}(
+                    $this->getRequestUrl(),
+                    $this->getRequestParams(),
+                    [],
+                    $this->requestAsync
+                );
+        });
+    }
+
+    protected function callSendingCallbacks(): void
     {
         foreach ($this->sendingCallbacks as $sendingCallback) {
-            call_user_func($sendingCallback, $this);
+            $sendingCallback($this);
         }
     }
 
-    protected function callSendedCallbacks()
+    protected function callSendedCallbacks(): void
     {
         foreach ($this->sendedCallbacks as $sendedCallback) {
-            call_user_func($sendedCallback, $this);
+            $sendedCallback($this);
         }
     }
 
@@ -183,21 +183,6 @@ abstract class Client implements GatewayInterface, RequestInterface
             $this->response = $handled;
 
             return $handled;
-        });
-    }
-
-    public function send(MessageInterface $message = null)
-    {
-        $message and $this->setMessage($message);
-
-        return $this->wrapSendCallbacksWithRequestAsync(function () {
-            return $this->getHttpClient()
-                ->{$this->getRequestMethod()}(
-                    $this->getRequestUrl(),
-                    $this->getRequestParams(),
-                    [],
-                    $this->requestAsync
-                );
         });
     }
 }

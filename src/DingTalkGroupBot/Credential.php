@@ -19,7 +19,7 @@ class Credential extends NullCredential
     private string $token;
     private ?string $secret;
 
-    public function __construct(string $token, string $secret = null)
+    public function __construct(string $token, ?string $secret = null)
     {
         $this->secret = $secret;
         $this->token = $token;

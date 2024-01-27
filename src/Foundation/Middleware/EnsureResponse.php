@@ -18,15 +18,13 @@ use Psr\Http\Message\ResponseInterface;
 
 class EnsureResponse
 {
+    public function __invoke(callable $handler): callable
+    {
+        return Middleware::mapResponse(fn (ResponseInterface $response): ResponseInterface => Response::createFromPsrResponse($response))($handler);
+    }
+
     public static function name(): string
     {
         return 'response';
-    }
-
-    public function __invoke(callable $handler): callable
-    {
-        return Middleware::mapResponse(function (ResponseInterface $response): ResponseInterface {
-            return Response::createFromPsrResponse($response);
-        })($handler);
     }
 }

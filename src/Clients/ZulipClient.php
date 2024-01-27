@@ -14,15 +14,12 @@ namespace Guanguans\Notify\Clients;
 
 class ZulipClient extends Client
 {
-    /**
-     * @var string
-     */
     public const REQUEST_URL_TEMPLATE = '%s/api/v1/messages';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'token',
         'message',
         'base_uri',

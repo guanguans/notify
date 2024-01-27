@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\RocketChatMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class RocketChatTest extends TestCase
 {
     public function testRocketChat(): void

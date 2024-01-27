@@ -17,15 +17,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class TextMessage extends Message
 {
-    /**
-     * @var string
-     */
-    protected $type = 'text';
+    protected string $type = 'text';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'content',
         'mentioned_list',
         'mentioned_mobile_list',
@@ -34,22 +31,10 @@ class TextMessage extends Message
     /**
      * @var array<string, array<string>>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'mentioned_list' => ['int', 'string', 'array'],
         'mentioned_mobile_list' => ['int', 'string', 'array'],
     ];
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('mentioned_list', static function (OptionsResolver $optionsResolver, $value): array {
-                return (array) $value;
-            });
-            $resolver->setNormalizer('mentioned_mobile_list', static function (OptionsResolver $optionsResolver, $value): array {
-                return (array) $value;
-            });
-        });
-    }
 
     /**
      * @return $this
@@ -90,5 +75,13 @@ class TextMessage extends Message
             'msgtype' => $this->type,
             $this->type => $this->getOptions(),
         ];
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('mentioned_list', static fn (OptionsResolver $optionsResolver, $value): array => (array) $value);
+            $resolver->setNormalizer('mentioned_mobile_list', static fn (OptionsResolver $optionsResolver, $value): array => (array) $value);
+        });
     }
 }

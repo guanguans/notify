@@ -20,8 +20,6 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;
 
-    abstract protected function type(): string;
-
     public function httpUri(): string
     {
         return sprintf('https://open.feishu.cn/open-apis/bot/v2/hook/%s', UriTemplateCredential::TEMPLATE_TOKEN);
@@ -36,4 +34,6 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
             ],
         ];
     }
+
+    abstract protected function type(): string;
 }

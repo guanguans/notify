@@ -19,7 +19,7 @@ class UriTemplateCredential extends TokenUriTemplateCredential
 {
     private ?string $secret;
 
-    public function __construct(string $token, string $secret = null)
+    public function __construct(string $token, ?string $secret = null)
     {
         parent::__construct($token);
         $this->secret = $secret;

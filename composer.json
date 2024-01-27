@@ -90,6 +90,7 @@
         "friendsofphp/php-cs-fixer": "^3.48",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.19",
         "mockery/mockery": "^1.6",
         "overtrue/http": "^1.2",
         "pestphp/pest": "^1.23 || ^2.0",

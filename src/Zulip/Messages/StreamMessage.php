@@ -23,9 +23,9 @@ namespace Guanguans\Notify\Zulip\Messages;
 class StreamMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'type',
         'to',
         'content',
@@ -35,19 +35,16 @@ class StreamMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         'type',
         'to',
         'content',
         'topic',
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'to' => ['string', 'int'],
         'content' => 'string',
         'topic' => 'string',
@@ -56,16 +53,16 @@ class StreamMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defaults = [
+    protected array $defaults = [
         'type' => 'stream',
     ];
 
     /**
-     * @var \string[][]
+     * @var array<array<\string>>
      */
-    protected $allowedValues = [
+    protected array $allowedValues = [
         'type' => ['stream'],
     ];
 }

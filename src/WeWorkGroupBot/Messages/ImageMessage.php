@@ -20,9 +20,9 @@ use GuzzleHttp\RequestOptions;
 class ImageMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'imagePath',
     ];
 

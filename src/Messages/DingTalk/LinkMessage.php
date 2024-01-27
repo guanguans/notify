@@ -16,15 +16,12 @@ use Guanguans\Notify\Messages\Message;
 
 class LinkMessage extends Message
 {
-    /**
-     * @var string
-     */
-    protected $type = 'link';
+    protected string $type = 'link';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'title',
         'text',
         'messageUrl',

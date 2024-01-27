@@ -16,15 +16,12 @@ use Guanguans\Notify\Messages\Message;
 
 class ShareChatMessage extends Message
 {
-    /**
-     * @var string
-     */
-    protected $type = 'share_chat';
+    protected string $type = 'share_chat';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'share_chat_id',
     ];
 
@@ -36,7 +33,7 @@ class ShareChatMessage extends Message
     }
 
     /**
-     * @return array{msg_type: mixed, content: mixed[]}
+     * @return array{msg_type: mixed, content: array<mixed>}
      */
     public function transformToRequestParams(): array
     {

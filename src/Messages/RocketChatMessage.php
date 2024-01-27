@@ -17,9 +17,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class RocketChatMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'alias',
         'emoji',
         'text',
@@ -27,16 +27,13 @@ class RocketChatMessage extends Message
     ];
 
     /**
-     * @var string|array[]
+     * @var array<array>|string
      */
     protected $allowedTypes = [
         'attachments' => ['array'],
     ];
 
-    /**
-     * @var array
-     */
-    protected $options = [
+    protected array $options = [
         'attachments' => [],
     ];
 

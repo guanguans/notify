@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\PushDeerMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ServerException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class PushDeerTest extends TestCase
 {
     public function testPushDeer(): void

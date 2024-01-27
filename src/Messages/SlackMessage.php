@@ -17,9 +17,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class SlackMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'text',
         'channel',
         'username',
@@ -32,27 +32,15 @@ class SlackMessage extends Message
     /**
      * @var array<string, mixed>
      */
-    protected $options = [
+    protected array $options = [
         'unfurl_links' => false,
         'attachments' => [],
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'unfurl_links' => 'bool',
         'attachments' => 'array',
     ];
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('attachments', static function (OptionsResolver $optionsResolver, array $value): array {
-                return isset($value[0]) ? $value : [$value];
-            });
-        });
-    }
 
     public function setAttachments(array $attachments): self
     {
@@ -86,5 +74,12 @@ class SlackMessage extends Message
         });
 
         return $this;
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('attachments', static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]);
+        });
     }
 }

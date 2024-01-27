@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\MicrosoftTeamsMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class MicrosoftTeamsTest extends TestCase
 {
     public function testMicrosoftTeams(): void

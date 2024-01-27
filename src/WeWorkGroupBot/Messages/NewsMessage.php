@@ -20,21 +20,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class NewsMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'articles',
     ];
 
     /**
      * @var array<string, string>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'articles' => 'array',
     ];
 
     /**
-     * @var array[]
+     * @var array<array>
      */
     protected array $options = [
         'articles' => [],
@@ -45,15 +45,6 @@ class NewsMessage extends Message
         parent::__construct([
             'articles' => $articles,
         ]);
-    }
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('articles', static function (OptionsResolver $optionsResolver, array $value): array {
-                return isset($value[0]) ? $value : [$value];
-            });
-        });
     }
 
     public function setArticles(array $articles): self
@@ -87,6 +78,13 @@ class NewsMessage extends Message
         });
 
         return $this;
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('articles', static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]);
+        });
     }
 
     protected function type(): string

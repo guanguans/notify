@@ -18,9 +18,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TextMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'title',
         'text',
         'copy',
@@ -31,16 +31,16 @@ class TextMessage extends Message
     ];
 
     /**
-     * @var \string[][]
+     * @var array<array<\string>>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'actions' => ['string', 'array'],
     ];
 
     /**
-     * @var mixed[]
+     * @var array<mixed>
      */
-    protected $options = [
+    protected array $options = [
         'autocopy' => 0,
         'sound' => 0,
         'priority' => 10,
@@ -49,9 +49,7 @@ class TextMessage extends Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
         return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver->setNormalizer('actions', static function (OptionsResolver $optionsResolver, $value): array {
-                return (array) $value;
-            });
+            $optionsResolver->setNormalizer('actions', static fn (OptionsResolver $optionsResolver, $value): array => (array) $value);
         });
     }
 }

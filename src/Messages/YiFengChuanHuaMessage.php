@@ -15,17 +15,17 @@ namespace Guanguans\Notify\Messages;
 class YiFengChuanHuaMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'head',
         'body',
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         'head',
     ];
 }

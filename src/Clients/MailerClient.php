@@ -25,9 +25,9 @@ use Symfony\Component\Mailer\Transport;
 class MailerClient extends Client
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'message',
         'dsn',
         'envelope',
@@ -36,7 +36,7 @@ class MailerClient extends Client
     /**
      * @var array<string, mixed>
      */
-    protected $options = [
+    protected array $options = [
         'envelope' => null,
     ];
 
@@ -70,22 +70,22 @@ class MailerClient extends Client
     }
 
     /**
-     * @noRector \Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector
-     */
-    protected function createMailer(): MailerInterface
-    {
-        return new Mailer(Transport::fromDsn($this->getDsn()));
-    }
-
-    /**
      * @noRector \Rector\CodingStyle\Rector\Closure\StaticClosureRector
      */
-    public function send(MessageInterface $message = null)
+    public function send(?MessageInterface $message = null)
     {
         $message and $this->setMessage($message);
 
         return $this->wrapSendCallbacks(function (): void {
             $this->createMailer()->send($this->getMessage(), $this->getEnvelope());
         });
+    }
+
+    /**
+     * @noRector \Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector
+     */
+    protected function createMailer(): MailerInterface
+    {
+        return new Mailer(Transport::fromDsn($this->getDsn()));
     }
 }

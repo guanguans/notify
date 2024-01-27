@@ -20,9 +20,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class QqChannelBotMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'content',
         'image',
         'msg_id',
@@ -32,10 +32,7 @@ class QqChannelBotMessage extends Message
         'markdown',
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'embed' => 'array',
         'ark' => 'array',
         'message_reference' => 'array',

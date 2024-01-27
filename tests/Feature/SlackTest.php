@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\SlackMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class SlackTest extends TestCase
 {
     public function testSlack(): void

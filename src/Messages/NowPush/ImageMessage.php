@@ -17,9 +17,9 @@ use Guanguans\Notify\Messages\Message;
 class ImageMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'message_type',
         'note',
         'device_type',
@@ -27,16 +27,16 @@ class ImageMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $options = [
+    protected array $options = [
         'device_type' => 'api',
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defaults = [
+    protected array $defaults = [
         'message_type' => 'nowpush_img',
     ];
 

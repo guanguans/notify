@@ -15,10 +15,10 @@ namespace Guanguans\Notify\Foundation;
 use Guanguans\Notify\Foundation\Traits\HasOptions;
 use Guanguans\Notify\Foundation\Traits\Makeable;
 
-abstract class Message implements Contracts\Message, \ArrayAccess
+abstract class Message implements \ArrayAccess, Contracts\Message
 {
-    use Makeable;
     use HasOptions;
+    use Makeable;
 
     public function __construct(array $options = [])
     {

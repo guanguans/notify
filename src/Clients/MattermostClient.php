@@ -35,20 +35,14 @@ namespace Guanguans\Notify\Clients;
  */
 class MattermostClient extends Client
 {
-    /**
-     * @var string
-     */
     public const REQUEST_URL_TEMPLATE = '%s/api/v4/posts';
 
-    /**
-     * @var string
-     */
-    public $requestMethod = 'postJson';
+    public string $requestMethod = 'postJson';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'token',
         'message',
         'base_uri',

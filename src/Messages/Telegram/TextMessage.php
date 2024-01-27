@@ -17,9 +17,9 @@ use Guanguans\Notify\Messages\Message;
 class TextMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'chat_id',
         'text',
         'parse_mode',
@@ -33,16 +33,13 @@ class TextMessage extends Message
     ];
 
     /**
-     * @var \string[][]
+     * @var array<array<\string>>
      */
-    protected $allowedValues = [
+    protected array $allowedValues = [
         'parse_mode' => ['HTML', 'Markdown', 'MarkdownV2'],
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'entities' => 'array',
         'disable_web_page_preview' => 'bool',
         'disable_notification' => 'bool',

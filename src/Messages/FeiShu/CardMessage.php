@@ -16,22 +16,19 @@ use Guanguans\Notify\Messages\Message;
 
 class CardMessage extends Message
 {
-    /**
-     * @var string
-     */
-    protected $type = 'card';
+    protected string $type = 'card';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'card',
     ];
 
     /**
      * @var array<string, string>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'card' => 'array',
     ];
 

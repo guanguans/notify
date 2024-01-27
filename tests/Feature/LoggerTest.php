@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\LoggerMessage;
 use Guanguans\NotifyTests\TestCase;
 use Psr\Log\NullLogger;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class LoggerTest extends TestCase
 {
     public function testLogger(): void
@@ -24,7 +29,7 @@ class LoggerTest extends TestCase
         // $this->markTestSkipped(__CLASS__.' is skipped.');
 
         $ret = Factory::logger()
-            ->setLogger(new NullLogger())
+            ->setLogger(new NullLogger)
             // ->setLevel('warning')
             ->setMessage(new LoggerMessage('This is a testing.'))
             ->send();

@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Messages;
 class PushPlusMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'title',
         'content',
         'template',
@@ -26,16 +26,16 @@ class PushPlusMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         'content',
     ];
 
     /**
-     * @var \string[][]
+     * @var array<array<\string>>
      */
-    protected $allowedValues = [
+    protected array $allowedValues = [
         'template' => ['html', 'json', 'cloudMonitor'],
     ];
 }

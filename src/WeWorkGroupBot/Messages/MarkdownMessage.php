@@ -18,9 +18,9 @@ namespace Guanguans\Notify\WeWorkGroupBot\Messages;
 class MarkdownMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'content',
     ];
 

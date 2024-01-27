@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Messages;
 class GitterMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'text',
     ];
 

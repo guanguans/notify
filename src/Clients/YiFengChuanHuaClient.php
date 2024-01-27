@@ -14,9 +14,6 @@ namespace Guanguans\Notify\Clients;
 
 class YiFengChuanHuaClient extends Client
 {
-    /**
-     * @var string
-     */
     public const REQUEST_URL_TEMPLATE = 'https://www.phprm.com/services/push/trigger/%s';
 
     protected $requestMethod = 'postJson';

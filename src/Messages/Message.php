@@ -18,12 +18,9 @@ use Guanguans\Notify\Traits\HasOptions;
 
 class Message implements MessageInterface
 {
-    use HasOptions;
     use CreateStaticable;
+    use HasOptions;
 
-    /**
-     * Message constructor.
-     */
     public function __construct(array $options = [])
     {
         $this->setOptions($options);

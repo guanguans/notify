@@ -14,6 +14,4 @@ namespace Guanguans\Notify\YiFengChuanHua;
 
 use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
-class UriTemplateCredential extends TokenUriTemplateCredential
-{
-}
+class UriTemplateCredential extends TokenUriTemplateCredential {}

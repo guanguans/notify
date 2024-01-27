@@ -24,13 +24,13 @@ use Guanguans\Notify\Push\UriTemplateCredential;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
     use AsJson;
+    use AsPost;
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'title',
         'body',
         'link',
@@ -38,9 +38,9 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         'title',
         'body',
     ];

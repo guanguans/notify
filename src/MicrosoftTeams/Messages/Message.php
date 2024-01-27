@@ -30,8 +30,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
     use AsJson;
+    use AsPost;
 
     protected array $defined = [
         'correlationId',
@@ -63,19 +63,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'sections' => [],
         'potentialAction' => [],
     ];
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('sections', static function (OptionsResolver $optionsResolver, array $value): array {
-                return isset($value[0]) ? $value : [$value];
-            });
-
-            $resolver->setNormalizer('potentialAction', static function (OptionsResolver $optionsResolver, array $value): array {
-                return isset($value[0]) ? $value : [$value];
-            });
-        });
-    }
 
     public function setSections(array $sections): self
     {
@@ -185,5 +172,14 @@ class Message extends \Guanguans\Notify\Foundation\Message
     public function httpUri()
     {
         return 'webhook';
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('sections', static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]);
+
+            $resolver->setNormalizer('potentialAction', static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]);
+        });
     }
 }

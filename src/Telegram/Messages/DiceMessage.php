@@ -24,9 +24,9 @@ namespace Guanguans\Notify\Telegram\Messages;
 class DiceMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'chat_id',
         'emoji',
         'disable_notification',

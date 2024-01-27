@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Messages;
 class PushMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'title',
         'body',
         'link',
@@ -25,9 +25,9 @@ class PushMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         'title',
         'body',
     ];

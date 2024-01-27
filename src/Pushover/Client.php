@@ -12,6 +12,4 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Pushover;
 
-class Client extends \Guanguans\Notify\Foundation\Client
-{
-}
+class Client extends \Guanguans\Notify\Foundation\Client {}

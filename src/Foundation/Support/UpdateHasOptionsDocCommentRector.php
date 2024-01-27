@@ -51,28 +51,28 @@ class UpdateHasOptionsDocCommentRector extends AbstractRector implements Configu
             [
                 new ConfiguredCodeSample(
                     <<<'CODE_SAMPLE'
-class Message extends \Guanguans\Notify\Foundation\Message
-{
-    protected array $defined = [
-        'title',
-        'content',
-    ];
-}
-CODE_SAMPLE
+                        class Message extends \Guanguans\Notify\Foundation\Message
+                        {
+                            protected array $defined = [
+                                'title',
+                                'content',
+                            ];
+                        }
+                        CODE_SAMPLE
                     ,
                     <<<'CODE_SAMPLE'
-/**
- * @method \Guanguans\Notify\Showdoc\Messages\Message title($title)
- * @method \Guanguans\Notify\Showdoc\Messages\Message content($content)
- */
-class Message extends \Guanguans\Notify\Foundation\Message
-{
-    protected array $defined = [
-        'title',
-        'content',
-    ];
-}
-CODE_SAMPLE
+                        /**
+                         * @method \Guanguans\Notify\Showdoc\Messages\Message title($title)
+                         * @method \Guanguans\Notify\Showdoc\Messages\Message content($content)
+                         */
+                        class Message extends \Guanguans\Notify\Foundation\Message
+                        {
+                            protected array $defined = [
+                                'title',
+                                'content',
+                            ];
+                        }
+                        CODE_SAMPLE
                     ,
                     ['\Guanguans\Notify\Foundation\Message::class']
                 ),
@@ -101,14 +101,14 @@ CODE_SAMPLE
         /** @var class-string $class */
         $class = $node->getAttribute('scope')->getClassReflection()->getName();
         if (! $this->isSubclassOfs($class)) {
-            return null;
+            return;
         }
 
         $defaultProperties = (new \ReflectionClass($class))->getDefaultProperties();
         $allowedTypes = $defaultProperties['allowedTypes'] ?? [];
         $defined = $defaultProperties['defined'] ?? [];
         if (empty($defined)) {
-            return null;
+            return;
         }
 
         $node->setAttribute('comments', null);
@@ -138,7 +138,7 @@ CODE_SAMPLE
     }
 
     /**
-     * @param string|string[] $optionAllowedTypes
+     * @param array<string>|string $optionAllowedTypes
      */
     private function createMethodPhpDocTagNode(string $class, string $option, $optionAllowedTypes): PhpDocTagNode
     {

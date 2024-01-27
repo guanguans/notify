@@ -16,6 +16,11 @@ use Guanguans\Notify\Factory;
 use Guanguans\Notify\Messages\ShowdocPushMessage;
 use Guanguans\NotifyTests\TestCase;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class ShowdocPushTest extends TestCase
 {
     public function testShowdocPush(): void

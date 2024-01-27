@@ -29,7 +29,7 @@ class WsseAuthCredential extends NullCredential
     {
         $nonce = substr(sha1(uniqid('', true)), 0, 16);
         $created = date('c');
-        $digest = base64_encode(sha1(base64_decode($nonce).$created.$this->password, true));
+        $digest = base64_encode(sha1(base64_decode($nonce, true).$created.$this->password, true));
 
         $wsse = sprintf(
             'UsernameToken Username="%s", PasswordDigest="%s", Nonce="%s", Created="%s"',

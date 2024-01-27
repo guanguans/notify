@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Messages;
 class MattermostMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'channel_id',
         'message',
         'file_ids',
@@ -33,16 +33,16 @@ class MattermostMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         'channel_id',
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'file_ids' => 'array',
         'props' => 'array',
         'is_pinned' => 'bool',

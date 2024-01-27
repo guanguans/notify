@@ -14,6 +14,4 @@ namespace Guanguans\Notify\MicrosoftTeams;
 
 use Guanguans\Notify\Foundation\Credentials\NullCredential;
 
-class Credential extends NullCredential
-{
-}
+class Credential extends NullCredential {}

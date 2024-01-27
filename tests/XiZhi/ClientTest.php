@@ -23,11 +23,11 @@ it('can send single message', function (): void {
     // $singleMessage = new SingleMessage('测试标题', '测试内容');
     $singleMessage = new SingleMessage(faker()->title(), faker()->text());
     $mockHandler = new MockHandler([
-        (new GuzzleHttp\Psr7\HttpFactory())->createResponse(
+        (new GuzzleHttp\Psr7\HttpFactory)->createResponse(
             200,
             '{"code":200,"msg":"推送成功"}'
         ),
-        (new GuzzleHttp\Psr7\HttpFactory())->createResponse(
+        (new GuzzleHttp\Psr7\HttpFactory)->createResponse(
             200,
             '{"code":10000,"msg":"用户不存在"}'
         ),

@@ -12,6 +12,4 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Exceptions;
 
-class InvalidArgumentException extends Exception
-{
-}
+class InvalidArgumentException extends Exception {}

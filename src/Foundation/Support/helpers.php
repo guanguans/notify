@@ -18,7 +18,7 @@ if (! function_exists('configure_options')) {
      */
     function configure_options(array $options, Closure $closure): array
     {
-        $resolver = new OptionsResolver();
+        $resolver = new OptionsResolver;
 
         $closure($resolver);
 
@@ -40,9 +40,9 @@ if (! function_exists('tap')) {
     /**
      * Call the given Closure with the given value then return the value.
      *
-     * @param callable|null $callback
+     * @param mixed $value
      */
-    function tap($value, $callback = null)
+    function tap($value, ?callable $callback = null)
     {
         if (null === $callback) {
             return new class($value) {

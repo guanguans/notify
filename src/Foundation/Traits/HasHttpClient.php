@@ -25,14 +25,30 @@ use GuzzleHttp\HandlerStack;
 trait HasHttpClient
 {
     private ?Client $httpClient = null;
-    /** @var (callable(self): Client)|null */
     private $httpClientResolver;
     private ?HandlerStack $handlerStack = null;
     private array $httpOptions = [];
 
-    private function getHttpClient(): Client
+    /**
+     * @noinspection MissingReturnTypeInspection
+     * @noinspection MissingParameterTypeDeclarationInspection
+     *
+     * @param mixed $name
+     * @param mixed $arguments
+     */
+    public function __call($name, $arguments)
     {
-        return $this->getHttpClientResolver()();
+        if (method_exists($this->getHandlerStack(), $name)) {
+            $this->getHandlerStack()->{$name}(...$arguments);
+
+            return $this;
+        }
+
+        if (method_exists($this->getHttpClient(), $name)) {
+            return $this->getHttpClient()->{$name}(...$arguments);
+        }
+
+        throw new \BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $name));
     }
 
     public function setHttpClient(Client $httpClient): self
@@ -42,9 +58,35 @@ trait HasHttpClient
         return $this;
     }
 
+    public function setHttpClientResolver(callable $httpClientResolver): self
+    {
+        $this->httpClientResolver = $httpClientResolver;
+
+        return $this;
+    }
+
+    public function setHandlerStack(HandlerStack $handlerStack): self
+    {
+        $this->handlerStack = $handlerStack;
+
+        return $this;
+    }
+
+    public function setHttpOptions(array $httpOptions): self
+    {
+        $this->httpOptions = array_replace($this->httpOptions, $httpOptions);
+
+        return $this;
+    }
+
+    private function getHttpClient(): Client
+    {
+        return $this->getHttpClientResolver()();
+    }
+
     private function getHttpClientResolver(): callable
     {
-        if (! is_callable($this->httpClientResolver)) {
+        if (! \is_callable($this->httpClientResolver)) {
             $this->httpClientResolver = function () {
                 if (! $this->httpClient instanceof Client) {
                     $this->setHttpOptions([
@@ -61,19 +103,12 @@ trait HasHttpClient
         return $this->httpClientResolver;
     }
 
-    public function setHttpClientResolver(callable $httpClientResolver): self
-    {
-        $this->httpClientResolver = $httpClientResolver;
-
-        return $this;
-    }
-
     private function getHandlerStack(): HandlerStack
     {
         if (! $this->handlerStack instanceof HandlerStack) {
             $this->handlerStack = HandlerStack::create();
             $this->handlerStack->push(
-                new EnsureResponse(),
+                new EnsureResponse,
                 EnsureResponse::name()
             );
         }
@@ -81,17 +116,10 @@ trait HasHttpClient
         return $this->handlerStack = $this->ensureWithApplyCredentialToRequest($this->handlerStack);
     }
 
-    public function setHandlerStack(HandlerStack $handlerStack): self
-    {
-        $this->handlerStack = $handlerStack;
-
-        return $this;
-    }
-
     private function ensureWithApplyCredentialToRequest(HandlerStack $handlerStack): HandlerStack
     {
         try {
-            (function () {
+            (function (): void {
                 $this->findByName(ApplyCredentialToRequest::name());
             })->call($handlerStack);
         } catch (\InvalidArgumentException $e) {
@@ -107,31 +135,5 @@ trait HasHttpClient
     private function getHttpOptions(): array
     {
         return $this->httpOptions;
-    }
-
-    public function setHttpOptions(array $httpOptions): self
-    {
-        $this->httpOptions = array_replace($this->httpOptions, $httpOptions);
-
-        return $this;
-    }
-
-    /**
-     * @noinspection MissingReturnTypeInspection
-     * @noinspection MissingParameterTypeDeclarationInspection
-     */
-    public function __call($name, $arguments)
-    {
-        if (method_exists($this->getHandlerStack(), $name)) {
-            $this->getHandlerStack()->{$name}(...$arguments);
-
-            return $this;
-        }
-
-        if (method_exists($this->getHttpClient(), $name)) {
-            return $this->getHttpClient()->{$name}(...$arguments);
-        }
-
-        throw new \BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $name));
     }
 }

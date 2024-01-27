@@ -18,15 +18,12 @@ namespace Guanguans\Notify\Clients;
  */
 class MicrosoftTeamsClient extends Client
 {
-    /**
-     * @var string
-     */
-    protected $requestMethod = 'postJson';
+    protected string $requestMethod = 'postJson';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'webhook_url',
         'message',
     ];

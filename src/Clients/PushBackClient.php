@@ -28,31 +28,22 @@ namespace Guanguans\Notify\Clients;
  */
 class PushBackClient extends Client
 {
-    /**
-     * @var string
-     */
     public const REQUEST_URL_TEMPLATE = 'https://api.pushback.io/v1/%s';
 
-    /**
-     * @var array
-     */
-    protected $options = [
+    protected array $options = [
         'synchronous_mode' => false,
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'token',
         'message',
         'synchronous_mode',
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'synchronous_mode' => 'bool',
     ];
 

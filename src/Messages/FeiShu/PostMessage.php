@@ -16,28 +16,22 @@ use Guanguans\Notify\Messages\Message;
 
 class PostMessage extends Message
 {
-    /**
-     * @var string
-     */
-    protected $type = 'post';
+    protected string $type = 'post';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'post',
     ];
 
     /**
      * @var array<string, string>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'post' => 'array',
     ];
 
-    /**
-     * PostMessage constructor.
-     */
     public function __construct(array $post)
     {
         parent::__construct([
@@ -46,7 +40,7 @@ class PostMessage extends Message
     }
 
     /**
-     * @return array{msg_type: mixed, content: mixed[]}
+     * @return array{msg_type: mixed, content: array<mixed>}
      */
     public function transformToRequestParams(): array
     {

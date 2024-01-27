@@ -16,6 +16,38 @@ use Guanguans\Notify\Messages\Message;
 
 class PrivateMessage extends Message
 {
+    /**
+     * @var array<string>
+     */
+    protected array $defined = [
+        'type',
+        'to',
+        'content',
+    ];
+
+    /**
+     * @var array<string>
+     */
+    protected array $required = [
+        'type',
+        'to',
+        'content',
+    ];
+
+    /**
+     * @var array<string>
+     */
+    protected array $defaults = [
+        'type' => 'private',
+    ];
+
+    /**
+     * @var array<array<\string>>
+     */
+    protected array $allowedValues = [
+        'type' => ['private'],
+    ];
+
     public function __construct(string $to, string $content)
     {
         parent::__construct([
@@ -23,36 +55,4 @@ class PrivateMessage extends Message
             'content' => $content,
         ]);
     }
-
-    /**
-     * @var string[]
-     */
-    protected $defined = [
-        'type',
-        'to',
-        'content',
-    ];
-
-    /**
-     * @var string[]
-     */
-    protected $required = [
-        'type',
-        'to',
-        'content',
-    ];
-
-    /**
-     * @var string[]
-     */
-    protected $defaults = [
-        'type' => 'private',
-    ];
-
-    /**
-     * @var \string[][]
-     */
-    protected $allowedValues = [
-        'type' => ['private'],
-    ];
 }

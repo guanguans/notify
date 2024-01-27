@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\NtfyMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class NtfyTest extends TestCase
 {
     public function testNtfy(): void

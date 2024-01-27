@@ -12,6 +12,4 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ServerChan;
 
-class Client extends \Guanguans\Notify\Foundation\Client
-{
-}
+class Client extends \Guanguans\Notify\Foundation\Client {}

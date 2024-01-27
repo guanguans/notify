@@ -20,6 +20,11 @@ use Guanguans\Notify\Messages\FeiShu\ShareChatMessage;
 use Guanguans\Notify\Messages\FeiShu\TextMessage;
 use Guanguans\NotifyTests\TestCase;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class FeiShuTest extends TestCase
 {
     public function testText(): void

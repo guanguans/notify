@@ -16,15 +16,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PushDeerClient extends Client
 {
-    /**
-     * @var string
-     */
     public const REQUEST_URL_TEMPLATE = '%s/message/push?pushkey=%s';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'token',
         'message',
         'base_uri',
@@ -33,18 +30,9 @@ class PushDeerClient extends Client
     /**
      * @var array<string, string>
      */
-    protected $options = [
+    protected array $options = [
         'base_uri' => 'https://api2.pushdeer.com',
     ];
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver->setNormalizer('base_uri', static function (OptionsResolver $optionsResolver, $value): string {
-                return trim($value, '/');
-            });
-        });
-    }
 
     public function setBaseUri(string $baseUri): self
     {
@@ -65,5 +53,12 @@ class PushDeerClient extends Client
             $this->getBaseUri(),
             $this->getToken()
         );
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver->setNormalizer('base_uri', static fn (OptionsResolver $optionsResolver, $value): string => trim($value, '/'));
+        });
     }
 }

@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\Telegram\TextMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class TelegramTest extends TestCase
 {
     public function testgetUpdates(): void

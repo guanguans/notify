@@ -31,8 +31,8 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
     use AsJson;
+    use AsPost;
 
     protected array $defined = [
         'channel_id',
@@ -74,7 +74,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return "$this->baseUri/api/v4/posts";
     }
 
-    public function baseUri(string $baseUri): Message
+    public function baseUri(string $baseUri): self
     {
         $this->baseUri = $baseUri;
 

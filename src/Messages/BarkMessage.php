@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Messages;
 class BarkMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'title',
         'body',
         'copy',
@@ -33,9 +33,9 @@ class BarkMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'badge' => 'int',
         'isArchive' => 'int',
         'autoCopy' => 'int',
@@ -43,16 +43,13 @@ class BarkMessage extends Message
     ];
 
     /**
-     * @var \string[][]
+     * @var array<array<\string>>
      */
-    protected $allowedValues = [
+    protected array $allowedValues = [
         'level' => ['active', 'timeSensitive', 'passive'],
     ];
 
-    /**
-     * @var array
-     */
-    protected $options = [
+    protected array $options = [
         // 'sound' => 'bell',
         // 'isArchive' => 1,
         // 'autoCopy' => 1,

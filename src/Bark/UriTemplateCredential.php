@@ -14,6 +14,4 @@ namespace Guanguans\Notify\Bark;
 
 use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
-class UriTemplateCredential extends TokenUriTemplateCredential
-{
-}
+class UriTemplateCredential extends TokenUriTemplateCredential {}

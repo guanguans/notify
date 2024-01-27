@@ -17,9 +17,9 @@ use Guanguans\Notify\Messages\Message;
 class PollMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'chat_id',
         'question',
         'options',

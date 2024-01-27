@@ -18,7 +18,7 @@ use Psr\Http\Message\RequestInterface;
 class AggregateCredential implements Credential
 {
     /**
-     * @var Credential[]
+     * @var array<Credential>
      */
     private array $credentials;
 
@@ -31,9 +31,7 @@ class AggregateCredential implements Credential
     {
         return array_reduce(
             $this->credentials,
-            static function (array $carry, Credential $credential): array {
-                return $credential->applyToOptions($carry);
-            },
+            static fn (array $carry, Credential $credential): array => $credential->applyToOptions($carry),
             $options,
         );
     }
@@ -42,9 +40,7 @@ class AggregateCredential implements Credential
     {
         return array_reduce(
             $this->credentials,
-            static function (RequestInterface $carry, Credential $credential): RequestInterface {
-                return $credential->applyToRequest($carry);
-            },
+            static fn (RequestInterface $carry, Credential $credential): RequestInterface => $credential->applyToRequest($carry),
             $request,
         );
     }

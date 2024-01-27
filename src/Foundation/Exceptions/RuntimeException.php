@@ -12,6 +12,4 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Exceptions;
 
-class RuntimeException extends Exception
-{
-}
+class RuntimeException extends Exception {}

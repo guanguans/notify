@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\PushBackMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class PushBackTest extends TestCase
 {
     public function testPushBack(): void

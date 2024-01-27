@@ -16,6 +16,11 @@ use Guanguans\Notify\Factory;
 use Guanguans\Notify\Messages\IGotMessage;
 use Guanguans\NotifyTests\TestCase;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class IGotTest extends TestCase
 {
     public function testIGot(): void

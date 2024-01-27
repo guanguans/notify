@@ -18,9 +18,9 @@ use Psr\Log\LoggerInterface;
 class LoggerClient extends Client
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'message',
         'logger',
         'level',
@@ -29,14 +29,14 @@ class LoggerClient extends Client
     /**
      * @var array<string, string>
      */
-    protected $options = [
+    protected array $options = [
         'level' => 'info',
     ];
 
     /**
-     * @var string[]|array[]
+     * @var array<array>|array<string>
      */
-    protected $allowedValues = [
+    protected array $allowedValues = [
         'level' => [
             'debug',
             'info',
@@ -83,7 +83,7 @@ class LoggerClient extends Client
         return $this;
     }
 
-    public function send(MessageInterface $message = null)
+    public function send(?MessageInterface $message = null)
     {
         $message and $this->setMessage($message);
 

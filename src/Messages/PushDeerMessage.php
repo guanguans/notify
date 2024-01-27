@@ -15,18 +15,18 @@ namespace Guanguans\Notify\Messages;
 class PushDeerMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'text',
         'desp',
         'type',
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         'text',
     ];
 

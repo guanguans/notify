@@ -18,13 +18,13 @@ use Psr\Http\Message\RequestInterface;
 
 class UriTemplateCredential extends NullCredential
 {
-    private array $variables;
     protected HttpFactory $httpFactory;
+    private array $variables;
 
     public function __construct(array $variables)
     {
         $this->variables = $variables;
-        $this->httpFactory = new HttpFactory();
+        $this->httpFactory = new HttpFactory;
     }
 
     public function applyToRequest(RequestInterface $request): RequestInterface

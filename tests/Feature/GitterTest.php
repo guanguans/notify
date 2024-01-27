@@ -16,6 +16,11 @@ use Guanguans\Notify\Factory;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class GitterTest extends TestCase
 {
     public function testGitter(): void

@@ -31,20 +31,14 @@ namespace Guanguans\Notify\Clients;
  */
 class GitterClient extends Client
 {
-    /**
-     * @var string
-     */
     public const REQUEST_URL_TEMPLATE = 'https://api.gitter.im/v1/rooms/%s/chatMessages';
 
-    /**
-     * @var string
-     */
-    public $requestMethod = 'postJson';
+    public string $requestMethod = 'postJson';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'token',
         'message',
         'room_id',

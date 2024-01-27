@@ -18,6 +18,11 @@ use Guanguans\Notify\Messages\Chanify\TextMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class ChanifyTest extends TestCase
 {
     public function testText(): void

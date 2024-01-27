@@ -26,13 +26,13 @@ class Credential extends NullCredential
     private string $token;
     private ?string $threadKey;
 
-    public function __construct(string $space, string $token, string $key, string $threadKey = null)
+    public function __construct(string $space, string $token, string $key, ?string $threadKey = null)
     {
         $this->space = $space;
         $this->key = $key;
         $this->token = $token;
         $this->threadKey = $threadKey;
-        $this->httpFactory = new HttpFactory();
+        $this->httpFactory = new HttpFactory;
     }
 
     public function applyToRequest(RequestInterface $request): RequestInterface

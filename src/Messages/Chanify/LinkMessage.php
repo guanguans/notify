@@ -17,18 +17,18 @@ use Guanguans\Notify\Messages\Message;
 class LinkMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'link',
         'sound',
         'priority',
     ];
 
     /**
-     * @var mixed[]
+     * @var array<mixed>
      */
-    protected $options = [
+    protected array $options = [
         'sound' => 0,
         'priority' => 10,
     ];

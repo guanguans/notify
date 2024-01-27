@@ -17,9 +17,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class MicrosoftTeamsMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'correlationId',
         'expectedActors',
         'originator',
@@ -36,9 +36,9 @@ class MicrosoftTeamsMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'hideOriginalBody' => 'bool',
         'expectedActors' => 'array',
         'sections' => 'array',
@@ -48,26 +48,13 @@ class MicrosoftTeamsMessage extends Message
     /**
      * @var array<string, mixed>
      */
-    protected $options = [
+    protected array $options = [
         '@type' => 'MessageCard',
         '@context' => 'https://schema.org/extensions',
         'expectedActors' => [],
         'sections' => [],
         'potentialAction' => [],
     ];
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('sections', static function (OptionsResolver $optionsResolver, array $value): array {
-                return isset($value[0]) ? $value : [$value];
-            });
-
-            $resolver->setNormalizer('potentialAction', static function (OptionsResolver $optionsResolver, array $value): array {
-                return isset($value[0]) ? $value : [$value];
-            });
-        });
-    }
 
     public function setSections(array $sections): self
     {
@@ -172,5 +159,14 @@ class MicrosoftTeamsMessage extends Message
         });
 
         return $this;
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('sections', static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]);
+
+            $resolver->setNormalizer('potentialAction', static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]);
+        });
     }
 }

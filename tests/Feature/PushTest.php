@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\PushMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class PushTest extends TestCase
 {
     public function testPush(): void

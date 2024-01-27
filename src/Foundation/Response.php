@@ -17,6 +17,11 @@ use Psr\Http\Message\ResponseInterface;
 
 class Response extends GuzzleResponse
 {
+    public function __toString(): string
+    {
+        return $this->getBodyContents();
+    }
+
     public function getBodyContents(): string
     {
         $this->getBody()->rewind();
@@ -102,10 +107,5 @@ class Response extends GuzzleResponse
     public function saveAs(string $directory, string $filename): string
     {
         return $this->save($directory, $filename);
-    }
-
-    public function __toString(): string
-    {
-        return $this->getBodyContents();
     }
 }

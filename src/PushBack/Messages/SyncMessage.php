@@ -25,8 +25,8 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
  */
 class SyncMessage extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
     use AsJson;
+    use AsPost;
 
     protected array $defined = [
         'id',

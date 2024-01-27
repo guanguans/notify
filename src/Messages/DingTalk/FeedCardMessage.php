@@ -17,29 +17,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FeedCardMessage extends Message
 {
-    /**
-     * @var string
-     */
-    protected $type = 'feedCard';
+    protected string $type = 'feedCard';
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'links',
     ];
 
     /**
      * @var array<string, string>
      */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'links' => 'array',
     ];
 
     /**
-     * @var array[]
+     * @var array<array>
      */
-    protected $options = [
+    protected array $options = [
         'links' => [],
     ];
 
@@ -48,15 +45,6 @@ class FeedCardMessage extends Message
         parent::__construct([
             'links' => $links,
         ]);
-    }
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('links', static function (OptionsResolver $optionsResolver, array $value): array {
-                return isset($value[0]) ? $value : [$value];
-            });
-        });
     }
 
     public function setLinks(array $Links): self
@@ -100,5 +88,12 @@ class FeedCardMessage extends Message
             'msgtype' => $this->type,
             $this->type => $this->getOptions(),
         ];
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('links', static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]);
+        });
     }
 }

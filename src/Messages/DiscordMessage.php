@@ -17,9 +17,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class DiscordMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'username',
         'avatar_url',
         'content',
@@ -28,28 +28,16 @@ class DiscordMessage extends Message
     ];
 
     /**
-     * @var array<string, mixed[]>
+     * @var array<string, array<mixed>>
      */
-    protected $options = [
+    protected array $options = [
         'embeds' => [],
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'tts' => 'bool',
         'embeds' => 'array',
     ];
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('embeds', static function (OptionsResolver $optionsResolver, array $value): array {
-                return isset($value[0]) ? $value : [$value];
-            });
-        });
-    }
 
     public function setEmbeds(array $embeds): self
     {
@@ -92,11 +80,16 @@ class DiscordMessage extends Message
                 ->setAllowedTypes('thumbnail', 'array')
                 ->setAllowedTypes('author', 'array')
                 ->setAllowedTypes('fields', 'array')
-                ->setNormalizer('color', static function (OptionsResolver $optionsResolver, $value) {
-                    return is_int($value) ? $value : hexdec($value);
-                });
+                ->setNormalizer('color', static fn (OptionsResolver $optionsResolver, $value) => \is_int($value) ? $value : hexdec($value));
         });
 
         return $this;
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    {
+        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
+            $resolver->setNormalizer('embeds', static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]);
+        });
     }
 }

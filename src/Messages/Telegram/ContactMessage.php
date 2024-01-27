@@ -17,9 +17,9 @@ use Guanguans\Notify\Messages\Message;
 class ContactMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'chat_id',
         'phone_number',
         'first_name',

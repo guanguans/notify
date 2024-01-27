@@ -21,16 +21,14 @@ use Symfony\Component\Process\Process;
 
 require __DIR__.'/vendor/autoload.php';
 
-(new class() {
-    /** @var string */
-    private $composerJsonFile = __DIR__.'/composer.json';
+(new class {
+    private string $composerJsonFile = __DIR__.'/composer.json';
 
-    /** @var SymfonyStyle */
-    private $symfonyStyle;
+    private SymfonyStyle $symfonyStyle;
 
     public function __construct()
     {
-        $this->symfonyStyle = new SymfonyStyle(new ArgvInput(), new ConsoleOutput());
+        $this->symfonyStyle = new SymfonyStyle(new ArgvInput, new ConsoleOutput);
     }
 
     public function __invoke(): void
@@ -120,7 +118,7 @@ require __DIR__.'/vendor/autoload.php';
     }
 
     /**
-     * @param array|string|null $message
+     * @param null|array|string $message
      */
     private function success($message = null): void
     {
@@ -133,9 +131,7 @@ require __DIR__.'/vendor/autoload.php';
     {
         /** @noinspection JsonEncodingApiUsageInspection */
         return array_map(
-            static function (array $package): string {
-                return $package['name'];
-            },
+            static fn (array $package): string => $package['name'],
             json_decode(
                 $this
                     ->createAndMustRunProcess("{$this->findComposerBinary()} outdated --format=json --direct --ansi -v")
@@ -161,19 +157,19 @@ require __DIR__.'/vendor/autoload.php';
     {
         return sprintf(
             '%s %s',
-            (new PhpExecutableFinder())->find(),
-            (new Symfony\Component\Process\ExecutableFinder())->find('composer')
+            (new PhpExecutableFinder)->find(),
+            (new Symfony\Component\Process\ExecutableFinder)->find('composer')
         );
     }
 
     /**
      * @param array|string $command
-     * @param mixed        $input   The input as stream resource, scalar or \Traversable, or null for no input
+     * @param mixed $input The input as stream resource, scalar or \Traversable, or null for no input
      */
     private function createAndMustRunProcess(
         $command,
-        string $cwd = null,
-        array $env = null,
+        ?string $cwd = null,
+        ?array $env = null,
         $input = null,
         ?float $timeout = 60
     ): Process {

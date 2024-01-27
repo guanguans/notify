@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Messages;
 class IGotMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'title',
         'content',
         'url',
@@ -28,16 +28,13 @@ class IGotMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         'content',
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'automaticallyCopy' => 'int',
         'urgent' => 'int',
         'detail' => 'array',

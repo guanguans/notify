@@ -18,8 +18,8 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
     use AsJson;
+    use AsPost;
 
     private string $baseUri;
 

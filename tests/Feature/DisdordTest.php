@@ -17,6 +17,11 @@ use Guanguans\Notify\Messages\DiscordMessage;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class DisdordTest extends TestCase
 {
     public function testDisdord(): void

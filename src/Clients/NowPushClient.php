@@ -14,9 +14,6 @@ namespace Guanguans\Notify\Clients;
 
 class NowPushClient extends Client
 {
-    /**
-     * @var string
-     */
     public const REQUEST_URL_TEMPLATE = 'https://www.api.nowpush.app/v3/%s';
 
     public function __construct(array $options = [])
@@ -39,8 +36,6 @@ class NowPushClient extends Client
 
     public function getUser()
     {
-        return $this->wrapSendCallbacksWithRequestAsync(function () {
-            return $this->getHttpClient()->get(sprintf(self::REQUEST_URL_TEMPLATE, 'getUser'));
-        });
+        return $this->wrapSendCallbacksWithRequestAsync(fn () => $this->getHttpClient()->get(sprintf(self::REQUEST_URL_TEMPLATE, 'getUser')));
     }
 }

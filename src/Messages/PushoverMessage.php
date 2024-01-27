@@ -19,9 +19,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class PushoverMessage extends Message
 {
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         // 'token',
         // 'user',
         'message',
@@ -41,31 +41,28 @@ class PushoverMessage extends Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         // 'token',
         // 'user',
         'message',
     ];
 
-    /**
-     * @var array
-     */
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'timestamp' => 'int',
         'priority' => 'int',
         'retry' => 'int',
         'expire' => 'int',
         'html' => 'int',
         'monospace' => 'int',
-        'attachment' => ['string',  'resource'],
+        'attachment' => ['string', 'resource'],
     ];
 
     /**
-     * @var \int[][]
+     * @var array<array<\int>>
      */
-    protected $allowedValues = [
+    protected array $allowedValues = [
         'priority' => [-2, -1, 0, 1, 2],
         'html' => [0, 1],
         'monospace' => [0, 1],
@@ -103,12 +100,12 @@ class PushoverMessage extends Message
             });
 
             $optionsResolver->setNormalizer('attachment', static function (OptionsResolver $optionsResolver, $value): array {
-                if (is_string($value)) {
+                if (\is_string($value)) {
                     if ('' === $value) {
                         throw new InvalidOptionsException('The attachment cannot be empty.');
                     }
 
-                    $value = fopen($value, 'rb');
+                    $value = fopen($value, 'r');
                     if (false === $value) {
                         throw new InvalidOptionsException("The attachment resource file does not exist: {$value}.");
                     }

@@ -25,13 +25,13 @@ use Guanguans\Notify\PushPlus\UriTemplateCredential;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
     use AsJson;
+    use AsPost;
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $defined = [
+    protected array $defined = [
         'title',
         'content',
         'template',
@@ -40,16 +40,16 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     /**
-     * @var string[]
+     * @var array<string>
      */
-    protected $required = [
+    protected array $required = [
         'content',
     ];
 
     /**
-     * @var \string[][]
+     * @var array<array<\string>>
      */
-    protected $allowedValues = [
+    protected array $allowedValues = [
         'template' => ['html', 'json', 'cloudMonitor'],
     ];
 

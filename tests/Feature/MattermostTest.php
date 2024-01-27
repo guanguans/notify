@@ -16,6 +16,11 @@ use Guanguans\Notify\Factory;
 use Guanguans\Notify\Messages\MattermostMessage;
 use Guanguans\NotifyTests\TestCase;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class MattermostTest extends TestCase
 {
     public function testMattermost(): void
