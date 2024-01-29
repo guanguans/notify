@@ -12,8 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\NowPush\Messages;
 
-use Guanguans\Notify\Messages\Message;
-
+/**
+ * @method \Guanguans\Notify\NowPush\Messages\ImageMessage messageType($messageType)
+ * @method \Guanguans\Notify\NowPush\Messages\ImageMessage note($note)
+ * @method \Guanguans\Notify\NowPush\Messages\ImageMessage deviceType($deviceType)
+ * @method \Guanguans\Notify\NowPush\Messages\ImageMessage url($url)
+ */
 class ImageMessage extends Message
 {
     /**

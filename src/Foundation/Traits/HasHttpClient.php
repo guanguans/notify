@@ -18,8 +18,35 @@ use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 
 /**
- * @mixin \GuzzleHttp\HandlerStack
- * @mixin \GuzzleHttp\Client
+ * @method static self create(callable $handler = null)
+ * @method self __invoke(\Psr\Http\Message\RequestInterface $request, array $options)
+ * @method self __toString()
+ * @method self setHandler(callable $handler)
+ * @method self hasHandler()
+ * @method self unshift(callable $middleware, string $name = null)
+ * @method self push(callable $middleware, string $name = '')
+ * @method self before(string $findName, callable $middleware, string $withName = '')
+ * @method self after(string $findName, callable $middleware, string $withName = '')
+ * @method self remove($remove)
+ * @method self resolve()
+ * @method self sendAsync(\Psr\Http\Message\RequestInterface $request, array $options = [])
+ * @method self sendRequest(\Psr\Http\Message\RequestInterface $request)
+ * @method self requestAsync(string $method, $uri = '', array $options = [])
+ * @method self request(string $method, $uri = '', array $options = [])
+ * @method self getConfig(string $option = null)
+ * @method self get($uri, array $options = [])
+ * @method self head($uri, array $options = [])
+ * @method self put($uri, array $options = [])
+ * @method self post($uri, array $options = [])
+ * @method self patch($uri, array $options = [])
+ * @method self delete($uri, array $options = [])
+ * @method self getAsync($uri, array $options = [])
+ * @method self headAsync($uri, array $options = [])
+ * @method self putAsync($uri, array $options = [])
+ * @method self postAsync($uri, array $options = [])
+ * @method self patchAsync($uri, array $options = [])
+ * @method self deleteAsync($uri, array $options = [])
+ *
  * @mixin \Guanguans\Notify\Foundation\Client
  */
 trait HasHttpClient

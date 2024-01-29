@@ -12,8 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\NowPush\Messages;
 
-use Guanguans\Notify\Messages\Message;
-
+/**
+ * @method \Guanguans\Notify\NowPush\Messages\LinkMessage messageType($messageType)
+ * @method \Guanguans\Notify\NowPush\Messages\LinkMessage note($note)
+ * @method \Guanguans\Notify\NowPush\Messages\LinkMessage deviceType($deviceType)
+ * @method \Guanguans\Notify\NowPush\Messages\LinkMessage url($url)
+ */
 class LinkMessage extends Message
 {
     /**

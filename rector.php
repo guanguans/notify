@@ -10,6 +10,7 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+use Guanguans\Notify\Foundation\Support\UpdateHasHttpClientDocCommentRector;
 use Guanguans\Notify\Foundation\Support\UpdateHasOptionsDocCommentRector;
 use Rector\Caching\ValueObject\Storage\FileCacheStorage;
 use Rector\CodeQuality\Rector\Array_\CallableThisArrayToAnonymousFunctionRector;
@@ -91,6 +92,8 @@ return static function (RectorConfig $rectorConfig): void {
         AddSeeTestAnnotationRector::class,
 
         // paths
+        __DIR__.'/src/Clients',
+        __DIR__.'/src/Messages',
         '**/Fixture*',
         '**/Fixture/*',
         '**/Fixtures*',
@@ -132,6 +135,7 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->rules([
         // InlineConstructorDefaultToPropertyRector::class,
+        UpdateHasHttpClientDocCommentRector::class,
         UpdateHasOptionsDocCommentRector::class,
     ]);
 };
