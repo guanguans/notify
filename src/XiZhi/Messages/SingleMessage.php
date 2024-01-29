@@ -22,6 +22,6 @@ class SingleMessage extends Message
 {
     public function httpUri(): string
     {
-        return sprintf('https://xizhi.qqoq.net/%s.send', Credential::TEMPLATE_TOKEN);
+        return sprintf('https://xizhi.qqoq.net/{%s}.send', Credential::TEMPLATE);
     }
 }

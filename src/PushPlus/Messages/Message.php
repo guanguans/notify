@@ -55,6 +55,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://www.pushplus.plus/send?token=%s', Credential::TEMPLATE_TOKEN);
+        return sprintf('https://www.pushplus.plus/send?token=%s', Credential::TEMPLATE);
     }
 }

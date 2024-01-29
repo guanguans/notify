@@ -23,6 +23,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://api.telegram.org/bot%s/sendMessage', Credential::TEMPLATE_TOKEN);
+        return sprintf('https://api.telegram.org/bot%s/sendMessage', Credential::TEMPLATE);
     }
 }

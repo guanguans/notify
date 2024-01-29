@@ -43,6 +43,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://sctapi.ftqq.com/%s.send', Credential::TEMPLATE_TOKEN);
+        return sprintf('https://sctapi.ftqq.com/%s.send', Credential::TEMPLATE);
     }
 }

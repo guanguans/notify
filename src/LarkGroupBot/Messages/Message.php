@@ -22,7 +22,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri(): string
     {
-        return sprintf('https://open.feishu.cn/open-apis/bot/v2/hook/%s', Credential::TEMPLATE_TOKEN);
+        return sprintf('https://open.feishu.cn/open-apis/bot/v2/hook/%s', Credential::TEMPLATE);
     }
 
     public function toHttpOptions(): array

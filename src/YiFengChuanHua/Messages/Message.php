@@ -42,6 +42,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://www.phprm.com/services/push/trigger/%s', Credential::TEMPLATE_TOKEN);
+        return sprintf('https://www.phprm.com/services/push/trigger/%s', Credential::TEMPLATE);
     }
 }

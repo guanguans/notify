@@ -28,9 +28,4 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         'title',
         'content',
     ];
-
-    public function __construct(string $title, ?string $content = null)
-    {
-        parent::__construct(['title' => $title, 'content' => $content]);
-    }
 }

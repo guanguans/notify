@@ -24,7 +24,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 
     public function httpUri()
     {
-        return sprintf('https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=%s', Credential::TEMPLATE_TOKEN);
+        return sprintf('https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=%s', Credential::TEMPLATE);
     }
 
     public function toHttpOptions(): array

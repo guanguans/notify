@@ -26,7 +26,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     public function __construct(array $options = [])
     {
         parent::__construct($options);
-        $this->baseUri = sprintf('https://api.chanify.net/v1/sender/%s', Credential::TEMPLATE_TOKEN);
+        $this->baseUri = sprintf('https://api.chanify.net/v1/sender/%s', Credential::TEMPLATE);
     }
 
     public function httpUri()
