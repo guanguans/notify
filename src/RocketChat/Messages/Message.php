@@ -89,7 +89,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return $this;
     }
 
-    public function httpUri()
+    public function toHttpUri()
     {
         return '{base_uri}/hooks/{token}';
     }

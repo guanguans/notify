@@ -90,7 +90,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return $this;
     }
 
-    public function httpUri()
+    public function toHttpUri()
     {
         return 'webhook_url';
     }

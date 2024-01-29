@@ -19,7 +19,7 @@ use Guanguans\Notify\Foundation\Message;
  */
 trait AsGet
 {
-    final public function httpMethod(): string
+    final public function toHttpMethod(): string
     {
         return 'GET';
     }

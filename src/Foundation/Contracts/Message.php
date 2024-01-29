@@ -16,12 +16,12 @@ use Psr\Http\Message\UriInterface;
 
 interface Message
 {
-    public function httpMethod(): string;
+    public function toHttpMethod(): string;
 
     /**
      * @return string|UriInterface
      */
-    public function httpUri();
+    public function toHttpUri();
 
     public function toHttpOptions(): array;
 }

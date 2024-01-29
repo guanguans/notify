@@ -19,7 +19,7 @@ use Guanguans\Notify\Foundation\Message;
  */
 trait AsPost
 {
-    final public function httpMethod(): string
+    final public function toHttpMethod(): string
     {
         return 'POST';
     }

@@ -76,7 +76,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'actions' => [],
     ];
 
-    public function httpUri()
+    public function toHttpUri()
     {
         return 'https://ntfy.sh';
     }

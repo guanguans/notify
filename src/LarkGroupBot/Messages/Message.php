@@ -20,7 +20,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;
 
-    public function httpUri(): string
+    public function toHttpUri(): string
     {
         return sprintf('https://open.feishu.cn/open-apis/bot/v2/hook/%s', Credential::TEMPLATE);
     }

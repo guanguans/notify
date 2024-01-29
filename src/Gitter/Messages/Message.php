@@ -35,7 +35,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         $this->roomsId = $roomsId;
     }
 
-    public function httpUri(): string
+    public function toHttpUri(): string
     {
         return "https://api.gitter.im/v1/rooms/$this->roomsId/chatMessages";
     }

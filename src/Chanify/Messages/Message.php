@@ -29,7 +29,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         $this->baseUri = sprintf('https://api.chanify.net/v1/sender/%s', Credential::TEMPLATE);
     }
 
-    public function httpUri()
+    public function toHttpUri()
     {
         return $this->baseUri;
     }

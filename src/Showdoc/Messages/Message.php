@@ -41,7 +41,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         ]);
     }
 
-    public function httpUri()
+    public function toHttpUri()
     {
         return sprintf('https://push.showdoc.com.cn/server/api/push/%s', Credential::TEMPLATE);
     }

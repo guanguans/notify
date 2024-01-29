@@ -95,7 +95,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return $this;
     }
 
-    public function httpUri(): void
+    public function toHttpUri(): void
     {
         // TODO: Implement httpUri() method.
     }

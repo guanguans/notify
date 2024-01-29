@@ -20,7 +20,7 @@ use Guanguans\Notify\XiZhi\Credential;
  */
 class ChannelMessage extends Message
 {
-    public function httpUri(): string
+    public function toHttpUri(): string
     {
         return sprintf('https://xizhi.qqoq.net/{%s}.channel', Credential::TEMPLATE);
     }

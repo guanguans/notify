@@ -62,8 +62,8 @@ class Client implements Contracts\Client
     public function send(Message $message): ResponseInterface
     {
         return $this->getHttpClient()->request(
-            $message->httpMethod(),
-            $message->httpUri(),
+            $message->toHttpMethod(),
+            $message->toHttpUri(),
             $this->credential->applyToOptions($message->toHttpOptions())
         );
     }

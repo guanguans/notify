@@ -20,7 +20,7 @@ use Guanguans\Notify\XiZhi\Credential;
  */
 class SingleMessage extends Message
 {
-    public function httpUri(): string
+    public function toHttpUri(): string
     {
         return sprintf('https://xizhi.qqoq.net/{%s}.send', Credential::TEMPLATE);
     }

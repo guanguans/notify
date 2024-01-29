@@ -40,7 +40,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'head',
     ];
 
-    public function httpUri()
+    public function toHttpUri()
     {
         return sprintf('https://www.phprm.com/services/push/trigger/%s', Credential::TEMPLATE);
     }

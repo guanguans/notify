@@ -89,7 +89,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'monospace' => [0, 1],
     ];
 
-    public function httpUri()
+    public function toHttpUri()
     {
         return 'https://api.pushover.net/1/messages.json';
     }

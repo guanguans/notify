@@ -19,7 +19,7 @@ use Guanguans\Notify\Foundation\Message;
  */
 trait AsDelete
 {
-    final public function httpMethod(): string
+    final public function toHttpMethod(): string
     {
         return 'delete';
     }

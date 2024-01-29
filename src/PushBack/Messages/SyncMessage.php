@@ -42,7 +42,7 @@ class SyncMessage extends \Guanguans\Notify\Foundation\Message
         'title',
     ];
 
-    public function httpUri(): string
+    public function toHttpUri(): string
     {
         return 'https://api.pushback.io/v1/send_sync';
     }

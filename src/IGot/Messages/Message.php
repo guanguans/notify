@@ -50,7 +50,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'detail' => 'array',
     ];
 
-    public function httpUri()
+    public function toHttpUri()
     {
         return sprintf('https://push.hellyw.com/%s', Credential::TEMPLATE);
     }

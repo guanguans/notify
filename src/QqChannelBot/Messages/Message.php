@@ -20,7 +20,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
-    public function httpUri(): void
+    public function toHttpUri(): void
     {
         // TODO: Implement httpUri() method.
     }

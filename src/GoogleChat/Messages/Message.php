@@ -67,7 +67,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'attachment' => 'array',
     ];
 
-    public function httpUri(): string
+    public function toHttpUri(): string
     {
         return sprintf('https://chat.googleapis.com/v1/spaces/%s/messages', Credential::TEMPLATE_SPACE);
     }

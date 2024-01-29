@@ -68,7 +68,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         // 'automaticallyCopy' => 1,
     ];
 
-    public function httpUri()
+    public function toHttpUri()
     {
         return sprintf('https://api.day.app/%s', Credential::TEMPLATE);
     }

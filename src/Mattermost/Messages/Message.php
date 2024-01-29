@@ -69,7 +69,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     //     $this->baseUri = $baseUri;
     // }
 
-    public function httpUri()
+    public function toHttpUri()
     {
         return "$this->baseUri/api/v4/posts";
     }
