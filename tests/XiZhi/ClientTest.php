@@ -15,13 +15,13 @@ use Guanguans\Notify\XiZhi\Credential;
 use Guanguans\Notify\XiZhi\Messages\SingleMessage;
 use GuzzleHttp\Handler\MockHandler;
 
-use function Pest\Faker\faker;
-
 it('can send single message', function (): void {
     $credential = new Credential('XZd60aea56567ae39a1b1920cbc42bb');
     $client = new Client($credential);
-    // $singleMessage = new SingleMessage('测试标题', '测试内容');
-    $singleMessage = new SingleMessage(faker()->title(), faker()->text());
+    $singleMessage = SingleMessage::make([
+        'title' => 'This is title.',
+        'content' => 'This is content.',
+    ]);
     $mockHandler = new MockHandler([
         (new GuzzleHttp\Psr7\HttpFactory)->createResponse(
             200,
