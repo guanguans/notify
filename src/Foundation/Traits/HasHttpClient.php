@@ -107,13 +107,15 @@ trait HasHttpClient
     {
         if (! $this->handlerStack instanceof HandlerStack) {
             $this->handlerStack = HandlerStack::create();
-            $this->handlerStack->push(
-                new EnsureResponse,
-                EnsureResponse::name()
-            );
+            $this->handlerStack->push(new EnsureResponse, EnsureResponse::name());
         }
 
         return $this->handlerStack = $this->ensureWithApplyCredentialToRequest($this->handlerStack);
+    }
+
+    private function getHttpOptions(): array
+    {
+        return $this->httpOptions;
     }
 
     private function ensureWithApplyCredentialToRequest(HandlerStack $handlerStack): HandlerStack
@@ -130,10 +132,5 @@ trait HasHttpClient
         }
 
         return $handlerStack;
-    }
-
-    private function getHttpOptions(): array
-    {
-        return $this->httpOptions;
     }
 }
