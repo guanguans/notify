@@ -17,7 +17,7 @@ use Guanguans\Notify\Foundation\Contracts\Message;
 use Guanguans\Notify\Foundation\Credentials\NullCredential;
 use Guanguans\Notify\Foundation\Traits\Conditionable;
 use Guanguans\Notify\Foundation\Traits\HasHttpClient;
-use Guanguans\Notify\Foundation\Traits\Macroable;
+use Guanguans\Notify\Foundation\Traits\Makeable;
 use Guanguans\Notify\Foundation\Traits\Tappable;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
@@ -25,10 +25,8 @@ use Psr\Http\Message\ResponseInterface;
 class Client implements Contracts\Client
 {
     use Conditionable;
-    use HasHttpClient, Macroable {
-        HasHttpClient::__call as hasHttpClientCall;
-        Macroable::__call as macroableCall;
-    }
+    use HasHttpClient;
+    use Makeable;
     use Tappable;
 
     private Credential $credential;
@@ -36,20 +34,6 @@ class Client implements Contracts\Client
     public function __construct(?Credential $credential = null)
     {
         $this->credential = $credential ?? new NullCredential;
-    }
-
-    /**
-     * @noinspection MissingReturnTypeInspection
-     * @noinspection MissingParameterTypeDeclarationInspection
-     *
-     * @param mixed $name
-     * @param mixed $arguments
-     */
-    public function __call($name, $arguments)
-    {
-        return static::hasMacro($name) ?
-            $this->macroableCall($name, $arguments)
-            : $this->hasHttpClientCall($name, $arguments);
     }
 
     /**
@@ -61,10 +45,12 @@ class Client implements Contracts\Client
      */
     public function send(Message $message): ResponseInterface
     {
-        return $this->getHttpClient()->request(
-            $message->toHttpMethod(),
-            $message->toHttpUri(),
-            $this->credential->applyToOptions($message->toHttpOptions())
-        );
+        return $this
+            ->getHttpClient()
+            ->request(
+                $message->toHttpMethod(),
+                $message->toHttpUri(),
+                $this->credential->applyToOptions($message->toHttpOptions())
+            );
     }
 }
