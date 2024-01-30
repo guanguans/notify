@@ -12,6 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Discord;
 
-use Guanguans\Notify\Foundation\Credentials\NullCredential;
+use Guanguans\Notify\Foundation\Credentials\UriTemplateCredential;
 
-class Credential extends NullCredential {}
+class Credential extends UriTemplateCredential
+{
+    public function __construct(string $threadId, string $token)
+    {
+        parent::__construct(['threadId' => $threadId, 'token' => $token]);
+    }
+}

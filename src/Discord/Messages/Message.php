@@ -45,25 +45,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'embeds' => 'array',
     ];
 
-    public function setEmbeds(array $embeds): self
-    {
-        return $this->addEmbeds($embeds);
-    }
-
-    public function addEmbeds(array $embeds): self
-    {
-        foreach ($embeds as $embed) {
-            $this->addEmbed($embed);
-        }
-
-        return $this;
-    }
-
-    public function setEmbed(array $embed): self
-    {
-        return $this->addEmbed($embed);
-    }
-
     public function addEmbed(array $embed): self
     {
         $this->options['embeds'][] = configure_options(
@@ -88,28 +69,18 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ->setAllowedTypes('thumbnail', 'array')
                     ->setAllowedTypes('author', 'array')
                     ->setAllowedTypes('fields', 'array')
-                    ->setNormalizer('color', static fn (OptionsResolver $optionsResolver, $value) => \is_int($value) ? $value : hexdec($value));
+                    ->setNormalizer('color', static fn (
+                        OptionsResolver $optionsResolver,
+                        $value
+                    ) => \is_int($value) ? $value : hexdec($value));
             }
         );
 
         return $this;
     }
 
-    public function toHttpUri(): void
+    public function toHttpUri(): string
     {
-        // TODO: Implement httpUri() method.
-    }
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(
-            parent::configureOptionsResolver($optionsResolver),
-            static function (OptionsResolver $resolver): void {
-                $resolver->setNormalizer(
-                    'embeds',
-                    static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]
-                );
-            }
-        );
+        return 'https://discord.com/api/webhooks/{threadId}/{token}';
     }
 }
