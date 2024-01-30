@@ -21,11 +21,6 @@ class ImageMessage extends Message
         'image_key',
     ];
 
-    public function __construct(string $imageKey)
-    {
-        parent::__construct(['image_key' => $imageKey]);
-    }
-
     protected function type(): string
     {
         return 'image';

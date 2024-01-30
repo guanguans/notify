@@ -21,11 +21,6 @@ class ShareChatMessage extends Message
         'share_chat_id',
     ];
 
-    public function __construct(string $shareChatId)
-    {
-        parent::__construct(['share_chat_id' => $shareChatId]);
-    }
-
     protected function type(): string
     {
         return 'share_chat';

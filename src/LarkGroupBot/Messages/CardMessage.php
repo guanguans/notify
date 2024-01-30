@@ -25,11 +25,6 @@ class CardMessage extends Message
         'card' => 'array',
     ];
 
-    public function __construct(array $card)
-    {
-        parent::__construct(['card' => $card]);
-    }
-
     protected function type(): string
     {
         return 'card';

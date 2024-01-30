@@ -21,11 +21,6 @@ class TextMessage extends Message
         'text',
     ];
 
-    public function __construct(string $text)
-    {
-        parent::__construct(['text' => $text]);
-    }
-
     protected function type(): string
     {
         return 'text';
