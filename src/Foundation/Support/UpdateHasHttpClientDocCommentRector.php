@@ -40,6 +40,7 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
         'create',
         'hasHandler',
         'resolve',
+        'getConfig',
     ];
 
     private array $mixins = [
@@ -126,7 +127,12 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
             }
         }
 
-        $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('', new GenericTagValueNode('')));
+        $phpDocInfo->addPhpDocTagNode($this->createEmptyDocTagNode());
+        foreach ($this->mixins as $mixin) {
+            $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@see', new GenericTagValueNode('\\'.$mixin)));
+        }
+
+        $phpDocInfo->addPhpDocTagNode($this->createEmptyDocTagNode());
         $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@mixin', new GenericTagValueNode('\\'.self::MAIN_CLASS)));
 
         $this->docBlockUpdater->updateRefactoredNodeWithPhpDocInfo($node);
@@ -134,9 +140,20 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
         return $node;
     }
 
+    private function createEmptyDocTagNode(): PhpDocTagNode
+    {
+        return new PhpDocTagNode('', new GenericTagValueNode(''));
+    }
+
     private function createMethodPhpDocTagNode(\ReflectionMethod $reflectionMethod): PhpDocTagNode
     {
         $static = $reflectionMethod->isStatic() ? 'static ' : '';
+
+        $returnType = 'self ';
+        if (HandlerStack::class !== $reflectionMethod->class) {
+            $returnType = $reflectionMethod->getReturnType();
+            $returnType and ($returnType->isBuiltin() or $returnType = "\\$returnType ");
+        }
 
         $name = $reflectionMethod->getName();
 
@@ -172,6 +189,6 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
             ', '
         );
 
-        return new PhpDocTagNode('@method', new GenericTagValueNode("{$static}self $name($parameters)"));
+        return new PhpDocTagNode('@method', new GenericTagValueNode("$static$returnType$name($parameters)"));
     }
 }
