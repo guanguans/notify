@@ -12,9 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Bark\Messages;
 
-use Guanguans\Notify\Bark\Credential;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
+use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
 /**
  * @method \Guanguans\Notify\Bark\Messages\Message title($title)
@@ -36,6 +36,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsPost;
 
     protected array $defined = [
+        'base_uri',
+
         'title',
         'body',
         'copy',
@@ -61,6 +63,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'level' => ['active', 'timeSensitive', 'passive'],
     ];
 
+    protected array $defaults = [
+        'base_uri' => 'https://api.day.app',
+    ];
+
     protected array $options = [
         // 'sound' => 'bell',
         // 'isArchive' => 1,
@@ -68,8 +74,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         // 'automaticallyCopy' => 1,
     ];
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
-        return sprintf('https://api.day.app/%s', Credential::TEMPLATE);
+        return sprintf('%s/{%s}', $this->getOption('base_uri'), TokenUriTemplateCredential::TEMPLATE);
     }
 }
