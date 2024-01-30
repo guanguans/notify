@@ -27,16 +27,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'text',
     ];
 
-    private string $roomsId;
-
-    public function __construct(string $roomsId, string $text)
-    {
-        parent::__construct(['text' => $text]);
-        $this->roomsId = $roomsId;
-    }
-
     public function toHttpUri(): string
     {
-        return "https://api.gitter.im/v1/rooms/$this->roomsId/chatMessages";
+        return 'https://api.gitter.im/v1/rooms/{roomId}/chatMessages';
     }
 }

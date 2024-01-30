@@ -12,6 +12,17 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Gitter;
 
+use Guanguans\Notify\Foundation\Credentials\AggregateCredential;
 use Guanguans\Notify\Foundation\Credentials\TokenAuthCredential;
+use Guanguans\Notify\Foundation\Credentials\UriTemplateCredential;
 
-class Credential extends TokenAuthCredential {}
+class Credential extends AggregateCredential
+{
+    public function __construct(string $roomId, string $token)
+    {
+        parent::__construct(
+            new UriTemplateCredential(['roomId' => $roomId]),
+            new TokenAuthCredential($token)
+        );
+    }
+}
