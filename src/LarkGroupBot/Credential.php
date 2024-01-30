@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\LarkGroupBot;
 
 use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
-use Psr\Http\Message\RequestInterface;
+use GuzzleHttp\RequestOptions;
 
 class Credential extends TokenUriTemplateCredential
 {
@@ -25,23 +25,14 @@ class Credential extends TokenUriTemplateCredential
         $this->secret = $secret;
     }
 
-    /**
-     * @noinspection JsonEncodingApiUsageInspection
-     */
-    public function applyToRequest(RequestInterface $request): RequestInterface
+    public function applyToOptions(array $options): array
     {
-        $request = parent::applyToRequest($request);
-
         if ($this->secret) {
-            $body = [
-                'timestamp' => $timestamp = time(),
-                'sign' => $this->sign($this->secret, $timestamp),
-            ] + json_decode($request->getBody()->getContents(), true);
-
-            $request = $request->withBody($this->httpFactory->createStream(json_encode($body)));
+            $options[RequestOptions::JSON]['timestamp'] = $timestamp = time();
+            $options[RequestOptions::JSON]['sign'] = $this->sign($this->secret, $timestamp);
         }
 
-        return $request;
+        return $options;
     }
 
     private function sign(string $secret, int $timestamp): string

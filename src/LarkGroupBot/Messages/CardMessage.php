@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\LarkGroupBot\Messages;
 
+use GuzzleHttp\RequestOptions;
+
 /**
  * @method \Guanguans\Notify\LarkGroupBot\Messages\CardMessage card(array $card)
  */
@@ -25,8 +27,18 @@ class CardMessage extends Message
         'card' => 'array',
     ];
 
+    public function toHttpOptions(): array
+    {
+        return [
+            RequestOptions::JSON => [
+                'msg_type' => $this->type(),
+                'card' => $this->getOption('card'),
+            ],
+        ];
+    }
+
     protected function type(): string
     {
-        return 'card';
+        return 'interactive';
     }
 }
