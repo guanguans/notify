@@ -14,7 +14,6 @@ namespace Guanguans\Notify\GoogleChat\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\GoogleChat\Credential;
 
 /**
  * @method \Guanguans\Notify\GoogleChat\Messages\Message text($text)
@@ -69,6 +68,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return sprintf('https://chat.googleapis.com/v1/spaces/%s/messages', Credential::TEMPLATE_SPACE);
+        return 'https://chat.googleapis.com/v1/spaces/{spaceId}/messages';
     }
 }

@@ -12,42 +12,24 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\GoogleChat;
 
-use Guanguans\Notify\Foundation\Credentials\NullCredential;
-use GuzzleHttp\Psr7\HttpFactory;
-use GuzzleHttp\UriTemplate\UriTemplate;
-use Psr\Http\Message\RequestInterface;
+use Guanguans\Notify\Foundation\Credentials\AggregateCredential;
+use Guanguans\Notify\Foundation\Credentials\QueryCredential;
+use Guanguans\Notify\Foundation\Credentials\UriTemplateCredential;
 
-class Credential extends NullCredential
+class Credential extends AggregateCredential
 {
-    public const TEMPLATE_SPACE = '{space}';
-
-    private string $space;
-    private string $key;
-    private string $token;
-    private ?string $threadKey;
-
-    public function __construct(string $space, string $token, string $key, ?string $threadKey = null)
+    public function __construct(string $spaceId, string $key, string $token, ?string $threadKey = null)
     {
-        $this->space = $space;
-        $this->key = $key;
-        $this->token = $token;
-        $this->threadKey = $threadKey;
-        $this->httpFactory = new HttpFactory;
-    }
+        $credentials = [
+            new UriTemplateCredential(['spaceId' => $spaceId]),
+            new QueryCredential('key', $key),
+            new QueryCredential('token', $token),
+        ];
 
-    public function applyToRequest(RequestInterface $request): RequestInterface
-    {
-        return $request->withUri($this->httpFactory->createUri(
-            UriTemplate::expand(urldecode((string) $request->getUri()), ['space' => $this->space])
-        ));
-    }
+        if ($threadKey) {
+            $credentials[] = new QueryCredential('threadKey', $threadKey);
+        }
 
-    public function applyToOptions(array $options): array
-    {
-        $options['query']['token'] = $this->token;
-        $options['query']['key'] = $this->key;
-        $options['query']['thread_key'] = $this->threadKey;
-
-        return $options;
+        parent::__construct(...$credentials);
     }
 }
