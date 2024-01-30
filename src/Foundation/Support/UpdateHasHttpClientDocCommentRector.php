@@ -36,8 +36,10 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
     private const TRAIT = HasHttpClient::class;
 
     private array $except = [
-        '__construct',
-        '__call',
+        '__*',
+        'create',
+        'hasHandler',
+        'resolve',
     ];
 
     private array $mixins = [

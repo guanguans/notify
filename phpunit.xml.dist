@@ -20,6 +20,8 @@
     </include>
     <exclude>
       <directory>src/Support</directory>
+      <directory>src/Clients</directory>
+      <directory>src/Messages</directory>
       <file>src/Skeleton.php</file>
     </exclude>
   </coverage>

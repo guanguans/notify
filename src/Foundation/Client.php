@@ -40,8 +40,6 @@ class Client implements Contracts\Client
      * @return Response|ResponseInterface
      *
      * @throws GuzzleException
-     *
-     * @noinspection PhpSignatureMismatchDuringInheritanceInspection
      */
     public function send(Message $message): ResponseInterface
     {

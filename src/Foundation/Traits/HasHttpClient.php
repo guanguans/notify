@@ -18,17 +18,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 
 /**
- * @method static self create(callable $handler = null)
- * @method self __invoke(\Psr\Http\Message\RequestInterface $request, array $options)
- * @method self __toString()
  * @method self setHandler(callable $handler)
- * @method self hasHandler()
  * @method self unshift(callable $middleware, string $name = null)
  * @method self push(callable $middleware, string $name = '')
  * @method self before(string $findName, callable $middleware, string $withName = '')
  * @method self after(string $findName, callable $middleware, string $withName = '')
  * @method self remove($remove)
- * @method self resolve()
  * @method self sendAsync(\Psr\Http\Message\RequestInterface $request, array $options = [])
  * @method self sendRequest(\Psr\Http\Message\RequestInterface $request)
  * @method self requestAsync(string $method, $uri = '', array $options = [])
