@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\DingTalkGroupBot\Messages;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
 /**
  * @method \Guanguans\Notify\DingTalkGroupBot\Messages\TextMessage content($content)
  * @method \Guanguans\Notify\DingTalkGroupBot\Messages\TextMessage atMobiles($atMobiles)
@@ -34,14 +32,6 @@ class TextMessage extends Message
         'atDingtalkIds' => ['int', 'string', 'array'],
         'isAtAll' => 'bool',
     ];
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('atMobiles', static fn (OptionsResolver $optionsResolver, $value): array => (array) $value);
-            $resolver->setNormalizer('atDingtalkIds', static fn (OptionsResolver $optionsResolver, $value): array => (array) $value);
-        });
-    }
 
     protected function type(): string
     {

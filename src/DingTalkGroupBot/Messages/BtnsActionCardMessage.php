@@ -41,34 +41,6 @@ class BtnsActionCardMessage extends Message
         'btns' => [],
     ];
 
-    public function __construct(array $options)
-    {
-        $btns = $options['btns'] ?? [];
-        unset($options['btns']);
-        parent::__construct($options);
-
-        $this->addBtns($btns);
-    }
-
-    public function setBtns(array $btns): self
-    {
-        return $this->addBtns($btns);
-    }
-
-    public function addBtns(array $btns): self
-    {
-        foreach ($btns as $btn) {
-            $this->addBtn($btn);
-        }
-
-        return $this;
-    }
-
-    public function setBtn(array $btn): self
-    {
-        return $this->addBtn($btn);
-    }
-
     public function addBtn(array $btn): self
     {
         $this->options['btns'][] = configure_options($btn, static function (OptionsResolver $optionsResolver): void {
