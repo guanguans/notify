@@ -177,12 +177,12 @@
         ],
         "composer-bin-all-update": "@composer bin all update --ansi -v",
         "composer-check-platform-reqs": "@composer check-platform-reqs --lock --ansi -v",
-        "composer-fixer": [
-            "Composer\\Config::disableProcessTimeout",
-            "@php ./composer-fixer"
-        ],
         "composer-normalize": "@composer normalize --dry-run --diff --ansi -v",
         "composer-unused": "@php ./vendor/bin/composer-unused --ansi -v",
+        "composer-updater": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php ./composer-updater --highest-php-binary=/opt/homebrew/opt/php@8.3/bin/php --ansi"
+        ],
         "composer-validate": "@composer validate --check-lock --strict --ansi -v",
         "json-lint": "@php ./vendor/bin/jsonlint *.json .*rc",
         "lint": [
