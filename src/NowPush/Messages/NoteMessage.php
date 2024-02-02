@@ -20,9 +20,6 @@ namespace Guanguans\Notify\NowPush\Messages;
  */
 class NoteMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'message_type',
         'note',
@@ -34,18 +31,7 @@ class NoteMessage extends Message
         'device_type' => 'api',
     ];
 
-    /**
-     * @var array<string>
-     */
     protected array $defaults = [
         'message_type' => 'nowpush_note',
     ];
-
-    public function __construct(string $note, string $deviceType = 'api')
-    {
-        parent::__construct([
-            'note' => $note,
-            'device_type' => $deviceType,
-        ]);
-    }
 }

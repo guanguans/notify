@@ -20,9 +20,6 @@ namespace Guanguans\Notify\NowPush\Messages;
  */
 class LinkMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'message_type',
         'note',
@@ -30,25 +27,11 @@ class LinkMessage extends Message
         'url',
     ];
 
-    /**
-     * @var array<string>
-     */
     protected array $options = [
         'device_type' => 'api',
     ];
 
-    /**
-     * @var array<string>
-     */
     protected array $defaults = [
         'message_type' => 'nowpush_link',
     ];
-
-    public function __construct(string $url, string $deviceType = 'api')
-    {
-        parent::__construct([
-            'url' => $url,
-            'device_type' => $deviceType,
-        ]);
-    }
 }

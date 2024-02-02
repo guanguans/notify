@@ -20,9 +20,6 @@ namespace Guanguans\Notify\NowPush\Messages;
  */
 class ImageMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'message_type',
         'note',
@@ -30,25 +27,11 @@ class ImageMessage extends Message
         'url',
     ];
 
-    /**
-     * @var array<string>
-     */
     protected array $options = [
         'device_type' => 'api',
     ];
 
-    /**
-     * @var array<string>
-     */
     protected array $defaults = [
         'message_type' => 'nowpush_img',
     ];
-
-    public function __construct(string $url, string $deviceType = 'api')
-    {
-        parent::__construct([
-            'url' => $url,
-            'device_type' => $deviceType,
-        ]);
-    }
 }
