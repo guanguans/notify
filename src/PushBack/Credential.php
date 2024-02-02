@@ -12,12 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\PushBack;
 
-use Guanguans\Notify\Ntfy\BasicAuthCredential;
+use Guanguans\Notify\Foundation\Credentials\TokenAuthCredential;
 
-class Credential extends BasicAuthCredential
-{
-    public function __construct(string $username)
-    {
-        parent::__construct($username, null);
-    }
-}
+class Credential extends TokenAuthCredential {}
