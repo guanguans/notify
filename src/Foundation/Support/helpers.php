@@ -45,7 +45,7 @@ if (! function_exists('tap')) {
     function tap($value, ?callable $callback = null)
     {
         if (null === $callback) {
-            return new class ($value) {
+            return new class($value) {
                 public $target;
 
                 public function __construct($target)

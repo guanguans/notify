@@ -332,10 +332,9 @@ return (new Config)
                 // 'var',
             ],
         ],
-
         'class_definition' => [
             'inline_constructor_arguments' => false,
-            'space_before_parenthesis' => true,
+            'space_before_parenthesis' => false,
         ],
 
         // https://github.com/kubawerlos/php-cs-fixer-custom-fixers

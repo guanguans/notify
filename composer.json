@@ -87,7 +87,7 @@
         "brainmaestro/composer-git-hooks": "^2.8",
         "dms/phpunit-arraysubset-asserts": "^0.5",
         "ergebnis/composer-normalize": "^2.42",
-        "friendsofphp/php-cs-fixer": "^3.48",
+        "friendsofphp/php-cs-fixer": "^3.49",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
         "kubawerlos/php-cs-fixer-custom-fixers": "^3.19",
