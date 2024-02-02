@@ -12,4 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\GoogleChat;
 
+/**
+ * @see https://developers.google.com/hangouts/chat/how-tos/webhooks
+ * @see https://developers.google.com/hangouts/chat/reference/rest/v1/spaces.messages/create#query-parameters
+ */
 class Client extends \Guanguans\Notify\Foundation\Client {}

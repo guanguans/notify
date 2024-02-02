@@ -12,4 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Ntfy;
 
+/**
+ * @see https://ntfy.sh
+ * @see https://docs.ntfy.sh/publish/
+ */
 class Client extends \Guanguans\Notify\Foundation\Client {}

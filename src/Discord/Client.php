@@ -12,4 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Discord;
 
+/**
+ * @see https://discord.com/developers/docs/resources/webhook#edit-webhook-message
+ */
 class Client extends \Guanguans\Notify\Foundation\Client {}
