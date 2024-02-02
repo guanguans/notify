@@ -14,8 +14,10 @@ namespace Guanguans\Notify\Foundation\Traits;
 
 use Guanguans\Notify\Foundation\Middleware\ApplyCredentialToRequest;
 use Guanguans\Notify\Foundation\Middleware\EnsureResponse;
+use Guanguans\Notify\Foundation\Support\Str;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\RequestOptions;
 
 /**
  * @method self setHandler(callable $handler)
@@ -66,6 +68,21 @@ trait HasHttpClient
             $this->getHandlerStack()->{$name}(...$arguments);
 
             return $this;
+        }
+
+        $httpOptions = (new \ReflectionClass(RequestOptions::class))->getConstants() + [
+            'BASE_URI' => 'base_uri',
+        ];
+        if (\in_array($snakedName = Str::snake($name), $httpOptions, true)) {
+            if (empty($arguments)) {
+                throw new \InvalidArgumentException(sprintf(
+                    'Method %s::%s requires an argument',
+                    static::class,
+                    $name
+                ));
+            }
+
+            return $this->setHttpOptions([$snakedName => $arguments[0]]);
         }
 
         if (method_exists($this->getHttpClient(), $name)) {

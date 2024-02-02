@@ -12,8 +12,17 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Ntfy;
 
+use Guanguans\Notify\Foundation\Contracts\Credential;
+
 /**
  * @see https://ntfy.sh
  * @see https://docs.ntfy.sh/publish/
  */
-class Client extends \Guanguans\Notify\Foundation\Client {}
+class Client extends \Guanguans\Notify\Foundation\Client
+{
+    public function __construct(?Credential $credential = null)
+    {
+        parent::__construct($credential);
+        $this->baseUri('https://ntfy.sh');
+    }
+}

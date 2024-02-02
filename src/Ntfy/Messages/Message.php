@@ -53,13 +53,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'firebase',
     ];
 
-    protected $required = [
+    protected array $required = [
         'topic',
     ];
 
-    /**
-     * @var array<string>
-     */
     protected array $allowedTypes = [
         'tags' => 'array',
         'actions' => 'array',
@@ -76,8 +73,9 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'actions' => [],
     ];
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
-        return 'https://ntfy.sh';
+        // return 'https://ntfy.sh';
+        return '';
     }
 }
