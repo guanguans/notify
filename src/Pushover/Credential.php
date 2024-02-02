@@ -12,24 +12,13 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Pushover;
 
-use Guanguans\Notify\Foundation\Credentials\NullCredential;
+use Guanguans\Notify\Foundation\Credentials\AggregateCredential;
+use Guanguans\Notify\Foundation\Credentials\QueryCredential;
 
-class Credential extends NullCredential
+class Credential extends AggregateCredential
 {
-    private ?string $token;
-    private ?string $user;
-
-    public function __construct(?string $token = null, ?string $user = null)
+    public function __construct(string $user, string $token)
     {
-        $this->token = $token;
-        $this->user = $user;
-    }
-
-    public function applyToOptions(array $options): array
-    {
-        $options['multipart']['token'] = $this->token;
-        $options['multipart']['user'] = $this->user;
-
-        return $options;
+        parent::__construct(new QueryCredential('user', $user), new QueryCredential('token', $token));
     }
 }

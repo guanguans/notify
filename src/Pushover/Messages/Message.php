@@ -14,6 +14,7 @@ namespace Guanguans\Notify\Pushover\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
+use GuzzleHttp\Psr7\Utils;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -39,9 +40,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsMultipart;
     use AsPost;
 
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         // 'token',
         // 'user',
@@ -59,11 +57,11 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'callback',
         'device',
         'attachment',
+
+        // 'attachment_base64',
+        // 'attachment_type',
     ];
 
-    /**
-     * @var array<string>
-     */
     protected array $required = [
         // 'token',
         // 'user',
@@ -89,58 +87,62 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'monospace' => [0, 1],
     ];
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
         return 'https://api.pushover.net/1/messages.json';
     }
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver->setNormalizer('priority', static function (OptionsResolver $optionsResolver, $value): int {
-                if (2 !== $value) {
-                    return $value;
-                }
+        return tap(
+            parent::configureOptionsResolver($optionsResolver),
+            static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver->setNormalizer(
+                    'priority',
+                    static function (OptionsResolver $optionsResolver, $value): int {
+                        if (2 !== $value) {
+                            return $value;
+                        }
 
-                if (isset($optionsResolver['retry'], $optionsResolver['expire'])) {
-                    return $value;
-                }
+                        if (isset($optionsResolver['retry'], $optionsResolver['expire'])) {
+                            return $value;
+                        }
 
-                throw new MissingOptionsException('The required option "retry" or "expire" is missing.');
-            });
-
-            $optionsResolver->setNormalizer('html', static function (OptionsResolver $optionsResolver, $value): int {
-                if (1 !== $value) {
-                    return $value;
-                }
-
-                if (! isset($optionsResolver['monospace'])) {
-                    return $value;
-                }
-
-                if (1 !== $optionsResolver['monospace']) {
-                    return $value;
-                }
-
-                throw new InvalidOptionsException('Html cannot be set with monospace, Monospace cannot be set with html, Html and monospace are mutually.');
-            });
-
-            $optionsResolver->setNormalizer('attachment', static function (OptionsResolver $optionsResolver, $value): array {
-                if (\is_string($value)) {
-                    if ('' === $value) {
-                        throw new InvalidOptionsException('The attachment cannot be empty.');
+                        throw new MissingOptionsException('The required option "retry" or "expire" is missing.');
                     }
+                );
 
-                    $value = fopen($value, 'r');
-                    if (false === $value) {
-                        throw new InvalidOptionsException("The attachment resource file does not exist: {$value}.");
+                $optionsResolver->setNormalizer(
+                    'html',
+                    static function (OptionsResolver $optionsResolver, $value): int {
+                        if (1 !== $value) {
+                            return $value;
+                        }
+
+                        if (! isset($optionsResolver['monospace'])) {
+                            return $value;
+                        }
+
+                        if (1 !== $optionsResolver['monospace']) {
+                            return $value;
+                        }
+
+                        throw new InvalidOptionsException('Html cannot be set with monospace, Monospace cannot be set with html, Html and monospace are mutually.');
                     }
-                }
+                );
 
-                return [
-                    'attachment' => $value,
-                ];
-            });
-        });
+                // $optionsResolver->setNormalizer(
+                //     'attachment',
+                //     static function (OptionsResolver $optionsResolver, $value) {
+                //         if (\is_string($value)) {
+                //             // $value = fopen($value, 'r');
+                //             $value = Utils::tryFopen($value, 'r');
+                //         }
+                //
+                //         return $value;
+                //     }
+                // );
+            }
+        );
     }
 }
