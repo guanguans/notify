@@ -11,43 +11,62 @@ declare(strict_types=1);
  */
 
 use GuzzleHttp\Psr7\Utils;
+use Psr\Http\Message\StreamInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 if (! function_exists('to_multipart')) {
-    /**
-     * @noinspection SlowArrayOperationsInLoopInspection
-     */
     function to_multipart(array $form): array
     {
-        $normalizeMultipartField = function (string $name, $contents) use (&$normalizeMultipartField): array {
-            $field = [];
+        /**
+         * @param array-key $name
+         * @param  array{
+         *     name: string,
+         *     contents: StreamInterface|resource|string,
+         *     headers: array<string, string>,
+         *     filename: string
+         *     ...
+         * }|StreamInterface|resource|scalar|null  $contents
+         *
+         * @return array{
+         *     name: string,
+         *     contents: resource|StreamInterface|string,
+         *     headers: array<string, string>,
+         *     filename: string
+         * }[]
+         */
+        $partResolver = static function ($name, $contents) use (&$partResolver): array {
             if (! is_array($contents)) {
-                if (is_string($contents) && is_file($contents)) {
-                    $contents = Utils::tryFopen($contents, 'r');
-                }
+                // preg_match('/^.*:\/\/.*$/', $contents);
+                is_string($contents) and is_file($contents) and $contents = Utils::tryFopen($contents, 'r');
 
                 return [compact('name', 'contents')];
             }
 
-            foreach ($contents as $key => $value) {
-                $key = "{$name}[$key]";
-                $field = array_merge(
-                    $field,
-                    is_array($value)
-                        ? $normalizeMultipartField($key, $value)
-                        : [['name' => $key, 'contents' => $value]]
-                );
+            if (
+                isset($contents['name'], $contents['contents'])
+                && [] === array_diff(array_keys($contents), ['name', 'contents', 'headers', 'filename'])
+            ) {
+                return [$contents];
             }
 
-            return $field;
+            $parts = [];
+            foreach ($contents as $key => $value) {
+                $key = "{$name}[$key]";
+
+                $parts[] = is_array($value)
+                    ? $partResolver($key, $value)
+                    : [['name' => $key, 'contents' => $value]];
+            }
+
+            return array_merge([], ...$parts);
         };
 
-        $multipart = [];
+        $parts = [];
         foreach ($form as $name => $contents) {
-            $multipart = array_merge($multipart, $normalizeMultipartField($name, $contents));
+            $parts[] = $partResolver($name, $contents);
         }
 
-        return $multipart;
+        return array_merge([], ...$parts);
     }
 }
 
