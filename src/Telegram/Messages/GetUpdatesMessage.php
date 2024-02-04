@@ -12,17 +12,22 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
-class Message extends \Guanguans\Notify\Foundation\Message
+class GetUpdatesMessage extends Message
 {
-    use AsJson;
-    use AsPost;
+    /**
+     * @var array<string>
+     */
+    protected array $defined = [
+        'offset',
+        'limit',
+        'timeout',
+        'allowed_updates',
+    ];
 
     public function toHttpUri()
     {
-        return sprintf('https://api.telegram.org/bot{%s}/sendMessage', TokenUriTemplateCredential::TEMPLATE);
+        return sprintf('https://api.telegram.org/bot{%s}/getUpdates', TokenUriTemplateCredential::TEMPLATE);
     }
 }
