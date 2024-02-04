@@ -14,7 +14,7 @@ namespace Guanguans\Notify\ServerChan\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\ServerChan\Credential;
+use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
 /**
  * @method \Guanguans\Notify\ServerChan\Messages\Message title($title)
@@ -25,24 +25,13 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'title',
         'desp',
     ];
 
-    public function __construct(string $title, string $desp = '')
-    {
-        parent::__construct([
-            'title' => $title,
-            'desp' => $desp,
-        ]);
-    }
-
     public function toHttpUri()
     {
-        return sprintf('https://sctapi.ftqq.com/%s.send', Credential::TEMPLATE);
+        return sprintf('https://sctapi.ftqq.com/{%s}.send', TokenUriTemplateCredential::TEMPLATE);
     }
 }
