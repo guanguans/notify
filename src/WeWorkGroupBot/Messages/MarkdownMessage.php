@@ -17,19 +17,9 @@ namespace Guanguans\Notify\WeWorkGroupBot\Messages;
  */
 class MarkdownMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'content',
     ];
-
-    public function __construct(string $content)
-    {
-        parent::__construct([
-            'content' => $content,
-        ]);
-    }
 
     protected function type(): string
     {

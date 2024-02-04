@@ -16,6 +16,7 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
+ * @method \Guanguans\Notify\Mattermost\Messages\Message baseUri($baseUri)
  * @method \Guanguans\Notify\Mattermost\Messages\Message channelId($channelId)
  * @method \Guanguans\Notify\Mattermost\Messages\Message message($message)
  * @method \Guanguans\Notify\Mattermost\Messages\Message fileIds(array $fileIds)

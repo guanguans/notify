@@ -15,23 +15,13 @@ namespace Guanguans\Notify\WeWorkGroupBot\Messages;
 use GuzzleHttp\RequestOptions;
 
 /**
- * @method \Guanguans\Notify\WeWorkGroupBot\Messages\ImageMessage imagePath($imagePath)
+ * @method \Guanguans\Notify\WeWorkGroupBot\Messages\ImageMessage image($image)
  */
 class ImageMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
-        'imagePath',
+        'image',
     ];
-
-    public function __construct(string $imagePath)
-    {
-        parent::__construct([
-            'imagePath' => $imagePath,
-        ]);
-    }
 
     public function toHttpOptions(): array
     {
@@ -39,8 +29,8 @@ class ImageMessage extends Message
             RequestOptions::JSON => [
                 'msgtype' => $this->type(),
                 $this->type() => [
-                    'base64' => base64_file($this->options['imagePath']),
-                    'md5' => md5_file($this->options['imagePath']),
+                    'base64' => base64_file($this->getOption('image')),
+                    'md5' => md5_file($this->getOption('image')),
                 ],
             ],
         ];

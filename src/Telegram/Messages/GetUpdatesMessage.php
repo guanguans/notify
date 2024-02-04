@@ -14,6 +14,12 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
+/**
+ * @method \Guanguans\Notify\Telegram\Messages\GetUpdatesMessage offset($offset)
+ * @method \Guanguans\Notify\Telegram\Messages\GetUpdatesMessage limit($limit)
+ * @method \Guanguans\Notify\Telegram\Messages\GetUpdatesMessage timeout($timeout)
+ * @method \Guanguans\Notify\Telegram\Messages\GetUpdatesMessage allowedUpdates($allowedUpdates)
+ */
 class GetUpdatesMessage extends Message
 {
     /**

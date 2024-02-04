@@ -17,6 +17,7 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
 /**
+ * @method \Guanguans\Notify\Bark\Messages\Message baseUri($baseUri)
  * @method \Guanguans\Notify\Bark\Messages\Message title($title)
  * @method \Guanguans\Notify\Bark\Messages\Message body($body)
  * @method \Guanguans\Notify\Bark\Messages\Message copy($copy)
