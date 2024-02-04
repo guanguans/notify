@@ -12,4 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\YiFengChuanHua;
 
+/**
+ * @see http://push.phprm.com
+ */
 class Client extends \Guanguans\Notify\Foundation\Client {}
