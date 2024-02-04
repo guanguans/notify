@@ -16,8 +16,8 @@ use Guanguans\Notify\Ntfy\BasicAuthCredential;
 
 class Credential extends BasicAuthCredential
 {
-    public function __construct(string $email, string $token)
+    public function __construct(string $botEmail, string $botApiKey)
     {
-        parent::__construct($email, $token);
+        parent::__construct($botEmail, $botApiKey);
     }
 }

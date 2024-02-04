@@ -12,16 +12,16 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Zulip\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
+use Guanguans\Notify\Foundation\Concerns\AsFormParams;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
+    use AsFormParams;
     use AsPost;
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
-        return '%s/api/v1/messages';
+        return 'api/v1/messages';
     }
 }
