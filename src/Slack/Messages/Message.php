@@ -30,9 +30,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'text',
         'channel',
@@ -43,9 +40,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'attachments',
     ];
 
-    /**
-     * @var array<string, mixed>
-     */
     protected array $options = [
         'unfurl_links' => false,
         'attachments' => [],
@@ -56,49 +50,39 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'attachments' => 'array',
     ];
 
-    public function setAttachments(array $attachments): self
-    {
-        return $this->addAttachments($attachments);
-    }
-
-    public function addAttachments(array $attachments): self
-    {
-        foreach ($attachments as $attachment) {
-            $this->addAttachment($attachment);
-        }
-
-        return $this;
-    }
-
-    public function setAttachment(array $attachment): self
-    {
-        return $this->addAttachment($attachment);
-    }
-
     public function addAttachment(array $attachment): self
     {
-        $this->options['attachments'][] = configure_options($attachment, static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver->setDefined([
-                'fallback',
-                'text',
-                'pretext',
-                'color',
-                'fields',
-            ]);
-        });
+        $this->options['attachments'][] = configure_options(
+            $attachment,
+            static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver->setDefined([
+                    'fallback',
+                    'text',
+                    'pretext',
+                    'color',
+                    'fields',
+                ]);
+            }
+        );
 
         return $this;
     }
 
     public function toHttpUri()
     {
-        return 'webhook_url';
+        return '';
     }
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
-        return tap(parent::configureOptionsResolver($optionsResolver), static function (OptionsResolver $resolver): void {
-            $resolver->setNormalizer('attachments', static fn (OptionsResolver $optionsResolver, array $value): array => isset($value[0]) ? $value : [$value]);
-        });
+        return tap(
+            parent::configureOptionsResolver($optionsResolver),
+            static function (OptionsResolver $resolver): void {
+                $resolver->setNormalizer('attachments', static fn (
+                    OptionsResolver $optionsResolver,
+                    array $value
+                ): array => isset($value[0]) ? $value : [$value]);
+            }
+        );
     }
 }

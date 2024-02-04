@@ -12,6 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Slack;
 
-use Guanguans\Notify\Foundation\Credentials\NullCredential;
+use Guanguans\Notify\Foundation\Credentials\WebHookCredential;
 
-class Credential extends NullCredential {}
+class Credential extends WebHookCredential {}
