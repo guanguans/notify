@@ -25,24 +25,13 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'title',
         'content',
     ];
 
-    public function __construct(string $title, string $content)
-    {
-        parent::__construct([
-            'title' => $title,
-            'content' => $content,
-        ]);
-    }
-
     public function toHttpUri()
     {
-        return sprintf('https://push.showdoc.com.cn/server/api/push/%s', Credential::TEMPLATE);
+        return sprintf('https://push.showdoc.com.cn/server/api/push/{%s}', Credential::TEMPLATE);
     }
 }
