@@ -14,7 +14,7 @@ namespace Guanguans\Notify\PushPlus\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\PushPlus\Credential;
+use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
 /**
  * @method \Guanguans\Notify\PushPlus\Messages\Message title($title)
@@ -28,9 +28,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'title',
         'content',
@@ -39,22 +36,16 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'token',
     ];
 
-    /**
-     * @var array<string>
-     */
     protected array $required = [
         'content',
     ];
 
-    /**
-     * @var array<array<\string>>
-     */
     protected array $allowedValues = [
         'template' => ['html', 'json', 'cloudMonitor'],
     ];
 
     public function toHttpUri()
     {
-        return sprintf('https://www.pushplus.plus/send?token=%s', Credential::TEMPLATE);
+        return sprintf('https://www.pushplus.plus/send?token={%s}', TokenUriTemplateCredential::TEMPLATE);
     }
 }
