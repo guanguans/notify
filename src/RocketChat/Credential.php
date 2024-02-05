@@ -12,6 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\RocketChat;
 
-use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
+use Guanguans\Notify\Foundation\Credentials\WebHookCredential;
 
-class Credential extends TokenUriTemplateCredential {}
+class Credential extends WebHookCredential {}

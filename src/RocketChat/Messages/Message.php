@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\RocketChat\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
+use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,11 +26,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsJson;
+    use AsNullUri;
     use AsPost;
 
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'alias',
         'emoji',
@@ -37,9 +36,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'attachments',
     ];
 
-    /**
-     * @var array<array>|string
-     */
     protected $allowedTypes = [
         'attachments' => ['array'],
     ];
@@ -47,32 +43,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $options = [
         'attachments' => [],
     ];
-
-    public function __construct(array $options = [])
-    {
-        parent::__construct($options);
-
-        $this->addAttachments($options['attachments'] ?? []);
-    }
-
-    public function setAttachments(array $attachments): self
-    {
-        return $this->addAttachments($attachments);
-    }
-
-    public function addAttachments(array $attachments): self
-    {
-        foreach ($attachments as $attachment) {
-            $this->addAttachment($attachment);
-        }
-
-        return $this;
-    }
-
-    public function setAttachment(array $attachment): self
-    {
-        return $this->addAttachment($attachment);
-    }
 
     public function addAttachment(array $attachment): self
     {
@@ -87,10 +57,5 @@ class Message extends \Guanguans\Notify\Foundation\Message
         });
 
         return $this;
-    }
-
-    public function toHttpUri()
-    {
-        return '{base_uri}/hooks/{token}';
     }
 }
