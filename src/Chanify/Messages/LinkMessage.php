@@ -20,13 +20,15 @@ namespace Guanguans\Notify\Chanify\Messages;
 class LinkMessage extends Message
 {
     protected array $defined = [
+        'base_uri',
+
         'link',
         'sound',
         'priority',
     ];
 
-    protected array $options = [
-        'sound' => 0,
-        'priority' => 10,
-    ];
+    // protected array $options = [
+    //     'sound' => 0,
+    //     'priority' => 10,
+    // ];
 }

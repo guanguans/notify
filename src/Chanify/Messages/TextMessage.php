@@ -26,6 +26,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TextMessage extends Message
 {
     protected array $defined = [
+        'base_uri',
+
         'title',
         'text',
         'copy',
@@ -39,11 +41,11 @@ class TextMessage extends Message
         'actions' => ['string', 'array'],
     ];
 
-    protected array $options = [
-        'autocopy' => 0,
-        'sound' => 0,
-        'priority' => 10,
-    ];
+    // protected array $options = [
+    //     'autocopy' => 0,
+    //     'sound' => 0,
+    //     'priority' => 10,
+    // ];
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
     {
