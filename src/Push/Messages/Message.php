@@ -39,7 +39,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'body',
     ];
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
         return sprintf('https://push.techulus.com/api/v1/notify/{%s}', TokenUriTemplateCredential::TEMPLATE);
     }

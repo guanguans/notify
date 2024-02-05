@@ -21,7 +21,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
         return sprintf('https://api.telegram.org/bot{%s}/sendMessage', TokenUriTemplateCredential::TEMPLATE);
     }

@@ -32,7 +32,7 @@ class GetUpdatesMessage extends Message
         'allowed_updates',
     ];
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
         return sprintf('https://api.telegram.org/bot{%s}/getUpdates', TokenUriTemplateCredential::TEMPLATE);
     }

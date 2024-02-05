@@ -30,7 +30,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'content',
     ];
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
         return sprintf('https://push.showdoc.com.cn/server/api/push/{%s}', Credential::TEMPLATE);
     }

@@ -22,7 +22,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
         return sprintf(
             'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={%s}',

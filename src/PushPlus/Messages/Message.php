@@ -44,7 +44,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'template' => ['html', 'json', 'cloudMonitor'],
     ];
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
         return sprintf('https://www.pushplus.plus/send?token={%s}', TokenUriTemplateCredential::TEMPLATE);
     }

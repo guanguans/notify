@@ -20,7 +20,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
         return 'https://www.api.nowpush.app/v3/sendMessage';
     }

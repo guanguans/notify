@@ -25,7 +25,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'base_uri' => 'https://api.chanify.net/v1',
     ];
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
         return sprintf("{$this->getOption('base_uri')}/sender/{%s}", TokenUriTemplateCredential::TEMPLATE);
     }

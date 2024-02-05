@@ -68,7 +68,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return $this;
     }
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
         return '';
     }

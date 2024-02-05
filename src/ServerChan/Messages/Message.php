@@ -30,7 +30,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'desp',
     ];
 
-    public function toHttpUri()
+    public function toHttpUri(): string
     {
         return sprintf('https://sctapi.ftqq.com/{%s}.send', TokenUriTemplateCredential::TEMPLATE);
     }
