@@ -12,6 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\QqChannelBot;
 
-use Guanguans\Notify\Foundation\Credentials\NullCredential;
+use Guanguans\Notify\Foundation\Credentials\TokenAuthCredential;
 
-class Credential extends NullCredential {}
+class Credential extends TokenAuthCredential
+{
+    public function __construct(string $appid, string $token)
+    {
+        parent::__construct("$appid.$token", 'Bot');
+    }
+}
