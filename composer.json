@@ -90,9 +90,8 @@
         "friendsofphp/php-cs-fixer": "^3.49",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
-        "kubawerlos/php-cs-fixer-custom-fixers": "^3.19",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^3.20",
         "mockery/mockery": "^1.6",
-        "overtrue/http": "^1.2",
         "pestphp/pest": "^1.23 || ^2.0",
         "pestphp/pest-plugin-faker": "^1.0 || ^2.0",
         "php-mock/php-mock-phpunit": "^2.9",
@@ -100,15 +99,10 @@
         "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-deprecation-rules": "^1.1",
         "rector/rector": "^0.19",
-        "symfony/mailer": "^5.4 || ^6.0 || ^7.0",
         "symfony/var-dumper": "^5.4 || ^6.0 || ^7.0",
-        "textalk/websocket": "^1.6",
         "vimeo/psalm": "^5.21"
     },
-    "suggest": {
-        "symfony/mailer": "Required to use the email.",
-        "textalk/websocket": "Required to use the QQ channel bot."
-    },
+    "suggest": {},
     "minimum-stability": "dev",
     "prefer-stable": true,
     "autoload": {

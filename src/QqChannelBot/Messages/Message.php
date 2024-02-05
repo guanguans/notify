@@ -17,7 +17,17 @@ use GuzzleHttp\RequestOptions;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @see https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html#%E5%8F%82%E6%95%B0
+ * @method \Guanguans\Notify\QqChannelBot\Messages\Message isSandbox($isSandbox)
+ * @method \Guanguans\Notify\QqChannelBot\Messages\Message channelId($channelId)
+ * @method \Guanguans\Notify\QqChannelBot\Messages\Message content($content)
+ * @method \Guanguans\Notify\QqChannelBot\Messages\Message image($image)
+ * @method \Guanguans\Notify\QqChannelBot\Messages\Message fileImage($fileImage)
+ * @method \Guanguans\Notify\QqChannelBot\Messages\Message msgId($msgId)
+ * @method \Guanguans\Notify\QqChannelBot\Messages\Message eventId($eventId)
+ * @method \Guanguans\Notify\QqChannelBot\Messages\Message embed(array $embed)
+ * @method \Guanguans\Notify\QqChannelBot\Messages\Message ark(array $ark)
+ * @method \Guanguans\Notify\QqChannelBot\Messages\Message messageReference(array $messageReference)
+ * @method \Guanguans\Notify\QqChannelBot\Messages\Message markdown(array $markdown)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
