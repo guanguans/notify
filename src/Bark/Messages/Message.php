@@ -69,10 +69,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     protected array $options = [
-        // 'sound' => 'bell',
-        // 'isArchive' => 1,
-        // 'autoCopy' => 1,
-        // 'automaticallyCopy' => 1,
+        'base_uri' => 'https://api.day.app',
     ];
 
     public function toHttpUri(): string
