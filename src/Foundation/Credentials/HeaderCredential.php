@@ -12,10 +12,26 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Credentials;
 
-class HeaderCredential extends KeyValueCredential
+use Psr\Http\Message\RequestInterface;
+
+class HeaderCredential extends NullCredential
 {
-    public function __construct(string $value, string $key = 'Authorization')
+    private array $headers;
+
+    public function __construct(array $headers)
     {
-        parent::__construct($key, $value);
+        $this->headers = $headers;
+    }
+
+    public function applyToRequest(RequestInterface $request): RequestInterface
+    {
+        return array_reduce_with_keys(
+            $this->headers,
+            static fn (RequestInterface $request, $value, string $header): RequestInterface => $request->withHeader(
+                $header,
+                $value
+            ),
+            $request
+        );
     }
 }
