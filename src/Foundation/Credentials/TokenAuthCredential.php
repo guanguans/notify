@@ -12,21 +12,10 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Credentials;
 
-use Psr\Http\Message\RequestInterface;
-
-class TokenAuthCredential extends NullCredential
+class TokenAuthCredential extends HeaderCredential
 {
-    private string $token;
-    private string $type;
-
     public function __construct(string $token, ?string $type = 'Bearer')
     {
-        $this->token = $token;
-        $this->type = $type;
-    }
-
-    public function applyToRequest(RequestInterface $request): RequestInterface
-    {
-        return $request->withHeader('Authorization', trim("$this->type $this->token"));
+        parent::__construct(trim("$type $token"));
     }
 }

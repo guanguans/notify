@@ -14,22 +14,27 @@ namespace Guanguans\Notify\Foundation\Credentials;
 
 use GuzzleHttp\RequestOptions;
 
-class ApiKeyCredential extends NullCredential
+class KeyValueCredential extends NullCredential
 {
-    private string $name;
+    private string $key;
     private string $value;
     private string $type;
 
-    public function __construct(string $name, string $value, string $type = RequestOptions::HEADERS)
+    public function __construct(string $key, string $value, string $type = RequestOptions::HEADERS)
     {
-        $this->name = $name;
+        $this->key = $key;
         $this->value = $value;
         $this->type = $type;
     }
 
     public function applyToOptions(array $options): array
     {
-        $options[$this->type][$this->name] = $this->value;
+        RequestOptions::MULTIPART === $this->type
+            ? $options[$this->type] = array_merge(
+                $options[$this->type] ?? [],
+                to_multipart([$this->key => $this->value])
+            )
+            : $options[$this->type][$this->key] = $this->value;
 
         return $options;
     }

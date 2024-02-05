@@ -12,16 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Contracts;
 
-use Psr\Http\Message\UriInterface;
-
 interface Message
 {
     public function toHttpMethod(): string;
 
-    /**
-     * @return string|UriInterface
-     */
-    public function toHttpUri();
+    public function toHttpUri(): string;
 
     public function toHttpOptions(): array;
 }

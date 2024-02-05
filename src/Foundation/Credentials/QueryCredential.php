@@ -14,10 +14,10 @@ namespace Guanguans\Notify\Foundation\Credentials;
 
 use GuzzleHttp\RequestOptions;
 
-class QueryCredential extends ApiKeyCredential
+class QueryCredential extends KeyValueCredential
 {
-    public function __construct(string $name, string $value)
+    public function __construct(string $key, string $value)
     {
-        parent::__construct($name, $value, RequestOptions::QUERY);
+        parent::__construct($key, $value, RequestOptions::QUERY);
     }
 }

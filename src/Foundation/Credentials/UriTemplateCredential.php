@@ -18,8 +18,8 @@ use Psr\Http\Message\RequestInterface;
 
 class UriTemplateCredential extends NullCredential
 {
-    protected HttpFactory $httpFactory;
     private array $variables;
+    private HttpFactory $httpFactory;
 
     public function __construct(array $variables)
     {
