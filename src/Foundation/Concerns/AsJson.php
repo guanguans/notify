@@ -22,7 +22,7 @@ trait AsJson
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::JSON => $this->getOptions(),
+            RequestOptions::JSON => $this->resolveOptions(),
         ];
     }
 }

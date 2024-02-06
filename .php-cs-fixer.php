@@ -258,6 +258,12 @@ return (new Config)
         // ],
         'phpdoc_to_comment' => false,
         'phpdoc_param_order' => true,
+        'phpdoc_no_alias_tag' => [
+            'replacements' => [
+                'type' => 'var',
+                'link' => 'see',
+            ],
+        ],
 
         // return_notation
         'simplified_null_return' => true,

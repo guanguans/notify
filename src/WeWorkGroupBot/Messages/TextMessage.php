@@ -38,20 +38,15 @@ class TextMessage extends Message
         'mentioned_mobile_list' => ['int', 'string', 'array'],
     ];
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        return tap(
-            parent::configureOptionsResolver($optionsResolver),
-            static function (OptionsResolver $resolver): void {
-                $resolver->setNormalizer(
-                    'mentioned_list',
-                    static fn (OptionsResolver $optionsResolver, $value): array => (array) $value
-                );
-                $resolver->setNormalizer(
-                    'mentioned_mobile_list',
-                    static fn (OptionsResolver $optionsResolver, $value): array => (array) $value
-                );
-            }
+        $optionsResolver->setNormalizer(
+            'mentioned_list',
+            static fn (OptionsResolver $optionsResolver, $value): array => (array) $value
+        );
+        $optionsResolver->setNormalizer(
+            'mentioned_mobile_list',
+            static fn (OptionsResolver $optionsResolver, $value): array => (array) $value
         );
     }
 

@@ -92,57 +92,52 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return 'https://api.pushover.net/1/messages.json';
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        return tap(
-            parent::configureOptionsResolver($optionsResolver),
-            static function (OptionsResolver $optionsResolver): void {
-                $optionsResolver->setNormalizer(
-                    'priority',
-                    static function (OptionsResolver $optionsResolver, $value): int {
-                        if (2 !== $value) {
-                            return $value;
-                        }
+        $optionsResolver->setNormalizer(
+            'priority',
+            static function (OptionsResolver $optionsResolver, $value): int {
+                if (2 !== $value) {
+                    return $value;
+                }
 
-                        if (isset($optionsResolver['retry'], $optionsResolver['expire'])) {
-                            return $value;
-                        }
+                if (isset($optionsResolver['retry'], $optionsResolver['expire'])) {
+                    return $value;
+                }
 
-                        throw new MissingOptionsException('The required option "retry" or "expire" is missing.');
-                    }
-                );
-
-                $optionsResolver->setNormalizer(
-                    'html',
-                    static function (OptionsResolver $optionsResolver, $value): int {
-                        if (1 !== $value) {
-                            return $value;
-                        }
-
-                        if (! isset($optionsResolver['monospace'])) {
-                            return $value;
-                        }
-
-                        if (1 !== $optionsResolver['monospace']) {
-                            return $value;
-                        }
-
-                        throw new InvalidOptionsException('Html cannot be set with monospace, Monospace cannot be set with html, Html and monospace are mutually.');
-                    }
-                );
-
-                // $optionsResolver->setNormalizer(
-                //     'attachment',
-                //     static function (OptionsResolver $optionsResolver, $value) {
-                //         if (\is_string($value)) {
-                //             // $value = fopen($value, 'r');
-                //             $value = Utils::tryFopen($value, 'r');
-                //         }
-                //
-                //         return $value;
-                //     }
-                // );
+                throw new MissingOptionsException('The required option "retry" or "expire" is missing.');
             }
         );
+
+        $optionsResolver->setNormalizer(
+            'html',
+            static function (OptionsResolver $optionsResolver, $value): int {
+                if (1 !== $value) {
+                    return $value;
+                }
+
+                if (! isset($optionsResolver['monospace'])) {
+                    return $value;
+                }
+
+                if (1 !== $optionsResolver['monospace']) {
+                    return $value;
+                }
+
+                throw new InvalidOptionsException('Html cannot be set with monospace, Monospace cannot be set with html, Html and monospace are mutually.');
+            }
+        );
+
+        // $optionsResolver->setNormalizer(
+        //     'attachment',
+        //     static function (OptionsResolver $optionsResolver, $value) {
+        //         if (\is_string($value)) {
+        //             // $value = fopen($value, 'r');
+        //             $value = Utils::tryFopen($value, 'r');
+        //         }
+        //
+        //         return $value;
+        //     }
+        // );
     }
 }

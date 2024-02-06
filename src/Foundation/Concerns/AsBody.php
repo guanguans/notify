@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
+use GuzzleHttp\Psr7\Utils;
 use GuzzleHttp\RequestOptions;
 
 /**
@@ -22,7 +23,7 @@ trait AsBody
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::BODY => $this->getOptions(),
+            RequestOptions::BODY => Utils::streamFor($this->resolveOptions()),
         ];
     }
 }

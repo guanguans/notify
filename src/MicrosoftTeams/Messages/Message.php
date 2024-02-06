@@ -143,21 +143,16 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return '';
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        return tap(
-            parent::configureOptionsResolver($optionsResolver),
-            static function (OptionsResolver $resolver): void {
-                $resolver->setNormalizer('sections', static fn (
-                    OptionsResolver $optionsResolver,
-                    array $value
-                ): array => isset($value[0]) ? $value : [$value]);
+        $optionsResolver->setNormalizer('sections', static fn (
+            OptionsResolver $optionsResolver,
+            array $value
+        ): array => isset($value[0]) ? $value : [$value]);
 
-                $resolver->setNormalizer('potentialAction', static fn (
-                    OptionsResolver $optionsResolver,
-                    array $value
-                ): array => isset($value[0]) ? $value : [$value]);
-            }
-        );
+        $optionsResolver->setNormalizer('potentialAction', static fn (
+            OptionsResolver $optionsResolver,
+            array $value
+        ): array => isset($value[0]) ? $value : [$value]);
     }
 }

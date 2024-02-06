@@ -48,16 +48,11 @@ class TextMessage extends Message
     //     'priority' => 10,
     // ];
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        return tap(
-            parent::configureOptionsResolver($optionsResolver),
-            static function (OptionsResolver $optionsResolver): void {
-                $optionsResolver->setNormalizer(
-                    'actions',
-                    static fn (OptionsResolver $optionsResolver, $value): array => (array) $value
-                );
-            }
+        $optionsResolver->setNormalizer(
+            'actions',
+            static fn (OptionsResolver $optionsResolver, $value): array => (array) $value
         );
     }
 }

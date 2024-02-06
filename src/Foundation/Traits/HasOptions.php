@@ -1,5 +1,8 @@
 <?php
 
+/** @noinspection MissingReturnTypeInspection */
+/** @noinspection MissingParameterTypeDeclarationInspection */
+
 declare(strict_types=1);
 
 /**
@@ -16,40 +19,27 @@ use Guanguans\Notify\Foundation\Support\Str;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @property array $defined;
- * @property array $required;
- * @property array $deprecated;
- * @property array $defaults;
- * @property bool $prototype;
- * @property array $allowedValues;
- * @property array $allowedTypes;
- * @property array $normalizers;
- * @property array $infos;
+ * @property-read array<string, mixed> $defaults
+ * @property-read array<string> $required
+ * @property-read array<string> $defined
+ * @property-read array<array-key, array|string> $deprecated
+ * @property-read array<string, \Closure> $normalizers
+ * @property-read array<string, mixed> $allowedValues
+ * @property-read array<string, array<string>|string> $allowedTypes;
+ * @property-read array<string, string> $infos
+ * @property-read bool $prototype
  */
 trait HasOptions
 {
     protected array $options = [];
 
-    public function __get($option)
-    {
-        return $this->offsetGet($option);
-    }
-
-    public function __set($option, $value): void
-    {
-        $this->offsetSet($option, $value);
-    }
-
-    public function __isset($option)
-    {
-        return $this->offsetExists($option);
-    }
-
-    public function __unset($option): void
-    {
-        $this->offsetUnset($option);
-    }
-
+    /**
+     * @noinspection MissingParameterTypeDeclarationInspection
+     * @noinspection MissingReturnTypeInspection
+     *
+     * @param mixed $name
+     * @param mixed $arguments
+     */
     public function __call($name, $arguments)
     {
         $defined = $this->defined ?? [];
@@ -59,7 +49,11 @@ trait HasOptions
 
             if (\in_array($casedName, $defined, true)) {
                 if (empty($arguments)) {
-                    throw new \InvalidArgumentException(sprintf('Method %s::%s requires an argument', static::class, $name));
+                    throw new \InvalidArgumentException(sprintf(
+                        'Method %s::%s requires an argument',
+                        static::class,
+                        $name
+                    ));
                 }
 
                 return $this->setOption($casedName, $arguments[0]);
@@ -71,25 +65,35 @@ trait HasOptions
 
     public function setOptions(array $options): self
     {
-        $this->options = array_replace_recursive($this->options, $options);
+        foreach ($options as $option => $value) {
+            $this->setOption($option, $value);
+        }
 
         return $this;
     }
 
     public function setOption(string $option, $value): self
     {
-        return $this->setOptions([$option => $value]);
+        $this->options[$option] = $value;
+
+        return $this;
     }
 
     public function getOption(string $option, $default = null)
     {
-        return $this->getOptions()[$option] ?? $default;
+        return $this->options[$option] ?? $default;
     }
 
     public function getOptions(): array
     {
-        return $this->options = $this->configureAndResolveOptions($this->options, function (OptionsResolver $optionsResolver): void {
-            $this->configureOptionsResolver($this->preConfigureOptionsResolver($optionsResolver));
+        return $this->options;
+    }
+
+    public function resolveOptions(): array
+    {
+        return $this->configureAndResolveOptions($this->options, function (OptionsResolver $optionsResolver): void {
+            $this->preConfigureOptionsResolver($optionsResolver);
+            $this->configureOptionsResolver($optionsResolver);
         });
     }
 
@@ -113,13 +117,7 @@ trait HasOptions
         unset($this->options[$offset]);
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
-    {
-        // configure options resolver...
-        return $optionsResolver;
-    }
-
-    private function configureAndResolveOptions(array $options, callable $configurator): array
+    protected function configureAndResolveOptions(array $options, callable $configurator): array
     {
         $optionsResolver = new OptionsResolver;
 
@@ -128,17 +126,34 @@ trait HasOptions
         return $optionsResolver->resolve($options);
     }
 
-    private function preConfigureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        property_exists($this, 'defined') and $optionsResolver->setDefined($this->defined);
-        property_exists($this, 'required') and $optionsResolver->setRequired($this->required);
+        // configure options resolver...
+    }
+
+    private function preConfigureOptionsResolver(OptionsResolver $optionsResolver): void
+    {
         property_exists($this, 'defaults') and $optionsResolver->setDefaults($this->defaults);
-        property_exists($this, 'prototype') and $optionsResolver->setPrototype($this->prototype);
+        property_exists($this, 'required') and $optionsResolver->setRequired($this->required);
+        property_exists($this, 'defined') and $optionsResolver->setDefined($this->defined);
 
         if (property_exists($this, 'deprecated')) {
-            foreach ($this->deprecated as $option => $deprecated) {
-                array_unshift($deprecated, $option);
-                $optionsResolver->setDeprecated(...$deprecated);
+            foreach ($this->deprecated as $option => $arguments) {
+                if (\is_string($arguments)) {
+                    $arguments = [$arguments];
+                }
+
+                if (\is_string($option)) {
+                    array_unshift($arguments, $option);
+                }
+
+                $optionsResolver->setDeprecated(...$arguments);
+            }
+        }
+
+        if (property_exists($this, 'normalizers')) {
+            foreach ($this->normalizers as $option => $normalizer) {
+                $optionsResolver->setNormalizer($option, $normalizer);
             }
         }
 
@@ -154,18 +169,12 @@ trait HasOptions
             }
         }
 
-        if (property_exists($this, 'normalizers')) {
-            foreach ($this->normalizers as $option => $normalizer) {
-                $optionsResolver->setNormalizer($option, $normalizer);
-            }
-        }
-
         if (property_exists($this, 'infos')) {
             foreach ($this->infos as $option => $info) {
                 $optionsResolver->setInfo($option, $info);
             }
         }
 
-        return $optionsResolver;
+        property_exists($this, 'prototype') and $optionsResolver->setPrototype($this->prototype);
     }
 }

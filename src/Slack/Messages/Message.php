@@ -73,16 +73,11 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return '';
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): OptionsResolver
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        return tap(
-            parent::configureOptionsResolver($optionsResolver),
-            static function (OptionsResolver $resolver): void {
-                $resolver->setNormalizer('attachments', static fn (
-                    OptionsResolver $optionsResolver,
-                    array $value
-                ): array => isset($value[0]) ? $value : [$value]);
-            }
-        );
+        $optionsResolver->setNormalizer('attachments', static fn (
+            OptionsResolver $optionsResolver,
+            array $value
+        ): array => isset($value[0]) ? $value : [$value]);
     }
 }
