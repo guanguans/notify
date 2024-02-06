@@ -31,7 +31,7 @@ class AggregateCredential implements Credential
     {
         return array_reduce(
             $this->credentials,
-            static fn (array $carry, Credential $credential): array => $credential->applyToOptions($carry),
+            static fn (array $options, Credential $credential): array => $credential->applyToOptions($options),
             $options,
         );
     }

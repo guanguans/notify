@@ -12,10 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Credentials;
 
-class TokenAuthCredential extends HeaderCredential
+use GuzzleHttp\RequestOptions;
+
+class TokenAuthCredential extends PayloadCredential
 {
     public function __construct(string $token, ?string $type = 'Bearer')
     {
-        parent::__construct(trim("$type $token"));
+        parent::__construct(['Authorization' => trim("$type $token")], RequestOptions::HEADERS);
     }
 }
