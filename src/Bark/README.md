@@ -3,8 +3,8 @@
 ## Usage
 
 ```php
-$credential = new Guanguans\Notify\Bark\Credential('yetwhxBm7wCBSUTjeqh');
-$client = new Guanguans\Notify\Bark\Client($credential);
+$authenticator = new Guanguans\Notify\Bark\Authenticator('yetwhxBm7wCBSUTjeqh');
+$client = new Guanguans\Notify\Bark\Client($authenticator);
 
 $response = $client->send(Guanguans\Notify\Bark\Messages\Message::make([
     'title' => 'This is title.',

@@ -3,8 +3,8 @@
 ## Usage
 
 ```php
-$credential = new Guanguans\Notify\XiZhi\Credential('XZd60aea56567ae39a1b1920cbc42bb5bd');
-$client = new Guanguans\Notify\XiZhi\Client($credential);
+$authenticator = new Guanguans\Notify\XiZhi\Authenticator('XZd60aea56567ae39a1b1920cbc42bb5bd');
+$client = new Guanguans\Notify\XiZhi\Client($authenticator);
 
 $response = $client->send(Guanguans\Notify\XiZhi\Messages\SingleMessage::make([
     'title' => 'This is title.',

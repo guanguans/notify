@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Ntfy;
 
-use Guanguans\Notify\Foundation\Contracts\Credential;
+use Guanguans\Notify\Foundation\Contracts\Authenticator;
 
 /**
  * @see https://ntfy.sh
@@ -20,9 +20,9 @@ use Guanguans\Notify\Foundation\Contracts\Credential;
  */
 class Client extends \Guanguans\Notify\Foundation\Client
 {
-    public function __construct(?Credential $credential = null)
+    public function __construct(?Authenticator $authenticator = null)
     {
-        parent::__construct($credential);
+        parent::__construct($authenticator);
         $this->baseUri('https://ntfy.sh');
     }
 }

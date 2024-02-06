@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Zulip;
 
-use Guanguans\Notify\Foundation\Contracts\Credential;
+use Guanguans\Notify\Foundation\Contracts\Authenticator;
 
 /**
  * @see https://chat.zulip.org/accounts/login
@@ -20,9 +20,9 @@ use Guanguans\Notify\Foundation\Contracts\Credential;
  */
 class Client extends \Guanguans\Notify\Foundation\Client
 {
-    public function __construct(?Credential $credential = null)
+    public function __construct(?Authenticator $authenticator = null)
     {
-        parent::__construct($credential);
+        parent::__construct($authenticator);
 
         $this->setHttpOptions([
             'base_uri' => 'https://chat.zulip.org',

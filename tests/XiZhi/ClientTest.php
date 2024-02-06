@@ -10,14 +10,14 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+use Guanguans\Notify\XiZhi\Authenticator;
 use Guanguans\Notify\XiZhi\Client;
-use Guanguans\Notify\XiZhi\Credential;
 use Guanguans\Notify\XiZhi\Messages\SingleMessage;
 use GuzzleHttp\Handler\MockHandler;
 
 it('can send single message', function (): void {
-    $credential = new Credential('XZd60aea56567ae39a1b1920cbc42bb');
-    $client = new Client($credential);
+    $authenticator = new Authenticator('XZd60aea56567ae39a1b1920cbc42bb');
+    $client = new Client($authenticator);
     $singleMessage = SingleMessage::make([
         'title' => 'This is title.',
         'content' => 'This is content.',

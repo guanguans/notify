@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Traits;
 
-use Guanguans\Notify\Foundation\Middleware\ApplyCredentialToRequest;
+use Guanguans\Notify\Foundation\Middleware\ApplyAuthenticatorToRequest;
 use Guanguans\Notify\Foundation\Middleware\EnsureResponse;
 use Guanguans\Notify\Foundation\Support\Str;
 use GuzzleHttp\Client;
@@ -154,7 +154,7 @@ trait HasHttpClient
             $this->handlerStack->push(new EnsureResponse, EnsureResponse::name());
         }
 
-        return $this->handlerStack = $this->ensureWithApplyCredentialToRequest($this->handlerStack);
+        return $this->handlerStack = $this->ensureWithApplyAuthenticatorToRequest($this->handlerStack);
     }
 
     private function getHttpOptions(): array
@@ -162,16 +162,16 @@ trait HasHttpClient
         return $this->httpOptions;
     }
 
-    private function ensureWithApplyCredentialToRequest(HandlerStack $handlerStack): HandlerStack
+    private function ensureWithApplyAuthenticatorToRequest(HandlerStack $handlerStack): HandlerStack
     {
         try {
             (function (): void {
-                $this->findByName(ApplyCredentialToRequest::name());
+                $this->findByName(ApplyAuthenticatorToRequest::name());
             })->call($handlerStack);
         } catch (\InvalidArgumentException $invalidArgumentException) {
             $handlerStack->push(
-                new ApplyCredentialToRequest($this->credential),
-                ApplyCredentialToRequest::name()
+                new ApplyAuthenticatorToRequest($this->authenticator),
+                ApplyAuthenticatorToRequest::name()
             );
         }
 

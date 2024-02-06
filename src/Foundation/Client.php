@@ -12,9 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
-use Guanguans\Notify\Foundation\Contracts\Credential;
+use Guanguans\Notify\Foundation\Authenticators\NullAuthenticator;
+use Guanguans\Notify\Foundation\Contracts\Authenticator;
 use Guanguans\Notify\Foundation\Contracts\Message;
-use Guanguans\Notify\Foundation\Credentials\NullCredential;
 use Guanguans\Notify\Foundation\Traits\Conditionable;
 use Guanguans\Notify\Foundation\Traits\HasHttpClient;
 use Guanguans\Notify\Foundation\Traits\Makeable;
@@ -29,11 +29,11 @@ class Client implements Contracts\Client
     use Makeable;
     use Tappable;
 
-    private Credential $credential;
+    private Authenticator $authenticator;
 
-    public function __construct(?Credential $credential = null)
+    public function __construct(?Authenticator $authenticator = null)
     {
-        $this->credential = $credential ?? new NullCredential;
+        $this->authenticator = $authenticator ?? new NullAuthenticator;
     }
 
     /**
@@ -43,12 +43,10 @@ class Client implements Contracts\Client
      */
     public function send(Message $message): ResponseInterface
     {
-        return $this
-            ->getHttpClient()
-            ->request(
-                $message->toHttpMethod(),
-                $message->toHttpUri(),
-                $this->credential->applyToOptions($message->toHttpOptions())
-            );
+        return $this->getHttpClient()->request(
+            $message->toHttpMethod(),
+            $message->toHttpUri(),
+            $this->authenticator->applyToOptions($message->toHttpOptions())
+        );
     }
 }
