@@ -151,7 +151,7 @@ trait HasHttpClient
     {
         if (! $this->handlerStack instanceof HandlerStack) {
             $this->handlerStack = HandlerStack::create();
-            $this->handlerStack->push(new EnsureResponse, EnsureResponse::name());
+            $this->handlerStack->push(new EnsureResponse, EnsureResponse::class);
         }
 
         return $this->handlerStack = $this->ensureWithApplyAuthenticatorToRequest($this->handlerStack);
@@ -166,12 +166,12 @@ trait HasHttpClient
     {
         try {
             (function (): void {
-                $this->findByName(ApplyAuthenticatorToRequest::name());
+                $this->findByName(ApplyAuthenticatorToRequest::class);
             })->call($handlerStack);
         } catch (\InvalidArgumentException $invalidArgumentException) {
             $handlerStack->push(
                 new ApplyAuthenticatorToRequest($this->authenticator),
-                ApplyAuthenticatorToRequest::name()
+                ApplyAuthenticatorToRequest::class
             );
         }
 

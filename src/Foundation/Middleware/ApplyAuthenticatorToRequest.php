@@ -27,11 +27,8 @@ class ApplyAuthenticatorToRequest
 
     public function __invoke(callable $handler): callable
     {
-        return Middleware::mapRequest(fn (RequestInterface $request): RequestInterface => $this->authenticator->applyToRequest($request))($handler);
-    }
-
-    public static function name(): string
-    {
-        return 'authenticator';
+        return Middleware::mapRequest(
+            fn (RequestInterface $request): RequestInterface => $this->authenticator->applyToRequest($request)
+        )($handler);
     }
 }
