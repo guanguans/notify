@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Guanguans\Notify\LarkGroupBot\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 use GuzzleHttp\RequestOptions;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
@@ -22,7 +21,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return sprintf('https://open.feishu.cn/open-apis/bot/v2/hook/{%s}', TokenUriTemplateCredential::TEMPLATE);
+        return 'https://open.feishu.cn/open-apis/bot/v2/hook/{token}';
     }
 
     public function toHttpOptions(): array

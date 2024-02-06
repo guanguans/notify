@@ -14,7 +14,6 @@ namespace Guanguans\Notify\IGot\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
 /**
  * @method \Guanguans\Notify\IGot\Messages\Message title($title)
@@ -52,6 +51,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return sprintf('https://push.hellyw.com/{%s}', TokenUriTemplateCredential::TEMPLATE);
+        return 'https://push.hellyw.com/{token}';
     }
 }

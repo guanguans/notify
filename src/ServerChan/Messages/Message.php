@@ -14,7 +14,6 @@ namespace Guanguans\Notify\ServerChan\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
 /**
  * @method \Guanguans\Notify\ServerChan\Messages\Message title($title)
@@ -32,6 +31,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return sprintf('https://sctapi.ftqq.com/{%s}.send', TokenUriTemplateCredential::TEMPLATE);
+        return 'https://sctapi.ftqq.com/{token}.send';
     }
 }

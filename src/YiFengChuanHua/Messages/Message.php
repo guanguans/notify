@@ -14,7 +14,6 @@ namespace Guanguans\Notify\YiFengChuanHua\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
 /**
  * @method \Guanguans\Notify\YiFengChuanHua\Messages\Message head($head)
@@ -42,6 +41,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return sprintf('https://www.phprm.com/services/push/send/{%s}', TokenUriTemplateCredential::TEMPLATE);
+        return 'https://www.phprm.com/services/push/send/{token}';
     }
 }

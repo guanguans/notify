@@ -14,7 +14,6 @@ namespace Guanguans\Notify\Push\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
 /**
  * @method \Guanguans\Notify\Push\Messages\Message title($title)
@@ -41,6 +40,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return sprintf('https://push.techulus.com/api/v1/notify/{%s}', TokenUriTemplateCredential::TEMPLATE);
+        return 'https://push.techulus.com/api/v1/notify/{token}';
     }
 }

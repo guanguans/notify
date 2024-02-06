@@ -14,7 +14,6 @@ namespace Guanguans\Notify\Showdoc\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Showdoc\Credential;
 
 /**
  * @method \Guanguans\Notify\Showdoc\Messages\Message title($title)
@@ -32,6 +31,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return sprintf('https://push.showdoc.com.cn/server/api/push/{%s}', Credential::TEMPLATE);
+        return 'https://push.showdoc.com.cn/server/api/push/{token}';
     }
 }

@@ -14,7 +14,6 @@ namespace Guanguans\Notify\WeWorkGroupBot\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 use GuzzleHttp\RequestOptions;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
@@ -24,10 +23,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return sprintf(
-            'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={%s}',
-            TokenUriTemplateCredential::TEMPLATE
-        );
+        return 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={token}';
     }
 
     public function toHttpOptions(): array

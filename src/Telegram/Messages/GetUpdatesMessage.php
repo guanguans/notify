@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
-use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
-
 /**
  * @method \Guanguans\Notify\Telegram\Messages\GetUpdatesMessage offset($offset)
  * @method \Guanguans\Notify\Telegram\Messages\GetUpdatesMessage limit($limit)
@@ -34,6 +32,6 @@ class GetUpdatesMessage extends Message
 
     public function toHttpUri(): string
     {
-        return sprintf('https://api.telegram.org/bot{%s}/getUpdates', TokenUriTemplateCredential::TEMPLATE);
+        return 'https://api.telegram.org/bot{token}/getUpdates';
     }
 }

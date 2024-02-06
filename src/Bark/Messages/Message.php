@@ -14,7 +14,6 @@ namespace Guanguans\Notify\Bark\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Foundation\Credentials\TokenUriTemplateCredential;
 
 /**
  * @method \Guanguans\Notify\Bark\Messages\Message baseUri($baseUri)
@@ -74,6 +73,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return sprintf('%s/{%s}', $this->getOption('base_uri'), TokenUriTemplateCredential::TEMPLATE);
+        return "{$this->getOption('base_uri')}/{token}";
     }
 }

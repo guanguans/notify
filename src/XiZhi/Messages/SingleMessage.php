@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\XiZhi\Messages;
 
-use Guanguans\Notify\XiZhi\Credential;
-
 /**
  * @method \Guanguans\Notify\XiZhi\Messages\SingleMessage title($title)
  * @method \Guanguans\Notify\XiZhi\Messages\SingleMessage content($content)
@@ -22,6 +20,6 @@ class SingleMessage extends Message
 {
     public function toHttpUri(): string
     {
-        return sprintf('https://xizhi.qqoq.net/{%s}.send', Credential::TEMPLATE);
+        return 'https://xizhi.qqoq.net/{token}.send';
     }
 }
