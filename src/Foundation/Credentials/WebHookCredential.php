@@ -18,6 +18,7 @@ use Psr\Http\Message\RequestInterface;
 class WebHookCredential extends NullCredential
 {
     private string $webHook;
+
     private HttpFactory $httpFactory;
 
     public function __construct(string $webHook)

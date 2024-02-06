@@ -74,7 +74,7 @@ class UpdateHasOptionsDocCommentRector extends AbstractRector implements Configu
                         }
                         CODE_SAMPLE
                     ,
-                    ['\Guanguans\Notify\Foundation\Message::class']
+                    [Message::class]
                 ),
             ]
         );

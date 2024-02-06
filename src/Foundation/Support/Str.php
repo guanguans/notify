@@ -42,11 +42,7 @@ class Str
      */
     public static function camel(string $value): string
     {
-        if (isset(static::$camelCache[$value])) {
-            return static::$camelCache[$value];
-        }
-
-        return static::$camelCache[$value] = lcfirst(static::studly($value));
+        return static::$camelCache[$value] ?? (static::$camelCache[$value] = lcfirst(static::studly($value)));
     }
 
     /**
@@ -82,7 +78,7 @@ class Str
 
         $words = explode(' ', static::replace(['-', '_'], ' ', $value));
 
-        $studlyWords = array_map(fn ($word) => static::ucfirst($word), $words);
+        $studlyWords = array_map(static fn ($word): string => static::ucfirst($word), $words);
 
         return static::$studlyCache[$key] = implode('', $studlyWords);
     }
@@ -94,8 +90,6 @@ class Str
      */
     public static function is($pattern, string $value): bool
     {
-        $value = (string) $value;
-
         if (! is_iterable($pattern)) {
             $pattern = [$pattern];
         }

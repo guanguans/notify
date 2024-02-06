@@ -23,6 +23,7 @@ use GuzzleHttp\RequestOptions;
 class BasicAuthCredential extends NullCredential
 {
     private string $username;
+
     private string $password;
 
     public function __construct(string $username, string $password)

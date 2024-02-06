@@ -26,6 +26,7 @@ use Rector\Config\RectorConfig;
 use Rector\Configuration\Option;
 use Rector\DeadCode\Rector\Assign\RemoveUnusedVariableAssignRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveEmptyClassMethodRector;
+use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector;
@@ -33,6 +34,7 @@ use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\DowngradeLevelSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
 use Rector\ValueObject\PhpVersion;
 
 return static function (RectorConfig $rectorConfig): void {
@@ -43,7 +45,7 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->importNames(false, false);
     $rectorConfig->importShortClasses(false);
     $rectorConfig->parallel(240);
-    $rectorConfig->disableParallel();
+    // $rectorConfig->disableParallel();
     $rectorConfig->phpstanConfig(__DIR__.'/phpstan.neon');
     $rectorConfig->phpVersion(PhpVersion::PHP_74);
     // $rectorConfig->cacheClass(FileCacheStorage::class);
@@ -91,6 +93,12 @@ return static function (RectorConfig $rectorConfig): void {
         RemoveEmptyClassMethodRector::class,
         ExplicitBoolCompareRector::class,
         AddSeeTestAnnotationRector::class,
+        DisallowedEmptyRuleFixerRector::class,
+        RemoveUselessReturnTagRector::class,
+
+        StaticClosureRector::class => [
+            __DIR__.'/tests',
+        ],
 
         // paths
         __DIR__.'/src/Clients',
@@ -113,25 +121,25 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->sets([
-        // DowngradeLevelSetList::DOWN_TO_PHP_74,
-        // LevelSetList::UP_TO_PHP_74,
-        // // SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
-        // SetList::CODE_QUALITY,
-        // SetList::CODING_STYLE,
-        // SetList::DEAD_CODE,
-        // // SetList::STRICT_BOOLEANS,
-        // // SetList::GMAGICK_TO_IMAGICK,
-        // // SetList::MYSQL_TO_MYSQLI,
-        // SetList::NAMING,
-        // // SetList::PRIVATIZATION,
-        // // SetList::PSR_4,
-        // SetList::TYPE_DECLARATION,
-        // SetList::EARLY_RETURN,
-        // SetList::INSTANCEOF,
-        //
-        // PHPUnitSetList::PHPUNIT_90,
-        // PHPUnitSetList::PHPUNIT_CODE_QUALITY,
-        // PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
+        DowngradeLevelSetList::DOWN_TO_PHP_74,
+        LevelSetList::UP_TO_PHP_74,
+        // SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
+        SetList::CODE_QUALITY,
+        SetList::CODING_STYLE,
+        SetList::DEAD_CODE,
+        // SetList::STRICT_BOOLEANS,
+        // SetList::GMAGICK_TO_IMAGICK,
+        // SetList::MYSQL_TO_MYSQLI,
+        SetList::NAMING,
+        // SetList::PRIVATIZATION,
+        // SetList::PSR_4,
+        SetList::TYPE_DECLARATION,
+        SetList::EARLY_RETURN,
+        SetList::INSTANCEOF,
+
+        PHPUnitSetList::PHPUNIT_90,
+        PHPUnitSetList::PHPUNIT_CODE_QUALITY,
+        PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
     ]);
 
     $rectorConfig->rules([

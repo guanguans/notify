@@ -17,6 +17,7 @@ use GuzzleHttp\RequestOptions;
 class CertificateCredential extends NullCredential
 {
     private string $path;
+
     private ?string $password;
 
     public function __construct(string $path, ?string $password = null)

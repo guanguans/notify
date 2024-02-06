@@ -167,7 +167,8 @@
             "@md-lint",
             "@zh-lint",
             "@style-lint",
-            "@test"
+            "@test",
+            "@rector-dry-run"
         ],
         "composer-bin-all-update": "@composer bin all update --ansi -v",
         "composer-check-platform-reqs": "@composer check-platform-reqs --lock --ansi -v",

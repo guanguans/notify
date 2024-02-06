@@ -39,7 +39,7 @@ if (! function_exists('to_multipart')) {
                 // preg_match('/^.*:\/\/.*$/', $contents);
                 is_string($contents) and is_file($contents) and $contents = Utils::tryFopen($contents, 'r');
 
-                return [compact('name', 'contents')];
+                return [['name' => $name, 'contents' => $contents]];
             }
 
             if (

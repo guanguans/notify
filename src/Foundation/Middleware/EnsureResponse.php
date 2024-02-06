@@ -20,7 +20,7 @@ class EnsureResponse
 {
     public function __invoke(callable $handler): callable
     {
-        return Middleware::mapResponse(fn (ResponseInterface $response): ResponseInterface => Response::createFromPsrResponse($response))($handler);
+        return Middleware::mapResponse(static fn (ResponseInterface $response): ResponseInterface => Response::createFromPsrResponse($response))($handler);
     }
 
     public static function name(): string

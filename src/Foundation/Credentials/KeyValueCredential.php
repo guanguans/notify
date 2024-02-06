@@ -17,7 +17,9 @@ use GuzzleHttp\RequestOptions;
 class KeyValueCredential extends NullCredential
 {
     private string $key;
+
     private string $value;
+
     private string $type;
 
     public function __construct(string $key, string $value, string $type = RequestOptions::HEADERS)

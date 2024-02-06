@@ -17,6 +17,7 @@ use Psr\Http\Message\RequestInterface;
 class WsseAuthCredential extends NullCredential
 {
     private string $username;
+
     private string $password;
 
     public function __construct(string $username, string $password)

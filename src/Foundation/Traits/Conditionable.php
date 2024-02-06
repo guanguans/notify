@@ -36,7 +36,8 @@ trait Conditionable
         if ($value) {
             return $callback($this, $value) ?? $this;
         }
-        if ($default) {
+
+        if (null !== $default) {
             return $default($this, $value) ?? $this;
         }
 
@@ -62,7 +63,8 @@ trait Conditionable
         if (! $value) {
             return $callback($this, $value) ?? $this;
         }
-        if ($default) {
+
+        if (null !== $default) {
             return $default($this, $value) ?? $this;
         }
 

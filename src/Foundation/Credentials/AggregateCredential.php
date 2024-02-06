@@ -22,9 +22,9 @@ class AggregateCredential implements Credential
      */
     private array $credentials;
 
-    public function __construct(Credential ...$credentials)
+    public function __construct(Credential ...$credential)
     {
-        $this->credentials = $credentials;
+        $this->credentials = $credential;
     }
 
     public function applyToOptions(array $options): array
@@ -40,7 +40,7 @@ class AggregateCredential implements Credential
     {
         return array_reduce(
             $this->credentials,
-            static fn (RequestInterface $carry, Credential $credential): RequestInterface => $credential->applyToRequest($carry),
+            static fn (RequestInterface $request, Credential $credential): RequestInterface => $credential->applyToRequest($request),
             $request,
         );
     }

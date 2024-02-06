@@ -33,6 +33,7 @@ use Webmozart\Assert\Assert;
 class UpdateHasHttpClientDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
 {
     private const MAIN_CLASS = \Guanguans\Notify\Foundation\Client::class;
+
     private const TRAIT = HasHttpClient::class;
 
     private array $except = [
@@ -49,6 +50,7 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
     ];
 
     private DocBlockUpdater $docBlockUpdater;
+
     private PhpDocInfoFactory $phpDocInfoFactory;
 
     public function __construct(DocBlockUpdater $docBlockUpdater, PhpDocInfoFactory $phpDocInfoFactory)
@@ -119,7 +121,7 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
         foreach ($this->mixins as $mixin) {
             $reflectionMethods = array_filter(
                 (new \ReflectionClass($mixin))->getMethods(\ReflectionMethod::IS_PUBLIC),
-                fn (\ReflectionMethod $reflectionMethod) => ! Str::is($this->except, $reflectionMethod->getName())
+                fn (\ReflectionMethod $reflectionMethod): bool => ! Str::is($this->except, $reflectionMethod->getName())
             );
 
             foreach ($reflectionMethods as $reflectionMethod) {
@@ -160,7 +162,7 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
         $parameters = rtrim(
             array_reduce(
                 $reflectionMethod->getParameters(),
-                static function (string $carry, \ReflectionParameter $reflectionParameter) {
+                static function (string $carry, \ReflectionParameter $reflectionParameter): string {
                     if ($reflectionParameter->hasType()) {
                         /** @noinspection PhpVoidFunctionResultUsedInspection */
                         $type = $reflectionParameter->getType();

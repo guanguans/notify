@@ -51,8 +51,11 @@ use GuzzleHttp\RequestOptions;
 trait HasHttpClient
 {
     private ?Client $httpClient = null;
+
     private $httpClientResolver;
+
     private ?HandlerStack $handlerStack = null;
+
     private array $httpOptions = [];
 
     /**
@@ -165,7 +168,7 @@ trait HasHttpClient
             (function (): void {
                 $this->findByName(ApplyCredentialToRequest::name());
             })->call($handlerStack);
-        } catch (\InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException $invalidArgumentException) {
             $handlerStack->push(
                 new ApplyCredentialToRequest($this->credential),
                 ApplyCredentialToRequest::name()
