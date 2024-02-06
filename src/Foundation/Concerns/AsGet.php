@@ -12,15 +12,13 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
-use Guanguans\Notify\Foundation\Message;
-
 /**
- * @mixin Message
+ * @mixin \Guanguans\Notify\Foundation\Message
  */
 trait AsGet
 {
     final public function toHttpMethod(): string
     {
-        return 'GET';
+        return 'get';
     }
 }
