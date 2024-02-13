@@ -103,6 +103,7 @@ return static function (RectorConfig $rectorConfig): void {
         // paths
         __DIR__.'/src/Clients',
         __DIR__.'/src/Messages',
+        __DIR__.'/tests.php',
         '**/Fixture*',
         '**/Fixture/*',
         '**/Fixtures*',

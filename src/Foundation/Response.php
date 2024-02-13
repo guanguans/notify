@@ -136,7 +136,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      */
     public function status(): int
     {
-        return (int) $this->response->getStatusCode();
+        return $this->response->getStatusCode();
     }
 
     /**

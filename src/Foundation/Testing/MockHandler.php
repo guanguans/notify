@@ -20,9 +20,19 @@ use Psr\Http\Message\ResponseInterface;
 class MockHandler extends \GuzzleHttp\Handler\MockHandler
 {
     /**
-     * @var array<mixed>
+     * @var null|callable
      */
-    private array $responseMapper;
+    public $onFulfilled;
+
+    /**
+     * @var null|callable
+     */
+    public $onRejected;
+
+    /**
+     * @var array<\GuzzleHttp\Promise\PromiseInterface>|array<\Psr\Http\Message\ResponseInterface>|array<\Throwable>|array<callable>
+     */
+    public array $queue;
 
     /**
      * The passed in value must be an array of
@@ -67,8 +77,5 @@ class MockHandler extends \GuzzleHttp\Handler\MockHandler
         }
     }
 
-    public function setResponseMapper(array $responseMapper): void
-    {
-        $this->responseMapper = $responseMapper;
-    }
+    public function setResponseMapper(array $responseMapper): void {}
 }
