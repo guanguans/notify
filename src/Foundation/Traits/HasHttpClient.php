@@ -14,7 +14,6 @@ namespace Guanguans\Notify\Foundation\Traits;
 
 use Guanguans\Notify\Foundation\Middleware\ApplyAuthenticatorToRequest;
 use Guanguans\Notify\Foundation\Middleware\EnsureResponse;
-use Guanguans\Notify\Foundation\Response;
 use Guanguans\Notify\Foundation\Support\Str;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -127,17 +126,7 @@ trait HasHttpClient
 
     public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
     {
-        $this->setHandler(new MockHandler(
-            array_map(static function ($response) {
-                if (\is_object($response)) {
-                    return $response;
-                }
-
-                return new Response(200, ['X-Foo' => 'Bar'], 'Hello, World');
-            }, (array) $queue),
-            $onFulfilled,
-            $onRejected
-        ));
+        $this->setHandler(new MockHandler($queue, $onFulfilled, $onRejected));
 
         return $this;
     }
