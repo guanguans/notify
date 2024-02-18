@@ -19,6 +19,6 @@ class Client extends \Guanguans\Notify\Foundation\Client
     public function __construct(?Authenticator $authenticator = null)
     {
         parent::__construct($authenticator);
-        $this->baseUri('https://api.day.app');
+        $this->baseUri('https://api.day.app/');
     }
 }

@@ -15,7 +15,6 @@ namespace Guanguans\Notify\Chanify\Messages;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method \Guanguans\Notify\Chanify\Messages\TextMessage baseUri($baseUri)
  * @method \Guanguans\Notify\Chanify\Messages\TextMessage title($title)
  * @method \Guanguans\Notify\Chanify\Messages\TextMessage text($text)
  * @method \Guanguans\Notify\Chanify\Messages\TextMessage copy($copy)
@@ -27,8 +26,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class TextMessage extends Message
 {
     protected array $defined = [
-        'base_uri',
-
         'title',
         'text',
         'copy',

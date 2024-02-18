@@ -12,4 +12,13 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Chanify;
 
-class Client extends \Guanguans\Notify\Foundation\Client {}
+use Guanguans\Notify\Foundation\Contracts\Authenticator;
+
+class Client extends \Guanguans\Notify\Foundation\Client
+{
+    public function __construct(?Authenticator $authenticator = null)
+    {
+        parent::__construct($authenticator);
+        $this->baseUri('https://api.chanify.net/v1/sender/');
+    }
+}

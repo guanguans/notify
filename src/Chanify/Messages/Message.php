@@ -20,12 +20,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
-    protected array $options = [
-        'base_uri' => 'https://api.chanify.net/v1',
-    ];
-
     public function toHttpUri(): string
     {
-        return "{$this->getOption('base_uri')}/sender/{token}";
+        return '{token}';
     }
 }
