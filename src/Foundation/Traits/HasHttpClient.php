@@ -27,25 +27,41 @@ use GuzzleHttp\RequestOptions;
  * @method self before(string $findName, callable $middleware, string $withName = '')
  * @method self after(string $findName, callable $middleware, string $withName = '')
  * @method self remove($remove)
- * @method \GuzzleHttp\Promise\PromiseInterface sendAsync(\Psr\Http\Message\RequestInterface $request, array $options = [])
- * @method \Psr\Http\Message\ResponseInterface sendRequest(\Psr\Http\Message\RequestInterface $request)
- * @method \GuzzleHttp\Promise\PromiseInterface requestAsync(string $method, $uri = '', array $options = [])
- * @method \Psr\Http\Message\ResponseInterface request(string $method, $uri = '', array $options = [])
- * @method \Psr\Http\Message\ResponseInterface get($uri, array $options = [])
- * @method \Psr\Http\Message\ResponseInterface head($uri, array $options = [])
- * @method \Psr\Http\Message\ResponseInterface put($uri, array $options = [])
- * @method \Psr\Http\Message\ResponseInterface post($uri, array $options = [])
- * @method \Psr\Http\Message\ResponseInterface patch($uri, array $options = [])
- * @method \Psr\Http\Message\ResponseInterface delete($uri, array $options = [])
- * @method \GuzzleHttp\Promise\PromiseInterface getAsync($uri, array $options = [])
- * @method \GuzzleHttp\Promise\PromiseInterface headAsync($uri, array $options = [])
- * @method \GuzzleHttp\Promise\PromiseInterface putAsync($uri, array $options = [])
- * @method \GuzzleHttp\Promise\PromiseInterface postAsync($uri, array $options = [])
- * @method \GuzzleHttp\Promise\PromiseInterface patchAsync($uri, array $options = [])
- * @method \GuzzleHttp\Promise\PromiseInterface deleteAsync($uri, array $options = [])
+ * @method self baseUri($baseUri)
+ * @method self allowRedirects($allowRedirects)
+ * @method self auth($auth)
+ * @method self body($body)
+ * @method self cert($cert)
+ * @method self cookies($cookies)
+ * @method self connectTimeout($connectTimeout)
+ * @method self cryptoMethod($cryptoMethod)
+ * @method self debug($debug)
+ * @method self decodeContent($decodeContent)
+ * @method self delay($delay)
+ * @method self expect($expect)
+ * @method self formParams($formParams)
+ * @method self headers($headers)
+ * @method self httpErrors($httpErrors)
+ * @method self idnConversion($idnConversion)
+ * @method self json($json)
+ * @method self multipart($multipart)
+ * @method self onHeaders($onHeaders)
+ * @method self onStats($onStats)
+ * @method self progress($progress)
+ * @method self proxy($proxy)
+ * @method self query($query)
+ * @method self sink($sink)
+ * @method self synchronous($synchronous)
+ * @method self sslKey($sslKey)
+ * @method self stream($stream)
+ * @method self verify($verify)
+ * @method self timeout($timeout)
+ * @method self readTimeout($readTimeout)
+ * @method self version($version)
+ * @method self forceIpResolve($forceIpResolve)
  *
  * @see \GuzzleHttp\HandlerStack
- * @see \GuzzleHttp\Client
+ * @see \GuzzleHttp\RequestOptions
  *
  * @mixin \Guanguans\Notify\Foundation\Client
  */
@@ -74,9 +90,9 @@ trait HasHttpClient
             return $this;
         }
 
-        $httpOptions = (new \ReflectionClass(RequestOptions::class))->getConstants() + [
+        $httpOptions = [
             'BASE_URI' => 'base_uri',
-        ];
+        ] + (new \ReflectionClass(RequestOptions::class))->getConstants();
         if (\in_array($snakedName = Str::snake($name), $httpOptions, true)) {
             if (empty($arguments)) {
                 throw new \InvalidArgumentException(sprintf(
@@ -87,10 +103,6 @@ trait HasHttpClient
             }
 
             return $this->setHttpOptions([$snakedName => $arguments[0]]);
-        }
-
-        if (method_exists($this->getHttpClient(), $name)) {
-            return $this->getHttpClient()->{$name}(...$arguments);
         }
 
         throw new \BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $name));

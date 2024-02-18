@@ -15,6 +15,7 @@ namespace Guanguans\Notify\Foundation\Support;
 use Guanguans\Notify\Foundation\Traits\HasHttpClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\RequestOptions;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Trait_;
 use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
@@ -46,7 +47,7 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
 
     private array $mixins = [
         HandlerStack::class,
-        Client::class,
+        // Client::class,
     ];
 
     private DocBlockUpdater $docBlockUpdater;
@@ -129,10 +130,21 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
             }
         }
 
+        foreach (
+            [
+                'BASE_URI' => 'base_uri',
+            ] + (new \ReflectionClass(RequestOptions::class))->getConstants() as $constant
+        ) {
+            $name = Str::camel($constant);
+            $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@method', new GenericTagValueNode("self $name(\$$name)")));
+        }
+
         $phpDocInfo->addPhpDocTagNode($this->createEmptyDocTagNode());
         foreach ($this->mixins as $mixin) {
             $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@see', new GenericTagValueNode('\\'.$mixin)));
         }
+
+        $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@see', new GenericTagValueNode('\\'.RequestOptions::class)));
 
         $phpDocInfo->addPhpDocTagNode($this->createEmptyDocTagNode());
         $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@mixin', new GenericTagValueNode('\\'.self::MAIN_CLASS)));
