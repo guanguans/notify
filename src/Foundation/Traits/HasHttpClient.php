@@ -96,6 +96,13 @@ trait HasHttpClient
         throw new \BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $name));
     }
 
+    public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
+    {
+        $this->setHandler(new MockHandler($queue, $onFulfilled, $onRejected));
+
+        return $this;
+    }
+
     public function setHttpClient(Client $httpClient): self
     {
         $this->httpClient = $httpClient;
@@ -120,13 +127,6 @@ trait HasHttpClient
     public function setHttpOptions(array $httpOptions): self
     {
         $this->httpOptions = array_replace($this->httpOptions, $httpOptions);
-
-        return $this;
-    }
-
-    public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
-    {
-        $this->setHandler(new MockHandler($queue, $onFulfilled, $onRejected));
 
         return $this;
     }

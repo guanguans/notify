@@ -13,7 +13,6 @@ declare(strict_types=1);
 use Guanguans\Notify\XiZhi\Authenticator;
 use Guanguans\Notify\XiZhi\Client;
 use Guanguans\Notify\XiZhi\Messages\SingleMessage;
-use GuzzleHttp\Handler\MockHandler;
 
 it('can send single message', function (): void {
     $authenticator = new Authenticator('XZd60aea56567ae39a1b1920cbc42bb');
@@ -22,19 +21,18 @@ it('can send single message', function (): void {
         'title' => 'This is title.',
         'content' => 'This is content.',
     ]);
-    $mockHandler = new MockHandler([
-        (new GuzzleHttp\Psr7\HttpFactory)->createResponse(
-            200,
-            '{"code":200,"msg":"推送成功"}'
-        ),
-        (new GuzzleHttp\Psr7\HttpFactory)->createResponse(
-            200,
-            '{"code":10000,"msg":"用户不存在"}'
-        ),
-    ]);
 
     expect($client)
-        ->setHandler($mockHandler)
+        ->mock([
+            (new GuzzleHttp\Psr7\HttpFactory)->createResponse(
+                200,
+                '{"code":200,"msg":"推送成功"}'
+            ),
+            (new GuzzleHttp\Psr7\HttpFactory)->createResponse(
+                200,
+                '{"code":10000,"msg":"用户不存在"}'
+            ),
+        ])
         ->send($singleMessage)->toBeInstanceOf(Psr\Http\Message\ResponseInterface::class)
         ->send($singleMessage)->toBeInstanceOf(Psr\Http\Message\ResponseInterface::class);
 })->group(__DIR__, __FILE__);
