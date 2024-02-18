@@ -12,9 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Testing;
 
+use Guanguans\Notify\Foundation\Support\Str;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Promise as P;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\TransferStats;
 use GuzzleHttp\Utils;
@@ -26,16 +26,10 @@ use Psr\Http\Message\StreamInterface;
  * Handler that returns responses or throw exceptions from a queue.
  *
  * @final
- *
- * @see \GuzzleHttp\Handler\MockHandler
  */
-class MockHandler implements \Countable
+class MockHandler extends \GuzzleHttp\Handler\MockHandler
 {
-    private array $queue = [];
-
-    private ?RequestInterface $lastRequest = null;
-
-    private array $lastOptions = [];
+    private array $responseMapper = [];
 
     /**
      * @var null|callable
@@ -47,39 +41,35 @@ class MockHandler implements \Countable
      */
     private $onRejected;
 
-    /**
-     * The passed in value must be an array of
-     * {@see \Psr\Http\Message\ResponseInterface} objects, Exceptions,
-     * callables, or Promises.
-     *
-     * @param null|array<int, mixed> $queue the parameters to be passed to the append function, as an indexed array
-     * @param null|callable $onFulfilled callback to invoke when the return value is fulfilled
-     * @param null|callable $onRejected callback to invoke when the return value is rejected
-     */
-    public function __construct(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null)
-    {
+    public function __construct(
+        ?array $responseMapper = null,
+        ?callable $onFulfilled = null,
+        ?callable $onRejected = null
+    ) {
         $this->onFulfilled = $onFulfilled;
         $this->onRejected = $onRejected;
 
-        if ($queue) {
-            // array_values included for BC
-            $this->append(...array_values($queue));
+        if ($responseMapper) {
+            $this->withResponseMapper($responseMapper);
         }
+
+        parent::__construct($responseMapper, $onFulfilled, $onRejected);
     }
 
     public function __invoke(RequestInterface $request, array $options): PromiseInterface
     {
-        if (! $this->queue) {
-            throw new \OutOfBoundsException('Mock queue is empty');
+        if (! $this->responseMapper) {
+            throw new \OutOfBoundsException('Mock response mapper is empty');
         }
 
         if (isset($options['delay']) && is_numeric($options['delay'])) {
             usleep((int) $options['delay'] * 1000);
         }
 
-        $this->lastRequest = $request;
-        $this->lastOptions = $options;
-        $response = array_shift($this->queue);
+        // $this->lastRequest = $request;
+        // $this->lastOptions = $options;
+        // $response = array_shift($this->queue);
+        $response = $this->matchResponse($request);
 
         if (isset($options['on_headers'])) {
             if (! \is_callable($options['on_headers'])) {
@@ -99,8 +89,8 @@ class MockHandler implements \Countable
         }
 
         $response = $response instanceof \Throwable
-            ? P\Create::rejectionFor($response)
-            : P\Create::promiseFor($response);
+            ? Create::rejectionFor($response)
+            : Create::promiseFor($response);
 
         return $response->then(
             function (?ResponseInterface $response) use ($request, $options): ?ResponseInterface {
@@ -130,75 +120,27 @@ class MockHandler implements \Countable
                     ($this->onRejected)($reason);
                 }
 
-                return P\Create::rejectionFor($reason);
+                return Create::rejectionFor($reason);
             }
         );
     }
 
-    /**
-     * Creates a new MockHandler that uses the default handler stack list of
-     * middlewares.
-     *
-     * @param null|array $queue array of responses, callables, or exceptions
-     * @param null|callable $onFulfilled callback to invoke when the return value is fulfilled
-     * @param null|callable $onRejected callback to invoke when the return value is rejected
-     */
-    public static function createWithMiddleware(
-        ?array $queue = null,
-        ?callable $onFulfilled = null,
-        ?callable $onRejected = null
-    ): HandlerStack {
-        return HandlerStack::create(new self($queue, $onFulfilled, $onRejected));
-    }
-
-    /**
-     * Adds one or more variadic requests, exceptions, callables, or promises
-     * to the queue.
-     *
-     * @param mixed ...$values
-     */
-    public function append(...$values): void
+    public function withResponseMapper(array $responseMapper): self
     {
-        foreach ($values as $value) {
-            if ($value instanceof ResponseInterface
-                || $value instanceof \Throwable
-                || $value instanceof PromiseInterface
-                || \is_callable($value)
+        foreach ($responseMapper as $uriPattern => $response) {
+            if (
+                $response instanceof ResponseInterface
+                || $response instanceof \Throwable
+                || $response instanceof PromiseInterface
+                || \is_callable($response)
             ) {
-                $this->queue[] = $value;
+                $this->responseMapper[$uriPattern] = $response;
             } else {
-                throw new \TypeError('Expected a Response, Promise, Throwable or callable. Found '.Utils::describeType($value));
+                throw new \TypeError('Expected a Response, Promise, Throwable or callable. Found '.Utils::describeType($response));
             }
         }
-    }
 
-    /**
-     * Get the last received request.
-     */
-    public function getLastRequest(): ?RequestInterface
-    {
-        return $this->lastRequest;
-    }
-
-    /**
-     * Get the last received request options.
-     */
-    public function getLastOptions(): array
-    {
-        return $this->lastOptions;
-    }
-
-    /**
-     * Returns the number of remaining items in the queue.
-     */
-    public function count(): int
-    {
-        return \count($this->queue);
-    }
-
-    public function reset(): void
-    {
-        $this->queue = [];
+        return $this;
     }
 
     /**
@@ -215,5 +157,18 @@ class MockHandler implements \Countable
             $transferStats = new TransferStats($request, $response, $transferTime, $reason);
             ($options['on_stats'])($transferStats);
         }
+    }
+
+    private function matchResponse(RequestInterface $request): ResponseInterface
+    {
+        $uri = (string) $request->getUri();
+
+        foreach ($this->responseMapper as $uriPattern => $response) {
+            if (Str::is($uriPattern, $uri)) {
+                return $response;
+            }
+        }
+
+        throw new \OutOfBoundsException("No matching mock response for URI: $uri");
     }
 }
