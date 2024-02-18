@@ -16,7 +16,6 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
- * @method \Guanguans\Notify\Bark\Messages\Message baseUri($baseUri)
  * @method \Guanguans\Notify\Bark\Messages\Message title($title)
  * @method \Guanguans\Notify\Bark\Messages\Message body($body)
  * @method \Guanguans\Notify\Bark\Messages\Message copy($copy)
@@ -36,8 +35,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsPost;
 
     protected array $defined = [
-        'base_uri',
-
         'title',
         'body',
         'copy',
@@ -63,16 +60,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'level' => ['active', 'timeSensitive', 'passive'],
     ];
 
-    protected array $defaults = [
-        'base_uri' => 'https://api.day.app',
-    ];
-
-    protected array $options = [
-        'base_uri' => 'https://api.day.app',
-    ];
-
     public function toHttpUri(): string
     {
-        return "{$this->getOption('base_uri')}/{token}";
+        return '{token}';
     }
 }
