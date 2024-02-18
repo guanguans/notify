@@ -81,6 +81,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return 'https://discord.com/api/webhooks/{threadId}/{token}';
+        return '';
     }
 }
