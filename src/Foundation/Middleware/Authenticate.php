@@ -16,7 +16,7 @@ use Guanguans\Notify\Foundation\Contracts\Authenticator;
 use GuzzleHttp\Middleware;
 use Psr\Http\Message\RequestInterface;
 
-class ApplyAuthenticatorToRequest
+class Authenticate
 {
     private Authenticator $authenticator;
 

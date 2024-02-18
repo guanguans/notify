@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Traits;
 
-use Guanguans\Notify\Foundation\Middleware\ApplyAuthenticatorToRequest;
-use Guanguans\Notify\Foundation\Middleware\EnsureResponse;
+use Guanguans\Notify\Foundation\Middleware\Authenticate;
+use Guanguans\Notify\Foundation\Middleware\Response;
 use Guanguans\Notify\Foundation\Support\Str;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -159,10 +159,10 @@ trait HasHttpClient
     {
         if (! $this->handlerStack instanceof HandlerStack) {
             $this->handlerStack = HandlerStack::create();
-            $this->handlerStack->push(new EnsureResponse, EnsureResponse::class);
+            $this->handlerStack->push(new Response, Response::class);
         }
 
-        return $this->handlerStack = $this->ensureWithApplyAuthenticatorToRequest($this->handlerStack);
+        return $this->handlerStack = $this->ensureAuthenticate($this->handlerStack);
     }
 
     private function getHttpOptions(): array
@@ -170,16 +170,16 @@ trait HasHttpClient
         return $this->httpOptions;
     }
 
-    private function ensureWithApplyAuthenticatorToRequest(HandlerStack $handlerStack): HandlerStack
+    private function ensureAuthenticate(HandlerStack $handlerStack): HandlerStack
     {
         try {
             (function (): void {
-                $this->findByName(ApplyAuthenticatorToRequest::class);
+                $this->findByName(Authenticate::class);
             })->call($handlerStack);
         } catch (\InvalidArgumentException $invalidArgumentException) {
             $handlerStack->push(
-                new ApplyAuthenticatorToRequest($this->authenticator),
-                ApplyAuthenticatorToRequest::class
+                new Authenticate($this->authenticator),
+                Authenticate::class
             );
         }
 

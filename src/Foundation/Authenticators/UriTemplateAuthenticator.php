@@ -28,6 +28,9 @@ class UriTemplateAuthenticator extends NullAuthenticator
         $this->httpFactory = new HttpFactory;
     }
 
+    /**
+     * @noinspection ToStringCallInspection
+     */
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
         return $request->withUri($this->httpFactory->createUri(
