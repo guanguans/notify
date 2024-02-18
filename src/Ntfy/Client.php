@@ -23,6 +23,6 @@ class Client extends \Guanguans\Notify\Foundation\Client
     public function __construct(?Authenticator $authenticator = null)
     {
         parent::__construct($authenticator);
-        $this->baseUri('https://ntfy.sh');
+        $this->baseUri('https://ntfy.sh/');
     }
 }
