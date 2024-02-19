@@ -10,12 +10,17 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Tests\Feature;
+namespace Guanguans\NotifyTests\Feature;
 
 use Guanguans\Notify\Factory;
 use Guanguans\Notify\Messages\ShowdocPushMessage;
-use Guanguans\Notify\Tests\TestCase;
+use Guanguans\NotifyTests\TestCase;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class ShowdocPushTest extends TestCase
 {
     public function testShowdocPush(): void

@@ -10,15 +10,20 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Tests\Feature;
+namespace Guanguans\NotifyTests\Feature;
 
 use Guanguans\Notify\Factory;
 use Guanguans\Notify\Messages\NowPush\ImageMessage;
 use Guanguans\Notify\Messages\NowPush\LinkMessage;
 use Guanguans\Notify\Messages\NowPush\NoteMessage;
-use Guanguans\Notify\Tests\TestCase;
+use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class NowPushTest extends TestCase
 {
     public function testNote(): void

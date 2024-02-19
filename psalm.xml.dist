@@ -19,16 +19,11 @@
   </projectFiles>
   <issueHandlers>
     <PropertyNotSetInConstructor errorLevel="info"/>
-    <InvalidReturnStatement>
-      <errorLevel type="suppress">
-        <directory name="src/Clients"/>
-      </errorLevel>
-    </InvalidReturnStatement>
-    <UnusedClosureParam>
+    <!--<UnusedClosureParam>
       <errorLevel type="suppress">
         <directory name="src/Messages"/>
       </errorLevel>
-    </UnusedClosureParam>
+    </UnusedClosureParam>-->
   </issueHandlers>
   <plugins>
     <!--<pluginClass class="Psalm\LaravelPlugin\Plugin"/>-->

@@ -10,6 +10,8 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+use Guanguans\Notify\Foundation\Support\UpdateHasHttpClientDocCommentRector;
+use Guanguans\Notify\Foundation\Support\UpdateHasOptionsDocCommentRector;
 use Rector\Caching\ValueObject\Storage\FileCacheStorage;
 use Rector\CodeQuality\Rector\Array_\CallableThisArrayToAnonymousFunctionRector;
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
@@ -21,18 +23,19 @@ use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
 use Rector\Config\RectorConfig;
-use Rector\Core\Configuration\Option;
-use Rector\Core\ValueObject\PhpVersion;
+use Rector\Configuration\Option;
 use Rector\DeadCode\Rector\Assign\RemoveUnusedVariableAssignRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveEmptyClassMethodRector;
+use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector;
-use Rector\PHPUnit\Set\PHPUnitLevelSetList;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\DowngradeLevelSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
+use Rector\ValueObject\PhpVersion;
 
 return static function (RectorConfig $rectorConfig): void {
     define('MHASH_XXH3', 2 << 0);
@@ -41,10 +44,10 @@ return static function (RectorConfig $rectorConfig): void {
     define('MHASH_XXH128', 2 << 3);
     $rectorConfig->importNames(false, false);
     $rectorConfig->importShortClasses(false);
-    // $rectorConfig->disableParallel();
     $rectorConfig->parallel(240);
+    // $rectorConfig->disableParallel();
     $rectorConfig->phpstanConfig(__DIR__.'/phpstan.neon');
-    $rectorConfig->phpVersion(PhpVersion::PHP_72);
+    $rectorConfig->phpVersion(PhpVersion::PHP_74);
     // $rectorConfig->cacheClass(FileCacheStorage::class);
     // $rectorConfig->cacheDirectory(__DIR__.'/build/rector');
     // $rectorConfig->containerCacheDirectory(__DIR__.'/build/rector');
@@ -70,6 +73,7 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__.'/tests',
         __DIR__.'/.*.php',
         __DIR__.'/*.php',
+        __DIR__.'/composer-updater',
     ]);
 
     $rectorConfig->skip([
@@ -89,8 +93,17 @@ return static function (RectorConfig $rectorConfig): void {
         RemoveEmptyClassMethodRector::class,
         ExplicitBoolCompareRector::class,
         AddSeeTestAnnotationRector::class,
+        DisallowedEmptyRuleFixerRector::class,
+        RemoveUselessReturnTagRector::class,
+
+        StaticClosureRector::class => [
+            __DIR__.'/tests',
+        ],
 
         // paths
+        __DIR__.'/src/Clients',
+        __DIR__.'/src/Messages',
+        __DIR__.'/tests.php',
         '**/Fixture*',
         '**/Fixture/*',
         '**/Fixtures*',
@@ -109,8 +122,8 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->sets([
-        DowngradeLevelSetList::DOWN_TO_PHP_72,
-        LevelSetList::UP_TO_PHP_72,
+        DowngradeLevelSetList::DOWN_TO_PHP_74,
+        LevelSetList::UP_TO_PHP_74,
         // SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
@@ -125,11 +138,14 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::EARLY_RETURN,
         SetList::INSTANCEOF,
 
-        PHPUnitLevelSetList::UP_TO_PHPUNIT_80,
+        PHPUnitSetList::PHPUNIT_90,
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
+        PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
     ]);
 
     $rectorConfig->rules([
-        InlineConstructorDefaultToPropertyRector::class,
+        // InlineConstructorDefaultToPropertyRector::class,
+        UpdateHasHttpClientDocCommentRector::class,
+        UpdateHasOptionsDocCommentRector::class,
     ]);
 };

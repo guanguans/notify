@@ -11,7 +11,7 @@ clover.xml
 phpunit.xml
 psalm.xml
 vendor/
-tests.php
+/tests.*
 test.php
 .DS_Store
 .history/

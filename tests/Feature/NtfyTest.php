@@ -10,13 +10,18 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Tests\Feature;
+namespace Guanguans\NotifyTests\Feature;
 
 use Guanguans\Notify\Factory;
 use Guanguans\Notify\Messages\NtfyMessage;
-use Guanguans\Notify\Tests\TestCase;
+use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Exception\ClientException;
 
+/**
+ * @internal
+ *
+ * @small
+ */
 class NtfyTest extends TestCase
 {
     public function testNtfy(): void
