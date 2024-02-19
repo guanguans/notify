@@ -84,11 +84,11 @@ if (! function_exists('configure_options')) {
     }
 }
 
-if (! function_exists('base64_file')) {
+if (! function_exists('base64_encode_file')) {
     /**
      * Base64 encode file content.
      */
-    function base64_file(string $file): string
+    function base64_encode_file(string $file): string
     {
         return base64_encode(file_get_contents($file));
     }
