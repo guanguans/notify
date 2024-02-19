@@ -29,6 +29,7 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveEmptyClassMethodRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
+use Rector\Php73\Rector\String_\SensitiveHereNowDocRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\DowngradeLevelSetList;
@@ -86,6 +87,7 @@ return static function (RectorConfig $rectorConfig): void {
         ReturnBinaryOrToEarlyReturnRector::class,
         EncapsedStringsToSprintfRector::class,
         WrapEncapsedVariableInCurlyBracesRector::class,
+        SensitiveHereNowDocRector::class,
 
         // optional rules
         // RemoveUnusedVariableAssignRector::class,
