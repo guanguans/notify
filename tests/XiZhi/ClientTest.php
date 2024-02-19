@@ -1,5 +1,8 @@
 <?php
 
+/** @noinspection StaticClosureCanBeUsedInspection */
+/** @noinspection PhpUnhandledExceptionInspection */
+
 declare(strict_types=1);
 
 /**
@@ -10,9 +13,13 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+namespace Guanguans\NotifyTests\XiZhi;
+
 use Guanguans\Notify\XiZhi\Authenticator;
 use Guanguans\Notify\XiZhi\Client;
+use Guanguans\Notify\XiZhi\Messages\ChannelMessage;
 use Guanguans\Notify\XiZhi\Messages\SingleMessage;
+use Psr\Http\Message\ResponseInterface;
 
 it('can send single message', function (): void {
     $authenticator = new Authenticator('XZd60aea56567ae39a1b1920cbc42bb');
@@ -24,15 +31,26 @@ it('can send single message', function (): void {
 
     expect($client)
         ->mock([
-            (new GuzzleHttp\Psr7\HttpFactory)->createResponse(
-                200,
-                '{"code":200,"msg":"推送成功"}'
-            ),
-            (new GuzzleHttp\Psr7\HttpFactory)->createResponse(
-                200,
-                '{"code":10000,"msg":"用户不存在"}'
-            ),
+            create_response('{"code":200,"msg":"推送成功"}'),
+            create_response('{"code":10000,"msg":"用户不存在"}'),
         ])
-        ->send($singleMessage)->toBeInstanceOf(Psr\Http\Message\ResponseInterface::class)
-        ->send($singleMessage)->toBeInstanceOf(Psr\Http\Message\ResponseInterface::class);
+        ->send($singleMessage)->toBeInstanceOf(ResponseInterface::class)
+        ->send($singleMessage)->toBeInstanceOf(ResponseInterface::class);
+})->group(__DIR__, __FILE__);
+
+it('can send channel message', function (): void {
+    $authenticator = new Authenticator('XZf0db6d069509ec52afc1f3493b76e');
+    $client = new Client($authenticator);
+    $channelMessage = ChannelMessage::make([
+        'title' => 'This is title.',
+        'content' => 'This is content.',
+    ]);
+
+    expect($client)
+        ->mock([
+            create_response('{"code":200,"msg":"推送成功"}'),
+            create_response('{"code":10000,"msg":"未知错误"}'),
+        ])
+        ->send($channelMessage)->toBeInstanceOf(ResponseInterface::class)
+        ->send($channelMessage)->toBeInstanceOf(ResponseInterface::class);
 })->group(__DIR__, __FILE__);

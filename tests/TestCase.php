@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\NotifyTests;
 
-use DMS\PHPUnitExtensions\ArraySubset\ArraySubsetAsserts;
 use phpmock\phpunit\PHPMock;
 
 /**
@@ -24,7 +23,6 @@ use phpmock\phpunit\PHPMock;
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    // use ArraySubsetAsserts;
     use PHPMock;
 
     /**

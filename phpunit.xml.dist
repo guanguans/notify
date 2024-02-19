@@ -27,7 +27,6 @@
     <testsuite name="Guanguans Test Suite">
       <directory>tests/</directory>
       <exclude>vendor/</exclude>
-      <exclude>tests/Feature/</exclude>
     </testsuite>
   </testsuites>
 </phpunit>

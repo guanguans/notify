@@ -14,14 +14,16 @@ declare(strict_types=1);
  */
 
 use Guanguans\NotifyTests\TestCase;
+use GuzzleHttp\Psr7\Response;
 use Pest\Expectation;
+use Psr\Http\Message\ResponseInterface;
 
-uses(TestCase::class, GuzzleHttp\Psr7\HttpFactory::class)
+uses(TestCase::class)
     ->beforeAll(function (): void {})
     ->beforeEach(function (): void {})
     ->afterEach(function (): void {})
     ->afterAll(function (): void {})
-    ->in(__DIR__.'/Feature', __DIR__.'/Unit');
+    ->in(__DIR__, __DIR__.'/Feature', __DIR__.'/Unit');
 /*
 |--------------------------------------------------------------------------
 | Expectations
@@ -75,4 +77,14 @@ function class_namespace($class): string
 function fixtures_path(string $path = ''): string
 {
     return __DIR__.'/Fixtures'.($path ? \DIRECTORY_SEPARATOR.$path : $path);
+}
+
+function create_response(
+    $body = null,
+    int $status = 200,
+    array $headers = [],
+    string $version = '1.1',
+    ?string $reason = null
+): ResponseInterface {
+    return new Response($status, $headers, $body, $version, $reason);
 }

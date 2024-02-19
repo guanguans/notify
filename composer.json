@@ -85,7 +85,6 @@
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8",
         "brainmaestro/composer-git-hooks": "^2.8",
-        "dms/phpunit-arraysubset-asserts": "^0.5",
         "ergebnis/composer-normalize": "^2.42",
         "friendsofphp/php-cs-fixer": "^3.49",
         "guanguans/ai-commit": "dev-main",
