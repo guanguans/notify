@@ -23,9 +23,6 @@ class Client extends \Guanguans\Notify\Foundation\Client
     public function __construct(?Authenticator $authenticator = null)
     {
         parent::__construct($authenticator);
-
-        $this->setHttpOptions([
-            'base_uri' => 'https://chat.zulip.org',
-        ]);
+        $this->baseUri('https://chat.zulip.org/');
     }
 }
