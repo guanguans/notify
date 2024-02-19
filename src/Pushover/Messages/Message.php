@@ -57,7 +57,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'callback',
         'device',
         'attachment',
-
         // 'attachment_base64',
         // 'attachment_type',
     ];
