@@ -8,6 +8,58 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.0.0-beta1"></a>
+## [2.0.0-beta1] - 2024-02-19
+### Docs
+- Update links and add examples for RocketChat and Slack clients
+
+### Feat
+- **Client:** add async method for sending messages
+- **DocCommentRector:** Add DocCommentRector class
+- **HasHttpClient:** Add mock method
+- **Notify:** add delete, head, patch, and put methods
+- **bark:** add Bark client, credential, and message classes
+- **client:** Add EnsureResponse middleware
+- **commit:** Add Conditionable and Macroable traits
+- **credentials:** add AggregateCredential class
+- **credentials:** add CertificateCredential class
+- **github:** add secrets check workflow
+- **mock:** add MockHandler class
+- **tests:** add XiZhi\ClientTest
+
+### Refactor
+- Improve DocCommentRector and HasOptions
+- Update credentials classes
+- **Credentials:** Update ApiKeyCredential, DigestAuthCredential, HeaderCredential, and QueryCredential
+- **HasHttpClient:** refactor mock method
+- **Message:** Update toHttpUri() method
+- **MockHandler:** improve MockHandler class structure and functionality
+- **Response:** improve Response class
+- **Str:** Improve case conversion methods
+- **Traits:** Improve HasOptions trait
+- **UpdateHasHttpClientDocCommentRector:** Update createMethodPhpDocTagNode method
+- **client:** remove unused methods and add missing method
+- **client:** Refactor the Client class
+- **concerns:** Update options handling in traits
+- **concerns:** Remove unused imports
+- **config:** update PHP version and sets
+- **credentials:** refactor credential classes
+- **credentials:** refactor BasicAuthCredential, CallbackCredential, DigestAuthCredential, NtlmAuthCredential, and WsseAuthCredential classes
+- **handler:** refactor MockHandler constructor and response handling
+- **headercredential:** refactor applyToRequest method
+- **helper:** Refactor to_multipart function
+- **http-client:** Refactor HasHttpClient trait
+- **httpclient:** refactor send method
+- **middleware:** Refactor ApplyAuthenticatorToRequest and EnsureResponse middleware
+- **options:** Improve options handling in Traits
+
+### Pull Requests
+- Merge pull request [#53](https://github.com/guanguans/notify/issues/53) from guanguans/1.x
+- Merge pull request [#52](https://github.com/guanguans/notify/issues/52) from guanguans/dependabot/composer/rector/rector-tw-0.19or-tw-1.0
+- Merge pull request [#50](https://github.com/guanguans/notify/issues/50) from guanguans/dependabot/github_actions/actions/setup-node-4
+- Merge pull request [#49](https://github.com/guanguans/notify/issues/49) from guanguans/dependabot/github_actions/actions/cache-4
+
+
 <a name="1.28.0"></a>
 ## [1.28.0] - 2024-01-17
 
@@ -350,7 +402,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/1.28.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.0.0-beta1...HEAD
+[2.0.0-beta1]: https://github.com/guanguans/notify/compare/1.28.0...2.0.0-beta1
 [1.28.0]: https://github.com/guanguans/notify/compare/1.27.2...1.28.0
 [1.27.2]: https://github.com/guanguans/notify/compare/1.27.1...1.27.2
 [1.27.1]: https://github.com/guanguans/notify/compare/1.27.0...1.27.1
