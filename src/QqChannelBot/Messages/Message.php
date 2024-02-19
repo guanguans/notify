@@ -17,7 +17,6 @@ use GuzzleHttp\RequestOptions;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method \Guanguans\Notify\QqChannelBot\Messages\Message isSandbox($isSandbox)
  * @method \Guanguans\Notify\QqChannelBot\Messages\Message channelId($channelId)
  * @method \Guanguans\Notify\QqChannelBot\Messages\Message content($content)
  * @method \Guanguans\Notify\QqChannelBot\Messages\Message image($image)
@@ -34,7 +33,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsPost;
 
     protected array $defined = [
-        'is_sandbox',
         'channel_id',
 
         'content',
@@ -55,15 +53,13 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'markdown' => 'array',
     ];
 
-    protected array $options = [
-        'is_sandbox' => false,
-    ];
+    protected array $options = [];
 
     public function toHttpOptions(): array
     {
-        $options = $this->getOptions();
+        $options = $this->resolveOptions();
 
-        unset($options['is_sandbox'], $options['channel_id']);
+        unset($options['channel_id']);
 
         return [
             RequestOptions::MULTIPART => to_multipart($options),
@@ -133,8 +129,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return $this->getOption('is_sandbox')
-            ? "https://sandbox.api.sgroup.qq.com/channels/{$this->getOption('channel_id')}/messages"
-            : "https://api.sgroup.qq.com/channels/{$this->getOption('channel_id')}/messages";
+        return "https://api.sgroup.qq.com/channels/{$this->getOption('channel_id')}/messages";
     }
 }
