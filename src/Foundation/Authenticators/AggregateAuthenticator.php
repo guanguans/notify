@@ -17,11 +17,14 @@ use Psr\Http\Message\RequestInterface;
 
 class AggregateAuthenticator implements Authenticator
 {
+    /**
+     * @var array<Authenticator>
+     */
     private array $authenticators;
 
-    public function __construct(Authenticator ...$authenticator)
+    public function __construct(Authenticator ...$authenticators)
     {
-        $this->authenticators = $authenticator;
+        $this->authenticators = $authenticators;
     }
 
     public function applyToOptions(array $options): array

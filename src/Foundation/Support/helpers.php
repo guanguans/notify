@@ -15,6 +15,9 @@ use Psr\Http\Message\StreamInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 if (! function_exists('to_multipart')) {
+    /**
+     * Convert a form array into a multipart array.
+     */
     function to_multipart(array $form): array
     {
         /**
@@ -39,7 +42,7 @@ if (! function_exists('to_multipart')) {
                 // preg_match('/^.*:\/\/.*$/', $contents);
                 is_string($contents) and is_file($contents) and $contents = Utils::tryFopen($contents, 'r');
 
-                return [['name' => $name, 'contents' => $contents]];
+                return [compact('name', 'contents')];
             }
 
             if (
@@ -72,21 +75,21 @@ if (! function_exists('to_multipart')) {
 
 if (! function_exists('configure_options')) {
     /**
-     * Configuration options.
+     * Configures the options using the provided callback and returns the resolved options.
      */
-    function configure_options(array $options, Closure $closure): array
+    function configure_options(array $options, callable $callback): array
     {
-        $resolver = new OptionsResolver;
+        $optionsResolver = new OptionsResolver;
 
-        $closure($resolver);
+        $callback($optionsResolver);
 
-        return $resolver->resolve($options);
+        return $optionsResolver->resolve($options);
     }
 }
 
 if (! function_exists('base64_encode_file')) {
     /**
-     * Base64 encode file content.
+     * Encodes a file to base64.
      */
     function base64_encode_file(string $file): string
     {

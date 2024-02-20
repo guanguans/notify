@@ -16,6 +16,7 @@ use Rector\Caching\ValueObject\Storage\FileCacheStorage;
 use Rector\CodeQuality\Rector\Array_\CallableThisArrayToAnonymousFunctionRector;
 use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
 use Rector\CodeQuality\Rector\Expression\InlineIfToExplicitIfRector;
+use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\CodeQuality\Rector\Identical\SimplifyBoolIdenticalTrueRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
@@ -29,6 +30,7 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveEmptyClassMethodRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
+use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php73\Rector\String_\SensitiveHereNowDocRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
@@ -80,24 +82,28 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->skip([
         // rules
         CallableThisArrayToAnonymousFunctionRector::class,
+        ChangeAndIfToEarlyReturnRector::class,
+        CompactToVariablesRector::class,
+        EncapsedStringsToSprintfRector::class,
         InlineIfToExplicitIfRector::class,
         LogicalToBooleanRector::class,
-        SimplifyBoolIdenticalTrueRector::class,
-        ChangeAndIfToEarlyReturnRector::class,
         ReturnBinaryOrToEarlyReturnRector::class,
-        EncapsedStringsToSprintfRector::class,
-        WrapEncapsedVariableInCurlyBracesRector::class,
         SensitiveHereNowDocRector::class,
+        SimplifyBoolIdenticalTrueRector::class,
+        WrapEncapsedVariableInCurlyBracesRector::class,
 
         // optional rules
         // RemoveUnusedVariableAssignRector::class,
         // StaticClosureRector::class,
-        RemoveEmptyClassMethodRector::class,
-        ExplicitBoolCompareRector::class,
         AddSeeTestAnnotationRector::class,
         DisallowedEmptyRuleFixerRector::class,
+        ExplicitBoolCompareRector::class,
+        RemoveEmptyClassMethodRector::class,
         RemoveUselessReturnTagRector::class,
 
+        RenameParamToMatchTypeRector::class => [
+            __DIR__.'/src/Foundation/Authenticators/AggregateAuthenticator.php',
+        ],
         StaticClosureRector::class => [
             __DIR__.'/tests',
         ],

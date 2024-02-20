@@ -15,17 +15,18 @@ namespace Guanguans\Notify\Foundation\Authenticators;
 use GuzzleHttp\Psr7\HttpFactory;
 use GuzzleHttp\UriTemplate\UriTemplate;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\UriFactoryInterface;
 
 class UriTemplateAuthenticator extends NullAuthenticator
 {
     private array $variables;
 
-    private HttpFactory $httpFactory;
+    private UriFactoryInterface $uriFactory;
 
-    public function __construct(array $variables)
+    public function __construct(array $variables, ?UriFactoryInterface $uriFactory = null)
     {
         $this->variables = $variables;
-        $this->httpFactory = new HttpFactory;
+        $this->uriFactory = $uriFactory ?? new HttpFactory;
     }
 
     /**
@@ -33,7 +34,7 @@ class UriTemplateAuthenticator extends NullAuthenticator
      */
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
-        return $request->withUri($this->httpFactory->createUri(
+        return $request->withUri($this->uriFactory->createUri(
             /** @see https://github.com/rize/UriTemplate */
             UriTemplate::expand(urldecode((string) $request->getUri()), $this->variables)
         ));
