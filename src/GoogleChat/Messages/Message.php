@@ -16,21 +16,21 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
- * @method \Guanguans\Notify\GoogleChat\Messages\Message text($text)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message cards(array $cards)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message name($name)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message sender(array $sender)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message createTime($createTime)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message lastUpdateTime($lastUpdateTime)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message previewText($previewText)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message annotations(array $annotations)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message thread(array $thread)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message space(array $space)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message fallbackText($fallbackText)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message actionResponse(array $actionResponse)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message argumentText($argumentText)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message slashCommand(array $slashCommand)
- * @method \Guanguans\Notify\GoogleChat\Messages\Message attachment(array $attachment)
+ * @method self text($text)
+ * @method self cards(array $cards)
+ * @method self name($name)
+ * @method self sender(array $sender)
+ * @method self createTime($createTime)
+ * @method self lastUpdateTime($lastUpdateTime)
+ * @method self previewText($previewText)
+ * @method self annotations(array $annotations)
+ * @method self thread(array $thread)
+ * @method self space(array $space)
+ * @method self fallbackText($fallbackText)
+ * @method self actionResponse(array $actionResponse)
+ * @method self argumentText($argumentText)
+ * @method self slashCommand(array $slashCommand)
+ * @method self attachment(array $attachment)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

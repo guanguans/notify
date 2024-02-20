@@ -13,8 +13,8 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method \Guanguans\Notify\Telegram\Messages\ChatActionMessage chatId($chatId)
- * @method \Guanguans\Notify\Telegram\Messages\ChatActionMessage action($action)
+ * @method self chatId($chatId)
+ * @method self action($action)
  */
 class ChatActionMessage extends Message
 {

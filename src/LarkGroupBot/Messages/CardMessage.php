@@ -15,7 +15,7 @@ namespace Guanguans\Notify\LarkGroupBot\Messages;
 use GuzzleHttp\RequestOptions;
 
 /**
- * @method \Guanguans\Notify\LarkGroupBot\Messages\CardMessage card(array $card)
+ * @method self card(array $card)
  */
 class CardMessage extends Message
 {

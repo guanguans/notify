@@ -13,18 +13,18 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage chatId($chatId)
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage document($document)
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage thumb($thumb)
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage caption($caption)
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage parseMode($parseMode)
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage captionEntities($captionEntities)
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage disableContentTypeDetection($disableContentTypeDetection)
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage disableNotification($disableNotification)
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage protectContent($protectContent)
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage replyToMessageId($replyToMessageId)
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage allowSendingWithoutReply($allowSendingWithoutReply)
- * @method \Guanguans\Notify\Telegram\Messages\DocumentMessage replyMarkup($replyMarkup)
+ * @method self chatId($chatId)
+ * @method self document($document)
+ * @method self thumb($thumb)
+ * @method self caption($caption)
+ * @method self parseMode($parseMode)
+ * @method self captionEntities($captionEntities)
+ * @method self disableContentTypeDetection($disableContentTypeDetection)
+ * @method self disableNotification($disableNotification)
+ * @method self protectContent($protectContent)
+ * @method self replyToMessageId($replyToMessageId)
+ * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyMarkup($replyMarkup)
  */
 class DocumentMessage extends Message
 {

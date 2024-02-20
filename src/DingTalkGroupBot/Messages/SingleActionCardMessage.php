@@ -13,11 +13,11 @@ declare(strict_types=1);
 namespace Guanguans\Notify\DingTalkGroupBot\Messages;
 
 /**
- * @method \Guanguans\Notify\DingTalkGroupBot\Messages\SingleActionCardMessage title($title)
- * @method \Guanguans\Notify\DingTalkGroupBot\Messages\SingleActionCardMessage text($text)
- * @method \Guanguans\Notify\DingTalkGroupBot\Messages\SingleActionCardMessage singleTitle($singleTitle)
- * @method \Guanguans\Notify\DingTalkGroupBot\Messages\SingleActionCardMessage singleURL($singleURL)
- * @method \Guanguans\Notify\DingTalkGroupBot\Messages\SingleActionCardMessage btnOrientation($btnOrientation)
+ * @method self title($title)
+ * @method self text($text)
+ * @method self singleTitle($singleTitle)
+ * @method self singleURL($singleURL)
+ * @method self btnOrientation($btnOrientation)
  */
 class SingleActionCardMessage extends Message
 {

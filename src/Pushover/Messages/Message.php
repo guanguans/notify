@@ -20,20 +20,20 @@ use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method \Guanguans\Notify\Pushover\Messages\Message message($message)
- * @method \Guanguans\Notify\Pushover\Messages\Message title($title)
- * @method \Guanguans\Notify\Pushover\Messages\Message timestamp($timestamp)
- * @method \Guanguans\Notify\Pushover\Messages\Message priority($priority)
- * @method \Guanguans\Notify\Pushover\Messages\Message url($url)
- * @method \Guanguans\Notify\Pushover\Messages\Message urlTitle($urlTitle)
- * @method \Guanguans\Notify\Pushover\Messages\Message sound($sound)
- * @method \Guanguans\Notify\Pushover\Messages\Message retry($retry)
- * @method \Guanguans\Notify\Pushover\Messages\Message expire($expire)
- * @method \Guanguans\Notify\Pushover\Messages\Message html($html)
- * @method \Guanguans\Notify\Pushover\Messages\Message monospace($monospace)
- * @method \Guanguans\Notify\Pushover\Messages\Message callback($callback)
- * @method \Guanguans\Notify\Pushover\Messages\Message device($device)
- * @method \Guanguans\Notify\Pushover\Messages\Message attachment($attachment)
+ * @method self message($message)
+ * @method self title($title)
+ * @method self timestamp($timestamp)
+ * @method self priority($priority)
+ * @method self url($url)
+ * @method self urlTitle($urlTitle)
+ * @method self sound($sound)
+ * @method self retry($retry)
+ * @method self expire($expire)
+ * @method self html($html)
+ * @method self monospace($monospace)
+ * @method self callback($callback)
+ * @method self device($device)
+ * @method self attachment($attachment)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

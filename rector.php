@@ -26,6 +26,7 @@ use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php73\Rector\String_\SensitiveHereNowDocRector;
+use Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\DowngradeLevelSetList;
 use Rector\Set\ValueObject\LevelSetList;
@@ -73,14 +74,15 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->skip([
         // rules
+        AddSeeTestAnnotationRector::class,
         ChangeAndIfToEarlyReturnRector::class,
         CompactToVariablesRector::class,
         EncapsedStringsToSprintfRector::class,
+        ExplicitBoolCompareRector::class,
         LogicalToBooleanRector::class,
         ReturnBinaryOrToEarlyReturnRector::class,
         SensitiveHereNowDocRector::class,
         WrapEncapsedVariableInCurlyBracesRector::class,
-        ExplicitBoolCompareRector::class,
 
         // optional rules
         RemoveUselessReturnTagRector::class,

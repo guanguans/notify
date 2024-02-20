@@ -13,16 +13,16 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage chatId($chatId)
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage text($text)
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage parseMode($parseMode)
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage entities(array $entities)
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage disableWebPagePreview($disableWebPagePreview)
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage disableNotification($disableNotification)
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage protectContent($protectContent)
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage replyToMessageId($replyToMessageId)
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage allowSendingWithoutReply($allowSendingWithoutReply)
- * @method \Guanguans\Notify\Telegram\Messages\TextMessage replyMarkup(array $replyMarkup)
+ * @method self chatId($chatId)
+ * @method self text($text)
+ * @method self parseMode($parseMode)
+ * @method self entities(array $entities)
+ * @method self disableWebPagePreview($disableWebPagePreview)
+ * @method self disableNotification($disableNotification)
+ * @method self protectContent($protectContent)
+ * @method self replyToMessageId($replyToMessageId)
+ * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyMarkup(array $replyMarkup)
  */
 class TextMessage extends Message
 {

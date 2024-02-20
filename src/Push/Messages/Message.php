@@ -16,10 +16,10 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
- * @method \Guanguans\Notify\Push\Messages\Message title($title)
- * @method \Guanguans\Notify\Push\Messages\Message body($body)
- * @method \Guanguans\Notify\Push\Messages\Message link($link)
- * @method \Guanguans\Notify\Push\Messages\Message image($image)
+ * @method self title($title)
+ * @method self body($body)
+ * @method self link($link)
+ * @method self image($image)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

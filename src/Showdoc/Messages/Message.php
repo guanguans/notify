@@ -16,8 +16,8 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
- * @method \Guanguans\Notify\Showdoc\Messages\Message title($title)
- * @method \Guanguans\Notify\Showdoc\Messages\Message content($content)
+ * @method self title($title)
+ * @method self content($content)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

@@ -18,10 +18,10 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method \Guanguans\Notify\RocketChat\Messages\Message alias($alias)
- * @method \Guanguans\Notify\RocketChat\Messages\Message emoji($emoji)
- * @method \Guanguans\Notify\RocketChat\Messages\Message text($text)
- * @method \Guanguans\Notify\RocketChat\Messages\Message attachments(array $attachments)
+ * @method self alias($alias)
+ * @method self emoji($emoji)
+ * @method self text($text)
+ * @method self attachments(array $attachments)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

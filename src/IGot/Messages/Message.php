@@ -16,13 +16,13 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
- * @method \Guanguans\Notify\IGot\Messages\Message title($title)
- * @method \Guanguans\Notify\IGot\Messages\Message content($content)
- * @method \Guanguans\Notify\IGot\Messages\Message url($url)
- * @method \Guanguans\Notify\IGot\Messages\Message automaticallyCopy($automaticallyCopy)
- * @method \Guanguans\Notify\IGot\Messages\Message urgent($urgent)
- * @method \Guanguans\Notify\IGot\Messages\Message copy($copy)
- * @method \Guanguans\Notify\IGot\Messages\Message detail(array $detail)
+ * @method self title($title)
+ * @method self content($content)
+ * @method self url($url)
+ * @method self automaticallyCopy($automaticallyCopy)
+ * @method self urgent($urgent)
+ * @method self copy($copy)
+ * @method self detail(array $detail)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

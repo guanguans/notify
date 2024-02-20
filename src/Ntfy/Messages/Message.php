@@ -16,20 +16,20 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
- * @method \Guanguans\Notify\Ntfy\Messages\Message topic($topic)
- * @method \Guanguans\Notify\Ntfy\Messages\Message message($message)
- * @method \Guanguans\Notify\Ntfy\Messages\Message title($title)
- * @method \Guanguans\Notify\Ntfy\Messages\Message priority($priority)
- * @method \Guanguans\Notify\Ntfy\Messages\Message tags(array $tags)
- * @method \Guanguans\Notify\Ntfy\Messages\Message delay($delay)
- * @method \Guanguans\Notify\Ntfy\Messages\Message actions(array $actions)
- * @method \Guanguans\Notify\Ntfy\Messages\Message click($click)
- * @method \Guanguans\Notify\Ntfy\Messages\Message attach($attach)
- * @method \Guanguans\Notify\Ntfy\Messages\Message icon($icon)
- * @method \Guanguans\Notify\Ntfy\Messages\Message filename($filename)
- * @method \Guanguans\Notify\Ntfy\Messages\Message email($email)
- * @method \Guanguans\Notify\Ntfy\Messages\Message cache($cache)
- * @method \Guanguans\Notify\Ntfy\Messages\Message firebase($firebase)
+ * @method self topic($topic)
+ * @method self message($message)
+ * @method self title($title)
+ * @method self priority($priority)
+ * @method self tags(array $tags)
+ * @method self delay($delay)
+ * @method self actions(array $actions)
+ * @method self click($click)
+ * @method self attach($attach)
+ * @method self icon($icon)
+ * @method self filename($filename)
+ * @method self email($email)
+ * @method self cache($cache)
+ * @method self firebase($firebase)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

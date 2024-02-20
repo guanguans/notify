@@ -16,7 +16,7 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
- * @method \Guanguans\Notify\Gitter\Messages\Message text($text)
+ * @method self text($text)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

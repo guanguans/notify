@@ -13,9 +13,9 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Zulip\Messages;
 
 /**
- * @method \Guanguans\Notify\Zulip\Messages\DirectMessage type($type)
- * @method \Guanguans\Notify\Zulip\Messages\DirectMessage to($to)
- * @method \Guanguans\Notify\Zulip\Messages\DirectMessage content($content)
+ * @method self type($type)
+ * @method self to($to)
+ * @method self content($content)
  */
 class DirectMessage extends Message
 {

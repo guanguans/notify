@@ -13,10 +13,10 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method \Guanguans\Notify\Telegram\Messages\GetUpdatesMessage offset($offset)
- * @method \Guanguans\Notify\Telegram\Messages\GetUpdatesMessage limit($limit)
- * @method \Guanguans\Notify\Telegram\Messages\GetUpdatesMessage timeout($timeout)
- * @method \Guanguans\Notify\Telegram\Messages\GetUpdatesMessage allowedUpdates($allowedUpdates)
+ * @method self offset($offset)
+ * @method self limit($limit)
+ * @method self timeout($timeout)
+ * @method self allowedUpdates($allowedUpdates)
  */
 class GetUpdatesMessage extends Message
 {

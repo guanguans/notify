@@ -13,16 +13,16 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method \Guanguans\Notify\Telegram\Messages\ContactMessage chatId($chatId)
- * @method \Guanguans\Notify\Telegram\Messages\ContactMessage phoneNumber($phoneNumber)
- * @method \Guanguans\Notify\Telegram\Messages\ContactMessage firstName($firstName)
- * @method \Guanguans\Notify\Telegram\Messages\ContactMessage lastName($lastName)
- * @method \Guanguans\Notify\Telegram\Messages\ContactMessage vcard($vcard)
- * @method \Guanguans\Notify\Telegram\Messages\ContactMessage disableNotification($disableNotification)
- * @method \Guanguans\Notify\Telegram\Messages\ContactMessage protectContent($protectContent)
- * @method \Guanguans\Notify\Telegram\Messages\ContactMessage replyToMessageId($replyToMessageId)
- * @method \Guanguans\Notify\Telegram\Messages\ContactMessage allowSendingWithoutReply($allowSendingWithoutReply)
- * @method \Guanguans\Notify\Telegram\Messages\ContactMessage replyMarkup($replyMarkup)
+ * @method self chatId($chatId)
+ * @method self phoneNumber($phoneNumber)
+ * @method self firstName($firstName)
+ * @method self lastName($lastName)
+ * @method self vcard($vcard)
+ * @method self disableNotification($disableNotification)
+ * @method self protectContent($protectContent)
+ * @method self replyToMessageId($replyToMessageId)
+ * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyMarkup($replyMarkup)
  */
 class ContactMessage extends Message
 {

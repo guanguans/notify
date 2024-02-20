@@ -13,8 +13,8 @@ declare(strict_types=1);
 namespace Guanguans\Notify\XiZhi\Messages;
 
 /**
- * @method \Guanguans\Notify\XiZhi\Messages\SingleMessage title($title)
- * @method \Guanguans\Notify\XiZhi\Messages\SingleMessage content($content)
+ * @method self title($title)
+ * @method self content($content)
  */
 class SingleMessage extends Message
 {

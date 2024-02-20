@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\LarkGroupBot\Messages;
 
 /**
- * @method \Guanguans\Notify\LarkGroupBot\Messages\ShareChatMessage shareChatId($shareChatId)
+ * @method self shareChatId($shareChatId)
  */
 class ShareChatMessage extends Message
 {

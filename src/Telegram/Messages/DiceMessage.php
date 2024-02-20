@@ -13,13 +13,13 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method \Guanguans\Notify\Telegram\Messages\DiceMessage chatId($chatId)
- * @method \Guanguans\Notify\Telegram\Messages\DiceMessage emoji($emoji)
- * @method \Guanguans\Notify\Telegram\Messages\DiceMessage disableNotification($disableNotification)
- * @method \Guanguans\Notify\Telegram\Messages\DiceMessage protectContent($protectContent)
- * @method \Guanguans\Notify\Telegram\Messages\DiceMessage replyToMessageId($replyToMessageId)
- * @method \Guanguans\Notify\Telegram\Messages\DiceMessage allowSendingWithoutReply($allowSendingWithoutReply)
- * @method \Guanguans\Notify\Telegram\Messages\DiceMessage replyMarkup($replyMarkup)
+ * @method self chatId($chatId)
+ * @method self emoji($emoji)
+ * @method self disableNotification($disableNotification)
+ * @method self protectContent($protectContent)
+ * @method self replyToMessageId($replyToMessageId)
+ * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyMarkup($replyMarkup)
  */
 class DiceMessage extends Message
 {

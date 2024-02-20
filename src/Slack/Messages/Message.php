@@ -17,13 +17,13 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method \Guanguans\Notify\Slack\Messages\Message text($text)
- * @method \Guanguans\Notify\Slack\Messages\Message channel($channel)
- * @method \Guanguans\Notify\Slack\Messages\Message username($username)
- * @method \Guanguans\Notify\Slack\Messages\Message iconEmoji($iconEmoji)
- * @method \Guanguans\Notify\Slack\Messages\Message iconUrl($iconUrl)
- * @method \Guanguans\Notify\Slack\Messages\Message unfurlLinks($unfurlLinks)
- * @method \Guanguans\Notify\Slack\Messages\Message attachments(array $attachments)
+ * @method self text($text)
+ * @method self channel($channel)
+ * @method self username($username)
+ * @method self iconEmoji($iconEmoji)
+ * @method self iconUrl($iconUrl)
+ * @method self unfurlLinks($unfurlLinks)
+ * @method self attachments(array $attachments)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

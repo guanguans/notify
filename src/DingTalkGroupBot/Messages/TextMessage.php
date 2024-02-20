@@ -13,10 +13,10 @@ declare(strict_types=1);
 namespace Guanguans\Notify\DingTalkGroupBot\Messages;
 
 /**
- * @method \Guanguans\Notify\DingTalkGroupBot\Messages\TextMessage content($content)
- * @method \Guanguans\Notify\DingTalkGroupBot\Messages\TextMessage atMobiles($atMobiles)
- * @method \Guanguans\Notify\DingTalkGroupBot\Messages\TextMessage atDingtalkIds($atDingtalkIds)
- * @method \Guanguans\Notify\DingTalkGroupBot\Messages\TextMessage isAtAll($isAtAll)
+ * @method self content($content)
+ * @method self atMobiles($atMobiles)
+ * @method self atDingtalkIds($atDingtalkIds)
+ * @method self isAtAll($isAtAll)
  */
 class TextMessage extends Message
 {

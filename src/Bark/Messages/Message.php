@@ -16,18 +16,18 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
- * @method \Guanguans\Notify\Bark\Messages\Message title($title)
- * @method \Guanguans\Notify\Bark\Messages\Message body($body)
- * @method \Guanguans\Notify\Bark\Messages\Message copy($copy)
- * @method \Guanguans\Notify\Bark\Messages\Message url($url)
- * @method \Guanguans\Notify\Bark\Messages\Message sound($sound)
- * @method \Guanguans\Notify\Bark\Messages\Message icon($icon)
- * @method \Guanguans\Notify\Bark\Messages\Message group($group)
- * @method \Guanguans\Notify\Bark\Messages\Message level($level)
- * @method \Guanguans\Notify\Bark\Messages\Message badge($badge)
- * @method \Guanguans\Notify\Bark\Messages\Message isArchive($isArchive)
- * @method \Guanguans\Notify\Bark\Messages\Message autoCopy($autoCopy)
- * @method \Guanguans\Notify\Bark\Messages\Message automaticallyCopy($automaticallyCopy)
+ * @method self title($title)
+ * @method self body($body)
+ * @method self copy($copy)
+ * @method self url($url)
+ * @method self sound($sound)
+ * @method self icon($icon)
+ * @method self group($group)
+ * @method self level($level)
+ * @method self badge($badge)
+ * @method self isArchive($isArchive)
+ * @method self autoCopy($autoCopy)
+ * @method self automaticallyCopy($automaticallyCopy)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

@@ -16,19 +16,19 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
- * @method \Guanguans\Notify\Mattermost\Messages\Message baseUri($baseUri)
- * @method \Guanguans\Notify\Mattermost\Messages\Message channelId($channelId)
- * @method \Guanguans\Notify\Mattermost\Messages\Message message($message)
- * @method \Guanguans\Notify\Mattermost\Messages\Message fileIds(array $fileIds)
- * @method \Guanguans\Notify\Mattermost\Messages\Message createAt($createAt)
- * @method \Guanguans\Notify\Mattermost\Messages\Message editAt($editAt)
- * @method \Guanguans\Notify\Mattermost\Messages\Message isPinned($isPinned)
- * @method \Guanguans\Notify\Mattermost\Messages\Message rootId($rootId)
- * @method \Guanguans\Notify\Mattermost\Messages\Message originalId($originalId)
- * @method \Guanguans\Notify\Mattermost\Messages\Message type($type)
- * @method \Guanguans\Notify\Mattermost\Messages\Message props(array $props)
- * @method \Guanguans\Notify\Mattermost\Messages\Message pendingPostId($pendingPostId)
- * @method \Guanguans\Notify\Mattermost\Messages\Message participants($participants)
+ * @method self baseUri($baseUri)
+ * @method self channelId($channelId)
+ * @method self message($message)
+ * @method self fileIds(array $fileIds)
+ * @method self createAt($createAt)
+ * @method self editAt($editAt)
+ * @method self isPinned($isPinned)
+ * @method self rootId($rootId)
+ * @method self originalId($originalId)
+ * @method self type($type)
+ * @method self props(array $props)
+ * @method self pendingPostId($pendingPostId)
+ * @method self participants($participants)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

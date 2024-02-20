@@ -13,16 +13,16 @@ declare(strict_types=1);
 namespace Guanguans\Notify\QqChannelBot\Messages;
 
 /**
- * @method \Guanguans\Notify\QqChannelBot\Messages\SandboxMessage channelId($channelId)
- * @method \Guanguans\Notify\QqChannelBot\Messages\SandboxMessage content($content)
- * @method \Guanguans\Notify\QqChannelBot\Messages\SandboxMessage image($image)
- * @method \Guanguans\Notify\QqChannelBot\Messages\SandboxMessage fileImage($fileImage)
- * @method \Guanguans\Notify\QqChannelBot\Messages\SandboxMessage msgId($msgId)
- * @method \Guanguans\Notify\QqChannelBot\Messages\SandboxMessage eventId($eventId)
- * @method \Guanguans\Notify\QqChannelBot\Messages\SandboxMessage embed(array $embed)
- * @method \Guanguans\Notify\QqChannelBot\Messages\SandboxMessage ark(array $ark)
- * @method \Guanguans\Notify\QqChannelBot\Messages\SandboxMessage messageReference(array $messageReference)
- * @method \Guanguans\Notify\QqChannelBot\Messages\SandboxMessage markdown(array $markdown)
+ * @method self channelId($channelId)
+ * @method self content($content)
+ * @method self image($image)
+ * @method self fileImage($fileImage)
+ * @method self msgId($msgId)
+ * @method self eventId($eventId)
+ * @method self embed(array $embed)
+ * @method self ark(array $ark)
+ * @method self messageReference(array $messageReference)
+ * @method self markdown(array $markdown)
  */
 class SandboxMessage extends Message
 {

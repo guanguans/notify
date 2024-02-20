@@ -17,16 +17,16 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message correlationId($correlationId)
- * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message expectedActors(array $expectedActors)
- * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message originator($originator)
- * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message summary($summary)
- * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message themeColor($themeColor)
- * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message hideOriginalBody($hideOriginalBody)
- * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message title($title)
- * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message text($text)
- * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message sections(array $sections)
- * @method \Guanguans\Notify\MicrosoftTeams\Messages\Message potentialAction(array $potentialAction)
+ * @method self correlationId($correlationId)
+ * @method self expectedActors(array $expectedActors)
+ * @method self originator($originator)
+ * @method self summary($summary)
+ * @method self themeColor($themeColor)
+ * @method self hideOriginalBody($hideOriginalBody)
+ * @method self title($title)
+ * @method self text($text)
+ * @method self sections(array $sections)
+ * @method self potentialAction(array $potentialAction)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

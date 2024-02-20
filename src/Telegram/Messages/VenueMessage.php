@@ -13,20 +13,20 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage chatId($chatId)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage latitude($latitude)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage longitude($longitude)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage title($title)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage address($address)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage foursquareId($foursquareId)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage foursquareType($foursquareType)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage googlePlaceId($googlePlaceId)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage googlePlaceType($googlePlaceType)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage disableNotification($disableNotification)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage protectContent($protectContent)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage replyToMessageId($replyToMessageId)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage allowSendingWithoutReply($allowSendingWithoutReply)
- * @method \Guanguans\Notify\Telegram\Messages\VenueMessage replyMarkup($replyMarkup)
+ * @method self chatId($chatId)
+ * @method self latitude($latitude)
+ * @method self longitude($longitude)
+ * @method self title($title)
+ * @method self address($address)
+ * @method self foursquareId($foursquareId)
+ * @method self foursquareType($foursquareType)
+ * @method self googlePlaceId($googlePlaceId)
+ * @method self googlePlaceType($googlePlaceType)
+ * @method self disableNotification($disableNotification)
+ * @method self protectContent($protectContent)
+ * @method self replyToMessageId($replyToMessageId)
+ * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyMarkup($replyMarkup)
  */
 class VenueMessage extends Message
 {

@@ -15,13 +15,13 @@ namespace Guanguans\Notify\Chanify\Messages;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method \Guanguans\Notify\Chanify\Messages\TextMessage title($title)
- * @method \Guanguans\Notify\Chanify\Messages\TextMessage text($text)
- * @method \Guanguans\Notify\Chanify\Messages\TextMessage copy($copy)
- * @method \Guanguans\Notify\Chanify\Messages\TextMessage actions($actions)
- * @method \Guanguans\Notify\Chanify\Messages\TextMessage autocopy($autocopy)
- * @method \Guanguans\Notify\Chanify\Messages\TextMessage sound($sound)
- * @method \Guanguans\Notify\Chanify\Messages\TextMessage priority($priority)
+ * @method self title($title)
+ * @method self text($text)
+ * @method self copy($copy)
+ * @method self actions($actions)
+ * @method self autocopy($autocopy)
+ * @method self sound($sound)
+ * @method self priority($priority)
  */
 class TextMessage extends Message
 {

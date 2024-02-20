@@ -17,11 +17,11 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method \Guanguans\Notify\Discord\Messages\Message username($username)
- * @method \Guanguans\Notify\Discord\Messages\Message avatarUrl($avatarUrl)
- * @method \Guanguans\Notify\Discord\Messages\Message content($content)
- * @method \Guanguans\Notify\Discord\Messages\Message tts($tts)
- * @method \Guanguans\Notify\Discord\Messages\Message embeds(array $embeds)
+ * @method self username($username)
+ * @method self avatarUrl($avatarUrl)
+ * @method self content($content)
+ * @method self tts($tts)
+ * @method self embeds(array $embeds)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

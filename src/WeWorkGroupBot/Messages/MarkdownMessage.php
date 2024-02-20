@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\WeWorkGroupBot\Messages;
 
 /**
- * @method \Guanguans\Notify\WeWorkGroupBot\Messages\MarkdownMessage content($content)
+ * @method self content($content)
  */
 class MarkdownMessage extends Message
 {

@@ -13,12 +13,12 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method \Guanguans\Notify\Telegram\Messages\MediaGroupMessage chatId($chatId)
- * @method \Guanguans\Notify\Telegram\Messages\MediaGroupMessage media($media)
- * @method \Guanguans\Notify\Telegram\Messages\MediaGroupMessage disableNotification($disableNotification)
- * @method \Guanguans\Notify\Telegram\Messages\MediaGroupMessage protectContent($protectContent)
- * @method \Guanguans\Notify\Telegram\Messages\MediaGroupMessage replyToMessageId($replyToMessageId)
- * @method \Guanguans\Notify\Telegram\Messages\MediaGroupMessage allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self chatId($chatId)
+ * @method self media($media)
+ * @method self disableNotification($disableNotification)
+ * @method self protectContent($protectContent)
+ * @method self replyToMessageId($replyToMessageId)
+ * @method self allowSendingWithoutReply($allowSendingWithoutReply)
  */
 class MediaGroupMessage extends Message
 {

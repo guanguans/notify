@@ -127,7 +127,7 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
             return;
         }
 
-        $node->setAttribute('comments', null);
+        $node->setAttribute('comments', []);
 
         $phpDocInfo = $this->phpDocInfoFactory->createFromNodeOrEmpty($node);
         foreach ($defined as $option) {

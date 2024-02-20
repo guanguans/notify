@@ -17,16 +17,16 @@ use GuzzleHttp\RequestOptions;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method \Guanguans\Notify\QqChannelBot\Messages\Message channelId($channelId)
- * @method \Guanguans\Notify\QqChannelBot\Messages\Message content($content)
- * @method \Guanguans\Notify\QqChannelBot\Messages\Message image($image)
- * @method \Guanguans\Notify\QqChannelBot\Messages\Message fileImage($fileImage)
- * @method \Guanguans\Notify\QqChannelBot\Messages\Message msgId($msgId)
- * @method \Guanguans\Notify\QqChannelBot\Messages\Message eventId($eventId)
- * @method \Guanguans\Notify\QqChannelBot\Messages\Message embed(array $embed)
- * @method \Guanguans\Notify\QqChannelBot\Messages\Message ark(array $ark)
- * @method \Guanguans\Notify\QqChannelBot\Messages\Message messageReference(array $messageReference)
- * @method \Guanguans\Notify\QqChannelBot\Messages\Message markdown(array $markdown)
+ * @method self channelId($channelId)
+ * @method self content($content)
+ * @method self image($image)
+ * @method self fileImage($fileImage)
+ * @method self msgId($msgId)
+ * @method self eventId($eventId)
+ * @method self embed(array $embed)
+ * @method self ark(array $ark)
+ * @method self messageReference(array $messageReference)
+ * @method self markdown(array $markdown)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

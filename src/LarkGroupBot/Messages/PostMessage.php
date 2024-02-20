@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\LarkGroupBot\Messages;
 
 /**
- * @method \Guanguans\Notify\LarkGroupBot\Messages\PostMessage post(array $post)
+ * @method self post(array $post)
  */
 class PostMessage extends Message
 {

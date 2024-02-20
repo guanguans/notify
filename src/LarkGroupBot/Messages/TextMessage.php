@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\LarkGroupBot\Messages;
 
 /**
- * @method \Guanguans\Notify\LarkGroupBot\Messages\TextMessage text($text)
+ * @method self text($text)
  */
 class TextMessage extends Message
 {

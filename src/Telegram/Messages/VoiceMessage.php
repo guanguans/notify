@@ -13,17 +13,17 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method \Guanguans\Notify\Telegram\Messages\VoiceMessage chatId($chatId)
- * @method \Guanguans\Notify\Telegram\Messages\VoiceMessage voice($voice)
- * @method \Guanguans\Notify\Telegram\Messages\VoiceMessage caption($caption)
- * @method \Guanguans\Notify\Telegram\Messages\VoiceMessage parseMode($parseMode)
- * @method \Guanguans\Notify\Telegram\Messages\VoiceMessage captionEntities($captionEntities)
- * @method \Guanguans\Notify\Telegram\Messages\VoiceMessage duration($duration)
- * @method \Guanguans\Notify\Telegram\Messages\VoiceMessage disableNotification($disableNotification)
- * @method \Guanguans\Notify\Telegram\Messages\VoiceMessage protectContent($protectContent)
- * @method \Guanguans\Notify\Telegram\Messages\VoiceMessage replyToMessageId($replyToMessageId)
- * @method \Guanguans\Notify\Telegram\Messages\VoiceMessage allowSendingWithoutReply($allowSendingWithoutReply)
- * @method \Guanguans\Notify\Telegram\Messages\VoiceMessage replyMarkup($replyMarkup)
+ * @method self chatId($chatId)
+ * @method self voice($voice)
+ * @method self caption($caption)
+ * @method self parseMode($parseMode)
+ * @method self captionEntities($captionEntities)
+ * @method self duration($duration)
+ * @method self disableNotification($disableNotification)
+ * @method self protectContent($protectContent)
+ * @method self replyToMessageId($replyToMessageId)
+ * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyMarkup($replyMarkup)
  */
 class VoiceMessage extends Message
 {
