@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.30.0@d0bc6e25d89f649e4f36a534f330f8bb4643dd69">
-  <file src="src/Clients/BarkClient.php">
-    <UnusedClosureParam occurrences="1">
-      <code>$optionsResolver</code>
-    </UnusedClosureParam>
+<files psalm-version="5.22.1@e9dad66e11274315dac27e08349c628c7d6a1a43">
+  <file src="src/DingTalkGroupBot/Authenticator.php">
+    <InvalidOperand>
+      <code><![CDATA[sprintf('%.3f', $microseconds)]]></code>
+    </InvalidOperand>
   </file>
-  <file src="src/Clients/ChanifyClient.php">
-    <UnusedClosureParam occurrences="1">
-      <code>$optionsResolver</code>
-    </UnusedClosureParam>
+  <file src="src/Foundation/Message.php">
+    <MissingTemplateParam>
+      <code><![CDATA[\ArrayAccess]]></code>
+    </MissingTemplateParam>
   </file>
-  <file src="src/Clients/Client.php">
-    <MismatchingDocblockReturnType occurrences="1"/>
+  <file src="src/Foundation/Traits/HasHttpClient.php">
+    <TypeDoesNotContainType>
+      <code><![CDATA[\assert($this instanceof HandlerStack)]]></code>
+    </TypeDoesNotContainType>
+    <InaccessibleMethod>
+      <code><![CDATA[findByName]]></code>
+    </InaccessibleMethod>
   </file>
-  <file src="src/Clients/PushDeerClient.php">
-    <UnusedClosureParam occurrences="1">
-      <code>$optionsResolver</code>
-    </UnusedClosureParam>
+  <file src="src/Foundation/Traits/HasOptions.php">
+    <NoValue>
+      <code><![CDATA[$casedName]]></code>
+    </NoValue>
   </file>
 </files>

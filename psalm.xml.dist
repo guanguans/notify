@@ -15,17 +15,28 @@
     <directory name="src"/>
     <ignoreFiles>
       <directory name="vendor"/>
+      <file name="src/Foundation/Response.php"/>
+      <file name="src/Foundation/Support/UpdateHasHttpClientDocCommentRector.php"/>
+      <file name="src/Foundation/Support/UpdateHasOptionsDocCommentRector.php"/>
+      <file name="src/Foundation/Testing/MockHandler.php"/>
+      <file name="src/Foundation/Traits/Conditionable.php"/>
     </ignoreFiles>
   </projectFiles>
   <issueHandlers>
     <PropertyNotSetInConstructor errorLevel="info"/>
-    <!--<UnusedClosureParam>
+    <UndefinedThisPropertyFetch>
       <errorLevel type="suppress">
-        <directory name="src/Messages"/>
+        <!--<directory name="src/Foundation/Traits/HasOptions.php"/>-->
+        <file name="src/Foundation/Traits/HasOptions.php"/>
       </errorLevel>
-    </UnusedClosureParam>-->
+    </UndefinedThisPropertyFetch>
   </issueHandlers>
   <plugins>
     <!--<pluginClass class="Psalm\LaravelPlugin\Plugin"/>-->
   </plugins>
+  <!--<file src="src/Clients/PushDeerClient.php">
+    <UnusedClosureParam occurrences="1">
+      <code>$optionsResolver</code>
+    </UnusedClosureParam>
+  </file>-->
 </psalm>
