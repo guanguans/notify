@@ -10,14 +10,10 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-use Guanguans\Notify\Foundation\Support\UpdateHasHttpClientDocCommentRector;
-use Guanguans\Notify\Foundation\Support\UpdateHasOptionsDocCommentRector;
+use Guanguans\Notify\Foundation\Support\HasHttpClientDocCommentRector;
+use Guanguans\Notify\Foundation\Support\HasOptionsDocCommentRector;
 use Rector\Caching\ValueObject\Storage\FileCacheStorage;
-use Rector\CodeQuality\Rector\Array_\CallableThisArrayToAnonymousFunctionRector;
-use Rector\CodeQuality\Rector\Class_\InlineConstructorDefaultToPropertyRector;
-use Rector\CodeQuality\Rector\Expression\InlineIfToExplicitIfRector;
 use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
-use Rector\CodeQuality\Rector\Identical\SimplifyBoolIdenticalTrueRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
 use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
@@ -25,19 +21,15 @@ use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
 use Rector\Config\RectorConfig;
 use Rector\Configuration\Option;
-use Rector\DeadCode\Rector\Assign\RemoveUnusedVariableAssignRector;
-use Rector\DeadCode\Rector\ClassMethod\RemoveEmptyClassMethodRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php73\Rector\String_\SensitiveHereNowDocRector;
-use Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\DowngradeLevelSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
-use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
 use Rector\ValueObject\PhpVersion;
 
 return static function (RectorConfig $rectorConfig): void {
@@ -81,26 +73,17 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->skip([
         // rules
-        CallableThisArrayToAnonymousFunctionRector::class,
         ChangeAndIfToEarlyReturnRector::class,
         CompactToVariablesRector::class,
         EncapsedStringsToSprintfRector::class,
-        InlineIfToExplicitIfRector::class,
         LogicalToBooleanRector::class,
         ReturnBinaryOrToEarlyReturnRector::class,
         SensitiveHereNowDocRector::class,
-        SimplifyBoolIdenticalTrueRector::class,
         WrapEncapsedVariableInCurlyBracesRector::class,
+        ExplicitBoolCompareRector::class,
 
         // optional rules
-        // RemoveUnusedVariableAssignRector::class,
-        // StaticClosureRector::class,
-        AddSeeTestAnnotationRector::class,
-        DisallowedEmptyRuleFixerRector::class,
-        ExplicitBoolCompareRector::class,
-        RemoveEmptyClassMethodRector::class,
         RemoveUselessReturnTagRector::class,
-
         RenameParamToMatchTypeRector::class => [
             __DIR__.'/src/Foundation/Authenticators/AggregateAuthenticator.php',
         ],
@@ -109,8 +92,6 @@ return static function (RectorConfig $rectorConfig): void {
         ],
 
         // paths
-        __DIR__.'/src/Clients',
-        __DIR__.'/src/Messages',
         __DIR__.'/tests.php',
         '**/Fixture*',
         '**/Fixture/*',
@@ -126,22 +107,18 @@ return static function (RectorConfig $rectorConfig): void {
         '**/Expected*',
         '**/__snapshots__/*',
         '**/__snapshots__*',
-        __DIR__.'/src/foundation/tests/AppTest.php',
     ]);
 
     $rectorConfig->sets([
         DowngradeLevelSetList::DOWN_TO_PHP_74,
         LevelSetList::UP_TO_PHP_74,
-        // SetList::ACTION_INJECTION_TO_CONSTRUCTOR_INJECTION,
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
         SetList::DEAD_CODE,
         // SetList::STRICT_BOOLEANS,
         // SetList::GMAGICK_TO_IMAGICK,
-        // SetList::MYSQL_TO_MYSQLI,
         SetList::NAMING,
-        // SetList::PRIVATIZATION,
-        // SetList::PSR_4,
+        SetList::PRIVATIZATION,
         SetList::TYPE_DECLARATION,
         SetList::EARLY_RETURN,
         SetList::INSTANCEOF,
@@ -152,8 +129,7 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->rules([
-        // InlineConstructorDefaultToPropertyRector::class,
-        UpdateHasHttpClientDocCommentRector::class,
-        UpdateHasOptionsDocCommentRector::class,
+        HasHttpClientDocCommentRector::class,
+        HasOptionsDocCommentRector::class,
     ]);
 };

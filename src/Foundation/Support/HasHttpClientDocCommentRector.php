@@ -30,10 +30,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
 
-/**
- * @see \Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector
- */
-class UpdateHasHttpClientDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
+class HasHttpClientDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
 {
     private const MAIN_CLASS = \Guanguans\Notify\Foundation\Client::class;
 

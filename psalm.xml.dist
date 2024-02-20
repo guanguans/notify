@@ -16,8 +16,8 @@
     <ignoreFiles>
       <directory name="vendor"/>
       <file name="src/Foundation/Response.php"/>
-      <file name="src/Foundation/Support/UpdateHasHttpClientDocCommentRector.php"/>
-      <file name="src/Foundation/Support/UpdateHasOptionsDocCommentRector.php"/>
+      <file name="src/Foundation/Support/HasHttpClientDocCommentRector.php"/>
+      <file name="src/Foundation/Support/HasOptionsDocCommentRector.php"/>
       <file name="src/Foundation/Testing/MockHandler.php"/>
       <file name="src/Foundation/Traits/Conditionable.php"/>
     </ignoreFiles>

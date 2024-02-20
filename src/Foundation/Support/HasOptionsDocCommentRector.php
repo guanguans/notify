@@ -27,10 +27,7 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
 
-/**
- * @see \Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector
- */
-class UpdateHasOptionsDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
+class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
 {
     private array $classes = [
         Message::class,
