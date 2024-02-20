@@ -24,6 +24,8 @@ use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
 use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Rector\AbstractRector;
+use Symplify\RuleDocGenerator\Exception\PoorDocumentationException;
+use Symplify\RuleDocGenerator\Exception\ShouldNotHappenException;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
@@ -64,6 +66,10 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
         $this->phpDocInfoFactory = $phpDocInfoFactory;
     }
 
+    /**
+     * @throws ShouldNotHappenException
+     * @throws PoorDocumentationException
+     */
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(
@@ -159,6 +165,9 @@ class UpdateHasHttpClientDocCommentRector extends AbstractRector implements Conf
         return new PhpDocTagNode('', new GenericTagValueNode(''));
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     private function createMethodPhpDocTagNode(\ReflectionMethod $reflectionMethod): PhpDocTagNode
     {
         $static = $reflectionMethod->isStatic() ? 'static ' : '';

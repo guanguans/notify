@@ -19,10 +19,8 @@ trait Tappable
 {
     /**
      * Call the given Closure with this instance then return the instance.
-     *
-     * @return $this|__anonymous
      */
-    public function tap(?callable $callback = null)
+    public function tap(?callable $callback = null): self
     {
         return tap($this, $callback);
     }

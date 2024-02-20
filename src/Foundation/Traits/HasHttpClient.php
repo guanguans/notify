@@ -69,19 +69,15 @@ trait HasHttpClient
 {
     private ?Client $httpClient = null;
 
+    /**
+     * @var null|callable
+     */
     private $httpClientResolver;
 
     private ?HandlerStack $handlerStack = null;
 
     private array $httpOptions = [];
 
-    /**
-     * @noinspection MissingReturnTypeInspection
-     * @noinspection MissingParameterTypeDeclarationInspection
-     *
-     * @param mixed $name
-     * @param mixed $arguments
-     */
     public function __call($name, $arguments)
     {
         if (method_exists($this->getHandlerStack(), $name)) {
@@ -95,11 +91,9 @@ trait HasHttpClient
         ] + (new \ReflectionClass(RequestOptions::class))->getConstants();
         if (\in_array($snakedName = Str::snake($name), $httpOptions, true)) {
             if (empty($arguments)) {
-                throw new \InvalidArgumentException(sprintf(
-                    'Method %s::%s requires an argument',
-                    static::class,
-                    $name
-                ));
+                throw new \InvalidArgumentException(
+                    sprintf('Method %s::%s requires an argument', static::class, $name)
+                );
             }
 
             return $this->setHttpOptions([$snakedName => $arguments[0]]);
@@ -151,7 +145,7 @@ trait HasHttpClient
     private function getHttpClientResolver(): callable
     {
         if (! \is_callable($this->httpClientResolver)) {
-            $this->httpClientResolver = function () {
+            $this->httpClientResolver = function (): Client {
                 if (! $this->httpClient instanceof Client) {
                     $this->setHttpOptions([
                         'handler' => $this->getHandlerStack(),
@@ -186,13 +180,11 @@ trait HasHttpClient
     {
         try {
             (function (): void {
+                \assert($this instanceof HandlerStack);
                 $this->findByName(Authenticate::class);
             })->call($handlerStack);
         } catch (\InvalidArgumentException $invalidArgumentException) {
-            $handlerStack->push(
-                new Authenticate($this->authenticator),
-                Authenticate::class
-            );
+            $handlerStack->push(new Authenticate($this->authenticator), Authenticate::class);
         }
 
         return $handlerStack;

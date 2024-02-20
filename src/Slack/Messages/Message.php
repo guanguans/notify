@@ -52,7 +52,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function addAttachment(array $attachment): self
     {
-        $this->options['attachments'][] = configure_options(
+        $this->options['attachments'][] = $this->configureAndResolveOptions(
             $attachment,
             static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([

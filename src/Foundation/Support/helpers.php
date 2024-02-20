@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\StreamInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 if (! function_exists('to_multipart')) {
     /**
@@ -70,20 +69,6 @@ if (! function_exists('to_multipart')) {
         }
 
         return array_merge([], ...$parts);
-    }
-}
-
-if (! function_exists('configure_options')) {
-    /**
-     * Configures the options using the provided callback and returns the resolved options.
-     */
-    function configure_options(array $options, callable $callback): array
-    {
-        $optionsResolver = new OptionsResolver;
-
-        $callback($optionsResolver);
-
-        return $optionsResolver->resolve($options);
     }
 }
 

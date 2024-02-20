@@ -66,7 +66,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function addSection(array $section): self
     {
-        $this->options['sections'][] = configure_options(
+        $this->options['sections'][] = $this->configureAndResolveOptions(
             $section,
             static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
@@ -95,7 +95,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function addPotentialAction(array $section): self
     {
-        $this->options['potentialAction'][] = configure_options(
+        $this->options['potentialAction'][] = $this->configureAndResolveOptions(
             $section,
             static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver

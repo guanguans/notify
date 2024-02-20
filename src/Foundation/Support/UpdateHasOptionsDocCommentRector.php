@@ -21,6 +21,8 @@ use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
 use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Rector\AbstractRector;
+use Symplify\RuleDocGenerator\Exception\PoorDocumentationException;
+use Symplify\RuleDocGenerator\Exception\ShouldNotHappenException;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
@@ -44,6 +46,10 @@ class UpdateHasOptionsDocCommentRector extends AbstractRector implements Configu
         $this->phpDocInfoFactory = $phpDocInfoFactory;
     }
 
+    /**
+     * @throws PoorDocumentationException
+     * @throws ShouldNotHappenException
+     */
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(

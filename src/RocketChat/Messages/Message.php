@@ -46,7 +46,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function addAttachment(array $attachment): self
     {
-        $this->options['attachments'][] = configure_options($attachment, static function (OptionsResolver $optionsResolver): void {
+        $this->options['attachments'][] = $this->configureAndResolveOptions($attachment, static function (OptionsResolver $optionsResolver): void {
             $optionsResolver->setDefined([
                 'title',
                 'title_link',

@@ -33,27 +33,17 @@ trait HasOptions
 {
     protected array $options = [];
 
-    /**
-     * @noinspection MissingParameterTypeDeclarationInspection
-     * @noinspection MissingReturnTypeInspection
-     *
-     * @param mixed $name
-     * @param mixed $arguments
-     */
     public function __call($name, $arguments)
     {
         $defined = $this->defined ?? [];
 
         foreach ([null, 'snake', 'pascal'] as $case) {
             $casedName = $case ? Str::{$case}($name) : $name;
-
             if (\in_array($casedName, $defined, true)) {
                 if (empty($arguments)) {
-                    throw new \InvalidArgumentException(sprintf(
-                        'Method %s::%s requires an argument',
-                        static::class,
-                        $name
-                    ));
+                    throw new \InvalidArgumentException(
+                        sprintf('Method %s::%s requires an argument', static::class, $name)
+                    );
                 }
 
                 return $this->setOption($casedName, $arguments[0]);
@@ -117,11 +107,11 @@ trait HasOptions
         unset($this->options[$offset]);
     }
 
-    protected function configureAndResolveOptions(array $options, callable $configurator): array
+    protected function configureAndResolveOptions(array $options, callable $callback): array
     {
         $optionsResolver = new OptionsResolver;
 
-        $configurator($optionsResolver);
+        $callback($optionsResolver);
 
         return $optionsResolver->resolve($options);
     }

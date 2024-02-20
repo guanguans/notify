@@ -17,17 +17,17 @@ class Str
     /**
      * The cache of snake-cased words.
      */
-    protected static array $snakeCache = [];
+    private static array $snakeCache = [];
 
     /**
      * The cache of camel-cased words.
      */
-    protected static array $camelCache = [];
+    private static array $camelCache = [];
 
     /**
      * The cache of studly-cased words.
      */
-    protected static array $studlyCache = [];
+    private static array $studlyCache = [];
 
     /**
      * Convert a value to camel case.
@@ -86,16 +86,15 @@ class Str
     /**
      * Determine if a given string matches a given pattern.
      *
-     * @param iterable<string>|string $pattern
+     * @param iterable<string>|string $patterns
      */
-    public static function is($pattern, string $value): bool
+    public static function is($patterns, string $value): bool
     {
-        if (! is_iterable($pattern)) {
-            $pattern = [$pattern];
+        if (! is_iterable($patterns)) {
+            $patterns = [$patterns];
         }
 
-        /** @noinspection SuspiciousLoopInspection */
-        foreach ($pattern as $pattern) {
+        foreach ($patterns as $pattern) {
             $pattern = (string) $pattern;
 
             // If the given value is an exact match we can of course return true right
@@ -131,17 +130,17 @@ class Str
      */
     public static function replace($search, $replace, $subject, bool $caseSensitive = true)
     {
-        // if ($search instanceof \Traversable) {
-        //     $search = collect($search)->all();
-        // }
-        //
-        // if ($replace instanceof \Traversable) {
-        //     $replace = collect($replace)->all();
-        // }
-        //
-        // if ($subject instanceof \Traversable) {
-        //     $subject = collect($subject)->all();
-        // }
+        if ($search instanceof \Traversable) {
+            $search = iterator_to_array($search);
+        }
+
+        if ($replace instanceof \Traversable) {
+            $replace = iterator_to_array($replace);
+        }
+
+        if ($subject instanceof \Traversable) {
+            $subject = iterator_to_array($subject);
+        }
 
         return $caseSensitive
             ? str_replace($search, $replace, $subject)

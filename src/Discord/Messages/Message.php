@@ -47,7 +47,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function addEmbed(array $embed): self
     {
-        $this->options['embeds'][] = configure_options(
+        $this->options['embeds'][] = $this->configureAndResolveOptions(
             $embed,
             static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver

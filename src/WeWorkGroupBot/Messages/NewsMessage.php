@@ -33,7 +33,7 @@ class NewsMessage extends Message
 
     public function addArticle(array $article): self
     {
-        $this->options['articles'][] = configure_options(
+        $this->options['articles'][] = $this->configureAndResolveOptions(
             $article,
             static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([

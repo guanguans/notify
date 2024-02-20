@@ -12,8 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
+use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use GuzzleHttp\TransferStats;
+use Illuminate\Http\Client\RequestException;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\UriInterface;
 
 /**
  * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Http/Client/Response.php
@@ -25,12 +29,12 @@ class Response extends GuzzleResponse implements \ArrayAccess
     /**
      * The request cookies.
      */
-    public \GuzzleHttp\Cookie\CookieJar $cookies;
+    public CookieJar $cookies;
 
     /**
      * The transfer stats for the request.
      */
-    public ?\GuzzleHttp\TransferStats $transferStats = null;
+    public ?TransferStats $transferStats = null;
 
     /**
      * The underlying PSR response.
@@ -93,6 +97,8 @@ class Response extends GuzzleResponse implements \ArrayAccess
      * @param mixed $default
      *
      * @return mixed
+     *
+     * @noinspection JsonEncodingApiUsageInspection
      */
     public function json(?string $key = null, $default = null)
     {
@@ -109,10 +115,12 @@ class Response extends GuzzleResponse implements \ArrayAccess
 
     /**
      * Get the JSON decoded body of the response as an object.
+     *
+     * @noinspection JsonEncodingApiUsageInspection
      */
     public function object(): ?object
     {
-        return json_decode($this->body(), false);
+        return json_decode($this->body());
     }
 
     /**
@@ -150,9 +158,9 @@ class Response extends GuzzleResponse implements \ArrayAccess
     /**
      * Get the effective URI of the response.
      */
-    public function effectiveUri(): ?\Psr\Http\Message\UriInterface
+    public function effectiveUri(): ?UriInterface
     {
-        if ($this->transferStats instanceof \GuzzleHttp\TransferStats) {
+        if ($this->transferStats instanceof TransferStats) {
             return $this->transferStats->getEffectiveUri();
         }
     }
@@ -214,7 +222,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
     /**
      * Get the response cookies.
      */
-    public function cookies(): \GuzzleHttp\Cookie\CookieJar
+    public function cookies(): CookieJar
     {
         return $this->cookies;
     }
@@ -224,7 +232,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      */
     public function handlerStats(): array
     {
-        if (! $this->transferStats instanceof \GuzzleHttp\TransferStats) {
+        if (! $this->transferStats instanceof TransferStats) {
             return [];
         }
 
@@ -254,7 +262,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
     /**
      * Create an exception if a server or client error occurred.
      */
-    public function toException(): ?\Illuminate\Http\Client\RequestException
+    public function toException(): ?RequestException
     {
         if ($this->failed()) {
             return new RequestException($this);
@@ -266,7 +274,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      *
      * @return $this
      *
-     * @throws \Illuminate\Http\Client\RequestException
+     * @throws RequestException
      */
     public function throw(): self
     {
@@ -290,7 +298,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      *
      * @return $this
      *
-     * @throws \Illuminate\Http\Client\RequestException
+     * @throws RequestException
      */
     public function throwIf($condition): self
     {
@@ -304,7 +312,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      *
      * @return $this
      *
-     * @throws \Illuminate\Http\Client\RequestException
+     * @throws RequestException
      */
     public function throwIfStatus($statusCode): self
     {
@@ -323,7 +331,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      *
      * @return $this
      *
-     * @throws \Illuminate\Http\Client\RequestException
+     * @throws RequestException
      */
     public function throwUnlessStatus($statusCode): self
     {
@@ -339,7 +347,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      *
      * @return $this
      *
-     * @throws \Illuminate\Http\Client\RequestException
+     * @throws RequestException
      */
     public function throwIfClientError(): self
     {
@@ -351,7 +359,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      *
      * @return $this
      *
-     * @throws \Illuminate\Http\Client\RequestException
+     * @throws RequestException
      */
     public function throwIfServerError(): self
     {

@@ -68,7 +68,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function setEmbed(array $embed): self
     {
-        $this->options['embed'] = configure_options($embed, static function (OptionsResolver $optionsResolver): void {
+        $this->options['embed'] = $this->configureAndResolveOptions($embed, static function (OptionsResolver $optionsResolver): void {
             $optionsResolver
                 ->setDefined([
                     'title',
@@ -83,7 +83,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function setArk(array $ark): self
     {
-        $this->options['ark'] = configure_options($ark, static function (OptionsResolver $optionsResolver): void {
+        $this->options['ark'] = $this->configureAndResolveOptions($ark, static function (OptionsResolver $optionsResolver): void {
             $optionsResolver
                 ->setDefined([
                     'template_id',
@@ -96,7 +96,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function setMessageReference(array $messageReference): self
     {
-        $this->options['message_reference'] = configure_options(
+        $this->options['message_reference'] = $this->configureAndResolveOptions(
             $messageReference,
             static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
@@ -112,7 +112,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function setMarkdown(array $markdown): self
     {
-        $this->options['markdown'] = configure_options(
+        $this->options['markdown'] = $this->configureAndResolveOptions(
             $markdown,
             static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
