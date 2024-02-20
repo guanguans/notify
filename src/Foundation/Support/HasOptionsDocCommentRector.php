@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation\Support;
 
 use Guanguans\Notify\Foundation\Message;
+use Guanguans\Notify\Foundation\Traits\HasOptions;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
@@ -50,7 +51,7 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(
-            'Update has options doc comment',
+            'Has options doc comment',
             [
                 new ConfiguredCodeSample(
                     <<<'CODE_SAMPLE'
@@ -65,8 +66,8 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
                     ,
                     <<<'CODE_SAMPLE'
                         /**
-                         * @method \Guanguans\Notify\Showdoc\Messages\Message title($title)
-                         * @method \Guanguans\Notify\Showdoc\Messages\Message content($content)
+                         * @method self title($title)
+                         * @method self content($content)
                          */
                         class Message extends \Guanguans\Notify\Foundation\Message
                         {
@@ -83,9 +84,21 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
         );
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     public function configure(array $configuration): void
     {
-        Assert::allStringNotEmpty($configuration);
+        Assert::allClassExists($configuration);
+
+        foreach ($configuration as $class) {
+            if (! \array_key_exists(HasOptions::class, (new \ReflectionClass($class))->getTraits())) {
+                throw new \InvalidArgumentException(
+                    sprintf('The class [%s] must use trait [%s].', $class, HasOptions::class)
+                );
+            }
+        }
+
         $this->classes = array_merge($this->classes, $configuration);
     }
 
@@ -103,7 +116,7 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
     {
         /** @var class-string $class */
         $class = $node->getAttribute('scope')->getClassReflection()->getName();
-        if (! $this->isSubclassOfs($class)) {
+        if (! $this->isSubclassesOf($class)) {
             return;
         }
 
@@ -115,13 +128,12 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
         }
 
         $node->setAttribute('comments', null);
+
         $phpDocInfo = $this->phpDocInfoFactory->createFromNodeOrEmpty($node);
         foreach ($defined as $option) {
-            $phpDocInfo->addPhpDocTagNode($this->createMethodPhpDocTagNode(
-                $class,
-                $option,
-                $allowedTypes[$option] ?? []
-            ));
+            $phpDocInfo->addPhpDocTagNode(
+                $this->createMethodPhpDocTagNode($option, $allowedTypes[$option] ?? [])
+            );
         }
 
         $this->docBlockUpdater->updateRefactoredNodeWithPhpDocInfo($node);
@@ -129,7 +141,7 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
         return $node;
     }
 
-    private function isSubclassOfs(string $object): bool
+    private function isSubclassesOf(string $object): bool
     {
         foreach ($this->classes as $class) {
             if (is_subclass_of($object, $class)) {
@@ -143,12 +155,12 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
     /**
      * @param array<string>|string $optionAllowedTypes
      */
-    private function createMethodPhpDocTagNode(string $class, string $option, $optionAllowedTypes): PhpDocTagNode
+    private function createMethodPhpDocTagNode(string $option, $optionAllowedTypes): PhpDocTagNode
     {
         $option = Str::camel($option);
-        $optionAllowedTypes = implode('|', (array) $optionAllowedTypes);
-        $optionAllowedTypes = 'array' === $optionAllowedTypes ? $optionAllowedTypes.' ' : '';
 
-        return new PhpDocTagNode('@method', new GenericTagValueNode("\\$class $option($optionAllowedTypes\$$option)"));
+        $type = (['array'] === $optionAllowedTypes || 'array' === $optionAllowedTypes) ? 'array ' : '';
+
+        return new PhpDocTagNode('@method', new GenericTagValueNode("self $option($type\$$option)"));
     }
 }
