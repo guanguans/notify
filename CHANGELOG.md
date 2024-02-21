@@ -8,6 +8,48 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.0.0-beta2"></a>
+## [2.0.0-beta2] - 2024-02-21
+### Feat
+- **ClientTest:** add support for sending different types of messages
+- **YiFengChuanHua:** add ClientTest.php for sending message
+- **utils:** Add Utils class for converting form array into multipart array
+- **zulip:** add test for sending direct message
+
+### Refactor
+- **client:** remove Conditionable and Tappable traits
+- **concerns:** rename Traits to Concerns
+- **doc:** Update Http client doc comment
+- **doc:** Has options doc comment
+- **utils:** Improve readability of getHttpOptionsConstants method
+
+### Test
+- **Chanify:** Add tests for sending text and link messages
+- **ClientTest:** Add test case for sending message
+- **ClientTest:** Add test case for sending message
+- **ClientTest:** Add test for sending text message
+- **ClientTest:** add test for sending message functionality
+- **ClientTest:** add test for sending text messages
+- **Discord:** add test case for sending message
+- **IGot:** Add test case for sending message
+- **Push:** Add ClientTest.php for message sending functionality
+- **PushBack:** add ClientTest.php for testing sending messages
+- **PushPlus:** Add test for sending message
+- **Pushover:** add test for sending message
+- **RocketChat:** add test case for sending message
+- **ServerChan:** Add ClientTest.php for ServerChan client testing
+- **Showdoc:** Add test for sending message
+- **Slack:** Add test case for sending a message
+- **WeWorkGroupBot:** add test for sending message
+- **XiZhi:** add single and channel message test cases
+- **telegram:** Add test case for sending a message via Telegram client
+
+### Pull Requests
+- Merge pull request [#55](https://github.com/guanguans/notify/issues/55) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.67.7
+- Merge pull request [#51](https://github.com/guanguans/notify/issues/51) from guanguans/dependabot/github_actions/codecov/codecov-action-4
+- Merge pull request [#54](https://github.com/guanguans/notify/issues/54) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.67.6
+
+
 <a name="2.0.0-beta1"></a>
 ## [2.0.0-beta1] - 2024-02-19
 ### Docs
@@ -402,7 +444,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.0.0-beta1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.0.0-beta2...HEAD
+[2.0.0-beta2]: https://github.com/guanguans/notify/compare/2.0.0-beta1...2.0.0-beta2
 [2.0.0-beta1]: https://github.com/guanguans/notify/compare/1.28.0...2.0.0-beta1
 [1.28.0]: https://github.com/guanguans/notify/compare/1.27.2...1.28.0
 [1.27.2]: https://github.com/guanguans/notify/compare/1.27.1...1.27.2
