@@ -15,6 +15,7 @@ namespace Guanguans\Notify\Foundation;
 use Guanguans\Notify\Foundation\Authenticators\NullAuthenticator;
 use Guanguans\Notify\Foundation\Concerns\HasHttpClient;
 use Guanguans\Notify\Foundation\Concerns\Makeable;
+use Guanguans\Notify\Foundation\Concerns\WithDumpable;
 use Guanguans\Notify\Foundation\Contracts\Authenticator;
 use Guanguans\Notify\Foundation\Contracts\Message;
 use GuzzleHttp\Exception\GuzzleException;
@@ -24,6 +25,7 @@ class Client implements Contracts\Client
 {
     use HasHttpClient;
     use Makeable;
+    use WithDumpable;
 
     private Authenticator $authenticator;
 

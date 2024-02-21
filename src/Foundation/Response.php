@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation;
 
 use Guanguans\Notify\Foundation\Concerns\DeterminesStatusCode;
+use Guanguans\Notify\Foundation\Concerns\WithDumpable;
 use Guanguans\Notify\Foundation\Exceptions\RequestException;
 use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\Cookie\CookieJar;
@@ -29,6 +30,7 @@ use Psr\Http\Message\UriInterface;
 class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
 {
     use DeterminesStatusCode;
+    use WithDumpable;
 
     public ?RequestInterface $request = null;
 
