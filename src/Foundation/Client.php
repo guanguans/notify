@@ -15,19 +15,15 @@ namespace Guanguans\Notify\Foundation;
 use Guanguans\Notify\Foundation\Authenticators\NullAuthenticator;
 use Guanguans\Notify\Foundation\Contracts\Authenticator;
 use Guanguans\Notify\Foundation\Contracts\Message;
-use Guanguans\Notify\Foundation\Traits\Conditionable;
 use Guanguans\Notify\Foundation\Traits\HasHttpClient;
 use Guanguans\Notify\Foundation\Traits\Makeable;
-use Guanguans\Notify\Foundation\Traits\Tappable;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 
 class Client implements Contracts\Client
 {
-    use Conditionable;
     use HasHttpClient;
     use Makeable;
-    use Tappable;
 
     private Authenticator $authenticator;
 

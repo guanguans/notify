@@ -25,6 +25,8 @@ if (! function_exists('tap')) {
      * Call the given Closure with the given value then return the value.
      *
      * @param mixed $value
+     *
+     * @see https://github.com/laravel/framework
      */
     function tap($value, ?callable $callback = null)
     {
