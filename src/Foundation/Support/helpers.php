@@ -10,68 +10,6 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-use GuzzleHttp\Psr7\Utils;
-use Psr\Http\Message\StreamInterface;
-
-if (! function_exists('to_multipart')) {
-    /**
-     * Convert a form array into a multipart array.
-     */
-    function to_multipart(array $form): array
-    {
-        /**
-         * @param array-key $name
-         * @param  array{
-         *     name: string,
-         *     contents: StreamInterface|resource|string,
-         *     headers: array<string, string>,
-         *     filename: string
-         *     ...
-         * }|StreamInterface|resource|scalar|null  $contents
-         *
-         * @return array{
-         *     name: string,
-         *     contents: resource|StreamInterface|string,
-         *     headers: array<string, string>,
-         *     filename: string
-         * }[]
-         */
-        $partResolver = static function ($name, $contents) use (&$partResolver): array {
-            if (! is_array($contents)) {
-                // preg_match('/^.*:\/\/.*$/', $contents);
-                is_string($contents) and is_file($contents) and $contents = Utils::tryFopen($contents, 'r');
-
-                return [compact('name', 'contents')];
-            }
-
-            if (
-                isset($contents['name'], $contents['contents'])
-                && [] === array_diff(array_keys($contents), ['name', 'contents', 'headers', 'filename'])
-            ) {
-                return [$contents];
-            }
-
-            $parts = [];
-            foreach ($contents as $key => $value) {
-                $key = "{$name}[$key]";
-
-                $parts[] = is_array($value)
-                    ? $partResolver($key, $value)
-                    : [['name' => $key, 'contents' => $value]];
-            }
-
-            return array_merge([], ...$parts);
-        };
-
-        $parts = [];
-        foreach ($form as $name => $contents) {
-            $parts[] = $partResolver($name, $contents);
-        }
-
-        return array_merge([], ...$parts);
-    }
-}
-
 if (! function_exists('base64_encode_file')) {
     /**
      * Encodes a file to base64.

@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Authenticators;
 
+use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\RequestOptions;
 
 class PayloadAuthenticator extends NullAuthenticator
@@ -30,7 +31,7 @@ class PayloadAuthenticator extends NullAuthenticator
     {
         $options[$this->type] = array_merge(
             $options[$this->type] ?? [],
-            RequestOptions::MULTIPART === $this->type ? to_multipart($this->payload) : $this->payload
+            RequestOptions::MULTIPART === $this->type ? Utils::toMultipart($this->payload) : $this->payload
         );
 
         return $options;

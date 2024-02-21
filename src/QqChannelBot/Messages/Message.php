@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\QqChannelBot\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsPost;
+use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\RequestOptions;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -62,7 +63,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         unset($options['channel_id']);
 
         return [
-            RequestOptions::MULTIPART => to_multipart($options),
+            RequestOptions::MULTIPART => Utils::toMultipart($options),
         ];
     }
 

@@ -12,17 +12,19 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
+use Guanguans\Notify\Foundation\Message;
+use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\RequestOptions;
 
 /**
- * @mixin \Guanguans\Notify\Foundation\Message
+ * @mixin Message
  */
 trait AsMultipart
 {
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::MULTIPART => to_multipart($this->resolveOptions()),
+            RequestOptions::MULTIPART => Utils::toMultipart($this->resolveOptions()),
         ];
     }
 }
