@@ -28,6 +28,9 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
 
+/**
+ * @internal
+ */
 class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
 {
     private array $classes = [

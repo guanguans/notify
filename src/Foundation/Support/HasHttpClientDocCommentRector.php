@@ -12,14 +12,15 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Support;
 
+use Guanguans\Notify\Foundation\Client;
 use Guanguans\Notify\Foundation\Traits\HasHttpClient;
-use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\RequestOptions;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Trait_;
 use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagNode;
+use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfo;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
 use Rector\Contract\Rector\ConfigurableRectorInterface;
@@ -30,11 +31,14 @@ use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
 
+/**
+ * @internal
+ */
 class HasHttpClientDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
 {
-    private const MAIN_CLASS = \Guanguans\Notify\Foundation\Client::class;
+    private DocBlockUpdater $docBlockUpdater;
 
-    private const TRAIT = HasHttpClient::class;
+    private PhpDocInfoFactory $phpDocInfoFactory;
 
     private array $except = [
         '__*',
@@ -44,21 +48,8 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
         'getConfig',
     ];
 
-    private array $mixins = [
-        HandlerStack::class,
-        // Client::class,
-    ];
-
-    private DocBlockUpdater $docBlockUpdater;
-
-    private PhpDocInfoFactory $phpDocInfoFactory;
-
     public function __construct(DocBlockUpdater $docBlockUpdater, PhpDocInfoFactory $phpDocInfoFactory)
     {
-        $this->except = array_merge($this->except, array_map(
-            static fn (\ReflectionMethod $reflectionMethod) => $reflectionMethod->getName(),
-            (new \ReflectionClass(self::MAIN_CLASS))->getMethods(\ReflectionMethod::IS_PUBLIC)
-        ));
         $this->docBlockUpdater = $docBlockUpdater;
         $this->phpDocInfoFactory = $phpDocInfoFactory;
     }
@@ -70,7 +61,7 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(
-            'Update has http client doc comment',
+            'Http client doc comment',
             [
                 new ConfiguredCodeSample(
                     <<<'CODE_SAMPLE'
@@ -81,8 +72,11 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
                         /**
                          * ...
                          * @method self setHandler(callable $handler)
-                         * @method self hasHandler()
+                         * @method self unshift(callable $middleware, string $name = null)
                          * ...
+                         *
+                         * @see \GuzzleHttp\HandlerStack
+                         * @see \GuzzleHttp\RequestOptions
                          *
                          * @mixin \Guanguans\Notify\Foundation\Client
                          */
@@ -115,24 +109,43 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
     {
         /** @var class-string $trait */
         $trait = $node->getAttribute('scope')->getClassReflection()->getName();
-        if (self::TRAIT !== $trait) {
+        if (HasHttpClient::class !== $trait) {
             return;
         }
 
-        $node->setAttribute('comments', null);
-
+        $node->setAttribute('comments', []);
         $phpDocInfo = $this->phpDocInfoFactory->createFromNodeOrEmpty($node);
-        foreach ($this->mixins as $mixin) {
-            $reflectionMethods = array_filter(
-                (new \ReflectionClass($mixin))->getMethods(\ReflectionMethod::IS_PUBLIC),
-                fn (\ReflectionMethod $reflectionMethod): bool => ! Str::is($this->except, $reflectionMethod->getName())
-            );
 
-            foreach ($reflectionMethods as $reflectionMethod) {
-                $phpDocInfo->addPhpDocTagNode($this->createMethodPhpDocTagNode($reflectionMethod));
-            }
+        $this->addMixinDoc($phpDocInfo);
+        $this->addRequestOptionsDoc($phpDocInfo);
+
+        $phpDocInfo->addPhpDocTagNode($this->createEmptyDocTagNode());
+        $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@see', new GenericTagValueNode('\\'.HandlerStack::class)));
+        $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@see', new GenericTagValueNode('\\'.RequestOptions::class)));
+        $phpDocInfo->addPhpDocTagNode($this->createEmptyDocTagNode());
+        $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@mixin', new GenericTagValueNode('\\'.Client::class)));
+
+        $this->docBlockUpdater->updateRefactoredNodeWithPhpDocInfo($node);
+
+        return $node;
+    }
+
+    /**
+     * @throws \ReflectionException
+     */
+    private function addMixinDoc(PhpDocInfo $phpDocInfo): void
+    {
+        $reflectionMethods = array_filter(
+            (new \ReflectionClass(HandlerStack::class))->getMethods(\ReflectionMethod::IS_PUBLIC),
+            fn (\ReflectionMethod $reflectionMethod): bool => ! Str::is($this->except, $reflectionMethod->getName())
+        );
+        foreach ($reflectionMethods as $reflectionMethod) {
+            $phpDocInfo->addPhpDocTagNode($this->createMethodPhpDocTagNode($reflectionMethod));
         }
+    }
 
+    private function addRequestOptionsDoc(PhpDocInfo $phpDocInfo): void
+    {
         foreach (
             [
                 'BASE_URI' => 'base_uri',
@@ -141,20 +154,6 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
             $name = Str::camel($constant);
             $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@method', new GenericTagValueNode("self $name(\$$name)")));
         }
-
-        $phpDocInfo->addPhpDocTagNode($this->createEmptyDocTagNode());
-        foreach ($this->mixins as $mixin) {
-            $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@see', new GenericTagValueNode('\\'.$mixin)));
-        }
-
-        $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@see', new GenericTagValueNode('\\'.RequestOptions::class)));
-
-        $phpDocInfo->addPhpDocTagNode($this->createEmptyDocTagNode());
-        $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@mixin', new GenericTagValueNode('\\'.self::MAIN_CLASS)));
-
-        $this->docBlockUpdater->updateRefactoredNodeWithPhpDocInfo($node);
-
-        return $node;
     }
 
     private function createEmptyDocTagNode(): PhpDocTagNode
@@ -170,10 +169,6 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
         $static = $reflectionMethod->isStatic() ? 'static ' : '';
 
         $returnType = 'self ';
-        if (HandlerStack::class !== $reflectionMethod->class) {
-            $returnType = $reflectionMethod->getReturnType();
-            $returnType and ($returnType->isBuiltin() or $returnType = "\\$returnType ");
-        }
 
         $name = $reflectionMethod->getName();
 
