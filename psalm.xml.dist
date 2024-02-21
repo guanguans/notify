@@ -19,15 +19,14 @@
       <file name="src/Foundation/Support/HasHttpClientDocCommentRector.php"/>
       <file name="src/Foundation/Support/HasOptionsDocCommentRector.php"/>
       <file name="src/Foundation/Testing/MockHandler.php"/>
-      <file name="src/Foundation/Traits/Conditionable.php"/>
     </ignoreFiles>
   </projectFiles>
   <issueHandlers>
     <PropertyNotSetInConstructor errorLevel="info"/>
     <UndefinedThisPropertyFetch>
       <errorLevel type="suppress">
-        <!--<directory name="src/Foundation/Traits/HasOptions.php"/>-->
-        <file name="src/Foundation/Traits/HasOptions.php"/>
+        <!--<directory name="src/Foundation/Concerns"/>-->
+        <file name="src/Foundation/Concerns/HasOptions.php"/>
       </errorLevel>
     </UndefinedThisPropertyFetch>
   </issueHandlers>

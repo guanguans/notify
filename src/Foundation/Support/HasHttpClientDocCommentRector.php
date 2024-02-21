@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation\Support;
 
 use Guanguans\Notify\Foundation\Client;
-use Guanguans\Notify\Foundation\Traits\HasHttpClient;
+use Guanguans\Notify\Foundation\Concerns\HasHttpClient;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\RequestOptions;
 use PhpParser\Node;

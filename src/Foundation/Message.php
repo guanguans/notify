@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
-use Guanguans\Notify\Foundation\Traits\HasOptions;
-use Guanguans\Notify\Foundation\Traits\Makeable;
+use Guanguans\Notify\Foundation\Concerns\HasOptions;
+use Guanguans\Notify\Foundation\Concerns\Makeable;
 
 abstract class Message implements \ArrayAccess, Contracts\Message
 {

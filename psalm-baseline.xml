@@ -10,7 +10,7 @@
       <code><![CDATA[\ArrayAccess]]></code>
     </MissingTemplateParam>
   </file>
-  <file src="src/Foundation/Traits/HasHttpClient.php">
+  <file src="src/Foundation/Concerns/HasHttpClient.php">
     <TypeDoesNotContainType>
       <code><![CDATA[\assert($this instanceof HandlerStack)]]></code>
     </TypeDoesNotContainType>
@@ -18,7 +18,7 @@
       <code><![CDATA[findByName]]></code>
     </InaccessibleMethod>
   </file>
-  <file src="src/Foundation/Traits/HasOptions.php">
+  <file src="src/Foundation/Concerns/HasOptions.php">
     <NoValue>
       <code><![CDATA[$casedName]]></code>
     </NoValue>
