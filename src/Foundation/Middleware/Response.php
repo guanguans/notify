@@ -12,17 +12,27 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Middleware;
 
-use GuzzleHttp\Middleware;
+use Guanguans\Notify\Foundation\Contracts\TransferStatsAware;
+use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class Response
+class Response implements TransferStatsAware
 {
+    use \Guanguans\Notify\Foundation\Concerns\TransferStatsAware;
+
     public function __invoke(callable $handler): callable
     {
-        return Middleware::mapResponse(
-            static fn (
-                ResponseInterface $response
-            ): ResponseInterface => \Guanguans\Notify\Foundation\Response::createFromPsrResponse($response)
-        )($handler);
+        return static fn (RequestInterface $request, array $options) => $handler($request, $options)->then(
+            static function (ResponseInterface $response) use ($request, $options): ResponseInterface {
+                $response = \Guanguans\Notify\Foundation\Response::fromPsrResponse($response);
+
+                $response->request = $request;
+                $response->cookies = $options[RequestOptions::COOKIES] ?: null;
+                $response->transferStats = self::$transferStats;
+
+                return $response;
+            }
+        );
     }
 }

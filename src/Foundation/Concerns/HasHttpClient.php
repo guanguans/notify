@@ -19,6 +19,8 @@ use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\RequestOptions;
+use GuzzleHttp\TransferStats;
 
 /**
  * @method self setHandler(callable $handler)
@@ -144,8 +146,17 @@ trait HasHttpClient
         if (! \is_callable($this->httpClientResolver)) {
             $this->httpClientResolver = function (): Client {
                 if (! $this->httpClient instanceof Client) {
+                    $onStats = $this->httpOptions[RequestOptions::ON_STATS] ?? false;
+
                     $this->setHttpOptions([
                         'handler' => $this->getHandlerStack(),
+                        RequestOptions::ON_STATS => static function (TransferStats $transferStats) use ($onStats): void {
+                            if ($onStats instanceof \Closure) {
+                                $transferStats = $onStats($transferStats) ?: $transferStats;
+                            }
+
+                            Response::setTransferStats($transferStats);
+                        },
                     ]);
 
                     $this->httpClient = new Client($this->getHttpOptions());

@@ -1,46 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Unsafe usage of new static\\(\\)\\.$#"
-			count: 1
-			path: src/Foundation/Client.php
-
-		-
-			message: "#^Unsafe usage of new static\\(\\)\\.$#"
-			count: 1
-			path: src/Foundation/Message.php
-
-		-
-			message: "#^Function data_get not found\\.$#"
-			count: 1
-			path: src/Foundation/Response.php
-
-		-
-			message: "#^Function value not found\\.$#"
-			count: 1
-			path: src/Foundation/Response.php
-
-		-
-			message: "#^Instantiated class Illuminate\\\\Http\\\\Client\\\\RequestException not found\\.$#"
-			count: 1
-			path: src/Foundation/Response.php
-
-		-
-			message: "#^Method Guanguans\\\\Notify\\\\Foundation\\\\Response\\:\\:toException\\(\\) has invalid return type Illuminate\\\\Http\\\\Client\\\\RequestException\\.$#"
-			count: 1
-			path: src/Foundation/Response.php
-
-		-
-			message: "#^PHPDoc tag @throws with type Illuminate\\\\Http\\\\Client\\\\RequestException is not subtype of Throwable$#"
-			count: 6
-			path: src/Foundation/Response.php
-
-		-
-			message: "#^Unsafe usage of new static\\(\\)\\.$#"
-			count: 1
-			path: src/Foundation/Response.php
-
-		-
 			message: "#^Unsafe access to private property Guanguans\\\\Notify\\\\Foundation\\\\Support\\\\Str\\:\\:\\$camelCache through static\\:\\:\\.$#"
 			count: 3
 			path: src/Foundation/Support/Str.php
@@ -66,7 +26,7 @@ parameters:
 				\\}\\|StreamInterface\\|resource\\|scalar\\|null  \\$contents\\)\\: Unexpected token "\\.\\.\\.", expected '\\}' at offset 245$#
 			"""
 			count: 1
-			path: src/Foundation/Support/helpers.php
+			path: src/Foundation/Support/Utils.php
 
 		-
 			message: "#^Class Guanguans\\\\Notify\\\\Foundation\\\\Testing\\\\MockHandler extends @final class GuzzleHttp\\\\Handler\\\\MockHandler\\.$#"

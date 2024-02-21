@@ -10,6 +10,20 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+if (! function_exists('value')) {
+    /**
+     * Return the default value of the given value.
+     *
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    function value($value, ...$args)
+    {
+        return $value instanceof Closure ? $value(...$args) : $value;
+    }
+}
+
 if (! function_exists('base64_encode_file')) {
     /**
      * Encodes a file to base64.

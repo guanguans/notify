@@ -88,6 +88,7 @@ return static function (RectorConfig $rectorConfig): void {
         RemoveUselessReturnTagRector::class,
         RenameParamToMatchTypeRector::class => [
             __DIR__.'/src/Foundation/Authenticators/AggregateAuthenticator.php',
+            __DIR__.'/src/Foundation/Exceptions/RequestException.php',
         ],
         StaticClosureRector::class => [
             __DIR__.'/tests',

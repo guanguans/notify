@@ -12,24 +12,30 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
+use Guanguans\Notify\Foundation\Concerns\DeterminesStatusCode;
+use Guanguans\Notify\Foundation\Exceptions\RequestException;
+use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\Cookie\CookieJar;
-use GuzzleHttp\Psr7\Response as GuzzleResponse;
 use GuzzleHttp\TransferStats;
-use Illuminate\Http\Client\RequestException;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
 
 /**
- * @see https://github.com/laravel/framework/blob/10.x/src/Illuminate/Http/Client/Response.php
+ * @template-implements \ArrayAccess<string, mixed>
+ *
+ * @see https://github.com/laravel/framework
  */
-class Response extends GuzzleResponse implements \ArrayAccess
+class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
 {
-    // use Concerns\DeterminesStatusCode;
+    use DeterminesStatusCode;
+
+    public ?RequestInterface $request = null;
 
     /**
      * The request cookies.
      */
-    public CookieJar $cookies;
+    public ?CookieJar $cookies = null;
 
     /**
      * The transfer stats for the request.
@@ -37,32 +43,9 @@ class Response extends GuzzleResponse implements \ArrayAccess
     public ?TransferStats $transferStats = null;
 
     /**
-     * The underlying PSR response.
-     */
-    protected ResponseInterface $response;
-
-    /**
      * The decoded JSON response.
      */
-    protected array $decoded = [];
-
-    /**
-     * Create a new response instance.
-     *
-     * @param null|mixed $body
-     *
-     * @return void
-     */
-    public function __construct(
-        int $status = 200,
-        array $headers = [],
-        $body = null,
-        string $version = '1.1',
-        ?string $reason = null
-    ) {
-        parent::__construct($status, $headers, $body, $version, $reason);
-        $this->response = $this;
-    }
+    protected ?array $decoded = null;
 
     /**
      * Get the body of the response.
@@ -72,9 +55,9 @@ class Response extends GuzzleResponse implements \ArrayAccess
         return $this->body();
     }
 
-    public static function createFromPsrResponse(ResponseInterface $response): self
+    public static function fromPsrResponse(ResponseInterface $response): self
     {
-        return new static(
+        return $response instanceof static ? $response : new static(
             $response->getStatusCode(),
             $response->getHeaders(),
             $response->getBody(),
@@ -85,10 +68,12 @@ class Response extends GuzzleResponse implements \ArrayAccess
 
     /**
      * Get the body of the response.
+     *
+     * @noinspection ToStringCallInspection
      */
     public function body(): string
     {
-        return (string) $this->response->getBody();
+        return (string) $this->getBody();
     }
 
     /**
@@ -110,7 +95,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
             return $this->decoded;
         }
 
-        return data_get($this->decoded, $key, $default);
+        return Arr::get($this->decoded, $key, $default);
     }
 
     /**
@@ -128,7 +113,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      */
     public function header(string $header): string
     {
-        return $this->response->getHeaderLine($header);
+        return $this->getHeaderLine($header);
     }
 
     /**
@@ -136,7 +121,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      */
     public function headers(): array
     {
-        return $this->response->getHeaders();
+        return $this->getHeaders();
     }
 
     /**
@@ -144,7 +129,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      */
     public function status(): int
     {
-        return $this->response->getStatusCode();
+        return $this->getStatusCode();
     }
 
     /**
@@ -152,7 +137,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      */
     public function reason(): string
     {
-        return $this->response->getReasonPhrase();
+        return $this->getReasonPhrase();
     }
 
     /**
@@ -160,9 +145,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
      */
     public function effectiveUri(): ?UriInterface
     {
-        if ($this->transferStats instanceof TransferStats) {
-            return $this->transferStats->getEffectiveUri();
-        }
+        return $this->transferStats instanceof TransferStats ? $this->transferStats->getEffectiveUri() : null;
     }
 
     /**
@@ -207,8 +190,6 @@ class Response extends GuzzleResponse implements \ArrayAccess
 
     /**
      * Execute the given callback if there was a server or client error.
-     *
-     * @return $this
      */
     public function onError(callable $callback): self
     {
@@ -219,10 +200,15 @@ class Response extends GuzzleResponse implements \ArrayAccess
         return $this;
     }
 
+    public function request(): ?RequestInterface
+    {
+        return $this->request;
+    }
+
     /**
      * Get the response cookies.
      */
-    public function cookies(): CookieJar
+    public function cookies(): ?CookieJar
     {
         return $this->cookies;
     }
@@ -232,31 +218,17 @@ class Response extends GuzzleResponse implements \ArrayAccess
      */
     public function handlerStats(): array
     {
-        if (! $this->transferStats instanceof TransferStats) {
-            return [];
-        }
-
-        return $this->transferStats->getHandlerStats() ?? [];
+        return $this->transferStats instanceof TransferStats ? $this->transferStats->getHandlerStats() : [];
     }
 
     /**
      * Close the stream and any underlying resources.
-     *
-     * @return $this
      */
     public function close(): self
     {
-        $this->response->getBody()->close();
+        $this->getBody()->close();
 
         return $this;
-    }
-
-    /**
-     * Get the underlying PSR response for the response.
-     */
-    public function toPsrResponse(): ResponseInterface
-    {
-        return $this->response;
     }
 
     /**
@@ -264,15 +236,11 @@ class Response extends GuzzleResponse implements \ArrayAccess
      */
     public function toException(): ?RequestException
     {
-        if ($this->failed()) {
-            return new RequestException($this);
-        }
+        return $this->failed() ? RequestException::create($this->request, $this) : null;
     }
 
     /**
      * Throw an exception if a server or client error occurred.
-     *
-     * @return $this
      *
      * @throws RequestException
      */
@@ -296,8 +264,6 @@ class Response extends GuzzleResponse implements \ArrayAccess
      *
      * @param bool|\Closure $condition
      *
-     * @return $this
-     *
      * @throws RequestException
      */
     public function throwIf($condition): self
@@ -309,8 +275,6 @@ class Response extends GuzzleResponse implements \ArrayAccess
      * Throw an exception if the response status code matches the given code.
      *
      * @param callable|int $statusCode
-     *
-     * @return $this
      *
      * @throws RequestException
      */
@@ -329,8 +293,6 @@ class Response extends GuzzleResponse implements \ArrayAccess
      *
      * @param callable|int $statusCode
      *
-     * @return $this
-     *
      * @throws RequestException
      */
     public function throwUnlessStatus($statusCode): self
@@ -345,8 +307,6 @@ class Response extends GuzzleResponse implements \ArrayAccess
     /**
      * Throw an exception if the response status code is a 4xx level code.
      *
-     * @return $this
-     *
      * @throws RequestException
      */
     public function throwIfClientError(): self
@@ -356,8 +316,6 @@ class Response extends GuzzleResponse implements \ArrayAccess
 
     /**
      * Throw an exception if the response status code is a 5xx level code.
-     *
-     * @return $this
      *
      * @throws RequestException
      */
@@ -369,7 +327,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
     /**
      * Determine if the given offset exists.
      *
-     * @param mixed $offset
+     * @param mixed|string $offset
      */
     public function offsetExists($offset): bool
     {
@@ -379,7 +337,9 @@ class Response extends GuzzleResponse implements \ArrayAccess
     /**
      * Get the value for a given offset.
      *
-     * @param mixed $offset
+     * @param mixed|string $offset
+     *
+     * @return mixed
      */
     public function offsetGet($offset)
     {
@@ -389,7 +349,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
     /**
      * Set the value at the given offset.
      *
-     * @param mixed $offset
+     * @param mixed|string $offset
      * @param mixed $value
      *
      * @throws \LogicException
@@ -402,7 +362,7 @@ class Response extends GuzzleResponse implements \ArrayAccess
     /**
      * Unset the value at the given offset.
      *
-     * @param mixed $offset
+     * @param mixed|string $offset
      *
      * @throws \LogicException
      */

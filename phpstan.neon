@@ -30,5 +30,4 @@ parameters:
 #        noVariableVariables: false
 
     ignoreErrors:
-#        - "#^Call to an undefined method#"
-#        - "#^Call to an undefined static method#"
+        - "#^Unsafe usage of new static\\(\\)\\.$#"
