@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Support;
 
+use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\StreamInterface;
 
 class Utils
@@ -41,7 +42,10 @@ class Utils
         $partResolver = static function ($name, $contents) use (&$partResolver): array {
             if (! \is_array($contents)) {
                 // preg_match('/^.*:\/\/.*$/', $contents);
-                \is_string($contents) and is_file($contents) and $contents = \GuzzleHttp\Psr7\Utils::tryFopen($contents, 'r');
+                \is_string($contents) and is_file($contents) and $contents = \GuzzleHttp\Psr7\Utils::tryFopen(
+                    $contents,
+                    'r'
+                );
 
                 return [compact('name', 'contents')];
             }
@@ -71,5 +75,17 @@ class Utils
         }
 
         return array_merge([], ...$parts);
+    }
+
+    /**
+     * Retrieves the HTTP options constants.
+     *
+     * @return array<string, string>
+     */
+    public static function getHttpOptionsConstants(): array
+    {
+        return [
+            'BASE_URI' => 'base_uri',
+        ] + (new \ReflectionClass(RequestOptions::class))->getConstants();
     }
 }

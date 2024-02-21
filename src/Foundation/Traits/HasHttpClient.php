@@ -15,10 +15,10 @@ namespace Guanguans\Notify\Foundation\Traits;
 use Guanguans\Notify\Foundation\Middleware\Authenticate;
 use Guanguans\Notify\Foundation\Middleware\Response;
 use Guanguans\Notify\Foundation\Support\Str;
+use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\RequestOptions;
 
 /**
  * @method self setHandler(callable $handler)
@@ -86,10 +86,7 @@ trait HasHttpClient
             return $this;
         }
 
-        $httpOptions = [
-            'BASE_URI' => 'base_uri',
-        ] + (new \ReflectionClass(RequestOptions::class))->getConstants();
-        if (\in_array($snakedName = Str::snake($name), $httpOptions, true)) {
+        if (\in_array($snakedName = Str::snake($name), Utils::getHttpOptionsConstants(), true)) {
             if (empty($arguments)) {
                 throw new \InvalidArgumentException(
                     sprintf('Method %s::%s requires an argument', static::class, $name)
@@ -99,7 +96,7 @@ trait HasHttpClient
             return $this->setHttpOptions([$snakedName => $arguments[0]]);
         }
 
-        throw new \BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $name));
+        throw new \BadMethodCallException(sprintf('The method [%s::%s] does not exist.', static::class, $name));
     }
 
     public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self

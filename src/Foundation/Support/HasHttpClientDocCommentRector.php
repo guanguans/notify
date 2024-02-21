@@ -146,11 +146,7 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
 
     private function addRequestOptionsDoc(PhpDocInfo $phpDocInfo): void
     {
-        foreach (
-            [
-                'BASE_URI' => 'base_uri',
-            ] + (new \ReflectionClass(RequestOptions::class))->getConstants() as $constant
-        ) {
+        foreach (Utils::getHttpOptionsConstants() as $constant) {
             $name = Str::camel($constant);
             $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@method', new GenericTagValueNode("self $name(\$$name)")));
         }
