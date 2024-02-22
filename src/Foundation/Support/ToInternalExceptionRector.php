@@ -63,49 +63,51 @@ class ToInternalExceptionRector extends AbstractRector implements ConfigurableRe
     public function getNodeTypes(): array
     {
         return [
-            Name\FullyQualified::class,
+            Node\Expr\New_::class,
         ];
     }
 
     /**
-     * @param Node\Name\FullyQualified $node
+     * @param Node\Expr\New_ $node
      *
      * @throws \ReflectionException
      */
     public function refactor(Node $node)
     {
+        $class = $node->class;
+
         if (
-            Str::is($this->except, $node->toString())
-            || str_starts_with($node->toString(), 'Guanguans\\Notify\\Foundation\\Exceptions\\')
-            || ! str_ends_with($node->toString(), 'Exception')
+            ! $class instanceof Name
+            || Str::is($this->except, $class->toString())
+            || str_starts_with($class->toString(), 'Guanguans\\Notify\\Foundation\\Exceptions\\')
+            || ! str_ends_with($class->toString(), 'Exception')
         ) {
             return;
         }
 
-        $internalExceptionClass = "\\Guanguans\\Notify\\Foundation\\Exceptions\\{$node->getLast()}";
+        $internalExceptionClass = "\\Guanguans\\Notify\\Foundation\\Exceptions\\{$class->getLast()}";
         if (! class_exists($internalExceptionClass)) {
-            $this->createInternalException($node);
+            $this->createInternalException($class);
         }
 
-        return new Name($internalExceptionClass, $node->getAttributes());
+        $node->class = new Name($internalExceptionClass, $class->getAttributes());
+
+        return $node;
     }
 
     /**
      * @throws \ReflectionException
      */
-    private function createInternalException(Name\FullyQualified $node): void
+    private function createInternalException(Name $name): void
     {
-        $externalExceptionClass = $node->toString();
+        $externalExceptionClass = $name->toString();
         $reflectionClass = new \ReflectionClass($externalExceptionClass);
-        if (
-            $reflectionClass->isFinal()
-            // || $reflectionClass->isInterface()
-        ) {
+        if ($reflectionClass->isFinal()) {
             return;
         }
 
         file_put_contents(
-            __DIR__."/../Exceptions/{$node->getLast()}.php",
+            __DIR__."/../Exceptions/{$name->getLast()}.php",
             <<<PHP
                 <?php
 
@@ -123,7 +125,7 @@ class ToInternalExceptionRector extends AbstractRector implements ConfigurableRe
 
                 use Guanguans\\Notify\\Foundation\\Contracts\\Throwable;
 
-                class {$node->getLast()} extends \\$externalExceptionClass implements Throwable {}
+                class {$name->getLast()} extends \\$externalExceptionClass implements Throwable {}
 
                 PHP
         );
