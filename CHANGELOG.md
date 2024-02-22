@@ -8,6 +8,23 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.0.0-beta3"></a>
+## [2.0.0-beta3] - 2024-02-22
+### Feat
+- **Notify:** Add WithDumpable trait and dump method
+- **Response:** Add __debugInfo method for Response class
+- **ToInternalExceptionRector:** Add ToInternalExceptionRector rule
+- **ToInternalExceptionRector:** Add ToInternalExceptionRector for internal exceptions handling
+
+### Refactor
+- **Exceptions:** Remove unused exception classes
+- **src:** Improve code readability and remove redundant functions
+- **src:** Update ToInternalExceptionRector to handle new class nodes
+
+### Pull Requests
+- Merge pull request [#56](https://github.com/guanguans/notify/issues/56) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.68.0
+
+
 <a name="2.0.0-beta2"></a>
 ## [2.0.0-beta2] - 2024-02-21
 ### Feat
@@ -444,7 +461,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.0.0-beta2...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.0.0-beta3...HEAD
+[2.0.0-beta3]: https://github.com/guanguans/notify/compare/2.0.0-beta2...2.0.0-beta3
 [2.0.0-beta2]: https://github.com/guanguans/notify/compare/2.0.0-beta1...2.0.0-beta2
 [2.0.0-beta1]: https://github.com/guanguans/notify/compare/1.28.0...2.0.0-beta1
 [1.28.0]: https://github.com/guanguans/notify/compare/1.27.2...1.28.0
