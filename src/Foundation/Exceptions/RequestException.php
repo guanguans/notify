@@ -12,12 +12,13 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Exceptions;
 
+use Guanguans\Notify\Foundation\Contracts\Throwable;
 use GuzzleHttp\BodySummarizerInterface;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class RequestException extends GuzzleRequestException
+class RequestException extends GuzzleRequestException implements Throwable
 {
     public static function wrapException(RequestInterface $request, \Throwable $e): GuzzleRequestException
     {
