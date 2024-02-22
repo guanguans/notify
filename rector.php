@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 use Guanguans\Notify\Foundation\Support\HasHttpClientDocCommentRector;
 use Guanguans\Notify\Foundation\Support\HasOptionsDocCommentRector;
+use Guanguans\Notify\Foundation\Support\ToInternalExceptionRector;
 use Rector\Caching\ValueObject\Storage\FileCacheStorage;
 use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
@@ -28,9 +29,25 @@ use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php73\Rector\String_\SensitiveHereNowDocRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
+use Rector\Removing\Rector\Class_\RemoveInterfacesRector;
+use Rector\Removing\Rector\Class_\RemoveTraitUseRector;
+use Rector\Removing\Rector\FuncCall\RemoveFuncCallRector;
+use Rector\Renaming\Rector\ClassMethod\RenameAnnotationRector;
+use Rector\Renaming\Rector\FuncCall\RenameFunctionRector;
+use Rector\Renaming\Rector\MethodCall\RenameMethodRector;
+use Rector\Renaming\Rector\PropertyFetch\RenamePropertyRector;
+use Rector\Renaming\Rector\StaticCall\RenameStaticMethodRector;
+use Rector\Renaming\Rector\String_\RenameStringRector;
+use Rector\Renaming\ValueObject\MethodCallRename;
+use Rector\Renaming\ValueObject\RenameAnnotation;
+use Rector\Renaming\ValueObject\RenameAnnotationByType;
+use Rector\Renaming\ValueObject\RenameProperty;
+use Rector\Renaming\ValueObject\RenameStaticMethod;
 use Rector\Set\ValueObject\DowngradeLevelSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\Transform\Rector\String_\StringToClassConstantRector;
+use Rector\Transform\ValueObject\StringToClassConstant;
 use Rector\ValueObject\PhpVersion;
 
 return static function (RectorConfig $rectorConfig): void {
@@ -86,6 +103,9 @@ return static function (RectorConfig $rectorConfig): void {
 
         // optional rules
         RemoveUselessReturnTagRector::class,
+        ToInternalExceptionRector::class => [
+            __DIR__.'/src/Foundation/Exceptions',
+        ],
         RenameParamToMatchTypeRector::class => [
             __DIR__.'/src/Foundation/Authenticators/AggregateAuthenticator.php',
             __DIR__.'/src/Foundation/Exceptions/RequestException.php',
@@ -134,5 +154,48 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->rules([
         HasHttpClientDocCommentRector::class,
         HasOptionsDocCommentRector::class,
+        ToInternalExceptionRector::class,
     ]);
+
+    // $rectorConfig->ruleWithConfiguration(RenameFunctionRector::class, [
+    //     'encrypt' => 'encrypt_old',
+    //     'decrypt' => 'decrypt_old',
+    // ]);
+    //
+    // $rectorConfig->ruleWithConfiguration(RenameAnnotationRector::class, [
+    //     new RenameAnnotationByType('PHPUnit\Framework\TestCase', 'test', 'scenario'),
+    //     new RenameAnnotation('', 'unknown'),
+    // ]);
+    //
+    // $rectorConfig->ruleWithConfiguration(RenameMethodRector::class, [
+    //     new MethodCallRename('SomeExampleClass', 'oldMethod', 'newMethod'),
+    // ]);
+    //
+    // $rectorConfig->ruleWithConfiguration(RenameStaticMethodRector::class, [
+    //     new RenameStaticMethod('SomeClass', 'oldMethod', 'AnotherExampleClass', 'newStaticMethod'),
+    // ]);
+    //
+    // $rectorConfig->ruleWithConfiguration(RenamePropertyRector::class, [
+    //     new RenameProperty('SomeClass', 'someOldProperty', 'someNewProperty'),
+    // ]);
+    //
+    // $rectorConfig->ruleWithConfiguration(RenameStringRector::class, [
+    //     'ROLE_PREVIOUS_ADMIN' => 'IS_IMPERSONATOR',
+    // ]);
+    //
+    // $rectorConfig->ruleWithConfiguration(RemoveFuncCallRector::class, [
+    //     'var_dump',
+    // ]);
+    //
+    // $rectorConfig->ruleWithConfiguration(RemoveInterfacesRector::class, [
+    //     'SomeInterface',
+    // ]);
+    //
+    // $rectorConfig->ruleWithConfiguration(RemoveTraitUseRector::class, [
+    //     'TraitNameToRemove',
+    // ]);
+    //
+    // $rectorConfig->ruleWithConfiguration(StringToClassConstantRector::class, [
+    //     new StringToClassConstant('compiler.post_dump', 'Yet\AnotherClass', 'CONSTANT'),
+    // ]);
 };
