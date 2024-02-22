@@ -1,21 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Unsafe access to private property Guanguans\\\\Notify\\\\Foundation\\\\Support\\\\Str\\:\\:\\$camelCache through static\\:\\:\\.$#"
-			count: 3
-			path: src/Foundation/Support/Str.php
-
-		-
-			message: "#^Unsafe access to private property Guanguans\\\\Notify\\\\Foundation\\\\Support\\\\Str\\:\\:\\$snakeCache through static\\:\\:\\.$#"
-			count: 4
-			path: src/Foundation/Support/Str.php
-
-		-
-			message: "#^Unsafe access to private property Guanguans\\\\Notify\\\\Foundation\\\\Support\\\\Str\\:\\:\\$studlyCache through static\\:\\:\\.$#"
-			count: 4
-			path: src/Foundation/Support/Str.php
-
-		-
 			message: """
 				#^PHPDoc tag @param has invalid value \\(array\\{
 				    name\\: string,

@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PropertyCanBePrivateInspection */
+
 declare(strict_types=1);
 
 /**
@@ -17,17 +19,17 @@ class Str
     /**
      * The cache of snake-cased words.
      */
-    private static array $snakeCache = [];
+    protected static array $snakeCache = [];
 
     /**
      * The cache of camel-cased words.
      */
-    private static array $camelCache = [];
+    protected static array $camelCache = [];
 
     /**
      * The cache of studly-cased words.
      */
-    private static array $studlyCache = [];
+    protected static array $studlyCache = [];
 
     /**
      * Convert a value to camel case.
