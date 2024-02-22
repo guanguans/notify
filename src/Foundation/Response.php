@@ -21,6 +21,7 @@ use GuzzleHttp\TransferStats;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * @template-implements \ArrayAccess<string, mixed>
@@ -48,6 +49,20 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      * The decoded JSON response.
      */
     protected ?array $decoded = null;
+
+    public function __debugInfo(): array
+    {
+        $debugInfo = [
+            'handlerStats' => $this->handlerStats(),
+            'headers' => array_map(static fn (array $header): string => $header[0], $this->headers()),
+            'status' => $this->status(),
+            'reason' => $this->reason(),
+            'body' => $this->body(),
+            'bodyDecoded' => $this->json(),
+        ];
+
+        return class_exists(VarDumper::class) ? $debugInfo : get_object_vars($this) + $debugInfo;
+    }
 
     /**
      * Get the body of the response.
