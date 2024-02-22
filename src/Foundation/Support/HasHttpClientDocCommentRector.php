@@ -104,6 +104,8 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
      * @param Trait_ $node
      *
      * @throws \ReflectionException
+     *
+     * @psalm-suppress MoreSpecificImplementedParamType
      */
     public function refactor(Node $node)
     {

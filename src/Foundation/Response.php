@@ -14,6 +14,7 @@ namespace Guanguans\Notify\Foundation;
 
 use Guanguans\Notify\Foundation\Concerns\DeterminesStatusCode;
 use Guanguans\Notify\Foundation\Concerns\WithDumpable;
+use Guanguans\Notify\Foundation\Exceptions\LogicException;
 use Guanguans\Notify\Foundation\Exceptions\RequestException;
 use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\Cookie\CookieJar;
@@ -373,7 +374,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function offsetSet($offset, $value): void
     {
-        throw new \LogicException('Response data may not be mutated using array access.');
+        throw new LogicException('Response data may not be mutated using array access.');
     }
 
     /**
@@ -385,6 +386,6 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function offsetUnset($offset): void
     {
-        throw new \LogicException('Response data may not be mutated using array access.');
+        throw new LogicException('Response data may not be mutated using array access.');
     }
 }

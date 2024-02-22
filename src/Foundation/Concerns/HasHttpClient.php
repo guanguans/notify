@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
+use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
+use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Middleware\Authenticate;
 use Guanguans\Notify\Foundation\Middleware\Response;
 use Guanguans\Notify\Foundation\Support\Str;
@@ -90,15 +92,15 @@ trait HasHttpClient
 
         if (\in_array($snakedName = Str::snake($name), Utils::getHttpOptionsConstants(), true)) {
             if (empty($arguments)) {
-                throw new \InvalidArgumentException(
-                    sprintf('Method %s::%s requires an argument', static::class, $name)
+                throw new InvalidArgumentException(
+                    sprintf('The method [%s::%s] require an argument.', static::class, $name)
                 );
             }
 
             return $this->setHttpOptions([$snakedName => $arguments[0]]);
         }
 
-        throw new \BadMethodCallException(sprintf('The method [%s::%s] does not exist.', static::class, $name));
+        throw new BadMethodCallException(sprintf('The method [%s::%s] does not exist.', static::class, $name));
     }
 
     public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
@@ -150,7 +152,9 @@ trait HasHttpClient
 
                     $this->setHttpOptions([
                         'handler' => $this->getHandlerStack(),
-                        RequestOptions::ON_STATS => static function (TransferStats $transferStats) use ($onStats): void {
+                        RequestOptions::ON_STATS => static function (TransferStats $transferStats) use (
+                            $onStats
+                        ): void {
                             if ($onStats instanceof \Closure) {
                                 $transferStats = $onStats($transferStats) ?: $transferStats;
                             }

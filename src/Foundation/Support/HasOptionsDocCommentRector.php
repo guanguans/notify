@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation\Support;
 
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
+use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Message;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
@@ -96,7 +97,7 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
 
         foreach ($configuration as $class) {
             if (! \array_key_exists(HasOptions::class, (new \ReflectionClass($class))->getTraits())) {
-                throw new \InvalidArgumentException(
+                throw new InvalidArgumentException(
                     sprintf('The class [%s] must use trait [%s].', $class, HasOptions::class)
                 );
             }
@@ -114,6 +115,8 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
      * @param Class_ $node
      *
      * @throws \ReflectionException
+     *
+     * @psalm-suppress MoreSpecificImplementedParamType
      */
     public function refactor(Node $node)
     {

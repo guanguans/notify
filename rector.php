@@ -103,9 +103,6 @@ return static function (RectorConfig $rectorConfig): void {
 
         // optional rules
         RemoveUselessReturnTagRector::class,
-        ToInternalExceptionRector::class => [
-            __DIR__.'/src/Foundation/Exceptions',
-        ],
         RenameParamToMatchTypeRector::class => [
             __DIR__.'/src/Foundation/Authenticators/AggregateAuthenticator.php',
             __DIR__.'/src/Foundation/Exceptions/RequestException.php',

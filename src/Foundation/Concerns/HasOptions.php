@@ -15,6 +15,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
+use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
+use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Support\Str;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -41,8 +43,8 @@ trait HasOptions
             $casedName = $case ? Str::{$case}($name) : $name;
             if (\in_array($casedName, $defined, true)) {
                 if (empty($arguments)) {
-                    throw new \InvalidArgumentException(
-                        sprintf('Method %s::%s requires an argument', static::class, $name)
+                    throw new InvalidArgumentException(
+                        sprintf('The method [%s::%s] require an argument.', static::class, $name)
                     );
                 }
 
@@ -50,7 +52,7 @@ trait HasOptions
             }
         }
 
-        throw new \BadMethodCallException(sprintf('Method %s::%s does not exist.', static::class, $name));
+        throw new BadMethodCallException(sprintf('The method [%s::%s] does not exist.', static::class, $name));
     }
 
     public function setOptions(array $options): self

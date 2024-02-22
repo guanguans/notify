@@ -14,9 +14,9 @@ namespace Guanguans\Notify\Pushover\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
+use Guanguans\Notify\Foundation\Exceptions\InvalidOptionsException;
+use Guanguans\Notify\Foundation\Exceptions\MissingOptionsException;
 use GuzzleHttp\Psr7\Utils;
-use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
-use Symfony\Component\OptionsResolver\Exception\MissingOptionsException;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**

@@ -12,8 +12,10 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Testing;
 
+use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
+use Guanguans\Notify\Foundation\Exceptions\OutOfBoundsException;
+use Guanguans\Notify\Foundation\Exceptions\RequestException;
 use Guanguans\Notify\Foundation\Support\Str;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\TransferStats;
@@ -59,7 +61,7 @@ class MockHandler extends \GuzzleHttp\Handler\MockHandler
     public function __invoke(RequestInterface $request, array $options): PromiseInterface
     {
         if (! $this->responseMapper) {
-            throw new \OutOfBoundsException('Mock response mapper is empty');
+            throw new OutOfBoundsException('Mock response mapper is empty');
         }
 
         if (isset($options['delay']) && is_numeric($options['delay'])) {
@@ -73,7 +75,7 @@ class MockHandler extends \GuzzleHttp\Handler\MockHandler
 
         if (isset($options['on_headers'])) {
             if (! \is_callable($options['on_headers'])) {
-                throw new \InvalidArgumentException('on_headers must be callable');
+                throw new InvalidArgumentException('on_headers must be callable');
             }
 
             try {
@@ -169,6 +171,6 @@ class MockHandler extends \GuzzleHttp\Handler\MockHandler
             }
         }
 
-        throw new \OutOfBoundsException("No matching mock response for URI: $uri");
+        throw new OutOfBoundsException("No matching mock response for URI: $uri");
     }
 }
