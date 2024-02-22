@@ -298,8 +298,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function throwIfStatus($statusCode): self
     {
-        if (\is_callable($statusCode)
-            && $statusCode($this->status(), $this)) {
+        if (\is_callable($statusCode) && $statusCode($this->status(), $this)) {
             return $this->throw();
         }
 

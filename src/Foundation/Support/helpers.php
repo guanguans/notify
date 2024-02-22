@@ -67,19 +67,3 @@ if (! function_exists('tap')) {
         return $value;
     }
 }
-
-if (! function_exists('array_reduce_with_keys')) {
-    /**
-     * @param null|mixed $carry
-     *
-     * @return null|mixed
-     */
-    function array_reduce_with_keys(array $array, callable $callback, $carry = null)
-    {
-        foreach ($array as $key => $value) {
-            $carry = $callback($carry, $value, $key);
-        }
-
-        return $carry;
-    }
-}
