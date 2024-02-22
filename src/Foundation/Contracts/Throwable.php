@@ -10,8 +10,6 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\Foundation\Exceptions;
+namespace Guanguans\Notify\Foundation\Contracts;
 
-use Guanguans\Notify\Foundation\Contracts\Throwable;
-
-class InvalidArgumentException extends Exception implements Throwable {}
+interface Throwable extends \Throwable {}
