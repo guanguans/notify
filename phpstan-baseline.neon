@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Call to function is_float\\(\\) with int\\|string will always evaluate to false\\.$#"
-			count: 1
-			path: src/Foundation/Support/Arr.php
-
-		-
 			message: "#^Method Guanguans\\\\Notify\\\\Foundation\\\\Support\\\\HasHttpClientDocCommentRector\\:\\:refactor\\(\\) should return 1\\|2\\|3\\|4\\|array\\<PhpParser\\\\Node\\>\\|PhpParser\\\\Node\\|null but empty return statement found\\.$#"
 			count: 1
 			path: src/Foundation/Support/HasHttpClientDocCommentRector.php
@@ -37,11 +32,6 @@ parameters:
 			message: "#^Class Guanguans\\\\Notify\\\\Foundation\\\\Testing\\\\MockHandler extends @final class GuzzleHttp\\\\Handler\\\\MockHandler\\.$#"
 			count: 1
 			path: src/Foundation/Testing/MockHandler.php
-
-		-
-			message: "#^Property Guanguans\\\\Notify\\\\Mattermost\\\\Messages\\\\Message\\:\\:\\$baseUri is unused\\.$#"
-			count: 1
-			path: src/Mattermost/Messages/Message.php
 
 		-
 			message: "#^Property Guanguans\\\\Notify\\\\Pushover\\\\Messages\\\\Message\\:\\:\\$allowedValues \\(array\\<array\\<int\\>\\>\\) does not accept default value of type array\\<string, array\\<int, int\\>\\>\\.$#"

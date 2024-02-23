@@ -28,10 +28,7 @@ class Arr
      * Determine if the given key exists in the provided array.
      *
      * @param array|\ArrayAccess $array
-     * @param int|string $key
-     *
-     * @noinspection UselessIsComparisonInspection
-     * @noinspection CallableParameterUseCaseInTypeContextInspection
+     * @param array-key|float $key
      */
     public static function exists($array, $key): bool
     {
@@ -50,7 +47,7 @@ class Arr
      * Get an item from an array using "dot" notation.
      *
      * @param array|\ArrayAccess $array
-     * @param null|int|string $key
+     * @param null|array-key $key
      * @param mixed $default
      *
      * @return mixed

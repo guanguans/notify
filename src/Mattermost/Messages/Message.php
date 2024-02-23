@@ -65,8 +65,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'edit_at' => 'int',
     ];
 
-    private string $baseUri;
-
     public function toHttpUri(): string
     {
         return "{$this->getOption('base_uri')}/api/v4/posts";
