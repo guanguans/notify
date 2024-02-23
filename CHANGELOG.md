@@ -8,6 +8,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.0.0-rc1"></a>
+## [2.0.0-rc1] - 2024-02-23
+### Feat
+- **composer:** add illuminate/collections dependency
+
+### Refactor
+- **HasOptions:** Remove resolveOptions method and update getOption method
+- **Response:** improve response class structure and add new methods
+- **http:** Ensure required middleware in HasHttpClient trait
+- **utils:** Rename method to more descriptive name
+
+
 <a name="2.0.0-beta3"></a>
 ## [2.0.0-beta3] - 2024-02-22
 ### Feat
@@ -461,7 +473,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.0.0-beta3...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.0.0-rc1...HEAD
+[2.0.0-rc1]: https://github.com/guanguans/notify/compare/2.0.0-beta3...2.0.0-rc1
 [2.0.0-beta3]: https://github.com/guanguans/notify/compare/2.0.0-beta2...2.0.0-beta3
 [2.0.0-beta2]: https://github.com/guanguans/notify/compare/2.0.0-beta1...2.0.0-beta2
 [2.0.0-beta1]: https://github.com/guanguans/notify/compare/1.28.0...2.0.0-beta1
