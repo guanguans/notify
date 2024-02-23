@@ -90,8 +90,10 @@
         "friendsofphp/php-cs-fixer": "^3.49",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
+        "icanhazstring/composer-unused": "^0.8",
         "illuminate/collections": "^8.83 || ^9.0 || ^10.0",
         "kubawerlos/php-cs-fixer-custom-fixers": "^3.20",
+        "maglnet/composer-require-checker": "^3.8 || ^4.0",
         "mockery/mockery": "^1.6",
         "pestphp/pest": "^1.23 || ^2.0",
         "pestphp/pest-plugin-faker": "^1.0 || ^2.0",
@@ -168,6 +170,8 @@
         "checks": [
             "@composer-normalize",
             "@composer-validate",
+            "@composer-require-checker",
+            "@composer-unused",
             "@md-lint",
             "@zh-lint",
             "@style-lint",
@@ -178,6 +182,8 @@
         "composer-bin-all-update": "@composer bin all update --ansi -v",
         "composer-check-platform-reqs": "@composer check-platform-reqs --lock --ansi -v",
         "composer-normalize": "@composer normalize --dry-run --diff --ansi -v",
+        "composer-require-checker": "@php ./vendor/bin/composer-require-checker check --config-file=composer-require-checker.json composer.json --ansi -v",
+        "composer-require-checker-json": "@php ./vendor/bin/composer-require-checker check --config-file=composer-require-checker.json composer.json --ansi -v --output=json | jq",
         "composer-unused": "@php ./vendor/bin/composer-unused --ansi -v",
         "composer-updater": [
             "Composer\\Config::disableProcessTimeout",
