@@ -72,7 +72,10 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     {
         $debugInfo = [
             'handlerStats' => $this->handlerStats(),
-            'headers' => array_map(static fn (array $header): string => $header[0], $this->headers()),
+            'headers' => Arr::map(
+                $this->headers(),
+                fn (array $header, string $name): string => $this->getHeaderLine($name)
+            ),
             'status' => $this->status(),
             'reason' => $this->reason(),
             'body' => $this->body(),
@@ -199,7 +202,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function dataUrl(): string
     {
-        return 'data:'.$this->getHeaderLine('content-type').';base64,'.base64_encode($this->body());
+        return sprintf('data:%s;base64,%s', $this->getHeaderLine('content-type'), base64_encode($this->body()));
     }
 
     /**
