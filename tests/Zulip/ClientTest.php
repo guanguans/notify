@@ -33,7 +33,6 @@ it('can send direct message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"result":"success","msg":"","id":1740849}'),
             create_response('{"result":"error","msg":"Malformed API key","code":"UNAUTHORIZED"}', 401),
@@ -57,7 +56,6 @@ it('can send stream message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"result":"success","msg":"","id":1740849}'),
             create_response('{"result":"error","msg":"Malformed API key","code":"UNAUTHORIZED"}', 401),

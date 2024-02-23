@@ -31,7 +31,6 @@ it('can send message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"code":200,"msg":"请求成功","data":"aab34a37c1ff49ef8087cb3cd2c0d1ff","count":null}'),
             create_response('{"code":903,"msg":"无效的用户token","data":null}'),

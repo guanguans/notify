@@ -34,7 +34,6 @@ it('can send message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('0'),
             create_response(
@@ -68,7 +67,6 @@ it('can send sync message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('This is reply message.'),
             create_response(

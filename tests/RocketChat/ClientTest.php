@@ -39,7 +39,6 @@ it('can send message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"success":true}'),
             create_response('{"success":false,"error":"Invalid integration id or token provided."}'),

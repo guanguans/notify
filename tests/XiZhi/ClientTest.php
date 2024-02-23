@@ -30,7 +30,6 @@ it('can send single message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"code":200,"msg":"推送成功"}'),
             create_response('{"code":10000,"msg":"用户不存在"}'),
@@ -48,7 +47,6 @@ it('can send channel message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"code":200,"msg":"推送成功"}'),
             create_response('{"code":10000,"msg":"未知错误"}'),

@@ -33,7 +33,6 @@ it('can send text message', function (): void {
     $message = TextMessage::make()->text('This is text(keyword).');
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"StatusCode":0,"StatusMessage":"success","code":0,"data":{},"msg":"success"}'),
             create_response('{"code":19001,"data":{},"msg":"param invalid: incoming webhook access token invalid"}'),
@@ -61,7 +60,6 @@ it('can send card message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"StatusCode":0,"StatusMessage":"success","code":0,"data":{},"msg":"success"}'),
             create_response('{"code":19001,"data":{},"msg":"param invalid: incoming webhook access token invalid"}'),
@@ -79,7 +77,6 @@ it('can send image message', function (): void {
     $message = ImageMessage::make()->imageKey('img_ecffc3b9-8f14-400f-a014-05eca1a4');
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"StatusCode":0,"StatusMessage":"success","code":0,"data":{},"msg":"success"}'),
             create_response('{"code":19001,"data":{},"msg":"param invalid: incoming webhook access token invalid"}'),
@@ -109,7 +106,6 @@ it('can send post message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"StatusCode":0,"StatusMessage":"success","code":0,"data":{},"msg":"success"}'),
             create_response('{"code":19001,"data":{},"msg":"param invalid: incoming webhook access token invalid"}'),
@@ -127,7 +123,6 @@ it('can send share chat message', function (): void {
     $message = ShareChatMessage::make()->shareChatId('oc_f5b1a7eb27ae2c7b6adc2a74faf');
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"StatusCode":0,"StatusMessage":"success","code":0,"data":{},"msg":"success"}'),
             create_response('{"code":19001,"data":{},"msg":"param invalid: incoming webhook access token invalid"}'),

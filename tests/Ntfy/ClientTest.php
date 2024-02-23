@@ -39,7 +39,6 @@ it('can send message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"id":"ChjDFVOPqaBK","time":1708335367,"expires":1708378567,"event":"message","topic":"guanguans","title":"This is title.","message":"This is message.","priority":1,"tags":["tag1","tag2"],"click":"https://example.com","icon":"https://www.guanguans.cn","attachment":{"name":"file.jpg","url":"https://www.guanguans.cn"}}'),
             create_response('{"id":"ChjDFVOPqaBK","time":1708335367,"expires":1708378567,"event":"message","topic":"guanguans","title":"This is title.","message":"This is message.","priority":1,"tags":["tag1","tag2"],"click":"https://example.com","icon":"https://www.guanguans.cn","attachment":{"name":"file.jpg","url":"https://www.guanguans.cn"}}'),

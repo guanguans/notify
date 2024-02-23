@@ -29,7 +29,6 @@ it('can send message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"error_code":0,"error_message":"ok"}'),
             create_response('{"error_code":10103,"error_message":"url\u6216token\u4e0d\u6b63\u786e"}'),

@@ -46,7 +46,6 @@ it('can send message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('ok'),
             create_response('invalid_token', 403),

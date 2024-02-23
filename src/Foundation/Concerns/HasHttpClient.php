@@ -151,8 +151,9 @@ trait HasHttpClient
                 if (! $this->httpClient instanceof Client) {
                     $onStats = $this->httpOptions[RequestOptions::ON_STATS] ?? false;
 
-                    $this->setHttpOptions([
+                    $this->httpOptions += [
                         'handler' => $this->getHandlerStack(),
+                        RequestOptions::HTTP_ERRORS => false,
                         RequestOptions::ON_STATS => static function (TransferStats $transferStats) use (
                             $onStats
                         ): void {
@@ -162,7 +163,7 @@ trait HasHttpClient
 
                             Response::setTransferStats($transferStats);
                         },
-                    ]);
+                    ];
 
                     $this->httpClient = new Client($this->getHttpOptions());
                 }

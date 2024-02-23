@@ -29,7 +29,6 @@ it('can send message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"code":0,"message":"","data":{"pushid":"156157448","readkey":"SCTRd7BkgAHn6XG","error":"SUCCESS","errno":0}}'),
             create_response('{"message":"[AUTH]\u9519\u8bef\u7684Key","code":40001,"info":"\u9519\u8bef\u7684Key","args":[null],"scode":461}', 400),

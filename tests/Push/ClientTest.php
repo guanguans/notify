@@ -31,7 +31,6 @@ it('can send message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"success":true,"responses":[{"success":true,"message":"Message send to device"},{"success":true,"message":"Message send to device"}]}'),
             create_response('{"success":false,"message":"Invalid API key, authentication failed"}', 401),

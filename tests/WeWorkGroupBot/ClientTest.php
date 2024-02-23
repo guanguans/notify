@@ -33,7 +33,6 @@ it('can send text message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"errcode":0,"errmsg":"ok"}'),
             create_response('{"errcode":93000,"errmsg":"invalid webhook url, hint: [1708397705432012366598976], from ip: 218.72.126.124, more info at https://open.work.weixin.qq.com/devtool/query?e=93000"}'),
@@ -48,7 +47,6 @@ it('can send image message', function (): void {
     $message = ImageMessage::make()->image(fixtures_path('image.png'));
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"errcode":0,"errmsg":"ok"}'),
             create_response('{"errcode":93000,"errmsg":"invalid webhook url, hint: [1708397705432012366598976], from ip: 218.72.126.124, more info at https://open.work.weixin.qq.com/devtool/query?e=93000"}'),
@@ -63,7 +61,6 @@ it('can send markdown message', function (): void {
     $message = MarkdownMessage::make()->content("# This is title.\n This is content.");
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"errcode":0,"errmsg":"ok"}'),
             create_response('{"errcode":93000,"errmsg":"invalid webhook url, hint: [1708397705432012366598976], from ip: 218.72.126.124, more info at https://open.work.weixin.qq.com/devtool/query?e=93000"}'),
@@ -85,7 +82,6 @@ it('can send news message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"errcode":0,"errmsg":"ok"}'),
             create_response('{"errcode":93000,"errmsg":"invalid webhook url, hint: [1708397705432012366598976], from ip: 218.72.126.124, more info at https://open.work.weixin.qq.com/devtool/query?e=93000"}'),

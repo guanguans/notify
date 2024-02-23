@@ -38,7 +38,6 @@ it('can send text message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"request-uid":"03fe6123-2098-4af8-a210-658010a69d9c"}'),
             create_response('{"res":400,"msg":"bad request"}', 400),
@@ -57,7 +56,6 @@ it('can send link message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"request-uid":"03fe6123-2098-4af8-a210-658010a69d9c"}'),
             create_response('{"res":400,"msg":"bad request"}', 400),

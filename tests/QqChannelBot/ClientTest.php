@@ -43,7 +43,6 @@ it('can send message', function (): void {
     $sandboxMessage = SandboxMessage::make($data);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"id":"08efdfa1b3e1d4d6e246109fbe8702383048e4d0ccae06","channel_id":"4316959","guild_id":"5099581822453968879","content":"This is content.","timestamp":"2024-02-19T18:07:32+08:00","tts":false,"mention_everyone":false,"author":{"id":"7938900097687957410","username":"","avatar":"","bot":true},"pinned":false,"type":0,"flags":0,"seq_in_channel":"48"}'),
             create_response(

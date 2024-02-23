@@ -39,7 +39,6 @@ it('can send text message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"errcode":0,"errmsg":"ok"}'),
             create_response('{"errcode":300005,"errmsg":"token is not exist"}'),
@@ -68,7 +67,6 @@ it('can send btns action card message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"errcode":0,"errmsg":"ok"}'),
             create_response('{"errcode":300005,"errmsg":"token is not exist"}'),
@@ -92,7 +90,6 @@ it('can send feed card message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"errcode":0,"errmsg":"ok"}'),
             create_response('{"errcode":300005,"errmsg":"token is not exist"}'),
@@ -115,7 +112,6 @@ it('can send link message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"errcode":0,"errmsg":"ok"}'),
             create_response('{"errcode":300005,"errmsg":"token is not exist"}'),
@@ -139,7 +135,6 @@ it('can send markdown message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"errcode":0,"errmsg":"ok"}'),
             create_response('{"errcode":300005,"errmsg":"token is not exist"}'),
@@ -163,7 +158,6 @@ it('can send single action card message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"errcode":0,"errmsg":"ok"}'),
             create_response('{"errcode":300005,"errmsg":"token is not exist"}'),

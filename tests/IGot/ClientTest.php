@@ -37,7 +37,6 @@ it('can send message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"ret":0,"data":{"id":"65d31d11adda140033fc8c17"},"errMsg":"发送成功"}'),
             create_response('{"ret":201,"data":{},"errMsg":"请使用系统分配的有效key"}'),

@@ -37,7 +37,6 @@ it('can send message', function (): void {
     ]);
 
     expect($client)
-        ->httpErrors(false)
         ->mock([
             create_response('{"ok":true,"result":{"message_id":5,"from":{"id":6825137102,"is_bot":true,"first_name":"guanguansbot","username":"guanguand_bot"},"chat":{"id":6173634402,"first_name":"guanguans","type":"private"},"date":1708397315,"text":"This is text","entities":[{"offset":0,"length":12,"type":"bold"}]}}'),
             create_response('{"ok":false,"error_code":401,"description":"Unauthorized"}', 401),
