@@ -45,7 +45,7 @@ it('can send text message', function (): void {
 it('can send image message', function (): void {
     $authenticator = new Authenticator('73a3d5a3-ceff-4da8-bcf3-ff5891778');
     $client = new Client($authenticator);
-    $message = ImageMessage::make()->image('https://avatars.githubusercontent.com/u/22309277?v=4');
+    $message = ImageMessage::make()->image(fixtures_path('image.png'));
 
     expect($client)
         ->httpErrors(false)

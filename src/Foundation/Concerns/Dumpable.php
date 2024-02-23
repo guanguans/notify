@@ -14,7 +14,7 @@ namespace Guanguans\Notify\Foundation\Concerns;
 
 use Symfony\Component\VarDumper\VarDumper;
 
-trait WithDumpable
+trait Dumpable
 {
     /**
      * @codeCoverageIgnore

@@ -12,15 +12,15 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
+use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
 use Guanguans\Notify\Foundation\Concerns\Makeable;
-use Guanguans\Notify\Foundation\Concerns\WithDumpable;
 
 abstract class Message implements \ArrayAccess, Contracts\Message
 {
+    use Dumpable;
     use HasOptions;
     use Makeable;
-    use WithDumpable;
 
     public function __construct(array $options = [])
     {

@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation;
 
 use Guanguans\Notify\Foundation\Concerns\DeterminesStatusCode;
-use Guanguans\Notify\Foundation\Concerns\WithDumpable;
+use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Exceptions\LogicException;
 use Guanguans\Notify\Foundation\Exceptions\RequestException;
@@ -37,7 +37,7 @@ use Symfony\Component\VarDumper\VarDumper;
 class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
 {
     use DeterminesStatusCode;
-    use WithDumpable;
+    use Dumpable;
 
     /**
      * The request that generated response.
