@@ -138,7 +138,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     }
 
     /**
-     * Alias of json()
+     * Alias of json().
      *
      * @param null|array-key $key
      * @param null|mixed $default
@@ -184,10 +184,6 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      * @see https://github.com/illuminate/collections
      *
      * @param null|array-key $key
-     *
-     * @noinspection PhpUndefinedClassInspection
-     *
-     * @psalm-suppress UndefinedClass
      */
     public function collect($key = null): Collection
     {

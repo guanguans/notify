@@ -90,6 +90,7 @@
         "friendsofphp/php-cs-fixer": "^3.49",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
+        "illuminate/collections": "^8.83 || ^9.0 || ^10.0",
         "kubawerlos/php-cs-fixer-custom-fixers": "^3.20",
         "mockery/mockery": "^1.6",
         "pestphp/pest": "^1.23 || ^2.0",
@@ -103,8 +104,8 @@
         "vimeo/psalm": "^5.22"
     },
     "suggest": {
-        "symfony/mailer": "Required to use the email.",
-        "textalk/websocket": "Required to use the QQ channel bot."
+        "illuminate/collections": "Required to use the method [Response::collect()].",
+        "symfony/var-dumper": "Required to use the the trait [WithDumpable]."
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
