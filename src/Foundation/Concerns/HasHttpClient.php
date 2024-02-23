@@ -177,10 +177,9 @@ trait HasHttpClient
     {
         if (! $this->handlerStack instanceof HandlerStack) {
             $this->handlerStack = HandlerStack::create();
-            $this->handlerStack->push(new Response, Response::class);
         }
 
-        return $this->handlerStack = $this->ensureAuthenticate($this->handlerStack);
+        return $this->handlerStack = $this->ensureWithRequiredMiddleware($this->handlerStack);
     }
 
     private function getHttpOptions(): array
@@ -188,7 +187,10 @@ trait HasHttpClient
         return $this->httpOptions;
     }
 
-    private function ensureAuthenticate(HandlerStack $handlerStack): HandlerStack
+    /**
+     * @noinspection BadExceptionsProcessingInspection
+     */
+    private function ensureWithRequiredMiddleware(HandlerStack $handlerStack): HandlerStack
     {
         try {
             (function (): void {
@@ -197,6 +199,15 @@ trait HasHttpClient
             })->call($handlerStack);
         } catch (\InvalidArgumentException $invalidArgumentException) {
             $handlerStack->push(new Authenticate($this->authenticator), Authenticate::class);
+        }
+
+        try {
+            (function (): void {
+                \assert($this instanceof HandlerStack);
+                $this->findByName(Response::class);
+            })->call($handlerStack);
+        } catch (\InvalidArgumentException $invalidArgumentException) {
+            $handlerStack->push(new Response, Response::class);
         }
 
         return $handlerStack;
