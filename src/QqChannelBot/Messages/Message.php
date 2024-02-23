@@ -63,7 +63,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         unset($options['channel_id']);
 
         return [
-            RequestOptions::MULTIPART => Utils::toMultipart($options),
+            RequestOptions::MULTIPART => Utils::multipartFor($options),
         ];
     }
 

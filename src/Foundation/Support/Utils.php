@@ -20,7 +20,7 @@ class Utils
     /**
      * Convert a form array into a multipart array.
      */
-    public static function toMultipart(array $form): array
+    public static function multipartFor(array $form): array
     {
         /**
          * @param array-key $name
@@ -84,8 +84,12 @@ class Utils
      */
     public static function getHttpOptionsConstants(): array
     {
-        return [
+        $constants = (new \ReflectionClass(RequestOptions::class))->getConstants() + [
             'BASE_URI' => 'base_uri',
-        ] + (new \ReflectionClass(RequestOptions::class))->getConstants();
+        ];
+
+        asort($constants);
+
+        return $constants;
     }
 }

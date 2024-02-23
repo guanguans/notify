@@ -31,7 +31,7 @@ class PayloadAuthenticator extends NullAuthenticator
     {
         $options[$this->type] = array_merge(
             $options[$this->type] ?? [],
-            RequestOptions::MULTIPART === $this->type ? Utils::toMultipart($this->payload) : $this->payload
+            RequestOptions::MULTIPART === $this->type ? Utils::multipartFor($this->payload) : $this->payload
         );
 
         return $options;

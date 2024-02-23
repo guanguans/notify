@@ -27,8 +27,7 @@ use Webmozart\Assert\Assert;
  */
 class ToInternalExceptionRector extends AbstractRector implements ConfigurableRectorInterface
 {
-    private array $except = [
-    ];
+    private array $except = [];
 
     /**
      * @throws PoorDocumentationException
@@ -81,7 +80,11 @@ class ToInternalExceptionRector extends AbstractRector implements ConfigurableRe
         if (
             ! $class instanceof Name
             || Str::is($this->except, $class->toString())
-            || 0 === strncmp($class->toString(), 'Guanguans\\Notify\\Foundation\\Exceptions\\', \strlen('Guanguans\\Notify\\Foundation\\Exceptions\\'))
+            || 0 === strncmp(
+                $class->toString(),
+                'Guanguans\\Notify\\Foundation\\Exceptions\\',
+                \strlen('Guanguans\\Notify\\Foundation\\Exceptions\\')
+            )
             || 0 !== substr_compare($class->toString(), 'Exception', -\strlen('Exception'))
         ) {
             return;
