@@ -39,6 +39,7 @@ use GuzzleHttp\TransferStats;
  * @method self connectTimeout($connectTimeout)
  * @method self cookies($cookies)
  * @method self cryptoMethod($cryptoMethod)
+ * @method self curl($curl)
  * @method self debug($debug)
  * @method self decodeContent($decodeContent)
  * @method self delay($delay)

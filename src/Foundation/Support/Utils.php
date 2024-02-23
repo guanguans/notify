@@ -86,6 +86,7 @@ class Utils
     {
         $constants = (new \ReflectionClass(RequestOptions::class))->getConstants() + [
             'BASE_URI' => 'base_uri',
+            'CURL' => 'curl',
         ];
 
         asort($constants);
