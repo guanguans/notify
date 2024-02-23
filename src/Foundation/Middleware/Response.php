@@ -27,9 +27,9 @@ class Response implements TransferStatsAware
             static function (ResponseInterface $response) use ($request, $options): ResponseInterface {
                 $response = \Guanguans\Notify\Foundation\Response::fromPsrResponse($response);
 
-                $response->request = $request;
-                $response->cookies = $options[RequestOptions::COOKIES] ?: null;
-                $response->transferStats = self::$transferStats;
+                $response->request($request);
+                $response->cookies($options[RequestOptions::COOKIES] ?: null);
+                $response->transferStats(self::$transferStats);
 
                 return $response;
             }

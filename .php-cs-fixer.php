@@ -283,10 +283,10 @@ return (new Config)
         'blank_line_before_statement' => [
             'statements' => [
                 'break',
-                'case',
+                // 'case',
                 'continue',
                 'declare',
-                'default',
+                // 'default',
                 'exit',
                 'goto',
                 'include',

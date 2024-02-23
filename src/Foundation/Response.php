@@ -14,11 +14,14 @@ namespace Guanguans\Notify\Foundation;
 
 use Guanguans\Notify\Foundation\Concerns\DeterminesStatusCode;
 use Guanguans\Notify\Foundation\Concerns\WithDumpable;
+use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Exceptions\LogicException;
 use Guanguans\Notify\Foundation\Exceptions\RequestException;
+use Guanguans\Notify\Foundation\Exceptions\RuntimeException;
 use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\TransferStats;
+use Illuminate\Support\Collection;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
@@ -28,29 +31,43 @@ use Symfony\Component\VarDumper\VarDumper;
  * @template-implements \ArrayAccess<string, mixed>
  *
  * @see https://github.com/laravel/framework
+ * @see https://github.com/saloonphp/saloon
+ * @see https://github.com/w7corp/easywechat
  */
 class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
 {
     use DeterminesStatusCode;
     use WithDumpable;
 
-    public ?RequestInterface $request = null;
+    /**
+     * The request that generated response.
+     *
+     * @readonly
+     */
+    protected ?RequestInterface $request = null;
 
     /**
      * The request cookies.
+     *
+     * @readonly
      */
-    public ?CookieJar $cookies = null;
+    protected ?CookieJar $cookies = null;
 
     /**
      * The transfer stats for the request.
+     *
+     * @readonly
      */
-    public ?TransferStats $transferStats = null;
+    protected ?TransferStats $transferStats = null;
 
     /**
      * The decoded JSON response.
      */
     protected ?array $decoded = null;
 
+    /**
+     * Provide debug information about the response.
+     */
     public function __debugInfo(): array
     {
         $debugInfo = [
@@ -59,7 +76,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
             'status' => $this->status(),
             'reason' => $this->reason(),
             'body' => $this->body(),
-            'bodyDecoded' => $this->json(),
+            'decodedBody' => $this->json(),
         ];
 
         return class_exists(VarDumper::class) ? $debugInfo : get_object_vars($this) + $debugInfo;
@@ -73,6 +90,9 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
         return $this->body();
     }
 
+    /**
+     * Create a instance from a PSR response.
+     */
     public static function fromPsrResponse(ResponseInterface $response): self
     {
         return $response instanceof static ? $response : new static(
@@ -97,13 +117,14 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     /**
      * Get the JSON decoded body of the response as an array or scalar value.
      *
+     * @param null|array-key $key
      * @param mixed $default
      *
      * @return mixed
      *
      * @noinspection JsonEncodingApiUsageInspection
      */
-    public function json(?string $key = null, $default = null)
+    public function json($key = null, $default = null)
     {
         if (! $this->decoded) {
             $this->decoded = json_decode($this->body(), true);
@@ -117,6 +138,17 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     }
 
     /**
+     * Alias of json()
+     *
+     * @param null|array-key $key
+     * @param null|mixed $default
+     */
+    public function array($key = null, $default = null)
+    {
+        return $this->json($key, $default);
+    }
+
+    /**
      * Get the JSON decoded body of the response as an object.
      *
      * @noinspection JsonEncodingApiUsageInspection
@@ -124,6 +156,120 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     public function object(): ?object
     {
         return json_decode($this->body());
+    }
+
+    /**
+     * Convert the XML response into a \SimpleXMLElement.
+     *
+     * Suitable for reading small, simple XML responses but not suitable for
+     * more advanced XML responses with namespaces and prefixes. Consider
+     * using the xmlReader method instead for better compatability.
+     *
+     * @return false|\SimpleXMLElement
+     *
+     * @see https://www.php.net/manual/en/book.simplexml.php
+     *
+     * @noinspection PhpReturnDocTypeMismatchInspection
+     */
+    public function xml(...$arguments)
+    {
+        return simplexml_load_string($this->body(), ...$arguments);
+    }
+
+    /**
+     * Get the JSON decoded body of the response as a collection.
+     *
+     * Requires Laravel Collections (composer require illuminate/collections)
+     *
+     * @see https://github.com/illuminate/collections
+     *
+     * @param null|array-key $key
+     *
+     * @noinspection PhpUndefinedClassInspection
+     *
+     * @psalm-suppress UndefinedClass
+     */
+    public function collect($key = null): Collection
+    {
+        if (! class_exists(Collection::class)) {
+            throw new RuntimeException('To use the "collect" method you must install the illuminate/collections package.');
+        }
+
+        return Collection::make($this->json($key));
+    }
+
+    /**
+     * Generate a data URL from the content type and body.
+     */
+    public function dataUrl(): string
+    {
+        return 'data:'.$this->getHeaderLine('content-type').';base64,'.base64_encode($this->body());
+    }
+
+    /**
+     * Save the response to resource or file.
+     *
+     * @param resource|string $resourceOrPath
+     */
+    public function saveAs($resourceOrPath, bool $closeResource = true): void
+    {
+        if (! \is_string($resourceOrPath) && ! \is_resource($resourceOrPath)) {
+            throw new InvalidArgumentException('The $resourceOrPath argument must be either a file path or a resource.');
+        }
+
+        $resource = \is_string($resourceOrPath) ? fopen($resourceOrPath, 'wb+') : $resourceOrPath;
+
+        if (false === $resource) {
+            throw new LogicException('Unable to open the resource.');
+        }
+
+        rewind($resource);
+
+        $stream = $this->getBody();
+        // if ($stream->isSeekable()) {
+        //     $stream->rewind();
+        // }
+
+        while (! $stream->eof()) {
+            fwrite($resource, $stream->read(1024));
+        }
+
+        rewind($resource);
+
+        if ($closeResource) {
+            fclose($resource);
+        }
+    }
+
+    /**
+     * Check if the content type matches the given type.
+     *
+     * @noinspection MultipleReturnStatementsInspection
+     */
+    public function is(string $type): bool
+    {
+        $contentType = $this->getHeaderLine('content-type');
+
+        switch (strtolower($type)) {
+            case 'json':
+                return false !== strpos($contentType, '/json');
+            case 'xml':
+                return false !== strpos($contentType, '/xml');
+            case 'html':
+                return false !== strpos($contentType, '/html');
+            case 'image':
+                return false !== strpos($contentType, '/image');
+            case 'audio':
+                return false !== strpos($contentType, '/audio');
+            case 'video':
+                return false !== strpos($contentType, '/video');
+            case 'text':
+                return false !== strpos($contentType, '/text')
+                    || false !== strpos($contentType, '/json')
+                    || false !== strpos($contentType, '/xml');
+            default:
+                return false;
+        }
     }
 
     /**
@@ -218,17 +364,52 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
         return $this;
     }
 
-    public function request(): ?RequestInterface
+    /**
+     * Get or set the request that generated response.
+     */
+    public function request(?RequestInterface $request = null): ?RequestInterface
     {
-        return $this->request;
+        if (0 === \func_num_args()) {
+            return $this->request;
+        }
+
+        if ($this->request instanceof RequestInterface) {
+            throw new LogicException('Request already set on the response.');
+        }
+
+        return $this->request = $request;
     }
 
     /**
-     * Get the response cookies.
+     * Get or set the response cookies.
      */
-    public function cookies(): ?CookieJar
+    public function cookies(?CookieJar $cookieJar = null): ?CookieJar
     {
-        return $this->cookies;
+        if (0 === \func_num_args()) {
+            return $this->cookies;
+        }
+
+        if ($this->cookies instanceof CookieJar) {
+            throw new LogicException('Cookies already set on the response.');
+        }
+
+        return $this->cookies = $cookieJar;
+    }
+
+    /**
+     * Get or set the transfer stats of the response.
+     */
+    public function transferStats(?TransferStats $transferStats = null): ?TransferStats
+    {
+        if (0 === \func_num_args()) {
+            return $this->transferStats;
+        }
+
+        if ($this->transferStats instanceof TransferStats) {
+            throw new LogicException('Transfer stats already set on the response.');
+        }
+
+        return $this->transferStats = $transferStats;
     }
 
     /**
@@ -360,7 +541,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function offsetGet($offset)
     {
-        return $this->json()[$offset];
+        return $this->json()[$offset] ?? null;
     }
 
     /**

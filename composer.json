@@ -78,6 +78,7 @@
     "require": {
         "php": ">=7.4",
         "ext-json": "*",
+        "ext-simplexml": "*",
         "guzzlehttp/guzzle": "^7.8",
         "guzzlehttp/uri-template": "^1.0",
         "symfony/options-resolver": "^5.4 || ^6.0 || ^7.0"

@@ -26,6 +26,11 @@
         <file name="src/Foundation/Concerns/HasOptions.php"/>
       </errorLevel>
     </UndefinedThisPropertyFetch>
+    <InaccessibleProperty>
+      <errorLevel type="suppress">
+        <file name="src/Foundation/Response.php"/>
+      </errorLevel>
+    </InaccessibleProperty>
   </issueHandlers>
   <plugins>
     <!--<pluginClass class="Psalm\LaravelPlugin\Plugin"/>-->
