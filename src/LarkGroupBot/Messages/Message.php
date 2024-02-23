@@ -29,7 +29,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         return [
             RequestOptions::JSON => [
                 'msg_type' => $this->type(),
-                'content' => $this->resolveOptions(),
+                'content' => $this->getOptions(),
             ],
         ];
     }

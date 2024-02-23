@@ -58,7 +58,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpOptions(): array
     {
-        $options = $this->resolveOptions();
+        $options = $this->getOptions();
 
         unset($options['channel_id']);
 

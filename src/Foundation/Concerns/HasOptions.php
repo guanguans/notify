@@ -24,12 +24,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @property-read array<string, mixed> $defaults
  * @property-read array<string> $required
  * @property-read array<string> $defined
+ * @property-read bool $prototype
  * @property-read array<array-key, array|string> $deprecated
  * @property-read array<string, \Closure> $normalizers
  * @property-read array<string, mixed> $allowedValues
  * @property-read array<string, array<string>|string> $allowedTypes;
  * @property-read array<string, string> $infos
- * @property-read bool $prototype
  */
 trait HasOptions
 {
@@ -73,15 +73,10 @@ trait HasOptions
 
     public function getOption(string $option, $default = null)
     {
-        return $this->options[$option] ?? $default;
+        return $this->getOptions()[$option] ?? $default;
     }
 
     public function getOptions(): array
-    {
-        return $this->options;
-    }
-
-    public function resolveOptions(): array
     {
         return $this->configureAndResolveOptions($this->options, function (OptionsResolver $optionsResolver): void {
             $this->preConfigureOptionsResolver($optionsResolver);
@@ -96,7 +91,7 @@ trait HasOptions
 
     public function offsetGet($offset)
     {
-        return $this->getOption($offset);
+        return $this->getOptions()[$offset];
     }
 
     public function offsetSet($offset, $value): void
@@ -128,6 +123,7 @@ trait HasOptions
         property_exists($this, 'defaults') and $optionsResolver->setDefaults($this->defaults);
         property_exists($this, 'required') and $optionsResolver->setRequired($this->required);
         property_exists($this, 'defined') and $optionsResolver->setDefined($this->defined);
+        property_exists($this, 'prototype') and $optionsResolver->setPrototype($this->prototype);
 
         if (property_exists($this, 'deprecated')) {
             foreach ($this->deprecated as $option => $arguments) {
@@ -166,7 +162,5 @@ trait HasOptions
                 $optionsResolver->setInfo($option, $info);
             }
         }
-
-        property_exists($this, 'prototype') and $optionsResolver->setPrototype($this->prototype);
     }
 }

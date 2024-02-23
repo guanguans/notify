@@ -23,7 +23,7 @@ trait AsBody
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::BODY => Utils::streamFor($this->resolveOptions()),
+            RequestOptions::BODY => Utils::streamFor($this->getOptions()),
         ];
     }
 }

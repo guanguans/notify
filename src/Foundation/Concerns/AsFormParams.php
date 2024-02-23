@@ -22,7 +22,7 @@ trait AsFormParams
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::FORM_PARAMS => $this->resolveOptions(),
+            RequestOptions::FORM_PARAMS => $this->getOptions(),
         ];
     }
 }
