@@ -12,12 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
-use Guanguans\Notify\Foundation\Message;
 use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\RequestOptions;
 
 /**
- * @mixin Message
+ * @mixin \Guanguans\Notify\Foundation\Message
  */
 trait AsMultipart
 {

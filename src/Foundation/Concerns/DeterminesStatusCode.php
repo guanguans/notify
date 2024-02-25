@@ -12,10 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
-use Guanguans\Notify\Foundation\Response;
-
 /**
- * @mixin Response
+ * @mixin \Guanguans\Notify\Foundation\Response
  */
 trait DeterminesStatusCode
 {

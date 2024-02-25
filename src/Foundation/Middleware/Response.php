@@ -12,14 +12,14 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Middleware;
 
-use Guanguans\Notify\Foundation\Contracts\TransferStatsAware;
 use GuzzleHttp\RequestOptions;
+use GuzzleHttp\TransferStats;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-class Response implements TransferStatsAware
+class Response
 {
-    use \Guanguans\Notify\Foundation\Concerns\TransferStatsAware;
+    private static ?TransferStats $transferStats = null;
 
     public function __invoke(callable $handler): callable
     {
@@ -34,5 +34,10 @@ class Response implements TransferStatsAware
                 return $response;
             }
         );
+    }
+
+    public static function setTransferStats(TransferStats $transferStats): void
+    {
+        self::$transferStats = $transferStats;
     }
 }
