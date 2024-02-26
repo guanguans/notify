@@ -76,7 +76,7 @@ function class_namespace($class): string
 
 function fixtures_path(string $path = ''): string
 {
-    return __DIR__.'/Fixtures'.($path ? \DIRECTORY_SEPARATOR.$path : $path);
+    return __DIR__.'/fixtures'.($path ? \DIRECTORY_SEPARATOR.$path : $path);
 }
 
 function create_response(
