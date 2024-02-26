@@ -16,6 +16,7 @@ use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Middleware\Authenticate;
 use Guanguans\Notify\Foundation\Middleware\Response;
+use Guanguans\Notify\Foundation\Support\Arr;
 use Guanguans\Notify\Foundation\Support\Str;
 use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\Client;
@@ -134,7 +135,17 @@ trait HasHttpClient
 
     public function setHttpOptions(array $httpOptions): self
     {
-        $this->httpOptions = array_replace($this->httpOptions, $httpOptions);
+        $this->httpOptions = array_replace_recursive(
+            array_merge_recursive($this->httpOptions, Arr::only($httpOptions, [
+                'cookies',
+                'form_params',
+                'headers',
+                'json',
+                'multipart',
+                'query',
+            ])),
+            $httpOptions
+        );
 
         return $this;
     }

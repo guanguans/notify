@@ -98,4 +98,14 @@ class Arr
 
         return array_combine($keys, $items);
     }
+
+    /**
+     * Get a subset of the items from the given array.
+     *
+     * @param array|string $keys
+     */
+    public static function only(array $array, $keys): array
+    {
+        return array_intersect_key($array, array_flip((array) $keys));
+    }
 }
