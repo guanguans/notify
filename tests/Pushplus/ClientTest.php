@@ -13,11 +13,11 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\NotifyTests\PushPlus;
+namespace Guanguans\NotifyTests\Pushplus;
 
-use Guanguans\Notify\PushPlus\Authenticator;
-use Guanguans\Notify\PushPlus\Client;
-use Guanguans\Notify\PushPlus\Messages\Message;
+use Guanguans\Notify\Pushplus\Authenticator;
+use Guanguans\Notify\Pushplus\Client;
+use Guanguans\Notify\Pushplus\Messages\Message;
 use Psr\Http\Message\ResponseInterface;
 
 it('can send message', function (): void {

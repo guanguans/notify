@@ -10,8 +10,6 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\PushPlus;
+namespace Guanguans\Notify\Pushplus;
 
-use Guanguans\Notify\Foundation\Authenticators\TokenUriTemplateAuthenticator;
-
-class Authenticator extends TokenUriTemplateAuthenticator {}
+class Client extends \Guanguans\Notify\Foundation\Client {}
