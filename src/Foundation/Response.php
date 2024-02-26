@@ -25,7 +25,6 @@ use Illuminate\Support\Collection;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
-use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * @template-implements \ArrayAccess<string, mixed>
@@ -70,7 +69,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function __debugInfo(): array
     {
-        $debugInfo = [
+        return $this->withDebugInfo([
             'handlerStats' => $this->handlerStats(),
             'headers' => Arr::map(
                 $this->headers(),
@@ -80,9 +79,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
             'reason' => $this->reason(),
             'body' => $this->body(),
             'decodedBody' => $this->json(),
-        ];
-
-        return class_exists(VarDumper::class) ? $debugInfo : get_object_vars($this) + $debugInfo;
+        ]);
     }
 
     /**
