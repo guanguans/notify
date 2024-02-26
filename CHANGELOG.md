@@ -8,6 +8,17 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.0.0"></a>
+## [2.0.0] - 2024-02-26
+### Feat
+- **Message:** Add __debugInfo method
+- **Utils:** Add objectWithDebugInfo method
+
+### Refactor
+- **concerns:** Update mixin references in traits
+- **debug:** Improve debug info handling
+
+
 <a name="2.0.0-rc1"></a>
 ## [2.0.0-rc1] - 2024-02-23
 ### Feat
@@ -473,7 +484,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.0.0-rc1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/guanguans/notify/compare/2.0.0-rc1...2.0.0
 [2.0.0-rc1]: https://github.com/guanguans/notify/compare/2.0.0-beta3...2.0.0-rc1
 [2.0.0-beta3]: https://github.com/guanguans/notify/compare/2.0.0-beta2...2.0.0-beta3
 [2.0.0-beta2]: https://github.com/guanguans/notify/compare/2.0.0-beta1...2.0.0-beta2
