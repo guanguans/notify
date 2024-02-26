@@ -13,12 +13,12 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\NotifyTests\PushBack;
+namespace Guanguans\NotifyTests\Pushback;
 
-use Guanguans\Notify\PushBack\Authenticator;
-use Guanguans\Notify\PushBack\Client;
-use Guanguans\Notify\PushBack\Messages\Message;
-use Guanguans\Notify\PushBack\Messages\SyncMessage;
+use Guanguans\Notify\Pushback\Authenticator;
+use Guanguans\Notify\Pushback\Client;
+use Guanguans\Notify\Pushback\Messages\Message;
+use Guanguans\Notify\Pushback\Messages\SyncMessage;
 use Psr\Http\Message\ResponseInterface;
 
 it('can send message', function (): void {

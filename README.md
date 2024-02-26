@@ -2,7 +2,7 @@
 
 [简体中文](README-zh_CN.md) | [ENGLISH](README.md)
 
-> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、PushBack、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、YiFengChuanHua、Zulip).
+> Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、Pushback、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、YiFengChuanHua、Zulip).
 
 [![tests](https://github.com/guanguans/notify/actions/workflows/tests.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/tests.yml)
 [![check & fix styling](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml)
@@ -33,7 +33,7 @@
 * [Microsoft Teams](https://www.microsoft.com/zh-cn/microsoft-teams/teams-for-work)
 * [Now Push](https://nowpush.io/api-docs/)
 * [Ntfy](https://ntfy.sh/)
-* [PushBack](https://pushback.io/docs/getting-started)
+* [Pushback](https://pushback.io/docs/getting-started)
 * [Push](https://docs.push.techulus.com/api-documentation)
 * [PushDeer](http://pushdeer.com)
 * [Pushover](https://pushover.net)
@@ -640,7 +640,7 @@ Factory::ntfy()
 </details>
 
 <details>
-<summary><b>PushBack</b></summary>
+<summary><b>Pushback</b></summary>
 
 ```php
 Factory::pushBack()
