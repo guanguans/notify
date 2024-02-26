@@ -14,7 +14,6 @@ namespace Guanguans\Notify\Foundation\Support;
 
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\StreamInterface;
-use Symfony\Component\VarDumper\VarDumper;
 
 class Utils
 {
@@ -93,10 +92,5 @@ class Utils
         asort($constants);
 
         return $constants;
-    }
-
-    public static function objectWithDebugInfo(object $object, array $debugInfo): array
-    {
-        return class_exists(VarDumper::class) ? $debugInfo : get_object_vars($object) + $debugInfo;
     }
 }
