@@ -10,29 +10,35 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\Notify\LarkGroupBot\Messages;
+namespace Guanguans\Notify\Lark\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 use GuzzleHttp\RequestOptions;
 
-abstract class Message extends \Guanguans\Notify\Foundation\Message
+/**
+ * @method self card(array $card)
+ */
+class CardMessage extends Message
 {
-    use AsPost;
+    protected array $defined = [
+        'card',
+    ];
 
-    public function toHttpUri(): string
-    {
-        return 'https://open.feishu.cn/open-apis/bot/v2/hook/{token}';
-    }
+    protected array $allowedTypes = [
+        'card' => 'array',
+    ];
 
     public function toHttpOptions(): array
     {
         return [
             RequestOptions::JSON => [
                 'msg_type' => $this->type(),
-                'content' => $this->getOptions(),
+                'card' => $this->getOption('card'),
             ],
         ];
     }
 
-    abstract protected function type(): string;
+    protected function type(): string
+    {
+        return 'interactive';
+    }
 }

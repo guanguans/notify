@@ -13,15 +13,15 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\NotifyTests\LarkGroupBot;
+namespace Guanguans\NotifyTests\Lark;
 
-use Guanguans\Notify\LarkGroupBot\Authenticator;
-use Guanguans\Notify\LarkGroupBot\Client;
-use Guanguans\Notify\LarkGroupBot\Messages\CardMessage;
-use Guanguans\Notify\LarkGroupBot\Messages\ImageMessage;
-use Guanguans\Notify\LarkGroupBot\Messages\PostMessage;
-use Guanguans\Notify\LarkGroupBot\Messages\ShareChatMessage;
-use Guanguans\Notify\LarkGroupBot\Messages\TextMessage;
+use Guanguans\Notify\Lark\Authenticator;
+use Guanguans\Notify\Lark\Client;
+use Guanguans\Notify\Lark\Messages\CardMessage;
+use Guanguans\Notify\Lark\Messages\ImageMessage;
+use Guanguans\Notify\Lark\Messages\PostMessage;
+use Guanguans\Notify\Lark\Messages\ShareChatMessage;
+use Guanguans\Notify\Lark\Messages\TextMessage;
 use Psr\Http\Message\ResponseInterface;
 
 it('can send text message', function (): void {
