@@ -13,12 +13,12 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\NotifyTests\QqChannelBot;
+namespace Guanguans\NotifyTests\QQ;
 
-use Guanguans\Notify\QqChannelBot\Authenticator;
-use Guanguans\Notify\QqChannelBot\Client;
-use Guanguans\Notify\QqChannelBot\Messages\Message;
-use Guanguans\Notify\QqChannelBot\Messages\SandboxMessage;
+use Guanguans\Notify\QQ\Authenticator;
+use Guanguans\Notify\QQ\Client;
+use Guanguans\Notify\QQ\Messages\Message;
+use Guanguans\Notify\QQ\Messages\SandboxMessage;
 use Psr\Http\Message\ResponseInterface;
 
 it('can send message', function (): void {
