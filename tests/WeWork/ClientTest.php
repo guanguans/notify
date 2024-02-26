@@ -13,14 +13,14 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\NotifyTests\WeWorkGroupBot;
+namespace Guanguans\NotifyTests\WeWork;
 
-use Guanguans\Notify\WeWorkGroupBot\Authenticator;
-use Guanguans\Notify\WeWorkGroupBot\Client;
-use Guanguans\Notify\WeWorkGroupBot\Messages\ImageMessage;
-use Guanguans\Notify\WeWorkGroupBot\Messages\MarkdownMessage;
-use Guanguans\Notify\WeWorkGroupBot\Messages\NewsMessage;
-use Guanguans\Notify\WeWorkGroupBot\Messages\TextMessage;
+use Guanguans\Notify\WeWork\Authenticator;
+use Guanguans\Notify\WeWork\Client;
+use Guanguans\Notify\WeWork\Messages\ImageMessage;
+use Guanguans\Notify\WeWork\Messages\MarkdownMessage;
+use Guanguans\Notify\WeWork\Messages\NewsMessage;
+use Guanguans\Notify\WeWork\Messages\TextMessage;
 use Psr\Http\Message\ResponseInterface;
 
 it('can send text message', function (): void {
