@@ -13,11 +13,11 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\NotifyTests\Showdoc;
+namespace Guanguans\NotifyTests\ShowdocPush;
 
-use Guanguans\Notify\Showdoc\Authenticator;
-use Guanguans\Notify\Showdoc\Client;
-use Guanguans\Notify\Showdoc\Messages\Message;
+use Guanguans\Notify\ShowdocPush\Authenticator;
+use Guanguans\Notify\ShowdocPush\Client;
+use Guanguans\Notify\ShowdocPush\Messages\Message;
 use Psr\Http\Message\ResponseInterface;
 
 it('can send message', function (): void {

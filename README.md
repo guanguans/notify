@@ -41,7 +41,7 @@
 * [QQ Channel Bot](https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html)
 * [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
 * [ServerChan](https://sct.ftqq.com)
-* [Showdoc Push](https://push.showdoc.com.cn/#/)
+* [ShowdocPush](https://push.showdoc.com.cn/#/)
 * [Slack](https://api.slack.com/messaging/webhooks)
 * [Telegram](https://core.telegram.org/bots/api#sendmessage)
 * Webhook
@@ -824,7 +824,7 @@ Factory::serverChan()->check(3334849, 'SCTJlJV1J87hS');
 </details>
 
 <details>
-<summary><b>Showdoc Push</b></summary>
+<summary><b>ShowdocPush</b></summary>
 
 ```php
 Factory::showdocPush()
