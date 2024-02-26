@@ -13,16 +13,16 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\NotifyTests\DingTalkGroupBot;
+namespace Guanguans\NotifyTests\DingTalk;
 
-use Guanguans\Notify\DingTalkGroupBot\Authenticator;
-use Guanguans\Notify\DingTalkGroupBot\Client;
-use Guanguans\Notify\DingTalkGroupBot\Messages\BtnsActionCardMessage;
-use Guanguans\Notify\DingTalkGroupBot\Messages\FeedCardMessage;
-use Guanguans\Notify\DingTalkGroupBot\Messages\LinkMessage;
-use Guanguans\Notify\DingTalkGroupBot\Messages\MarkdownMessage;
-use Guanguans\Notify\DingTalkGroupBot\Messages\SingleActionCardMessage;
-use Guanguans\Notify\DingTalkGroupBot\Messages\TextMessage;
+use Guanguans\Notify\DingTalk\Authenticator;
+use Guanguans\Notify\DingTalk\Client;
+use Guanguans\Notify\DingTalk\Messages\BtnsActionCardMessage;
+use Guanguans\Notify\DingTalk\Messages\FeedCardMessage;
+use Guanguans\Notify\DingTalk\Messages\LinkMessage;
+use Guanguans\Notify\DingTalk\Messages\MarkdownMessage;
+use Guanguans\Notify\DingTalk\Messages\SingleActionCardMessage;
+use Guanguans\Notify\DingTalk\Messages\TextMessage;
 use Psr\Http\Message\ResponseInterface;
 
 it('can send text message', function (): void {
