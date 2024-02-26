@@ -15,6 +15,7 @@ namespace Guanguans\Notify\Foundation;
 use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
 use Guanguans\Notify\Foundation\Concerns\Makeable;
+use Symfony\Component\VarDumper\VarDumper;
 
 abstract class Message implements \ArrayAccess, Contracts\Message
 {
@@ -25,5 +26,16 @@ abstract class Message implements \ArrayAccess, Contracts\Message
     public function __construct(array $options = [])
     {
         $this->setOptions($options);
+    }
+
+    public function __debugInfo()
+    {
+        $debugInfo = [
+            'httpMethod' => $this->toHttpMethod(),
+            'httpUri' => $this->toHttpUri(),
+            'httpOptions' => $this->toHttpOptions(),
+        ];
+
+        return class_exists(VarDumper::class) ? $debugInfo : get_object_vars($this) + $debugInfo;
     }
 }
