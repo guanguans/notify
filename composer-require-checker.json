@@ -18,6 +18,7 @@
         "false",
         "int",
         "null",
+        "object",
         "parent",
         "self",
         "static",
