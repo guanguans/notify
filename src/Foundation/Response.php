@@ -202,7 +202,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function dataUrl(): string
     {
-        return sprintf('data:%s;base64,%s', $this->getHeaderLine('content-type'), base64_encode($this->body()));
+        return sprintf('data:%s;base64,%s', $this->getHeaderLine('Content-Type'), base64_encode($this->body()));
     }
 
     /**
