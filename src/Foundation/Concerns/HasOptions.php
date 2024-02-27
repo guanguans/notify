@@ -24,6 +24,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @property-read array<string, mixed> $defaults // Support nested options.
  * @property-read array<string> $required
  * @property-read array<string> $defined
+ * @property-read bool $ignoreUndefined // Required symfony/options-resolver >= 6.3
  * @property-read array<array-key, array|string> $deprecated
  * @property-read array<string, \Closure> $normalizers
  * @property-read array<string, mixed> $allowedValues
@@ -126,15 +127,19 @@ trait HasOptions
         // // A prototype option can only be defined inside a nested option and during its resolution it will expect an array of arrays.
         // property_exists($this, 'prototype') and $optionsResolver->setPrototype($this->prototype);
 
+        // Required symfony/options-resolver >= 6.3
+        if (property_exists($this, 'ignoreUndefined') && method_exists($optionsResolver, 'setIgnoreUndefined')) {
+            $optionsResolver->setIgnoreUndefined($this->ignoreUndefined);
+        }
+
         if (property_exists($this, 'deprecated')) {
             foreach ($this->deprecated as $option => $arguments) {
-                // \is_string($arguments) and $arguments = [$arguments];
-                // \is_string($option) and array_unshift($arguments, $option);
+                // required symfony/options-resolver < 6.0
+                \is_string($arguments) and $arguments = [$arguments];
 
-                // compatible with Symfony 5.4
-                array_unshift($arguments, $option);
+                \is_string($option) and array_unshift($arguments, $option);
 
-                $optionsResolver->setDeprecated(...$arguments);
+                $optionsResolver->setDeprecated(...array_pad($arguments, 3, ''));
             }
         }
 

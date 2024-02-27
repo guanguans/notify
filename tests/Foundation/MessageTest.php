@@ -27,9 +27,7 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 it('will throw InvalidArgumentException when argument is empty', function (): void {
-    expect(new class([
-        'foo' => 'bar',
-    ]) extends Message {
+    expect(new class(['foo' => 'bar']) extends Message {
         use AsJson;
         use AsNullUri;
         use AsPost;
@@ -41,9 +39,7 @@ it('will throw InvalidArgumentException when argument is empty', function (): vo
     ->throws(InvalidArgumentException::class);
 
 it('will throw BadMethodCallException when calling an undefined method', function (): void {
-    expect(new class([
-        'foo' => 'bar',
-    ]) extends Message {
+    expect(new class(['foo' => 'bar']) extends Message {
         use AsJson;
         use AsNullUri;
         use AsPost;
@@ -55,9 +51,7 @@ it('will throw BadMethodCallException when calling an undefined method', functio
     ->throws(BadMethodCallException::class);
 
 it('can array access', function (): void {
-    $message = new class([
-        'foo' => 'bar',
-    ]) extends Message {
+    $message = new class(['foo' => 'bar']) extends Message {
         use AsJson;
         use AsNullUri;
         use AsPost;
@@ -90,7 +84,12 @@ it('can get options', function (): void {
 
         protected array $defined = ['foo', 'bar'];
 
-        protected array $deprecated = ['bar' => ['foo/bar', '2.0', 'The option "%name%" is deprecated.']];
+        protected bool $ignoreUndefined = true;
+
+        protected array $deprecated = [
+            'foo',
+            'bar' => ['foo/bar', '2.0', 'The option "%name%" is deprecated.'],
+        ];
 
         protected array $normalizers = [];
 
@@ -114,4 +113,14 @@ it('can get options', function (): void {
             };
         }
     })->getOptions()->toBeArray();
+})->group(__DIR__, __FILE__);
+
+it('can dump debug info', function (): void {
+    expect(new class(['foo' => 'bar']) extends Message {
+        use AsJson;
+        use AsNullUri;
+        use AsPost;
+
+        protected array $defined = ['foo'];
+    })->dump()->toBeInstanceOf(Message::class);
 })->group(__DIR__, __FILE__);
