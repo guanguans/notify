@@ -128,8 +128,8 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
 
         $defaultProperties = (new \ReflectionClass($class))->getDefaultProperties();
         $allowedTypes = $defaultProperties['allowedTypes'] ?? [];
-        $defined = $defaultProperties['defined'] ?? [];
-        if (empty($defined)) {
+        $defined = array_unique(array_merge($defaultProperties['defined'] ?? [], $defaultProperties['required'] ?? []));
+        if ([] === $defined) {
             return;
         }
 

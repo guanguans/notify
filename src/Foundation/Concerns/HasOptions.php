@@ -37,7 +37,7 @@ trait HasOptions
 
     public function __call($name, $arguments)
     {
-        $defined = $this->defined ?? [];
+        $defined = array_merge($this->defined ?? [], $this->required ?? []);
 
         foreach ([null, 'snake', 'pascal'] as $case) {
             $casedName = $case ? Str::{$case}($name) : $name;

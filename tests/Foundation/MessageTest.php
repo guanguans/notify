@@ -32,7 +32,8 @@ it('will throw InvalidArgumentException when argument is empty', function (): vo
         use AsNullUri;
         use AsPost;
 
-        protected array $defined = ['foo'];
+        // protected array $defined = ['foo'];
+        protected array $required = ['foo'];
     })->foo();
 })
     ->group(__DIR__, __FILE__)
