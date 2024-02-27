@@ -19,36 +19,32 @@
 
 ## Platform support
 
-* [Bark](https://github.com/Finb/Bark)
-* [Chanify](https://github.com/chanify/chanify-ios)
-* [DingTalk](https://developers.dingtalk.com/document/app/custom-robot-access)
-* [Discord](https://discord.com/developers/docs/resources/webhook#edit-webhook-message)
-* [Email](https://symfony.com/doc/current/mailer.html)
-* [FeiShu](https://www.feishu.cn/hc/zh-CN/articles/360024984973)
-* [Gitter](https://developer.gitter.im/docs/messages-resource)
-* [Google Chat](https://developers.google.com/hangouts/chat/how-tos/webhooks)
-* [iGot](http://hellyw.com/#/)
-* [Logger](https://github.com/php-fig/log)
-* [Mattermost](https://api.mattermost.com)
-* [Microsoft Teams](https://www.microsoft.com/zh-cn/microsoft-teams/teams-for-work)
-* [Now Push](https://nowpush.io/api-docs/)
-* [Ntfy](https://ntfy.sh/)
-* [Pushback](https://pushback.io/docs/getting-started)
-* [Push](https://docs.push.techulus.com/api-documentation)
-* [PushDeer](http://pushdeer.com)
-* [Pushover](https://pushover.net)
-* [PushPlus](https://pushplus.hxtrip.com/index)
-* [QQ Channel Bot](https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html)
-* [Rocket Chat](https://docs.rocket.chat/guides/administration/admin-panel/integrations)
-* [ServerChan](https://sct.ftqq.com)
-* [ShowdocPush](https://push.showdoc.com.cn/#/)
-* [Slack](https://api.slack.com/messaging/webhooks)
-* [Telegram](https://core.telegram.org/bots/api#sendmessage)
-* Webhook
-* [WeWork](https://open.work.weixin.qq.com/api/doc/90000/90136/91770)
-* [XiZhi](https://xz.qqoq.net/#/index)
-* [YiFengChuanHua](https://www.phprm.com/push/h5/)
-* [Zulip](https://zulip.com/api/send-message)
+* [Bark](./src/Bark/README.md)
+* [Chanify](./src/Chanify/README.md)
+* [DingTalk](./src/DingTalk/README.md)
+* [Discord](./src/Discord/README.md)
+* [Gitter](./src/Gitter/README.md)
+* [GoogleChat](./src/GoogleChat/README.md)
+* [IGot](./src/IGot/README.md)
+* [Lark](./src/Lark/README.md)
+* [Mattermost](./src/Mattermost/README.md)
+* [MicrosoftTeams](./src/MicrosoftTeams/README.md)
+* [NowPush](./src/NowPush/README.md)
+* [Ntfy](./src/Ntfy/README.md)
+* [Push](./src/Push/README.md)
+* [Pushback](./src/Pushback/README.md)
+* [Pushover](./src/Pushover/README.md)
+* [Pushplus](./src/Pushplus/README.md)
+* [QQ](./src/QQ/README.md)
+* [RocketChat](./src/RocketChat/README.md)
+* [ServerChan](./src/ServerChan/README.md)
+* [ShowdocPush](./src/ShowdocPush/README.md)
+* [Slack](./src/Slack/README.md)
+* [Telegram](./src/Telegram/README.md)
+* [WeWork](./src/WeWork/README.md)
+* [XiZhi](./src/XiZhi/README.md)
+* [YiFengChuanHua](./src/YiFengChuanHua/README.md)
+* [Zulip](./src/Zulip/README.md)
 
 ## Requirement
 
@@ -60,19 +56,21 @@
 composer require guanguans/notify -v
 ```
 
-## Usage
-
-<details>
-<summary><b>Bark</b></summary>
+## Usage example
 
 ```php
-$authenticator = new Guanguans\Notify\Bark\Authenticator('yetwhxBm7wCBSUTjeqh');
-$client = new Guanguans\Notify\Bark\Client($authenticator);
+// 1. Create authenticator
+$authenticator = new \Guanguans\Notify\Bark\Authenticator('yetwhxBm7wCBSUTjeqh');
+
+// 2. Create client
+$client = new \Guanguans\Notify\Bark\Client($authenticator);
+
+// 3. Create and send message
 $response = $client
     // ->verify(false)
     // ->timeout(30)
     // ->baseUri('The server address of your own deployment.')
-    ->send(Guanguans\Notify\Bark\Messages\Message::make([
+    ->send(\Guanguans\Notify\Bark\Messages\Message::make([
         'title' => 'This is title.',
         'body' => 'This is body.',
         'copy' => 'This is copy.',
@@ -89,7 +87,6 @@ $response = $client
     // ->dump()
     ->throw();
 ```
-</details>
 
 ## Testing
 

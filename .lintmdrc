@@ -1,6 +1,5 @@
 {
     "excludeFiles": [
-        "src/",
         "tests/",
         "vendor/",
         "./CHANGELOG.md"
