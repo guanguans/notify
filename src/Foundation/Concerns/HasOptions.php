@@ -21,10 +21,9 @@ use Guanguans\Notify\Foundation\Support\Str;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @property-read array<string, mixed> $defaults
+ * @property-read array<string, mixed> $defaults // Support nested options.
  * @property-read array<string> $required
  * @property-read array<string> $defined
- * @property-read bool $prototype
  * @property-read array<array-key, array|string> $deprecated
  * @property-read array<string, \Closure> $normalizers
  * @property-read array<string, mixed> $allowedValues
@@ -123,7 +122,9 @@ trait HasOptions
         property_exists($this, 'defaults') and $optionsResolver->setDefaults($this->defaults);
         property_exists($this, 'required') and $optionsResolver->setRequired($this->required);
         property_exists($this, 'defined') and $optionsResolver->setDefined($this->defined);
-        property_exists($this, 'prototype') and $optionsResolver->setPrototype($this->prototype);
+
+        // // A prototype option can only be defined inside a nested option and during its resolution it will expect an array of arrays.
+        // property_exists($this, 'prototype') and $optionsResolver->setPrototype($this->prototype);
 
         if (property_exists($this, 'deprecated')) {
             foreach ($this->deprecated as $option => $arguments) {
