@@ -8,6 +8,30 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.0.1"></a>
+## [2.0.1] - 2024-02-27
+### Docs
+- Add README.md files for various messaging platforms
+- **HasOptions:** Add support for nested options
+
+### Feat
+- **notifications:** Add Bark notification support
+- **options:** Add support for ignoreUndefined property
+- **support:** Improve array handling in HasHttpClient
+
+### Refactor
+- **HasOptions:** Improve handling of defined and required options
+- **HasOptions:** update deprecated options handling
+- **tests:** rename wsse authenticator test file and add certificate authenticator test
+
+### Test
+- Add unit tests for Client and Message classes
+- add CertificateAuthenticatorTest and WsseAuthenticatorTest
+
+### Pull Requests
+- Merge pull request [#57](https://github.com/guanguans/notify/issues/57) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.68.2
+
+
 <a name="2.0.0"></a>
 ## [2.0.0] - 2024-02-26
 ### Feat
@@ -484,7 +508,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.0.1...HEAD
+[2.0.1]: https://github.com/guanguans/notify/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/guanguans/notify/compare/2.0.0-rc1...2.0.0
 [2.0.0-rc1]: https://github.com/guanguans/notify/compare/2.0.0-beta3...2.0.0-rc1
 [2.0.0-beta3]: https://github.com/guanguans/notify/compare/2.0.0-beta2...2.0.0-beta3
