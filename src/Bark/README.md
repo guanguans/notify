@@ -3,6 +3,8 @@
 ## Usage
 
 ```php
+$authenticator = new Guanguans\Notify\Bark\Authenticator('yetwhxBm7wCBSUTjeqh');
+$client = new Guanguans\Notify\Bark\Client($authenticator);
 $response = $client
     // ->verify(false)
     // ->timeout(30)
