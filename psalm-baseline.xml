@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.22.1@e9dad66e11274315dac27e08349c628c7d6a1a43">
+<files psalm-version="5.22.2@d768d914152dbbf3486c36398802f74e80cfde48">
   <file src="src/DingTalk/Authenticator.php">
     <InvalidOperand>
       <code><![CDATA[sprintf('%.3f', $microseconds)]]></code>
@@ -19,10 +19,5 @@
       <code><![CDATA[findByName]]></code>
       <code><![CDATA[findByName]]></code>
     </InaccessibleMethod>
-  </file>
-  <file src="src/Foundation/Concerns/HasOptions.php">
-    <NoValue>
-      <code><![CDATA[$casedName]]></code>
-    </NoValue>
   </file>
 </files>

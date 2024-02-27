@@ -222,9 +222,9 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
         rewind($resource);
 
         $stream = $this->getBody();
-        // if ($stream->isSeekable()) {
-        //     $stream->rewind();
-        // }
+        if ($stream->isSeekable()) {
+            $stream->rewind();
+        }
 
         while (! $stream->eof()) {
             fwrite($resource, $stream->read(1024));
@@ -244,7 +244,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function is(string $type): bool
     {
-        $contentType = $this->getHeaderLine('content-type');
+        $contentType = $this->getHeaderLine('Content-Type');
 
         switch (strtolower($type)) {
             case 'json':
@@ -254,13 +254,13 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
             case 'html':
                 return false !== strpos($contentType, '/html');
             case 'image':
-                return false !== strpos($contentType, '/image');
+                return false !== strpos($contentType, 'image/');
             case 'audio':
-                return false !== strpos($contentType, '/audio');
+                return false !== strpos($contentType, 'audio/');
             case 'video':
-                return false !== strpos($contentType, '/video');
+                return false !== strpos($contentType, 'video/');
             case 'text':
-                return false !== strpos($contentType, '/text')
+                return false !== strpos($contentType, 'text/')
                     || false !== strpos($contentType, '/json')
                     || false !== strpos($contentType, '/xml');
             default:
