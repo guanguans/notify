@@ -24,13 +24,13 @@ it('will throw InvalidArgumentException when argument is empty', function (): vo
     (new Client)->verify();
 })
     ->group(__DIR__, __FILE__)
-    ->throws(InvalidArgumentException::class, 'The method [Guanguans\Notify\Foundation\Client::verify] require an argument.');
+    ->throws(InvalidArgumentException::class, 'The method ['.Client::class.'::verify] require an argument.');
 
 it('will throw BadMethodCallException when calling an undefined method', function (): void {
     (new Client)->foo();
 })
     ->group(__DIR__, __FILE__)
-    ->throws(BadMethodCallException::class, 'The method [Guanguans\Notify\Foundation\Client::foo] does not exist.');
+    ->throws(BadMethodCallException::class, 'The method ['.Client::class.'::foo] does not exist.');
 
 it('can set http client', function (): void {
     expect(new Client)

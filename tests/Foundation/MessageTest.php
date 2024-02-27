@@ -85,28 +85,32 @@ it('can get options', function (): void {
         use AsPost;
 
         protected array $defaults = ['foo' => 'bar'];
+
         protected array $required = ['foo'];
+
         protected array $defined = ['foo', 'bar'];
-        protected array $deprecated = [
-            'foo',
-            'bar' => ['foo/bar', '2.0', 'The option "%name%" is deprecated.'],
-        ];
+
+        protected array $deprecated = ['bar' => ['foo/bar', '2.0', 'The option "%name%" is deprecated.']];
+
         protected array $normalizers = [];
+
         protected array $allowedValues = ['foo' => ['bar', 'baz']];
+
         protected array $allowedTypes = ['foo' => ['string']];
+
         protected array $infos = ['foo' => 'invalid foo'];
 
         public function __construct(array $options = [])
         {
             parent::__construct($options);
             $this->normalizers['foo'] = static fn (Options $options, string $value): string => strtoupper($value);
-            $this->defaults['bar'] = static function (OptionsResolver $spoolResolver, Options $parent): void {
-                $spoolResolver->setDefaults([
+            $this->defaults['bar'] = static function (OptionsResolver $optionsResolver, Options $options): void {
+                $optionsResolver->setDefaults([
                     'type' => 'file',
                     'path' => 'path/to/file',
                 ]);
-                $spoolResolver->setAllowedValues('type', ['file', 'memory']);
-                $spoolResolver->setAllowedTypes('path', 'string');
+                $optionsResolver->setAllowedValues('type', ['file', 'memory']);
+                $optionsResolver->setAllowedTypes('path', 'string');
             };
         }
     })->getOptions()->toBeArray();

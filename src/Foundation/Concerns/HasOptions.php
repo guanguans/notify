@@ -128,13 +128,11 @@ trait HasOptions
 
         if (property_exists($this, 'deprecated')) {
             foreach ($this->deprecated as $option => $arguments) {
-                if (\is_string($arguments)) {
-                    $arguments = [$arguments];
-                }
+                // \is_string($arguments) and $arguments = [$arguments];
+                // \is_string($option) and array_unshift($arguments, $option);
 
-                if (\is_string($option)) {
-                    array_unshift($arguments, $option);
-                }
+                // compatible with Symfony 5.4
+                array_unshift($arguments, $option);
 
                 $optionsResolver->setDeprecated(...$arguments);
             }
