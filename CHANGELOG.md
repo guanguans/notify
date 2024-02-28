@@ -8,6 +8,22 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.0.2"></a>
+## [2.0.2] - 2024-02-28
+### Feat
+- **Chanify:** add support for audio, file, and image messages
+- **Discord:** Add ability to send messages with rich content
+- **Pest:** add assertCanSendMessage expectation
+
+### Refactor
+- **Message:** update message class properties and methods
+- **MockHandler:** Remove unnecessary code and improve readability
+- **tests:** Update ClientTest.php for message sending functionality
+
+### Test
+- **ClientTest:** Refactor message creation in ClientTest
+
+
 <a name="2.0.1"></a>
 ## [2.0.1] - 2024-02-27
 ### Docs
@@ -508,7 +524,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.0.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.0.2...HEAD
+[2.0.2]: https://github.com/guanguans/notify/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/guanguans/notify/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/guanguans/notify/compare/2.0.0-rc1...2.0.0
 [2.0.0-rc1]: https://github.com/guanguans/notify/compare/2.0.0-beta3...2.0.0-rc1
