@@ -18,10 +18,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self title($title)
  * @method self text($text)
  * @method self copy($copy)
- * @method self actions($actions)
  * @method self autocopy($autocopy)
  * @method self sound($sound)
  * @method self priority($priority)
+ * @method self interruptionlevel($interruptionlevel)
+ * @method self actions(array $actions)
+ * @method self timeline(array $timeline)
  */
 class TextMessage extends Message
 {
@@ -29,27 +31,28 @@ class TextMessage extends Message
         'title',
         'text',
         'copy',
-        'actions',
         'autocopy',
         'sound',
         'priority',
+        'interruptionlevel',
+        'actions',
+        'timeline',
     ];
 
     protected array $allowedTypes = [
-        'actions' => ['string', 'array'],
+        'actions' => 'array',
+        'timeline' => 'array',
     ];
-
-    // protected array $options = [
-    //     'autocopy' => 0,
-    //     'sound' => 0,
-    //     'priority' => 10,
-    // ];
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        $optionsResolver->setNormalizer(
-            'actions',
-            static fn (OptionsResolver $optionsResolver, $value): array => (array) $value
-        );
+        $optionsResolver->setDefault('timeline', static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver->setDefined([
+                'code',
+                'timestamp',
+                'items',
+            ]);
+            $optionsResolver->setAllowedTypes('items', 'array');
+        });
     }
 }

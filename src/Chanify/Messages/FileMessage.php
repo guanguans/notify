@@ -12,16 +12,16 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Chanify\Messages;
 
+use Guanguans\Notify\Foundation\Concerns\AsMultipart;
+
 /**
- * @method self link($link)
- * @method self sound($sound)
- * @method self priority($priority)
+ * @method self file($file)
  */
-class LinkMessage extends Message
+class FileMessage extends Message
 {
+    use AsMultipart;
+
     protected array $defined = [
-        'link',
-        'sound',
-        'priority',
+        'file',
     ];
 }
