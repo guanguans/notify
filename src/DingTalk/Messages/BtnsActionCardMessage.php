@@ -17,7 +17,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @method self title($title)
  * @method self text($text)
- * @method self hideAvatar($hideAvatar)
  * @method self btnOrientation($btnOrientation)
  * @method self btns(array $btns)
  */
@@ -26,7 +25,6 @@ class BtnsActionCardMessage extends Message
     protected array $defined = [
         'title',
         'text',
-        'hideAvatar',
         'btnOrientation',
         'btns',
     ];
@@ -36,19 +34,20 @@ class BtnsActionCardMessage extends Message
     ];
 
     protected array $options = [
-        'btnOrientation' => 0,
-        'hideAvatar' => 0,
         'btns' => [],
     ];
 
     public function addBtn(array $btn): self
     {
-        $this->options['btns'][] = $this->configureAndResolveOptions($btn, static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver->setDefined([
-                'title',
-                'actionURL',
-            ]);
-        });
+        $this->options['btns'][] = $this->configureAndResolveOptions(
+            $btn,
+            static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver->setDefined([
+                    'title',
+                    'actionURL',
+                ]);
+            }
+        );
 
         return $this;
     }

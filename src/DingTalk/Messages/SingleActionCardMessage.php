@@ -29,10 +29,6 @@ class SingleActionCardMessage extends Message
         'btnOrientation',
     ];
 
-    protected array $options = [
-        'btnOrientation' => 0,
-    ];
-
     protected function type(): string
     {
         return 'actionCard';

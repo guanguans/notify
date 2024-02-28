@@ -33,13 +33,16 @@ class FeedCardMessage extends Message
 
     public function addLink(array $Link): self
     {
-        $this->options['links'][] = $this->configureAndResolveOptions($Link, static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver->setDefined([
-                'title',
-                'messageURL',
-                'picURL',
-            ]);
-        });
+        $this->options['links'][] = $this->configureAndResolveOptions(
+            $Link,
+            static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver->setDefined([
+                    'title',
+                    'messageURL',
+                    'picURL',
+                ]);
+            }
+        );
 
         return $this;
     }
