@@ -18,16 +18,15 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 /**
  * @method self title($title)
  * @method self body($body)
+ * @method self level($level)
+ * @method self badge($badge)
+ * @method self autoCopy($autoCopy)
  * @method self copy($copy)
- * @method self url($url)
  * @method self sound($sound)
  * @method self icon($icon)
  * @method self group($group)
- * @method self level($level)
- * @method self badge($badge)
  * @method self isArchive($isArchive)
- * @method self autoCopy($autoCopy)
- * @method self automaticallyCopy($automaticallyCopy)
+ * @method self url($url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -37,23 +36,15 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $defined = [
         'title',
         'body',
+        'level',
+        'badge',
+        'autoCopy',
         'copy',
-        'url',
         'sound',
         'icon',
         'group',
-        'level',
-        'badge',
         'isArchive',
-        'autoCopy',
-        'automaticallyCopy',
-    ];
-
-    protected array $allowedTypes = [
-        'badge' => 'int',
-        'isArchive' => 'int',
-        'autoCopy' => 'int',
-        'automaticallyCopy' => 'int',
+        'url',
     ];
 
     protected array $allowedValues = [
