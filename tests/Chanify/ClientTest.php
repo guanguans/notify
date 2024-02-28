@@ -22,11 +22,13 @@ use Guanguans\Notify\Chanify\Messages\FileMessage;
 use Guanguans\Notify\Chanify\Messages\ImageMessage;
 use Guanguans\Notify\Chanify\Messages\LinkMessage;
 use Guanguans\Notify\Chanify\Messages\TextMessage;
-use Psr\Http\Message\ResponseInterface;
 
 beforeEach(function (): void {
     $authenticator = new Authenticator('CICwhbIGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFIgIIAQ.orHlBVavQPrY-ZP3eqQKDgjyTtNdZPdNYV6lpAx8');
-    $this->client = new Client($authenticator);
+    $this->client = (new Client($authenticator))->mock([
+        create_response('{"request-uid":"03fe6123-2098-4af8-a210-658010a69d9c"}'),
+        create_response('{"res":400,"msg":"bad request"}', 400),
+    ]);
 });
 
 it('can send text message', function (): void {
@@ -52,49 +54,25 @@ it('can send text message', function (): void {
         ],
     ]);
 
-    expect($this->client)
-        ->mock([
-            create_response('{"request-uid":"03fe6123-2098-4af8-a210-658010a69d9c"}'),
-            create_response('{"res":400,"msg":"bad request"}', 400),
-        ])
-        ->send($message)->toBeInstanceOf(ResponseInterface::class)
-        ->send($message)->toBeInstanceOf(ResponseInterface::class);
+    expect($this->client)->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);
 
 it('can send audio message', function (): void {
     $message = AudioMessage::make()->audio('This is audio path.');
 
-    expect($this->client)
-        ->mock([
-            create_response('{"request-uid":"03fe6123-2098-4af8-a210-658010a69d9c"}'),
-            create_response('{"res":400,"msg":"bad request"}', 400),
-        ])
-        ->send($message)->toBeInstanceOf(ResponseInterface::class)
-        ->send($message)->toBeInstanceOf(ResponseInterface::class);
+    expect($this->client)->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);
 
 it('can send file message', function (): void {
     $message = FileMessage::make()->file('This is file path.');
 
-    expect($this->client)
-        ->mock([
-            create_response('{"request-uid":"03fe6123-2098-4af8-a210-658010a69d9c"}'),
-            create_response('{"res":400,"msg":"bad request"}', 400),
-        ])
-        ->send($message)->toBeInstanceOf(ResponseInterface::class)
-        ->send($message)->toBeInstanceOf(ResponseInterface::class);
+    expect($this->client)->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);
 
 it('can send image message', function (): void {
     $message = ImageMessage::make()->image('This is image path.');
 
-    expect($this->client)
-        ->mock([
-            create_response('{"request-uid":"03fe6123-2098-4af8-a210-658010a69d9c"}'),
-            create_response('{"res":400,"msg":"bad request"}', 400),
-        ])
-        ->send($message)->toBeInstanceOf(ResponseInterface::class)
-        ->send($message)->toBeInstanceOf(ResponseInterface::class);
+    expect($this->client)->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);
 
 it('can send link message', function (): void {
@@ -104,11 +82,5 @@ it('can send link message', function (): void {
         'priority' => 10,
     ]);
 
-    expect($this->client)
-        ->mock([
-            create_response('{"request-uid":"03fe6123-2098-4af8-a210-658010a69d9c"}'),
-            create_response('{"res":400,"msg":"bad request"}', 400),
-        ])
-        ->send($message)->toBeInstanceOf(ResponseInterface::class)
-        ->send($message)->toBeInstanceOf(ResponseInterface::class);
+    expect($this->client)->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

@@ -150,12 +150,12 @@ trait HasHttpClient
         return $this;
     }
 
-    private function getHttpClient(): Client
+    protected function getHttpClient(): Client
     {
         return $this->getHttpClientResolver()();
     }
 
-    private function getHttpClientResolver(): callable
+    protected function getHttpClientResolver(): callable
     {
         if (! \is_callable($this->httpClientResolver)) {
             $this->httpClientResolver = function (): Client {
@@ -186,7 +186,7 @@ trait HasHttpClient
         return $this->httpClientResolver;
     }
 
-    private function getHandlerStack(): HandlerStack
+    protected function getHandlerStack(): HandlerStack
     {
         if (! $this->handlerStack instanceof HandlerStack) {
             $this->handlerStack = HandlerStack::create();
@@ -195,7 +195,7 @@ trait HasHttpClient
         return $this->handlerStack = $this->ensureWithRequiredMiddleware($this->handlerStack);
     }
 
-    private function getHttpOptions(): array
+    protected function getHttpOptions(): array
     {
         return $this->httpOptions;
     }

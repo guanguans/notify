@@ -13,7 +13,9 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+use Guanguans\Notify\Foundation\Message;
 use Guanguans\NotifyTests\TestCase;
+use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
 use Pest\Expectation;
 use Psr\Http\Message\ResponseInterface;
@@ -35,7 +37,9 @@ uses(TestCase::class)
 |
  */
 
-expect()->extend('toBeOne', fn () => $this->toBe(1));
+expect()->extend('between', fn (int $min, int $max): Expectation => expect($this->value)
+    ->toBeGreaterThanOrEqual($min)
+    ->toBeLessThanOrEqual($max));
 
 expect()->extend('assert', function (Closure $assertions): Expectation {
     $assertions($this->value);
@@ -43,10 +47,45 @@ expect()->extend('assert', function (Closure $assertions): Expectation {
     return $this;
 });
 
-expect()->extend('between', function (int $min, int $max): Expectation {
-    expect($this->value)
-        ->toBeGreaterThanOrEqual($min)
-        ->toBeLessThanOrEqual($max);
+expect()->extend('assertCanSendMessage', function (Message $message): Expectation {
+    /** @var \Guanguans\Notify\Foundation\Client $client */
+    $client = $this->value;
+
+    $queue = (fn (): array => (function (): array {
+        expect($this->handler)->toBeInstanceOf(MockHandler::class);
+
+        return (fn (): array => $this->queue)->call($this->handler);
+    })->call($this->getHandlerStack()))->call($client);
+
+    expect($queue)->each(function (Expectation $expectation) use ($client, $message): void {
+        /** @var Response|\Throwable $responseOrException */
+        $responseOrException = $expectation->value;
+
+        expect($client->send($message))
+            ->toBeInstanceOf(ResponseInterface::class)
+            ->when(
+                $responseOrException instanceof Response,
+                function (Expectation $expectation) use ($responseOrException): void {
+                    /** @var \Guanguans\Notify\Foundation\Response $response */
+                    $response = $expectation->value;
+
+                    expect($response)
+                        ->body()->toBe((string) $responseOrException->getBody())
+                        ->status()->toBe($responseOrException->getStatusCode());
+                }
+            )
+            ->when(
+                $responseOrException instanceof Throwable,
+                function (Expectation $expectation) use ($responseOrException): void {
+                    /** @var \Guanguans\Notify\Foundation\Response $response */
+                    $response = $expectation->value;
+
+                    expect($response)
+                        ->body()->toBe((string) $responseOrException->getMessage())
+                        ->status()->toBe($responseOrException->getCode());
+                }
+            );
+    });
 
     return $this;
 });
@@ -79,6 +118,11 @@ function fixtures_path(string $path = ''): string
     return __DIR__.'/fixtures'.($path ? \DIRECTORY_SEPARATOR.$path : $path);
 }
 
+/**
+ * @noinspection ParameterDefaultsNullInspection
+ *
+ * @param null|mixed $body
+ */
 function create_response(
     $body = null,
     int $status = 200,
