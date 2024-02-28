@@ -17,11 +17,16 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
+ * @method self content($content)
+ * @method self embeds(array $embeds)
+ * @method self allowedMentions(array $allowedMentions)
+ * @method self components(array $components)
+ * @method self files(array $files)
+ * @method self payloadJson($payloadJson)
+ * @method self attachments(array $attachments)
  * @method self username($username)
  * @method self avatarUrl($avatarUrl)
- * @method self content($content)
  * @method self tts($tts)
- * @method self embeds(array $embeds)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -29,11 +34,17 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsPost;
 
     protected array $defined = [
+        'content',
+        'embeds',
+        'allowed_mentions',
+        'components',
+        'files',
+        'payload_json',
+        'attachments',
+
         'username',
         'avatar_url',
-        'content',
         'tts',
-        'embeds',
     ];
 
     protected array $options = [
@@ -43,6 +54,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $allowedTypes = [
         'tts' => 'bool',
         'embeds' => 'array',
+        'allowed_mentions' => 'array',
+        'components' => 'array',
+        'files' => 'array',
+        'attachments' => 'array',
     ];
 
     public function addEmbed(array $embed): self
@@ -56,23 +71,72 @@ class Message extends \Guanguans\Notify\Foundation\Message
                         'type',
                         'description',
                         'url',
-                        'color',
                         'timestamp',
+                        'color',
                         'footer',
                         'image',
                         'thumbnail',
+                        'video',
+                        'provider',
                         'author',
                         'fields',
                     ])
-                    ->setAllowedTypes('footer', 'array')
-                    ->setAllowedTypes('image', 'array')
-                    ->setAllowedTypes('thumbnail', 'array')
-                    ->setAllowedTypes('author', 'array')
-                    ->setAllowedTypes('fields', 'array')
                     ->setNormalizer('color', static fn (
                         OptionsResolver $optionsResolver,
                         $value
-                    ) => \is_int($value) ? $value : hexdec($value));
+                    ) => \is_int($value) ? $value : hexdec($value))
+                    ->setAllowedTypes('footer', 'array')
+                    ->setDefault('footer', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'text',
+                            'icon_url',
+                            'proxy_icon_url',
+                        ]);
+                    })
+                    ->setAllowedTypes('image', 'array')
+                    ->setDefault('image', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'url',
+                            'proxy_url',
+                            'height',
+                            'width',
+                        ]);
+                    })
+                    ->setAllowedTypes('thumbnail', 'array')
+                    ->setDefault('thumbnail', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'url',
+                            'proxy_url',
+                            'height',
+                            'width',
+                        ]);
+                    })
+                    ->setAllowedTypes('video', 'array')
+                    ->setDefault('video', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'url',
+                            'proxy_url',
+                            'height',
+                            'width',
+                        ]);
+                    })
+                    ->setAllowedTypes('provider', 'array')
+                    ->setDefault('provider', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'name',
+                            'url',
+                        ]);
+                    })
+                    ->setAllowedTypes('author', 'array')
+                    ->setDefault('author', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'name',
+                            'url',
+                            'icon_url',
+                            'proxy_icon_url',
+                        ]);
+                    })
+                    ->setAllowedTypes('fields', 'array');
             }
         );
 
