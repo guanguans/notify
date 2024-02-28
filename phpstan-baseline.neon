@@ -1,21 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method Guanguans\\\\Notify\\\\Foundation\\\\Support\\\\HasHttpClientDocCommentRector\\:\\:refactor\\(\\) should return 1\\|2\\|3\\|4\\|array\\<PhpParser\\\\Node\\>\\|PhpParser\\\\Node\\|null but empty return statement found\\.$#"
-			count: 1
-			path: src/Foundation/Support/HasHttpClientDocCommentRector.php
-
-		-
-			message: "#^Method Guanguans\\\\Notify\\\\Foundation\\\\Support\\\\HasOptionsDocCommentRector\\:\\:refactor\\(\\) should return 1\\|2\\|3\\|4\\|array\\<PhpParser\\\\Node\\>\\|PhpParser\\\\Node\\|null but empty return statement found\\.$#"
-			count: 2
-			path: src/Foundation/Support/HasOptionsDocCommentRector.php
-
-		-
-			message: "#^Method Guanguans\\\\Notify\\\\Foundation\\\\Support\\\\ToInternalExceptionRector\\:\\:refactor\\(\\) should return 1\\|2\\|3\\|4\\|array\\<PhpParser\\\\Node\\>\\|PhpParser\\\\Node\\|null but empty return statement found\\.$#"
-			count: 1
-			path: src/Foundation/Support/ToInternalExceptionRector.php
-
-		-
 			message: """
 				#^PHPDoc tag @param has invalid value \\(array\\{
 				    name\\: string,
@@ -27,11 +12,6 @@ parameters:
 			"""
 			count: 1
 			path: src/Foundation/Support/Utils.php
-
-		-
-			message: "#^Class Guanguans\\\\Notify\\\\Foundation\\\\Testing\\\\MockHandler extends @final class GuzzleHttp\\\\Handler\\\\MockHandler\\.$#"
-			count: 1
-			path: src/Foundation/Testing/MockHandler.php
 
 		-
 			message: "#^Property Guanguans\\\\Notify\\\\Pushover\\\\Messages\\\\Message\\:\\:\\$allowedValues \\(array\\<array\\<int\\>\\>\\) does not accept default value of type array\\<string, array\\<int, int\\>\\>\\.$#"

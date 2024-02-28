@@ -15,7 +15,7 @@
     <directory name="src"/>
     <ignoreFiles>
       <directory name="vendor"/>
-      <file name="src/Foundation/Testing/MockHandler.php"/>
+      <!--<file name="src/Foundation/Testing/MockHandler.php"/>-->
     </ignoreFiles>
   </projectFiles>
   <issueHandlers>

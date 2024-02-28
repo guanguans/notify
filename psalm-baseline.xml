@@ -5,11 +5,6 @@
       <code><![CDATA[sprintf('%.3f', $microseconds)]]></code>
     </InvalidOperand>
   </file>
-  <file src="src/Foundation/Message.php">
-    <MissingTemplateParam>
-      <code><![CDATA[\ArrayAccess]]></code>
-    </MissingTemplateParam>
-  </file>
   <file src="src/Foundation/Concerns/HasHttpClient.php">
     <TypeDoesNotContainType>
       <code><![CDATA[\assert($this instanceof HandlerStack)]]></code>
