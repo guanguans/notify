@@ -8,6 +8,35 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.0.3"></a>
+## [2.0.3] - 2024-02-29
+### Docs
+- **readme:** update Gitter links and remove Gitter from phpunit.xml.dist
+
+### Feat
+- **GoogleChat:** Add compact payload creation in Authenticator
+- **IGot:** Add title, url, copy, and detail to message
+- **Message:** Add support for [@type](https://github.com/type) and [@context](https://github.com/context) in Message
+- **MicrosoftTeams:** Add test for sending message
+
+### Refactor
+- **ClientTest:** Refactor test cases for sending messages
+- **Message:** Remove base_uri usage and update toHttpUri method
+- **Message:** Improve Message class structure
+- **Message:** Optimize 'toHttpOptions' method
+- **arr:** Improve array handling in Arr class
+- **messages:** Improve array filtering in Message class
+- **tests:** improve custom expectation function naming
+- **types:** Update type declarations to bool in message classes
+
+### Test
+- Add Mattermost ClientTest and update Message.php
+- Add Gitter and GoogleChat ClientTest files
+
+### Pull Requests
+- Merge pull request [#58](https://github.com/guanguans/notify/issues/58) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.68.3
+
+
 <a name="2.0.2"></a>
 ## [2.0.2] - 2024-02-28
 ### Feat
@@ -524,7 +553,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.0.2...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.0.3...HEAD
+[2.0.3]: https://github.com/guanguans/notify/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/guanguans/notify/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/guanguans/notify/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/guanguans/notify/compare/2.0.0-rc1...2.0.0
