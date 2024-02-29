@@ -132,7 +132,7 @@ class Arr
 
         $keys = (array) $keys;
 
-        if (0 === \count($keys)) {
+        if ([] === $keys) {
             return;
         }
 

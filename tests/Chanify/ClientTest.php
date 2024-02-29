@@ -32,7 +32,7 @@ beforeEach(function (): void {
 });
 
 it('can send text message', function (): void {
-    $message = TextMessage::make([
+    $textMessage = TextMessage::make([
         'title' => 'This is title.',
         'text' => 'This is text.',
         'copy' => 'This is copy.',
@@ -54,33 +54,33 @@ it('can send text message', function (): void {
         ],
     ]);
 
-    expect($this->client)->assertCanSendMessage($message);
+    expect($this->client)->assertCanSendMessage($textMessage);
 })->group(__DIR__, __FILE__);
 
 it('can send audio message', function (): void {
-    $message = AudioMessage::make()->audio('This is audio path.');
+    $audioMessage = AudioMessage::make()->audio('This is audio path.');
 
-    expect($this->client)->assertCanSendMessage($message);
+    expect($this->client)->assertCanSendMessage($audioMessage);
 })->group(__DIR__, __FILE__);
 
 it('can send file message', function (): void {
-    $message = FileMessage::make()->file('This is file path.');
+    $fileMessage = FileMessage::make()->file('This is file path.');
 
-    expect($this->client)->assertCanSendMessage($message);
+    expect($this->client)->assertCanSendMessage($fileMessage);
 })->group(__DIR__, __FILE__);
 
 it('can send image message', function (): void {
-    $message = ImageMessage::make()->image('This is image path.');
+    $imageMessage = ImageMessage::make()->image('This is image path.');
 
-    expect($this->client)->assertCanSendMessage($message);
+    expect($this->client)->assertCanSendMessage($imageMessage);
 })->group(__DIR__, __FILE__);
 
 it('can send link message', function (): void {
-    $message = LinkMessage::make([
+    $linkMessage = LinkMessage::make([
         'link' => 'https://github.com/guanguans/notify',
         'sound' => 1,
         'priority' => 10,
     ]);
 
-    expect($this->client)->assertCanSendMessage($message);
+    expect($this->client)->assertCanSendMessage($linkMessage);
 })->group(__DIR__, __FILE__);

@@ -36,18 +36,18 @@ beforeEach(function (): void {
 });
 
 it('can send text message', function (): void {
-    $message = TextMessage::make([
+    $textMessage = TextMessage::make([
         'content' => 'This is content(keyword).',
         'atMobiles' => [13948484984],
         'atDingtalkIds' => [123456],
         'isAtAll' => false,
     ]);
 
-    expect($this->client)->assertCanSendMessage($message);
+    expect($this->client)->assertCanSendMessage($textMessage);
 })->group(__DIR__, __FILE__);
 
 it('can send btns action card message', function (): void {
-    $message = BtnsActionCardMessage::make([
+    $btnsActionCardMessage = BtnsActionCardMessage::make([
         'title' => 'This is title(keyword).',
         'text' => 'This is text.',
         'btnOrientation' => 1,
@@ -66,11 +66,11 @@ it('can send btns action card message', function (): void {
         'actionURL' => 'https://github.com/guanguans/notify',
     ]);
 
-    expect($this->client)->assertCanSendMessage($message);
+    expect($this->client)->assertCanSendMessage($btnsActionCardMessage);
 })->group(__DIR__, __FILE__);
 
 it('can send feed card message', function (): void {
-    $message = FeedCardMessage::make()->links([
+    $feedCardMessage = FeedCardMessage::make()->links([
         [
             'title' => 'This is title(keyword) 1.',
             'messageURL' => 'https://github.com/guanguans/notify',
@@ -87,22 +87,22 @@ it('can send feed card message', function (): void {
         'picURL' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
     ]);
 
-    expect($this->client)->assertCanSendMessage($message);
+    expect($this->client)->assertCanSendMessage($feedCardMessage);
 })->group(__DIR__, __FILE__);
 
 it('can send link message', function (): void {
-    $message = LinkMessage::make([
+    $linkMessage = LinkMessage::make([
         'title' => 'This is title.',
         'text' => 'This is text(keyword).',
         'messageUrl' => 'https://github.com/guanguans/notify',
         'picUrl' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
     ]);
 
-    expect($this->client)->assertCanSendMessage($message);
+    expect($this->client)->assertCanSendMessage($linkMessage);
 })->group(__DIR__, __FILE__);
 
 it('can send markdown message', function (): void {
-    $message = MarkdownMessage::make([
+    $markdownMessage = MarkdownMessage::make([
         'title' => 'This is title.',
         'text' => '> This is text(keyword).',
         'atMobiles' => [13948484984],
@@ -110,11 +110,11 @@ it('can send markdown message', function (): void {
         'isAtAll' => false,
     ]);
 
-    expect($this->client)->assertCanSendMessage($message);
+    expect($this->client)->assertCanSendMessage($markdownMessage);
 })->group(__DIR__, __FILE__);
 
 it('can send single action card message', function (): void {
-    $message = SingleActionCardMessage::make([
+    $singleActionCardMessage = SingleActionCardMessage::make([
         'title' => 'This is title(keyword).',
         'text' => 'This is text.',
         'singleTitle' => 'This is singleTitle.',
@@ -122,5 +122,5 @@ it('can send single action card message', function (): void {
         'btnOrientation' => 1,
     ]);
 
-    expect($this->client)->assertCanSendMessage($message);
+    expect($this->client)->assertCanSendMessage($singleActionCardMessage);
 })->group(__DIR__, __FILE__);

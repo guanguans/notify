@@ -15,4 +15,9 @@
       <code><![CDATA[findByName]]></code>
     </InaccessibleMethod>
   </file>
+  <file src="src/Foundation/Support/Arr.php">
+    <RedundantCondition>
+      <code><![CDATA[isset($array[$part]) && \is_array($array[$part])]]></code>
+    </RedundantCondition>
+  </file>
 </files>
