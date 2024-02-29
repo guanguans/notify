@@ -22,7 +22,7 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
  * @method self fileIds(array $fileIds)
  * @method self createAt($createAt)
  * @method self editAt($editAt)
- * @method self isPinned($isPinned)
+ * @method self isPinned(bool $isPinned)
  * @method self rootId($rootId)
  * @method self originalId($originalId)
  * @method self type($type)

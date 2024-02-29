@@ -22,7 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self originator($originator)
  * @method self summary($summary)
  * @method self themeColor($themeColor)
- * @method self hideOriginalBody($hideOriginalBody)
+ * @method self hideOriginalBody(bool $hideOriginalBody)
  * @method self title($title)
  * @method self text($text)
  * @method self sections(array $sections)

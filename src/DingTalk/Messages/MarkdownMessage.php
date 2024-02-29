@@ -17,7 +17,7 @@ namespace Guanguans\Notify\DingTalk\Messages;
  * @method self text($text)
  * @method self atMobiles(array $atMobiles)
  * @method self atDingtalkIds(array $atDingtalkIds)
- * @method self isAtAll($isAtAll)
+ * @method self isAtAll(bool $isAtAll)
  */
 class MarkdownMessage extends Message
 {

@@ -22,7 +22,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self username($username)
  * @method self iconEmoji($iconEmoji)
  * @method self iconUrl($iconUrl)
- * @method self unfurlLinks($unfurlLinks)
+ * @method self unfurlLinks(bool $unfurlLinks)
  * @method self attachments(array $attachments)
  */
 class Message extends \Guanguans\Notify\Foundation\Message

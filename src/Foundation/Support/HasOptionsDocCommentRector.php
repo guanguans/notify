@@ -165,7 +165,21 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
     {
         $option = Str::camel($option);
 
-        $type = (['array'] === $optionAllowedTypes || 'array' === $optionAllowedTypes) ? 'array ' : '';
+        switch ((array) $optionAllowedTypes) {
+            case ['bool']:
+            case ['boolean']:
+                $type = 'bool ';
+
+                break;
+            case ['array']:
+                $type = 'array ';
+
+                break;
+            default:
+                $type = '';
+
+                break;
+        }
 
         return new PhpDocTagNode('@method', new GenericTagValueNode("self $option($type\$$option)"));
     }

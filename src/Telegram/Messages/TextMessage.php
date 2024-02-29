@@ -17,11 +17,11 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self text($text)
  * @method self parseMode($parseMode)
  * @method self entities(array $entities)
- * @method self disableWebPagePreview($disableWebPagePreview)
- * @method self disableNotification($disableNotification)
- * @method self protectContent($protectContent)
+ * @method self disableWebPagePreview(bool $disableWebPagePreview)
+ * @method self disableNotification(bool $disableNotification)
+ * @method self protectContent(bool $protectContent)
  * @method self replyToMessageId($replyToMessageId)
- * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self allowSendingWithoutReply(bool $allowSendingWithoutReply)
  * @method self replyMarkup(array $replyMarkup)
  */
 class TextMessage extends Message

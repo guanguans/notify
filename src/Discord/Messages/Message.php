@@ -26,7 +26,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self attachments(array $attachments)
  * @method self username($username)
  * @method self avatarUrl($avatarUrl)
- * @method self tts($tts)
+ * @method self tts(bool $tts)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
