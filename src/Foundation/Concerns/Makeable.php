@@ -14,6 +14,9 @@ namespace Guanguans\Notify\Foundation\Concerns;
 
 trait Makeable
 {
+    /**
+     * @return static
+     */
     public static function make(...$parameters): self
     {
         return new static(...$parameters);
