@@ -20,6 +20,7 @@
     </include>
     <exclude>
       <directory>src/Foundation/Support</directory>
+      <directory>src/Gitter</directory>
       <file>src/Skeleton.php</file>
     </exclude>
   </coverage>

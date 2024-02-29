@@ -1,7 +1,5 @@
 # notify
 
-[简体中文](README-zh_CN.md) | [ENGLISH](README.md)
-
 > Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、Pushback、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、YiFengChuanHua、Zulip).
 
 [![tests](https://github.com/guanguans/notify/actions/workflows/tests.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/tests.yml)
@@ -23,7 +21,7 @@
 * [Chanify](./src/Chanify/README.md)
 * [DingTalk](./src/DingTalk/README.md)
 * [Discord](./src/Discord/README.md)
-* [Gitter](./src/Gitter/README.md)
+* [~~Gitter~~](./src/Gitter/README.md)
 * [GoogleChat](./src/GoogleChat/README.md)
 * [IGot](./src/IGot/README.md)
 * [Lark](./src/Lark/README.md)
@@ -65,27 +63,33 @@ $authenticator = new \Guanguans\Notify\Bark\Authenticator('yetwhxBm7wCBSUTjeqh')
 // 2. Create client
 $client = new \Guanguans\Notify\Bark\Client($authenticator);
 
-// 3. Create and send message
+// 3. Create message
+$message = \Guanguans\Notify\Bark\Messages\Message::make([
+    'title' => 'This is title.',
+    'body' => 'This is body.',
+    // 'copy' => 'This is copy.',
+    // 'url' => 'https://github.com/guanguans/notify',
+    // 'sound' => 'bell',
+    // 'group' => 'group',
+    // 'icon' => 'https://avatars0.githubusercontent.com/u/25671453?s=200&v=4',
+    // 'level' => 'passive',
+    // 'badge' => 5,
+    // 'isArchive' => 1,
+    // 'autoCopy' => 1,
+    // 'automaticallyCopy' => 1,
+])
+    ->copy('This is copy.')
+    ->url('https://github.com/guanguans/notify');
+
+// 4. Send message
 $response = $client
-    // ->verify(false)
-    // ->timeout(30)
     // ->baseUri('The server address of your own deployment.')
-    ->send(\Guanguans\Notify\Bark\Messages\Message::make([
-        'title' => 'This is title.',
-        'body' => 'This is body.',
-        'copy' => 'This is copy.',
-        'url' => 'https://github.com/guanguans/notify',
-        'sound' => 'bell',
-        'group' => 'group',
-        // 'icon' => 'https://avatars0.githubusercontent.com/u/25671453?s=200&v=4',
-        // 'level' => 'passive',
-        // 'badge' => 5,
-        // 'isArchive' => 1,
-        // 'autoCopy' => 1,
-        // 'automaticallyCopy' => 1,
-    ]))
-    // ->dump()
-    ->throw();
+    // ->timeout(30)
+    // ->verify(false)
+    ->send($message)
+    ->dump()
+    // ->throw()
+    ->json();
 ```
 
 ## Testing
