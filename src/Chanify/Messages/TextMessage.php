@@ -47,12 +47,13 @@ class TextMessage extends Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver->setDefault('timeline', static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver->setDefined([
-                'code',
-                'timestamp',
-                'items',
-            ]);
-            $optionsResolver->setAllowedTypes('items', 'array');
+            $optionsResolver
+                ->setDefined([
+                    'code',
+                    'timestamp',
+                    'items',
+                ])
+                ->setAllowedTypes('items', 'array');
         });
     }
 }

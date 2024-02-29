@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Lark\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsPost;
+use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\RequestOptions;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
@@ -29,7 +30,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         return [
             RequestOptions::JSON => [
                 'msg_type' => $this->type(),
-                'content' => $this->getOptions(),
+                'content' => Arr::filterRecursive($this->getOptions(), static fn ($value): bool => [] !== $value),
             ],
         ];
     }

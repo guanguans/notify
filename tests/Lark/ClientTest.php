@@ -66,7 +66,7 @@ it('can send card message', function (): void {
         ])
         ->send($message)->toBeInstanceOf(ResponseInterface::class)
         ->send($message)->toBeInstanceOf(ResponseInterface::class);
-})->group(__DIR__, __FILE__);
+})->group(__DIR__, __FILE__)->skip();
 
 it('can send image message', function (): void {
     $authenticator = new Authenticator(

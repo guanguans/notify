@@ -23,6 +23,7 @@ use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
 use Rector\Config\RectorConfig;
 use Rector\Configuration\Option;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
+use Rector\DowngradePhp80\Rector\FuncCall\DowngradeArrayFilterNullableCallbackRector;
 use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
@@ -90,19 +91,17 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->skip([
-        // rules
         AddSeeTestAnnotationRector::class,
         ChangeAndIfToEarlyReturnRector::class,
         CompactToVariablesRector::class,
+        DowngradeArrayFilterNullableCallbackRector::class,
         EncapsedStringsToSprintfRector::class,
         ExplicitBoolCompareRector::class,
         LogicalToBooleanRector::class,
+        RemoveUselessReturnTagRector::class,
         ReturnBinaryOrToEarlyReturnRector::class,
         SensitiveHereNowDocRector::class,
         WrapEncapsedVariableInCurlyBracesRector::class,
-
-        // optional rules
-        RemoveUselessReturnTagRector::class,
         RenameParamToMatchTypeRector::class => [
             __DIR__.'/src/Foundation/Authenticators/AggregateAuthenticator.php',
             __DIR__.'/src/Foundation/Exceptions/RequestException.php',

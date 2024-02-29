@@ -162,4 +162,18 @@ class Arr
             unset($array[array_shift($parts)]);
         }
     }
+
+    /**
+     * Filter the array recursively using a callback function.
+     */
+    public static function filterRecursive(array $array, ?callable $callback = null, int $flag = 0): array
+    {
+        foreach ($array as &$value) {
+            if (\is_array($value)) {
+                $value = static::filterRecursive($value, $callback, $flag);
+            }
+        }
+
+        return array_filter($array, $callback, $flag);
+    }
 }
