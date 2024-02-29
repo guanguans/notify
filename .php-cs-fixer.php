@@ -264,6 +264,7 @@ return (new Config)
                 'link' => 'see',
             ],
         ],
+        'phpdoc_array_type' => true,
 
         // return_notation
         'simplified_null_return' => true,
@@ -379,7 +380,6 @@ return (new Config)
         PhpCsFixerCustomFixers\Fixer\PhpUnitAssertArgumentsOrderFixer::name() => true,
         PhpCsFixerCustomFixers\Fixer\PhpUnitDedicatedAssertFixer::name() => true,
         PhpCsFixerCustomFixers\Fixer\PhpUnitNoUselessReturnFixer::name() => true,
-        PhpCsFixerCustomFixers\Fixer\PhpdocArrayStyleFixer::name() => true,
         PhpCsFixerCustomFixers\Fixer\PhpdocNoIncorrectVarAnnotationFixer::name() => true,
         PhpCsFixerCustomFixers\Fixer\PhpdocNoSuperfluousParamFixer::name() => true,
         // PhpCsFixerCustomFixers\Fixer\PhpdocOnlyAllowedAnnotationsFixer::name() => [
