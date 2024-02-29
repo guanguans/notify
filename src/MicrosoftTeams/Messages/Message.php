@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\MicrosoftTeams\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
+use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -31,9 +32,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsJson;
+    use AsNullUri;
     use AsPost;
 
     protected array $defined = [
+        '@type',
+        '@context',
         'correlationId',
         'expectedActors',
         'originator',
@@ -44,9 +48,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'text',
         'sections',
         'potentialAction',
-    ];
-
-    protected array $required = [
     ];
 
     protected $allowedTypes = [
@@ -135,24 +136,5 @@ class Message extends \Guanguans\Notify\Foundation\Message
         );
 
         return $this;
-    }
-
-    public function toHttpUri(): string
-    {
-        // return 'webhook';
-        return '';
-    }
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
-    {
-        $optionsResolver->setNormalizer('sections', static fn (
-            OptionsResolver $optionsResolver,
-            array $value
-        ): array => isset($value[0]) ? $value : [$value]);
-
-        $optionsResolver->setNormalizer('potentialAction', static fn (
-            OptionsResolver $optionsResolver,
-            array $value
-        ): array => isset($value[0]) ? $value : [$value]);
     }
 }

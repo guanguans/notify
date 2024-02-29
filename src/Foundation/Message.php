@@ -25,6 +25,8 @@ abstract class Message implements \ArrayAccess, Contracts\Message
     use HasOptions;
     use Makeable;
 
+    protected bool $ignoreUndefined = true;
+
     public function __construct(array $options = [])
     {
         $this->setOptions($options);

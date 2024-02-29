@@ -12,6 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\MicrosoftTeams;
 
-use Guanguans\Notify\Foundation\Authenticators\NullAuthenticator;
+use Guanguans\Notify\Foundation\Authenticators\WebHookAuthenticator;
 
-class Authenticator extends NullAuthenticator {}
+class Authenticator extends WebHookAuthenticator {}
