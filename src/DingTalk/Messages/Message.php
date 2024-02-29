@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\DingTalk\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsPost;
+use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\RequestOptions;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
@@ -26,11 +27,13 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpOptions(): array
     {
+        $options = $this->getOptions();
+
         return [
             RequestOptions::JSON => [
                 'msgtype' => $this->type(),
-                $this->type() => $this->getOptions(),
-                'at' => $this->getOptions(),
+                $this->type() => Arr::except($options, $atKeys = ['atMobiles', 'atDingtalkIds', 'isAtAll']),
+                'at' => Arr::only($options, $atKeys),
             ],
         ];
     }

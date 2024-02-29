@@ -108,4 +108,58 @@ class Arr
     {
         return array_intersect_key($array, array_flip((array) $keys));
     }
+
+    /**
+     * Get all of the given array except for a specified array of keys.
+     *
+     * @param array|string $keys
+     */
+    public static function except(array $array, $keys): array
+    {
+        static::forget($array, $keys);
+
+        return $array;
+    }
+
+    /**
+     * Remove one or many array items from a given array using "dot" notation.
+     *
+     * @param array|string $keys
+     */
+    public static function forget(array &$array, $keys): void
+    {
+        $original = &$array;
+
+        $keys = (array) $keys;
+
+        if (0 === \count($keys)) {
+            return;
+        }
+
+        foreach ($keys as $key) {
+            // if the exact key exists in the top-level, remove it
+            if (static::exists($array, $key)) {
+                unset($array[$key]);
+
+                continue;
+            }
+
+            $parts = explode('.', $key);
+
+            // clean up before each pass
+            $array = &$original;
+
+            while (\count($parts) > 1) {
+                $part = array_shift($parts);
+
+                if (isset($array[$part]) && \is_array($array[$part])) {
+                    $array = &$array[$part];
+                } else {
+                    continue 2;
+                }
+            }
+
+            unset($array[array_shift($parts)]);
+        }
+    }
 }
