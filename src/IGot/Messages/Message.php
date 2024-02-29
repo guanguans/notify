@@ -39,13 +39,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'detail',
     ];
 
-    protected array $required = [
-        'content',
-    ];
-
     protected array $allowedTypes = [
-        'automaticallyCopy' => 'int',
-        'urgent' => 'int',
         'detail' => 'array',
     ];
 
