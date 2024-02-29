@@ -17,6 +17,7 @@ namespace Guanguans\Notify\Foundation\Concerns;
 
 use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
+use Guanguans\Notify\Foundation\Support\Arr;
 use Guanguans\Notify\Foundation\Support\Str;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -66,14 +67,16 @@ trait HasOptions
 
     public function setOption(string $option, $value): self
     {
-        $this->options[$option] = $value;
+        // $this->options[$option] = $value;
+        Arr::set($this->options, $option, $value);
 
         return $this;
     }
 
     public function getOption(string $option, $default = null)
     {
-        return $this->getOptions()[$option] ?? $default;
+        // return $this->getOptions()[$option] ?? $default;
+        return Arr::get($this->getOptions(), $option, $default);
     }
 
     public function getOptions(): array
@@ -115,7 +118,7 @@ trait HasOptions
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        // configure options resolver...
+        // Configure options resolver...
     }
 
     private function preConfigureOptionsResolver(OptionsResolver $optionsResolver): void
@@ -134,7 +137,7 @@ trait HasOptions
 
         if (property_exists($this, 'deprecated')) {
             foreach ($this->deprecated as $option => $arguments) {
-                // required symfony/options-resolver < 6.0
+                // Required symfony/options-resolver < 6.0
                 \is_string($arguments) and $arguments = [$arguments];
 
                 \is_string($option) and array_unshift($arguments, $option);

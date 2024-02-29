@@ -44,6 +44,46 @@ class Arr
     }
 
     /**
+     * Set an array item to a given value using "dot" notation.
+     *
+     * If no key is given to the method, the entire array will be replaced.
+     *
+     * @param null|int|string $key
+     * @param mixed $value
+     */
+    public static function set(array &$array, $key, $value): array
+    {
+        if (null === $key) {
+            return $array = $value;
+        }
+
+        /** @var array $keys */
+        $keys = explode('.', $key);
+
+        /** @noinspection SuspiciousLoopInspection */
+        foreach ($keys as $i => $key) {
+            if (1 === \count($keys)) {
+                break;
+            }
+
+            unset($keys[$i]);
+
+            // If the key doesn't exist at this depth, we will just create an empty array
+            // to hold the next value, allowing us to create the arrays to hold final
+            // values at the correct depth. Then we'll keep digging into the array.
+            if (! isset($array[$key]) || ! \is_array($array[$key])) {
+                $array[$key] = [];
+            }
+
+            $array = &$array[$key];
+        }
+
+        $array[array_shift($keys)] = $value;
+
+        return $array;
+    }
+
+    /**
      * Get an item from an array using "dot" notation.
      *
      * @param array|\ArrayAccess $array
@@ -112,7 +152,7 @@ class Arr
     /**
      * Get all of the given array except for a specified array of keys.
      *
-     * @param array|string $keys
+     * @param array|float|int|string $keys
      */
     public static function except(array $array, $keys): array
     {
@@ -124,7 +164,7 @@ class Arr
     /**
      * Remove one or many array items from a given array using "dot" notation.
      *
-     * @param array|string $keys
+     * @param array|float|int|string $keys
      */
     public static function forget(array &$array, $keys): void
     {
@@ -152,7 +192,7 @@ class Arr
             while (\count($parts) > 1) {
                 $part = array_shift($parts);
 
-                if (isset($array[$part]) && \is_array($array[$part])) {
+                if (isset($array[$part]) && static::accessible($array[$part])) {
                     $array = &$array[$part];
                 } else {
                     continue 2;
