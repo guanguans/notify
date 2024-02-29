@@ -4,4 +4,5 @@
 
 ## Related links
 
-* [https://api.mattermost.com/l](https://api.mattermost.com/)
+* [https://api.mattermost.com/#tag/posts](https://api.mattermost.com/#tag/posts)
+* [https://mattermost.com/](https://mattermost.com/)

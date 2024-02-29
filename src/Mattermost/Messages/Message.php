@@ -36,8 +36,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsPost;
 
     protected array $defined = [
-        'base_uri',
-
         'channel_id',
         'message',
         'file_ids',
@@ -53,7 +51,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     protected array $required = [
-        'base_uri',
         'channel_id',
     ];
 
@@ -61,12 +58,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'file_ids' => 'array',
         'props' => 'array',
         'is_pinned' => 'bool',
-        'create_at' => 'int',
-        'edit_at' => 'int',
     ];
 
     public function toHttpUri(): string
     {
-        return "{$this->getOption('base_uri')}/api/v4/posts";
+        return 'api/v4/posts';
     }
 }
