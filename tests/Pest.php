@@ -37,7 +37,7 @@ uses(TestCase::class)
 |
  */
 
-expect()->extend('between', fn (int $min, int $max): Expectation => expect($this->value)
+expect()->extend('toBetween', fn (int $min, int $max): Expectation => expect($this->value)
     ->toBeGreaterThanOrEqual($min)
     ->toBeLessThanOrEqual($max));
 
@@ -63,28 +63,8 @@ expect()->extend('assertCanSendMessage', function (Message $message): Expectatio
 
         expect($client->send($message))
             ->toBeInstanceOf(ResponseInterface::class)
-            ->when(
-                $responseOrException instanceof Response,
-                function (Expectation $expectation) use ($responseOrException): void {
-                    /** @var \Guanguans\Notify\Foundation\Response $response */
-                    $response = $expectation->value;
-
-                    expect($response)
-                        ->body()->toBe((string) $responseOrException->getBody())
-                        ->status()->toBe($responseOrException->getStatusCode());
-                }
-            )
-            ->when(
-                $responseOrException instanceof Throwable,
-                function (Expectation $expectation) use ($responseOrException): void {
-                    /** @var \Guanguans\Notify\Foundation\Response $response */
-                    $response = $expectation->value;
-
-                    expect($response)
-                        ->body()->toBe((string) $responseOrException->getMessage())
-                        ->status()->toBe($responseOrException->getCode());
-                }
-            );
+            ->body()->toBe((string) $responseOrException->getBody())
+            ->status()->toBe($responseOrException->getStatusCode());
     });
 
     return $this;
