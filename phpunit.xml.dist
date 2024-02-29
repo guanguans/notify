@@ -21,6 +21,7 @@
     <exclude>
       <directory>src/Foundation/Support</directory>
       <directory>src/Gitter</directory>
+      <directory>src/GoogleChat</directory>
       <file>src/Skeleton.php</file>
     </exclude>
   </coverage>

@@ -10,11 +10,6 @@
 [![Total Downloads](https://poser.pugx.org/guanguans/notify/downloads)](https://packagist.org/packages/guanguans/notify)
 [![License](https://poser.pugx.org/guanguans/notify/license)](https://packagist.org/packages/guanguans/notify)
 
-## Related project
-
-* [https://github.com/guanguans/laravel-exception-notify](https://github.com/guanguans/laravel-exception-notify)
-* [https://github.com/guanguans/yii-log-target](https://github.com/guanguans/yii-log-target)
-
 ## Platform support
 
 * [Bark](./src/Bark/README.md)
@@ -43,6 +38,11 @@
 * [XiZhi](./src/XiZhi/README.md)
 * [YiFengChuanHua](./src/YiFengChuanHua/README.md)
 * [Zulip](./src/Zulip/README.md)
+
+## Related repository
+
+* [https://github.com/guanguans/laravel-exception-notify](https://github.com/guanguans/laravel-exception-notify)
+* [https://github.com/guanguans/yii-log-target](https://github.com/guanguans/yii-log-target)
 
 ## Requirement
 

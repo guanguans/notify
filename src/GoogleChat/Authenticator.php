@@ -21,7 +21,7 @@ class Authenticator extends AggregateAuthenticator
 {
     public function __construct(string $spaceId, string $key, string $token, ?string $threadKey = null)
     {
-        $payload = ['key' => $key, 'token' => $token];
+        $payload = compact('key', 'token');
         $threadKey and $payload['threadKey'] = $threadKey;
 
         $authenticators = [
