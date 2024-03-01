@@ -61,8 +61,10 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
 
     /**
      * The decoded JSON response.
+     *
+     * @var null|array|scalar
      */
-    protected ?array $decoded = null;
+    protected $decoded;
 
     /**
      * Provide debug information about the response.
@@ -78,7 +80,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
             'status' => $this->status(),
             'reason' => $this->reason(),
             'body' => $this->body(),
-            // 'decodedBody' => $this->json(),
+            'decodedBody' => $this->json(),
         ]);
     }
 
@@ -126,7 +128,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function json($key = null, $default = null)
     {
-        if (! $this->decoded) {
+        if (null === $this->decoded) {
             $this->decoded = json_decode($this->body(), true);
         }
 
