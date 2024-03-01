@@ -8,6 +8,23 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.0.5"></a>
+## [2.0.5] - 2024-03-02
+### Docs
+- **ShowdocPush:** Update ShowdocPush documentation
+- **slack:** Update Slack Message class methods and properties
+
+### Feat
+- **Message:** Add channel, webhook, callbackUrl, and timestamp properties to Message class
+- **QQ:** add constructor to Client class
+- **RocketChat:** Add message sending functionality with attachments
+
+### Test
+- **ClientTest:** Add new message fields
+- **ClientTest:** refactor message creation in ClientTest
+- **ClientTest:** Add attachment and device to message
+
+
 <a name="2.0.4"></a>
 ## [2.0.4] - 2024-03-01
 ### Feat
@@ -569,7 +586,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.0.4...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.0.5...HEAD
+[2.0.5]: https://github.com/guanguans/notify/compare/2.0.4...2.0.5
 [2.0.4]: https://github.com/guanguans/notify/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/guanguans/notify/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/guanguans/notify/compare/2.0.1...2.0.2
