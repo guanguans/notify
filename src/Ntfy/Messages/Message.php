@@ -13,44 +13,55 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Ntfy\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
+use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @method self topic($topic)
  * @method self message($message)
  * @method self title($title)
- * @method self priority($priority)
  * @method self tags(array $tags)
- * @method self delay($delay)
+ * @method self priority($priority)
  * @method self actions(array $actions)
  * @method self click($click)
  * @method self attach($attach)
+ * @method self markdown($markdown)
  * @method self icon($icon)
  * @method self filename($filename)
+ * @method self delay($delay)
  * @method self email($email)
+ * @method self call($call)
  * @method self cache($cache)
  * @method self firebase($firebase)
+ * @method self unifiedPush($unifiedPush)
+ * @method self pollId($pollId)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsJson;
+    use AsNullUri;
     use AsPost;
 
     protected array $defined = [
         'topic',
         'message',
         'title',
-        'priority',
         'tags',
-        'delay',
+        'priority',
         'actions',
         'click',
         'attach',
+        'markdown',
         'icon',
         'filename',
+        'delay',
         'email',
+        'call',
         'cache',
         'firebase',
+        'unified_push',
+        'poll_id',
     ];
 
     protected array $required = [
@@ -73,8 +84,31 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'actions' => [],
     ];
 
-    public function toHttpUri(): string
+    public function addAction(array $action): self
     {
-        return '';
+        $this->options['actions'][] = $this->configureAndResolveOptions(
+            $action,
+            static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setDefined([
+                        'action', // [view, broadcast, http, click]
+                        'label',
+                        'clear',
+
+                        'url', // view|http|click
+                        'intent', // broadcast
+                        'extras', // broadcast
+                        'method', // http
+                        'headers', // http
+                        'body', // http
+                        'method', // http
+                    ])
+                    ->setAllowedTypes('clear', 'bool')
+                    ->setAllowedTypes('extras', 'array')
+                    ->setAllowedTypes('headers', 'array');
+            }
+        );
+
+        return $this;
     }
 }

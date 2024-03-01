@@ -12,4 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Ntfy;
 
-class BearerAuthenticator extends \Guanguans\Notify\Foundation\Authenticators\BearerAuthenticator {}
+use Guanguans\Notify\Foundation\Authenticators\BearerAuthenticator;
+
+class Authenticator extends BearerAuthenticator {}

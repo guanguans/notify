@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Zulip;
 
-use Guanguans\Notify\Ntfy\BasicAuthenticator;
+use Guanguans\Notify\Foundation\Authenticators\BasicAuthenticator;
 
 class Authenticator extends BasicAuthenticator
 {
