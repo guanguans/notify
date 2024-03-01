@@ -18,7 +18,6 @@ namespace Guanguans\NotifyTests\ShowdocPush;
 use Guanguans\Notify\ShowdocPush\Authenticator;
 use Guanguans\Notify\ShowdocPush\Client;
 use Guanguans\Notify\ShowdocPush\Messages\Message;
-use Psr\Http\Message\ResponseInterface;
 
 it('can send message', function (): void {
     $authenticator = new Authenticator('f096edb95f92540219a41e47060eeb6d946199');
@@ -33,6 +32,5 @@ it('can send message', function (): void {
             create_response('{"error_code":0,"error_message":"ok"}'),
             create_response('{"error_code":10103,"error_message":"url\u6216token\u4e0d\u6b63\u786e"}'),
         ])
-        ->send($message)->toBeInstanceOf(ResponseInterface::class)
-        ->send($message)->toBeInstanceOf(ResponseInterface::class);
+        ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);
