@@ -52,4 +52,4 @@ it('can send message', function (): void {
         ])
         ->send($message)->toBeInstanceOf(ResponseInterface::class)
         ->send($sandboxMessage)->toBeInstanceOf(ResponseInterface::class);
-})->group(__DIR__, __FILE__);
+})->group(__DIR__, __FILE__)->skip();

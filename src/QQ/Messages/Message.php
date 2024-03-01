@@ -12,38 +12,37 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\QQ\Messages;
 
+use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Foundation\Support\Utils;
-use GuzzleHttp\RequestOptions;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @method self channelId($channelId)
  * @method self content($content)
+ * @method self embed(array $embed)
+ * @method self ark(array $ark)
+ * @method self messageReference(array $messageReference)
  * @method self image($image)
  * @method self fileImage($fileImage)
  * @method self msgId($msgId)
  * @method self eventId($eventId)
- * @method self embed(array $embed)
- * @method self ark(array $ark)
- * @method self messageReference(array $messageReference)
  * @method self markdown(array $markdown)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    use AsMultipart;
     use AsPost;
 
     protected array $defined = [
         'channel_id',
-
         'content',
+        'embed',
+        'ark',
+        'message_reference',
         'image',
         'file_image',
         'msg_id',
         'event_id',
-        'embed',
-        'ark',
-        'message_reference',
         'markdown',
     ];
 
@@ -54,82 +53,55 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'markdown' => 'array',
     ];
 
-    protected array $options = [];
-
-    public function toHttpOptions(): array
+    public function toHttpUri(): string
     {
-        $options = $this->getOptions();
-
-        unset($options['channel_id']);
-
-        return [
-            RequestOptions::MULTIPART => Utils::multipartFor($options),
-        ];
+        return "channels/{$this->getOption('channel_id')}/messages";
     }
 
-    public function setEmbed(array $embed): self
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        $this->options['embed'] = $this->configureAndResolveOptions($embed, static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver
-                ->setDefined([
-                    'title',
-                    'prompt',
-                    'thumbnail',
-                    'fields',
-                ]);
-        });
-
-        return $this;
-    }
-
-    public function setArk(array $ark): self
-    {
-        $this->options['ark'] = $this->configureAndResolveOptions($ark, static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver
-                ->setDefined([
-                    'template_id',
-                    'kv',
-                ]);
-        });
-
-        return $this;
-    }
-
-    public function setMessageReference(array $messageReference): self
-    {
-        $this->options['message_reference'] = $this->configureAndResolveOptions(
-            $messageReference,
-            static function (OptionsResolver $optionsResolver): void {
+        $optionsResolver
+            ->setDefault('embed', static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setDefined([
+                        'title',
+                        'prompt',
+                        'thumbnail',
+                        'fields',
+                    ])
+                    ->setAllowedTypes('thumbnail', 'array')
+                    ->setAllowedTypes('fields', 'array')
+                    ->setDefault('thumbnail', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'url',
+                        ]);
+                    });
+            })
+            ->setDefault('ark', static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setDefined([
+                        'template_id',
+                        'kv',
+                    ])
+                    ->setAllowedTypes('kv', 'array');
+            })
+            ->setDefault('message_reference', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'template_id',
                         'ignore_get_message_error',
-                    ]);
-            }
-        );
-
-        return $this;
-    }
-
-    public function setMarkdown(array $markdown): self
-    {
-        $this->options['markdown'] = $this->configureAndResolveOptions(
-            $markdown,
-            static function (OptionsResolver $optionsResolver): void {
+                    ])
+                    ->setAllowedTypes('ignore_get_message_error', 'bool');
+            })
+            ->setDefault('markdown', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'template_id',
+                        'custom_template_id',
                         'params',
                         'content',
-                    ]);
-            }
-        );
-
-        return $this;
-    }
-
-    public function toHttpUri(): string
-    {
-        return "https://api.sgroup.qq.com/channels/{$this->getOption('channel_id')}/messages";
+                    ])
+                    ->setAllowedTypes('params', 'array');
+            });
     }
 }

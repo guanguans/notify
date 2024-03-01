@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\QQ;
 
+use Guanguans\Notify\Foundation\Contracts\Authenticator;
+
 /**
  * @see https://bot.q.qq.com/wiki
  * @see https://bot.q.qq.com/wiki/develop/api/openapi/message/post_messages.html
@@ -57,4 +59,11 @@ namespace Guanguans\Notify\QQ;
  * --form 'content="This is content."'
  * ```
  */
-class Client extends \Guanguans\Notify\Foundation\Client {}
+class Client extends \Guanguans\Notify\Foundation\Client
+{
+    public function __construct(?Authenticator $authenticator = null)
+    {
+        parent::__construct($authenticator);
+        $this->baseUri('https://api.sgroup.qq.com/'); // sandbox https://sandbox.api.sgroup.qq.com/
+    }
+}
