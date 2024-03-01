@@ -25,6 +25,7 @@
         "string",
         "true",
         "void",
+        "openssl_encrypt",
         "GuzzleHttp\\Promise\\Create",
         "GuzzleHttp\\Promise\\PromiseInterface",
         "GuzzleHttp\\Psr7\\HttpFactory",
