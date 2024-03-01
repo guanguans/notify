@@ -26,7 +26,7 @@ use GuzzleHttp\RequestOptions;
  * @method self image($image)
  * @method self timeSensitive(bool $timeSensitive)
  */
-abstract class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;
 
@@ -45,6 +45,11 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
     protected array $allowedTypes = [
         'timeSensitive' => 'bool',
     ];
+
+    public function toHttpUri(): string
+    {
+        return 'https://push.techulus.com/api/v1/notify/{token}';
+    }
 
     public function toHttpOptions(): array
     {
