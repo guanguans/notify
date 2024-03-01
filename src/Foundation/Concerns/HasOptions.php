@@ -132,7 +132,7 @@ trait HasOptions
 
         // Required symfony/options-resolver >= 6.3
         if (property_exists($this, 'ignoreUndefined') && method_exists($optionsResolver, 'setIgnoreUndefined')) {
-            $optionsResolver->setIgnoreUndefined($this->ignoreUndefined);
+            $optionsResolver->setIgnoreUndefined($this->ignoreUndefined); // @codeCoverageIgnore
         }
 
         if (property_exists($this, 'deprecated')) {

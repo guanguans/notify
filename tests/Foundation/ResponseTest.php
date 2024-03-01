@@ -184,7 +184,7 @@ it('can detect response status', function (): void {
 })->group(__DIR__, __FILE__);
 
 it('can apply callback on error', function (): void {
-    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response))
+    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(500)))
         ->onError(static fn (): string => 'callback')->toBeInstanceOf(Response::class);
 })->group(__DIR__, __FILE__);
 
