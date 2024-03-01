@@ -12,34 +12,44 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Push\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
+use Guanguans\Notify\Foundation\Support\Arr;
+use GuzzleHttp\RequestOptions;
 
 /**
+ * @method self groupId($groupId)
  * @method self title($title)
  * @method self body($body)
+ * @method self sound($sound)
+ * @method self channel($channel)
  * @method self link($link)
  * @method self image($image)
+ * @method self timeSensitive(bool $timeSensitive)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
     use AsPost;
 
     protected array $defined = [
+        'groupId',
+
         'title',
         'body',
+        'sound',
+        'channel',
         'link',
         'image',
+        'timeSensitive',
     ];
 
-    protected array $required = [
-        'title',
-        'body',
+    protected array $allowedTypes = [
+        'timeSensitive' => 'bool',
     ];
 
-    public function toHttpUri(): string
+    public function toHttpOptions(): array
     {
-        return 'https://push.techulus.com/api/v1/notify/{token}';
+        return [
+            RequestOptions::JSON => Arr::except($this->getOptions(), ['groupId']),
+        ];
     }
 }
