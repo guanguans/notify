@@ -22,7 +22,7 @@
 * [Lark](./src/Lark/README.md)
 * [Mattermost](./src/Mattermost/README.md)
 * [MicrosoftTeams](./src/MicrosoftTeams/README.md)
-* [NowPush](./src/NowPush/README.md)
+* [~~NowPush~~](./src/NowPush/README.md)
 * [Ntfy](./src/Ntfy/README.md)
 * [Push](./src/Push/README.md)
 * [Pushback](./src/Pushback/README.md)
