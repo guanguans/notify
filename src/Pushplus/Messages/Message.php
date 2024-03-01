@@ -16,11 +16,15 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
+ * @method self topic($topic)
+ * @method self to($to)
  * @method self title($title)
  * @method self content($content)
  * @method self template($template)
- * @method self topic($topic)
- * @method self token($token)
+ * @method self channel($channel)
+ * @method self webhook($webhook)
+ * @method self callbackUrl($callbackUrl)
+ * @method self timestamp($timestamp)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -28,23 +32,24 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsPost;
 
     protected array $defined = [
+        'topic', // 群组消息
+        'to', // 好友消息
+
         'title',
         'content',
         'template',
-        'topic',
-        'token',
+        'channel',
+        'webhook',
+        'callbackUrl',
+        'timestamp',
     ];
 
     protected array $required = [
         'content',
     ];
 
-    protected array $allowedValues = [
-        'template' => ['html', 'json', 'cloudMonitor'],
-    ];
-
     public function toHttpUri(): string
     {
-        return 'https://www.pushplus.plus/send?token={token}';
+        return 'https://www.pushplus.plus/send/{token}';
     }
 }
