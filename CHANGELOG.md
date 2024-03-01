@@ -8,6 +8,22 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.0.4"></a>
+## [2.0.4] - 2024-03-01
+### Feat
+- **Push:** add support for different message types
+
+### Refactor
+- **Response:** Improve handling of decoded JSON response
+- **httpclient:** optimize setting http options
+- **messages:** Update message classes with new traits and methods
+- **push:** Update Authenticator to use AggregateAuthenticator and PayloadAuthenticator
+- **pushback:** Remove commented out code and update URLs in README
+
+### Test
+- **ClientTest:** update message sending feature
+
+
 <a name="2.0.3"></a>
 ## [2.0.3] - 2024-02-29
 ### Docs
@@ -553,7 +569,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.0.3...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.0.4...HEAD
+[2.0.4]: https://github.com/guanguans/notify/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/guanguans/notify/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/guanguans/notify/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/guanguans/notify/compare/2.0.0...2.0.1
