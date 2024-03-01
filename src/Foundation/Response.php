@@ -78,7 +78,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
             'status' => $this->status(),
             'reason' => $this->reason(),
             'body' => $this->body(),
-            'decodedBody' => $this->json(),
+            // 'decodedBody' => $this->json(),
         ]);
     }
 
