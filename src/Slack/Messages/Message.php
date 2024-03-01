@@ -18,13 +18,22 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method self text($text)
  * @method self channel($channel)
- * @method self username($username)
+ * @method self attachments(array $attachments)
+ * @method self blocks(array $blocks)
+ * @method self text($text)
+ * @method self asUser(bool $asUser)
  * @method self iconEmoji($iconEmoji)
  * @method self iconUrl($iconUrl)
+ * @method self linkNames(bool $linkNames)
+ * @method self metadata($metadata)
+ * @method self mrkdwn(bool $mrkdwn)
+ * @method self parse($parse)
+ * @method self replyBroadcast(bool $replyBroadcast)
+ * @method self threadTs($threadTs)
  * @method self unfurlLinks(bool $unfurlLinks)
- * @method self attachments(array $attachments)
+ * @method self unfurlMedia(bool $unfurlMedia)
+ * @method self username($username)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -33,23 +42,38 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsPost;
 
     protected array $defined = [
-        'text',
         'channel',
-        'username',
+        'attachments',
+        'blocks',
+        'text',
+        'as_user',
         'icon_emoji',
         'icon_url',
+        'link_names',
+        'metadata',
+        'mrkdwn',
+        'parse',
+        'reply_broadcast',
+        'thread_ts',
         'unfurl_links',
-        'attachments',
+        'unfurl_media',
+        'username',
     ];
 
     protected array $options = [
-        'unfurl_links' => false,
         'attachments' => [],
+        'blocks' => [],
     ];
 
     protected array $allowedTypes = [
-        'unfurl_links' => 'bool',
         'attachments' => 'array',
+        'blocks' => 'array',
+        'as_user' => 'bool',
+        'link_names' => 'bool',
+        'mrkdwn' => 'bool',
+        'reply_broadcast' => 'bool',
+        'unfurl_links' => 'bool',
+        'unfurl_media' => 'bool',
     ];
 
     public function addAttachment(array $attachment): self
@@ -70,11 +94,5 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return $this;
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
-    {
-        $optionsResolver->setNormalizer('attachments', static fn (
-            OptionsResolver $optionsResolver,
-            array $value
-        ): array => isset($value[0]) ? $value : [$value]);
-    }
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void {}
 }
