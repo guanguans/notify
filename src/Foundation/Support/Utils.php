@@ -85,6 +85,7 @@ class Utils
     public static function getHttpOptionsConstants(): array
     {
         $constants = (new \ReflectionClass(RequestOptions::class))->getConstants() + [
+            // '_CONDITIONAL' => '_conditional',
             'BASE_URI' => 'base_uri',
             'CURL' => 'curl',
         ];

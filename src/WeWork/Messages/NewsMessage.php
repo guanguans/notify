@@ -48,14 +48,6 @@ class NewsMessage extends Message
         return $this;
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
-    {
-        $optionsResolver->setNormalizer('articles', static fn (
-            OptionsResolver $optionsResolver,
-            array $value
-        ): array => isset($value[0]) ? $value : [$value]);
-    }
-
     protected function type(): string
     {
         return 'news';

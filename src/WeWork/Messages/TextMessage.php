@@ -12,43 +12,23 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
 /**
  * @method self content($content)
- * @method self mentionedList($mentionedList)
- * @method self mentionedMobileList($mentionedMobileList)
+ * @method self mentionedList(array $mentionedList)
+ * @method self mentionedMobileList(array $mentionedMobileList)
  */
 class TextMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'content',
         'mentioned_list',
         'mentioned_mobile_list',
     ];
 
-    /**
-     * @var array<string, array<string>>
-     */
     protected array $allowedTypes = [
-        'mentioned_list' => ['int', 'string', 'array'],
-        'mentioned_mobile_list' => ['int', 'string', 'array'],
+        'mentioned_list' => 'array',
+        'mentioned_mobile_list' => 'array',
     ];
-
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
-    {
-        $optionsResolver->setNormalizer(
-            'mentioned_list',
-            static fn (OptionsResolver $optionsResolver, $value): array => (array) $value
-        );
-        $optionsResolver->setNormalizer(
-            'mentioned_mobile_list',
-            static fn (OptionsResolver $optionsResolver, $value): array => (array) $value
-        );
-    }
 
     protected function type(): string
     {

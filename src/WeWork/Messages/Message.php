@@ -12,13 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use GuzzleHttp\RequestOptions;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
     use AsPost;
 
     public function toHttpUri(): string
@@ -26,13 +24,20 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         return 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={token}';
     }
 
+    /**
+     * @throws \JsonException
+     */
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::JSON => [
-                'msgtype' => $this->type(),
-                $this->type() => $this->getOptions(),
-            ],
+            RequestOptions::HEADERS => ['Content-Type' => 'application/json'],
+            RequestOptions::BODY => json_encode(
+                [
+                    'msgtype' => $this->type(),
+                    $this->type() => $this->getOptions(),
+                ],
+                JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE
+            ),
         ];
     }
 
