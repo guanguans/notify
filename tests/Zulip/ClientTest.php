@@ -17,49 +17,40 @@ namespace Guanguans\NotifyTests\Zulip;
 
 use Guanguans\Notify\Zulip\Authenticator;
 use Guanguans\Notify\Zulip\Client;
-use Guanguans\Notify\Zulip\Messages\DirectMessage;
-use Guanguans\Notify\Zulip\Messages\StreamMessage;
-use Psr\Http\Message\ResponseInterface;
+use Guanguans\Notify\Zulip\Messages\Message;
 
-it('can send direct message', function (): void {
+beforeEach(function (): void {
     $authenticator = new Authenticator(
-        'coole-bot@chat.zulip.org',
-        'mfMBi3UZQyHeWUh8gijtsAjpfp3Df',
+        'xxx@qq.com',
+        'mh4JvrIQzzkcBobWYLiFEOvI25t4Q',
     );
-    $client = new Client($authenticator);
-    $message = DirectMessage::make([
-        'to' => 'coole-bot@chat.zulip.org',
-        'content' => 'This is content.',
-    ]);
-
-    expect($client)
+    $this->client = (new Client($authenticator))
+        ->baseUri('https://xxx.zulipchat.com/')
         ->mock([
             create_response('{"result":"success","msg":"","id":1740849}'),
             create_response('{"result":"error","msg":"Malformed API key","code":"UNAUTHORIZED"}', 401),
-        ])
-        ->send($message)->toBeInstanceOf(ResponseInterface::class)
-        ->send($message)->toBeInstanceOf(ResponseInterface::class);
+        ]);
+});
+
+it('can send direct message', function (): void {
+    $message = Message::make([
+        'type' => 'direct',
+        'to' => 'xxx@qq.com',
+        'content' => 'This is content.',
+    ]);
+
+    expect($this->client)->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);
 
 it('can send stream message', function (): void {
-    $authenticator = new Authenticator(
-        'coole-bot@chat.zulip.org',
-        'mfMBi3UZQyHeWUh8gijtsAjpfp3Df',
-    );
-    $client = new Client($authenticator);
-    $message = StreamMessage::make([
-        'to' => 'test here',
+    $message = Message::make([
+        'type' => 'stream',
+        'to' => 'general',
         'content' => 'This is content.',
         'topic' => 'bug',
-        // 'queue_id' => '1593114627:0',
-        // 'local_id' => '100.01',
+        'queue_id' => '1593114627:0',
+        'local_id' => '100.01',
     ]);
 
-    expect($client)
-        ->mock([
-            create_response('{"result":"success","msg":"","id":1740849}'),
-            create_response('{"result":"error","msg":"Malformed API key","code":"UNAUTHORIZED"}', 401),
-        ])
-        ->send($message)->toBeInstanceOf(ResponseInterface::class)
-        ->send($message)->toBeInstanceOf(ResponseInterface::class);
+    expect($this->client)->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);
