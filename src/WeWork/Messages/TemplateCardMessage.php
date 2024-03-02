@@ -67,52 +67,21 @@ class TemplateCardMessage extends Message
 
     public function addHorizontalContent(array $horizontalContent): self
     {
-        $this->options['horizontal_content_list'][] = $this->configureAndResolveOptions(
-            $horizontalContent,
-            static function (OptionsResolver $optionsResolver): void {
-                $optionsResolver->setDefined([
-                    'type',
-                    'keyname',
-                    'value',
-                    'url',
-                    'media_id',
-                    'userid',
-                ]);
-            }
-        );
+        $this->options['horizontal_content_list'][] = $horizontalContent;
 
         return $this;
     }
 
     public function addJump(array $jump): self
     {
-        $this->options['jump_list'][] = $this->configureAndResolveOptions(
-            $jump,
-            static function (OptionsResolver $optionsResolver): void {
-                $optionsResolver->setDefined([
-                    'type',
-                    'title',
-                    'url',
-                    'appid',
-                    'pagepath',
-                ]);
-            }
-        );
+        $this->options['jump_list'][] = $jump;
 
         return $this;
     }
 
     public function addVerticalContent(array $verticalContent): self
     {
-        $this->options['vertical_content_list'][] = $this->configureAndResolveOptions(
-            $verticalContent,
-            static function (OptionsResolver $optionsResolver): void {
-                $optionsResolver->setDefined([
-                    'title',
-                    'desc',
-                ]);
-            }
-        );
+        $this->options['vertical_content_list'][] = $verticalContent;
 
         return $this;
     }
@@ -178,6 +147,37 @@ class TemplateCardMessage extends Message
                     'desc',
                     'image_url',
                 ]);
+            })
+            ->setDefault('horizontal_content_list', static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setPrototype(true)
+                    ->setDefined([
+                        'type',
+                        'keyname',
+                        'value',
+                        'url',
+                        'media_id',
+                        'userid',
+                    ]);
+            })
+            ->setDefault('jump_list', static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setPrototype(true)
+                    ->setDefined([
+                        'type',
+                        'title',
+                        'url',
+                        'appid',
+                        'pagepath',
+                    ]);
+            })
+            ->setDefault('vertical_content_list', static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setPrototype(true)
+                    ->setDefined([
+                        'title',
+                        'desc',
+                    ]);
             });
     }
 }
