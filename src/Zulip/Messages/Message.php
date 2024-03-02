@@ -20,6 +20,31 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsFormParams;
     use AsPost;
 
+    protected array $defined = [
+        'type',
+        'to',
+        'content',
+        'topic',
+        'queue_id',
+        'local_id',
+        'read_by_sender',
+    ];
+
+    protected array $required = [
+        'type',
+        'to',
+        'content',
+        // 'topic', // stream
+    ];
+
+    protected array $allowedValues = [
+        'type' => ['direct', 'private', 'stream'],
+    ];
+
+    protected array $allowedTypes = [
+        'read_by_sender' => 'bool',
+    ];
+
     public function toHttpUri(): string
     {
         return 'api/v1/messages';
