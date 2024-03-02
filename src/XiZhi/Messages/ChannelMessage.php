@@ -15,6 +15,9 @@ namespace Guanguans\Notify\XiZhi\Messages;
 /**
  * @method self title($title)
  * @method self content($content)
+ * @method self type($type)
+ * @method self date($date)
+ * @method self time($time)
  */
 class ChannelMessage extends Message
 {

@@ -18,6 +18,9 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 /**
  * @method self title($title)
  * @method self content($content)
+ * @method self type($type)
+ * @method self date($date)
+ * @method self time($time)
  */
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -27,5 +30,8 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
     protected array $defined = [
         'title',
         'content',
+        'type',
+        'date',
+        'time',
     ];
 }
