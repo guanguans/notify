@@ -18,38 +18,61 @@ namespace Guanguans\NotifyTests\Slack;
 use Guanguans\Notify\Slack\Authenticator;
 use Guanguans\Notify\Slack\Client;
 use Guanguans\Notify\Slack\Messages\Message;
-use Psr\Http\Message\ResponseInterface;
 
 it('can send message', function (): void {
     $authenticator = new Authenticator('https://hooks.slack.com/services/TPU9A98MT/B038KNUC0GY/6pKH3vfa3mjlUPcgLSjzR');
     $client = new Client($authenticator);
     $message = Message::make([
+        'channel' => '#general',
+        'attachments' => $attachment = [
+            'fallback' => 'This is fallback.',
+            'text' => 'This is text.',
+            'pretext' => 'This is pretext.',
+            'color' => '#36a64f',
+            'fields' => [
+                [
+                    'title' => 'This is title.',
+                    'value' => 'This is value.',
+                    'short' => false,
+                ],
+            ],
+        ],
+        'blocks' => [
+            $block = [
+                'type' => 'section',
+                'text' => [
+                    'type' => 'mrkdwn',
+                    'text' => 'This is text.',
+                ],
+            ],
+        ],
         'text' => 'This is text.',
-        // 'channel' => '#general',
-        // 'username' => 'notify bot',
-        // 'icon_emoji' => ':ghost:',
-        // 'icon_url' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
-        // 'unfurl_links' => true,
-        // 'attachments' => $attachment = [
-        //    'fallback' => 'Required text summary of the attachment',
-        //    'text' => 'Optional text that should appear within the attachment',
-        //    'pretext' => 'Optional text that should appear above the formatted data',
-        //    'color' => '#36a64f',
-        //    'fields' => [
-        //        [
-        //            'title' => 'Required Field Title',
-        //            'value' => 'Text value of the field.',
-        //            'short' => false,
-        //        ],
-        //    ],
-        // ],
-    ]);
+        'as_user' => true,
+        'icon_emoji' => ':ghost:',
+        'icon_url' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
+        'link_names' => true,
+        'metadata' => [
+            'event_type' => 'task_created',
+            'event_payload' => [
+                'id' => '11223',
+                'title' => 'This is title.',
+            ],
+        ],
+        'mrkdwn' => true,
+        'parse' => 'full',
+        'reply_broadcast' => true,
+        // 'thread_ts' => '1621592155.003100',
+        'unfurl_links' => true,
+        'unfurl_media' => true,
+        'username' => 'This is username.',
+    ])
+        ->addAttachment($attachment)
+        ->addBlock($block);
 
     expect($client)
         ->mock([
             create_response('ok'),
             create_response('invalid_token', 403),
         ])
-        ->send($message)->toBeInstanceOf(ResponseInterface::class)
-        ->send($message)->toBeInstanceOf(ResponseInterface::class);
+        ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

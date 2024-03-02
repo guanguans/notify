@@ -15,7 +15,6 @@ namespace Guanguans\Notify\Slack\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @method self channel($channel)
@@ -26,7 +25,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self iconEmoji($iconEmoji)
  * @method self iconUrl($iconUrl)
  * @method self linkNames(bool $linkNames)
- * @method self metadata($metadata)
+ * @method self metadata(array $metadata)
  * @method self mrkdwn(bool $mrkdwn)
  * @method self parse($parse)
  * @method self replyBroadcast(bool $replyBroadcast)
@@ -70,6 +69,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'blocks' => 'array',
         'as_user' => 'bool',
         'link_names' => 'bool',
+        'metadata' => 'array',
         'mrkdwn' => 'bool',
         'reply_broadcast' => 'bool',
         'unfurl_links' => 'bool',
@@ -78,21 +78,15 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function addAttachment(array $attachment): self
     {
-        $this->options['attachments'][] = $this->configureAndResolveOptions(
-            $attachment,
-            static function (OptionsResolver $optionsResolver): void {
-                $optionsResolver->setDefined([
-                    'fallback',
-                    'text',
-                    'pretext',
-                    'color',
-                    'fields',
-                ]);
-            }
-        );
+        $this->options['attachments'][] = $attachment;
 
         return $this;
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void {}
+    public function addBlock(array $block): self
+    {
+        $this->options['blocks'][] = $block;
+
+        return $this;
+    }
 }
