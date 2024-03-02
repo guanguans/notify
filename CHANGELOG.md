@@ -8,6 +8,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.0.6"></a>
+## [2.0.6] - 2024-03-02
+### Feat
+- **Message:** add delayMilliseconds and url methods
+- **Slack:** Add metadata to Message options
+- **Zulip:** add Message class with message creation methods
+- **messages:** add type, date, and time properties
+- **messages:** Add support for FileMessage and TemplateCardMessage
+
+### Refactor
+- **Message:** Remove redundant array definition
+- **TemplateCardMessage:** optimize options configuration
+- **message:** Update message classes structure
+
+
 <a name="2.0.5"></a>
 ## [2.0.5] - 2024-03-02
 ### Docs
@@ -586,7 +601,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.0.5...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.0.6...HEAD
+[2.0.6]: https://github.com/guanguans/notify/compare/2.0.5...2.0.6
 [2.0.5]: https://github.com/guanguans/notify/compare/2.0.4...2.0.5
 [2.0.4]: https://github.com/guanguans/notify/compare/2.0.3...2.0.4
 [2.0.3]: https://github.com/guanguans/notify/compare/2.0.2...2.0.3
