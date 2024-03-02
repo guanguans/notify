@@ -27,9 +27,6 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class VoiceMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'chat_id',
         'voice',

@@ -23,9 +23,6 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class DiceMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'chat_id',
         'emoji',

@@ -28,9 +28,6 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class LocationMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'chat_id',
         'latitude',

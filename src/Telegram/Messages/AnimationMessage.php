@@ -30,9 +30,6 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class AnimationMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'chat_id',
         'animation',

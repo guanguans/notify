@@ -31,9 +31,6 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class VideoMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'chat_id',
         'video',

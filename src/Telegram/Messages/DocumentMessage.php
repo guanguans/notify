@@ -28,9 +28,6 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class DocumentMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'chat_id',
         'document',

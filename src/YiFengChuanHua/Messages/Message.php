@@ -26,9 +26,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'head',
         'body',

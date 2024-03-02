@@ -20,9 +20,6 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class GetUpdatesMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'offset',
         'limit',

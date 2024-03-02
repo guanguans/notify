@@ -34,9 +34,6 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class PollMessage extends Message
 {
-    /**
-     * @var array<string>
-     */
     protected array $defined = [
         'chat_id',
         'question',
