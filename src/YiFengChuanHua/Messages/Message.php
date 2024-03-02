@@ -18,6 +18,8 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 /**
  * @method self head($head)
  * @method self body($body)
+ * @method self delayMilliseconds($delayMilliseconds)
+ * @method self url($url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -30,11 +32,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $defined = [
         'head',
         'body',
+        'delayMilliseconds',
+        'url',
     ];
 
-    /**
-     * @var array<string>
-     */
     protected array $required = [
         'head',
     ];

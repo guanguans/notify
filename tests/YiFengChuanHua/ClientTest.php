@@ -18,7 +18,6 @@ namespace Guanguans\NotifyTests\YiFengChuanHua;
 use Guanguans\Notify\YiFengChuanHua\Authenticator;
 use Guanguans\Notify\YiFengChuanHua\Client;
 use Guanguans\Notify\YiFengChuanHua\Messages\Message;
-use Psr\Http\Message\ResponseInterface;
 
 it('can send message', function (): void {
     $authenticator = new Authenticator('2c893fadd3bd2416027008235fe32');
@@ -26,6 +25,8 @@ it('can send message', function (): void {
     $message = Message::make([
         'head' => 'This is title.',
         'body' => 'This is body.',
+        'delayMilliseconds' => 5,
+        'url' => 'https://github.com/guanguans/notify',
     ]);
 
     expect($client)
@@ -33,6 +34,5 @@ it('can send message', function (): void {
             create_response('{"code":0,"message":"请求成功","data":{"messageIdList":["1341726823083966464"]}}'),
             create_response('{"code":46001,"message":"通道不存在","data":null}'),
         ])
-        ->send($message)->toBeInstanceOf(ResponseInterface::class)
-        ->send($message)->toBeInstanceOf(ResponseInterface::class);
+        ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);
