@@ -26,6 +26,7 @@
 * [Ntfy](./src/Ntfy/README.md)
 * [Push](./src/Push/README.md)
 * [Pushback](./src/Pushback/README.md)
+* [PushDeer](./src/PushDeer/README.md)
 * [Pushover](./src/Pushover/README.md)
 * [Pushplus](./src/Pushplus/README.md)
 * [QQ](./src/QQ/README.md)
