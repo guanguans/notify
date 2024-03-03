@@ -68,16 +68,15 @@ $client = new \Guanguans\Notify\Bark\Client($authenticator);
 $message = \Guanguans\Notify\Bark\Messages\Message::make([
     'title' => 'This is title.',
     'body' => 'This is body.',
-    // 'copy' => 'This is copy.',
-    // 'url' => 'https://github.com/guanguans/notify',
-    // 'sound' => 'bell',
-    // 'group' => 'group',
-    // 'icon' => 'https://avatars0.githubusercontent.com/u/25671453?s=200&v=4',
-    // 'level' => 'passive',
-    // 'badge' => 5,
-    // 'isArchive' => 1,
+    // 'level' => 'active',
+    // 'badge' => 3,
     // 'autoCopy' => 1,
-    // 'automaticallyCopy' => 1,
+    // 'copy' => 'This is copy.',
+    // 'sound' => 'bell',
+    // 'icon' => 'https://avatars0.githubusercontent.com/u/25671453?s=200&v=4',
+    // 'group' => 'This is group.',
+    // 'isArchive' => 1,
+    // 'url' => 'https://github.com/guanguans/notify',
 ])
     ->copy('This is copy.')
     ->url('https://github.com/guanguans/notify');
