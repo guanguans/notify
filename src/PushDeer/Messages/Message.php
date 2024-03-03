@@ -32,7 +32,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     protected array $allowedValues = [
-        'type' => ['text', 'markdown', 'image'],
+        // 'type' => ['text', 'markdown', 'image'],
     ];
 
     public function toHttpUri(): string
