@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.1.0"></a>
+## [2.1.0] - 2024-03-03
+### Feat
+- **PushDeer:** Add PushDeer service with related classes
+
+### Refactor
+- **tests:** improve assertCanSendMessage method
+
+
 <a name="2.0.6"></a>
 ## [2.0.6] - 2024-03-02
 ### Feat
@@ -601,7 +610,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.0.6...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.1.0...HEAD
+[2.1.0]: https://github.com/guanguans/notify/compare/2.0.6...2.1.0
 [2.0.6]: https://github.com/guanguans/notify/compare/2.0.5...2.0.6
 [2.0.5]: https://github.com/guanguans/notify/compare/2.0.4...2.0.5
 [2.0.4]: https://github.com/guanguans/notify/compare/2.0.3...2.0.4
