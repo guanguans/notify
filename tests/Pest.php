@@ -13,6 +13,7 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+use Guanguans\Notify\Foundation\Client;
 use Guanguans\Notify\Foundation\Message;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Handler\MockHandler;
@@ -48,7 +49,9 @@ expect()->extend('assert', function (Closure $assertions): Expectation {
 });
 
 expect()->extend('assertCanSendMessage', function (Message $message): Expectation {
-    /** @var \Guanguans\Notify\Foundation\Client $client */
+    $this->toBeInstanceOf(Client::class);
+
+    /** @var Client $client */
     $client = $this->value;
 
     $queue = (fn (): array => (function (): array {
@@ -58,13 +61,15 @@ expect()->extend('assertCanSendMessage', function (Message $message): Expectatio
     })->call($this->getHandlerStack()))->call($client);
 
     expect($queue)->each(function (Expectation $expectation) use ($client, $message): void {
-        /** @var Response|\Throwable $responseOrException */
-        $responseOrException = $expectation->value;
+        $expectation->toBeInstanceOf(ResponseInterface::class);
+
+        /** @var ResponseInterface $response */
+        $response = $expectation->value;
 
         expect($client->send($message))
             ->toBeInstanceOf(ResponseInterface::class)
-            ->body()->toBe((string) $responseOrException->getBody())
-            ->status()->toBe($responseOrException->getStatusCode());
+            ->body()->toBe((string) $response->getBody())
+            ->status()->toBe($response->getStatusCode());
     });
 
     return $this;
