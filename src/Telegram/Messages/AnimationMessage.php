@@ -14,36 +14,49 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self chatId($chatId)
+ * @method self messageThreadId($messageThreadId)
  * @method self animation($animation)
  * @method self duration($duration)
  * @method self width($width)
  * @method self height($height)
- * @method self thumb($thumb)
+ * @method self thumbnail($thumbnail)
  * @method self caption($caption)
  * @method self parseMode($parseMode)
  * @method self captionEntities($captionEntities)
+ * @method self hasSpoiler($hasSpoiler)
  * @method self disableNotification($disableNotification)
  * @method self protectContent($protectContent)
- * @method self replyToMessageId($replyToMessageId)
- * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
  */
 class AnimationMessage extends Message
 {
     protected array $defined = [
         'chat_id',
+        'message_thread_id',
         'animation',
         'duration',
         'width',
         'height',
-        'thumb',
+        'thumbnail',
         'caption',
         'parse_mode',
         'caption_entities',
+        'has_spoiler',
         'disable_notification',
         'protect_content',
-        'reply_to_message_id',
-        'allow_sending_without_reply',
+        'reply_parameters',
         'reply_markup',
     ];
+
+    protected array $options = [
+        'caption_entities' => [],
+    ];
+
+    public function addCaptionEntity(array $captionEntity): self
+    {
+        $this->options['caption_entities'][] = $captionEntity;
+
+        return $this;
+    }
 }

@@ -14,6 +14,7 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self chatId($chatId)
+ * @method self messageThreadId($messageThreadId)
  * @method self question($question)
  * @method self options($options)
  * @method self isAnonymous($isAnonymous)
@@ -28,14 +29,14 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self isClosed($isClosed)
  * @method self disableNotification($disableNotification)
  * @method self protectContent($protectContent)
- * @method self replyToMessageId($replyToMessageId)
- * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
  */
 class PollMessage extends Message
 {
     protected array $defined = [
         'chat_id',
+        'message_thread_id',
         'question',
         'options',
         'is_anonymous',
@@ -50,8 +51,18 @@ class PollMessage extends Message
         'is_closed',
         'disable_notification',
         'protect_content',
-        'reply_to_message_id',
-        'allow_sending_without_reply',
+        'reply_parameters',
         'reply_markup',
     ];
+
+    protected array $options = [
+        'explanation_entities' => [],
+    ];
+
+    public function addCaptionEntity(array $captionEntity): self
+    {
+        $this->options['explanation_entities'][] = $captionEntity;
+
+        return $this;
+    }
 }

@@ -14,22 +14,22 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self chatId($chatId)
+ * @method self messageThreadId($messageThreadId)
  * @method self emoji($emoji)
  * @method self disableNotification($disableNotification)
  * @method self protectContent($protectContent)
- * @method self replyToMessageId($replyToMessageId)
- * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
  */
 class DiceMessage extends Message
 {
     protected array $defined = [
         'chat_id',
+        'message_thread_id',
         'emoji',
         'disable_notification',
         'protect_content',
-        'reply_to_message_id',
-        'allow_sending_without_reply',
+        'reply_parameters',
         'reply_markup',
     ];
 }

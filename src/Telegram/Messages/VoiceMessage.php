@@ -14,6 +14,7 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self chatId($chatId)
+ * @method self messageThreadId($messageThreadId)
  * @method self voice($voice)
  * @method self caption($caption)
  * @method self parseMode($parseMode)
@@ -21,14 +22,14 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self duration($duration)
  * @method self disableNotification($disableNotification)
  * @method self protectContent($protectContent)
- * @method self replyToMessageId($replyToMessageId)
- * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
  */
 class VoiceMessage extends Message
 {
     protected array $defined = [
         'chat_id',
+        'message_thread_id',
         'voice',
         'caption',
         'parse_mode',
@@ -36,8 +37,18 @@ class VoiceMessage extends Message
         'duration',
         'disable_notification',
         'protect_content',
-        'reply_to_message_id',
-        'allow_sending_without_reply',
+        'reply_parameters',
         'reply_markup',
     ];
+
+    protected array $options = [
+        'caption_entities' => [],
+    ];
+
+    public function addCaptionEntity(array $captionEntity): self
+    {
+        $this->options['caption_entities'][] = $captionEntity;
+
+        return $this;
+    }
 }

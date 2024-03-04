@@ -14,6 +14,7 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self chatId($chatId)
+ * @method self messageThreadId($messageThreadId)
  * @method self latitude($latitude)
  * @method self longitude($longitude)
  * @method self horizontalAccuracy($horizontalAccuracy)
@@ -22,14 +23,14 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self proximityAlertRadius($proximityAlertRadius)
  * @method self disableNotification($disableNotification)
  * @method self protectContent($protectContent)
- * @method self replyToMessageId($replyToMessageId)
- * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
  */
 class LocationMessage extends Message
 {
     protected array $defined = [
         'chat_id',
+        'message_thread_id',
         'latitude',
         'longitude',
         'horizontal_accuracy',
@@ -38,8 +39,7 @@ class LocationMessage extends Message
         'proximity_alert_radius',
         'disable_notification',
         'protect_content',
-        'reply_to_message_id',
-        'allow_sending_without_reply',
+        'reply_parameters',
         'reply_markup',
     ];
 }

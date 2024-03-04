@@ -14,6 +14,7 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self chatId($chatId)
+ * @method self messageThreadId($messageThreadId)
  * @method self latitude($latitude)
  * @method self longitude($longitude)
  * @method self title($title)
@@ -24,14 +25,14 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self googlePlaceType($googlePlaceType)
  * @method self disableNotification($disableNotification)
  * @method self protectContent($protectContent)
- * @method self replyToMessageId($replyToMessageId)
- * @method self allowSendingWithoutReply($allowSendingWithoutReply)
+ * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
  */
 class VenueMessage extends Message
 {
     protected array $defined = [
         'chat_id',
+        'message_thread_id',
         'latitude',
         'longitude',
         'title',
@@ -42,8 +43,7 @@ class VenueMessage extends Message
         'google_place_type',
         'disable_notification',
         'protect_content',
-        'reply_to_message_id',
-        'allow_sending_without_reply',
+        'reply_parameters',
         'reply_markup',
     ];
 }
