@@ -1,0 +1,33 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/**
+ * This file is part of the guanguans/notify.
+ *
+ * (c) guanguans <ityaozm@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled.
+ */
+
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
+
+require __DIR__.'/vendor/autoload.php';
+
+(static function (): void {
+    $directories = Finder::create()
+        ->in(__DIR__.'/src')
+        ->exclude('Foundation')
+        ->depth(0)
+        ->sortByName()
+        ->directories();
+
+    $directories = array_map(
+        static fn (SplFileInfo $splFileInfo): string => $splFileInfo->getBasename(),
+        iterator_to_array($directories)
+    );
+
+    exit(implode('、', $directories).PHP_EOL);
+})();
