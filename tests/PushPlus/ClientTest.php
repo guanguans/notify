@@ -13,11 +13,11 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
-namespace Guanguans\NotifyTests\Pushplus;
+namespace Guanguans\NotifyTests\PushPlus;
 
-use Guanguans\Notify\Pushplus\Authenticator;
-use Guanguans\Notify\Pushplus\Client;
-use Guanguans\Notify\Pushplus\Messages\Message;
+use Guanguans\Notify\PushPlus\Authenticator;
+use Guanguans\Notify\PushPlus\Client;
+use Guanguans\Notify\PushPlus\Messages\Message;
 
 it('can send message', function (): void {
     $authenticator = new Authenticator('f8fbd292ba3a4875967fd81bf0290');

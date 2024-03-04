@@ -1,6 +1,6 @@
-# Pushplus | [Home](./../../)
+# PushPlus | [Home](./../../)
 
-## [Usage example](./../../tests/Pushplus/ClientTest.php)
+## [Usage example](./../../tests/PushPlus/ClientTest.php)
 
 ## Related links
 
