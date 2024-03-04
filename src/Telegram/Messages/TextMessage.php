@@ -58,6 +58,11 @@ class TextMessage extends Message
         'reply_markup' => 'array',
     ];
 
+    public function toHttpUri(): string
+    {
+        return 'bot{token}/sendMessage';
+    }
+
     public function addEntity(array $entity): self
     {
         $this->options['entities'][] = $entity;

@@ -14,22 +14,20 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Support\Arr;
+use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\RequestOptions;
 
-class Message extends \Guanguans\Notify\Foundation\Message
+abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsPost;
 
     public function toHttpOptions(): array
     {
         return [
-            // RequestOptions::JSON => $this->getOptions(),
-            RequestOptions::JSON => Arr::filterRecursive($this->getOptions(), static fn ($value): bool => [] !== $value),
+            RequestOptions::HEADERS => ['Content-Type' => 'application/json'],
+            RequestOptions::MULTIPART => Utils::multipartFor(
+                Arr::filterRecursive($this->getOptions(), static fn ($value): bool => [] !== $value)
+            ),
         ];
-    }
-
-    public function toHttpUri(): string
-    {
-        return 'bot{token}/sendMessage';
     }
 }
