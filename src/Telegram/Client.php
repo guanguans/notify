@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram;
 
+use Guanguans\Notify\Foundation\Contracts\Authenticator;
+
 /**
  * @see https://telegram.me/botfather
  * @see https://core.telegram.org/bots/api#getupdates
@@ -19,4 +21,11 @@ namespace Guanguans\Notify\Telegram;
  * @see https://core.telegram.org/bots/api#sendmessage
  * @see https://api.telegram.org/botxxx:yyy/sendMessage?chat_id=xx&text=text
  */
-class Client extends \Guanguans\Notify\Foundation\Client {}
+class Client extends \Guanguans\Notify\Foundation\Client
+{
+    public function __construct(?Authenticator $authenticator = null)
+    {
+        parent::__construct($authenticator);
+        $this->baseUri('https://api.telegram.org/');
+    }
+}

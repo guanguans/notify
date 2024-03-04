@@ -12,16 +12,24 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
+use Guanguans\Notify\Foundation\Support\Arr;
+use GuzzleHttp\RequestOptions;
 
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
     use AsPost;
+
+    public function toHttpOptions(): array
+    {
+        return [
+            // RequestOptions::JSON => $this->getOptions(),
+            RequestOptions::JSON => Arr::filterRecursive($this->getOptions(), static fn ($value): bool => [] !== $value),
+        ];
+    }
 
     public function toHttpUri(): string
     {
-        return 'https://api.telegram.org/bot{token}/sendMessage';
+        return 'bot{token}/sendMessage';
     }
 }

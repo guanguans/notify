@@ -16,7 +16,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self offset($offset)
  * @method self limit($limit)
  * @method self timeout($timeout)
- * @method self allowedUpdates($allowedUpdates)
+ * @method self allowedUpdates(array $allowedUpdates)
  */
 class GetUpdatesMessage extends Message
 {
@@ -27,8 +27,12 @@ class GetUpdatesMessage extends Message
         'allowed_updates',
     ];
 
+    protected array $allowedTypes = [
+        'allowed_updates' => 'array',
+    ];
+
     public function toHttpUri(): string
     {
-        return 'https://api.telegram.org/bot{token}/getUpdates';
+        return 'bot{token}/getUpdates';
     }
 }
