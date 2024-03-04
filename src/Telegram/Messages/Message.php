@@ -24,7 +24,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::HEADERS => ['Content-Type' => 'application/json'],
+            // RequestOptions::HEADERS => ['Content-Type' => 'application/json'],
             RequestOptions::MULTIPART => Utils::multipartFor(
                 Arr::filterRecursive($this->getOptions(), static fn ($value): bool => [] !== $value)
             ),

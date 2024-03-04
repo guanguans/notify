@@ -12,6 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
  * @method self chatId($chatId)
  * @method self messageThreadId($messageThreadId)
@@ -69,5 +72,15 @@ class PollMessage extends Message
     public function toHttpUri(): string
     {
         return 'bot{token}/sendPoll';
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    {
+        $optionsResolver
+            ->setAllowedTypes('options', 'array')
+            ->setNormalizer(
+                'options',
+                static fn (Options $options, array $value): string => json_encode($value, JSON_THROW_ON_ERROR)
+            );
     }
 }
