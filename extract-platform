@@ -24,10 +24,12 @@ require __DIR__.'/vendor/autoload.php';
         ->sortByName()
         ->directories();
 
-    $directories = array_map(
+    $directories = array_values(array_map(
         static fn (SplFileInfo $splFileInfo): string => $splFileInfo->getBasename(),
         iterator_to_array($directories)
-    );
+    ));
 
-    exit(implode('、', $directories).PHP_EOL);
+    file_put_contents(__DIR__.'/tests.platforms', $platforms = implode('、', $directories));
+
+    exit($platforms.PHP_EOL.json_encode($directories, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT).PHP_EOL);
 })();
