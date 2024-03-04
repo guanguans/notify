@@ -38,4 +38,9 @@ class ContactMessage extends Message
         'reply_parameters',
         'reply_markup',
     ];
+
+    public function toHttpUri(): string
+    {
+        return 'bot{token}/sendContact';
+    }
 }

@@ -65,4 +65,9 @@ class PollMessage extends Message
 
         return $this;
     }
+
+    public function toHttpUri(): string
+    {
+        return 'bot{token}/sendPoll';
+    }
 }

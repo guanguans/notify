@@ -24,4 +24,9 @@ class ChatActionMessage extends Message
         'message_thread_id',
         'action',
     ];
+
+    public function toHttpUri(): string
+    {
+        return 'bot{token}/sendChatAction';
+    }
 }

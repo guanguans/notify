@@ -55,6 +55,11 @@ class VideoMessage extends Message
         'caption_entities' => [],
     ];
 
+    public function toHttpUri(): string
+    {
+        return 'bot{token}/sendVideo';
+    }
+
     public function addCaptionEntity(array $captionEntity): self
     {
         $this->options['caption_entities'][] = $captionEntity;

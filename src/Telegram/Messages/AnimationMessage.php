@@ -53,6 +53,11 @@ class AnimationMessage extends Message
         'caption_entities' => [],
     ];
 
+    public function toHttpUri(): string
+    {
+        return 'bot{token}/sendAnimation';
+    }
+
     public function addCaptionEntity(array $captionEntity): self
     {
         $this->options['caption_entities'][] = $captionEntity;

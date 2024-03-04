@@ -30,4 +30,9 @@ class MediaGroupMessage extends Message
         'protect_content',
         'reply_parameters',
     ];
+
+    public function toHttpUri(): string
+    {
+        return 'bot{token}/sendMediaGroup';
+    }
 }

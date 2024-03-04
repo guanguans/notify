@@ -42,4 +42,9 @@ class LocationMessage extends Message
         'reply_parameters',
         'reply_markup',
     ];
+
+    public function toHttpUri(): string
+    {
+        return 'bot{token}/sendLocation';
+    }
 }
