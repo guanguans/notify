@@ -8,6 +8,26 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.1.1"></a>
+## [2.1.1] - 2024-03-04
+### Docs
+- Update push notification SDK list
+
+### Feat
+- **Telegram:** Add support for multipart requests in Telegram messages
+- **dingtalk:** add DingTalk notification support
+- **extract-platform:** add script to extract platform information
+- **messages:** Add toHttpUri method for sending various message types
+- **telegram:** Add AsJson trait to GetUpdatesMessage and ClientTest
+- **telegram:** Add constructor to Client class
+
+### Refactor
+- **client:** Remove Makeable trait from Client class
+- **media:** Improve media handling in MediaGroupMessage
+- **message:** Improve make method in Message class
+- **pushplus:** Rename Pushplus to PushPlus and update namespaces
+
+
 <a name="2.1.0"></a>
 ## [2.1.0] - 2024-03-03
 ### Feat
@@ -610,7 +630,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.1.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.1.1...HEAD
+[2.1.1]: https://github.com/guanguans/notify/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/guanguans/notify/compare/2.0.6...2.1.0
 [2.0.6]: https://github.com/guanguans/notify/compare/2.0.5...2.0.6
 [2.0.5]: https://github.com/guanguans/notify/compare/2.0.4...2.0.5
