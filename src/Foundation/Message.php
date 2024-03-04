@@ -14,7 +14,6 @@ namespace Guanguans\Notify\Foundation;
 
 use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
-use Guanguans\Notify\Foundation\Concerns\Makeable;
 
 /**
  * @template-implements \ArrayAccess<string, mixed>
@@ -23,7 +22,6 @@ abstract class Message implements \ArrayAccess, Contracts\Message
 {
     use Dumpable;
     use HasOptions;
-    use Makeable;
 
     protected bool $ignoreUndefined = true;
 
@@ -39,5 +37,13 @@ abstract class Message implements \ArrayAccess, Contracts\Message
             'httpUri' => $this->toHttpUri(),
             'httpOptions' => $this->toHttpOptions(),
         ]);
+    }
+
+    /**
+     * @return static
+     */
+    public static function make(...$parameters): self
+    {
+        return new static(...$parameters);
     }
 }
