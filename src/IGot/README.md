@@ -1,4 +1,4 @@
-# IGot | [Home](./../../)
+# IGot
 
 ## [Usage example](./../../tests/IGot/ClientTest.php)
 

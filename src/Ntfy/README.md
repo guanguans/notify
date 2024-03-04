@@ -1,4 +1,4 @@
-# Ntfy | [Home](./../../)
+# Ntfy
 
 ## [Usage example](./../../tests/Ntfy/ClientTest.php)
 

@@ -1,4 +1,4 @@
-# Lark | [Home](./../../)
+# Lark
 
 ## [Usage example](./../../tests/Lark/ClientTest.php)
 

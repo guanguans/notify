@@ -1,4 +1,4 @@
-# ShowdocPush | [Home](./../../)
+# ShowdocPush
 
 ## [Usage example](./../../tests/ShowdocPush/ClientTest.php)
 

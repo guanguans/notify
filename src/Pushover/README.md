@@ -1,4 +1,4 @@
-# Pushover | [Home](./../../)
+# Pushover
 
 ## [Usage example](./../../tests/Pushover/ClientTest.php)
 

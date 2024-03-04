@@ -1,4 +1,4 @@
-# RocketChat | [Home](./../../)
+# RocketChat
 
 ## [Usage example](./../../tests/RocketChat/ClientTest.php)
 

@@ -1,4 +1,4 @@
-# XiZhi | [Home](./../../)
+# XiZhi
 
 ## [Usage example](./../../tests/XiZhi/ClientTest.php)
 

@@ -1,4 +1,4 @@
-# Slack | [Home](./../../)
+# Slack
 
 ## [Usage example](./../../tests/Slack/ClientTest.php)
 

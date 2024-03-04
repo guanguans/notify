@@ -1,4 +1,4 @@
-# Bark | [Home](./../../)
+# Bark
 
 ## [Usage example](./../../tests/Bark/ClientTest.php)
 

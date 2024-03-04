@@ -1,4 +1,4 @@
-# Telegram | [Home](./../../)
+# Telegram
 
 ## [Usage example](./../../tests/Telegram/ClientTest.php)
 

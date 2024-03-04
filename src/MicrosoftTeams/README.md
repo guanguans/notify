@@ -1,4 +1,4 @@
-# MicrosoftTeams | [Home](./../../)
+# MicrosoftTeams
 
 ## [Usage example](./../../tests/MicrosoftTeams/ClientTest.php)
 

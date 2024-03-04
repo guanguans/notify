@@ -1,4 +1,4 @@
-# ServerChan | [Home](./../../)
+# ServerChan
 
 ## [Usage example](./../../tests/ServerChan/ClientTest.php)
 

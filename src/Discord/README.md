@@ -1,4 +1,4 @@
-# Discord | [Home](./../../)
+# Discord
 
 ## [Usage example](./../../tests/Discord/ClientTest.php)
 

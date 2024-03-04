@@ -1,4 +1,4 @@
-# NowPush | [Home](./../../)
+# NowPush
 
 ## [Usage example](./../../tests/NowPush/ClientTest.php)
 

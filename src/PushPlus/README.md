@@ -1,4 +1,4 @@
-# PushPlus | [Home](./../../)
+# PushPlus
 
 ## [Usage example](./../../tests/PushPlus/ClientTest.php)
 

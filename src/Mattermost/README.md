@@ -1,4 +1,4 @@
-# Mattermost | [Home](./../../)
+# Mattermost
 
 ## [Usage example](./../../tests/Mattermost/ClientTest.php)
 

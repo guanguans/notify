@@ -1,4 +1,4 @@
-# Zulip | [Home](./../../)
+# Zulip
 
 ## [Usage example](./../../tests/Zulip/ClientTest.php)
 

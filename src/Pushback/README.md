@@ -1,4 +1,4 @@
-# Pushback | [Home](./../../)
+# Pushback
 
 ## [Usage example](./../../tests/Pushback/ClientTest.php)
 

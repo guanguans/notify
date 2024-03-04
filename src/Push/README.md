@@ -1,4 +1,4 @@
-# Push | [Home](./../../)
+# Push
 
 ## [Usage example](./../../tests/Push/ClientTest.php)
 

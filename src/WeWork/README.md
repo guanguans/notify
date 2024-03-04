@@ -1,4 +1,4 @@
-# WeWork | [Home](./../../)
+# WeWork
 
 ## [Usage example](./../../tests/WeWork/ClientTest.php)
 

@@ -1,4 +1,4 @@
-# Chanify | [Home](./../../)
+# Chanify
 
 ## [Usage example](./../../tests/Chanify/ClientTest.php)
 

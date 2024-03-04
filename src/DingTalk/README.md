@@ -1,4 +1,4 @@
-# DingTalk | [Home](./../../)
+# DingTalk
 
 ## [Usage example](./../../tests/DingTalk/ClientTest.php)
 

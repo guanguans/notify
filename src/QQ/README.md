@@ -1,4 +1,4 @@
-# QQ | [Home](./../../)
+# QQ
 
 ## [Usage example](./../../tests/QQ/ClientTest.php)
 

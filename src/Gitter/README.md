@@ -1,4 +1,4 @@
-# Gitter | [Home](./../../)
+# Gitter
 
 ## [Usage example](./../../tests/Gitter/ClientTest.php)
 

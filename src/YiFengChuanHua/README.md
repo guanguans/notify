@@ -1,4 +1,4 @@
-# YiFengChuanHua | [Home](./../../)
+# YiFengChuanHua
 
 ## [Usage example](./../../tests/YiFengChuanHua/ClientTest.php)
 

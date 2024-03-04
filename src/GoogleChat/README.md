@@ -1,4 +1,4 @@
-# GoogleChat | [Home](./../../)
+# GoogleChat
 
 ## [Usage example](./../../tests/GoogleChat/ClientTest.php)
 

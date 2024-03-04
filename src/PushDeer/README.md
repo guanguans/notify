@@ -1,4 +1,4 @@
-# PushDeer | [Home](./../../)
+# PushDeer
 
 ## [Usage example](./../../tests/PushDeer/ClientTest.php)
 
