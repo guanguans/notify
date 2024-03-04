@@ -59,33 +59,51 @@ composer require guanguans/notify -v
 
 ```php
 // 1. Create authenticator
-$authenticator = new \Guanguans\Notify\Bark\Authenticator('yetwhxBm7wCBSUTjeqh');
+$authenticator = new Guanguans\Notify\DingTalk\Authenticator(
+    'c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73',
+    // 'SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee51'
+);
 
 // 2. Create client
-$client = new \Guanguans\Notify\Bark\Client($authenticator);
+$client = new Guanguans\Notify\DingTalk\Client($authenticator);
 
 // 3. Create message
-$message = \Guanguans\Notify\Bark\Messages\Message::make([
-    'title' => 'This is title.',
-    'body' => 'This is body.',
-    // 'level' => 'active',
-    // 'badge' => 3,
-    // 'autoCopy' => 1,
-    // 'copy' => 'This is copy.',
-    // 'sound' => 'bell',
-    // 'icon' => 'https://avatars0.githubusercontent.com/u/25671453?s=200&v=4',
-    // 'group' => 'This is group.',
-    // 'isArchive' => 1,
-    // 'url' => 'https://github.com/guanguans/notify',
-])
-    ->copy('This is copy.')
-    ->url('https://github.com/guanguans/notify');
+$message = Guanguans\Notify\DingTalk\Messages\BtnsActionCardMessage::make([
+    'title' => 'This is title(keyword).',
+    'text' => 'This is text.',
+    'btnOrientation' => 1,
+    'btns' => [
+        [
+            'title' => 'This is title 1.',
+            'actionURL' => 'https://github.com/guanguans/notify',
+        ],
+    ],
+])->addBtn([
+    'title' => 'This is title 2.',
+    'actionURL' => 'https://github.com/guanguans/notify',
+]);
 
 // 4. Send message
 $response = $client
     // ->baseUri('The server address of your own deployment.')
+    // ->connectTimeout(10)
+    // ->debug(true)
+    // ->proxy('http://127.0.0.1:1087')
     // ->timeout(30)
     // ->verify(false)
+    // ->push(
+    //     GuzzleHttp\Middleware::log(
+    //         new Psr\Log\NullLogger,
+    //         new GuzzleHttp\MessageFormatter(GuzzleHttp\MessageFormatter::DEBUG)
+    //     ),
+    //     'log'
+    // )
+    // ->before(
+    //     'log',
+    //     GuzzleHttp\Middleware::mapRequest(
+    //         static fn (Psr\Http\Message\RequestInterface $request): Psr\Http\Message\RequestInterface => $request
+    //     ),
+    // )
     ->send($message)
     ->dump()
     // ->throw()
