@@ -40,10 +40,22 @@ abstract class Message implements \ArrayAccess, Contracts\Message
     }
 
     /**
+     * @param array|mixed $options
+     *
      * @return static
      */
-    public static function make(...$parameters): self
+    public static function make($options = []): self
     {
-        return new static(...$parameters);
+        if (0 === \func_num_args()) {
+            return new static($options);
+        }
+
+        $defaultProperties = (new \ReflectionClass(static::class))->getDefaultProperties();
+        $defined = array_unique(array_merge($defaultProperties['defined'] ?? [], $defaultProperties['required'] ?? []));
+        if (1 === \count($defined)) {
+            return new static([reset($defined) => $options]);
+        }
+
+        return new static($options);
     }
 }
