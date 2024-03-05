@@ -31,20 +31,24 @@ class FeedCardMessage extends Message
         'links' => [],
     ];
 
-    public function addLink(array $Link): self
+    public function addLink(array $link): self
     {
-        $this->options['links'][] = $this->configureAndResolveOptions(
-            $Link,
-            static function (OptionsResolver $optionsResolver): void {
-                $optionsResolver->setDefined([
+        $this->options['links'][] = $link;
+
+        return $this;
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    {
+        $optionsResolver->setDefault('links', static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver
+                ->setPrototype(true)
+                ->setDefined([
                     'title',
                     'messageURL',
                     'picURL',
                 ]);
-            }
-        );
-
-        return $this;
+        });
     }
 
     protected function type(): string

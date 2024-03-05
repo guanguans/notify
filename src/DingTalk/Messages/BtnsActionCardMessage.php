@@ -39,17 +39,21 @@ class BtnsActionCardMessage extends Message
 
     public function addBtn(array $btn): self
     {
-        $this->options['btns'][] = $this->configureAndResolveOptions(
-            $btn,
-            static function (OptionsResolver $optionsResolver): void {
-                $optionsResolver->setDefined([
+        $this->options['btns'][] = $btn;
+
+        return $this;
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    {
+        $optionsResolver->setDefault('btns', static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver
+                ->setPrototype(true)
+                ->setDefined([
                     'title',
                     'actionURL',
                 ]);
-            }
-        );
-
-        return $this;
+        });
     }
 
     protected function type(): string
