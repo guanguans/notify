@@ -67,10 +67,24 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function addSection(array $section): self
     {
-        $this->options['sections'][] = $this->configureAndResolveOptions(
-            $section,
-            static function (OptionsResolver $optionsResolver): void {
+        $this->options['sections'][] = $section;
+
+        return $this;
+    }
+
+    public function addPotentialAction(array $potentialAction): self
+    {
+        $this->options['potentialAction'][] = $potentialAction;
+
+        return $this;
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    {
+        $optionsResolver
+            ->setDefault('sections', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
+                    ->setPrototype(true)
                     ->setDefined([
                         'title',
                         'startGroup',
@@ -88,18 +102,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ->setAllowedTypes('facts', 'array')
                     ->setAllowedTypes('images', 'array')
                     ->setAllowedTypes('potentialAction', 'array');
-            }
-        );
-
-        return $this;
-    }
-
-    public function addPotentialAction(array $section): self
-    {
-        $this->options['potentialAction'][] = $this->configureAndResolveOptions(
-            $section,
-            static function (OptionsResolver $optionsResolver): void {
+            })
+            ->setDefault('potentialAction', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
+                    ->setPrototype(true)
                     ->setDefined([
                         '@type',
                         'name',
@@ -132,9 +138,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
                         'application/x-www-form-urlencoded',
                         'application/json',
                     ]);
-            }
-        );
-
-        return $this;
+            });
     }
 }
