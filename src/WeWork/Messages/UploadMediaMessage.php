@@ -30,7 +30,7 @@ class UploadMediaMessage extends \Guanguans\Notify\Foundation\Message
     ];
 
     protected array $allowedValues = [
-        'type' => ['voice', 'file'],
+        // 'type' => ['voice', 'file'],
     ];
 
     public function toHttpUri(): string

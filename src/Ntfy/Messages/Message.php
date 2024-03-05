@@ -65,7 +65,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     protected array $required = [
-        'topic',
+        // 'topic',
     ];
 
     protected array $allowedTypes = [

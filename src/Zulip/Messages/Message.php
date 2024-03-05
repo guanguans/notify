@@ -40,14 +40,14 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     protected array $required = [
-        'type',
-        'to',
-        'content',
-        // 'topic', // stream
+        // 'type',
+        // 'to',
+        // 'content',
+        // // 'topic', // stream
     ];
 
     protected array $allowedValues = [
-        'type' => ['direct', 'private', 'stream'],
+        // 'type' => ['direct', 'private', 'stream'],
     ];
 
     protected array $allowedTypes = [

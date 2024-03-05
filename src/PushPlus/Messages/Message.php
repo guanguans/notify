@@ -45,7 +45,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     protected array $required = [
-        'content',
+        // 'content',
     ];
 
     public function toHttpUri(): string

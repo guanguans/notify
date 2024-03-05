@@ -50,7 +50,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     protected array $required = [
-        'channel_id',
+        // 'channel_id',
     ];
 
     protected array $allowedTypes = [

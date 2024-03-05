@@ -46,7 +46,7 @@ class TextMessage extends Message
     ];
 
     protected array $allowedValues = [
-        'parse_mode' => ['HTML', 'Markdown', 'MarkdownV2'],
+        // 'parse_mode' => ['HTML', 'Markdown', 'MarkdownV2'],
     ];
 
     protected array $allowedTypes = [
