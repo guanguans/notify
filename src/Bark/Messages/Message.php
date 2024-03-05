@@ -48,7 +48,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     protected array $allowedValues = [
-        'level' => ['active', 'timeSensitive', 'passive'],
+        // 'level' => ['active', 'timeSensitive', 'passive'],
     ];
 
     public function toHttpUri(): string
