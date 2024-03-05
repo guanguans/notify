@@ -8,6 +8,29 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.1.2"></a>
+## [2.1.2] - 2024-03-05
+### Feat
+- **NewsMessage:** add method to configure options for articles
+- **auth:** add OptionsAuthenticator and mergeHttpOptions method
+
+### Refactor
+- Remove unnecessary trait use in rector.php
+- **HasOptionsDocCommentRector:** Sort properties in alphabetical order
+- **Message:** Improve attachment handling in Message class
+- **Message:** improve default options handling
+- **Message:** Improve addAction method and configureOptionsResolver
+- **Message:** Improve embed configuration handling
+- **commit:** refactor configureAndResolveOptions method
+- **core:** update HTTP method definitions
+- **message:** Refactor message classes for NowPush
+- **message:** Improve section and potential action handling
+- **postmessage:** Improve language-specific post setting
+
+### Pull Requests
+- Merge pull request [#59](https://github.com/guanguans/notify/issues/59) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.68.4
+
+
 <a name="2.1.1"></a>
 ## [2.1.1] - 2024-03-04
 ### Docs
@@ -630,7 +653,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.1.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.1.2...HEAD
+[2.1.2]: https://github.com/guanguans/notify/compare/2.1.1...2.1.2
 [2.1.1]: https://github.com/guanguans/notify/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/guanguans/notify/compare/2.0.6...2.1.0
 [2.0.6]: https://github.com/guanguans/notify/compare/2.0.5...2.0.6
