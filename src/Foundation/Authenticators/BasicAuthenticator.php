@@ -20,25 +20,12 @@ use GuzzleHttp\RequestOptions;
  * @see https://github.com/kriswallsmith/Buzz/blob/master/lib/Middleware/BasicAuthMiddleware.php
  * @see https://github.com/guzzle/guzzle/blob/7.8/src/Client.php#L400
  */
-class BasicAuthenticator extends NullAuthenticator
+class BasicAuthenticator extends OptionsAuthenticator
 {
-    private string $username;
-
-    private string $password;
-
-    private string $type;
-
     public function __construct(string $username, string $password, string $type = 'basic')
     {
-        $this->username = $username;
-        $this->password = $password;
-        $this->type = $type;
-    }
-
-    public function applyToOptions(array $options): array
-    {
-        return [
-            RequestOptions::AUTH => [$this->username, $this->password, $this->type],
-        ] + $options;
+        parent::__construct([
+            RequestOptions::AUTH => [$username, $password, $type],
+        ]);
     }
 }

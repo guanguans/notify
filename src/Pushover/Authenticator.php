@@ -12,13 +12,13 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Pushover;
 
-use Guanguans\Notify\Foundation\Authenticators\PayloadAuthenticator;
+use Guanguans\Notify\Foundation\Authenticators\OptionsAuthenticator;
 use GuzzleHttp\RequestOptions;
 
-class Authenticator extends PayloadAuthenticator
+class Authenticator extends OptionsAuthenticator
 {
     public function __construct(string $user, string $token)
     {
-        parent::__construct(['user' => $user, 'token' => $token], RequestOptions::QUERY);
+        parent::__construct([RequestOptions::QUERY => ['user' => $user, 'token' => $token]]);
     }
 }

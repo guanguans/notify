@@ -14,10 +14,14 @@ namespace Guanguans\Notify\Foundation\Authenticators;
 
 use GuzzleHttp\RequestOptions;
 
-class BearerAuthenticator extends PayloadAuthenticator
+class BearerAuthenticator extends OptionsAuthenticator
 {
     public function __construct(string $token, ?string $bearer = 'Bearer')
     {
-        parent::__construct(['Authorization' => ltrim("$bearer $token")], RequestOptions::HEADERS);
+        parent::__construct([
+            RequestOptions::HEADERS => [
+                'Authorization' => ltrim("$bearer $token"),
+            ],
+        ]);
     }
 }

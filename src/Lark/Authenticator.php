@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Lark;
 
 use Guanguans\Notify\Foundation\Authenticators\AggregateAuthenticator;
-use Guanguans\Notify\Foundation\Authenticators\PayloadAuthenticator;
+use Guanguans\Notify\Foundation\Authenticators\OptionsAuthenticator;
 use Guanguans\Notify\Foundation\Authenticators\TokenUriTemplateAuthenticator;
 use GuzzleHttp\RequestOptions;
 
@@ -24,10 +24,12 @@ class Authenticator extends AggregateAuthenticator
         $authenticators = [new TokenUriTemplateAuthenticator($token)];
 
         if ($secret) {
-            $authenticators[] = new PayloadAuthenticator(
-                ['timestamp' => $timestamp = time(), 'sign' => $this->sign($secret, $timestamp)],
-                RequestOptions::JSON
-            );
+            $authenticators[] = new OptionsAuthenticator([
+                RequestOptions::JSON => [
+                    'timestamp' => $timestamp = time(),
+                    'sign' => $this->sign($secret, $timestamp),
+                ],
+            ]);
         }
 
         parent::__construct(...$authenticators);

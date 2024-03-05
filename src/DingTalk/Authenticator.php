@@ -12,21 +12,23 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\DingTalk;
 
-use Guanguans\Notify\Foundation\Authenticators\PayloadAuthenticator;
+use Guanguans\Notify\Foundation\Authenticators\OptionsAuthenticator;
 use GuzzleHttp\RequestOptions;
 
-class Authenticator extends PayloadAuthenticator
+class Authenticator extends OptionsAuthenticator
 {
     public function __construct(string $token, ?string $secret = null)
     {
-        $payload = ['access_token' => $token];
+        $query = ['access_token' => $token];
         if ($secret) {
             [$microseconds, $seconds] = explode(' ', microtime());
-            $payload['timestamp'] = $timestamp = $seconds.sprintf('%.3f', $microseconds) * 1000;
-            $payload['sign'] = $this->sign($secret, $timestamp);
+            $query += [
+                'timestamp' => $timestamp = $seconds.sprintf('%.3f', $microseconds) * 1000,
+                'sign' => $this->sign($secret, $timestamp),
+            ];
         }
 
-        parent::__construct($payload, RequestOptions::QUERY);
+        parent::__construct([RequestOptions::QUERY => $query]);
     }
 
     private function sign(string $secret, string $timestamp): string

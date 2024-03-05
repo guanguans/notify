@@ -14,22 +14,12 @@ namespace Guanguans\Notify\Foundation\Authenticators;
 
 use GuzzleHttp\RequestOptions;
 
-class CertificateAuthenticator extends NullAuthenticator
+class CertificateAuthenticator extends OptionsAuthenticator
 {
-    private string $path;
-
-    private ?string $password;
-
     public function __construct(string $path, ?string $password = null)
     {
-        $this->path = $path;
-        $this->password = $password;
-    }
-
-    public function applyToOptions(array $options): array
-    {
-        return [
-            RequestOptions::CERT => \is_string($this->password) ? [$this->path, $this->password] : $this->path,
-        ] + $options;
+        parent::__construct([
+            RequestOptions::CERT => \is_string($password) ? [$path, $password] : $path,
+        ]);
     }
 }

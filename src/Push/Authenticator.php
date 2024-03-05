@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Push;
 
 use Guanguans\Notify\Foundation\Authenticators\AggregateAuthenticator;
-use Guanguans\Notify\Foundation\Authenticators\PayloadAuthenticator;
+use Guanguans\Notify\Foundation\Authenticators\OptionsAuthenticator;
 use Guanguans\Notify\Foundation\Authenticators\TokenUriTemplateAuthenticator;
 use GuzzleHttp\RequestOptions;
 
@@ -23,7 +23,7 @@ class Authenticator extends AggregateAuthenticator
     {
         parent::__construct(
             new TokenUriTemplateAuthenticator($apiKey),
-            new PayloadAuthenticator(['X-Api-Key' => $apiKey], RequestOptions::HEADERS)
+            new OptionsAuthenticator([RequestOptions::HEADERS => ['X-Api-Key' => $apiKey]])
         );
     }
 }
