@@ -41,12 +41,6 @@ it('can set http client', function (): void {
         ->setHttpClient(new \GuzzleHttp\Client)->toBeInstanceOf(Client::class);
 })->group(__DIR__, __FILE__);
 
-it('can set http client resolver', function (): void {
-    expect(new Client)
-        ->setHttpClientResolver(static fn (
-        ): \GuzzleHttp\Client => new \GuzzleHttp\Client)->toBeInstanceOf(Client::class);
-})->group(__DIR__, __FILE__);
-
 it('can set handler stack', function (): void {
     expect(new Client)
         ->setHandlerStack(HandlerStack::create())->toBeInstanceOf(Client::class);

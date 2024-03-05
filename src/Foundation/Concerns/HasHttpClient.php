@@ -74,11 +74,6 @@ trait HasHttpClient
 {
     private ?Client $httpClient = null;
 
-    /**
-     * @var null|callable
-     */
-    private $httpClientResolver;
-
     private ?HandlerStack $handlerStack = null;
 
     private array $httpOptions = [];
@@ -118,13 +113,6 @@ trait HasHttpClient
         return $this;
     }
 
-    public function setHttpClientResolver(callable $httpClientResolver): self
-    {
-        $this->httpClientResolver = $httpClientResolver;
-
-        return $this;
-    }
-
     public function setHandlerStack(HandlerStack $handlerStack): self
     {
         $this->handlerStack = $handlerStack;
@@ -141,45 +129,34 @@ trait HasHttpClient
 
     protected function getHttpClient(): Client
     {
-        return $this->getHttpClientResolver()();
-    }
+        if (! $this->httpClient instanceof Client) {
+            $this->httpOptions = Utils::mergeHttpOptions(
+                [
+                    'handler' => $this->getHandlerStack(),
+                    RequestOptions::COOKIES => true,
+                    RequestOptions::HTTP_ERRORS => false,
+                    RequestOptions::ON_STATS => false,
+                ],
+                $this->getHttpOptions()
+            );
 
-    protected function getHttpClientResolver(): callable
-    {
-        if (! \is_callable($this->httpClientResolver)) {
-            $this->httpClientResolver = function (): Client {
-                if (! $this->httpClient instanceof Client) {
-                    $this->httpOptions = Utils::mergeHttpOptions(
-                        [
-                            'handler' => $this->getHandlerStack(),
-                            RequestOptions::COOKIES => true,
-                            RequestOptions::HTTP_ERRORS => false,
-                            RequestOptions::ON_STATS => false,
-                        ],
-                        $this->getHttpOptions()
-                    );
+            $onStats = $this->httpOptions[RequestOptions::ON_STATS];
+            $this->setHttpOptions([
+                RequestOptions::ON_STATS => static function (TransferStats $transferStats) use (
+                    $onStats
+                ): void {
+                    if ($onStats instanceof \Closure) {
+                        $transferStats = $onStats($transferStats) ?: $transferStats;
+                    }
 
-                    $onStats = $this->httpOptions[RequestOptions::ON_STATS];
-                    $this->setHttpOptions([
-                        RequestOptions::ON_STATS => static function (TransferStats $transferStats) use (
-                            $onStats
-                        ): void {
-                            if ($onStats instanceof \Closure) {
-                                $transferStats = $onStats($transferStats) ?: $transferStats;
-                            }
+                    Response::setTransferStats($transferStats);
+                },
+            ]);
 
-                            Response::setTransferStats($transferStats);
-                        },
-                    ]);
-
-                    $this->httpClient = new Client($this->getHttpOptions());
-                }
-
-                return $this->httpClient;
-            };
+            $this->httpClient = new Client($this->getHttpOptions());
         }
 
-        return $this->httpClientResolver;
+        return $this->httpClient;
     }
 
     protected function getHandlerStack(): HandlerStack
