@@ -24,8 +24,6 @@ class BasicAuthenticator extends OptionsAuthenticator
 {
     public function __construct(string $username, string $password, string $type = 'basic')
     {
-        parent::__construct([
-            RequestOptions::AUTH => [$username, $password, $type],
-        ]);
+        parent::__construct([RequestOptions::AUTH => [$username, $password, $type]]);
     }
 }

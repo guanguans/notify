@@ -18,8 +18,6 @@ class CertificateAuthenticator extends OptionsAuthenticator
 {
     public function __construct(string $path, ?string $password = null)
     {
-        parent::__construct([
-            RequestOptions::CERT => \is_string($password) ? [$path, $password] : $path,
-        ]);
+        parent::__construct([RequestOptions::CERT => \is_string($password) ? [$path, $password] : $path]);
     }
 }

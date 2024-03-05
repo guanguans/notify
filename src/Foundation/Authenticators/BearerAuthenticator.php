@@ -18,10 +18,6 @@ class BearerAuthenticator extends OptionsAuthenticator
 {
     public function __construct(string $token, ?string $bearer = 'Bearer')
     {
-        parent::__construct([
-            RequestOptions::HEADERS => [
-                'Authorization' => ltrim("$bearer $token"),
-            ],
-        ]);
+        parent::__construct([RequestOptions::HEADERS => ['Authorization' => ltrim("$bearer $token")]]);
     }
 }
