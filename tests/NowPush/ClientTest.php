@@ -17,9 +17,7 @@ namespace Guanguans\NotifyTests\NowPush;
 
 use Guanguans\Notify\NowPush\Authenticator;
 use Guanguans\Notify\NowPush\Client;
-use Guanguans\Notify\NowPush\Messages\ImageMessage;
-use Guanguans\Notify\NowPush\Messages\LinkMessage;
-use Guanguans\Notify\NowPush\Messages\NoteMessage;
+use Guanguans\Notify\NowPush\Messages\Message;
 
 use function Pest\Faker\faker;
 
@@ -31,7 +29,8 @@ beforeEach(function (): void {
 });
 
 it('can send image message', function (): void {
-    $imageMessage = ImageMessage::make([
+    $imageMessage = Message::make([
+        'message_type' => 'nowpush_img',
         'url' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
     ]);
 
@@ -39,7 +38,8 @@ it('can send image message', function (): void {
 })->group(__DIR__, __FILE__);
 
 it('can send link message', function (): void {
-    $linkMessage = LinkMessage::make([
+    $linkMessage = Message::make([
+        'message_type' => 'nowpush_link',
         'url' => 'https://github.com/guanguans/notify',
     ]);
 
@@ -47,7 +47,8 @@ it('can send link message', function (): void {
 })->group(__DIR__, __FILE__);
 
 it('can send note message', function (): void {
-    $noteMessage = NoteMessage::make([
+    $noteMessage = Message::make([
+        'message_type' => 'nowpush_note',
         'note' => 'This is note.',
     ]);
 

@@ -15,10 +15,32 @@ namespace Guanguans\Notify\NowPush\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
+/**
+ * @method self messageType($messageType)
+ * @method self note($note)
+ * @method self deviceType($deviceType)
+ * @method self url($url)
+ */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsJson;
     use AsPost;
+
+    protected array $defined = [
+        'message_type',
+        'note',
+        'device_type',
+        'url',
+    ];
+
+    protected array $allowedValues = [
+        // 'message_type' => ['nowpush_note', 'nowpush_img', 'nowpush_link'],
+        'device_type' => 'api',
+    ];
+
+    protected array $options = [
+        'device_type' => 'api',
+    ];
 
     public function toHttpUri(): string
     {
