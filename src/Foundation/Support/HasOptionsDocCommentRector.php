@@ -17,6 +17,7 @@ use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Message;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\Property;
 use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagNode;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
@@ -125,6 +126,32 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
         if (! $this->isSubclassesOf($class)) {
             return;
         }
+
+        // Sort properties
+        usort($node->stmts, static function (Node\Stmt $a, Node\Stmt $b): int {
+            if (! $a instanceof Property || ! $b instanceof Property) {
+                return 0;
+            }
+
+            $rules = [
+                'defaults',
+                'required',
+                'defined',
+                'ignoreUndefined',
+                'deprecated',
+                'normalizers',
+                'allowedValues',
+                'allowedTypes',
+                'infos',
+                'options',
+            ];
+
+            return array_search($a->props[0]->name->name, $rules, true) <=> array_search(
+                $b->props[0]->name->name,
+                $rules,
+                true
+            );
+        });
 
         $defaultProperties = (new \ReflectionClass($class))->getDefaultProperties();
         $allowedTypes = $defaultProperties['allowedTypes'] ?? [];
