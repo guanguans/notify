@@ -33,19 +33,23 @@ class NewsMessage extends Message
 
     public function addArticle(array $article): self
     {
-        $this->options['articles'][] = $this->configureAndResolveOptions(
-            $article,
-            static function (OptionsResolver $optionsResolver): void {
-                $optionsResolver->setDefined([
+        $this->options['articles'][] = $article;
+
+        return $this;
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    {
+        $optionsResolver->setDefault('articles', static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver
+                ->setPrototype(true)
+                ->setDefined([
                     'title',
                     'description',
                     'url',
                     'picurl',
                 ]);
-            }
-        );
-
-        return $this;
+        });
     }
 
     protected function type(): string
