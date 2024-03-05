@@ -12,12 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Chanify\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
+use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
+    use AsMultipart;
     use AsPost;
 
     public function toHttpUri(): string

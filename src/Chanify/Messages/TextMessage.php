@@ -39,9 +39,17 @@ class TextMessage extends Message
         'timeline',
     ];
 
+    protected array $allowedValues = [
+        // 'interruptionlevel' => ['active', 'passive', 'time-sensitive'],
+    ];
+
     protected array $allowedTypes = [
         'actions' => 'array',
         'timeline' => 'array',
+    ];
+
+    protected array $options = [
+        'actions' => [],
     ];
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void

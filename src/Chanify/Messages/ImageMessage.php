@@ -12,15 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Chanify\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsMultipart;
-
 /**
  * @method self image($image)
  */
 class ImageMessage extends Message
 {
-    use AsMultipart;
-
     protected array $defined = [
         'image',
     ];

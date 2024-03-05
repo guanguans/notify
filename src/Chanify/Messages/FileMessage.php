@@ -12,15 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Chanify\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsMultipart;
-
 /**
  * @method self file($file)
  */
 class FileMessage extends Message
 {
-    use AsMultipart;
-
     protected array $defined = [
         'file',
     ];
