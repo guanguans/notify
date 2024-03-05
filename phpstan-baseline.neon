@@ -14,21 +14,6 @@ parameters:
 			path: src/Foundation/Support/Utils.php
 
 		-
-			message: "#^Property Guanguans\\\\Notify\\\\Pushover\\\\Messages\\\\Message\\:\\:\\$allowedValues \\(array\\<array\\<int\\>\\>\\) does not accept default value of type array\\<string, array\\<int, int\\>\\>\\.$#"
+			message: "#^Method Guanguans\\\\Notify\\\\ServerChan\\\\Messages\\\\Message\\:\\:encrypt\\(\\) is unused\\.$#"
 			count: 1
-			path: src/Pushover/Messages/Message.php
-
-		-
-			message: "#^Property Guanguans\\\\Notify\\\\Pushover\\\\Messages\\\\Message\\:\\:\\$allowedValues has unknown class int as its type\\.$#"
-			count: 1
-			path: src/Pushover/Messages/Message.php
-
-		-
-			message: "#^Property Guanguans\\\\Notify\\\\Telegram\\\\Messages\\\\TextMessage\\:\\:\\$allowedValues \\(array\\<array\\<string\\>\\>\\) does not accept default value of type array\\<string, array\\<int, string\\>\\>\\.$#"
-			count: 1
-			path: src/Telegram/Messages/TextMessage.php
-
-		-
-			message: "#^Property Guanguans\\\\Notify\\\\Telegram\\\\Messages\\\\TextMessage\\:\\:\\$allowedValues has unknown class string as its type\\.$#"
-			count: 1
-			path: src/Telegram/Messages/TextMessage.php
+			path: src/ServerChan/Messages/Message.php
