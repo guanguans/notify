@@ -17,7 +17,7 @@ namespace Guanguans\Notify\Foundation\Concerns;
  */
 trait AsPost
 {
-    final public function toHttpMethod(): string
+    public function toHttpMethod(): string
     {
         return 'post';
     }

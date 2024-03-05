@@ -17,7 +17,7 @@ namespace Guanguans\Notify\Foundation\Concerns;
  */
 trait AsPut
 {
-    final public function toHttpMethod(): string
+    public function toHttpMethod(): string
     {
         return 'put';
     }

@@ -17,7 +17,7 @@ namespace Guanguans\Notify\Foundation\Concerns;
  */
 trait AsPatch
 {
-    final public function toHttpMethod(): string
+    public function toHttpMethod(): string
     {
         return 'patch';
     }

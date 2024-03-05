@@ -17,7 +17,7 @@ namespace Guanguans\Notify\Foundation\Concerns;
  */
 trait AsGet
 {
-    final public function toHttpMethod(): string
+    public function toHttpMethod(): string
     {
         return 'get';
     }

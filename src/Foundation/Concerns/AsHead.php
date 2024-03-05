@@ -17,7 +17,7 @@ namespace Guanguans\Notify\Foundation\Concerns;
  */
 trait AsHead
 {
-    final public function toHttpMethod(): string
+    public function toHttpMethod(): string
     {
         return 'head';
     }

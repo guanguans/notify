@@ -148,6 +148,11 @@ return static function (RectorConfig $rectorConfig): void {
         PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
     ]);
 
+    $rectorConfig->ruleWithConfiguration(RemoveTraitUseRector::class, [
+        Guanguans\Notify\Foundation\Concerns\AsJson::class,
+        Guanguans\Notify\Foundation\Concerns\AsPost::class,
+    ]);
+
     $rectorConfig->rules([
         HasHttpClientDocCommentRector::class,
         HasOptionsDocCommentRector::class,

@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
+use Guanguans\Notify\Foundation\Concerns\AsJson;
+use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
 
@@ -20,6 +22,8 @@ use Guanguans\Notify\Foundation\Concerns\HasOptions;
  */
 abstract class Message implements \ArrayAccess, Contracts\Message
 {
+    use AsJson;
+    use AsPost;
     use Dumpable;
     use HasOptions;
 

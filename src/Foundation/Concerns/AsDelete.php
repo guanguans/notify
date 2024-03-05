@@ -17,7 +17,7 @@ namespace Guanguans\Notify\Foundation\Concerns;
  */
 trait AsDelete
 {
-    final public function toHttpMethod(): string
+    public function toHttpMethod(): string
     {
         return 'delete';
     }
