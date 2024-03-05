@@ -44,6 +44,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return 'https://www.pushplus.plus/send/{token}';
+        return 'send/{token}';
     }
 }

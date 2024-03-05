@@ -18,7 +18,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
     public function toHttpUri(): string
     {
-        return 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={token}';
+        return 'cgi-bin/webhook/send?key={token}';
     }
 
     /**

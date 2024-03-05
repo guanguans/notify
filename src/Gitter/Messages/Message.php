@@ -23,6 +23,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return 'https://api.gitter.im/v1/rooms/{roomId}/chatMessages';
+        return 'v1/rooms/{roomId}/chatMessages';
     }
 }

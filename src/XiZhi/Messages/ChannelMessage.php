@@ -23,6 +23,6 @@ class ChannelMessage extends Message
 {
     public function toHttpUri(): string
     {
-        return 'https://xizhi.qqoq.net/{token}.channel';
+        return '{token}.channel';
     }
 }

@@ -24,6 +24,6 @@ class SyncMessage extends Message
 {
     public function toHttpUri(): string
     {
-        return 'https://api.pushback.io/v1/send_sync';
+        return 'v1/send_sync';
     }
 }

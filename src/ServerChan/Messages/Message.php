@@ -37,7 +37,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return 'https://sctapi.ftqq.com/{token}.send';
+        return '{token}.send';
     }
 
     /**

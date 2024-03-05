@@ -19,7 +19,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
     public function toHttpUri(): string
     {
-        return 'https://oapi.dingtalk.com/robot/send';
+        return 'robot/send';
     }
 
     public function toHttpOptions(): array

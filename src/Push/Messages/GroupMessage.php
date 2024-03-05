@@ -26,6 +26,6 @@ class GroupMessage extends Message
 {
     public function toHttpUri(): string
     {
-        return "https://push.techulus.com/api/v1/notify/group/{$this->getOption('groupId')}";
+        return "api/v1/notify/group/{$this->getOption('groupId')}";
     }
 }

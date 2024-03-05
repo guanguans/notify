@@ -15,4 +15,11 @@ namespace Guanguans\Notify\YiFengChuanHua;
 /**
  * @see http://push.phprm.com
  */
-class Client extends \Guanguans\Notify\Foundation\Client {}
+class Client extends \Guanguans\Notify\Foundation\Client
+{
+    public function __construct(Authenticator $authenticator)
+    {
+        parent::__construct($authenticator);
+        $this->baseUri('https://www.phprm.com/');
+    }
+}

@@ -20,7 +20,7 @@ use Guanguans\Notify\Foundation\Contracts\Authenticator;
  */
 class Client extends \Guanguans\Notify\Foundation\Client
 {
-    public function __construct(?Authenticator $authenticator = null)
+    public function __construct(Authenticator $authenticator)
     {
         parent::__construct($authenticator);
         $this->baseUri('https://chat.zulip.org/');

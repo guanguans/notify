@@ -33,4 +33,10 @@ namespace Guanguans\Notify\Mattermost;
  * --data-raw '{"message":"This is a testing.","channel_id":"{{channel_id}}"}'
  * ```
  */
-class Client extends \Guanguans\Notify\Foundation\Client {}
+class Client extends \Guanguans\Notify\Foundation\Client
+{
+    public function __construct(Authenticator $authenticator)
+    {
+        parent::__construct($authenticator);
+    }
+}

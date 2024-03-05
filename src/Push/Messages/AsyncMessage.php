@@ -26,6 +26,6 @@ class AsyncMessage extends Message
 {
     public function toHttpUri(): string
     {
-        return 'https://push.techulus.com/api/v1/notify-async';
+        return 'api/v1/notify-async';
     }
 }

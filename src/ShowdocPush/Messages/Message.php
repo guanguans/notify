@@ -25,6 +25,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return 'https://push.showdoc.com.cn/server/api/push/{token}';
+        return 'server/api/push/{token}';
     }
 }

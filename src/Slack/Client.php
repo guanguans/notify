@@ -21,4 +21,10 @@ namespace Guanguans\Notify\Slack;
  * --data-urlencode 'payload={"text": "This is  text"}'
  * ```
  */
-class Client extends \Guanguans\Notify\Foundation\Client {}
+class Client extends \Guanguans\Notify\Foundation\Client
+{
+    public function __construct(Authenticator $authenticator)
+    {
+        parent::__construct($authenticator);
+    }
+}

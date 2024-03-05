@@ -33,6 +33,6 @@ class UploadMediaMessage extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return "https://qyapi.weixin.qq.com/cgi-bin/webhook/upload_media?key={token}&type={$this->getOption('type')}";
+        return "cgi-bin/webhook/upload_media?key={token}&type={$this->getOption('type')}";
     }
 }

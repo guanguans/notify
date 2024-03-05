@@ -19,7 +19,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
     public function toHttpUri(): string
     {
-        return 'https://open.feishu.cn/open-apis/bot/v2/hook/{token}';
+        return 'open-apis/bot/v2/hook/{token}';
     }
 
     public function toHttpOptions(): array

@@ -33,6 +33,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return 'https://www.phprm.com/services/push/send/{token}';
+        return 'services/push/send/{token}';
     }
 }

@@ -39,6 +39,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return 'https://push.hellyw.com/{token}';
+        return '{token}';
     }
 }

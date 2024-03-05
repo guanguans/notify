@@ -66,6 +66,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return 'https://api.pushover.net/1/messages.json';
+        return '1/messages.json';
     }
 }

@@ -15,4 +15,10 @@ namespace Guanguans\Notify\Discord;
 /**
  * @see https://discord.com/developers/docs/resources/webhook#edit-webhook-message
  */
-class Client extends \Guanguans\Notify\Foundation\Client {}
+class Client extends \Guanguans\Notify\Foundation\Client
+{
+    public function __construct(Authenticator $authenticator)
+    {
+        parent::__construct($authenticator);
+    }
+}

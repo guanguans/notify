@@ -62,6 +62,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return 'https://chat.googleapis.com/v1/spaces/{spaceId}/messages';
+        return 'v1/spaces/{spaceId}/messages';
     }
 }

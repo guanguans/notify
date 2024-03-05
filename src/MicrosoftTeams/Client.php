@@ -16,4 +16,10 @@ namespace Guanguans\Notify\MicrosoftTeams;
  * @see https://learn.microsoft.com/zh-cn/outlook/actionable-messages/message-card-reference
  * @see https://learn.microsoft.com/zh-cn/microsoftteams/platform/webhooks-and-connectors/what-are-webhooks-and-connectors
  */
-class Client extends \Guanguans\Notify\Foundation\Client {}
+class Client extends \Guanguans\Notify\Foundation\Client
+{
+    public function __construct(Authenticator $authenticator)
+    {
+        parent::__construct($authenticator);
+    }
+}

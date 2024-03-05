@@ -38,6 +38,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function toHttpUri(): string
     {
-        return 'https://www.api.nowpush.app/v3/sendMessage';
+        return 'v3/sendMessage';
     }
 }

@@ -29,4 +29,11 @@ namespace Guanguans\Notify\Gitter;
  * --data-raw '{"text":"This is a testing."}'
  * ```
  */
-class Client extends \Guanguans\Notify\Foundation\Client {}
+class Client extends \Guanguans\Notify\Foundation\Client
+{
+    public function __construct(Authenticator $authenticator)
+    {
+        parent::__construct($authenticator);
+        $this->baseUri('https://api.gitter.im/');
+    }
+}

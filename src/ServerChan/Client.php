@@ -12,4 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ServerChan;
 
-class Client extends \Guanguans\Notify\Foundation\Client {}
+class Client extends \Guanguans\Notify\Foundation\Client
+{
+    public function __construct(Authenticator $authenticator)
+    {
+        parent::__construct($authenticator);
+        $this->baseUri('https://sctapi.ftqq.com/');
+    }
+}
