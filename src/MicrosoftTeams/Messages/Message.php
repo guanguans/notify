@@ -12,9 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\MicrosoftTeams\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -31,9 +29,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
     use AsNullUri;
-    use AsPost;
 
     protected array $defined = [
         '@type',

@@ -12,14 +12,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\DingTalk\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\RequestOptions;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
-
     public function toHttpUri(): string
     {
         return 'https://oapi.dingtalk.com/robot/send';

@@ -12,13 +12,10 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 use GuzzleHttp\RequestOptions;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
-
     public function toHttpUri(): string
     {
         return 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={token}';

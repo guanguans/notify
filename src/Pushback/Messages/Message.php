@@ -12,9 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Pushback\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
-
 /**
  * @method self id($id)
  * @method self title($title)
@@ -25,9 +22,6 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
-    use AsPost;
-
     protected array $required = [
         // 'id',
         // 'title',

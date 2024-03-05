@@ -12,9 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Mattermost\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
-
 /**
  * @method self channelId($channelId)
  * @method self message($message)
@@ -31,9 +28,6 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
-    use AsPost;
-
     protected array $required = [
         // 'channel_id',
     ];

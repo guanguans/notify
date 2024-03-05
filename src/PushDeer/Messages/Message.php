@@ -12,9 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\PushDeer\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
-
 /**
  * @method self text($text)
  * @method self desp($desp)
@@ -22,9 +19,6 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
-    use AsPost;
-
     protected array $defined = [
         'text',
         'desp',

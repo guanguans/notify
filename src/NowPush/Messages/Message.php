@@ -12,9 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\NowPush\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
-
 /**
  * @method self messageType($messageType)
  * @method self note($note)
@@ -23,9 +20,6 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
-    use AsPost;
-
     protected array $defined = [
         'message_type',
         'note',

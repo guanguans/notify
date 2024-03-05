@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Guanguans\Notify\QQ\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -31,7 +30,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsMultipart;
-    use AsPost;
 
     protected array $defined = [
         'channel_id',

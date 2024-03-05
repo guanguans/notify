@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Push\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\RequestOptions;
 
@@ -28,8 +27,6 @@ use GuzzleHttp\RequestOptions;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
-
     protected array $defined = [
         'groupId',
 

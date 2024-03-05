@@ -10,6 +10,8 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+use Guanguans\Notify\Foundation\Concerns\AsJson;
+use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Support\HasHttpClientDocCommentRector;
 use Guanguans\Notify\Foundation\Support\HasOptionsDocCommentRector;
 use Guanguans\Notify\Foundation\Support\ToInternalExceptionRector;
@@ -103,6 +105,9 @@ return static function (RectorConfig $rectorConfig): void {
         ReturnBinaryOrToEarlyReturnRector::class,
         SensitiveHereNowDocRector::class,
         WrapEncapsedVariableInCurlyBracesRector::class,
+        RemoveTraitUseRector::class => [
+            __DIR__.'/src/Foundation/Message.php',
+        ],
         RenameParamToMatchTypeRector::class => [
             __DIR__.'/src/Foundation/Authenticators/AggregateAuthenticator.php',
             __DIR__.'/src/Foundation/Exceptions/RequestException.php',
@@ -149,8 +154,8 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->ruleWithConfiguration(RemoveTraitUseRector::class, [
-        Guanguans\Notify\Foundation\Concerns\AsJson::class,
-        Guanguans\Notify\Foundation\Concerns\AsPost::class,
+        AsJson::class,
+        AsPost::class,
     ]);
 
     $rectorConfig->rules([

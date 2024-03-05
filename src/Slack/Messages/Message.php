@@ -12,9 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Slack\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
  * @method self channel($channel)
@@ -36,9 +34,7 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
     use AsNullUri;
-    use AsPost;
 
     protected array $defined = [
         'channel',

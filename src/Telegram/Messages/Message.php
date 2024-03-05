@@ -12,15 +12,12 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Support\Arr;
 use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\RequestOptions;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsPost;
-
     public function toHttpOptions(): array
     {
         return [

@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Pushover\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
  * @method self message($message)
@@ -35,7 +34,6 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsMultipart;
-    use AsPost;
 
     protected array $required = [
         // // 'token',

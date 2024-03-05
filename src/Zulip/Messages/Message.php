@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Zulip\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsFormParams;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
  * @method self type($type)
@@ -27,7 +26,6 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsFormParams;
-    use AsPost;
 
     protected array $required = [
         // 'type',

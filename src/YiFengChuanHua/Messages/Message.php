@@ -12,9 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\YiFengChuanHua\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
-
 /**
  * @method self head($head)
  * @method self body($body)
@@ -23,9 +20,6 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
-    use AsJson;
-    use AsPost;
-
     protected array $required = [
         // 'head',
     ];

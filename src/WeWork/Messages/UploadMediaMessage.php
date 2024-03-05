@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Guanguans\Notify\WeWork\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 
 /**
  * @method self media($media)
@@ -22,7 +21,6 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 class UploadMediaMessage extends \Guanguans\Notify\Foundation\Message
 {
     use AsMultipart;
-    use AsPost;
 
     protected array $defined = [
         'media',

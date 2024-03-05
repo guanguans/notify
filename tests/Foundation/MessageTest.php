@@ -17,9 +17,7 @@ declare(strict_types=1);
 
 namespace Guanguans\NotifyTests\Foundation;
 
-use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
-use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Message;
@@ -28,9 +26,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 it('will throw InvalidArgumentException when argument is empty', function (): void {
     expect(new class(['foo' => 'bar']) extends Message {
-        use AsJson;
         use AsNullUri;
-        use AsPost;
 
         // protected array $defined = ['foo'];
         protected array $required = ['foo'];
@@ -41,9 +37,7 @@ it('will throw InvalidArgumentException when argument is empty', function (): vo
 
 it('will throw BadMethodCallException when calling an undefined method', function (): void {
     expect(new class(['foo' => 'bar']) extends Message {
-        use AsJson;
         use AsNullUri;
-        use AsPost;
 
         protected array $defined = ['foo'];
     })->bar();
@@ -53,9 +47,7 @@ it('will throw BadMethodCallException when calling an undefined method', functio
 
 it('can array access', function (): void {
     $message = new class(['foo' => 'bar']) extends Message {
-        use AsJson;
         use AsNullUri;
-        use AsPost;
 
         protected array $defined = ['foo'];
     };
@@ -75,9 +67,7 @@ it('can get options', function (): void {
         'foo' => 'bar',
         'bar' => ['type' => 'memory'],
     ]) extends Message {
-        use AsJson;
         use AsNullUri;
-        use AsPost;
 
         protected array $defaults = ['foo' => 'bar'];
 
@@ -118,9 +108,7 @@ it('can get options', function (): void {
 
 it('can dump debug info', function (): void {
     expect(new class(['foo' => 'bar']) extends Message {
-        use AsJson;
         use AsNullUri;
-        use AsPost;
 
         protected array $defined = ['foo'];
     })->dump()->toBeInstanceOf(Message::class);
