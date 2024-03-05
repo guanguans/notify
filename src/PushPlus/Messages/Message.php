@@ -31,6 +31,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
+    protected array $required = [
+        // 'content',
+    ];
+
     protected array $defined = [
         'topic', // 群组消息
         'to', // 好友消息
@@ -42,10 +46,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'webhook',
         'callbackUrl',
         'timestamp',
-    ];
-
-    protected array $required = [
-        // 'content',
     ];
 
     public function toHttpUri(): string

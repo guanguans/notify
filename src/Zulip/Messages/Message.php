@@ -29,6 +29,13 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsFormParams;
     use AsPost;
 
+    protected array $required = [
+        // 'type',
+        // 'to',
+        // 'content',
+        // // 'topic', // stream
+    ];
+
     protected array $defined = [
         'type',
         'to',
@@ -37,13 +44,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'queue_id',
         'local_id',
         'read_by_sender',
-    ];
-
-    protected array $required = [
-        // 'type',
-        // 'to',
-        // 'content',
-        // // 'topic', // stream
     ];
 
     protected array $allowedValues = [

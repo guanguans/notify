@@ -41,10 +41,6 @@ class TextMessage extends Message
         'reply_markup',
     ];
 
-    protected array $options = [
-        'entities' => [],
-    ];
-
     protected array $allowedValues = [
         // 'parse_mode' => ['HTML', 'Markdown', 'MarkdownV2'],
     ];
@@ -56,6 +52,10 @@ class TextMessage extends Message
         'protect_content' => 'bool',
         'reply_parameters' => 'array',
         'reply_markup' => 'array',
+    ];
+
+    protected array $options = [
+        'entities' => [],
     ];
 
     public function toHttpUri(): string

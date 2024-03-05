@@ -36,6 +36,7 @@
         "PhpParser\\Node\\Expr\\New_",
         "PhpParser\\Node\\Name",
         "PhpParser\\Node\\Stmt\\Class_",
+        "PhpParser\\Node\\Stmt\\Property",
         "PhpParser\\Node\\Stmt\\Trait_",
         "PHPStan\\PhpDocParser\\Ast\\PhpDoc\\GenericTagValueNode",
         "PHPStan\\PhpDocParser\\Ast\\PhpDoc\\PhpDocTagNode",

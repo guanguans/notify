@@ -28,6 +28,11 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
+    protected array $required = [
+        // 'id',
+        // 'title',
+    ];
+
     protected array $defined = [
         'id',
         'title',
@@ -35,11 +40,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'action1',
         'action2',
         'reply',
-    ];
-
-    protected array $required = [
-        // 'id',
-        // 'title',
     ];
 
     public function toHttpUri(): string

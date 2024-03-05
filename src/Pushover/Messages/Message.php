@@ -37,6 +37,12 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsMultipart;
     use AsPost;
 
+    protected array $required = [
+        // // 'token',
+        // // 'user',
+        // 'message',
+    ];
+
     protected array $defined = [
         // 'token',
         // 'user',
@@ -58,12 +64,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'expire',
         'monospace',
         'callback',
-    ];
-
-    protected array $required = [
-        // // 'token',
-        // // 'user',
-        // 'message',
     ];
 
     public function toHttpUri(): string

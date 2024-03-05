@@ -34,12 +34,12 @@ class MediaGroupMessage extends Message
         'reply_parameters',
     ];
 
-    protected array $options = [
-        'media' => [],
-    ];
-
     protected array $allowedTypes = [
         'media' => 'array',
+    ];
+
+    protected array $options = [
+        'media' => [],
     ];
 
     public function addMedia(array $media): self

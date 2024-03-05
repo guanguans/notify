@@ -26,15 +26,15 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
+    protected array $required = [
+        // 'head',
+    ];
+
     protected array $defined = [
         'head',
         'body',
         'delayMilliseconds',
         'url',
-    ];
-
-    protected array $required = [
-        // 'head',
     ];
 
     public function toHttpUri(): string

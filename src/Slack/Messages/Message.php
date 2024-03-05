@@ -59,11 +59,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'username',
     ];
 
-    protected array $options = [
-        'attachments' => [],
-        'blocks' => [],
-    ];
-
     protected array $allowedTypes = [
         'attachments' => 'array',
         'blocks' => 'array',
@@ -74,6 +69,11 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'reply_broadcast' => 'bool',
         'unfurl_links' => 'bool',
         'unfurl_media' => 'bool',
+    ];
+
+    protected array $options = [
+        'attachments' => [],
+        'blocks' => [],
     ];
 
     public function addAttachment(array $attachment): self

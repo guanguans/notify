@@ -49,10 +49,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'tts',
     ];
 
-    protected array $options = [
-        'embeds' => [],
-    ];
-
     protected array $allowedTypes = [
         'tts' => 'bool',
         'embeds' => 'array',
@@ -60,6 +56,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'components' => 'array',
         'files' => 'array',
         'attachments' => 'array',
+    ];
+
+    protected array $options = [
+        'embeds' => [],
     ];
 
     public function addEmbed(array $embed): self

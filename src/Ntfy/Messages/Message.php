@@ -43,6 +43,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsNullUri;
     use AsPost;
 
+    protected array $required = [
+        // 'topic',
+    ];
+
     protected array $defined = [
         'topic',
         'message',
@@ -64,19 +68,15 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'poll_id',
     ];
 
-    protected array $required = [
-        // 'topic',
+    protected array $allowedValues = [
+        // 'priority' => [5, 4, 3, 2, 1],
+        // 'cache' => ['yes', 'no'],
+        // 'firebase' => ['yes', 'no'],
     ];
 
     protected array $allowedTypes = [
         'tags' => 'array',
         'actions' => 'array',
-    ];
-
-    protected array $allowedValues = [
-        // 'priority' => [5, 4, 3, 2, 1],
-        // 'cache' => ['yes', 'no'],
-        // 'firebase' => ['yes', 'no'],
     ];
 
     protected array $options = [

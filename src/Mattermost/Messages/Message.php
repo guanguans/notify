@@ -34,6 +34,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
     use AsJson;
     use AsPost;
 
+    protected array $required = [
+        // 'channel_id',
+    ];
+
     protected array $defined = [
         'channel_id',
         'message',
@@ -47,10 +51,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'props',
         'pending_post_id',
         'participants',
-    ];
-
-    protected array $required = [
-        // 'channel_id',
     ];
 
     protected array $allowedTypes = [
