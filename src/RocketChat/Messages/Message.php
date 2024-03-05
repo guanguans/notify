@@ -57,34 +57,47 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     public function addAttachment(array $attachment): self
     {
-        $this->options['attachments'][] = $this->configureAndResolveOptions(
-            $attachment,
-            static function (OptionsResolver $optionsResolver): void {
-                $optionsResolver
-                    ->setDefined([
-                        'color',
-                        'text',
-                        'ts',
-                        'thumb_url',
-                        'message_link',
-                        'collapsed',
-                        'author_name',
-                        'author_link',
-                        'author_icon',
-                        'title',
-                        'title_link',
-                        'title_link_download',
-                        'image_url',
-                        'audio_url',
-                        'video_url',
-                        'fields',
-                    ])
-                    ->setAllowedTypes('collapsed', 'bool')
-                    ->setAllowedTypes('title_link_download', 'bool')
-                    ->setAllowedTypes('fields', 'array');
-            }
-        );
+        $this->options['attachments'][] = $attachment;
 
         return $this;
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    {
+        $optionsResolver->setDefault('attachments', static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver
+                ->setPrototype(true)
+                ->setDefined([
+                    'color',
+                    'text',
+                    'ts',
+                    'thumb_url',
+                    'message_link',
+                    'collapsed',
+                    'author_name',
+                    'author_link',
+                    'author_icon',
+                    'title',
+                    'title_link',
+                    'title_link_download',
+                    'image_url',
+                    'audio_url',
+                    'video_url',
+                    'fields',
+                ])
+                ->setAllowedTypes('collapsed', 'bool')
+                ->setAllowedTypes('title_link_download', 'bool')
+                ->setAllowedTypes('fields', 'array')
+                ->setDefault('fields', static function (OptionsResolver $optionsResolver): void {
+                    $optionsResolver
+                        ->setPrototype(true)
+                        ->setDefined([
+                            'short',
+                            'title',
+                            'value',
+                        ])
+                        ->setAllowedTypes('short', 'bool');
+                });
+        });
     }
 }
