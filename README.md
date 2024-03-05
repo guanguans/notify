@@ -71,17 +71,19 @@ $client = new Guanguans\Notify\DingTalk\Client($authenticator);
 $message = Guanguans\Notify\DingTalk\Messages\BtnsActionCardMessage::make([
     'title' => 'This is title(keyword).',
     'text' => 'This is text.',
-    'btnOrientation' => 1,
-    'btns' => [
-        [
-            'title' => 'This is title 1.',
-            'actionURL' => 'https://github.com/guanguans/notify',
-        ],
-    ],
-])->addBtn([
-    'title' => 'This is title 2.',
-    'actionURL' => 'https://github.com/guanguans/notify',
-]);
+    // 'btnOrientation' => 1,
+    // 'btns' => [
+    //     [
+    //         'title' => 'This is title 1.',
+    //         'actionURL' => 'https://github.com/guanguans/notify',
+    //     ],
+    // ],
+])
+    ->btnOrientation(1)
+    ->addBtn([
+        'title' => 'This is title 2.',
+        'actionURL' => 'https://github.com/guanguans/notify',
+    ]);
 
 // 4. Send message
 $response = $client
