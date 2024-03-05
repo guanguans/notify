@@ -74,41 +74,43 @@ class Message extends \Guanguans\Notify\Foundation\Message
     ];
 
     protected array $allowedValues = [
-        'priority' => [5, 4, 3, 2, 1],
-        'cache' => ['yes', 'no'],
-        'firebase' => ['yes', 'no'],
+        // 'priority' => [5, 4, 3, 2, 1],
+        // 'cache' => ['yes', 'no'],
+        // 'firebase' => ['yes', 'no'],
     ];
 
     protected array $options = [
-        'tags' => [],
         'actions' => [],
     ];
 
     public function addAction(array $action): self
     {
-        $this->options['actions'][] = $this->configureAndResolveOptions(
-            $action,
-            static function (OptionsResolver $optionsResolver): void {
-                $optionsResolver
-                    ->setDefined([
-                        'action', // [view, broadcast, http, click]
-                        'label',
-                        'clear',
-
-                        'url', // view|http|click
-                        'intent', // broadcast
-                        'extras', // broadcast
-                        'method', // http
-                        'headers', // http
-                        'body', // http
-                        'method', // http
-                    ])
-                    ->setAllowedTypes('clear', 'bool')
-                    ->setAllowedTypes('extras', 'array')
-                    ->setAllowedTypes('headers', 'array');
-            }
-        );
+        $this->options['actions'][] = $action;
 
         return $this;
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    {
+        $optionsResolver->setDefault('actions', static function (OptionsResolver $optionsResolver): void {
+            $optionsResolver
+                ->setPrototype(true)
+                ->setDefined([
+                    'action', // [view, broadcast, http, click]
+                    'label',
+                    'clear',
+
+                    'url', // view|http|click
+                    'intent', // broadcast
+                    'extras', // broadcast
+                    'method', // http
+                    'headers', // http
+                    'body', // http
+                    'method', // http
+                ])
+                ->setAllowedTypes('clear', 'bool')
+                ->setAllowedTypes('extras', 'array')
+                ->setAllowedTypes('headers', 'array');
+        });
     }
 }
