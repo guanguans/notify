@@ -27,6 +27,17 @@ class PostMessage extends Message
         'post' => 'array',
     ];
 
+    protected array $options = [
+        'post' => [],
+    ];
+
+    public function setPostForLang(string $lang, array $post): self
+    {
+        $this->options['post'][$lang] = $post;
+
+        return $this;
+    }
+
     protected function type(): string
     {
         return 'post';
@@ -35,16 +46,13 @@ class PostMessage extends Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver->setDefault('post', static function (OptionsResolver $optionsResolver): void {
-            foreach (['zh_cn', 'en_us'] as $lang) {
-                $optionsResolver
-                    ->define($lang)
-                    ->allowedTypes('array')
-                    ->default(static function (OptionsResolver $optionsResolver): void {
-                        $optionsResolver
-                            ->setDefined(['title', 'content'])
-                            ->setAllowedTypes('content', 'array');
-                    });
-            }
+            $optionsResolver
+                ->setPrototype(true)
+                ->setDefined([
+                    'title',
+                    'content',
+                ])
+                ->setAllowedTypes('content', 'array');
         });
     }
 }
