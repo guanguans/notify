@@ -94,4 +94,22 @@ class Utils
 
         return $constants;
     }
+
+    /**
+     * Replace the given options with the current request options.
+     */
+    public static function mergeHttpOptions(array $originalOptions, array ...$options): array
+    {
+        return array_replace_recursive(
+            array_merge_recursive($originalOptions, Arr::only($options, [
+                RequestOptions::COOKIES,
+                RequestOptions::FORM_PARAMS,
+                RequestOptions::HEADERS,
+                RequestOptions::JSON,
+                RequestOptions::MULTIPART,
+                RequestOptions::QUERY,
+            ])),
+            ...$options
+        );
+    }
 }
