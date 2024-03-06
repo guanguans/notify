@@ -24,13 +24,13 @@ class Utils
     {
         /**
          * @param array-key $name
-         * @param  array{
+         * @param  StreamInterface|resource|scalar|null|array{
          *     name: string,
          *     contents: StreamInterface|resource|string,
          *     headers: array<string, string>,
          *     filename: string
          *     ...
-         * }|StreamInterface|resource|scalar|null  $contents
+         * }  $contents
          *
          * @return array{
          *     name: string,

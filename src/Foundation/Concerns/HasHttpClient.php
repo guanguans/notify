@@ -130,28 +130,7 @@ trait HasHttpClient
     protected function getHttpClient(): Client
     {
         if (! $this->httpClient instanceof Client) {
-            $this->httpOptions = Utils::mergeHttpOptions(
-                [
-                    'handler' => $this->getHandlerStack(),
-                    RequestOptions::COOKIES => true,
-                    RequestOptions::HTTP_ERRORS => false,
-                    RequestOptions::ON_STATS => false,
-                ],
-                $this->getHttpOptions()
-            );
-
-            $onStats = $this->httpOptions[RequestOptions::ON_STATS];
-            $this->setHttpOptions([
-                RequestOptions::ON_STATS => static function (TransferStats $transferStats) use (
-                    $onStats
-                ): void {
-                    if ($onStats instanceof \Closure) {
-                        $transferStats = $onStats($transferStats) ?: $transferStats;
-                    }
-
-                    Response::setTransferStats($transferStats);
-                },
-            ]);
+            $this->configureHttpOptions();
 
             $this->httpClient = new Client($this->getHttpOptions());
         }
@@ -163,9 +142,11 @@ trait HasHttpClient
     {
         if (! $this->handlerStack instanceof HandlerStack) {
             $this->handlerStack = HandlerStack::create();
+            $this->handlerStack->push(new Authenticate($this->authenticator), Authenticate::class);
+            $this->handlerStack->push(new Response, Response::class);
         }
 
-        return $this->handlerStack = $this->ensureWithRequiredMiddleware($this->handlerStack);
+        return $this->handlerStack;
     }
 
     protected function getHttpOptions(): array
@@ -173,29 +154,26 @@ trait HasHttpClient
         return $this->httpOptions;
     }
 
-    /**
-     * @noinspection BadExceptionsProcessingInspection
-     */
-    private function ensureWithRequiredMiddleware(HandlerStack $handlerStack): HandlerStack
+    private function configureHttpOptions(): void
     {
-        try {
-            (function (): void {
-                \assert($this instanceof HandlerStack);
-                $this->findByName(Authenticate::class);
-            })->call($handlerStack);
-        } catch (\InvalidArgumentException $invalidArgumentException) {
-            $handlerStack->push(new Authenticate($this->authenticator), Authenticate::class);
-        }
+        $this->httpOptions = Utils::mergeHttpOptions(
+            [
+                'handler' => $this->getHandlerStack(),
+                RequestOptions::COOKIES => true,
+                RequestOptions::HTTP_ERRORS => false,
+                RequestOptions::ON_STATS => static fn (TransferStats $transferStats): TransferStats => $transferStats,
+            ],
+            $this->getHttpOptions()
+        );
 
-        try {
-            (function (): void {
-                \assert($this instanceof HandlerStack);
-                $this->findByName(Response::class);
-            })->call($handlerStack);
-        } catch (\InvalidArgumentException $invalidArgumentException) {
-            $handlerStack->push(new Response, Response::class);
-        }
+        $onStats = $this->httpOptions[RequestOptions::ON_STATS];
 
-        return $handlerStack;
+        $this->setHttpOptions([
+            RequestOptions::ON_STATS => static function (TransferStats $transferStats) use ($onStats): void {
+                $onStats($transferStats);
+
+                Response::setTransferStats($transferStats);
+            },
+        ]);
     }
 }

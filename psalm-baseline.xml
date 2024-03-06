@@ -5,14 +5,4 @@
       <code><![CDATA[sprintf('%.3f', $microseconds)]]></code>
     </InvalidOperand>
   </file>
-  <file src="src/Foundation/Concerns/HasHttpClient.php">
-    <TypeDoesNotContainType>
-      <code><![CDATA[\assert($this instanceof HandlerStack)]]></code>
-      <code><![CDATA[\assert($this instanceof HandlerStack)]]></code>
-    </TypeDoesNotContainType>
-    <InaccessibleMethod>
-      <code><![CDATA[findByName]]></code>
-      <code><![CDATA[findByName]]></code>
-    </InaccessibleMethod>
-  </file>
 </files>
