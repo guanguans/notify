@@ -8,6 +8,23 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.2.0"></a>
+## [2.2.0] - 2024-03-06
+### Feat
+- **Client:** Add __debugInfo method for debugging
+- **HasHttpClient:** Add ability to set HttpClientResolver
+- **tests:** add AsNullUri to Message class and update PostMessage structure
+
+### Refactor
+- **AsBody:** improve handling of message body serialization
+- **HasHttpClient:** configure HTTP options in getHttpClient method
+- **HasOptions:** Improve options handling
+- **core:** Update toPayload method in Message classes
+- **core:** Improve payload handling in HTTP request options
+- **http:** improve HTTP client configuration
+- **rectors:** Move rector classes to appropriate namespace
+
+
 <a name="2.1.2"></a>
 ## [2.1.2] - 2024-03-05
 ### Feat
@@ -653,7 +670,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.1.2...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.2.0...HEAD
+[2.2.0]: https://github.com/guanguans/notify/compare/2.1.2...2.2.0
 [2.1.2]: https://github.com/guanguans/notify/compare/2.1.1...2.1.2
 [2.1.1]: https://github.com/guanguans/notify/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/guanguans/notify/compare/2.0.6...2.1.0
