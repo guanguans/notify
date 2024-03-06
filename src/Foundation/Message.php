@@ -16,6 +16,7 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
+use Guanguans\Notify\Foundation\Support\Arr;
 
 /**
  * @template-implements \ArrayAccess<string, mixed>
@@ -61,5 +62,10 @@ abstract class Message implements \ArrayAccess, Contracts\Message
         }
 
         return new static($options);
+    }
+
+    protected function toPayload(): array
+    {
+        return Arr::rejectRecursive($this->getOptions(), static fn ($value): bool => [] === $value || null === $value);
     }
 }
