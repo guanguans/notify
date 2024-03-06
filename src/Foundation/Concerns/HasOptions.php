@@ -17,7 +17,6 @@ namespace Guanguans\Notify\Foundation\Concerns;
 
 use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
-use Guanguans\Notify\Foundation\Support\Arr;
 use Guanguans\Notify\Foundation\Support\Str;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -42,6 +41,7 @@ trait HasOptions
 
         foreach ([null, 'snake', 'pascal'] as $case) {
             $casedName = $case ? Str::{$case}($name) : $name;
+
             if (\in_array($casedName, $defined, true)) {
                 if (empty($arguments)) {
                     throw new InvalidArgumentException(
@@ -58,25 +58,21 @@ trait HasOptions
 
     public function setOptions(array $options): self
     {
-        foreach ($options as $option => $value) {
-            $this->setOption($option, $value);
-        }
+        $this->options = array_merge($this->options, $options);
 
         return $this;
     }
 
     public function setOption(string $option, $value): self
     {
-        // $this->options[$option] = $value;
-        Arr::set($this->options, $option, $value);
+        $this->options[$option] = $value;
 
         return $this;
     }
 
     public function getOption(string $option, $default = null)
     {
-        // return $this->getOptions()[$option] ?? $default;
-        return Arr::get($this->getOptions(), $option, $default);
+        return $this->getOptions()[$option] ?? $default;
     }
 
     public function getOptions(): array
@@ -94,7 +90,7 @@ trait HasOptions
 
     public function offsetGet($offset)
     {
-        return $this->getOptions()[$offset];
+        return $this->getOption($offset);
     }
 
     public function offsetSet($offset, $value): void
