@@ -28,8 +28,9 @@ class Utils
          *     name: string,
          *     contents: StreamInterface|resource|string,
          *     headers: array<string, string>,
-         *     filename: string
-         *     ...
+         *     filename: string,
+         *     foo: mixed,
+         *     bar: mixed,
          * }  $contents
          *
          * @return array{
@@ -41,11 +42,10 @@ class Utils
          */
         $partResolver = static function ($name, $contents) use (&$partResolver): array {
             if (! \is_array($contents)) {
-                // preg_match('/^.*:\/\/.*$/', $contents);
-                \is_string($contents) and is_file($contents) and $contents = \GuzzleHttp\Psr7\Utils::tryFopen(
-                    $contents,
-                    'r'
-                );
+                // preg_match('/^.*:\/\/.*$/', $contents); // uri
+                if (\is_string($contents) && is_file($contents)) {
+                    $contents = \GuzzleHttp\Psr7\Utils::tryFopen($contents, 'r');
+                }
 
                 return [compact('name', 'contents')];
             }

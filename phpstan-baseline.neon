@@ -1,19 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: """
-				#^PHPDoc tag @param has invalid value \\(StreamInterface\\|resource\\|scalar\\|null\\|array\\{
-				    name\\: string,
-				    contents\\: StreamInterface\\|resource\\|string,
-				    headers\\: array\\<string, string\\>,
-				    filename\\: string
-				    \\.\\.\\.
-				\\}  \\$contents\\)\\: Unexpected token "\\.\\.\\.", expected '\\}' at offset 282$#
-			"""
-			count: 1
-			path: src/Foundation/Support/Utils.php
-
-		-
 			message: "#^Method Guanguans\\\\Notify\\\\ServerChan\\\\Messages\\\\Message\\:\\:encrypt\\(\\) is unused\\.$#"
 			count: 1
 			path: src/ServerChan/Messages/Message.php
