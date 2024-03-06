@@ -1,6 +1,6 @@
 {
     "name": "guanguans/notify",
-    "description": "Push notification sdk(Bark、Chanify、DingTalk、Discord、Email、FeiShu、Gitter、Google Chat、iGot、Logger、Mattermost、Microsoft Teams、Now Push、Ntfy、PushBack、Push、PushDeer、Pushover、PushPlus、QQ Channel Bot、Rocket Chat、ServerChan、Showdoc Push、Slack、Telegram、Webhook、WeWork、XiZhi、YiFengChuanHua、Zulip).com",
+    "description": "Push notification SDK(Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、PushDeer、PushPlus、Pushback、Pushover、QQ、RocketChat、ServerChan、ShowdocPush、Slack、Telegram、WeWork、XiZhi、YiFengChuanHua、Zulip).",
     "license": "MIT",
     "type": "library",
     "keywords": [
@@ -71,9 +71,12 @@
     "require": {
         "php": ">=7.4",
         "ext-json": "*",
+        "ext-openssl": "*",
         "ext-simplexml": "*",
         "guzzlehttp/guzzle": "^7.8",
+        "guzzlehttp/psr7": "^2.6",
         "guzzlehttp/uri-template": "^1.0",
+        "psr/http-message": "^2.0",
         "symfony/options-resolver": "^5.4 || ^6.0 || ^7.0"
     },
     "require-dev": {
@@ -137,7 +140,7 @@
             "target-directory": "vendor-bin"
         },
         "branch-alias": {
-            "dev-main": "1.x-dev"
+            "dev-main": "2.x-dev"
         },
         "hooks": {
             "post-merge": [

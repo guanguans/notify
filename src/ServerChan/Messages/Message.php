@@ -41,11 +41,9 @@ class Message extends \Guanguans\Notify\Foundation\Message
     }
 
     /**
-     * @noinspection EncryptionInitializationVectorRandomnessInspection
-     * @noinspection PhpComposerExtensionStubsInspection
-     * @noinspection PhpUnusedPrivateMethodInspection
-     *
      * @codeCoverageIgnore
+     *
+     * @noinspection EncryptionInitializationVectorRandomnessInspection
      */
     private function encrypt(string $content, string $key, string $iv): string
     {

@@ -10,7 +10,9 @@
         "SPL",
         "standard"
     ],
-    "scan-files": [],
+    "scan-files": [
+        "Foo.php"
+    ],
     "symbol-whitelist": [
         "array",
         "bool",
@@ -25,12 +27,6 @@
         "string",
         "true",
         "void",
-        "openssl_encrypt",
-        "GuzzleHttp\\Promise\\Create",
-        "GuzzleHttp\\Promise\\PromiseInterface",
-        "GuzzleHttp\\Psr7\\HttpFactory",
-        "GuzzleHttp\\Psr7\\Response",
-        "GuzzleHttp\\Psr7\\Utils",
         "Illuminate\\Support\\Collection",
         "PhpParser\\Node",
         "PhpParser\\Node\\Expr\\New_",
@@ -40,9 +36,6 @@
         "PhpParser\\Node\\Stmt\\Trait_",
         "PHPStan\\PhpDocParser\\Ast\\PhpDoc\\GenericTagValueNode",
         "PHPStan\\PhpDocParser\\Ast\\PhpDoc\\PhpDocTagNode",
-        "Psr\\Http\\Message\\RequestInterface",
-        "Psr\\Http\\Message\\ResponseInterface",
-        "Psr\\Http\\Message\\StreamInterface",
         "Rector\\BetterPhpDocParser\\PhpDocInfo\\PhpDocInfo",
         "Rector\\BetterPhpDocParser\\PhpDocInfo\\PhpDocInfoFactory",
         "Rector\\Comments\\NodeDocBlock\\DocBlockUpdater",
