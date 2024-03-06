@@ -63,17 +63,21 @@ it('can send image message', function (): void {
 })->group(__DIR__, __FILE__);
 
 it('can send post message', function (): void {
-    $postMessage = PostMessage::make()->post([
-        'zh_cn' => [
-            'title' => 'This is title(keyword).',
-            'content' => [
-                [
-                    ['tag' => 'text', 'text' => 'This is text 1.'],
-                    ['tag' => 'text', 'text' => 'This is text 2.'],
+    $postMessage = PostMessage::make(
+        [
+            'zh_cn' => $post = [
+                'title' => 'This is title(keyword).',
+                'content' => [
+                    [
+                        ['tag' => 'text', 'text' => 'This is text 1.'],
+                        ['tag' => 'text', 'text' => 'This is text 2.'],
+                    ],
                 ],
             ],
-        ],
-    ]);
+        ]
+    )
+        ->post(['zh_cn' => $post])
+        ->setPostForLang('en_us', $post);
 
     expect($this->client)->assertCanSendMessage($postMessage);
 })->group(__DIR__, __FILE__);

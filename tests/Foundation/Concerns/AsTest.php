@@ -19,25 +19,26 @@ use Guanguans\Notify\Foundation\Concerns\AsBody;
 use Guanguans\Notify\Foundation\Concerns\AsDelete;
 use Guanguans\Notify\Foundation\Concerns\AsGet;
 use Guanguans\Notify\Foundation\Concerns\AsHead;
+use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Guanguans\Notify\Foundation\Concerns\AsPatch;
 use Guanguans\Notify\Foundation\Concerns\AsPut;
 use Guanguans\Notify\Foundation\Concerns\AsQuery;
-use Guanguans\Notify\Foundation\Concerns\HasOptions;
+use Guanguans\Notify\Foundation\Message;
 
 it('can convert to body option', function (): void {
     expect(
-        (new class {
+        (new class extends Message {
             use AsBody;
-            use HasOptions;
+            use AsNullUri;
         })->toHttpOptions()
     )->toBeArray();
 })->group(__DIR__, __FILE__);
 
 it('can convert to query option', function (): void {
     expect(
-        (new class {
+        (new class extends Message {
+            use AsNullUri;
             use AsQuery;
-            use HasOptions;
         })->toHttpOptions()
     )->toBeArray();
 })->group(__DIR__, __FILE__);

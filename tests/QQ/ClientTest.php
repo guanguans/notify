@@ -29,7 +29,25 @@ it('can send message', function (): void {
         'channel_id' => '4316959',
         'content' => 'This is content.',
         'embed' => [],
-        'ark' => [],
+        'ark' => [
+            'template_id' => 'This is template id.',
+            'kv' => [
+                [
+                    'key' => 'This is key.',
+                    'value' => 'This is value.',
+                    'obj' => [
+                        [
+                            'obj_kv' => [
+                                [
+                                    'key' => 'This is obj key.',
+                                    'value' => 'This is obj value.',
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
         'message_reference' => [],
         'image' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
         'file_image' => 'tests/fixtures/image.png',
