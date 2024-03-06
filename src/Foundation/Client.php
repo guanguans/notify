@@ -32,6 +32,16 @@ class Client implements Contracts\Client
         $this->authenticator = $authenticator ?? new NullAuthenticator;
     }
 
+    public function __debugInfo(): array
+    {
+        return $this->withDebugInfo([
+            'httpClient' => $this->getHttpClient(),
+            'httpClientResolver' => $this->getHttpClientResolver(),
+            'handlerStack' => $this->getHandlerStack(),
+            'httpOptions' => $this->getHttpOptions(),
+        ]);
+    }
+
     /**
      * @return Response|ResponseInterface
      *

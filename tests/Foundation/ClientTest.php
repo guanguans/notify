@@ -46,6 +46,7 @@ it('can set http client resolver', function (): void {
             static fn (Client $client): \GuzzleHttp\Client => new \GuzzleHttp\Client($client->getHttpOptions())
         )
         ->mock([create_response(faker()->text())])
+        ->dump()
         ->assertCanSendMessage(Message::make(['text' => 'This is text.']));
 })->group(__DIR__, __FILE__);
 
