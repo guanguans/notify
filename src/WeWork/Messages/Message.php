@@ -12,29 +12,22 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
-use GuzzleHttp\RequestOptions;
+use Guanguans\Notify\Foundation\Concerns\AsBody;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
+    // use AsBody;
+
     public function toHttpUri(): string
     {
         return 'cgi-bin/webhook/send?key={token}';
     }
 
-    /**
-     * @throws \JsonException
-     */
-    public function toHttpOptions(): array
+    protected function toPayload(): array
     {
         return [
-            RequestOptions::HEADERS => ['Content-Type' => 'application/json'],
-            RequestOptions::BODY => json_encode(
-                [
-                    'msgtype' => $this->type(),
-                    $this->type() => $this->toPayload(),
-                ],
-                JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE
-            ),
+            'msgtype' => $this->type(),
+            $this->type() => parent::toPayload(),
         ];
     }
 

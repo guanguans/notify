@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
-use GuzzleHttp\Psr7\Utils;
 use GuzzleHttp\RequestOptions;
 
 /**
@@ -23,7 +22,8 @@ trait AsBody
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::BODY => Utils::streamFor(http_build_query($this->toPayload(), '', '&')),
+            // RequestOptions::HEADERS => ['Content-Type' => 'application/json'],
+            RequestOptions::BODY => (string) $this,
         ];
     }
 }

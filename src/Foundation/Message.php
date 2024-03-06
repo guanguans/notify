@@ -44,6 +44,11 @@ abstract class Message implements \ArrayAccess, Contracts\Message
         ]);
     }
 
+    public function __toString(): string
+    {
+        return $this->toJson();
+    }
+
     /**
      * @param array|mixed $options
      *
@@ -67,5 +72,10 @@ abstract class Message implements \ArrayAccess, Contracts\Message
     protected function toPayload(): array
     {
         return Arr::rejectRecursive($this->getOptions(), static fn ($value): bool => [] === $value || null === $value);
+    }
+
+    protected function toJson(int $options = JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE): string
+    {
+        return json_encode($this->toPayload(), $options);
     }
 }
