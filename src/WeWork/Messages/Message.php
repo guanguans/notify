@@ -31,7 +31,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
             RequestOptions::BODY => json_encode(
                 [
                     'msgtype' => $this->type(),
-                    $this->type() => $this->getOptions(),
+                    $this->type() => $this->toPayload(),
                 ],
                 JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE
             ),

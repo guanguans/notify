@@ -12,9 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Lark\Messages;
 
-use Guanguans\Notify\Foundation\Support\Arr;
-use GuzzleHttp\RequestOptions;
-
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
     public function toHttpUri(): string
@@ -22,13 +19,11 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         return 'open-apis/bot/v2/hook/{token}';
     }
 
-    public function toHttpOptions(): array
+    protected function toPayload(): array
     {
         return [
-            RequestOptions::JSON => [
-                'msg_type' => $this->type(),
-                'content' => Arr::filterRecursive($this->getOptions(), static fn ($value): bool => [] !== $value),
-            ],
+            'msg_type' => $this->type(),
+            'content' => parent::toPayload(),
         ];
     }
 

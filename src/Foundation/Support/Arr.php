@@ -204,15 +204,7 @@ class Arr
     }
 
     /**
-     * A function that recursively removes empty arrays from the given array.
-     */
-    public static function rejectEmptyArrayRecursive(array $array, int $flag = 0): array
-    {
-        return static::rejectRecursive($array, static fn ($value): bool => [] === $value, $flag);
-    }
-
-    /**
-     * A function that recursively rejects elements based on the provided callback function.
+     * Reject the array recursively using a callback function.
      */
     public static function rejectRecursive(array $array, ?callable $callback = null, int $flag = 0): array
     {

@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Guanguans\Notify\DingTalk\Messages;
 
 use Guanguans\Notify\Foundation\Support\Arr;
-use GuzzleHttp\RequestOptions;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -22,16 +21,14 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         return 'robot/send';
     }
 
-    public function toHttpOptions(): array
+    protected function toPayload(): array
     {
-        $options = $this->getOptions();
+        $payload = parent::toPayload();
 
         return [
-            RequestOptions::JSON => [
-                'msgtype' => $this->type(),
-                $this->type() => Arr::except($options, $atKeys = ['atMobiles', 'atDingtalkIds', 'isAtAll']),
-                'at' => Arr::only($options, $atKeys),
-            ],
+            'msgtype' => $this->type(),
+            $this->type() => Arr::except($payload, $atKeys = ['atMobiles', 'atDingtalkIds', 'isAtAll']),
+            'at' => Arr::only($payload, $atKeys),
         ];
     }
 

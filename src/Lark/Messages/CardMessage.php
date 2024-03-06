@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Lark\Messages;
 
-use GuzzleHttp\RequestOptions;
-
 /**
  * @method self header(array $header)
  * @method self elements(array $elements)
@@ -39,13 +37,13 @@ class CardMessage extends Message
         'card_link' => 'array',
     ];
 
-    public function toHttpOptions(): array
+    protected function toPayload(): array
     {
+        $payload = parent::toPayload();
+
         return [
-            RequestOptions::JSON => [
-                'msg_type' => $this->type(),
-                'card' => $this->getOptions(),
-            ],
+            'msg_type' => $payload['msg_type'],
+            'card' => $payload['content'],
         ];
     }
 

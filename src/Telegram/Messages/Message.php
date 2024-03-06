@@ -12,19 +12,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
-use Guanguans\Notify\Foundation\Support\Arr;
-use Guanguans\Notify\Foundation\Support\Utils;
-use GuzzleHttp\RequestOptions;
+use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
-    public function toHttpOptions(): array
-    {
-        return [
-            // RequestOptions::HEADERS => ['Content-Type' => 'application/json'],
-            RequestOptions::MULTIPART => Utils::multipartFor(
-                Arr::filterRecursive($this->getOptions(), static fn ($value): bool => [] !== $value)
-            ),
-        ];
-    }
+    use AsMultipart;
 }

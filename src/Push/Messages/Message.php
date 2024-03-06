@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Push\Messages;
 
 use Guanguans\Notify\Foundation\Support\Arr;
-use GuzzleHttp\RequestOptions;
 
 /**
  * @method self groupId($groupId)
@@ -48,10 +47,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return 'api/v1/notify/{token}';
     }
 
-    public function toHttpOptions(): array
+    protected function toPayload(): array
     {
-        return [
-            RequestOptions::JSON => Arr::except($this->getOptions(), ['groupId']),
-        ];
+        return Arr::except(parent::toPayload(), ['groupId']);
     }
 }
