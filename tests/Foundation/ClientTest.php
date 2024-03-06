@@ -20,7 +20,6 @@ use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\GoogleChat\Messages\Message;
 use GuzzleHttp\HandlerStack;
-use GuzzleHttp\TransferStats;
 
 use function Pest\Faker\faker;
 
@@ -41,14 +40,16 @@ it('can set http client', function (): void {
         ->setHttpClient(new \GuzzleHttp\Client)->toBeInstanceOf(Client::class);
 })->group(__DIR__, __FILE__);
 
+it('can set http client resolver', function (): void {
+    expect(new Client)
+        ->setHttpClientResolver(
+            static fn (Client $client): \GuzzleHttp\Client => new \GuzzleHttp\Client($client->getHttpOptions())
+        )
+        ->mock([create_response(faker()->text())])
+        ->assertCanSendMessage(Message::make(['text' => 'This is text.']));
+})->group(__DIR__, __FILE__);
+
 it('can set handler stack', function (): void {
     expect(new Client)
         ->setHandlerStack(HandlerStack::create())->toBeInstanceOf(Client::class);
-})->group(__DIR__, __FILE__);
-
-it('can get http client resolver', function (): void {
-    expect(new Client)
-        ->onStats(static fn (TransferStats $transferStats): TransferStats => $transferStats)
-        ->mock([create_response(faker()->text())])
-        ->assertCanSendMessage(Message::make(['text' => 'This is text.']));
 })->group(__DIR__, __FILE__);

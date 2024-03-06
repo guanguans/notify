@@ -74,6 +74,11 @@ trait HasHttpClient
 {
     private ?Client $httpClient = null;
 
+    /**
+     * @var null|callable
+     */
+    private $httpClientResolver;
+
     private ?HandlerStack $handlerStack = null;
 
     private array $httpOptions = [];
@@ -99,18 +104,28 @@ trait HasHttpClient
         throw new BadMethodCallException(sprintf('The method [%s::%s] does not exist.', static::class, $name));
     }
 
-    public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
-    {
-        $this->setHandler(new MockHandler($queue, $onFulfilled, $onRejected));
-
-        return $this;
-    }
-
     public function setHttpClient(Client $httpClient): self
     {
         $this->httpClient = $httpClient;
 
         return $this;
+    }
+
+    public function getHttpClient(): Client
+    {
+        return $this->httpClient ??= $this->getHttpClientResolver()($this);
+    }
+
+    public function setHttpClientResolver(callable $httpClientResolver): self
+    {
+        $this->httpClientResolver = $httpClientResolver;
+
+        return $this;
+    }
+
+    public function getHttpClientResolver(): callable
+    {
+        return $this->httpClientResolver ??= fn (): Client => new Client($this->getHttpOptions());
     }
 
     public function setHandlerStack(HandlerStack $handlerStack): self
@@ -120,6 +135,14 @@ trait HasHttpClient
         return $this;
     }
 
+    public function getHandlerStack(): HandlerStack
+    {
+        return $this->handlerStack ??= tap(HandlerStack::create(), function (HandlerStack $handlerStack): void {
+            $handlerStack->push(new Authenticate($this->authenticator), Authenticate::class);
+            $handlerStack->push(new Response, Response::class);
+        });
+    }
+
     public function setHttpOptions(array $httpOptions): self
     {
         $this->httpOptions = Utils::mergeHttpOptions($this->httpOptions, $httpOptions);
@@ -127,38 +150,27 @@ trait HasHttpClient
         return $this;
     }
 
-    protected function getHttpClient(): Client
+    public function getHttpOptions(): array
     {
-        if (! $this->httpClient instanceof Client) {
-            $this->httpClient = new Client($this->getHttpOptions());
-        }
-
-        return $this->httpClient;
+        return $this->httpOptions = Utils::mergeHttpOptions($this->getDefaultHttpOptions(), $this->httpOptions);
     }
 
-    protected function getHandlerStack(): HandlerStack
+    public function getDefaultHttpOptions(): array
     {
-        if (! $this->handlerStack instanceof HandlerStack) {
-            $this->handlerStack = HandlerStack::create();
-            $this->handlerStack->push(new Authenticate($this->authenticator), Authenticate::class);
-            $this->handlerStack->push(new Response, Response::class);
-        }
-
-        return $this->handlerStack;
+        return [
+            'handler' => $this->getHandlerStack(),
+            RequestOptions::COOKIES => true,
+            RequestOptions::HTTP_ERRORS => false,
+            RequestOptions::ON_STATS => static function (TransferStats $transferStats): void {
+                Response::setTransferStats($transferStats);
+            },
+        ];
     }
 
-    protected function getHttpOptions(): array
+    public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
     {
-        return $this->httpOptions = Utils::mergeHttpOptions(
-            [
-                'handler' => $this->getHandlerStack(),
-                RequestOptions::COOKIES => true,
-                RequestOptions::HTTP_ERRORS => false,
-                RequestOptions::ON_STATS => static function (TransferStats $transferStats): void {
-                    Response::setTransferStats($transferStats);
-                },
-            ],
-            $this->httpOptions
-        );
+        $this->setHandler(new MockHandler($queue, $onFulfilled, $onRejected));
+
+        return $this;
     }
 }
