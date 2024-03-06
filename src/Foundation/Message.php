@@ -34,7 +34,7 @@ abstract class Message implements \ArrayAccess, Contracts\Message
         $this->setOptions($options);
     }
 
-    public function __debugInfo()
+    public function __debugInfo(): array
     {
         return $this->withDebugInfo([
             'httpMethod' => $this->toHttpMethod(),
@@ -54,10 +54,10 @@ abstract class Message implements \ArrayAccess, Contracts\Message
             return new static($options);
         }
 
-        $defaultProperties = (new \ReflectionClass(static::class))->getDefaultProperties();
-        $defined = array_unique(array_merge($defaultProperties['defined'] ?? [], $defaultProperties['required'] ?? []));
+        $properties = (new \ReflectionClass(static::class))->getDefaultProperties();
+        $defined = array_unique(array_merge($properties['defined'] ?? [], $properties['required'] ?? []));
         if (1 === \count($defined)) {
-            return new static([reset($defined) => $options]);
+            return new static([current($defined) => $options]);
         }
 
         return new static($options);

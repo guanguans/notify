@@ -130,8 +130,6 @@ trait HasHttpClient
     protected function getHttpClient(): Client
     {
         if (! $this->httpClient instanceof Client) {
-            $this->configureHttpOptions();
-
             $this->httpClient = new Client($this->getHttpOptions());
         }
 
@@ -151,29 +149,16 @@ trait HasHttpClient
 
     protected function getHttpOptions(): array
     {
-        return $this->httpOptions;
-    }
-
-    private function configureHttpOptions(): void
-    {
-        $this->httpOptions = Utils::mergeHttpOptions(
+        return $this->httpOptions = Utils::mergeHttpOptions(
             [
                 'handler' => $this->getHandlerStack(),
                 RequestOptions::COOKIES => true,
                 RequestOptions::HTTP_ERRORS => false,
-                RequestOptions::ON_STATS => static fn (TransferStats $transferStats): TransferStats => $transferStats,
+                RequestOptions::ON_STATS => static function (TransferStats $transferStats): void {
+                    Response::setTransferStats($transferStats);
+                },
             ],
-            $this->getHttpOptions()
+            $this->httpOptions
         );
-
-        $onStats = $this->httpOptions[RequestOptions::ON_STATS];
-
-        $this->setHttpOptions([
-            RequestOptions::ON_STATS => static function (TransferStats $transferStats) use ($onStats): void {
-                $onStats($transferStats);
-
-                Response::setTransferStats($transferStats);
-            },
-        ]);
     }
 }

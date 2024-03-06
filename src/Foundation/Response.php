@@ -413,9 +413,9 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     /**
      * Get the handler stats of the response.
      */
-    public function handlerStats(): array
+    public function handlerStats(): ?array
     {
-        return $this->transferStats instanceof TransferStats ? $this->transferStats->getHandlerStats() : [];
+        return $this->transferStats instanceof TransferStats ? $this->transferStats->getHandlerStats() : null;
     }
 
     /**
