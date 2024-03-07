@@ -42,7 +42,7 @@ class Utils
          */
         $partResolver = static function ($name, $contents) use (&$partResolver): array {
             if (! \is_array($contents)) {
-                // preg_match('/^.*:\/\/.*$/', $contents); // uri
+                // filter_var($contents, FILTER_VALIDATE_URL); // url
                 if (\is_string($contents) && is_file($contents)) {
                     $contents = \GuzzleHttp\Psr7\Utils::tryFopen($contents, 'r');
                 }
