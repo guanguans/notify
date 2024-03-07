@@ -23,7 +23,7 @@ class Authenticator extends OptionsAuthenticator
         if ($secret) {
             [$microseconds, $seconds] = explode(' ', microtime());
             $query += [
-                'timestamp' => $timestamp = $seconds.sprintf('%.3f', $microseconds) * 1000,
+                'timestamp' => $timestamp = $seconds.floor((float) $microseconds * 1000),
                 'sign' => $this->sign($secret, $timestamp),
             ];
         }
