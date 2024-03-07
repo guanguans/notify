@@ -103,7 +103,9 @@ it('can get options', function (): void {
                 $optionsResolver->setAllowedTypes('path', 'string');
             };
         }
-    })->getOptions()->toBeArray();
+    })
+        ->getOptions()->toBeArray()
+        ->getValidatedOptions()->toBeArray();
 })->group(__DIR__, __FILE__);
 
 it('can dump debug info', function (): void {
