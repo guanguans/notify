@@ -28,25 +28,18 @@ class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * This method is called before the first test of this test class is run.
      */
-    public static function setUpBeforeClass(): void
-    {
-        parent::setUpBeforeClass();
-    }
+    public static function setUpBeforeClass(): void {}
 
     /**
      * This method is called after the last test of this test class is run.
      */
-    public static function tearDownAfterClass(): void
-    {
-        parent::tearDownAfterClass();
-    }
+    public static function tearDownAfterClass(): void {}
 
     /**
      * This method is called before each test.
      */
     protected function setUp(): void
     {
-        parent::setUp();
         // \DG\BypassFinals::enable();
     }
 
@@ -55,7 +48,6 @@ class TestCase extends \PHPUnit\Framework\TestCase
      */
     protected function tearDown(): void
     {
-        parent::tearDown();
         $this->finish();
         \Mockery::close();
     }

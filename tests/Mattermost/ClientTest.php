@@ -41,7 +41,7 @@ it('can send message', function (): void {
 
     expect($client)
         // ->baseUri('https://guanguans.cloud.mattermost.com')
-        ->baseUri('Your Mattermost server URL.')
+        ->baseUri('Your mattermost server url.')
         ->mock([
             create_response(faker()->text()),
         ])

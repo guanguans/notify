@@ -22,12 +22,7 @@ use Guanguans\Notify\GoogleChat\Messages\Message;
 use function Pest\Faker\faker;
 
 it('can send message', function (): void {
-    $authenticator = new Authenticator(
-        'spaceId',
-        'key',
-        'token',
-        'threadKey',
-    );
+    $authenticator = new Authenticator('spaceId', 'key', 'token', 'threadKey');
     $client = new Client($authenticator);
     $message = Message::make([
         'text' => 'This is text.',

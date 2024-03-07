@@ -46,7 +46,10 @@ it('can send message', function (): void {
     expect($client)
         ->mock([
             create_response('{"status":1,"request":"a84b20eb-b69e-4687-83d1-bab8ee2d0e40"}'),
-            create_response('{"token":"invalid","errors":["application token is invalid, see https://pushover.net/api"],"status":0,"request":"5c4487c0-a61a-497e-9205-3441a99471b0"}', 400),
+            create_response(
+                '{"token":"invalid","errors":["application token is invalid, see https://pushover.net/api"],"status":0,"request":"5c4487c0-a61a-497e-9205-3441a99471b0"}',
+                400
+            ),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);
