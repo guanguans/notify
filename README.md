@@ -87,7 +87,7 @@ $message = Guanguans\Notify\DingTalk\Messages\BtnsActionCardMessage::make([
 
 // 4. Send message
 $response = $client
-    // ->baseUri('The server address of your own deployment.')
+    // ->baseUri('base-uri')
     // ->connectTimeout(10)
     // ->debug(true)
     // ->proxy('http://127.0.0.1:1087')
@@ -103,7 +103,7 @@ $response = $client
     // ->before(
     //     'log',
     //     GuzzleHttp\Middleware::mapRequest(
-    //         static fn (Psr\Http\Message\RequestInterface $request): Psr\Http\Message\RequestInterface => $request
+    //         static fn (Psr\Http\Message\RequestInterface $request) => $request
     //     ),
     // )
     ->send($message)
