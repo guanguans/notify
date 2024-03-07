@@ -79,7 +79,6 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->skip([
         AddSeeTestAnnotationRector::class,
         ChangeAndIfToEarlyReturnRector::class,
-        CompactToVariablesRector::class,
         DowngradeArrayFilterNullableCallbackRector::class,
         EncapsedStringsToSprintfRector::class,
         ExplicitBoolCompareRector::class,
@@ -88,6 +87,9 @@ return static function (RectorConfig $rectorConfig): void {
         ReturnBinaryOrToEarlyReturnRector::class,
         SensitiveHereNowDocRector::class,
         WrapEncapsedVariableInCurlyBracesRector::class,
+        CompactToVariablesRector::class => [
+            __DIR__.'/src/Foundation/Support/Utils.php',
+        ],
         RemoveTraitUseRector::class => [
             __DIR__.'/src/Foundation/Message.php',
         ],

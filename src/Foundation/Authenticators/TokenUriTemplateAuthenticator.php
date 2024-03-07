@@ -16,6 +16,6 @@ class TokenUriTemplateAuthenticator extends UriTemplateAuthenticator
 {
     public function __construct(string $token)
     {
-        parent::__construct(compact('token'));
+        parent::__construct(['token' => $token]);
     }
 }
