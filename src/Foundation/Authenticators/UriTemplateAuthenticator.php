@@ -17,6 +17,10 @@ use GuzzleHttp\UriTemplate\UriTemplate;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriFactoryInterface;
 
+/**
+ * @see https://github.com/guzzle/uri-template
+ * @see https://github.com/rize/UriTemplate
+ */
 class UriTemplateAuthenticator extends NullAuthenticator
 {
     private array $variables;
@@ -34,9 +38,10 @@ class UriTemplateAuthenticator extends NullAuthenticator
      */
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
-        return $request->withUri($this->uriFactory->createUri(
-            /** @see https://github.com/rize/UriTemplate */
-            UriTemplate::expand(urldecode((string) $request->getUri()), $this->variables)
-        ));
+        return $request->withUri(
+            $this->uriFactory->createUri(
+                UriTemplate::expand(urldecode((string) $request->getUri()), $this->variables)
+            )
+        );
     }
 }

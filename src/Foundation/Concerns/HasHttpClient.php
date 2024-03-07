@@ -159,8 +159,10 @@ trait HasHttpClient
     {
         return [
             'handler' => $this->getHandlerStack(),
+            RequestOptions::CONNECT_TIMEOUT => 10,
             RequestOptions::COOKIES => true,
             RequestOptions::HTTP_ERRORS => false,
+            RequestOptions::TIMEOUT => 30,
             RequestOptions::ON_STATS => static function (TransferStats $transferStats): void {
                 Response::setTransferStats($transferStats);
             },

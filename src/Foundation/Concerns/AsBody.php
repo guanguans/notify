@@ -22,7 +22,6 @@ trait AsBody
     public function toHttpOptions(): array
     {
         return [
-            // RequestOptions::HEADERS => ['Content-Type' => 'application/json'],
             RequestOptions::BODY => (string) $this,
         ];
     }
