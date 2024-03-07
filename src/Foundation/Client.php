@@ -52,7 +52,7 @@ class Client implements Contracts\Client
         return $this->getHttpClient()->request(
             $message->toHttpMethod(),
             $message->toHttpUri(),
-            $this->authenticator->applyToOptions($message->toHttpOptions())
+            $this->normalizeHttpOptions($this->authenticator->applyToOptions($message->toHttpOptions()))
         );
     }
 }

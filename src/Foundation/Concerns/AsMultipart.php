@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
-use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\RequestOptions;
 
 /**
@@ -23,7 +22,7 @@ trait AsMultipart
     public function toHttpOptions(): array
     {
         return [
-            RequestOptions::MULTIPART => Utils::multipartFor($this->toPayload()),
+            RequestOptions::MULTIPART => $this->toPayload(),
         ];
     }
 }

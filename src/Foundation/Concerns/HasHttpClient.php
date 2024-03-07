@@ -152,7 +152,9 @@ trait HasHttpClient
 
     public function getHttpOptions(): array
     {
-        return $this->httpOptions = Utils::mergeHttpOptions($this->getDefaultHttpOptions(), $this->httpOptions);
+        return $this->httpOptions = $this->normalizeHttpOptions(
+            Utils::mergeHttpOptions($this->getDefaultHttpOptions(), $this->httpOptions)
+        );
     }
 
     public function getDefaultHttpOptions(): array
@@ -174,5 +176,14 @@ trait HasHttpClient
         $this->setHandler(new MockHandler($queue, $onFulfilled, $onRejected));
 
         return $this;
+    }
+
+    private function normalizeHttpOptions(array $options): array
+    {
+        if (isset($options[RequestOptions::MULTIPART])) {
+            $options[RequestOptions::MULTIPART] = Utils::multipartFor($options[RequestOptions::MULTIPART]);
+        }
+
+        return $options;
     }
 }
