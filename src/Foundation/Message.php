@@ -69,13 +69,16 @@ abstract class Message implements \ArrayAccess, Contracts\Message
         return new static($options);
     }
 
-    protected function toPayload(): array
-    {
-        return Arr::rejectRecursive($this->getValidatedOptions(), static fn ($value): bool => [] === $value || null === $value);
-    }
-
     protected function toJson(int $options = JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE): string
     {
         return json_encode($this->toPayload(), $options);
+    }
+
+    protected function toPayload(): array
+    {
+        return Arr::rejectRecursive(
+            $this->getValidatedOptions(),
+            static fn ($value): bool => [] === $value || null === $value
+        );
     }
 }
