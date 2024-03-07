@@ -29,7 +29,7 @@ class ImageMessage extends Message
             RequestOptions::JSON => [
                 'msgtype' => $this->type(),
                 $this->type() => [
-                    'base64' => base64_encode_file($image = $this->getOption('image')),
+                    'base64' => base64_encode_file($image = $this->getValidatedOption('image')),
                     'md5' => md5_file($image),
                 ],
             ],

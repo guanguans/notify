@@ -56,13 +56,6 @@ trait HasOptions
         throw new BadMethodCallException(sprintf('The method [%s::%s] does not exist.', static::class, $name));
     }
 
-    public function setOptions(array $options): self
-    {
-        $this->options = array_merge($this->options, $options);
-
-        return $this;
-    }
-
     public function setOption(string $option, $value): self
     {
         $this->options[$option] = $value;
@@ -70,12 +63,29 @@ trait HasOptions
         return $this;
     }
 
+    public function setOptions(array $options): self
+    {
+        $this->options = array_merge($this->options, $options);
+
+        return $this;
+    }
+
     public function getOption(string $option, $default = null)
     {
-        return $this->getOptions()[$option] ?? $default;
+        return $this->options[$option] ?? $default;
     }
 
     public function getOptions(): array
+    {
+        return $this->options;
+    }
+
+    public function getValidatedOption(string $option, $default = null)
+    {
+        return $this->getValidatedOptions()[$option] ?? $default;
+    }
+
+    public function getValidatedOptions(): array
     {
         return $this->configureAndResolveOptions($this->options, function (OptionsResolver $optionsResolver): void {
             $this->preConfigureOptionsResolver($optionsResolver);
