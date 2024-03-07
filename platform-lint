@@ -1,0 +1,79 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+/**
+ * This file is part of the guanguans/notify.
+ *
+ * (c) guanguans <ityaozm@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled.
+ */
+
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Finder\SplFileInfo;
+
+require __DIR__.'/vendor/autoload.php';
+
+(static function (): void {
+    $echo = static function ($messages): void {
+        echo implode(PHP_EOL, (array) $messages).PHP_EOL;
+    };
+
+    $error = static function ($messages) use ($echo): void {
+        $echo($messages);
+
+        exit(1);
+    };
+
+    $success = static function ($messages) use ($echo): void {
+        $echo($messages);
+
+        exit(0);
+    };
+
+    $platforms = array_values(array_map(
+        static fn (SplFileInfo $splFileInfo): string => $splFileInfo->getBasename(),
+        iterator_to_array(
+            Finder::create()
+                ->in(__DIR__.'/src')
+                ->exclude('Foundation')
+                ->depth(0)
+                ->sortByName()
+                ->directories()
+        )
+    ));
+
+    $platformsContents = implode('、', $platforms);
+    file_put_contents(__DIR__.'/tests.platforms', $platformsContents);
+
+    $composerOptions = json_decode(file_get_contents(__DIR__.'/composer.json'), true, 512, JSON_THROW_ON_ERROR);
+    if (! str_contains($composerOptions['description'], $platformsContents)) {
+        $error("The description of composer.json must contain [$platformsContents].");
+    }
+
+    $diffKeywords = array_diff($platforms, $composerOptions['keywords']);
+    if ($diffKeywords) {
+        $error(sprintf('The keywords of composer.json must contain [%s].', implode('、', $diffKeywords)));
+    }
+
+    $readme = file_get_contents(__DIR__.'/README.md');
+    if (! str_contains($readme, $platformsContents)) {
+        $error("The README.md must contain [$platformsContents].");
+    }
+
+    foreach (
+        array_map(
+            static fn (string $platform): string => "(./src/$platform/README.md)",
+            $platforms
+        ) as $link
+    ) {
+        str_contains($readme, $link) or $error("The README.md must contain [$link].");
+    }
+
+    $success([
+        $platformsContents,
+        json_encode($platforms, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT),
+    ]);
+})();

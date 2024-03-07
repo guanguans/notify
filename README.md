@@ -28,7 +28,7 @@
 * [Pushback](./src/Pushback/README.md)
 * [PushDeer](./src/PushDeer/README.md)
 * [Pushover](./src/Pushover/README.md)
-* [PushPlus](src/PushPlus/README.md)
+* [PushPlus](./src/PushPlus/README.md)
 * [QQ](./src/QQ/README.md)
 * [RocketChat](./src/RocketChat/README.md)
 * [ServerChan](./src/ServerChan/README.md)

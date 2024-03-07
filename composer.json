@@ -166,6 +166,7 @@
         "checks": [
             "@composer-normalize",
             "@composer-validate",
+            "@platform-lint",
             "@composer-require-checker",
             "@composer-unused",
             "@md-lint",
@@ -186,7 +187,6 @@
             "@php ./composer-updater --highest-php-binary=/opt/homebrew/opt/php@8.3/bin/php --ansi"
         ],
         "composer-validate": "@composer validate --check-lock --strict --ansi -v",
-        "extract-platform": "@php ./extract-platform",
         "json-lint": "@php ./vendor/bin/jsonlint *.json .*rc",
         "lint": [
             "for DIR in .; do find $DIR -maxdepth 1 -type f -name '*.php' -type f ! -name 'xxx.php' -exec php -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done",
@@ -204,6 +204,7 @@
         "pest-type-coverage": "@pest --type-coverage",
         "phpstan": "@php ./vendor/bin/phpstan analyse --ansi -v",
         "phpstan-baseline": "@phpstan --generate-baseline --allow-empty-baseline",
+        "platform-lint": "@php platform-lint",
         "post-merge": [
             "composer install --ansi -v"
         ],
