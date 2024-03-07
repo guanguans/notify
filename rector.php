@@ -15,6 +15,7 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Support\Rectors\HasHttpClientDocCommentRector;
 use Guanguans\Notify\Foundation\Support\Rectors\HasOptionsDocCommentRector;
 use Guanguans\Notify\Foundation\Support\Rectors\ToInternalExceptionRector;
+use GuzzleHttp\RequestOptions;
 use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
@@ -34,6 +35,8 @@ use Rector\Removing\Rector\Class_\RemoveTraitUseRector;
 use Rector\Set\ValueObject\DowngradeLevelSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\Transform\Rector\String_\StringToClassConstantRector;
+use Rector\Transform\ValueObject\StringToClassConstant;
 use Rector\ValueObject\PhpVersion;
 
 return static function (RectorConfig $rectorConfig): void {
@@ -100,6 +103,12 @@ return static function (RectorConfig $rectorConfig): void {
         StaticClosureRector::class => [
             __DIR__.'/tests',
         ],
+        StringToClassConstantRector::class => [
+            __DIR__.'/src/*/Messages/*.php',
+            __DIR__.'/tests',
+            __DIR__.'/src/Foundation/Support/Utils.php',
+            __DIR__.'/src/Foundation/Response.php',
+        ],
 
         // paths
         __DIR__.'/tests.php',
@@ -137,6 +146,19 @@ return static function (RectorConfig $rectorConfig): void {
         PHPUnitSetList::PHPUNIT_CODE_QUALITY,
         PHPUnitSetList::ANNOTATIONS_TO_ATTRIBUTES,
     ]);
+
+    $rectorConfig->ruleWithConfiguration(
+        StringToClassConstantRector::class,
+        array_map(
+            static fn (string $string, string $constant): StringToClassConstant => new StringToClassConstant(
+                $string,
+                RequestOptions::class,
+                $constant
+            ),
+            $constants = (new ReflectionClass(RequestOptions::class))->getConstants(),
+            array_keys($constants)
+        )
+    );
 
     $rectorConfig->ruleWithConfiguration(RemoveTraitUseRector::class, [
         AsJson::class,
