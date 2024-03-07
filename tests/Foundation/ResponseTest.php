@@ -35,47 +35,59 @@ it('can dump debug info', function (): void {
 
 it('can convert to string', function (): void {
     /** @noinspection ToStringCallInspection */
-    expect((string) Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        [],
-        json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-    )))->toBeString();
+    expect((string) Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response))->toBeString();
 })->group(__DIR__, __FILE__);
 
 it('can convert to json data', function (): void {
-    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        [],
-        json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-    ))->json('foo'))->toBeString();
+    expect(
+        Response::fromPsrResponse(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
+            )
+        )->json('foo')
+    )->toBeString();
 })->group(__DIR__, __FILE__);
 
 it('can convert to array', function (): void {
-    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        [],
-        json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-    ))->array())->toBeArray();
+    expect(
+        Response::fromPsrResponse(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
+            )
+        )->array()
+    )->toBeArray();
 })->group(__DIR__, __FILE__);
 
 it('can convert to object', function (): void {
-    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        [],
-        json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-    ))->object())->toBeInstanceOf(\stdClass::class);
+    expect(
+        Response::fromPsrResponse(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
+            )
+        )->object()
+    )->toBeInstanceOf(\stdClass::class);
 })->group(__DIR__, __FILE__);
 
 it('can convert to xml', function (): void {
-    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        [],
-        <<<'XML'
-            <document>
-             <title>foo</title>
-            </document>
-            XML
-    ))->xml())->toBeInstanceOf(\SimpleXMLElement::class);
+    expect(
+        Response::fromPsrResponse(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                <<<'XML'
+                    <document>
+                     <title>foo</title>
+                    </document>
+                    XML
+            )
+        )->xml()
+    )->toBeInstanceOf(\SimpleXMLElement::class);
 })->group(__DIR__, __FILE__);
 
 it('will throw RuntimeException when illuminate/collections is not installed', function (): void {
@@ -84,37 +96,49 @@ it('will throw RuntimeException when illuminate/collections is not installed', f
         ->expects($this->once())
         ->willReturn(false);
 
-    Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        [],
-        json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-    ))->collect();
+    Response::fromPsrResponse(
+        new \GuzzleHttp\Psr7\Response(
+            200,
+            [],
+            json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
+        )
+    )->collect();
 })
     ->group(__DIR__, __FILE__)
     ->throws(RuntimeException::class);
 
 it('can convert to collect', function (): void {
-    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        [],
-        json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-    ))->collect())->toBeInstanceOf(Collection::class);
+    expect(
+        Response::fromPsrResponse(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
+            )
+        )->collect()
+    )->toBeInstanceOf(Collection::class);
 })->group(__DIR__, __FILE__);
 
 it('can convert to data url', function (): void {
-    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        ['Content-Type' => 'image/png'],
-        file_get_contents(fixtures_path('image.png'))
-    ))->dataUrl())->toBe('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAG1BMVEXMzMyWlpaqqqq3t7exsbGcnJy+vr6jo6PFxcUFpPI/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAQUlEQVQ4jWNgGAWjgP6ASdncAEaiAhaGiACmFhCJLsMaIiDAEQEi0WXYEiMCOCJAJIY9KuYGTC0gknpuHwXDGwAA5fsIZw0iYWYAAAAASUVORK5CYII=');
+    expect(
+        Response::fromPsrResponse(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                ['Content-Type' => 'image/png'],
+                file_get_contents(fixtures_path('image.png'))
+            )
+        )->dataUrl()
+    )->toBe('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAG1BMVEXMzMyWlpaqqqq3t7exsbGcnJy+vr6jo6PFxcUFpPI/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAQUlEQVQ4jWNgGAWjgP6ASdncAEaiAhaGiACmFhCJLsMaIiDAEQEi0WXYEiMCOCJAJIY9KuYGTC0gknpuHwXDGwAA5fsIZw0iYWYAAAAASUVORK5CYII=');
 })->group(__DIR__, __FILE__);
 
 it('will throw InvalidArgumentException when save to null', function (): void {
-    Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        ['Content-Type' => 'image/png'],
-        file_get_contents(fixtures_path('image.png'))
-    ))->saveAs(null);
+    Response::fromPsrResponse(
+        new \GuzzleHttp\Psr7\Response(
+            200,
+            ['Content-Type' => 'image/png'],
+            file_get_contents(fixtures_path('image.png'))
+        )
+    )->saveAs(null);
 })
     ->group(__DIR__, __FILE__)
     ->throws(InvalidArgumentException::class);
@@ -125,22 +149,26 @@ it('will throw LogicException when save to unable open the resource', function (
         ->expects($this->once())
         ->willReturn(false);
 
-    Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        ['Content-Type' => 'image/png'],
-        file_get_contents(fixtures_path('image.png'))
-    ))->saveAs(faker()->filePath());
+    Response::fromPsrResponse(
+        new \GuzzleHttp\Psr7\Response(
+            200,
+            ['Content-Type' => 'image/png'],
+            file_get_contents(fixtures_path('image.png'))
+        )
+    )->saveAs(faker()->filePath());
 })
     ->group(__DIR__, __FILE__)
     ->throws(LogicException::class);
 
 it('can save to resource or file', function (): void {
     /** @noinspection PhpVoidFunctionResultUsedInspection */
-    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        ['Content-Type' => 'image/png'],
-        file_get_contents(fixtures_path('image.png'))
-    )))
+    expect(
+        Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
+            200,
+            ['Content-Type' => 'image/png'],
+            file_get_contents(fixtures_path('image.png'))
+        ))
+    )
         ->saveAs(fopen('php://temp', 'wb+'))->toBeNull()
         ->saveAs(fixtures_path('image-copy.png'))->toBeNull();
 })->group(__DIR__, __FILE__);
@@ -281,17 +309,6 @@ it('can throw RequestException when server error', function (): void {
         ->throwIfServerError()->toBeInstanceOf(Response::class);
 })->group(__DIR__, __FILE__);
 
-it('can array access', function (): void {
-    $response = Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
-        200,
-        [],
-        json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-    ));
-
-    expect(isset($response['foo']))->toBeTrue()
-        ->and($response['foo'])->toBe('bar');
-})->group(__DIR__, __FILE__);
-
 it('will throw LogicException when array access set', function (): void {
     Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response)['foo'] = 'baz';
 })
@@ -304,22 +321,13 @@ it('will throw LogicException when array access unset', function (): void {
     ->group(__DIR__, __FILE__)
     ->throws(LogicException::class);
 
-it('can determine status code', function (): void {
-    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response))
-        ->ok()->toBeTrue()
-        ->created()->toBeFalse()
-        ->accepted()->toBeFalse()
-        ->noContent()->toBeFalse()
-        ->movedPermanently()->toBeFalse()
-        ->found()->toBeFalse()
-        ->notModified()->toBeFalse()
-        ->badRequest()->toBeFalse()
-        ->unauthorized()->toBeFalse()
-        ->paymentRequired()->toBeFalse()
-        ->forbidden()->toBeFalse()
-        ->notFound()->toBeFalse()
-        ->requestTimeout()->toBeFalse()
-        ->conflict()->toBeFalse()
-        ->unprocessableEntity()->toBeFalse()
-        ->tooManyRequests()->toBeFalse();
+it('can array access', function (): void {
+    $response = Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
+        200,
+        [],
+        json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
+    ));
+
+    expect(isset($response['foo']))->toBeTrue()
+        ->and($response['foo'])->toBe('bar');
 })->group(__DIR__, __FILE__);

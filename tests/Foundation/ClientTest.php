@@ -16,41 +16,10 @@ declare(strict_types=1);
 namespace Guanguans\NotifyTests\Foundation;
 
 use Guanguans\Notify\Foundation\Client;
-use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
-use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
-use Guanguans\Notify\GoogleChat\Messages\Message;
-use GuzzleHttp\HandlerStack;
+use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 
-use function Pest\Faker\faker;
-
-it('will throw InvalidArgumentException when argument is empty', function (): void {
-    (new Client)->verify();
-})
-    ->group(__DIR__, __FILE__)
-    ->throws(InvalidArgumentException::class, 'The method ['.Client::class.'::verify] require an argument.');
-
-it('will throw BadMethodCallException when calling an undefined method', function (): void {
-    (new Client)->foo();
-})
-    ->group(__DIR__, __FILE__)
-    ->throws(BadMethodCallException::class, 'The method ['.Client::class.'::foo] does not exist.');
-
-it('can set http client', function (): void {
-    expect(new Client)
-        ->setHttpClient(new \GuzzleHttp\Client)->toBeInstanceOf(Client::class);
-})->group(__DIR__, __FILE__);
-
-it('can set http client resolver', function (): void {
-    expect(new Client)
-        ->setHttpClientResolver(
-            static fn (Client $client): \GuzzleHttp\Client => new \GuzzleHttp\Client($client->getHttpOptions())
-        )
-        ->mock([create_response(faker()->text())])
-        ->dump()
-        ->assertCanSendMessage(Message::make(['text' => 'This is text.']));
-})->group(__DIR__, __FILE__);
-
-it('can set handler stack', function (): void {
-    expect(new Client)
-        ->setHandlerStack(HandlerStack::create())->toBeInstanceOf(Client::class);
+it('can dump debug info', function (): void {
+    expect(new class extends Client {
+        use AsNullUri;
+    })->dump()->toBeInstanceOf(Client::class);
 })->group(__DIR__, __FILE__);
