@@ -71,7 +71,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function __debugInfo(): array
     {
-        return $this->withDebugInfo([
+        return $this->mergeDebugInfo([
             'handlerStats' => $this->handlerStats(),
             'headers' => Arr::map(
                 $this->headers(),

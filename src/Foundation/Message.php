@@ -37,7 +37,7 @@ abstract class Message implements \ArrayAccess, Contracts\Message
 
     public function __debugInfo(): array
     {
-        return $this->withDebugInfo([
+        return $this->mergeDebugInfo([
             'httpMethod' => $this->toHttpMethod(),
             'httpUri' => $this->toHttpUri(),
             'httpOptions' => $this->toHttpOptions(),
