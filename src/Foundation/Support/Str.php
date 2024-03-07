@@ -36,7 +36,7 @@ class Str
      */
     public static function pascal(string $value): string
     {
-        return ucfirst(static::camel($value));
+        return static::ucfirst(static::camel($value));
     }
 
     /**
@@ -45,6 +45,14 @@ class Str
     public static function camel(string $value): string
     {
         return static::$camelCache[$value] ?? (static::$camelCache[$value] = lcfirst(static::studly($value)));
+    }
+
+    /**
+     * Convert a string to kebab case.
+     */
+    public static function kebab(string $value): string
+    {
+        return static::snake($value, '-');
     }
 
     /**

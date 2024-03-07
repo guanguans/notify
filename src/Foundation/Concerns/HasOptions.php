@@ -39,7 +39,7 @@ trait HasOptions
     {
         $defined = array_merge($this->defined ?? [], $this->required ?? []);
 
-        foreach ([null, 'snake', 'pascal'] as $case) {
+        foreach ([null, 'snake', 'pascal', 'kebab'] as $case) {
             $casedName = $case ? Str::{$case}($name) : $name;
 
             if (\in_array($casedName, $defined, true)) {
