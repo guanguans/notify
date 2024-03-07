@@ -19,6 +19,6 @@ trait AsGet
 {
     public function toHttpMethod(): string
     {
-        return 'get';
+        return 'GET';
     }
 }

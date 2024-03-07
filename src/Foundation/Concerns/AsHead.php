@@ -19,6 +19,6 @@ trait AsHead
 {
     public function toHttpMethod(): string
     {
-        return 'head';
+        return 'HEAD';
     }
 }

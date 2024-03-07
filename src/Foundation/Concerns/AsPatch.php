@@ -19,6 +19,6 @@ trait AsPatch
 {
     public function toHttpMethod(): string
     {
-        return 'patch';
+        return 'PATCH';
     }
 }

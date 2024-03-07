@@ -19,6 +19,6 @@ trait AsPut
 {
     public function toHttpMethod(): string
     {
-        return 'put';
+        return 'PUT';
     }
 }

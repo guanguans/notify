@@ -48,7 +48,7 @@ it('can convert to delete method', function (): void {
         (new class {
             use AsDelete;
         })->toHttpMethod()
-    )->toBe('delete');
+    )->toBe('DELETE');
 })->group(__DIR__, __FILE__);
 
 it('can convert to get method', function (): void {
@@ -56,7 +56,7 @@ it('can convert to get method', function (): void {
         (new class {
             use AsGet;
         })->toHttpMethod()
-    )->toBe('get');
+    )->toBe('GET');
 })->group(__DIR__, __FILE__);
 
 it('can convert to head method', function (): void {
@@ -64,7 +64,7 @@ it('can convert to head method', function (): void {
         (new class {
             use AsHead;
         })->toHttpMethod()
-    )->toBe('head');
+    )->toBe('HEAD');
 })->group(__DIR__, __FILE__);
 
 it('can convert to patch method', function (): void {
@@ -72,7 +72,7 @@ it('can convert to patch method', function (): void {
         (new class {
             use AsPatch;
         })->toHttpMethod()
-    )->toBe('patch');
+    )->toBe('PATCH');
 })->group(__DIR__, __FILE__);
 
 it('can convert to put method', function (): void {
@@ -80,5 +80,5 @@ it('can convert to put method', function (): void {
         (new class {
             use AsPut;
         })->toHttpMethod()
-    )->toBe('put');
+    )->toBe('PUT');
 })->group(__DIR__, __FILE__);

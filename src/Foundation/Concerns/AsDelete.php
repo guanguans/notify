@@ -19,6 +19,6 @@ trait AsDelete
 {
     public function toHttpMethod(): string
     {
-        return 'delete';
+        return 'DELETE';
     }
 }
