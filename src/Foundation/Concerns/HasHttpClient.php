@@ -163,6 +163,7 @@ trait HasHttpClient
             'handler' => $this->getHandlerStack(),
             RequestOptions::CONNECT_TIMEOUT => 10,
             RequestOptions::COOKIES => true,
+            RequestOptions::HEADERS => ['User-Agent' => Utils::userAgent()],
             RequestOptions::HTTP_ERRORS => false,
             RequestOptions::TIMEOUT => 30,
             RequestOptions::ON_STATS => static function (TransferStats $transferStats): void {
