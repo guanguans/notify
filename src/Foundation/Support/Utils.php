@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Support;
 
+use Composer\InstalledVersions;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\StreamInterface;
 
@@ -111,5 +112,48 @@ class Utils
             ])),
             ...$options
         );
+    }
+
+    /**
+     * @param array<string, scalar> $agents
+     *
+     * @noinspection NotOptimalIfConditionsInspection
+     */
+    public static function userAgent(array $agents = []): string
+    {
+        $defaults = [];
+
+        if (class_exists(InstalledVersions::class)) {
+            $defaults['notify'] = InstalledVersions::getPrettyVersion('guanguans/notify');
+            $defaults['guzzle'] = InstalledVersions::getPrettyVersion('guzzlehttp/guzzle');
+        }
+
+        if (\extension_loaded('curl') && \function_exists('curl_version')) {
+            $defaults['curl'] = (curl_version() ?: ['version' => 'unknown'])['version'];
+        }
+
+        if (\defined('PHP_VERSION')) {
+            $defaults['PHP'] = PHP_VERSION;
+        }
+
+        if (\defined('HHVM_VERSION')) {
+            /** @noinspection PhpUndefinedConstantInspection */
+            $defaults['HHVM'] = HHVM_VERSION;
+        }
+
+        if (
+            \function_exists('php_uname')
+            && ! \in_array('php_uname', explode(',', \ini_get('disable_functions') ?: ''), true)
+        ) {
+            $defaults['OS'] = sprintf('%s(%s)', php_uname('s'), php_uname('r'));
+        }
+
+        $defaults = array_merge($defaults, $agents);
+
+        return trim(implode(' ', array_map(
+            static fn ($value, string $name): string => "$name/$value",
+            $defaults,
+            array_keys($defaults)
+        )));
     }
 }
