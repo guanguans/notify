@@ -1,6 +1,6 @@
 {
     "name": "guanguans/notify",
-    "description": "Push notification SDK(Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、PushDeer、PushPlus、Pushback、Pushover、QQ、RocketChat、ServerChan、ShowdocPush、Slack、Telegram、WeWork、XiZhi、YiFengChuanHua、Zulip).",
+    "description": "Push notification SDK(Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、PushBullet、PushDeer、PushPlus、Pushback、Pushover、QQ、RocketChat、ServerChan、ShowdocPush、Slack、Telegram、WeWork、XiZhi、YiFengChuanHua、Zulip).",
     "license": "MIT",
     "type": "library",
     "keywords": [
@@ -34,6 +34,7 @@
         "NowPush",
         "Ntfy",
         "Push",
+        "PushBullet",
         "PushDeer",
         "PushPlus",
         "Pushback",
