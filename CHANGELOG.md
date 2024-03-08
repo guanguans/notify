@@ -8,6 +8,23 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.3.1"></a>
+## [2.3.1] - 2024-03-08
+### Feat
+- **Utils:** Add userAgent method to generate user agent string
+- **httpclient:** Add User-Agent header to HTTP requests
+
+### Refactor
+- **Authenticator:** improve constructor logic
+- **HasHttpClient:** adjust multipart options handling
+- **HasHttpClient:** Improve HTTP client options handling
+- **Utils:** improve multipartFor method
+- **Utils:** Improve handling of contents in Utils class
+
+### Test
+- **AuthenticatorTest:** add tests for Authenticator class
+
+
 <a name="2.3.0"></a>
 ## [2.3.0] - 2024-03-08
 ### Feat
@@ -705,7 +722,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.3.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.3.1...HEAD
+[2.3.1]: https://github.com/guanguans/notify/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/guanguans/notify/compare/2.2.1...2.3.0
 [2.2.1]: https://github.com/guanguans/notify/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/guanguans/notify/compare/2.1.2...2.2.0
