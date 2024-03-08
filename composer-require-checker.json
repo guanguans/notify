@@ -3,6 +3,7 @@
         "Core",
         "ctype",
         "date",
+        "filter",
         "hash",
         "mbstring",
         "pcre",

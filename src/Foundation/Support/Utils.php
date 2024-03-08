@@ -16,12 +16,15 @@ use Composer\InstalledVersions;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\StreamInterface;
 
+\define('MULTIPART_TRY_OPEN_FILE', 1 << 0);
+\define('MULTIPART_TRY_OPEN_URL', 1 << 1);
+
 class Utils
 {
     /**
      * Convert a form array into a multipart array.
      */
-    public static function multipartFor(array $form): array
+    public static function multipartFor(array $form, int $options = MULTIPART_TRY_OPEN_FILE): array
     {
         /**
          * @param array-key $name
@@ -41,10 +44,16 @@ class Utils
          *     filename: string,
          * }[]
          */
-        $partResolver = static function ($name, $contents) use (&$partResolver): array {
-            $contentsNormalizer = static function ($contents) {
-                // filter_var($contents, FILTER_VALIDATE_URL); // url
-                if (\is_string($contents) && is_file($contents)) {
+        $partResolver = static function ($name, $contents, int $options) use (&$partResolver): array {
+            $contentsNormalizer = static function ($contents, int $options) {
+                if (! \is_string($contents)) {
+                    return $contents;
+                }
+
+                if (
+                    (($options & MULTIPART_TRY_OPEN_URL) && filter_var($contents, FILTER_VALIDATE_URL))
+                    || (($options & MULTIPART_TRY_OPEN_FILE) && is_file($contents))
+                ) {
                     return \GuzzleHttp\Psr7\Utils::tryFopen($contents, 'r');
                 }
 
@@ -55,7 +64,7 @@ class Utils
              * @var null|resource|scalar|StreamInterface $contents
              */
             if (! \is_array($contents)) {
-                return [['name' => $name, 'contents' => $contentsNormalizer($contents)]];
+                return [['name' => $name, 'contents' => $contentsNormalizer($contents, $options)]];
             }
 
             /**
@@ -82,8 +91,8 @@ class Utils
                 $key = "{$name}[$key]";
 
                 $parts[] = \is_array($value)
-                    ? $partResolver($key, $value)
-                    : [['name' => $key, 'contents' => $contentsNormalizer($value)]];
+                    ? $partResolver($key, $value, $options)
+                    : [['name' => $key, 'contents' => $contentsNormalizer($value, $options)]];
             }
 
             return array_merge([], ...$parts);
@@ -91,7 +100,7 @@ class Utils
 
         $parts = [];
         foreach ($form as $name => $contents) {
-            $parts[] = $partResolver($name, $contents);
+            $parts[] = $partResolver($name, $contents, $options);
         }
 
         return array_merge([], ...$parts);
