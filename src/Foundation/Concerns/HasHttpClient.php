@@ -125,7 +125,9 @@ trait HasHttpClient
 
     public function getHttpClientResolver(): callable
     {
-        return $this->httpClientResolver ??= fn (): Client => new Client($this->getHttpOptions());
+        return $this->httpClientResolver ??= fn (): Client => new Client($this->normalizeHttpOptions(
+            Utils::mergeHttpOptions($this->defaultHttpOptions(), $this->getHttpOptions())
+        ));
     }
 
     public function setHandlerStack(HandlerStack $handlerStack): self
@@ -152,12 +154,10 @@ trait HasHttpClient
 
     public function getHttpOptions(): array
     {
-        return $this->httpOptions = $this->normalizeHttpOptions(
-            Utils::mergeHttpOptions($this->getDefaultHttpOptions(), $this->httpOptions)
-        );
+        return $this->httpOptions;
     }
 
-    public function getDefaultHttpOptions(): array
+    public function defaultHttpOptions(): array
     {
         return [
             'handler' => $this->getHandlerStack(),
@@ -171,19 +171,19 @@ trait HasHttpClient
         ];
     }
 
-    public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
-    {
-        $this->setHandler(new MockHandler($queue, $onFulfilled, $onRejected));
-
-        return $this;
-    }
-
-    private function normalizeHttpOptions(array $options): array
+    public function normalizeHttpOptions(array $options): array
     {
         if (isset($options[RequestOptions::MULTIPART])) {
             $options[RequestOptions::MULTIPART] = Utils::multipartFor($options[RequestOptions::MULTIPART]);
         }
 
         return $options;
+    }
+
+    public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
+    {
+        $this->setHandler(new MockHandler($queue, $onFulfilled, $onRejected));
+
+        return $this;
     }
 }
