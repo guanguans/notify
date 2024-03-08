@@ -8,6 +8,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.3.0"></a>
+## [2.3.0] - 2024-03-08
+### Feat
+- **pushbullet:** add PushBullet integration
+
+### Test
+- **PushBullet:** add test for sending message functionality
+
+### Pull Requests
+- Merge pull request [#60](https://github.com/guanguans/notify/issues/60) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.68.5
+
+
 <a name="2.2.1"></a>
 ## [2.2.1] - 2024-03-07
 ### Docs
@@ -693,7 +705,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.2.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.3.0...HEAD
+[2.3.0]: https://github.com/guanguans/notify/compare/2.2.1...2.3.0
 [2.2.1]: https://github.com/guanguans/notify/compare/2.2.0...2.2.1
 [2.2.0]: https://github.com/guanguans/notify/compare/2.1.2...2.2.0
 [2.1.2]: https://github.com/guanguans/notify/compare/2.1.1...2.1.2
