@@ -23,6 +23,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\TransferStats;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * @method self setHandler(callable $handler)
@@ -184,6 +185,9 @@ trait HasHttpClient
         return $options;
     }
 
+    /**
+     * @param null|array<ResponseInterface|\Throwable> $queue
+     */
     public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
     {
         $this->setHandler(new MockHandler($queue, $onFulfilled, $onRejected));

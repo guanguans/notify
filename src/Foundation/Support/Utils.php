@@ -24,10 +24,10 @@ class Utils
     /**
      * Convert a form array into a multipart array.
      */
-    public static function multipartFor(array $form, int $options = 0): array
+    public static function multipartFor(array $data, int $options = 0): array
     {
         /**
-         * @param array-key $name
+         * @param array-key $key
          * @param  null|resource|scalar|StreamInterface|array{
          *     name: string,
          *     contents: null|resource|scalar|StreamInterface,
@@ -35,7 +35,7 @@ class Utils
          *     filename: string,
          *     foo: mixed,
          *     bar: mixed,
-         * }  $contents
+         * }  $value
          *
          * @return array{
          *     name: string,
@@ -44,66 +44,58 @@ class Utils
          *     filename: string,
          * }[]
          */
-        $partResolver = static function ($name, $contents, int $options) use (&$partResolver): array {
-            $contentsNormalizer = static function ($contents, int $options) {
-                if (! \is_string($contents)) {
-                    return $contents;
-                }
-
-                if (
-                    (($options & MULTIPART_TRY_OPEN_URL) && filter_var($contents, FILTER_VALIDATE_URL))
-                    || (($options & MULTIPART_TRY_OPEN_FILE) && is_file($contents))
-                ) {
-                    return \GuzzleHttp\Psr7\Utils::tryFopen($contents, 'r');
-                }
-
-                return $contents;
-            };
-
-            /**
-             * @var null|resource|scalar|StreamInterface $contents
-             */
-            if (! \is_array($contents)) {
-                return [['name' => $name, 'contents' => $contentsNormalizer($contents, $options)]];
+        $partResolver = static function ($key, $value) use (&$partResolver): array {
+            if (! \is_array($value)) {
+                return [['name' => $key, 'contents' => $value]];
             }
 
-            /**
-             * @var array{
-             *     name: string,
-             *     contents: null|resource|scalar|StreamInterface,
-             *     headers: array<string, string>,
-             *     filename: string,
-             * } $contents
-             */
             if (
-                isset($contents['contents'])
-                && [] === array_diff(array_keys($contents), ['name', 'contents', 'headers', 'filename'])
+                isset($value['name'], $value['contents'])
+                && [] === array_diff(array_keys($value), ['name', 'contents', 'headers', 'filename'])
             ) {
-                return [$contents + ['name' => $name]];
+                return [$value];
             }
 
             $parts = [];
+            foreach ($value as $k => $v) {
+                $k = "{$key}[$k]";
 
-            /**
-             * @var array<array-key, null|array|resource|scalar|StreamInterface> $contents
-             */
-            foreach ($contents as $key => $value) {
-                $key = "{$name}[$key]";
-
-                $parts[] = \is_array($value)
-                    ? $partResolver($key, $value, $options)
-                    : [['name' => $key, 'contents' => $contentsNormalizer($value, $options)]];
+                $parts[] = \is_array($v)
+                    ? $partResolver($k, $v)
+                    : [['name' => $k, 'contents' => $v]];
             }
 
             return array_merge([], ...$parts);
         };
 
+        $contentsNormalizer = static function ($contents, int $options) {
+            if (! \is_string($contents)) {
+                return $contents;
+            }
+
+            if (
+                (($options & MULTIPART_TRY_OPEN_URL) && filter_var($contents, FILTER_VALIDATE_URL))
+                || (($options & MULTIPART_TRY_OPEN_FILE) && is_file($contents))
+            ) {
+                return \GuzzleHttp\Psr7\Utils::tryFopen($contents, 'r');
+            }
+
+            return $contents;
+        };
+
         $parts = [];
-        foreach ($form as $name => $contents) {
-            $parts[] = $partResolver($name, $contents, $options);
+        foreach ($data as $key => $value) {
+            $parts[] = $partResolver($key, $value);
         }
 
-        return array_merge([], ...$parts);
+        return array_map(
+            static function (array $part) use ($contentsNormalizer, $options): array {
+                $part['contents'] = $contentsNormalizer($part['contents'], $options);
+
+                return $part;
+            },
+            array_merge([], ...$parts)
+        );
     }
 
     /**
