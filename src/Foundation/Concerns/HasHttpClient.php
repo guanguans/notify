@@ -175,7 +175,10 @@ trait HasHttpClient
     public function normalizeHttpOptions(array $options): array
     {
         if (isset($options[RequestOptions::MULTIPART])) {
-            $options[RequestOptions::MULTIPART] = Utils::multipartFor($options[RequestOptions::MULTIPART]);
+            $options[RequestOptions::MULTIPART] = Utils::multipartFor(
+                $options[RequestOptions::MULTIPART],
+                MULTIPART_TRY_OPEN_FILE
+            );
         }
 
         return $options;

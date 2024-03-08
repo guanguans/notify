@@ -24,7 +24,7 @@ class Utils
     /**
      * Convert a form array into a multipart array.
      */
-    public static function multipartFor(array $form, int $options = MULTIPART_TRY_OPEN_FILE): array
+    public static function multipartFor(array $form, int $options = 0): array
     {
         /**
          * @param array-key $name
