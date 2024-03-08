@@ -25,9 +25,9 @@ class Utils
     {
         /**
          * @param array-key $name
-         * @param  StreamInterface|resource|scalar|null|array{
+         * @param  null|resource|scalar|StreamInterface|array{
          *     name: string,
-         *     contents: StreamInterface|resource|string,
+         *     contents: null|resource|scalar|StreamInterface,
          *     headers: array<string, string>,
          *     filename: string,
          *     foo: mixed,
@@ -36,35 +36,54 @@ class Utils
          *
          * @return array{
          *     name: string,
-         *     contents: resource|StreamInterface|string,
+         *     contents: null|resource|scalar|StreamInterface,
          *     headers: array<string, string>,
-         *     filename: string
+         *     filename: string,
          * }[]
          */
         $partResolver = static function ($name, $contents) use (&$partResolver): array {
-            if (! \is_array($contents)) {
+            $contentsNormalizer = static function ($contents) {
                 // filter_var($contents, FILTER_VALIDATE_URL); // url
                 if (\is_string($contents) && is_file($contents)) {
-                    $contents = \GuzzleHttp\Psr7\Utils::tryFopen($contents, 'r');
+                    return \GuzzleHttp\Psr7\Utils::tryFopen($contents, 'r');
                 }
 
-                return [compact('name', 'contents')];
+                return $contents;
+            };
+
+            /**
+             * @var null|resource|scalar|StreamInterface $contents
+             */
+            if (! \is_array($contents)) {
+                return [['name' => $name, 'contents' => $contentsNormalizer($contents)]];
             }
 
+            /**
+             * @var array{
+             *     name: string,
+             *     contents: null|resource|scalar|StreamInterface,
+             *     headers: array<string, string>,
+             *     filename: string,
+             * } $contents
+             */
             if (
-                isset($contents['name'], $contents['contents'])
+                isset($contents['contents'])
                 && [] === array_diff(array_keys($contents), ['name', 'contents', 'headers', 'filename'])
             ) {
-                return [$contents];
+                return [$contents + ['name' => $name]];
             }
 
             $parts = [];
+
+            /**
+             * @var array<array-key, null|array|resource|scalar|StreamInterface> $contents
+             */
             foreach ($contents as $key => $value) {
                 $key = "{$name}[$key]";
 
                 $parts[] = \is_array($value)
                     ? $partResolver($key, $value)
-                    : [['name' => $key, 'contents' => $value]];
+                    : [['name' => $key, 'contents' => $contentsNormalizer($value)]];
             }
 
             return array_merge([], ...$parts);
