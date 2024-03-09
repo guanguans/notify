@@ -104,6 +104,7 @@ return static function (RectorConfig $rectorConfig): void {
             __DIR__.'/tests',
         ],
         StringToClassConstantRector::class => [
+            __DIR__.'/src/Foundation/Rfc',
             __DIR__.'/src/*/Messages/*.php',
             __DIR__.'/tests',
             __DIR__.'/src/Foundation/Support/Utils.php',
@@ -149,14 +150,24 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->ruleWithConfiguration(
         StringToClassConstantRector::class,
-        array_map(
-            static fn (string $string, string $constant): StringToClassConstant => new StringToClassConstant(
-                $string,
+        array_reduce(
+            [
+                Guanguans\Notify\Foundation\Method::class,
                 RequestOptions::class,
-                $constant
+            ],
+            static fn (array $carry, string $class): array => array_merge(
+                $carry,
+                array_map(
+                    static fn (string $string, string $constant): StringToClassConstant => new StringToClassConstant(
+                        $string,
+                        $class,
+                        $constant
+                    ),
+                    $constants = (new ReflectionClass($class))->getConstants(),
+                    array_keys($constants)
+                )
             ),
-            $constants = (new ReflectionClass(RequestOptions::class))->getConstants(),
-            array_keys($constants)
+            []
         )
     );
 

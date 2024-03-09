@@ -12,13 +12,18 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Concerns;
 
+use Guanguans\Notify\Foundation\Method;
+
 /**
  * @mixin \Guanguans\Notify\Foundation\Message
  */
 trait AsPut
 {
+    /**
+     * @noinspection PhpClassConstantAccessedViaChildClassInspection
+     */
     public function toHttpMethod(): string
     {
-        return 'PUT';
+        return Method::PUT;
     }
 }
