@@ -159,6 +159,8 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
             static fn (string $option): bool => !Str::is(['*@*'], $option),
         );
 
+        asort($defined);
+
         if ([] === $defined) {
             return;
         }
