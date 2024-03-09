@@ -23,6 +23,7 @@ use phpmock\phpunit\PHPMock;
  */
 class TestCase extends \PHPUnit\Framework\TestCase
 {
+    use Faker;
     use PHPMock;
 
     /**
