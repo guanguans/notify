@@ -84,6 +84,8 @@
         "bamarni/composer-bin-plugin": "^1.8",
         "brainmaestro/composer-git-hooks": "^2.8",
         "ergebnis/composer-normalize": "^2.42",
+        "ergebnis/license": "^2.4",
+        "ergebnis/php-cs-fixer-config": "dev-main",
         "friendsofphp/php-cs-fixer": "^3.51",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
@@ -142,6 +144,10 @@
         },
         "branch-alias": {
             "dev-main": "2.x-dev"
+        },
+        "composer-normalize": {
+            "indent-size": 4,
+            "indent-style": "space"
         },
         "hooks": {
             "post-merge": [
@@ -220,8 +226,10 @@
         "release-minor-dry-run": "@release-minor --dry-run",
         "release-patch": "@release patch",
         "release-patch-dry-run": "@release-patch --dry-run",
-        "style-fix": "@php ./vendor/bin/php-cs-fixer fix --using-cache=yes --config=.php-cs-fixer.php --diff --ansi -v",
+        "style-fix": "@php ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --show-progress=dots --diff --ansi -v",
+        "style-fix-dist": "@php ./vendor/bin/php-cs-fixer fix --config=.php-cs-fixer-dist.php --show-progress=dots --diff --ansi -v",
         "style-lint": "@style-fix --dry-run",
+        "style-lint-dist": "@style-fix-dist --dry-run",
         "test": "@pest",
         "test-coverage": "@pest-coverage",
         "test-migrate-configuration": "@pest-migrate-configuration",
