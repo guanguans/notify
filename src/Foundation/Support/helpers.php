@@ -10,6 +10,34 @@ declare(strict_types=1);
  * This source file is subject to the MIT license that is bundled.
  */
 
+if (! function_exists('error_silencer')) {
+    /**
+     * @psalm-suppress ForbiddenCode
+     * @psalm-suppress InvalidArgument
+     *
+     * @noinspection ForgottenDebugOutputInspection
+     * @noinspection DebugFunctionUsageInspection
+     * @noinspection PhpExpressionResultUnusedInspection
+     */
+    function error_silencer(callable $callback, bool $debug = false)
+    {
+        set_error_handler(static function (
+            int $errno,
+            string $errstr,
+            string $errfile = '',
+            int $errline = 0
+        ) use ($debug): void {
+            $debug and var_dump($errno, $errstr, $errfile, $errline);
+        });
+
+        $result = $callback();
+
+        restore_error_handler();
+
+        return $result;
+    }
+}
+
 if (! function_exists('value')) {
     /**
      * Return the default value of the given value.
