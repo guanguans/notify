@@ -67,7 +67,7 @@ class Str
             return static::$snakeCache[$key][$delimiter];
         }
 
-        if (! ctype_lower($value)) {
+        if (!ctype_lower($value)) {
             $value = preg_replace('/\s+/u', '', ucwords($value));
 
             $value = static::lower(preg_replace('/(.)(?=[A-Z])/u', '$1'.$delimiter, $value));
@@ -101,7 +101,7 @@ class Str
      */
     public static function is($patterns, string $value): bool
     {
-        if (! is_iterable($patterns)) {
+        if (!is_iterable($patterns)) {
             $patterns = [$patterns];
         }
 
@@ -137,7 +137,7 @@ class Str
      * @param iterable<string>|string $replace
      * @param iterable<string>|string $subject
      *
-     * @return array<string>|string
+     * @return list<string>|string
      */
     public static function replace($search, $replace, $subject, bool $caseSensitive = true)
     {

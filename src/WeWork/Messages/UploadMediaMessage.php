@@ -22,12 +22,10 @@ use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 class UploadMediaMessage extends \Guanguans\Notify\Foundation\Message
 {
     use AsMultipart;
-
     protected array $defined = [
         'media',
         'type',
     ];
-
     protected array $allowedValues = [
         // 'type' => ['voice', 'file'],
     ];

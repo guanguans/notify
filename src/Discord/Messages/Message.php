@@ -17,21 +17,20 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
+ * @method self allowedMentions(array $allowedMentions)
+ * @method self attachments(array $attachments)
+ * @method self avatarUrl($avatarUrl)
+ * @method self components(array $components)
  * @method self content($content)
  * @method self embeds(array $embeds)
- * @method self allowedMentions(array $allowedMentions)
- * @method self components(array $components)
  * @method self files(array $files)
  * @method self payloadJson($payloadJson)
- * @method self attachments(array $attachments)
- * @method self username($username)
- * @method self avatarUrl($avatarUrl)
  * @method self tts(bool $tts)
+ * @method self username($username)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
-
     protected array $defined = [
         'content',
         'embeds',
@@ -45,7 +44,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'avatar_url',
         'tts',
     ];
-
     protected array $allowedTypes = [
         'tts' => 'bool',
         'embeds' => 'array',
@@ -54,7 +52,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'files' => 'array',
         'attachments' => 'array',
     ];
-
     protected array $options = [
         'embeds' => [],
     ];

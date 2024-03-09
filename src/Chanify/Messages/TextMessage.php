@@ -16,15 +16,15 @@ namespace Guanguans\Notify\Chanify\Messages;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method self title($title)
- * @method self text($text)
- * @method self copy($copy)
- * @method self autocopy($autocopy)
- * @method self sound($sound)
- * @method self priority($priority)
- * @method self interruptionlevel($interruptionlevel)
  * @method self actions(array $actions)
+ * @method self autocopy($autocopy)
+ * @method self copy($copy)
+ * @method self interruptionlevel($interruptionlevel)
+ * @method self priority($priority)
+ * @method self sound($sound)
+ * @method self text($text)
  * @method self timeline(array $timeline)
+ * @method self title($title)
  */
 class TextMessage extends Message
 {
@@ -39,16 +39,13 @@ class TextMessage extends Message
         'actions',
         'timeline',
     ];
-
     protected array $allowedValues = [
         // 'interruptionlevel' => ['active', 'passive', 'time-sensitive'],
     ];
-
     protected array $allowedTypes = [
         'actions' => 'array',
         'timeline' => 'array',
     ];
-
     protected array $options = [
         'actions' => [],
     ];

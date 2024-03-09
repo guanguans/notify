@@ -17,15 +17,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @method self chatId($chatId)
- * @method self messageThreadId($messageThreadId)
- * @method self text($text)
- * @method self parseMode($parseMode)
+ * @method self disableNotification(bool $disableNotification)
  * @method self entities(array $entities)
  * @method self linkPreviewOptions(array $linkPreviewOptions)
- * @method self disableNotification(bool $disableNotification)
+ * @method self messageThreadId($messageThreadId)
+ * @method self parseMode($parseMode)
  * @method self protectContent(bool $protectContent)
- * @method self replyParameters(array $replyParameters)
  * @method self replyMarkup(array $replyMarkup)
+ * @method self replyParameters(array $replyParameters)
+ * @method self text($text)
  */
 class TextMessage extends Message
 {
@@ -41,11 +41,9 @@ class TextMessage extends Message
         'reply_parameters',
         'reply_markup',
     ];
-
     protected array $allowedValues = [
         // 'parse_mode' => ['HTML', 'Markdown', 'MarkdownV2'],
     ];
-
     protected array $allowedTypes = [
         'entities' => 'array',
         'link_preview_options' => 'array',
@@ -54,7 +52,6 @@ class TextMessage extends Message
         'reply_parameters' => 'array',
         'reply_markup' => 'array',
     ];
-
     protected array $options = [
         'entities' => [],
     ];

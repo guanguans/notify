@@ -14,16 +14,16 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Bark\Messages;
 
 /**
- * @method self title($title)
- * @method self body($body)
- * @method self level($level)
- * @method self badge($badge)
  * @method self autoCopy($autoCopy)
+ * @method self badge($badge)
+ * @method self body($body)
  * @method self copy($copy)
- * @method self sound($sound)
- * @method self icon($icon)
  * @method self group($group)
+ * @method self icon($icon)
  * @method self isArchive($isArchive)
+ * @method self level($level)
+ * @method self sound($sound)
+ * @method self title($title)
  * @method self url($url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
@@ -41,7 +41,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'isArchive',
         'url',
     ];
-
     protected array $allowedValues = [
         // 'level' => ['active', 'timeSensitive', 'passive'],
     ];

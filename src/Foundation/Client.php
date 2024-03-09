@@ -25,7 +25,6 @@ class Client implements Contracts\Client
 {
     use Dumpable;
     use HasHttpClient;
-
     private Authenticator $authenticator;
 
     public function __construct(?Authenticator $authenticator = null)
@@ -44,16 +43,16 @@ class Client implements Contracts\Client
     }
 
     /**
-     * @return Response|ResponseInterface
-     *
      * @throws GuzzleException
+     *
+     * @return Response|ResponseInterface
      */
     public function send(Message $message): ResponseInterface
     {
         return $this->getHttpClient()->request(
             $message->toHttpMethod(),
             $message->toHttpUri(),
-            $this->normalizeHttpOptions($this->authenticator->applyToOptions($message->toHttpOptions()))
+            $this->normalizeHttpOptions($this->authenticator->applyToOptions($message->toHttpOptions())),
         );
     }
 }

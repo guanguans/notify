@@ -15,12 +15,12 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self chatId($chatId)
- * @method self messageThreadId($messageThreadId)
- * @method self emoji($emoji)
  * @method self disableNotification($disableNotification)
+ * @method self emoji($emoji)
+ * @method self messageThreadId($messageThreadId)
  * @method self protectContent($protectContent)
- * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
+ * @method self replyParameters($replyParameters)
  */
 class DiceMessage extends Message
 {

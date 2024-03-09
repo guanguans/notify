@@ -17,33 +17,31 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method self topic($topic)
- * @method self message($message)
- * @method self title($title)
- * @method self tags(array $tags)
- * @method self priority($priority)
  * @method self actions(array $actions)
- * @method self click($click)
  * @method self attach($attach)
- * @method self markdown($markdown)
- * @method self icon($icon)
- * @method self filename($filename)
+ * @method self cache($cache)
+ * @method self call($call)
+ * @method self click($click)
  * @method self delay($delay)
  * @method self email($email)
- * @method self call($call)
- * @method self cache($cache)
+ * @method self filename($filename)
  * @method self firebase($firebase)
- * @method self unifiedPush($unifiedPush)
+ * @method self icon($icon)
+ * @method self markdown($markdown)
+ * @method self message($message)
  * @method self pollId($pollId)
+ * @method self priority($priority)
+ * @method self tags(array $tags)
+ * @method self title($title)
+ * @method self topic($topic)
+ * @method self unifiedPush($unifiedPush)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
-
     protected array $required = [
         // 'topic',
     ];
-
     protected array $defined = [
         'topic',
         'message',
@@ -64,18 +62,15 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'unified_push',
         'poll_id',
     ];
-
     protected array $allowedValues = [
         // 'priority' => [5, 4, 3, 2, 1],
         // 'cache' => ['yes', 'no'],
         // 'firebase' => ['yes', 'no'],
     ];
-
     protected array $allowedTypes = [
         'tags' => 'array',
         'actions' => 'array',
     ];
-
     protected array $options = [
         'actions' => [],
     ];

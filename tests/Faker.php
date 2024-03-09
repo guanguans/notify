@@ -25,7 +25,7 @@ trait Faker
          */
         static $fakers = [];
 
-        if (! \array_key_exists($locale, $fakers)) {
+        if (!\array_key_exists($locale, $fakers)) {
             $faker = Factory::create($locale);
 
             $faker->seed(9001);

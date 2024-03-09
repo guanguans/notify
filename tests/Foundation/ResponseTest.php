@@ -45,9 +45,9 @@ it('can convert to json data', function (): void {
             new \GuzzleHttp\Psr7\Response(
                 200,
                 [],
-                json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-            )
-        )->json('foo')
+                json_encode(['foo' => 'bar'], \JSON_THROW_ON_ERROR),
+            ),
+        )->json('foo'),
     )->toBeString();
 })->group(__DIR__, __FILE__);
 
@@ -57,9 +57,9 @@ it('can convert to array', function (): void {
             new \GuzzleHttp\Psr7\Response(
                 200,
                 [],
-                json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-            )
-        )->array()
+                json_encode(['foo' => 'bar'], \JSON_THROW_ON_ERROR),
+            ),
+        )->array(),
     )->toBeArray();
 })->group(__DIR__, __FILE__);
 
@@ -69,9 +69,9 @@ it('can convert to object', function (): void {
             new \GuzzleHttp\Psr7\Response(
                 200,
                 [],
-                json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-            )
-        )->object()
+                json_encode(['foo' => 'bar'], \JSON_THROW_ON_ERROR),
+            ),
+        )->object(),
     )->toBeInstanceOf(\stdClass::class);
 })->group(__DIR__, __FILE__);
 
@@ -86,8 +86,8 @@ it('can convert to xml', function (): void {
                      <title>foo</title>
                     </document>
                     XML
-            )
-        )->xml()
+            ),
+        )->xml(),
     )->toBeInstanceOf(\SimpleXMLElement::class);
 })->group(__DIR__, __FILE__);
 
@@ -101,8 +101,8 @@ it('will throw RuntimeException when illuminate/collections is not installed', f
         new \GuzzleHttp\Psr7\Response(
             200,
             [],
-            json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-        )
+            json_encode(['foo' => 'bar'], \JSON_THROW_ON_ERROR),
+        ),
     )->collect();
 })
     ->group(__DIR__, __FILE__)
@@ -114,9 +114,9 @@ it('can convert to collect', function (): void {
             new \GuzzleHttp\Psr7\Response(
                 200,
                 [],
-                json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
-            )
-        )->collect()
+                json_encode(['foo' => 'bar'], \JSON_THROW_ON_ERROR),
+            ),
+        )->collect(),
     )->toBeInstanceOf(Collection::class);
 })->group(__DIR__, __FILE__);
 
@@ -126,9 +126,9 @@ it('can convert to data url', function (): void {
             new \GuzzleHttp\Psr7\Response(
                 200,
                 ['Content-Type' => 'image/png'],
-                file_get_contents(fixtures_path('image.png'))
-            )
-        )->dataUrl()
+                file_get_contents(fixtures_path('image.png')),
+            ),
+        )->dataUrl(),
     )->toBe('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAG1BMVEXMzMyWlpaqqqq3t7exsbGcnJy+vr6jo6PFxcUFpPI/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAQUlEQVQ4jWNgGAWjgP6ASdncAEaiAhaGiACmFhCJLsMaIiDAEQEi0WXYEiMCOCJAJIY9KuYGTC0gknpuHwXDGwAA5fsIZw0iYWYAAAAASUVORK5CYII=');
 })->group(__DIR__, __FILE__);
 
@@ -137,8 +137,8 @@ it('will throw InvalidArgumentException when save to null', function (): void {
         new \GuzzleHttp\Psr7\Response(
             200,
             ['Content-Type' => 'image/png'],
-            file_get_contents(fixtures_path('image.png'))
-        )
+            file_get_contents(fixtures_path('image.png')),
+        ),
     )->saveAs(null);
 })
     ->group(__DIR__, __FILE__)
@@ -154,8 +154,8 @@ it('will throw LogicException when save to unable open the resource', function (
         new \GuzzleHttp\Psr7\Response(
             200,
             ['Content-Type' => 'image/png'],
-            file_get_contents(fixtures_path('image.png'))
-        )
+            file_get_contents(fixtures_path('image.png')),
+        ),
     )->saveAs(faker()->filePath());
 })
     ->group(__DIR__, __FILE__)
@@ -167,8 +167,8 @@ it('can save to resource or file', function (): void {
         Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
             200,
             ['Content-Type' => 'image/png'],
-            file_get_contents(fixtures_path('image.png'))
-        ))
+            file_get_contents(fixtures_path('image.png')),
+        )),
     )
         ->saveAs(fopen('php://temp', 'wb+'))->toBeNull()
         ->saveAs(fixtures_path('image-copy.png'))->toBeNull();
@@ -326,7 +326,7 @@ it('can array access', function (): void {
     $response = Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(
         200,
         [],
-        json_encode(['foo' => 'bar'], JSON_THROW_ON_ERROR)
+        json_encode(['foo' => 'bar'], \JSON_THROW_ON_ERROR),
     ));
 
     expect(isset($response['foo']))->toBeTrue()

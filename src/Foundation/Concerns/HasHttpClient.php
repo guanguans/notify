@@ -80,9 +80,7 @@ trait HasHttpClient
      * @var null|callable
      */
     private $httpClientResolver;
-
     private ?HandlerStack $handlerStack = null;
-
     private array $httpOptions = [];
 
     public function __call($name, $arguments)
@@ -96,7 +94,7 @@ trait HasHttpClient
         if (\in_array($snakedName = Str::snake($name), Utils::getHttpOptionsConstants(), true)) {
             if (empty($arguments)) {
                 throw new InvalidArgumentException(
-                    sprintf('The method [%s::%s] require an argument.', static::class, $name)
+                    sprintf('The method [%s::%s] require an argument.', static::class, $name),
                 );
             }
 
@@ -128,7 +126,7 @@ trait HasHttpClient
     public function getHttpClientResolver(): callable
     {
         return $this->httpClientResolver ??= fn (): Client => new Client($this->normalizeHttpOptions(
-            Utils::mergeHttpOptions($this->defaultHttpOptions(), $this->getHttpOptions())
+            Utils::mergeHttpOptions($this->defaultHttpOptions(), $this->getHttpOptions()),
         ));
     }
 
@@ -179,7 +177,7 @@ trait HasHttpClient
         if (isset($options[RequestOptions::MULTIPART])) {
             $options[RequestOptions::MULTIPART] = Utils::multipartFor(
                 $options[RequestOptions::MULTIPART],
-                MULTIPART_TRY_OPEN_FILE
+                MULTIPART_TRY_OPEN_FILE,
             );
         }
 
@@ -187,7 +185,7 @@ trait HasHttpClient
     }
 
     /**
-     * @param null|array<ResponseInterface|\Throwable> $queue
+     * @param null|list<ResponseInterface|\Throwable> $queue
      */
     public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
     {

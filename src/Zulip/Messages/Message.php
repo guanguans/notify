@@ -16,25 +16,23 @@ namespace Guanguans\Notify\Zulip\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsFormParams;
 
 /**
- * @method self type($type)
- * @method self to($to)
  * @method self content($content)
- * @method self topic($topic)
- * @method self queueId($queueId)
  * @method self localId($localId)
+ * @method self queueId($queueId)
  * @method self readBySender(bool $readBySender)
+ * @method self to($to)
+ * @method self topic($topic)
+ * @method self type($type)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsFormParams;
-
     protected array $required = [
         // 'type',
         // 'to',
         // 'content',
         // // 'topic', // stream
     ];
-
     protected array $defined = [
         'type',
         'to',
@@ -44,11 +42,9 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'local_id',
         'read_by_sender',
     ];
-
     protected array $allowedValues = [
         // 'type' => ['direct', 'private', 'stream'],
     ];
-
     protected array $allowedTypes = [
         'read_by_sender' => 'bool',
     ];

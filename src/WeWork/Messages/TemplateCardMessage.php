@@ -16,17 +16,17 @@ namespace Guanguans\Notify\WeWork\Messages;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method self cardType($cardType)
- * @method self source(array $source)
- * @method self mainTitle(array $mainTitle)
- * @method self emphasisContent(array $emphasisContent)
- * @method self quoteArea(array $quoteArea)
- * @method self subTitleText($subTitleText)
- * @method self horizontalContentList(array $horizontalContentList)
- * @method self jumpList(array $jumpList)
  * @method self cardAction(array $cardAction)
  * @method self cardImage(array $cardImage)
+ * @method self cardType($cardType)
+ * @method self emphasisContent(array $emphasisContent)
+ * @method self horizontalContentList(array $horizontalContentList)
  * @method self imageTextArea(array $imageTextArea)
+ * @method self jumpList(array $jumpList)
+ * @method self mainTitle(array $mainTitle)
+ * @method self quoteArea(array $quoteArea)
+ * @method self source(array $source)
+ * @method self subTitleText($subTitleText)
  * @method self verticalContentList(array $verticalContentList)
  */
 class TemplateCardMessage extends Message
@@ -46,7 +46,6 @@ class TemplateCardMessage extends Message
         'image_text_area',
         'vertical_content_list',
     ];
-
     protected array $allowedTypes = [
         'source' => 'array',
         'main_title' => 'array',
@@ -59,7 +58,6 @@ class TemplateCardMessage extends Message
         'image_text_area' => 'array',
         'vertical_content_list' => 'array',
     ];
-
     protected array $options = [
         'horizontal_content_list' => [],
         'jump_list' => [],

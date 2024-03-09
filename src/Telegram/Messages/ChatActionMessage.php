@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
+ * @method self action($action)
  * @method self chatId($chatId)
  * @method self messageThreadId($messageThreadId)
- * @method self action($action)
  */
 class ChatActionMessage extends Message
 {

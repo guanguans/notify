@@ -162,14 +162,14 @@ return static function (RectorConfig $rectorConfig): void {
                     static fn (string $string, string $constant): StringToClassConstant => new StringToClassConstant(
                         $string,
                         $class,
-                        $constant
+                        $constant,
                     ),
                     $constants = (new ReflectionClass($class))->getConstants(),
-                    array_keys($constants)
-                )
+                    array_keys($constants),
+                ),
             ),
-            []
-        )
+            [],
+        ),
     );
 
     $rectorConfig->ruleWithConfiguration(RemoveTraitUseRector::class, [

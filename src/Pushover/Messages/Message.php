@@ -16,32 +16,30 @@ namespace Guanguans\Notify\Pushover\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 
 /**
- * @method self message($message)
  * @method self attachment($attachment)
+ * @method self callback($callback)
  * @method self device($device)
+ * @method self expire($expire)
  * @method self html($html)
+ * @method self message($message)
+ * @method self monospace($monospace)
  * @method self priority($priority)
+ * @method self retry($retry)
  * @method self sound($sound)
  * @method self timestamp($timestamp)
  * @method self title($title)
  * @method self ttl($ttl)
  * @method self url($url)
  * @method self urlTitle($urlTitle)
- * @method self retry($retry)
- * @method self expire($expire)
- * @method self monospace($monospace)
- * @method self callback($callback)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsMultipart;
-
     protected array $required = [
         // // 'token',
         // // 'user',
         // 'message',
     ];
-
     protected array $defined = [
         // 'token',
         // 'user',

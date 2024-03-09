@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Guanguans\Notify\DingTalk\Messages;
 
 /**
- * @method self title($title)
- * @method self text($text)
+ * @method self btnOrientation($btnOrientation)
  * @method self singleTitle($singleTitle)
  * @method self singleURL($singleURL)
- * @method self btnOrientation($btnOrientation)
+ * @method self text($text)
+ * @method self title($title)
  */
 class SingleActionCardMessage extends Message
 {

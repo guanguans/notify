@@ -17,24 +17,24 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method self chatId($chatId)
- * @method self messageThreadId($messageThreadId)
- * @method self question($question)
- * @method self options($options)
- * @method self isAnonymous($isAnonymous)
- * @method self type($type)
  * @method self allowsMultipleAnswers($allowsMultipleAnswers)
- * @method self correctOptionId($correctOptionId)
- * @method self explanation($explanation)
- * @method self explanationParseMode($explanationParseMode)
- * @method self explanationEntities($explanationEntities)
- * @method self openPeriod($openPeriod)
+ * @method self chatId($chatId)
  * @method self closeDate($closeDate)
- * @method self isClosed($isClosed)
+ * @method self correctOptionId($correctOptionId)
  * @method self disableNotification($disableNotification)
+ * @method self explanation($explanation)
+ * @method self explanationEntities($explanationEntities)
+ * @method self explanationParseMode($explanationParseMode)
+ * @method self isAnonymous($isAnonymous)
+ * @method self isClosed($isClosed)
+ * @method self messageThreadId($messageThreadId)
+ * @method self openPeriod($openPeriod)
+ * @method self options($options)
  * @method self protectContent($protectContent)
- * @method self replyParameters($replyParameters)
+ * @method self question($question)
  * @method self replyMarkup($replyMarkup)
+ * @method self replyParameters($replyParameters)
+ * @method self type($type)
  */
 class PollMessage extends Message
 {
@@ -58,7 +58,6 @@ class PollMessage extends Message
         'reply_parameters',
         'reply_markup',
     ];
-
     protected array $options = [
         'explanation_entities' => [],
     ];
@@ -81,7 +80,7 @@ class PollMessage extends Message
             ->setAllowedTypes('options', 'array')
             ->setNormalizer(
                 'options',
-                static fn (Options $options, array $value): string => json_encode($value, JSON_THROW_ON_ERROR)
+                static fn (Options $options, array $value): string => json_encode($value, \JSON_THROW_ON_ERROR),
             );
     }
 }

@@ -14,17 +14,17 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method self chatId($chatId)
- * @method self messageThreadId($messageThreadId)
- * @method self voice($voice)
  * @method self caption($caption)
- * @method self parseMode($parseMode)
  * @method self captionEntities($captionEntities)
- * @method self duration($duration)
+ * @method self chatId($chatId)
  * @method self disableNotification($disableNotification)
+ * @method self duration($duration)
+ * @method self messageThreadId($messageThreadId)
+ * @method self parseMode($parseMode)
  * @method self protectContent($protectContent)
- * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
+ * @method self replyParameters($replyParameters)
+ * @method self voice($voice)
  */
 class VoiceMessage extends Message
 {
@@ -41,7 +41,6 @@ class VoiceMessage extends Message
         'reply_parameters',
         'reply_markup',
     ];
-
     protected array $options = [
         'caption_entities' => [],
     ];

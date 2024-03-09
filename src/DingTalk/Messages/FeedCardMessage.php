@@ -23,11 +23,9 @@ class FeedCardMessage extends Message
     protected array $defined = [
         'links',
     ];
-
     protected array $allowedTypes = [
         'links' => 'array',
     ];
-
     protected array $options = [
         'links' => [],
     ];

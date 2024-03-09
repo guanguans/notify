@@ -16,8 +16,6 @@ namespace Guanguans\NotifyTests;
 use phpmock\phpunit\PHPMock;
 
 /**
- * @internal
- *
  * @coversNothing
  *
  * @small

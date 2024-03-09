@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method self offset($offset)
- * @method self limit($limit)
- * @method self timeout($timeout)
  * @method self allowedUpdates(array $allowedUpdates)
+ * @method self limit($limit)
+ * @method self offset($offset)
+ * @method self timeout($timeout)
  */
 class GetUpdatesMessage extends Message
 {
@@ -27,7 +27,6 @@ class GetUpdatesMessage extends Message
         'timeout',
         'allowed_updates',
     ];
-
     protected array $allowedTypes = [
         'allowed_updates' => 'array',
     ];

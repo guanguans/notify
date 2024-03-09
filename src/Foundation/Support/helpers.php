@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-if (! function_exists('error_silencer')) {
+if (!function_exists('error_silencer')) {
     /**
      * @psalm-suppress ForbiddenCode
      * @psalm-suppress InvalidArgument
@@ -39,7 +39,7 @@ if (! function_exists('error_silencer')) {
     }
 }
 
-if (! function_exists('value')) {
+if (!function_exists('value')) {
     /**
      * Return the default value of the given value.
      *
@@ -53,7 +53,7 @@ if (! function_exists('value')) {
     }
 }
 
-if (! function_exists('base64_encode_file')) {
+if (!function_exists('base64_encode_file')) {
     /**
      * Encodes a file to base64.
      */
@@ -63,7 +63,7 @@ if (! function_exists('base64_encode_file')) {
     }
 }
 
-if (! function_exists('tap')) {
+if (!function_exists('tap')) {
     /**
      * Call the given Closure with the given value then return the value.
      *

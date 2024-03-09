@@ -25,7 +25,6 @@ use Psr\Http\Message\UriFactoryInterface;
 class UriTemplateAuthenticator extends NullAuthenticator
 {
     private array $variables;
-
     private UriFactoryInterface $uriFactory;
 
     public function __construct(array $variables, ?UriFactoryInterface $uriFactory = null)
@@ -41,8 +40,8 @@ class UriTemplateAuthenticator extends NullAuthenticator
     {
         return $request->withUri(
             $this->uriFactory->createUri(
-                UriTemplate::expand(urldecode((string) $request->getUri()), $this->variables)
-            )
+                UriTemplate::expand(urldecode((string) $request->getUri()), $this->variables),
+            ),
         );
     }
 }

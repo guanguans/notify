@@ -23,7 +23,7 @@ use Guanguans\Notify\Pushover\Messages\Message;
 it('can send message', function (): void {
     $authenticator = new Authenticator(
         'uz86ivgu7xkizpdpdo65vw2c7d5',
-        'abs9tevjnpu2p7x1yii8uf23qq9'
+        'abs9tevjnpu2p7x1yii8uf23qq9',
     );
     $client = new Client($authenticator);
     $message = Message::make([
@@ -49,7 +49,7 @@ it('can send message', function (): void {
             create_response('{"status":1,"request":"a84b20eb-b69e-4687-83d1-bab8ee2d0e40"}'),
             create_response(
                 '{"token":"invalid","errors":["application token is invalid, see https://pushover.net/api"],"status":0,"request":"5c4487c0-a61a-497e-9205-3441a99471b0"}',
-                400
+                400,
             ),
         ])
         ->assertCanSendMessage($message);

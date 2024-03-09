@@ -15,7 +15,7 @@ namespace Guanguans\Notify\Lark\Messages;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
-    public function toHttpUri(): string
+    final public function toHttpUri(): string
     {
         return 'open-apis/bot/v2/hook/{token}';
     }

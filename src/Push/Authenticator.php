@@ -24,7 +24,7 @@ class Authenticator extends AggregateAuthenticator
     {
         parent::__construct(
             new TokenUriTemplateAuthenticator($apiKey),
-            new OptionsAuthenticator([RequestOptions::HEADERS => ['X-Api-Key' => $apiKey]])
+            new OptionsAuthenticator([RequestOptions::HEADERS => ['X-Api-Key' => $apiKey]]),
         );
     }
 }

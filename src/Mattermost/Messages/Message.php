@@ -15,24 +15,23 @@ namespace Guanguans\Notify\Mattermost\Messages;
 
 /**
  * @method self channelId($channelId)
- * @method self message($message)
- * @method self fileIds(array $fileIds)
  * @method self createAt($createAt)
  * @method self editAt($editAt)
+ * @method self fileIds(array $fileIds)
  * @method self isPinned(bool $isPinned)
- * @method self rootId($rootId)
+ * @method self message($message)
  * @method self originalId($originalId)
- * @method self type($type)
- * @method self props(array $props)
- * @method self pendingPostId($pendingPostId)
  * @method self participants($participants)
+ * @method self pendingPostId($pendingPostId)
+ * @method self props(array $props)
+ * @method self rootId($rootId)
+ * @method self type($type)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     protected array $required = [
         // 'channel_id',
     ];
-
     protected array $defined = [
         'channel_id',
         'message',
@@ -47,7 +46,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'pending_post_id',
         'participants',
     ];
-
     protected array $allowedTypes = [
         'file_ids' => 'array',
         'props' => 'array',

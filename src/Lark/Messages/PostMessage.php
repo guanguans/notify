@@ -23,11 +23,9 @@ class PostMessage extends Message
     protected array $defined = [
         'post',
     ];
-
     protected array $allowedTypes = [
         'post' => 'array',
     ];
-
     protected array $options = [
         'post' => [],
     ];

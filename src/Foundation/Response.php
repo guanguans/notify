@@ -76,7 +76,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
             'handlerStats' => $this->handlerStats(),
             'headers' => Arr::map(
                 $this->headers(),
-                fn (array $header, string $name): string => $this->getHeaderLine($name)
+                fn (array $header, string $name): string => $this->getHeaderLine($name),
             ),
             'status' => $this->status(),
             'reason' => $this->reason(),
@@ -103,7 +103,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
             $response->getHeaders(),
             $response->getBody(),
             $response->getProtocolVersion(),
-            $response->getReasonPhrase()
+            $response->getReasonPhrase(),
         );
     }
 
@@ -190,7 +190,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function collect($key = null): Collection
     {
-        if (! class_exists(Collection::class)) {
+        if (!class_exists(Collection::class)) {
             throw new RuntimeException('To use the "collect" method you must install the illuminate/collections package.');
         }
 
@@ -212,7 +212,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function saveAs($resourceOrPath, bool $closeResource = true): void
     {
-        if (! \is_string($resourceOrPath) && ! \is_resource($resourceOrPath)) {
+        if (!\is_string($resourceOrPath) && !\is_resource($resourceOrPath)) {
             throw new InvalidArgumentException('The $resourceOrPath argument must be either a file path or a resource.');
         }
 
@@ -225,11 +225,12 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
         rewind($resource);
 
         $stream = $this->getBody();
+
         if ($stream->isSeekable()) {
             $stream->rewind();
         }
 
-        while (! $stream->eof()) {
+        while (!$stream->eof()) {
             fwrite($resource, $stream->read(1024));
         }
 

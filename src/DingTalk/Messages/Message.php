@@ -17,7 +17,7 @@ use Guanguans\Notify\Foundation\Support\Arr;
 
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
-    public function toHttpUri(): string
+    final public function toHttpUri(): string
     {
         return 'robot/send';
     }

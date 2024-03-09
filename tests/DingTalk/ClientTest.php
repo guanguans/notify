@@ -28,7 +28,7 @@ use Guanguans\Notify\DingTalk\Messages\TextMessage;
 beforeEach(function (): void {
     $authenticator = new Authenticator(
         'c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73',
-        'SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee51730'
+        'SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee51730',
     );
     $this->client = (new Client($authenticator))->mock([
         create_response('{"errcode":0,"errmsg":"ok"}'),

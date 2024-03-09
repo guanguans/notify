@@ -37,12 +37,10 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-class HasHttpClientDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
+final class HasHttpClientDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
 {
     private DocBlockUpdater $docBlockUpdater;
-
     private PhpDocInfoFactory $phpDocInfoFactory;
-
     private array $except = [
         '__*',
         'create',
@@ -58,8 +56,8 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
     }
 
     /**
-     * @throws ShouldNotHappenException
      * @throws PoorDocumentationException
+     * @throws ShouldNotHappenException
      */
     public function getRuleDefinition(): RuleDefinition
     {
@@ -69,8 +67,7 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
                 new ConfiguredCodeSample(
                     <<<'CODE_SAMPLE'
                         trait HasHttpClient {}
-                        CODE_SAMPLE
-                    ,
+                        CODE_SAMPLE,
                     <<<'CODE_SAMPLE'
                         /**
                          * ...
@@ -84,11 +81,10 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
                          * @mixin \Guanguans\Notify\Foundation\Client
                          */
                         trait HasHttpClient {}
-                        CODE_SAMPLE
-                    ,
-                    ['__*']
+                        CODE_SAMPLE,
+                    ['__*'],
                 ),
-            ]
+            ],
         );
     }
 
@@ -114,6 +110,7 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
     {
         /** @var class-string $trait */
         $trait = $node->getAttribute('scope')->getClassReflection()->getName();
+
         if (HasHttpClient::class !== $trait) {
             return;
         }
@@ -142,8 +139,9 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
     {
         $reflectionMethods = array_filter(
             (new \ReflectionClass(HandlerStack::class))->getMethods(\ReflectionMethod::IS_PUBLIC),
-            fn (\ReflectionMethod $reflectionMethod): bool => ! Str::is($this->except, $reflectionMethod->getName())
+            fn (\ReflectionMethod $reflectionMethod): bool => !Str::is($this->except, $reflectionMethod->getName()),
         );
+
         foreach ($reflectionMethods as $reflectionMethod) {
             $phpDocInfo->addPhpDocTagNode($this->createMethodPhpDocTagNode($reflectionMethod));
         }
@@ -200,9 +198,9 @@ class HasHttpClientDocCommentRector extends AbstractRector implements Configurab
 
                     return $carry.', ';
                 },
-                ''
+                '',
             ),
-            ', '
+            ', ',
         );
 
         return new PhpDocTagNode('@method', new GenericTagValueNode("$static$returnType$name($parameters)"));

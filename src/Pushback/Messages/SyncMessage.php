@@ -14,12 +14,12 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Pushback\Messages;
 
 /**
- * @method self id($id)
- * @method self title($title)
- * @method self body($body)
  * @method self action1($action1)
  * @method self action2($action2)
+ * @method self body($body)
+ * @method self id($id)
  * @method self reply($reply)
+ * @method self title($title)
  */
 class SyncMessage extends Message
 {

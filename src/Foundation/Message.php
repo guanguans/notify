@@ -28,7 +28,6 @@ abstract class Message implements \ArrayAccess, Contracts\Message
     use AsPost;
     use Dumpable;
     use HasOptions;
-
     protected bool $ignoreUndefined = true;
 
     public function __construct(array $options = [])
@@ -55,7 +54,7 @@ abstract class Message implements \ArrayAccess, Contracts\Message
      *
      * @return static
      */
-    public static function make($options = []): self
+    final public static function make($options = []): self
     {
         if (0 === \func_num_args()) {
             return new static($options);
@@ -63,6 +62,7 @@ abstract class Message implements \ArrayAccess, Contracts\Message
 
         $properties = (new \ReflectionClass(static::class))->getDefaultProperties();
         $defined = array_unique(array_merge($properties['defined'] ?? [], $properties['required'] ?? []));
+
         if (1 === \count($defined)) {
             return new static([current($defined) => $options]);
         }
@@ -70,7 +70,7 @@ abstract class Message implements \ArrayAccess, Contracts\Message
         return new static($options);
     }
 
-    protected function toJson(int $options = JSON_THROW_ON_ERROR | JSON_UNESCAPED_UNICODE): string
+    protected function toJson(int $options = \JSON_THROW_ON_ERROR | \JSON_UNESCAPED_UNICODE): string
     {
         return json_encode($this->toPayload(), $options);
     }
@@ -79,7 +79,7 @@ abstract class Message implements \ArrayAccess, Contracts\Message
     {
         return Arr::rejectRecursive(
             $this->getValidatedOptions(),
-            static fn ($value): bool => [] === $value || null === $value
+            static fn ($value): bool => [] === $value || null === $value,
         );
     }
 }

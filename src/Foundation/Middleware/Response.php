@@ -33,7 +33,7 @@ class Response
                 $response->transferStats(self::$transferStats);
 
                 return $response;
-            }
+            },
         );
     }
 

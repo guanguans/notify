@@ -14,13 +14,13 @@ declare(strict_types=1);
 namespace Guanguans\Notify\IGot\Messages;
 
 /**
- * @method self title($title)
- * @method self content($content)
- * @method self url($url)
  * @method self automaticallyCopy($automaticallyCopy)
- * @method self urgent($urgent)
+ * @method self content($content)
  * @method self copy($copy)
  * @method self detail(array $detail)
+ * @method self title($title)
+ * @method self urgent($urgent)
+ * @method self url($url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -33,7 +33,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'copy',
         'detail',
     ];
-
     protected array $allowedTypes = [
         'detail' => 'array',
     ];

@@ -35,7 +35,7 @@ $finder = Finder::create()
         'vendor/',
         '__snapshots__/',
     ])
-    ->append(glob(__DIR__.'/{*,.*}.php', GLOB_BRACE))
+    ->append(glob(__DIR__.'/{*,.*}.php', \GLOB_BRACE))
     ->append([
         __DIR__.'/composer-updater',
         __DIR__.'/platform-lint',
@@ -139,12 +139,12 @@ return (new Config)
         'date_time_immutable' => true,
 
         // comment
-        'header_comment' => [
-            'header' => $header,
-            'comment_type' => 'PHPDoc',
-            'location' => 'after_declare_strict',
-            'separate' => 'both',
-        ],
+        // 'header_comment' => [
+        //     'header' => $header,
+        //     'comment_type' => 'PHPDoc',
+        //     'location' => 'after_declare_strict',
+        //     'separate' => 'both',
+        // ],
 
         // constant_notation
 

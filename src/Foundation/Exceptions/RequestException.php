@@ -38,7 +38,7 @@ class RequestException extends GuzzleRequestException implements Throwable
             $response,
             $previous,
             $handlerContext,
-            $bodySummarizer
+            $bodySummarizer,
         ));
     }
 

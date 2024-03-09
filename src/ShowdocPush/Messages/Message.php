@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Guanguans\Notify\ShowdocPush\Messages;
 
 /**
- * @method self title($title)
  * @method self content($content)
+ * @method self title($title)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

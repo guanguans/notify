@@ -46,7 +46,7 @@ class Utils
          * }[]
          */
         $partResolver = static function ($key, $value) use (&$partResolver): array {
-            if (! \is_array($value)) {
+            if (!\is_array($value)) {
                 return [['name' => $key, 'contents' => $value]];
             }
 
@@ -58,6 +58,7 @@ class Utils
             }
 
             $parts = [];
+
             foreach ($value as $k => $v) {
                 $k = "{$key}[$k]";
 
@@ -70,12 +71,12 @@ class Utils
         };
 
         $contentsNormalizer = static function ($contents, int $options) {
-            if (! \is_string($contents)) {
+            if (!\is_string($contents)) {
                 return $contents;
             }
 
             if (
-                (($options & MULTIPART_TRY_OPEN_URL) && filter_var($contents, FILTER_VALIDATE_URL))
+                (($options & MULTIPART_TRY_OPEN_URL) && filter_var($contents, \FILTER_VALIDATE_URL))
                 || (($options & MULTIPART_TRY_OPEN_FILE) && is_file($contents))
             ) {
                 return \GuzzleHttp\Psr7\Utils::tryFopen($contents, 'r');
@@ -85,6 +86,7 @@ class Utils
         };
 
         $parts = [];
+
         foreach ($data as $key => $value) {
             $parts[] = $partResolver($key, $value);
         }
@@ -95,7 +97,7 @@ class Utils
 
                 return $part;
             },
-            array_merge([], ...$parts)
+            array_merge([], ...$parts),
         );
     }
 
@@ -131,7 +133,7 @@ class Utils
                 RequestOptions::MULTIPART,
                 RequestOptions::QUERY,
             ])),
-            ...$options
+            ...$options,
         );
     }
 
@@ -152,7 +154,7 @@ class Utils
         }
 
         if (\defined('PHP_VERSION')) {
-            $defaults['PHP'] = PHP_VERSION;
+            $defaults['PHP'] = \PHP_VERSION;
         }
 
         if (\defined('HHVM_VERSION')) {
@@ -169,7 +171,7 @@ class Utils
         return trim(implode(' ', array_map(
             static fn ($value, string $name): string => "$name/$value",
             $defaults,
-            array_keys($defaults)
+            array_keys($defaults),
         )));
     }
 }

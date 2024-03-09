@@ -16,14 +16,14 @@ namespace Guanguans\Notify\Push\Messages;
 use Guanguans\Notify\Foundation\Support\Arr;
 
 /**
- * @method self groupId($groupId)
- * @method self title($title)
  * @method self body($body)
- * @method self sound($sound)
  * @method self channel($channel)
- * @method self link($link)
+ * @method self groupId($groupId)
  * @method self image($image)
+ * @method self link($link)
+ * @method self sound($sound)
  * @method self timeSensitive(bool $timeSensitive)
+ * @method self title($title)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -38,7 +38,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'image',
         'timeSensitive',
     ];
-
     protected array $allowedTypes = [
         'timeSensitive' => 'bool',
     ];

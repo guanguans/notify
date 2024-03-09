@@ -27,7 +27,7 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-class ToInternalExceptionRector extends AbstractRector implements ConfigurableRectorInterface
+final class ToInternalExceptionRector extends AbstractRector implements ConfigurableRectorInterface
 {
     private array $except = [];
 
@@ -43,15 +43,13 @@ class ToInternalExceptionRector extends AbstractRector implements ConfigurableRe
                 new ConfiguredCodeSample(
                     <<<'CODE_SAMPLE'
                         throw new \InvalidArgumentException('on_headers must be callable');
-                        CODE_SAMPLE
-                    ,
+                        CODE_SAMPLE,
                     <<<'CODE_SAMPLE'
                         throw new \Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException('on_headers must be callable');
-                        CODE_SAMPLE
-                    ,
-                    ['exceptionClassPattern']
+                        CODE_SAMPLE,
+                    ['exceptionClassPattern'],
                 ),
-            ]
+            ],
         );
     }
 
@@ -80,12 +78,12 @@ class ToInternalExceptionRector extends AbstractRector implements ConfigurableRe
         $class = $node->class;
 
         if (
-            ! $class instanceof Name
+            !$class instanceof Name
             || Str::is($this->except, $class->toString())
             || 0 === strncmp(
                 $class->toString(),
                 'Guanguans\\Notify\\Foundation\\Exceptions\\',
-                \strlen('Guanguans\\Notify\\Foundation\\Exceptions\\')
+                \strlen('Guanguans\\Notify\\Foundation\\Exceptions\\'),
             )
             || 0 !== substr_compare($class->toString(), 'Exception', -\strlen('Exception'))
         ) {
@@ -93,7 +91,8 @@ class ToInternalExceptionRector extends AbstractRector implements ConfigurableRe
         }
 
         $internalExceptionClass = "\\Guanguans\\Notify\\Foundation\\Exceptions\\{$class->getLast()}";
-        if (! class_exists($internalExceptionClass)) {
+
+        if (!class_exists($internalExceptionClass)) {
             $this->createInternalException($class);
         }
 
@@ -109,6 +108,7 @@ class ToInternalExceptionRector extends AbstractRector implements ConfigurableRe
     {
         $externalExceptionClass = $name->toString();
         $reflectionClass = new \ReflectionClass($externalExceptionClass);
+
         if ($reflectionClass->isFinal()) {
             return;
         }

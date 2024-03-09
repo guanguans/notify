@@ -21,6 +21,7 @@ class Authenticator extends OptionsAuthenticator
     public function __construct(string $token, ?string $secret = null)
     {
         $query = ['access_token' => $token];
+
         if ($secret) {
             [$microseconds, $seconds] = explode(' ', microtime());
             $query += [
@@ -38,7 +39,7 @@ class Authenticator extends OptionsAuthenticator
             'sha256',
             "$timestamp\n$secret",
             $secret,
-            true
+            true,
         )));
     }
 }

@@ -17,20 +17,19 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method self roomId($roomId)
- * @method self channel($channel)
- * @method self text($text)
  * @method self alias($alias)
- * @method self emoji($emoji)
- * @method self avatar($avatar)
  * @method self attachments(array $attachments)
+ * @method self avatar($avatar)
+ * @method self channel($channel)
+ * @method self emoji($emoji)
+ * @method self roomId($roomId)
+ * @method self text($text)
  * @method self tmid($tmid)
  * @method self tshow(bool $tshow)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
-
     protected array $defined = [
         'roomId',
         'channel',
@@ -42,12 +41,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'tmid',
         'tshow',
     ];
-
     protected $allowedTypes = [
         'attachments' => 'array',
         'tshow' => 'bool',
     ];
-
     protected array $options = [
         'attachments' => [],
     ];

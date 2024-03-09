@@ -17,21 +17,20 @@ use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
+ * @method self ark(array $ark)
  * @method self channelId($channelId)
  * @method self content($content)
  * @method self embed(array $embed)
- * @method self ark(array $ark)
- * @method self messageReference(array $messageReference)
- * @method self image($image)
- * @method self fileImage($fileImage)
- * @method self msgId($msgId)
  * @method self eventId($eventId)
+ * @method self fileImage($fileImage)
+ * @method self image($image)
  * @method self markdown(array $markdown)
+ * @method self messageReference(array $messageReference)
+ * @method self msgId($msgId)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsMultipart;
-
     protected array $defined = [
         'channel_id',
         'content',
@@ -44,7 +43,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'event_id',
         'markdown',
     ];
-
     protected array $allowedTypes = [
         'embed' => 'array',
         'ark' => 'array',

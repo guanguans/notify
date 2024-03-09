@@ -72,7 +72,7 @@ class Arr
             // If the key doesn't exist at this depth, we will just create an empty array
             // to hold the next value, allowing us to create the arrays to hold final
             // values at the correct depth. Then we'll keep digging into the array.
-            if (! isset($array[$key]) || ! \is_array($array[$key])) {
+            if (!isset($array[$key]) || !\is_array($array[$key])) {
                 $array[$key] = [];
             }
 
@@ -97,7 +97,7 @@ class Arr
      */
     public static function get($array, $key, $default = null)
     {
-        if (! static::accessible($array)) {
+        if (!static::accessible($array)) {
             return value($default);
         }
 
@@ -209,7 +209,7 @@ class Arr
      */
     public static function rejectRecursive(array $array, ?callable $callback = null, int $flag = 0): array
     {
-        return static::filterRecursive($array, static fn (...$args): bool => ! $callback(...$args), $flag);
+        return static::filterRecursive($array, static fn (...$args): bool => !$callback(...$args), $flag);
     }
 
     /**

@@ -35,14 +35,12 @@ use Webmozart\Assert\Assert;
 /**
  * @internal
  */
-class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
+final class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
 {
     private array $classes = [
         Message::class,
     ];
-
     private DocBlockUpdater $docBlockUpdater;
-
     private PhpDocInfoFactory $phpDocInfoFactory;
 
     public function __construct(DocBlockUpdater $docBlockUpdater, PhpDocInfoFactory $phpDocInfoFactory)
@@ -69,8 +67,7 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
                                 'content',
                             ];
                         }
-                        CODE_SAMPLE
-                    ,
+                        CODE_SAMPLE,
                     <<<'CODE_SAMPLE'
                         /**
                          * @method self title($title)
@@ -83,11 +80,10 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
                                 'content',
                             ];
                         }
-                        CODE_SAMPLE
-                    ,
-                    [Message::class]
+                        CODE_SAMPLE,
+                    [Message::class],
                 ),
-            ]
+            ],
         );
     }
 
@@ -99,9 +95,9 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
         Assert::allClassExists($configuration);
 
         foreach ($configuration as $class) {
-            if (! \array_key_exists(HasOptions::class, (new \ReflectionClass($class))->getTraits())) {
+            if (!\array_key_exists(HasOptions::class, (new \ReflectionClass($class))->getTraits())) {
                 throw new InvalidArgumentException(
-                    sprintf('The class [%s] must use trait [%s].', $class, HasOptions::class)
+                    sprintf('The class [%s] must use trait [%s].', $class, HasOptions::class),
                 );
             }
         }
@@ -125,13 +121,14 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
     {
         /** @var class-string $class */
         $class = $node->getAttribute('scope')->getClassReflection()->getName();
-        if (! $this->isSubclassesOf($class)) {
+
+        if (!$this->isSubclassesOf($class)) {
             return;
         }
 
         // Sort properties
         usort($node->stmts, static function (Node\Stmt $a, Node\Stmt $b): int {
-            if (! $a instanceof Property || ! $b instanceof Property) {
+            if (!$a instanceof Property || !$b instanceof Property) {
                 return 0;
             }
 
@@ -151,7 +148,7 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
             return array_search($a->props[0]->name->name, $rules, true) <=> array_search(
                 $b->props[0]->name->name,
                 $rules,
-                true
+                true,
             );
         });
 
@@ -159,8 +156,9 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
         $allowedTypes = $defaultProperties['allowedTypes'] ?? [];
         $defined = array_filter(
             array_unique(array_merge($defaultProperties['defined'] ?? [], $defaultProperties['required'] ?? [])),
-            static fn (string $option): bool => ! Str::is(['*@*'], $option)
+            static fn (string $option): bool => !Str::is(['*@*'], $option),
         );
+
         if ([] === $defined) {
             return;
         }
@@ -168,9 +166,10 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
         $node->setAttribute('comments', []);
 
         $phpDocInfo = $this->phpDocInfoFactory->createFromNodeOrEmpty($node);
+
         foreach ($defined as $option) {
             $phpDocInfo->addPhpDocTagNode(
-                $this->createMethodPhpDocTagNode($option, $allowedTypes[$option] ?? [])
+                $this->createMethodPhpDocTagNode($option, $allowedTypes[$option] ?? []),
             );
         }
 
@@ -191,7 +190,7 @@ class HasOptionsDocCommentRector extends AbstractRector implements ConfigurableR
     }
 
     /**
-     * @param array<string>|string $optionAllowedTypes
+     * @param list<string>|string $optionAllowedTypes
      */
     private function createMethodPhpDocTagNode(string $option, $optionAllowedTypes): PhpDocTagNode
     {

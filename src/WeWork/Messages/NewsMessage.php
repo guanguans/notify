@@ -23,11 +23,9 @@ class NewsMessage extends Message
     protected array $defined = [
         'articles',
     ];
-
     protected array $allowedTypes = [
         'articles' => 'array',
     ];
-
     protected array $options = [
         'articles' => [],
     ];

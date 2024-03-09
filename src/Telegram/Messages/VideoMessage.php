@@ -14,22 +14,22 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method self chatId($chatId)
- * @method self messageThreadId($messageThreadId)
- * @method self video($video)
- * @method self duration($duration)
- * @method self width($width)
- * @method self height($height)
- * @method self thumbnail($thumbnail)
  * @method self caption($caption)
- * @method self parseMode($parseMode)
  * @method self captionEntities($captionEntities)
- * @method self hasSpoiler($hasSpoiler)
- * @method self supportsStreaming($supportsStreaming)
+ * @method self chatId($chatId)
  * @method self disableNotification($disableNotification)
+ * @method self duration($duration)
+ * @method self hasSpoiler($hasSpoiler)
+ * @method self height($height)
+ * @method self messageThreadId($messageThreadId)
+ * @method self parseMode($parseMode)
  * @method self protectContent($protectContent)
- * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
+ * @method self replyParameters($replyParameters)
+ * @method self supportsStreaming($supportsStreaming)
+ * @method self thumbnail($thumbnail)
+ * @method self video($video)
+ * @method self width($width)
  */
 class VideoMessage extends Message
 {
@@ -51,7 +51,6 @@ class VideoMessage extends Message
         'reply_parameters',
         'reply_markup',
     ];
-
     protected array $options = [
         'caption_entities' => [],
     ];

@@ -23,6 +23,6 @@ use GuzzleHttp\Psr7\Request;
 it('can wrap exception', function (): void {
     expect(RequestException::wrapException(
         new Request('GET', 'uri'),
-        new RuntimeException('message')
+        new RuntimeException('message'),
     ))->toBeInstanceOf(RequestException::class);
 })->group(__DIR__, __FILE__);

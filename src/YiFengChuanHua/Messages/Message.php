@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Guanguans\Notify\YiFengChuanHua\Messages;
 
 /**
- * @method self head($head)
  * @method self body($body)
  * @method self delayMilliseconds($delayMilliseconds)
+ * @method self head($head)
  * @method self url($url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
@@ -24,7 +24,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $required = [
         // 'head',
     ];
-
     protected array $defined = [
         'head',
         'body',

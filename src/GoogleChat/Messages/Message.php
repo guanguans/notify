@@ -14,21 +14,21 @@ declare(strict_types=1);
 namespace Guanguans\Notify\GoogleChat\Messages;
 
 /**
- * @method self text($text)
- * @method self cards(array $cards)
- * @method self name($name)
- * @method self sender(array $sender)
- * @method self createTime($createTime)
- * @method self lastUpdateTime($lastUpdateTime)
- * @method self previewText($previewText)
- * @method self annotations(array $annotations)
- * @method self thread(array $thread)
- * @method self space(array $space)
- * @method self fallbackText($fallbackText)
  * @method self actionResponse(array $actionResponse)
+ * @method self annotations(array $annotations)
  * @method self argumentText($argumentText)
- * @method self slashCommand(array $slashCommand)
  * @method self attachment(array $attachment)
+ * @method self cards(array $cards)
+ * @method self createTime($createTime)
+ * @method self fallbackText($fallbackText)
+ * @method self lastUpdateTime($lastUpdateTime)
+ * @method self name($name)
+ * @method self previewText($previewText)
+ * @method self sender(array $sender)
+ * @method self slashCommand(array $slashCommand)
+ * @method self space(array $space)
+ * @method self text($text)
+ * @method self thread(array $thread)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -49,7 +49,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'slashCommand',
         'attachment',
     ];
-
     protected array $allowedTypes = [
         'cards' => 'array',
         'sender' => 'array',

@@ -14,12 +14,12 @@ declare(strict_types=1);
 namespace Guanguans\Notify\ServerChan\Messages;
 
 /**
- * @method self title($title)
- * @method self desp($desp)
- * @method self short($short)
- * @method self noip($noip)
  * @method self channel($channel)
+ * @method self desp($desp)
+ * @method self noip($noip)
  * @method self openid($openid)
+ * @method self short($short)
+ * @method self title($title)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

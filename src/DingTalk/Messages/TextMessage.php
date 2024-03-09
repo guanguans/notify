@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Guanguans\Notify\DingTalk\Messages;
 
 /**
- * @method self content($content)
- * @method self atMobiles(array $atMobiles)
  * @method self atDingtalkIds(array $atDingtalkIds)
+ * @method self atMobiles(array $atMobiles)
+ * @method self content($content)
  * @method self isAtAll(bool $isAtAll)
  */
 class TextMessage extends Message
@@ -27,7 +27,6 @@ class TextMessage extends Message
         'atDingtalkIds',
         'isAtAll',
     ];
-
     protected array $allowedTypes = [
         'atMobiles' => 'array',
         'atDingtalkIds' => 'array',

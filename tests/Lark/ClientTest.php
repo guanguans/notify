@@ -27,7 +27,7 @@ use Guanguans\Notify\Lark\Messages\TextMessage;
 beforeEach(function (): void {
     $authenticator = new Authenticator(
         '2504d7d6-356d-414e-9c99-cd5671d14',
-        'WeqWRCyD9pawyIPGqldUYe'
+        'WeqWRCyD9pawyIPGqldUYe',
     );
     $this->client = (new Client($authenticator))->mock([
         create_response('{"StatusCode":0,"StatusMessage":"success","code":0,"data":{},"msg":"success"}'),
@@ -75,7 +75,7 @@ it('can send post message', function (): void {
                     ],
                 ],
             ],
-        ]
+        ],
     )
         ->post(['zh_cn' => $post])
         ->setPostForLang('en_us', $post);

@@ -23,13 +23,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @property-read array<string, mixed> $defaults // Support nested options.
- * @property-read array<string> $required
- * @property-read array<string> $defined
+ * @property-read list<string> $required
+ * @property-read list<string> $defined
  * @property-read bool $ignoreUndefined // Required symfony/options-resolver >= 6.3
  * @property-read array<array-key, array|string> $deprecated
  * @property-read array<string, \Closure> $normalizers
  * @property-read array<string, mixed> $allowedValues
- * @property-read array<string, array<string>|string> $allowedTypes;
+ * @property-read array<string, list<string>|string> $allowedTypes;
  * @property-read array<string, string> $infos
  */
 trait HasOptions
@@ -46,7 +46,7 @@ trait HasOptions
             if (\in_array($casedName, $defined, true)) {
                 if (empty($arguments)) {
                     throw new InvalidArgumentException(
-                        sprintf('The method [%s::%s] require an argument.', static::class, $name)
+                        sprintf('The method [%s::%s] require an argument.', static::class, $name),
                     );
                 }
 

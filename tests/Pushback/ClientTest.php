@@ -35,9 +35,8 @@ beforeEach(function (): void {
                     }
                   ]
                 }
-                error
-            ,
-            401
+                error,
+            401,
         ),
     ]);
 });

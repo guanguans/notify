@@ -15,15 +15,15 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self chatId($chatId)
- * @method self messageThreadId($messageThreadId)
- * @method self phoneNumber($phoneNumber)
+ * @method self disableNotification($disableNotification)
  * @method self firstName($firstName)
  * @method self lastName($lastName)
- * @method self vcard($vcard)
- * @method self disableNotification($disableNotification)
+ * @method self messageThreadId($messageThreadId)
+ * @method self phoneNumber($phoneNumber)
  * @method self protectContent($protectContent)
- * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
+ * @method self replyParameters($replyParameters)
+ * @method self vcard($vcard)
  */
 class ContactMessage extends Message
 {

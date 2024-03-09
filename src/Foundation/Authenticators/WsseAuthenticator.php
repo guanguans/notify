@@ -18,7 +18,6 @@ use Psr\Http\Message\RequestInterface;
 class WsseAuthenticator extends NullAuthenticator
 {
     private string $username;
-
     private string $password;
 
     public function __construct(string $username, string $password)
@@ -38,7 +37,7 @@ class WsseAuthenticator extends NullAuthenticator
             $this->username,
             $digest,
             $nonce,
-            $created
+            $created,
         );
 
         return $request

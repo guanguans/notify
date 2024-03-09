@@ -42,7 +42,7 @@ it('can send message', function (): void {
             create_response('{"code":200,"message":"success","timestamp":1708331409}'),
             create_response(
                 '{"code":400,"message":"failed to get device token: failed to get [yetwhxBm7wCBSUTjeqh] device token from database","timestamp":1708331590}',
-                400
+                400,
             ),
         ])
         ->assertCanSendMessage($message);

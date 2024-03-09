@@ -25,7 +25,6 @@ class TextMessage extends Message
         'mentioned_list',
         'mentioned_mobile_list',
     ];
-
     protected array $allowedTypes = [
         'mentioned_list' => 'array',
         'mentioned_mobile_list' => 'array',

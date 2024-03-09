@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Guanguans\Notify\NowPush\Messages;
 
 /**
+ * @method self deviceType($deviceType)
  * @method self messageType($messageType)
  * @method self note($note)
- * @method self deviceType($deviceType)
  * @method self url($url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
@@ -27,12 +27,10 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'device_type',
         'url',
     ];
-
     protected array $allowedValues = [
         // 'message_type' => ['nowpush_note', 'nowpush_img', 'nowpush_link'],
         'device_type' => 'api',
     ];
-
     protected array $options = [
         'device_type' => 'api',
     ];

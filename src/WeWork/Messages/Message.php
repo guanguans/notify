@@ -19,7 +19,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
     // use AsBody;
 
-    public function toHttpUri(): string
+    final public function toHttpUri(): string
     {
         return 'cgi-bin/webhook/send?key={token}';
     }

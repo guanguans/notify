@@ -16,11 +16,10 @@ namespace Guanguans\Notify\Slack\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 
 /**
- * @method self channel($channel)
+ * @method self asUser(bool $asUser)
  * @method self attachments(array $attachments)
  * @method self blocks(array $blocks)
- * @method self text($text)
- * @method self asUser(bool $asUser)
+ * @method self channel($channel)
  * @method self iconEmoji($iconEmoji)
  * @method self iconUrl($iconUrl)
  * @method self linkNames(bool $linkNames)
@@ -28,6 +27,7 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
  * @method self mrkdwn(bool $mrkdwn)
  * @method self parse($parse)
  * @method self replyBroadcast(bool $replyBroadcast)
+ * @method self text($text)
  * @method self threadTs($threadTs)
  * @method self unfurlLinks(bool $unfurlLinks)
  * @method self unfurlMedia(bool $unfurlMedia)
@@ -36,7 +36,6 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
-
     protected array $defined = [
         'channel',
         'attachments',
@@ -55,7 +54,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'unfurl_media',
         'username',
     ];
-
     protected array $allowedTypes = [
         'attachments' => 'array',
         'blocks' => 'array',
@@ -67,7 +65,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'unfurl_links' => 'bool',
         'unfurl_media' => 'bool',
     ];
-
     protected array $options = [
         'attachments' => [],
         'blocks' => [],

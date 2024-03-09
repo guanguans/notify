@@ -15,15 +15,15 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self chatId($chatId)
- * @method self messageThreadId($messageThreadId)
- * @method self videoNote($videoNote)
+ * @method self disableNotification($disableNotification)
  * @method self duration($duration)
  * @method self length($length)
- * @method self thumbnail($thumbnail)
- * @method self disableNotification($disableNotification)
+ * @method self messageThreadId($messageThreadId)
  * @method self protectContent($protectContent)
- * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
+ * @method self replyParameters($replyParameters)
+ * @method self thumbnail($thumbnail)
+ * @method self videoNote($videoNote)
  */
 class VideoNoteMessage extends Message
 {

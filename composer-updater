@@ -35,7 +35,7 @@ $status = (new SingleCommandApplication)
     ->addOption('except-packages', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL)
     ->addOption('except-dependency-versions', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL)
     ->setCode(function (InputInterface $input, OutputInterface $output): void {
-        assert_options(ASSERT_BAIL, 1);
+        assert_options(\ASSERT_BAIL, 1);
         assert($this instanceof SingleCommandApplication);
         assert((bool) $input->getOption('highest-php-binary'));
 
@@ -65,7 +65,7 @@ $status = (new SingleCommandApplication)
                 array $exceptDependencyVersions = [],
                 ?SymfonyStyle $symfonyStyle = null
             ) {
-                assert_options(ASSERT_BAIL, 1);
+                assert_options(\ASSERT_BAIL, 1);
                 assert((bool) $composerJsonPath);
 
                 $this->composerJsonPath = $composerJsonPath;
@@ -112,8 +112,8 @@ $status = (new SingleCommandApplication)
                     $this->composerJsonPath,
                     json_encode(
                         $this->getOutdatedDecodedComposerJson(),
-                        JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
-                    ).PHP_EOL
+                        \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES,
+                    ).\PHP_EOL,
                 );
 
                 return $this;
@@ -141,7 +141,7 @@ $status = (new SingleCommandApplication)
                 InstalledVersions::reload([]);
 
                 foreach ($decodedComposerJson as $name => &$value) {
-                    if (! in_array($name, ['require', 'require-dev'], true)) {
+                    if (!in_array($name, ['require', 'require-dev'], true)) {
                         continue;
                     }
 
@@ -176,7 +176,7 @@ $status = (new SingleCommandApplication)
                         $this
                             ->mustRunCommand("$this->highestComposerBinary outdated --format=json --direct --ansi")
                             ->getOutput(),
-                        true
+                        true,
                     )['installed'],
                     function (array $carry, array $package): array {
                         $lowestArrayVersion = $this->toArrayVersion($package['version']);
@@ -186,7 +186,7 @@ $status = (new SingleCommandApplication)
                         if ($lowestArrayVersion[0] !== $highestArrayVersion[0]) {
                             $dependencyVersions = array_merge($dependencyVersions, array_map(
                                 static fn (string $major): string => "^$major.0",
-                                range($lowestArrayVersion[0] + 1, $highestArrayVersion[0])
+                                range($lowestArrayVersion[0] + 1, $highestArrayVersion[0]),
                             ));
                         }
 
@@ -195,7 +195,7 @@ $status = (new SingleCommandApplication)
 
                         return $carry;
                     },
-                    []
+                    [],
                 );
             }
 
@@ -204,7 +204,7 @@ $status = (new SingleCommandApplication)
                 return sprintf(
                     '%s %s',
                     $phpBinary ?? (new PhpExecutableFinder)->find(),
-                    $composerBinary ?? (new ExecutableFinder)->find('composer')
+                    $composerBinary ?? (new ExecutableFinder)->find('composer'),
                 );
             }
 
@@ -256,18 +256,21 @@ $status = (new SingleCommandApplication)
             private function strIs($pattern, string $value): bool
             {
                 $patterns = (array) $pattern;
+
                 if (empty($patterns)) {
                     return false;
                 }
 
                 foreach ($patterns as $pattern) {
                     $pattern = (string) $pattern;
+
                     if ($pattern === $value) {
                         return true;
                     }
 
                     $pattern = preg_quote($pattern, '#');
                     $pattern = str_replace('\*', '.*', $pattern);
+
                     if (1 === preg_match('#^'.$pattern.'\z#u', $value)) {
                         return true;
                     }

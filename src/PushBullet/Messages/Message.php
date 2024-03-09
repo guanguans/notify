@@ -14,19 +14,19 @@ declare(strict_types=1);
 namespace Guanguans\Notify\PushBullet\Messages;
 
 /**
- * @method self type($type)
- * @method self title($title)
  * @method self body($body)
- * @method self url($url)
+ * @method self channelTag($channelTag)
+ * @method self clientIden($clientIden)
+ * @method self deviceIden($deviceIden)
+ * @method self email($email)
  * @method self fileName($fileName)
  * @method self fileType($fileType)
  * @method self fileUrl($fileUrl)
- * @method self sourceDeviceIden($sourceDeviceIden)
- * @method self deviceIden($deviceIden)
- * @method self clientIden($clientIden)
- * @method self channelTag($channelTag)
- * @method self email($email)
  * @method self guid($guid)
+ * @method self sourceDeviceIden($sourceDeviceIden)
+ * @method self title($title)
+ * @method self type($type)
+ * @method self url($url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
@@ -46,7 +46,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'email',
         'guid',
     ];
-
     protected array $allowedValues = [
         // 'type' => ['note', 'link', 'file'],
     ];

@@ -18,9 +18,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @method self chatId($chatId)
- * @method self messageThreadId($messageThreadId)
- * @method self media(array $media)
  * @method self disableNotification($disableNotification)
+ * @method self media(array $media)
+ * @method self messageThreadId($messageThreadId)
  * @method self protectContent($protectContent)
  * @method self replyParameters($replyParameters)
  */
@@ -34,11 +34,9 @@ class MediaGroupMessage extends Message
         'protect_content',
         'reply_parameters',
     ];
-
     protected array $allowedTypes = [
         'media' => 'array',
     ];
-
     protected array $options = [
         'media' => [],
     ];
@@ -59,7 +57,7 @@ class MediaGroupMessage extends Message
     {
         $optionsResolver->setNormalizer(
             'media',
-            static fn (Options $options, array $media): string => json_encode($media, JSON_THROW_ON_ERROR)
+            static fn (Options $options, array $media): string => json_encode($media, \JSON_THROW_ON_ERROR),
         );
     }
 }

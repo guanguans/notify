@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Guanguans\Notify\DingTalk\Messages;
 
 /**
- * @method self title($title)
- * @method self text($text)
  * @method self messageUrl($messageUrl)
  * @method self picUrl($picUrl)
+ * @method self text($text)
+ * @method self title($title)
  */
 class LinkMessage extends Message
 {

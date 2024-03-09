@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Lark\Messages;
 
 /**
- * @method self header(array $header)
- * @method self elements(array $elements)
- * @method self i18nElements(array $i18nElements)
- * @method self config(array $config)
  * @method self cardLink(array $cardLink)
+ * @method self config(array $config)
+ * @method self elements(array $elements)
+ * @method self header(array $header)
+ * @method self i18nElements(array $i18nElements)
  */
 class CardMessage extends Message
 {
@@ -29,7 +29,6 @@ class CardMessage extends Message
         'config',
         'card_link',
     ];
-
     protected array $allowedTypes = [
         'header' => 'array',
         'elements' => 'array',

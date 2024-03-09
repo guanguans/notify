@@ -27,7 +27,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 it('will throw InvalidArgumentException when argument is empty', function (): void {
     expect(new class(['foo' => 'bar']) extends Message {
         use AsNullUri;
-
         protected array $required = ['foo'];
     })->foo();
 })
@@ -37,7 +36,6 @@ it('will throw InvalidArgumentException when argument is empty', function (): vo
 it('will throw BadMethodCallException when calling an undefined method', function (): void {
     expect(new class(['foo' => 'bar']) extends Message {
         use AsNullUri;
-
         protected array $defined = ['foo'];
     })->bar();
 })
@@ -47,24 +45,16 @@ it('will throw BadMethodCallException when calling an undefined method', functio
 it('can get options', function (): void {
     expect(new class(['foo' => 'foo']) extends Message {
         use AsNullUri;
-
         protected array $defaults = ['foo' => 'bar'];
-
         protected array $required = ['foo'];
-
         protected array $defined = ['foo', 'bar'];
-
         protected array $deprecated = [
             'foo',
             'bar' => ['foo/bar', '2.0', 'The option "%name%" is deprecated.'],
         ];
-
         protected array $normalizers = [];
-
         protected array $allowedValues = ['foo' => ['foo', 'bar']];
-
         protected array $allowedTypes = ['foo' => ['string']];
-
         protected array $infos = ['foo' => 'Invalid foo.'];
 
         public function __construct(array $options = [])
@@ -81,7 +71,6 @@ it('can get options', function (): void {
 it('can array access', function (): void {
     $message = new class(['foo' => 'bar']) extends Message {
         use AsNullUri;
-
         protected array $defined = ['foo'];
     };
 

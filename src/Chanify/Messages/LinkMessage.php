@@ -15,8 +15,8 @@ namespace Guanguans\Notify\Chanify\Messages;
 
 /**
  * @method self link($link)
- * @method self sound($sound)
  * @method self priority($priority)
+ * @method self sound($sound)
  */
 class LinkMessage extends Message
 {

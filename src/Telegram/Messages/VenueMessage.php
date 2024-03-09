@@ -14,20 +14,20 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method self chatId($chatId)
- * @method self messageThreadId($messageThreadId)
- * @method self latitude($latitude)
- * @method self longitude($longitude)
- * @method self title($title)
  * @method self address($address)
+ * @method self chatId($chatId)
+ * @method self disableNotification($disableNotification)
  * @method self foursquareId($foursquareId)
  * @method self foursquareType($foursquareType)
  * @method self googlePlaceId($googlePlaceId)
  * @method self googlePlaceType($googlePlaceType)
- * @method self disableNotification($disableNotification)
+ * @method self latitude($latitude)
+ * @method self longitude($longitude)
+ * @method self messageThreadId($messageThreadId)
  * @method self protectContent($protectContent)
- * @method self replyParameters($replyParameters)
  * @method self replyMarkup($replyMarkup)
+ * @method self replyParameters($replyParameters)
+ * @method self title($title)
  */
 class VenueMessage extends Message
 {

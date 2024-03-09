@@ -23,7 +23,7 @@ class Authenticator extends AggregateAuthenticator
     {
         parent::__construct(
             new UriTemplateAuthenticator(['roomId' => $roomId]),
-            new BearerAuthenticator($token)
+            new BearerAuthenticator($token),
         );
     }
 }

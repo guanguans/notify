@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace Guanguans\Notify\PushDeer\Messages;
 
 /**
- * @method self text($text)
  * @method self desp($desp)
+ * @method self text($text)
  * @method self type($type)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
@@ -25,7 +25,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'desp',
         'type',
     ];
-
     protected array $allowedValues = [
         // 'type' => ['text', 'markdown', 'image'],
     ];

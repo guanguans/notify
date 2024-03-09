@@ -31,7 +31,7 @@ it('can convert to body option', function (): void {
         (new class extends Message {
             use AsBody;
             use AsNullUri;
-        })->toHttpOptions()
+        })->toHttpOptions(),
     )->toBeArray();
 })->group(__DIR__, __FILE__);
 
@@ -40,7 +40,7 @@ it('can convert to query option', function (): void {
         (new class extends Message {
             use AsNullUri;
             use AsQuery;
-        })->toHttpOptions()
+        })->toHttpOptions(),
     )->toBeArray();
 })->group(__DIR__, __FILE__);
 
@@ -48,7 +48,7 @@ it('can convert to delete method', function (): void {
     expect(
         (new class {
             use AsDelete;
-        })->toHttpMethod()
+        })->toHttpMethod(),
     )->toBe('DELETE');
 })->group(__DIR__, __FILE__);
 
@@ -56,7 +56,7 @@ it('can convert to get method', function (): void {
     expect(
         (new class {
             use AsGet;
-        })->toHttpMethod()
+        })->toHttpMethod(),
     )->toBe('GET');
 })->group(__DIR__, __FILE__);
 
@@ -64,7 +64,7 @@ it('can convert to head method', function (): void {
     expect(
         (new class {
             use AsHead;
-        })->toHttpMethod()
+        })->toHttpMethod(),
     )->toBe('HEAD');
 })->group(__DIR__, __FILE__);
 
@@ -72,7 +72,7 @@ it('can convert to patch method', function (): void {
     expect(
         (new class {
             use AsPatch;
-        })->toHttpMethod()
+        })->toHttpMethod(),
     )->toBe('PATCH');
 })->group(__DIR__, __FILE__);
 
@@ -80,6 +80,6 @@ it('can convert to put method', function (): void {
     expect(
         (new class {
             use AsPut;
-        })->toHttpMethod()
+        })->toHttpMethod(),
     )->toBe('PUT');
 })->group(__DIR__, __FILE__);

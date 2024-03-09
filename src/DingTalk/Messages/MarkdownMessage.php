@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Guanguans\Notify\DingTalk\Messages;
 
 /**
- * @method self title($title)
- * @method self text($text)
- * @method self atMobiles(array $atMobiles)
  * @method self atDingtalkIds(array $atDingtalkIds)
+ * @method self atMobiles(array $atMobiles)
  * @method self isAtAll(bool $isAtAll)
+ * @method self text($text)
+ * @method self title($title)
  */
 class MarkdownMessage extends Message
 {
@@ -29,7 +29,6 @@ class MarkdownMessage extends Message
         'atDingtalkIds',
         'isAtAll',
     ];
-
     protected array $allowedTypes = [
         'atMobiles' => 'array',
         'atDingtalkIds' => 'array',

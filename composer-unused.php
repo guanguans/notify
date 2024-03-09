@@ -23,6 +23,6 @@ return static fn (Configuration $configuration): Configuration => $configuration
         'icanhazstring/composer-unused',
         array_merge(
             Glob::glob(__DIR__.'/*.php'),
-            Glob::glob(__DIR__.'/.*.php')
-        )
+            Glob::glob(__DIR__.'/.*.php'),
+        ),
     );

@@ -19,18 +19,11 @@ namespace Guanguans\Notify\Foundation\Rfc;
 interface Rfc7231
 {
     public const CONNECT = 'CONNECT';
-
     public const DELETE = 'DELETE';
-
     public const GET = 'GET';
-
     public const HEAD = 'HEAD';
-
     public const OPTIONS = 'OPTIONS';
-
     public const POST = 'POST';
-
     public const PUT = 'PUT';
-
     public const TRACE = 'TRACE';
 }

@@ -15,17 +15,17 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self chatId($chatId)
- * @method self messageThreadId($messageThreadId)
- * @method self latitude($latitude)
- * @method self longitude($longitude)
- * @method self horizontalAccuracy($horizontalAccuracy)
- * @method self livePeriod($livePeriod)
- * @method self heading($heading)
- * @method self proximityAlertRadius($proximityAlertRadius)
  * @method self disableNotification($disableNotification)
+ * @method self heading($heading)
+ * @method self horizontalAccuracy($horizontalAccuracy)
+ * @method self latitude($latitude)
+ * @method self livePeriod($livePeriod)
+ * @method self longitude($longitude)
+ * @method self messageThreadId($messageThreadId)
  * @method self protectContent($protectContent)
- * @method self replyParameters($replyParameters)
+ * @method self proximityAlertRadius($proximityAlertRadius)
  * @method self replyMarkup($replyMarkup)
+ * @method self replyParameters($replyParameters)
  */
 class LocationMessage extends Message
 {
