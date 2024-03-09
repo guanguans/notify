@@ -136,8 +136,6 @@ class Utils
 
     /**
      * @param array<string, scalar> $agents
-     *
-     * @noinspection NotOptimalIfConditionsInspection
      */
     public static function userAgent(array $agents = []): string
     {
@@ -148,7 +146,7 @@ class Utils
             $defaults['guzzle'] = InstalledVersions::getPrettyVersion('guzzlehttp/guzzle');
         }
 
-        if (\extension_loaded('curl') && \function_exists('curl_version')) {
+        if (\function_exists('curl_version')) {
             $defaults['curl'] = (curl_version() ?: ['version' => 'unknown'])['version'];
         }
 
@@ -161,10 +159,7 @@ class Utils
             $defaults['HHVM'] = HHVM_VERSION;
         }
 
-        if (
-            \function_exists('php_uname')
-            && ! \in_array('php_uname', explode(',', \ini_get('disable_functions') ?: ''), true)
-        ) {
+        if (\function_exists('php_uname')) {
             $defaults['OS'] = sprintf('%s(%s)', php_uname('s'), php_uname('r'));
         }
 
