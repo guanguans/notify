@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
-use Guanguans\Notify\Foundation\Support\Rectors\HasHttpClientDocCommentRector;
-use Guanguans\Notify\Foundation\Support\Rectors\HasOptionsDocCommentRector;
-use Guanguans\Notify\Foundation\Support\Rectors\ToInternalExceptionRector;
+use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
+use Guanguans\Notify\Foundation\Rectors\HasOptionsDocCommentRector;
+use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
 use GuzzleHttp\RequestOptions;
 use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;

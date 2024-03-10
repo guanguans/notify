@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\Notify\Foundation\Support\Rectors;
+namespace Guanguans\Notify\Foundation\Rectors;
 
 use Guanguans\Notify\Foundation\Support\Str;
 use PhpParser\Node;
