@@ -18,20 +18,20 @@ use Symfony\Component\Finder\SplFileInfo;
 require __DIR__.'/vendor/autoload.php';
 
 (static function (): void {
-    $echo = static function ($messages): void {
-        echo implode(\PHP_EOL, (array) $messages).\PHP_EOL;
-    };
-
-    $error = static function ($messages) use ($echo): void {
-        $echo($messages);
-
-        exit(1);
+    $echo = static function ($messages, int $color = 0): void {
+        echo sprintf("\033[{$color}m%s\033[0m\n", implode(\PHP_EOL, (array) $messages).\PHP_EOL);
     };
 
     $success = static function ($messages) use ($echo): void {
-        $echo($messages);
+        $echo($messages, 32);
 
         exit(0);
+    };
+
+    $error = static function ($messages) use ($echo): void {
+        $echo($messages, 31);
+
+        exit(1);
     };
 
     $platforms = array_values(array_map(
@@ -41,43 +41,78 @@ require __DIR__.'/vendor/autoload.php';
                 ->in(__DIR__.'/src')
                 ->exclude('Foundation')
                 ->depth(0)
-                ->sortByName()
+                // ->sortByName()
+                // ->sort(static fn (
+                //     SplFileInfo $a,
+                //     SplFileInfo $b
+                // ) => strcmp(strtolower($a->getFilename()), strtolower($b->getFilename())))
+                ->sort(static fn (
+                    SplFileInfo $a,
+                    SplFileInfo $b
+                ): int => strtolower($a->getFilename()) <=> strtolower($b->getFilename()))
                 ->directories(),
         ),
     ));
 
-    $platformsContents = implode('、', $platforms);
-    file_put_contents(__DIR__.'/tests.platforms', $platformsContents);
+    $deprecatedPlatforms = [
+        'Gitter',
+        'NowPush',
+    ];
 
-    $composerOptions = json_decode(file_get_contents(__DIR__.'/composer.json'), true, 512, \JSON_THROW_ON_ERROR);
+    $platformsDescriptionContents = implode('、', $platforms);
 
-    if (!str_contains($composerOptions['description'], $platformsContents)) {
-        $error("The description of composer.json must contain [$platformsContents].");
-    }
-
-    $diffKeywords = array_diff($platforms, $composerOptions['keywords']);
-
-    if ($diffKeywords) {
-        $error(sprintf('The keywords of composer.json must contain [%s].', implode('、', $diffKeywords)));
-    }
-
-    $readme = file_get_contents(__DIR__.'/README.md');
-
-    if (!str_contains($readme, $platformsContents)) {
-        $error("The README.md must contain [$platformsContents].");
-    }
-
-    foreach (
-        array_map(
-            static fn (string $platform): string => "(./src/$platform/README.md)",
+    $platformsKeywordContents = trim(
+        array_reduce(
             $platforms,
-        ) as $link
-    ) {
-        str_contains($readme, $link) or $error("The README.md must contain [$link].");
+            static fn (string $carry, string $platform): string => $carry."        \"$platform\",\n",
+            ''
+        ),
+        ",\n"
+    );
+
+    $platformsLinkContents = trim(
+        array_reduce(
+            $platforms,
+            static function (string $carry, string $platform) use ($deprecatedPlatforms): string {
+                return $carry.(
+                    in_array($platform, $deprecatedPlatforms, true)
+                        ? "* [~~$platform~~](./src/$platform/README.md)\n"
+                        : "* [$platform](./src/$platform/README.md)\n"
+                );
+            },
+            ''
+        ),
+        "\n"
+    );
+
+    file_put_contents(
+        __DIR__.'/tests.platforms',
+        implode(\PHP_EOL, [
+            $platformsDescriptionContents,
+            $platformsKeywordContents,
+            $platformsLinkContents,
+        ])
+    );
+
+    $composerContents = file_get_contents(__DIR__.'/composer.json');
+
+    if (!str_contains($composerContents, $platformsDescriptionContents)) {
+        $error("The description of composer.json must contain: \n```\n$platformsDescriptionContents\n```");
     }
 
-    $success([
-        $platformsContents,
-        json_encode($platforms, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT),
-    ]);
+    if (!str_contains($composerContents, $platformsKeywordContents)) {
+        $error("The keywords of composer.json must contain: \n```\n$platformsKeywordContents\n```");
+    }
+
+    $readmeContents = file_get_contents(__DIR__.'/README.md');
+
+    if (!str_contains($readmeContents, $platformsDescriptionContents)) {
+        $error("The description of README.md must contain: \n```\n$platformsDescriptionContents\n```");
+    }
+
+    if (!str_contains($readmeContents, $platformsLinkContents)) {
+        $error("The links of README.md must contain: \n```\n$platformsLinkContents\n```");
+    }
+
+    $success('Platforms lint successfully.');
 })();
