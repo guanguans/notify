@@ -81,7 +81,7 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
                             ];
                         }
                         CODE_SAMPLE,
-                    [Message::class],
+                    [Message::class => Message::class],
                 ),
             ],
         );

@@ -82,7 +82,7 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
                          */
                         trait HasHttpClient {}
                         CODE_SAMPLE,
-                    ['__*'],
+                    ['__*' => '__*'],
                 ),
             ],
         );

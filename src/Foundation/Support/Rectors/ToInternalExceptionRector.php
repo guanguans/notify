@@ -47,7 +47,7 @@ final class ToInternalExceptionRector extends AbstractRector implements Configur
                     <<<'CODE_SAMPLE'
                         throw new \Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException('on_headers must be callable');
                         CODE_SAMPLE,
-                    ['exceptionClassPattern'],
+                    ['exceptionClassPattern' => 'exceptionClassPattern'],
                 ),
             ],
         );

@@ -86,6 +86,7 @@
         "ergebnis/composer-normalize": "^2.42",
         "ergebnis/license": "^2.4",
         "ergebnis/php-cs-fixer-config": "dev-main",
+        "ergebnis/rector-rules": "^1.0",
         "friendsofphp/php-cs-fixer": "^3.51",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
@@ -102,7 +103,7 @@
         "phpstan/phpstan-deprecation-rules": "^1.1",
         "rector/rector": "^1.0",
         "symfony/var-dumper": "^5.4 || ^6.0 || ^7.0",
-        "vimeo/psalm": "^5.22"
+        "vimeo/psalm": "^5.23"
     },
     "suggest": {
         "illuminate/collections": "Required to use the method [Response::collect()].",
