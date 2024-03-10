@@ -91,7 +91,7 @@ trait HasHttpClient
             return $this;
         }
 
-        if (\in_array($snakedName = Str::snake($name), Utils::getHttpOptionsConstants(), true)) {
+        if (\in_array($snakedName = Str::snake($name), Utils::httpOptionConstants(), true)) {
             if (empty($arguments)) {
                 throw new InvalidArgumentException(
                     sprintf('The method [%s::%s] require an argument.', static::class, $name),

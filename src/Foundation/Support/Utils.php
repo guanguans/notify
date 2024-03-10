@@ -106,7 +106,7 @@ class Utils
      *
      * @return array<string, string>
      */
-    public static function getHttpOptionsConstants(): array
+    public static function httpOptionConstants(): array
     {
         $constants = (new \ReflectionClass(RequestOptions::class))->getConstants() + [
             // '_CONDITIONAL' => '_conditional',

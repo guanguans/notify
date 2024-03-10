@@ -149,7 +149,7 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
 
     private function addRequestOptionsDoc(PhpDocInfo $phpDocInfo): void
     {
-        foreach (Utils::getHttpOptionsConstants() as $constant) {
+        foreach (Utils::httpOptionConstants() as $constant) {
             $name = Str::camel($constant);
             $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@method', new GenericTagValueNode("self $name(\$$name)")));
         }
