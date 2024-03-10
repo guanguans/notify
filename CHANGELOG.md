@@ -8,6 +8,27 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.4.0"></a>
+## [2.4.0] - 2024-03-10
+### CI
+- apply php-cs-fixer
+
+### Feat
+- **helper:** add error_silencer function
+- **src:** Add Method interface and related RFCs
+- **tests:** add Faker trait for generating fake data
+
+### Refactor
+- improve StringToClassConstantRector
+- **rector:** Update namespace for rector classes
+- **utils:** Rename getHttpOptionsConstants to httpOptionConstants
+- **utils:** improve user agent method
+- **utils:** Improve clarity and consistency in multipartFor method
+
+### Pull Requests
+- Merge pull request [#61](https://github.com/guanguans/notify/issues/61) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.69.0
+
+
 <a name="2.3.1"></a>
 ## [2.3.1] - 2024-03-08
 ### Feat
@@ -722,7 +743,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.3.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.4.0...HEAD
+[2.4.0]: https://github.com/guanguans/notify/compare/2.3.1...2.4.0
 [2.3.1]: https://github.com/guanguans/notify/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/guanguans/notify/compare/2.2.1...2.3.0
 [2.2.1]: https://github.com/guanguans/notify/compare/2.2.0...2.2.1
