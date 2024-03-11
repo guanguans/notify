@@ -198,7 +198,7 @@
             "@php ./composer-updater --highest-php-binary=/opt/homebrew/opt/php@8.3/bin/php --ansi"
         ],
         "composer-validate": "@composer validate --check-lock --strict --ansi -v",
-        "infection": "@php ./vendor/bin/infection --configuration=infection.json --test-framework=pest --show-mutations --threads=8 --ansi -v",
+        "infection": "@php ./vendor/bin/infection --configuration=infection.json --show-mutations --threads=8 --ansi -v",
         "json-lint": "@php ./vendor/bin/jsonlint *.json .*rc",
         "lint": [
             "for DIR in .; do find $DIR -maxdepth 1 -type f -name '*.php' -type f ! -name 'xxx.php' -exec php -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done",
