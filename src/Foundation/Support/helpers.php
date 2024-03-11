@@ -23,12 +23,12 @@ if (!function_exists('error_silencer')) {
     function error_silencer(callable $callback, bool $debug = false)
     {
         set_error_handler(static function (
-            int $errno,
-            string $errstr,
-            string $errfile = '',
-            int $errline = 0
+            int $errNo,
+            string $errStr,
+            string $errFile = '',
+            int $errLine = 0
         ) use ($debug): void {
-            $debug and var_dump($errno, $errstr, $errfile, $errline);
+            $debug and var_dump($errNo, $errStr, $errFile, $errLine);
         });
 
         $result = $callback();

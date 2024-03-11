@@ -151,7 +151,7 @@ class Arr
     }
 
     /**
-     * Get all of the given array except for a specified array of keys.
+     * Get all keys of the given array except for a specified array of keys.
      *
      * @param array|float|int|string $keys
      */
