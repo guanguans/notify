@@ -17,6 +17,7 @@ use Guanguans\Notify\Foundation\Concerns\HasOptions;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Message;
 use Guanguans\Notify\Foundation\Support\Str;
+use Guanguans\Notify\Foundation\Support\Utils;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Property;
@@ -155,7 +156,7 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
         $defaultProperties = (new \ReflectionClass($class))->getDefaultProperties();
         $allowedTypes = $defaultProperties['allowedTypes'] ?? [];
         $defined = array_filter(
-            array_unique(array_merge($defaultProperties['defined'] ?? [], $defaultProperties['required'] ?? [])),
+            Utils::definedFor($class),
             static fn (string $option): bool => !Str::is(['*@*'], $option),
         );
 

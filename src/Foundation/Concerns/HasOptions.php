@@ -19,6 +19,7 @@ namespace Guanguans\Notify\Foundation\Concerns;
 use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Support\Str;
+use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -46,9 +47,15 @@ trait HasOptions
 {
     protected array $options = [];
 
+    /**
+     * @param mixed $name
+     * @param mixed $arguments
+     *
+     * @throws \ReflectionException
+     */
     public function __call($name, $arguments)
     {
-        $defined = array_merge($this->defined ?? [], $this->required ?? []);
+        $defined = Utils::definedFor($this);
 
         foreach ([null, 'snake', 'pascal', 'kebab'] as $case) {
             $casedName = $case ? Str::{$case}($name) : $name;
