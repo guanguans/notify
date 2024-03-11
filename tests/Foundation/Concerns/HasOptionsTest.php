@@ -57,11 +57,57 @@ it('can get options', function (): void {
         protected array $allowedTypes = ['foo' => ['string']];
         protected array $infos = ['foo' => 'Invalid foo.'];
 
-        public function __construct(array $options = [])
+        public function defaults(): array
         {
-            parent::__construct($options);
-            $this->normalizers['foo'] = static fn (Options $options, string $value): string => strtoupper($value);
-            $this->defaults['bar'] = static function (OptionsResolver $optionsResolver): void {};
+            return [
+                'foo' => 'bar',
+                'bar' => static function (OptionsResolver $optionsResolver): void {},
+            ];
+        }
+
+        public function required(): array
+        {
+            return ['foo'];
+        }
+
+        public function defined(): array
+        {
+            return ['foo', 'bar'];
+        }
+
+        public function ignoreUndefined(): bool
+        {
+            return true;
+        }
+
+        public function deprecated(): array
+        {
+            return [
+                'foo',
+                'bar' => ['foo/bar', '2.0', 'The option "%name%" is deprecated.'],
+            ];
+        }
+
+        public function normalizers(): array
+        {
+            return [
+                'foo' => static fn (Options $options, string $value): string => strtoupper($value),
+            ];
+        }
+
+        public function allowedValues(): array
+        {
+            return ['foo' => ['foo', 'bar']];
+        }
+
+        public function allowedTypes(): array
+        {
+            return ['foo' => ['string']];
+        }
+
+        public function infos(): array
+        {
+            return ['foo' => 'Invalid foo.'];
         }
     })
         ->getOptions()->toBeArray()
