@@ -185,7 +185,8 @@
             "@style-lint",
             "@test",
             "@psalm",
-            "@rector-dry-run"
+            "@rector-dry-run",
+            "@infection-dirty"
         ],
         "composer-bin-all-update": "@composer bin all update --ansi -v",
         "composer-check-platform-reqs": "@composer check-platform-reqs --lock --ansi -v",
@@ -199,6 +200,7 @@
         ],
         "composer-validate": "@composer validate --check-lock --strict --ansi -v",
         "infection": "@php ./vendor/bin/infection --configuration=infection.json --show-mutations --threads=8 --ansi -v",
+        "infection-dirty": "@infection --git-diff-filter=AM",
         "json-lint": "@php ./vendor/bin/jsonlint *.json .*rc",
         "lint": [
             "for DIR in .; do find $DIR -maxdepth 1 -type f -name '*.php' -type f ! -name 'xxx.php' -exec php -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done",

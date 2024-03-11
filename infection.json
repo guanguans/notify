@@ -24,196 +24,44 @@
                 ".*"
             ]
         },
-        "DecrementInteger": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "TrueValue": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "MethodCallRemoval": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "PublicVisibility": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "Coalesce": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "Ternary": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "Identical": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "FunctionCallRemoval": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "LogicalAnd": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "InstanceOf_": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "LessThan": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "GreaterThanOrEqualTo": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "LessThanNegotiation": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "NotIdentical": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "UnwrapStrToLower": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "While_": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "LogicalNot": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "ArrayItem": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "ArrayItemRemoval": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "LogicalOr": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "ProtectedVisibility": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "BitwiseOr": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "UnwrapArrayUnique": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "UnwrapArrayMerge": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "FalseValue": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "UnwrapArrayPad": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "AssignCoalesce": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "Assignment": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "This": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "Plus": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "CastString": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "Concat": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "ConcatOperandRemoval": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "Foreach_": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "ArrayOneItem": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "UnwrapLtrim": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "UnwrapArrayReduce": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        },
-        "UnwrapSubstr": {
-            "ignoreSourceCodeByRegex": [
-                ".*"
-            ]
-        }
+        "ArrayItem": false,
+        "ArrayItemRemoval": false,
+        "ArrayOneItem": false,
+        "AssignCoalesce": false,
+        "Assignment": false,
+        "BitwiseOr": false,
+        "CastString": false,
+        "Coalesce": false,
+        "Concat": false,
+        "ConcatOperandRemoval": false,
+        "DecrementInteger": false,
+        "FalseValue": false,
+        "Foreach_": false,
+        "FunctionCallRemoval": false,
+        "GreaterThanOrEqualTo": false,
+        "Identical": false,
+        "InstanceOf_": false,
+        "LessThan": false,
+        "LessThanNegotiation": false,
+        "LogicalAnd": false,
+        "LogicalNot": false,
+        "LogicalOr": false,
+        "MethodCallRemoval": false,
+        "NotIdentical": false,
+        "Plus": false,
+        "ProtectedVisibility": false,
+        "PublicVisibility": false,
+        "Ternary": false,
+        "This": false,
+        "TrueValue": false,
+        "UnwrapArrayMerge": false,
+        "UnwrapArrayPad": false,
+        "UnwrapArrayReduce": false,
+        "UnwrapArrayUnique": false,
+        "UnwrapLtrim": false,
+        "UnwrapStrToLower": false,
+        "UnwrapSubstr": false,
+        "While_": false
     },
     "phpUnit": {
         "configDir": "./"
