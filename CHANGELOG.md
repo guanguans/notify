@@ -8,6 +8,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.4.1"></a>
+## [2.4.1] - 2024-03-11
+### Docs
+- Update push notification SDK list in README
+
+### Feat
+- **Utils:** Add method to get defined properties for an object
+
+### Refactor
+- **HasOptions:** Improve preConfigureOptionsResolver method
+- **platform-lint:** Update platform handling and documentation
+- **tests:** Improve HasOptionsTest.php test coverage
+- **utils:** Use Utils::definedFor() method in HasOptions
+
+
 <a name="2.4.0"></a>
 ## [2.4.0] - 2024-03-10
 ### CI
@@ -743,7 +758,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.4.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.4.1...HEAD
+[2.4.1]: https://github.com/guanguans/notify/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/guanguans/notify/compare/2.3.1...2.4.0
 [2.3.1]: https://github.com/guanguans/notify/compare/2.3.0...2.3.1
 [2.3.0]: https://github.com/guanguans/notify/compare/2.2.1...2.3.0
