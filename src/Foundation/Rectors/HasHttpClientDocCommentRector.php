@@ -62,7 +62,7 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
     public function getRuleDefinition(): RuleDefinition
     {
         return new RuleDefinition(
-            'Http client doc comment',
+            'Has http client doc comment',
             [
                 new ConfiguredCodeSample(
                     <<<'CODE_SAMPLE'
@@ -70,17 +70,19 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
                         CODE_SAMPLE,
                     <<<'CODE_SAMPLE'
                         /**
-                         * ...
                          * @method self setHandler(callable $handler)
                          * @method self unshift(callable $middleware, string $name = null)
                          * ...
+                         * @method self remove($remove)
+                         * @method self allowRedirects($allowRedirects)
+                         * ...
+                         * @method self version($version)
                          *
                          * @see \GuzzleHttp\HandlerStack
                          * @see \GuzzleHttp\RequestOptions
                          *
                          * @mixin \Guanguans\Notify\Foundation\Client
                          */
-                        trait HasHttpClient {}
                         CODE_SAMPLE,
                     ['__*' => '__*'],
                 ),
