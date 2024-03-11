@@ -14,12 +14,17 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation\Support;
 
 use Composer\InstalledVersions;
+use Guanguans\Notify\Foundation\Message;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\StreamInterface;
 
 \define('MULTIPART_TRY_OPEN_FILE', 1 << 0);
 \define('MULTIPART_TRY_OPEN_URL', 1 << 1);
 
+/**
+ * @property-read list<string> $defined
+ * @property-read list<string> $required
+ */
 class Utils
 {
     /**
@@ -98,6 +103,45 @@ class Utils
                 return $part;
             },
             array_merge([], ...$parts),
+        );
+    }
+
+    /**
+     * @psalm-suppress InvalidScope
+     *
+     * @param Message|Message::class $object
+     *
+     * @throws \ReflectionException
+     *
+     * @return list<string>
+     *
+     * @noinspection CallableParameterUseCaseInTypeContextInspection
+     */
+    public static function definedFor($object): array
+    {
+        if (\is_string($object)) {
+            $reflectionClass = new \ReflectionClass($object);
+
+            if ($reflectionClass->isAbstract()) {
+                $defaultProperties = $reflectionClass->getDefaultProperties();
+
+                return array_unique(array_merge(
+                    $defaultProperties['defined'] ?? [],
+                    $defaultProperties['required'] ?? []
+                ));
+            }
+
+            /** @var Message::class $object */
+            $object = $object::make();
+        }
+
+        return array_unique(
+            (fn (): array => array_merge(
+                $this->defined ?? [],
+                method_exists($this, 'defined') ? $this->defined() : [],
+                $this->required ?? [],
+                method_exists($this, 'required') ? $this->required() : [],
+            ))->call($object)
         );
     }
 
