@@ -142,6 +142,16 @@ $ruleSet = Config\RuleSet\Php74::create()
         ],
     ]));
 
+$ruleSet->withCustomFixers(Config\Fixers::fromFixers(
+    ...array_filter(
+        iterator_to_array(new PhpCsFixerCustomFixers\Fixers),
+        static fn (
+            PhpCsFixerCustomFixers\Fixer\AbstractFixer $fixer
+        ): bool => !$fixer instanceof PhpCsFixer\Fixer\DeprecatedFixerInterface
+            && !array_key_exists($fixer->getName(), $ruleSet->rules()->toArray())
+    )
+));
+
 $config = Config\Factory::fromRuleSet($ruleSet);
 
 $config->getFinder()
