@@ -92,6 +92,8 @@
         "guanguans/monorepo-builder-worker": "^1.4",
         "icanhazstring/composer-unused": "^0.8",
         "illuminate/collections": "^8.83 || ^9.0 || ^10.0",
+        "infection/extension-installer": "^0.1.2",
+        "infection/infection": "^0.26.6",
         "kubawerlos/php-cs-fixer-custom-fixers": "^3.21",
         "maglnet/composer-require-checker": "^3.8 || ^4.0",
         "mockery/mockery": "^1.6",
@@ -128,6 +130,7 @@
         "allow-plugins": {
             "bamarni/composer-bin-plugin": true,
             "ergebnis/composer-normalize": true,
+            "infection/extension-installer": true,
             "pestphp/pest-plugin": true,
             "phpstan/extension-installer": true
         },
@@ -195,6 +198,7 @@
             "@php ./composer-updater --highest-php-binary=/opt/homebrew/opt/php@8.3/bin/php --ansi"
         ],
         "composer-validate": "@composer validate --check-lock --strict --ansi -v",
+        "infection": "@php ./vendor/bin/infection --configuration=infection.json --test-framework=pest --show-mutations --threads=8 --ansi -v",
         "json-lint": "@php ./vendor/bin/jsonlint *.json .*rc",
         "lint": [
             "for DIR in .; do find $DIR -maxdepth 1 -type f -name '*.php' -type f ! -name 'xxx.php' -exec php -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done",

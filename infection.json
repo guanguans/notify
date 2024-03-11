@@ -1,0 +1,24 @@
+{
+    "ignoreMsiWithNoMutations": true,
+    "logs": {
+        "html": "build/infection/infection.html",
+        "text": "build/infection/infection.text"
+    },
+    "minCoveredMsi": 80,
+    "minMsi": 80,
+    "mutators": {
+        "@default": true
+    },
+    "phpUnit": {
+        "configDir": "./"
+    },
+    "source": {
+        "directories": [
+            "src"
+        ],
+        "excludes": [
+            "Foundation\/Rectors"
+        ]
+    },
+    "timeout": 10
+}
