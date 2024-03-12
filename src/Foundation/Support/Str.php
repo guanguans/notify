@@ -17,19 +17,13 @@ namespace Guanguans\Notify\Foundation\Support;
 
 class Str
 {
-    /**
-     * The cache of snake-cased words.
-     */
+    /** The cache of snake-cased words. */
     protected static array $snakeCache = [];
 
-    /**
-     * The cache of camel-cased words.
-     */
+    /** The cache of camel-cased words. */
     protected static array $camelCache = [];
 
-    /**
-     * The cache of studly-cased words.
-     */
+    /** The cache of studly-cased words. */
     protected static array $studlyCache = [];
 
     /**

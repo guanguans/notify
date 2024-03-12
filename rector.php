@@ -11,6 +11,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
+use Ergebnis\Rector\Rules\Arrays\SortAssociativeArrayByKeyRector;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
@@ -113,6 +114,10 @@ return static function (RectorConfig $rectorConfig): void {
             __DIR__.'/src/Foundation/Support/Utils.php',
             __DIR__.'/src/Foundation/Response.php',
         ],
+        SortAssociativeArrayByKeyRector::class => [
+            __DIR__.'/src',
+            __DIR__.'/tests',
+        ],
 
         // paths
         __DIR__.'/tests.php',
@@ -180,6 +185,7 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->rules([
+        SortAssociativeArrayByKeyRector::class,
         HasHttpClientDocCommentRector::class,
         HasOptionsDocCommentRector::class,
         ToInternalExceptionRector::class,

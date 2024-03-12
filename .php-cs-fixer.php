@@ -41,21 +41,12 @@ $ruleSet = Config\RuleSet\Php74::create()
         // '@PHP81Migration' => true,
         // '@PHP82Migration' => true,
         // '@PHP83Migration' => true,
-
         // '@PHPUnit75Migration:risky' => true,
         // '@PHPUnit84Migration:risky' => true,
         // '@PHPUnit100Migration:risky' => true,
-
         // '@DoctrineAnnotation' => true,
         // '@PhpCsFixer' => true,
         // '@PhpCsFixer:risky' => true,
-
-        'explicit_string_variable' => false,
-        'final_class' => false,
-        'logical_operators' => false,
-        'mb_str_functions' => false,
-        'single_line_empty_body' => true,
-        'static_lambda' => false, // pest
         'blank_line_before_statement' => [
             'statements' => [
                 'break',
@@ -83,8 +74,14 @@ $ruleSet = Config\RuleSet\Php74::create()
                 'yield_from',
             ],
         ],
-        'concat_space' => [
-            'spacing' => 'none',
+        'braces_position' => [
+            'allow_single_line_anonymous_functions' => true,
+            'allow_single_line_empty_anonymous_classes' => true,
+            'anonymous_classes_opening_brace' => 'same_line',
+            'anonymous_functions_opening_brace' => 'same_line',
+            'classes_opening_brace' => 'next_line_unless_newline_at_signature_end',
+            'control_structures_opening_brace' => 'same_line',
+            'functions_opening_brace' => 'next_line_unless_newline_at_signature_end',
         ],
         'class_definition' => [
             'inline_constructor_arguments' => false,
@@ -93,26 +90,49 @@ $ruleSet = Config\RuleSet\Php74::create()
             'single_line' => false,
             'space_before_parenthesis' => false,
         ],
-        'phpdoc_align' => [
-            'align' => 'left',
-            'spacing' => 1,
-            'tags' => [
-                'method',
-                'param',
-                'property',
-                'property-read',
-                'property-write',
-                'return',
-                'throws',
-                'type',
-                'var',
+        'concat_space' => [
+            'spacing' => 'none',
+        ],
+        'explicit_string_variable' => false,
+        // 'empty_loop_condition' => [
+        //     'style' => 'for',
+        // ],
+        'final_class' => false,
+        'fully_qualified_strict_types' => [
+            'import_symbols' => false,
+            'leading_backslash_in_global_namespace' => false,
+            'phpdoc_tags' => [
+                // 'param',
+                // 'phpstan-param',
+                // 'phpstan-property',
+                // 'phpstan-property-read',
+                // 'phpstan-property-write',
+                // 'phpstan-return',
+                // 'phpstan-var',
+                // 'property',
+                // 'property-read',
+                // 'property-write',
+                // 'psalm-param',
+                // 'psalm-property',
+                // 'psalm-property-read',
+                // 'psalm-property-write',
+                // 'psalm-return',
+                // 'psalm-var',
+                // 'return',
+                // 'see',
+                // 'throws',
+                // 'var',
             ],
         ],
-        'phpdoc_no_alias_tag' => [
-            'replacements' => [
-                'link' => 'see',
-                'type' => 'var',
-            ],
+        // 'final_internal_class' => false,
+        // 'final_public_method_for_abstract_class' => false,
+        'logical_operators' => false,
+        'mb_str_functions' => false,
+        'native_function_invocation' => [
+            'exclude' => [],
+            'include' => ['@compiler_optimized', 'is_scalar'],
+            'scope' => 'namespaced',
+            'strict' => true,
         ],
         'new_with_parentheses' => [
             'anonymous_class' => false,
@@ -134,12 +154,55 @@ $ruleSet = Config\RuleSet\Php74::create()
                 // 'use',
             ],
         ],
-        'native_function_invocation' => [
-            'include' => ['@compiler_optimized', 'is_scalar'],
-            'exclude' => [],
-            'scope' => 'namespaced',
-            'strict' => true,
+        'php_unit_data_provider_name' => [
+            'prefix' => 'provide',
+            'suffix' => 'Cases',
         ],
+        'phpdoc_align' => [
+            'align' => 'left',
+            'spacing' => 1,
+            'tags' => [
+                'method',
+                'param',
+                'property',
+                'property-read',
+                'property-write',
+                'return',
+                'throws',
+                'type',
+                'var',
+            ],
+        ],
+        'phpdoc_line_span' => [
+            'const' => 'single',
+            'method' => 'multi',
+            'property' => 'single',
+        ],
+        'phpdoc_no_alias_tag' => [
+            'replacements' => [
+                'link' => 'see',
+                'type' => 'var',
+            ],
+        ],
+        'phpdoc_to_param_type' => [
+            'scalar_types' => true,
+            'union_types' => true,
+        ],
+        'phpdoc_to_property_type' => [
+            'scalar_types' => true,
+            'union_types' => true,
+        ],
+        'phpdoc_to_return_type' => [
+            'scalar_types' => true,
+            'union_types' => true,
+        ],
+        'simplified_if_return' => true,
+        'simplified_null_return' => true,
+        'single_line_empty_body' => true,
+        'statement_indentation' => [
+            'stick_comment_to_next_continuous_control_statement' => true,
+        ],
+        'static_lambda' => false, // pest
     ]));
 
 $ruleSet->withCustomFixers(Config\Fixers::fromFixers(

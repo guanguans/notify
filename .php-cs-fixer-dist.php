@@ -88,13 +88,13 @@ return (new Config)
 
         // basic
         'braces_position' => [
-            'control_structures_opening_brace' => 'same_line',
-            'functions_opening_brace' => 'next_line_unless_newline_at_signature_end',
+            'allow_single_line_anonymous_functions' => true,
+            'allow_single_line_empty_anonymous_classes' => true,
+            'anonymous_classes_opening_brace' => 'same_line',
             'anonymous_functions_opening_brace' => 'same_line',
             'classes_opening_brace' => 'next_line_unless_newline_at_signature_end',
-            'anonymous_classes_opening_brace' => 'same_line',
-            'allow_single_line_empty_anonymous_classes' => true,
-            'allow_single_line_anonymous_functions' => true,
+            'control_structures_opening_brace' => 'same_line',
+            'functions_opening_brace' => 'next_line_unless_newline_at_signature_end',
         ],
         'no_multiple_statements_per_line' => true,
 
@@ -130,8 +130,8 @@ return (new Config)
             'sort_algorithm' => 'none',
         ],
         'ordered_interfaces' => [
-            'order' => 'alpha',
             'direction' => 'ascend',
+            'order' => 'alpha',
         ],
         'self_static_accessor' => true,
 
@@ -163,8 +163,8 @@ return (new Config)
         // function_notation
         'date_time_create_from_format_call' => true,
         'native_function_invocation' => [
-            'include' => ['@compiler_optimized', 'is_scalar'],
             'exclude' => [],
+            'include' => ['@compiler_optimized', 'is_scalar'],
             'scope' => 'namespaced',
             'strict' => true,
         ],
@@ -240,8 +240,8 @@ return (new Config)
         ],
         'phpdoc_line_span' => [
             'const' => null,
-            'property' => null,
             'method' => 'multi',
+            'property' => null,
         ],
         'phpdoc_no_empty_return' => false,
         'phpdoc_summary' => false,
@@ -262,8 +262,8 @@ return (new Config)
         'phpdoc_param_order' => true,
         'phpdoc_no_alias_tag' => [
             'replacements' => [
-                'type' => 'var',
                 'link' => 'see',
+                'type' => 'var',
             ],
         ],
         'phpdoc_array_type' => true,

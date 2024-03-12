@@ -76,9 +76,7 @@ trait HasHttpClient
 {
     private ?Client $httpClient = null;
 
-    /**
-     * @var null|callable
-     */
+    /** @var null|callable */
     private $httpClientResolver;
     private ?HandlerStack $handlerStack = null;
     private array $httpOptions = [];
