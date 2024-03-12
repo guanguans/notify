@@ -111,13 +111,11 @@ class Utils
      *
      * @psalm-suppress InvalidScope
      *
-     * @param Message|Message::class $object
+     * @param class-string|Message $object
      *
      * @throws \ReflectionException
      *
      * @return list<string>
-     *
-     * @noinspection CallableParameterUseCaseInTypeContextInspection
      */
     public static function definedFor($object): array
     {

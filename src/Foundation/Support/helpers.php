@@ -22,6 +22,7 @@ if (!\function_exists('error_silencer')) {
      */
     function error_silencer(callable $callback, bool $debug = false)
     {
+        /** @phpstan-ignore-next-line  */
         set_error_handler(static function (
             int $errNo,
             string $errStr,
