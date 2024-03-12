@@ -107,6 +107,8 @@ class Utils
     }
 
     /**
+     * Return an array of defined properties for the given object.
+     *
      * @psalm-suppress InvalidScope
      *
      * @param Message|Message::class $object
@@ -122,25 +124,18 @@ class Utils
         if (\is_string($object)) {
             $reflectionClass = new \ReflectionClass($object);
 
-            if ($reflectionClass->isAbstract()) {
-                $properties = $reflectionClass->getDefaultProperties();
+            $properties = $reflectionClass->getDefaultProperties();
 
-                return array_unique(array_merge(
-                    $properties['defined'] ?? [],
-                    $properties['required'] ?? []
-                ));
-            }
-
-            /** @var Message::class $object */
-            $object = $object::make();
+            return array_unique(array_merge(
+                $properties['defined'] ?? [],
+                $properties['required'] ?? []
+            ));
         }
 
         return array_unique(
             (fn (): array => array_merge(
                 $this->defined ?? [],
-                method_exists($this, 'defined') ? $this->defined() : [],
                 $this->required ?? [],
-                method_exists($this, 'required') ? $this->required() : [],
             ))->call($object)
         );
     }
