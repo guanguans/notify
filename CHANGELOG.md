@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.4.2"></a>
+## [2.4.2] - 2024-03-12
+### CI
+- apply php-cs-fixer
+
+### Docs
+- **readme:** Add list of supported Push notification SDKs
+
+### Refactor
+- **utils:** Improve property retrieval in Utils class
+- **utils:** improve handling of properties in Utils class
+
+
 <a name="2.4.1"></a>
 ## [2.4.1] - 2024-03-11
 ### Docs
@@ -758,7 +771,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.4.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.4.2...HEAD
+[2.4.2]: https://github.com/guanguans/notify/compare/2.4.1...2.4.2
 [2.4.1]: https://github.com/guanguans/notify/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/guanguans/notify/compare/2.3.1...2.4.0
 [2.3.1]: https://github.com/guanguans/notify/compare/2.3.0...2.3.1
