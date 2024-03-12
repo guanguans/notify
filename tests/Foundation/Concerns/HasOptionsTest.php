@@ -65,21 +65,6 @@ it('can get options', function (): void {
             ];
         }
 
-        public function required(): array
-        {
-            return ['foo'];
-        }
-
-        public function defined(): array
-        {
-            return ['foo', 'bar'];
-        }
-
-        public function ignoreUndefined(): bool
-        {
-            return true;
-        }
-
         public function deprecated(): array
         {
             return [
@@ -93,21 +78,6 @@ it('can get options', function (): void {
             return [
                 'foo' => static fn (Options $options, string $value): string => strtoupper($value),
             ];
-        }
-
-        public function allowedValues(): array
-        {
-            return ['foo' => ['foo', 'bar']];
-        }
-
-        public function allowedTypes(): array
-        {
-            return ['foo' => ['string']];
-        }
-
-        public function infos(): array
-        {
-            return ['foo' => 'Invalid foo.'];
         }
     })
         ->getOptions()->toBeArray()

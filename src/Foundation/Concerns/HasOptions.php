@@ -34,14 +34,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @property-read array<string, string> $infos
  *
  * @method array<string, mixed> defaults() // Support nested options.
- * @method list<string> required()
- * @method list<string> defined()
- * @method bool ignoreUndefined() // Required symfony/options-resolver >= 6.3
  * @method array<int|string, array|string> deprecated()
  * @method array<string, \Closure> normalizers()
- * @method array<string, mixed> allowedValues()
- * @method array<string, list<string>|string> allowedTypes();
- * @method array<string, string> infos()
  */
 trait HasOptions
 {
@@ -152,48 +146,15 @@ trait HasOptions
             method_exists($this, 'defaults') ? $this->defaults() : [],
         ));
 
-        $optionsResolver->setRequired(array_merge(
-            property_exists($this, 'required') ? $this->required : [],
-            method_exists($this, 'required') ? $this->required() : [],
-        ));
-
-        $optionsResolver->setDefined(array_merge(
-            property_exists($this, 'defined') ? $this->defined : [],
-            method_exists($this, 'defined') ? $this->defined() : [],
-        ));
+        property_exists($this, 'required') and $optionsResolver->setRequired($this->required);
+        property_exists($this, 'defined') and $optionsResolver->setDefined($this->defined);
 
         // // A prototype option can only be defined inside a nested option and during its resolution it will expect an array of arrays.
-        // $optionsResolver->setPrototype(
-        //     (function () {
-        //         if (method_exists($this, 'prototype')) {
-        //             return $this->prototype();
-        //         }
-        //
-        //         if (property_exists($this, 'prototype')) {
-        //             return $this->prototype;
-        //         }
-        //
-        //         return false;
-        //     })()
-        // );
+        // property_exists($this, 'prototype') and $optionsResolver->setPrototype($this->prototype);
 
         // Required symfony/options-resolver >= 6.3
-        if (method_exists($optionsResolver, 'setIgnoreUndefined')) {
-            // @codeCoverageIgnoreStart
-            $optionsResolver->setIgnoreUndefined(
-                (function () {
-                    if (method_exists($this, 'ignoreUndefined')) {
-                        return $this->ignoreUndefined();
-                    }
-
-                    if (property_exists($this, 'ignoreUndefined')) {
-                        return $this->ignoreUndefined;
-                    }
-
-                    return true;
-                })()
-            );
-            // @codeCoverageIgnoreEnd
+        if (property_exists($this, 'ignoreUndefined') && method_exists($optionsResolver, 'setIgnoreUndefined')) {
+            $optionsResolver->setIgnoreUndefined($this->ignoreUndefined); // @codeCoverageIgnore
         }
 
         $deprecated = array_merge(
@@ -219,31 +180,22 @@ trait HasOptions
             $optionsResolver->setNormalizer($option, $normalizer);
         }
 
-        $allowedValues = array_merge(
-            property_exists($this, 'allowedValues') ? $this->allowedValues : [],
-            method_exists($this, 'allowedValues') ? $this->allowedValues() : [],
-        );
-
-        foreach ($allowedValues as $option => $allowedValue) {
-            $optionsResolver->setAllowedValues($option, $allowedValue);
+        if (property_exists($this, 'allowedValues')) {
+            foreach ($this->allowedValues as $option => $allowedValue) {
+                $optionsResolver->setAllowedValues($option, $allowedValue);
+            }
         }
 
-        $allowedTypes = array_merge(
-            property_exists($this, 'allowedTypes') ? $this->allowedTypes : [],
-            method_exists($this, 'allowedTypes') ? $this->allowedTypes() : [],
-        );
-
-        foreach ($allowedTypes as $option => $allowedType) {
-            $optionsResolver->setAllowedTypes($option, $allowedType);
+        if (property_exists($this, 'allowedTypes')) {
+            foreach ($this->allowedTypes as $option => $allowedType) {
+                $optionsResolver->setAllowedTypes($option, $allowedType);
+            }
         }
 
-        $infos = array_merge(
-            property_exists($this, 'infos') ? $this->infos : [],
-            method_exists($this, 'infos') ? $this->infos() : [],
-        );
-
-        foreach ($infos as $option => $info) {
-            $optionsResolver->setInfo($option, $info);
+        if (property_exists($this, 'infos')) {
+            foreach ($this->infos as $option => $info) {
+                $optionsResolver->setInfo($option, $info);
+            }
         }
     }
 }
