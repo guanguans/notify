@@ -19,7 +19,6 @@ namespace Guanguans\NotifyTests\MicrosoftTeams;
 use Guanguans\Notify\MicrosoftTeams\Authenticator;
 use Guanguans\Notify\MicrosoftTeams\Client;
 use Guanguans\Notify\MicrosoftTeams\Messages\Message;
-
 use function Pest\Faker\faker;
 
 it('can send message', function (): void {

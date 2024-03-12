@@ -75,7 +75,7 @@ require __DIR__.'/vendor/autoload.php';
             $platforms,
             static function (string $carry, string $platform) use ($deprecatedPlatforms): string {
                 return $carry.(
-                    in_array($platform, $deprecatedPlatforms, true)
+                    \in_array($platform, $deprecatedPlatforms, true)
                         ? "* [~~$platform~~](./src/$platform/README.md)\n"
                         : "* [$platform](./src/$platform/README.md)\n"
                 );

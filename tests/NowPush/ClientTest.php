@@ -19,7 +19,6 @@ namespace Guanguans\NotifyTests\NowPush;
 use Guanguans\Notify\NowPush\Authenticator;
 use Guanguans\Notify\NowPush\Client;
 use Guanguans\Notify\NowPush\Messages\Message;
-
 use function Pest\Faker\faker;
 
 beforeEach(function (): void {

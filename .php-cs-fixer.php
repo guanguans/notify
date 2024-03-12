@@ -74,15 +74,6 @@ $ruleSet = Config\RuleSet\Php74::create()
                 'yield_from',
             ],
         ],
-        'braces_position' => [
-            'allow_single_line_anonymous_functions' => true,
-            'allow_single_line_empty_anonymous_classes' => true,
-            'anonymous_classes_opening_brace' => 'same_line',
-            'anonymous_functions_opening_brace' => 'same_line',
-            'classes_opening_brace' => 'next_line_unless_newline_at_signature_end',
-            'control_structures_opening_brace' => 'same_line',
-            'functions_opening_brace' => 'next_line_unless_newline_at_signature_end',
-        ],
         'class_definition' => [
             'inline_constructor_arguments' => false,
             'multi_line_extends_each_single_line' => false,
@@ -100,59 +91,17 @@ $ruleSet = Config\RuleSet\Php74::create()
         'final_class' => false,
         // 'final_internal_class' => false,
         // 'final_public_method_for_abstract_class' => false,
-        'fully_qualified_strict_types' => [
-            'import_symbols' => false,
-            'leading_backslash_in_global_namespace' => false,
-            'phpdoc_tags' => [
-                // 'param',
-                // 'phpstan-param',
-                // 'phpstan-property',
-                // 'phpstan-property-read',
-                // 'phpstan-property-write',
-                // 'phpstan-return',
-                // 'phpstan-var',
-                // 'property',
-                // 'property-read',
-                // 'property-write',
-                // 'psalm-param',
-                // 'psalm-property',
-                // 'psalm-property-read',
-                // 'psalm-property-write',
-                // 'psalm-return',
-                // 'psalm-var',
-                // 'return',
-                // 'see',
-                // 'throws',
-                // 'var',
-            ],
-        ],
         'logical_operators' => false,
         'mb_str_functions' => false,
         'native_function_invocation' => [
             'exclude' => [],
             'include' => ['@compiler_optimized', 'is_scalar'],
-            'scope' => 'namespaced',
+            'scope' => 'all',
             'strict' => true,
         ],
         'new_with_parentheses' => [
             'anonymous_class' => false,
             'named_class' => false,
-        ],
-        'no_extra_blank_lines' => [
-            'tokens' => [
-                'break',
-                'case',
-                'continue',
-                'curly_brace_block',
-                'default',
-                'extra',
-                'parenthesis_brace_block',
-                'return',
-                'square_brace_block',
-                'switch',
-                'throw',
-                // 'use',
-            ],
         ],
         'php_unit_data_provider_name' => [
             'prefix' => 'provide',
@@ -211,7 +160,7 @@ $ruleSet->withCustomFixers(Config\Fixers::fromFixers(
         static fn (
             PhpCsFixerCustomFixers\Fixer\AbstractFixer $fixer
         ): bool => !$fixer instanceof PhpCsFixer\Fixer\DeprecatedFixerInterface
-            && !array_key_exists($fixer->getName(), $ruleSet->rules()->toArray())
+            && !\array_key_exists($fixer->getName(), $ruleSet->rules()->toArray())
     )
 ));
 

@@ -43,10 +43,10 @@ use Rector\Transform\ValueObject\StringToClassConstant;
 use Rector\ValueObject\PhpVersion;
 
 return static function (RectorConfig $rectorConfig): void {
-    define('MHASH_XXH3', 2 << 0);
-    define('MHASH_XXH32', 2 << 1);
-    define('MHASH_XXH64', 2 << 2);
-    define('MHASH_XXH128', 2 << 3);
+    \define('MHASH_XXH3', 2 << 0);
+    \define('MHASH_XXH32', 2 << 1);
+    \define('MHASH_XXH64', 2 << 2);
+    \define('MHASH_XXH128', 2 << 3);
     $rectorConfig->importNames(false, false);
     $rectorConfig->importShortClasses(false);
     $rectorConfig->parallel(240);

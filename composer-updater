@@ -36,8 +36,8 @@ $status = (new SingleCommandApplication)
     ->addOption('except-dependency-versions', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL)
     ->setCode(function (InputInterface $input, OutputInterface $output): void {
         assert_options(\ASSERT_BAIL, 1);
-        assert($this instanceof SingleCommandApplication);
-        assert((bool) $input->getOption('highest-php-binary'));
+        \assert($this instanceof SingleCommandApplication);
+        \assert((bool) $input->getOption('highest-php-binary'));
 
         (new class(
             $input->getOption('composer-json-path') ?: __DIR__.'/composer.json',
@@ -66,7 +66,7 @@ $status = (new SingleCommandApplication)
                 ?SymfonyStyle $symfonyStyle = null
             ) {
                 assert_options(\ASSERT_BAIL, 1);
-                assert((bool) $composerJsonPath);
+                \assert((bool) $composerJsonPath);
 
                 $this->composerJsonPath = $composerJsonPath;
                 $this->highestComposerBinary = $this->getComposerBinary($composerBinary, $highestPhpBinary);
@@ -141,7 +141,7 @@ $status = (new SingleCommandApplication)
                 InstalledVersions::reload([]);
 
                 foreach ($decodedComposerJson as $name => &$value) {
-                    if (!in_array($name, ['require', 'require-dev'], true)) {
+                    if (!\in_array($name, ['require', 'require-dev'], true)) {
                         continue;
                     }
 
@@ -222,14 +222,14 @@ $status = (new SingleCommandApplication)
                 $input = null,
                 ?float $timeout = 300
             ): Process {
-                $process = is_string($command)
+                $process = \is_string($command)
                     ? Process::fromShellCommandline($command, $cwd, $env, $input, $timeout)
                     : new Process($command, $cwd, $env, $input, $timeout);
 
                 $this->symfonyStyle->warning($process->getCommandLine());
 
                 return $process
-                    ->setWorkingDirectory(dirname($this->composerJsonPath))
+                    ->setWorkingDirectory(\dirname($this->composerJsonPath))
                     ->setEnv(['COMPOSER_MEMORY_LIMIT' => -1])
                     ->mustRun(function (string $type, string $buffer): void {
                         $this->symfonyStyle->isVerbose() and $this->symfonyStyle->write($buffer);
@@ -238,7 +238,7 @@ $status = (new SingleCommandApplication)
 
             private function toDependencyVersion(string $version): string
             {
-                return '^'.implode('.', array_slice($this->toArrayVersion($version), 0, 2));
+                return '^'.implode('.', \array_slice($this->toArrayVersion($version), 0, 2));
             }
 
             private function toArrayVersion(string $version): array

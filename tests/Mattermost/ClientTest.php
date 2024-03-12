@@ -19,7 +19,6 @@ namespace Guanguans\NotifyTests\Mattermost;
 use Guanguans\Notify\Mattermost\Authenticator;
 use Guanguans\Notify\Mattermost\Client;
 use Guanguans\Notify\Mattermost\Messages\Message;
-
 use function Pest\Faker\faker;
 
 it('can send message', function (): void {

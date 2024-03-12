@@ -26,7 +26,6 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\TransferStats;
 use Illuminate\Support\Collection;
 use Psr\Http\Message\RequestInterface;
-
 use function Pest\Faker\faker;
 
 it('can dump debug info', function (): void {

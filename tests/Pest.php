@@ -94,7 +94,7 @@ expect()->extend('assertCanSendMessage', function (Message $message): Expectatio
  */
 function class_namespace($class): string
 {
-    $class = is_object($class) ? get_class($class) : $class;
+    $class = \is_object($class) ? \get_class($class) : $class;
 
     return (new ReflectionClass($class))->getNamespaceName();
 }
