@@ -94,7 +94,6 @@
         "illuminate/collections": "^8.83 || ^9.0 || ^10.0",
         "infection/extension-installer": "^0.1",
         "infection/infection": "^0.26",
-        "kubawerlos/php-cs-fixer-custom-fixers": "^3.21",
         "maglnet/composer-require-checker": "^3.8 || ^4.0",
         "mockery/mockery": "^1.6",
         "pestphp/pest": "^1.23 || ^2.0",
