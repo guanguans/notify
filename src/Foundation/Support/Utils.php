@@ -123,11 +123,11 @@ class Utils
             $reflectionClass = new \ReflectionClass($object);
 
             if ($reflectionClass->isAbstract()) {
-                $defaultProperties = $reflectionClass->getDefaultProperties();
+                $properties = $reflectionClass->getDefaultProperties();
 
                 return array_unique(array_merge(
-                    $defaultProperties['defined'] ?? [],
-                    $defaultProperties['required'] ?? []
+                    $properties['defined'] ?? [],
+                    $properties['required'] ?? []
                 ));
             }
 
