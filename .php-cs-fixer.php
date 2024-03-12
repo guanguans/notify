@@ -93,11 +93,13 @@ $ruleSet = Config\RuleSet\Php74::create()
         'concat_space' => [
             'spacing' => 'none',
         ],
-        'explicit_string_variable' => false,
         // 'empty_loop_condition' => [
         //     'style' => 'for',
         // ],
+        'explicit_string_variable' => false,
         'final_class' => false,
+        // 'final_internal_class' => false,
+        // 'final_public_method_for_abstract_class' => false,
         'fully_qualified_strict_types' => [
             'import_symbols' => false,
             'leading_backslash_in_global_namespace' => false,
@@ -124,8 +126,6 @@ $ruleSet = Config\RuleSet\Php74::create()
                 // 'var',
             ],
         ],
-        // 'final_internal_class' => false,
-        // 'final_public_method_for_abstract_class' => false,
         'logical_operators' => false,
         'mb_str_functions' => false,
         'native_function_invocation' => [
