@@ -133,6 +133,19 @@ $ruleSet = Config\RuleSet\Php74::create()
                 'type' => 'var',
             ],
         ],
+        'phpdoc_order' => [
+            'order' => [
+                'deprecated',
+                'internal',
+                'covers',
+                'uses',
+                'dataProvider',
+                'psalm-suppress',
+                'param',
+                'throws',
+                'return',
+            ],
+        ],
         'phpdoc_to_param_type' => [
             'scalar_types' => true,
             'union_types' => true,
