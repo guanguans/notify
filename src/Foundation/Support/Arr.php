@@ -87,13 +87,13 @@ class Arr
     /**
      * Get an item from an array using "dot" notation.
      *
+     * @noinspection MultipleReturnStatementsInspection
+     *
      * @param array|\ArrayAccess $array
      * @param null|array-key $key
      * @param mixed $default
      *
      * @return mixed
-     *
-     * @noinspection MultipleReturnStatementsInspection
      */
     public static function get($array, $key, $default = null)
     {

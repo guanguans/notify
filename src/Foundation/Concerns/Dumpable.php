@@ -28,10 +28,10 @@ trait Dumpable
     }
 
     /**
-     * @psalm-suppress ForbiddenCode
-     *
      * @noinspection ForgottenDebugOutputInspection
      * @noinspection DebugFunctionUsageInspection
+     *
+     * @psalm-suppress ForbiddenCode
      */
     public function dump(...$args): self
     {

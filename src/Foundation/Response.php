@@ -120,12 +120,12 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     /**
      * Get the JSON decoded body of the response as an array or scalar value.
      *
+     * @noinspection JsonEncodingApiUsageInspection
+     *
      * @param null|array-key $key
      * @param mixed $default
      *
      * @return mixed
-     *
-     * @noinspection JsonEncodingApiUsageInspection
      */
     public function json($key = null, $default = null)
     {
@@ -168,11 +168,11 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      * more advanced XML responses with namespaces and prefixes. Consider
      * using the xmlReader method instead for better compatability.
      *
-     * @return false|\SimpleXMLElement
-     *
      * @see https://www.php.net/manual/en/book.simplexml.php
      *
      * @noinspection PhpReturnDocTypeMismatchInspection
+     *
+     * @return false|\SimpleXMLElement
      */
     public function xml(...$arguments)
     {

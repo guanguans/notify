@@ -209,11 +209,11 @@ $status = (new SingleCommandApplication)
             }
 
             /**
-             * @param array|string $command
-             * @param mixed $input The input as stream resource, scalar or \Traversable, or null for no input
-             *
              * @noinspection MissingParameterTypeDeclarationInspection
              * @noinspection PhpSameParameterValueInspection
+             *
+             * @param array|string $command
+             * @param mixed $input The input as stream resource, scalar or \Traversable, or null for no input
              */
             private function mustRunCommand(
                 $command,
@@ -247,11 +247,11 @@ $status = (new SingleCommandApplication)
             }
 
             /**
-             * @param array|string $pattern
-             *
              * @noinspection SuspiciousLoopInspection
              * @noinspection ComparisonScalarOrderInspection
              * @noinspection MissingParameterTypeDeclarationInspection
+             *
+             * @param array|string $pattern
              */
             private function strIs($pattern, string $value): bool
             {

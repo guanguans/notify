@@ -140,6 +140,7 @@ $ruleSet = Config\RuleSet\Php74::create()
                 'covers',
                 'uses',
                 'dataProvider',
+                'noinspection',
                 'psalm-suppress',
                 'param',
                 'throws',

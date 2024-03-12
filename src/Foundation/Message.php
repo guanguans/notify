@@ -50,11 +50,11 @@ abstract class Message implements \ArrayAccess, Contracts\Message
     }
 
     /**
+     * @noinspection PhpHierarchyChecksInspection
+     *
      * @param array|mixed $options
      *
      * @return static
-     *
-     * @noinspection PhpHierarchyChecksInspection
      */
     final public static function make($options = []): self
     {

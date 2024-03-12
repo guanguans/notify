@@ -13,12 +13,12 @@ declare(strict_types=1);
 
 if (!\function_exists('error_silencer')) {
     /**
-     * @psalm-suppress ForbiddenCode
-     * @psalm-suppress InvalidArgument
-     *
      * @noinspection ForgottenDebugOutputInspection
      * @noinspection DebugFunctionUsageInspection
      * @noinspection PhpExpressionResultUnusedInspection
+     *
+     * @psalm-suppress ForbiddenCode
+     * @psalm-suppress InvalidArgument
      */
     function error_silencer(callable $callback, bool $debug = false)
     {
