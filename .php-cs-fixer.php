@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 use Ergebnis\License;
 use Ergebnis\PhpCsFixer\Config;
+use PhpCsFixer\Finder;
 
 $license = License\Type\MIT::text(
     __DIR__.'/LICENSE',
@@ -178,41 +179,37 @@ $ruleSet->withCustomFixers(Config\Fixers::fromFixers(
     )
 ));
 
-$config = Config\Factory::fromRuleSet($ruleSet);
-
-$config->getFinder()
-    ->in(__DIR__)
-    ->exclude([
-        '.build/',
-        '.chglog/',
-        '.github/',
-        'build/',
-        'docs/',
-        'vendor/',
-        '__snapshots__/',
-    ])
-    ->append(glob(__DIR__.'/{*,.*}.php', \GLOB_BRACE))
-    ->append([
-        __DIR__.'/composer-updater',
-        __DIR__.'/platform-lint',
-    ])
-    ->notPath([
-        'bootstrap/*',
-        'storage/*',
-        'resources/view/mail/*',
-        'vendor/*',
-    ])
-    ->name('*.php')
-    ->notName([
-        '*.blade.php',
-        // '_ide_helper.php',
-    ])
-    ->ignoreDotFiles(true)
-    ->ignoreVCS(true);
-
-$config
+return Config\Factory::fromRuleSet($ruleSet)
+    ->setFinder(
+        Finder::create()
+            ->in(__DIR__)
+            ->exclude([
+                '.build/',
+                '.chglog/',
+                '.github/',
+                'build/',
+                'docs/',
+                'vendor-bin/',
+                '__snapshots__/',
+            ])
+            ->append(glob(__DIR__.'/{*,.*}.php', \GLOB_BRACE))
+            ->append([
+                __DIR__.'/composer-updater',
+                __DIR__.'/platform-lint',
+            ])
+            ->notPath([
+                'bootstrap/*',
+                'storage/*',
+                'resources/view/mail/*',
+                'vendor-bin/*',
+            ])
+            ->notName([
+                '*.blade.php',
+                // '_ide_helper.php',
+            ])
+            ->ignoreDotFiles(true)
+            ->ignoreVCS(true)
+    )
     ->setRiskyAllowed(true)
     ->setUsingCache(true)
     ->setCacheFile(__DIR__.'/build/php-cs-fixer/.php-cs-fixer.cache');
-
-return $config;
