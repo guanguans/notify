@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.5.0"></a>
+## [2.5.0] - 2024-03-20
+### Feat
+- **SimplePush:** Add SimplePush package with Authenticator, Client, and Messages
+
+### Test
+- **SimplePush:** add test case for sending message
+
+
 <a name="2.4.3"></a>
 ## [2.4.3] - 2024-03-20
 ### Pull Requests
@@ -778,7 +787,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.4.3...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.5.0...HEAD
+[2.5.0]: https://github.com/guanguans/notify/compare/2.4.3...2.5.0
 [2.4.3]: https://github.com/guanguans/notify/compare/2.4.2...2.4.3
 [2.4.2]: https://github.com/guanguans/notify/compare/2.4.1...2.4.2
 [2.4.1]: https://github.com/guanguans/notify/compare/2.4.0...2.4.1
