@@ -8,6 +8,13 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.4.3"></a>
+## [2.4.3] - 2024-03-20
+### Pull Requests
+- Merge pull request [#65](https://github.com/guanguans/notify/issues/65) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.70.2
+- Merge pull request [#64](https://github.com/guanguans/notify/issues/64) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.70.0
+
+
 <a name="2.4.2"></a>
 ## [2.4.2] - 2024-03-12
 ### CI
@@ -771,7 +778,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.4.2...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.4.3...HEAD
+[2.4.3]: https://github.com/guanguans/notify/compare/2.4.2...2.4.3
 [2.4.2]: https://github.com/guanguans/notify/compare/2.4.1...2.4.2
 [2.4.1]: https://github.com/guanguans/notify/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/guanguans/notify/compare/2.3.1...2.4.0
