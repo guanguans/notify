@@ -1,7 +1,7 @@
 # notify
 
 > [!NOTE]
-> Push notification SDK(Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、Pushback、PushBullet、PushDeer、Pushover、PushPlus、QQ、RocketChat、ServerChan、ShowdocPush、Slack、Telegram、WeWork、XiZhi、YiFengChuanHua、Zulip).
+> Push notification SDK(Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、Pushback、PushBullet、PushDeer、Pushover、PushPlus、QQ、RocketChat、ServerChan、ShowdocPush、SimplePush、Slack、Telegram、WeWork、XiZhi、YiFengChuanHua、Zulip).
 
 [![tests](https://github.com/guanguans/notify/actions/workflows/tests.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/tests.yml)
 [![check & fix styling](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml)
@@ -36,6 +36,7 @@
 * [RocketChat](./src/RocketChat/README.md)
 * [ServerChan](./src/ServerChan/README.md)
 * [ShowdocPush](./src/ShowdocPush/README.md)
+* [SimplePush](./src/SimplePush/README.md)
 * [Slack](./src/Slack/README.md)
 * [Telegram](./src/Telegram/README.md)
 * [WeWork](./src/WeWork/README.md)
