@@ -13,6 +13,7 @@
 
 ## Platform support
 
+[//]: # (https://github.com/dschep/ntfy)
 * [Bark](./src/Bark/README.md)
 * [Chanify](./src/Chanify/README.md)
 * [DingTalk](./src/DingTalk/README.md)

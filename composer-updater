@@ -13,6 +13,7 @@ declare(strict_types=1);
  */
 
 use Composer\InstalledVersions;
+use SebastianBergmann\Diff\Differ;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -34,6 +35,7 @@ $status = (new SingleCommandApplication)
     ->addOption('composer-binary', null, InputOption::VALUE_OPTIONAL)
     ->addOption('except-packages', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL)
     ->addOption('except-dependency-versions', null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL)
+    ->addOption('dry-run', null, InputOption::VALUE_NONE)
     ->setCode(function (InputInterface $input, OutputInterface $output): void {
         assert_options(\ASSERT_BAIL, 1);
         \assert($this instanceof SingleCommandApplication);
@@ -45,14 +47,19 @@ $status = (new SingleCommandApplication)
             $input->getOption('composer-binary'),
             $input->getOption('except-packages'),
             $input->getOption('except-dependency-versions'),
+            $input->getOption('dry-run'),
             new SymfonyStyle($input, $output),
+            new Differ,
         ) {
             private string $composerJsonPath;
+            private string $composerJsonContents;
             private string $highestComposerBinary;
             private string $composerBinary;
             private array $exceptPackages;
             private array $exceptDependencyVersions;
+            private bool $dryRun;
             private SymfonyStyle $symfonyStyle;
+            private Differ $differ;
 
             /**
              * @noinspection ParameterDefaultsNullInspection
@@ -63,12 +70,15 @@ $status = (new SingleCommandApplication)
                 ?string $composerBinary = null,
                 array $exceptPackages = [],
                 array $exceptDependencyVersions = [],
-                ?SymfonyStyle $symfonyStyle = null
+                bool $dryRun = false,
+                ?SymfonyStyle $symfonyStyle = null,
+                ?Differ $differ = null
             ) {
                 assert_options(\ASSERT_BAIL, 1);
                 \assert((bool) $composerJsonPath);
 
                 $this->composerJsonPath = $composerJsonPath;
+                $this->composerJsonContents = file_get_contents($composerJsonPath);
                 $this->highestComposerBinary = $this->getComposerBinary($composerBinary, $highestPhpBinary);
                 $this->composerBinary = $this->getComposerBinary($composerBinary);
                 $this->exceptPackages = array_merge([
@@ -81,7 +91,9 @@ $status = (new SingleCommandApplication)
                     '*@*',
                     // '*|*',
                 ], $exceptDependencyVersions);
+                $this->dryRun = $dryRun;
                 $this->symfonyStyle = $symfonyStyle ?? new SymfonyStyle(new ArgvInput, new ConsoleOutput);
+                $this->differ = $differ ?? new Differ;
             }
 
             public function __invoke(): void
@@ -105,16 +117,26 @@ $status = (new SingleCommandApplication)
 
             /**
              * @noinspection JsonEncodingApiUsageInspection
+             *
+             * @return $this|never-return
              */
             private function updateOutdatedComposerPackages(): self
             {
-                file_put_contents(
-                    $this->composerJsonPath,
-                    json_encode(
-                        $this->getOutdatedDecodedComposerJson(),
-                        \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES,
-                    ).\PHP_EOL,
-                );
+                $outdatedComposerJsonContents = json_encode(
+                    $this->getOutdatedDecodedComposerJson(),
+                    \JSON_PRETTY_PRINT | \JSON_UNESCAPED_UNICODE | \JSON_UNESCAPED_SLASHES
+                ).\PHP_EOL;
+
+                if ($this->dryRun) {
+                    $this->symfonyStyle->writeln($this->formatDiff($this->differ->diff(
+                        $this->composerJsonContents,
+                        $outdatedComposerJsonContents
+                    )));
+
+                    exit(0);
+                }
+
+                file_put_contents($this->composerJsonPath, $outdatedComposerJsonContents);
 
                 return $this;
             }
@@ -138,7 +160,7 @@ $status = (new SingleCommandApplication)
             {
                 $outdatedComposerPackages = $this->getOutdatedComposerPackages();
                 $decodedComposerJson = json_decode(file_get_contents($this->composerJsonPath), true);
-                InstalledVersions::reload([]);
+                (fn () => self::reload(null))->call(new InstalledVersions);
 
                 foreach ($decodedComposerJson as $name => &$value) {
                     if (!\in_array($name, ['require', 'require-dev'], true)) {
@@ -176,7 +198,7 @@ $status = (new SingleCommandApplication)
                         $this
                             ->mustRunCommand("$this->highestComposerBinary outdated --format=json --direct --ansi")
                             ->getOutput(),
-                        true,
+                        true
                     )['installed'],
                     function (array $carry, array $package): array {
                         $lowestArrayVersion = $this->toArrayVersion($package['version']);
@@ -186,7 +208,7 @@ $status = (new SingleCommandApplication)
                         if ($lowestArrayVersion[0] !== $highestArrayVersion[0]) {
                             $dependencyVersions = array_merge($dependencyVersions, array_map(
                                 static fn (string $major): string => "^$major.0",
-                                range($lowestArrayVersion[0] + 1, $highestArrayVersion[0]),
+                                range($lowestArrayVersion[0] + 1, $highestArrayVersion[0])
                             ));
                         }
 
@@ -195,7 +217,7 @@ $status = (new SingleCommandApplication)
 
                         return $carry;
                     },
-                    [],
+                    []
                 );
             }
 
@@ -204,7 +226,7 @@ $status = (new SingleCommandApplication)
                 return sprintf(
                     '%s %s',
                     $phpBinary ?? (new PhpExecutableFinder)->find(),
-                    $composerBinary ?? (new ExecutableFinder)->find('composer'),
+                    $composerBinary ?? (new ExecutableFinder)->find('composer')
                 );
             }
 
@@ -277,6 +299,33 @@ $status = (new SingleCommandApplication)
                 }
 
                 return false;
+            }
+
+            private function formatDiff(string $diff): string
+            {
+                $lines = explode(
+                    "\n",
+                    $diff,
+                );
+
+                $formatted = array_map(static function (string $line): string {
+                    return preg_replace(
+                        [
+                            '/^(\+.*)$/',
+                            '/^(-.*)$/',
+                        ],
+                        [
+                            '<fg=green>$1</>',
+                            '<fg=red>$1</>',
+                        ],
+                        $line,
+                    );
+                }, $lines);
+
+                return implode(
+                    "\n",
+                    $formatted,
+                );
             }
         })();
     })
