@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.5.1"></a>
+## [2.5.1] - 2024-03-22
+### Refactor
+- **Response:** improve request and response summary handling
+
+### Pull Requests
+- Merge pull request [#67](https://github.com/guanguans/notify/issues/67) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-2.0.0
+- Merge pull request [#66](https://github.com/guanguans/notify/issues/66) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.70.3
+
+
 <a name="2.5.0"></a>
 ## [2.5.0] - 2024-03-20
 ### Feat
@@ -787,7 +797,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.5.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.5.1...HEAD
+[2.5.1]: https://github.com/guanguans/notify/compare/2.5.0...2.5.1
 [2.5.0]: https://github.com/guanguans/notify/compare/2.4.3...2.5.0
 [2.4.3]: https://github.com/guanguans/notify/compare/2.4.2...2.4.3
 [2.4.2]: https://github.com/guanguans/notify/compare/2.4.1...2.4.2
