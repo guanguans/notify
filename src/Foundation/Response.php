@@ -21,6 +21,7 @@ use Guanguans\Notify\Foundation\Exceptions\RequestException;
 use Guanguans\Notify\Foundation\Exceptions\RuntimeException;
 use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\Psr7\Message;
 use GuzzleHttp\TransferStats;
 use Illuminate\Support\Collection;
 use Psr\Http\Message\RequestInterface;
@@ -74,13 +75,15 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     {
         return $this->mergeDebugInfo([
             'handlerStats' => $this->handlerStats(),
-            'headers' => Arr::map(
-                $this->headers(),
-                fn (array $header, string $name): string => $this->getHeaderLine($name),
-            ),
-            'status' => $this->status(),
-            'reason' => $this->reason(),
-            'body' => $this->body(),
+            'requestSummary' => $this->request instanceof RequestInterface ? Message::toString($this->request) : null,
+            'responseSummary' => Message::toString($this),
+            // 'headers' => Arr::map(
+            //     $this->headers(),
+            //     fn (array $header, string $name): string => $this->getHeaderLine($name),
+            // ),
+            // 'status' => $this->status(),
+            // 'reason' => $this->reason(),
+            // 'body' => $this->body(),
             'decodedBody' => $this->json(),
         ]);
     }
