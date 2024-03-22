@@ -197,6 +197,16 @@ it('can get header', function (): void {
         ->header('Content-Type')->toBe('application/json');
 })->group(__DIR__, __FILE__);
 
+it('can get headers', function (): void {
+    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(200, ['Content-Type' => 'application/json'])))
+        ->headers()->toBeArray();
+})->group(__DIR__, __FILE__);
+
+it('can get reason', function (): void {
+    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(200, ['Content-Type' => 'application/json'])))
+        ->reason()->toBeString();
+})->group(__DIR__, __FILE__);
+
 it('can get effective uri', function (): void {
     expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(200, ['Content-Type' => 'application/json'])))
         ->effectiveUri()->toBeNull();
