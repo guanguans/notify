@@ -76,9 +76,7 @@
         "ext-openssl": "*",
         "ext-simplexml": "*",
         "guzzlehttp/guzzle": "^7.8",
-        "guzzlehttp/psr7": "^2.6",
         "guzzlehttp/uri-template": "^1.0",
-        "psr/http-message": "^2.0",
         "symfony/options-resolver": "^5.4 || ^6.0 || ^7.0"
     },
     "require-dev": {
@@ -88,7 +86,7 @@
         "ergebnis/license": "^2.4",
         "ergebnis/php-cs-fixer-config": "dev-main",
         "ergebnis/rector-rules": "^1.0",
-        "friendsofphp/php-cs-fixer": "^3.52",
+        "friendsofphp/php-cs-fixer": "^3.54",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
         "icanhazstring/composer-unused": "^0.8",
