@@ -18,6 +18,7 @@ use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\HasOptionsDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
 use GuzzleHttp\RequestOptions;
+use Rector\CodeQuality\Rector\ClassMethod\ExplicitReturnNullRector;
 use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
@@ -43,10 +44,10 @@ use Rector\Transform\ValueObject\StringToClassConstant;
 use Rector\ValueObject\PhpVersion;
 
 return static function (RectorConfig $rectorConfig): void {
-    \define('MHASH_XXH3', 2 << 0);
-    \define('MHASH_XXH32', 2 << 1);
-    \define('MHASH_XXH64', 2 << 2);
-    \define('MHASH_XXH128', 2 << 3);
+    // \define('MHASH_XXH3', 2 << 0);
+    // \define('MHASH_XXH32', 2 << 1);
+    // \define('MHASH_XXH64', 2 << 2);
+    // \define('MHASH_XXH128', 2 << 3);
     $rectorConfig->importNames(false, false);
     $rectorConfig->importShortClasses(false);
     $rectorConfig->parallel(240);
@@ -91,6 +92,7 @@ return static function (RectorConfig $rectorConfig): void {
         LogicalToBooleanRector::class,
         NewlineAfterStatementRector::class,
         RemoveUselessReturnTagRector::class,
+        ExplicitReturnNullRector::class,
         ReturnBinaryOrToEarlyReturnRector::class,
         SensitiveHereNowDocRector::class,
         WrapEncapsedVariableInCurlyBracesRector::class,
@@ -135,6 +137,11 @@ return static function (RectorConfig $rectorConfig): void {
         '**/Expected*',
         '**/__snapshots__/*',
         '**/__snapshots__*',
+    ]);
+
+    // This is magic but it works.
+    $rectorConfig->rules([
+        HasOptionsDocCommentRector::class,
     ]);
 
     $rectorConfig->sets([
@@ -187,7 +194,7 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->rules([
         SortAssociativeArrayByKeyRector::class,
         HasHttpClientDocCommentRector::class,
-        HasOptionsDocCommentRector::class,
+        // HasOptionsDocCommentRector::class,
         ToInternalExceptionRector::class,
     ]);
 
