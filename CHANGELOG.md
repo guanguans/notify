@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.6.0"></a>
+## [2.6.0] - 2024-04-22
+### Test
+- Add tests for getting headers and reason in Response class
+
+### Pull Requests
+- Merge pull request [#72](https://github.com/guanguans/notify/issues/72) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.73.0
+- Merge pull request [#71](https://github.com/guanguans/notify/issues/71) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.72.0
+- Merge pull request [#70](https://github.com/guanguans/notify/issues/70) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.71.2
+- Merge pull request [#69](https://github.com/guanguans/notify/issues/69) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.71.1
+- Merge pull request [#68](https://github.com/guanguans/notify/issues/68) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.71.0
+
+
 <a name="2.5.1"></a>
 ## [2.5.1] - 2024-03-22
 ### Refactor
@@ -797,7 +810,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.5.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.6.0...HEAD
+[2.6.0]: https://github.com/guanguans/notify/compare/2.5.1...2.6.0
 [2.5.1]: https://github.com/guanguans/notify/compare/2.5.0...2.5.1
 [2.5.0]: https://github.com/guanguans/notify/compare/2.4.3...2.5.0
 [2.4.3]: https://github.com/guanguans/notify/compare/2.4.2...2.4.3
