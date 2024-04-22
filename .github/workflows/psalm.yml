@@ -1,6 +1,7 @@
 name: psalm
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - '**.php'

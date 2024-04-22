@@ -1,6 +1,6 @@
 name: tests
 
-on: [ push, pull_request ]
+on: [ workflow_dispatch,push, pull_request ]
 
 jobs:
   test:
@@ -41,5 +41,5 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-          fail_ci_if_error: false # optional (default = false)
+          fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
