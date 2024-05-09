@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.6.1"></a>
+## [2.6.1] - 2024-05-09
+### Pull Requests
+- Merge pull request [#77](https://github.com/guanguans/notify/issues/77) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.75.1
+- Merge pull request [#76](https://github.com/guanguans/notify/issues/76) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.75.0
+- Merge pull request [#75](https://github.com/guanguans/notify/issues/75) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-2.1.0
+- Merge pull request [#74](https://github.com/guanguans/notify/issues/74) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.74.0
+
+
 <a name="2.6.0"></a>
 ## [2.6.0] - 2024-04-22
 ### Test
@@ -810,7 +819,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.6.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.6.1...HEAD
+[2.6.1]: https://github.com/guanguans/notify/compare/2.6.0...2.6.1
 [2.6.0]: https://github.com/guanguans/notify/compare/2.5.1...2.6.0
 [2.5.1]: https://github.com/guanguans/notify/compare/2.5.0...2.5.1
 [2.5.0]: https://github.com/guanguans/notify/compare/2.4.3...2.5.0
