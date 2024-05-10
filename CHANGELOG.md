@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.7.0"></a>
+## [2.7.0] - 2024-05-10
+### Docs
+- **readme:** update push notification SDK list
+
+### Feat
+- **AnPush:** add ClientTest.php for sending message
+- **AnPush:** Add AnPush Authenticator, Client, and Message classes
+
+
 <a name="2.6.1"></a>
 ## [2.6.1] - 2024-05-09
 ### Pull Requests
@@ -819,7 +829,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.6.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.7.0...HEAD
+[2.7.0]: https://github.com/guanguans/notify/compare/2.6.1...2.7.0
 [2.6.1]: https://github.com/guanguans/notify/compare/2.6.0...2.6.1
 [2.6.0]: https://github.com/guanguans/notify/compare/2.5.1...2.6.0
 [2.5.1]: https://github.com/guanguans/notify/compare/2.5.0...2.5.1
