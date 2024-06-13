@@ -211,6 +211,10 @@
         "md-lint": "lint-md --config .lintmdrc ./*.md ./.github/ ./docs/ ./src/*/*.md",
         "pest": "@php ./vendor/bin/pest --coverage",
         "pest-coverage": "@pest --coverage-html=./build/phpunit/ --coverage-clover=./clover.xml",
+        "pest-highest": [
+            "@putenvs",
+            "$PHP83 ./vendor/bin/pest --coverage"
+        ],
         "pest-migrate-configuration": "@pest --migrate-configuration",
         "pest-profile": "@pest --profile",
         "pest-type-coverage": "@pest --type-coverage",
@@ -222,6 +226,14 @@
         ],
         "psalm": "@php ./vendor/bin/psalm",
         "psalm-baseline": "@psalm --update-baseline",
+        "putenvs": [
+            "@putenv PHP73=/opt/homebrew/opt/php@7.3/bin/php",
+            "@putenv PHP74=/opt/homebrew/opt/php@7.4/bin/php",
+            "@putenv PHP80=/opt/homebrew/opt/php@8.0/bin/php",
+            "@putenv PHP81=/opt/homebrew/opt/php@8.1/bin/php",
+            "@putenv PHP82=/opt/homebrew/opt/php@8.2/bin/php",
+            "@putenv PHP83=/opt/homebrew/opt/php@8.3/bin/php"
+        ],
         "rector": "@php ./vendor/bin/rector --clear-cache --ansi -v",
         "rector-dry-run": "@rector --dry-run",
         "release": "@php ./vendor/bin/monorepo-builder release --ansi -v",
@@ -237,6 +249,7 @@
         "style-lint-dist": "@style-fix-dist --dry-run",
         "test": "@pest",
         "test-coverage": "@pest-coverage",
+        "test-highest": "@pest-highest",
         "test-migrate-configuration": "@pest-migrate-configuration",
         "test-phpunit": "@php ./vendor/bin/phpunit --cache-result-file=./build/phpunit/.phpunit.result.cache --coverage-text --ansi -v",
         "test-phpunit-coverage": "@test --coverage-html=./build/phpunit/ --coverage-clover=clover.xml",
