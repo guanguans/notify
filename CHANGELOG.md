@@ -8,6 +8,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.8.1"></a>
+## [2.8.1] - 2024-06-13
+### Pull Requests
+- Merge pull request [#84](https://github.com/guanguans/notify/issues/84) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.78.1
+- Merge pull request [#83](https://github.com/guanguans/notify/issues/83) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.78.0
+- Merge pull request [#82](https://github.com/guanguans/notify/issues/82) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.77.0
+- Merge pull request [#81](https://github.com/guanguans/notify/issues/81) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.76.3
+- Merge pull request [#80](https://github.com/guanguans/notify/issues/80) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.76.2
+- Merge pull request [#79](https://github.com/guanguans/notify/issues/79) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.76.1
+- Merge pull request [#78](https://github.com/guanguans/notify/issues/78) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.76.0
+
+
 <a name="2.8.0"></a>
 ## [2.8.0] - 2024-05-10
 ### Feat
@@ -836,7 +848,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.8.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.8.1...HEAD
+[2.8.1]: https://github.com/guanguans/notify/compare/2.8.0...2.8.1
 [2.8.0]: https://github.com/guanguans/notify/compare/2.7.0...2.8.0
 [2.7.0]: https://github.com/guanguans/notify/compare/2.6.1...2.7.0
 [2.6.1]: https://github.com/guanguans/notify/compare/2.6.0...2.6.1
