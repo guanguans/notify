@@ -110,6 +110,7 @@ trait HasOptions
         return isset($this->options[$offset]);
     }
 
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->getOption($offset);
