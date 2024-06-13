@@ -14,6 +14,7 @@ declare(strict_types=1);
 use Ergebnis\License;
 use Ergebnis\PhpCsFixer\Config;
 use PhpCsFixer\Finder;
+use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 
 $license = License\Type\MIT::text(
     __DIR__.'/LICENSE',
@@ -212,4 +213,5 @@ return Config\Factory::fromRuleSet($ruleSet)
     )
     ->setRiskyAllowed(true)
     ->setUsingCache(true)
+    ->setParallelConfig(ParallelConfigFactory::detect())
     ->setCacheFile(__DIR__.'/build/php-cs-fixer/.php-cs-fixer.cache');
