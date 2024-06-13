@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.8.2"></a>
+## [2.8.2] - 2024-06-13
+### Fix
+- **HasOptions:** Fix offsetGet method
+
+
 <a name="2.8.1"></a>
 ## [2.8.1] - 2024-06-13
 ### Pull Requests
@@ -848,7 +854,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.8.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.8.2...HEAD
+[2.8.2]: https://github.com/guanguans/notify/compare/2.8.1...2.8.2
 [2.8.1]: https://github.com/guanguans/notify/compare/2.8.0...2.8.1
 [2.8.0]: https://github.com/guanguans/notify/compare/2.7.0...2.8.0
 [2.7.0]: https://github.com/guanguans/notify/compare/2.6.1...2.7.0
