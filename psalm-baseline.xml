@@ -1,8 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.23.0@005e3184fb6de4350a873b9b8c4dc3cede9db762">
-  <file src="src/Foundation/Concerns/HasHttpClient.php">
-    <UndefinedConstant>
-      <code><![CDATA[MULTIPART_TRY_OPEN_FILE]]></code>
-    </UndefinedConstant>
-  </file>
-</files>
+<files psalm-version="5.24.0@462c80e31c34e58cc4f750c656be3927e80e550e"/>

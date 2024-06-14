@@ -35,9 +35,11 @@
   <plugins>
     <!--<pluginClass class="Psalm\LaravelPlugin\Plugin"/>-->
   </plugins>
-  <!--<file src="src/Clients/PushDeerClient.php">
-    <UnusedClosureParam occurrences="1">
-      <code>$optionsResolver</code>
-    </UnusedClosureParam>
-  </file>-->
+  <!--<files psalm-version="5.23.0@005e3184fb6de4350a873b9b8c4dc3cede9db762">
+    <file src="src/Foundation/Concerns/HasHttpClient.php">
+      <UndefinedConstant>
+        <code><![CDATA[MULTIPART_TRY_OPEN_FILE]]></code>
+      </UndefinedConstant>
+    </file>
+  </files>-->
 </psalm>
