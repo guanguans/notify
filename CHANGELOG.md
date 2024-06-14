@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.8.3"></a>
+## [2.8.3] - 2024-06-14
+### CI
+- **composer.json:** Add pest-highest and putenvs scripts
+
+### Feat
+- **Message:** Add new methods to handle form parameters, query strings, and multipart data
+
+
 <a name="2.8.2"></a>
 ## [2.8.2] - 2024-06-13
 ### Fix
@@ -854,7 +863,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.8.2...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.8.3...HEAD
+[2.8.3]: https://github.com/guanguans/notify/compare/2.8.2...2.8.3
 [2.8.2]: https://github.com/guanguans/notify/compare/2.8.1...2.8.2
 [2.8.1]: https://github.com/guanguans/notify/compare/2.8.0...2.8.1
 [2.8.0]: https://github.com/guanguans/notify/compare/2.7.0...2.8.0
