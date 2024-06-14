@@ -18,8 +18,8 @@ use Guanguans\Notify\Foundation\Message;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\StreamInterface;
 
-\define('MULTIPART_TRY_OPEN_FILE', 1 << 0);
-\define('MULTIPART_TRY_OPEN_URL', 1 << 1);
+// \define('MULTIPART_TRY_OPEN_FILE', 1 << 0);
+// \define('MULTIPART_TRY_OPEN_URL', 1 << 1);
 
 /**
  * @property-read list<string> $defined

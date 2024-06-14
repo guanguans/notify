@@ -90,9 +90,6 @@ abstract class Message implements \ArrayAccess, Contracts\Message
         return http_build_query($this->toPayload(), $numericPrefix, $argSeparator, $encodingType);
     }
 
-    /**
-     * @psalm-suppress UndefinedConstant
-     */
     protected function toMultipart(int $options = MULTIPART_TRY_OPEN_FILE): MultipartStream
     {
         return new MultipartStream(Utils::multipartFor($this->toPayload(), $options));

@@ -11,6 +11,9 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
+\define('MULTIPART_TRY_OPEN_FILE', 1 << 0);
+\define('MULTIPART_TRY_OPEN_URL', 1 << 1);
+
 if (!\function_exists('error_silencer')) {
     /**
      * @noinspection ForgottenDebugOutputInspection
