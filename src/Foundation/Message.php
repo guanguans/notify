@@ -18,6 +18,8 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
 use Guanguans\Notify\Foundation\Support\Arr;
+use Guanguans\Notify\Foundation\Support\Utils;
+use GuzzleHttp\Psr7\MultipartStream;
 
 /**
  * @template-implements \ArrayAccess<string, mixed>
@@ -72,9 +74,30 @@ abstract class Message implements \ArrayAccess, Contracts\Message
         return new static($options);
     }
 
-    protected function toJson(int $options = \JSON_THROW_ON_ERROR | \JSON_UNESCAPED_UNICODE): string
+    protected function toFormParams(
+        string $numericPrefix = '',
+        ?string $argSeparator = '&',
+        int $encodingType = \PHP_QUERY_RFC1738
+    ): string {
+        return $this->toQuery($numericPrefix, $argSeparator, $encodingType);
+    }
+
+    protected function toQuery(
+        string $numericPrefix = '',
+        ?string $argSeparator = '&',
+        int $encodingType = \PHP_QUERY_RFC3986
+    ): string {
+        return http_build_query($this->toPayload(), $numericPrefix, $argSeparator, $encodingType);
+    }
+
+    protected function toMultipart(int $options = MULTIPART_TRY_OPEN_FILE): MultipartStream
     {
-        return json_encode($this->toPayload(), $options);
+        return new MultipartStream(Utils::multipartFor($this->toPayload(), $options));
+    }
+
+    protected function toJson(int $options = \JSON_THROW_ON_ERROR | \JSON_UNESCAPED_UNICODE, int $depth = 512): string
+    {
+        return \GuzzleHttp\Utils::jsonEncode($this->toPayload(), $options, $depth);
     }
 
     protected function toPayload(): array
