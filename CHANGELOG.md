@@ -8,6 +8,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.8.4"></a>
+## [2.8.4] - 2024-06-14
+### CI
+- **psalm:** Update psalm baseline and remove unused closure param
+
+### Fix
+- **Support:** Fix undefined constant issue
+
+### Test
+- **test:** add tests for form params, query, and Multipart conversion
+
+
 <a name="2.8.3"></a>
 ## [2.8.3] - 2024-06-14
 ### CI
@@ -863,7 +875,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.8.3...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.8.4...HEAD
+[2.8.4]: https://github.com/guanguans/notify/compare/2.8.3...2.8.4
 [2.8.3]: https://github.com/guanguans/notify/compare/2.8.2...2.8.3
 [2.8.2]: https://github.com/guanguans/notify/compare/2.8.1...2.8.2
 [2.8.1]: https://github.com/guanguans/notify/compare/2.8.0...2.8.1
