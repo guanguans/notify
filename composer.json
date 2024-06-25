@@ -83,7 +83,7 @@
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8",
-        "brainmaestro/composer-git-hooks": "^2.8",
+        "brainmaestro/composer-git-hooks": "^2.8 || ^3.0",
         "ergebnis/composer-normalize": "^2.42",
         "ergebnis/license": "^2.4",
         "ergebnis/php-cs-fixer-config": "dev-main",
