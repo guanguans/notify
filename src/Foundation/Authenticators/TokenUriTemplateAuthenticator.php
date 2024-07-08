@@ -15,8 +15,10 @@ namespace Guanguans\Notify\Foundation\Authenticators;
 
 class TokenUriTemplateAuthenticator extends UriTemplateAuthenticator
 {
-    public function __construct(string $token)
-    {
+    public function __construct(
+        #[\SensitiveParameter]
+        string $token
+    ) {
         parent::__construct(['token' => $token]);
     }
 }

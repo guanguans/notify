@@ -17,8 +17,11 @@ use GuzzleHttp\RequestOptions;
 
 class BearerAuthenticator extends OptionsAuthenticator
 {
-    public function __construct(string $token, ?string $bearer = 'Bearer')
-    {
+    public function __construct(
+        #[\SensitiveParameter]
+        string $token,
+        ?string $bearer = 'Bearer'
+    ) {
         parent::__construct([RequestOptions::HEADERS => ['Authorization' => ltrim("$bearer $token")]]);
     }
 }

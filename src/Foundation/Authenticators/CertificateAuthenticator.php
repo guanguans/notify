@@ -17,8 +17,11 @@ use GuzzleHttp\RequestOptions;
 
 class CertificateAuthenticator extends OptionsAuthenticator
 {
-    public function __construct(string $path, ?string $password = null)
-    {
+    public function __construct(
+        string $path,
+        #[\SensitiveParameter]
+        ?string $password = null
+    ) {
         parent::__construct([RequestOptions::CERT => \is_string($password) ? [$path, $password] : $path]);
     }
 }

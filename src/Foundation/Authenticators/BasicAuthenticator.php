@@ -23,8 +23,12 @@ use GuzzleHttp\RequestOptions;
  */
 class BasicAuthenticator extends OptionsAuthenticator
 {
-    public function __construct(string $username, string $password, string $type = 'basic')
-    {
+    public function __construct(
+        string $username,
+        #[\SensitiveParameter]
+        string $password,
+        string $type = 'basic'
+    ) {
         parent::__construct([RequestOptions::AUTH => [$username, $password, $type]]);
     }
 }
