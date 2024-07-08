@@ -84,8 +84,8 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->skip([
-        AddSeeTestAnnotationRector::class,
-        ChangeAndIfToEarlyReturnRector::class,
+        // AddSeeTestAnnotationRector::class,
+        // ChangeAndIfToEarlyReturnRector::class,
         DowngradeArrayFilterNullableCallbackRector::class,
         EncapsedStringsToSprintfRector::class,
         ExplicitBoolCompareRector::class,
@@ -106,9 +106,9 @@ return static function (RectorConfig $rectorConfig): void {
             __DIR__.'/src/Foundation/Authenticators/AggregateAuthenticator.php',
             __DIR__.'/src/Foundation/Exceptions/RequestException.php',
         ],
-        StaticClosureRector::class => [
-            __DIR__.'/tests',
-        ],
+        // StaticClosureRector::class => [
+        //     __DIR__.'/tests',
+        // ],
         StringToClassConstantRector::class => [
             __DIR__.'/src/Foundation/Rfc',
             __DIR__.'/src/*/Messages/*.php',
