@@ -8,6 +8,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.9.0"></a>
+## [2.9.0] - 2024-07-08
+### CI
+- **release:** update rector.php configuration
+
+### Feat
+- **authenticators:** improve constructor parameter formatting
+
+### Pull Requests
+- Merge pull request [#89](https://github.com/guanguans/notify/issues/89) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-2.2.0
+- Merge pull request [#88](https://github.com/guanguans/notify/issues/88) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.79.0
+- Merge pull request [#87](https://github.com/guanguans/notify/issues/87) from guanguans/dependabot/composer/brainmaestro/composer-git-hooks-tw-2.8or-tw-3.0
+- Merge pull request [#86](https://github.com/guanguans/notify/issues/86) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.78.2
+
+
 <a name="2.8.4"></a>
 ## [2.8.4] - 2024-06-14
 ### CI
@@ -875,7 +890,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.8.4...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.9.0...HEAD
+[2.9.0]: https://github.com/guanguans/notify/compare/2.8.4...2.9.0
 [2.8.4]: https://github.com/guanguans/notify/compare/2.8.3...2.8.4
 [2.8.3]: https://github.com/guanguans/notify/compare/2.8.2...2.8.3
 [2.8.2]: https://github.com/guanguans/notify/compare/2.8.1...2.8.2
