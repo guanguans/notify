@@ -76,6 +76,7 @@ class Client implements Contracts\Client
 
     /**
      * @see https://docs.guzzlephp.org/en/stable/quickstart.html#concurrent-requests
+     * @see \GuzzleHttp\Pool
      *
      * @param iterable<array-key, Message> $messages
      *
@@ -86,13 +87,14 @@ class Client implements Contracts\Client
      */
     public function pool(iterable $messages): array
     {
-        $promises = [];
-
-        foreach ($messages as $key => $message) {
-            $promises[$key] = $this->sendAsync($message);
-        }
-
         // return Utils::settle($promises)->wait();
-        return Utils::unwrap($promises);
+        /** @noinspection PhpParamsInspection */
+        return Utils::unwrap(
+            (function (iterable $messages): \Generator {
+                foreach ($messages as $key => $message) {
+                    yield $key => $this->sendAsync($message);
+                }
+            })($messages)
+        );
     }
 }
