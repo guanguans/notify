@@ -13,12 +13,16 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
+use Guanguans\Notify\Foundation\Authenticators\AggregateAuthenticator;
 use Guanguans\Notify\Foundation\Authenticators\NullAuthenticator;
+use Guanguans\Notify\Foundation\Authenticators\OptionsAuthenticator;
 use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Concerns\HasHttpClient;
 use Guanguans\Notify\Foundation\Contracts\Authenticator;
 use Guanguans\Notify\Foundation\Contracts\Message;
 use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 
 class Client implements Contracts\Client
@@ -49,7 +53,20 @@ class Client implements Contracts\Client
      */
     public function send(Message $message): ResponseInterface
     {
-        return $this->getHttpClient()->request(
+        $this->authenticator = new AggregateAuthenticator(
+            $this->authenticator,
+            new OptionsAuthenticator([RequestOptions::SYNCHRONOUS => true])
+        );
+
+        return $this->sendAsync($message)->wait();
+    }
+
+    /**
+     * @throws GuzzleException
+     */
+    public function sendAsync(Message $message): PromiseInterface
+    {
+        return $this->getHttpClient()->requestAsync(
             $message->toHttpMethod(),
             $message->toHttpUri(),
             $this->normalizeHttpOptions($this->authenticator->applyToOptions($message->toHttpOptions())),
