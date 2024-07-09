@@ -22,6 +22,7 @@ use Guanguans\Notify\Foundation\Contracts\Authenticator;
 use Guanguans\Notify\Foundation\Contracts\Message;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
+use GuzzleHttp\Promise\Utils;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 
@@ -71,5 +72,24 @@ class Client implements Contracts\Client
             $message->toHttpUri(),
             $this->normalizeHttpOptions($this->authenticator->applyToOptions($message->toHttpOptions())),
         );
+    }
+
+    /**
+     * @param iterable<Message> $messages
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Throwable
+     *
+     * @return list<Response|ResponseInterface>
+     */
+    public function pool(iterable $messages): array
+    {
+        $promises = [];
+
+        foreach ($messages as $key => $message) {
+            $promises[$key] = $this->sendAsync($message);
+        }
+
+        return Utils::unwrap($promises);
     }
 }
