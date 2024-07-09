@@ -8,6 +8,13 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.10.0"></a>
+## [2.10.0] - 2024-07-09
+### Refactor
+- **messages:** refactor postFor method in PostMessage class
+- **tests:** refactor create_response to response
+
+
 <a name="2.9.0"></a>
 ## [2.9.0] - 2024-07-08
 ### CI
@@ -890,7 +897,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.9.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.10.0...HEAD
+[2.10.0]: https://github.com/guanguans/notify/compare/2.9.0...2.10.0
 [2.9.0]: https://github.com/guanguans/notify/compare/2.8.4...2.9.0
 [2.8.4]: https://github.com/guanguans/notify/compare/2.8.3...2.8.4
 [2.8.3]: https://github.com/guanguans/notify/compare/2.8.2...2.8.3
