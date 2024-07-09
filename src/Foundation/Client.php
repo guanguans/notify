@@ -54,12 +54,12 @@ class Client implements Contracts\Client
      */
     public function send(Message $message): ResponseInterface
     {
-        $this->authenticator = new AggregateAuthenticator(
-            $this->authenticator,
-            new OptionsAuthenticator([RequestOptions::SYNCHRONOUS => true])
-        );
+        // $this->authenticator = new AggregateAuthenticator(
+        //     $this->authenticator,
+        //     new OptionsAuthenticator([RequestOptions::SYNCHRONOUS => true])
+        // );
 
-        return $this->sendAsync($message)->wait();
+        return $this->synchronous(true)->sendAsync($message)->wait();
     }
 
     /**
