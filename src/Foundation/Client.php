@@ -75,6 +75,8 @@ class Client implements Contracts\Client
     }
 
     /**
+     * @see https://docs.guzzlephp.org/en/stable/quickstart.html#concurrent-requests
+     *
      * @param iterable<array-key, Message> $messages
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -90,6 +92,7 @@ class Client implements Contracts\Client
             $promises[$key] = $this->sendAsync($message);
         }
 
+        // return Utils::settle($promises)->wait();
         return Utils::unwrap($promises);
     }
 }
