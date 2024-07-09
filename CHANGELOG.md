@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.11.2"></a>
+## [2.11.2] - 2024-07-09
+### CI
+- **psalm:** update psalm baseline
+
+### Docs
+- **Client:** Add link to Guzzle documentation
+
+
 <a name="2.11.1"></a>
 ## [2.11.1] - 2024-07-09
 ### Docs
@@ -917,7 +926,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.11.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.11.2...HEAD
+[2.11.2]: https://github.com/guanguans/notify/compare/2.11.1...2.11.2
 [2.11.1]: https://github.com/guanguans/notify/compare/2.11.0...2.11.1
 [2.11.0]: https://github.com/guanguans/notify/compare/2.10.0...2.11.0
 [2.10.0]: https://github.com/guanguans/notify/compare/2.9.0...2.10.0
