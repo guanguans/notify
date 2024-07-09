@@ -30,7 +30,10 @@ class PostMessage extends Message
         'post' => [],
     ];
 
-    public function setPostForLang(string $lang, array $post): self
+    /**
+     * @param string $lang eg: zh_cn, en_us
+     */
+    public function postFor(string $lang, array $post): self
     {
         $this->options['post'][$lang] = $post;
 

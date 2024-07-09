@@ -78,7 +78,7 @@ it('can send post message', function (): void {
         ],
     )
         ->post(['zh_cn' => $post])
-        ->setPostForLang('en_us', $post);
+        ->postFor('en_us', $post);
 
     expect($this->client)->assertCanSendMessage($postMessage);
 })->group(__DIR__, __FILE__);
