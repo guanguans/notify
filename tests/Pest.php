@@ -109,7 +109,7 @@ function fixtures_path(string $path = ''): string
  *
  * @param null|mixed $body
  */
-function create_response(
+function response(
     $body = null,
     int $status = 200,
     array $headers = [],

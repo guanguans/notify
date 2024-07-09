@@ -24,9 +24,9 @@ use Guanguans\Notify\Pushback\Messages\SyncMessage;
 beforeEach(function (): void {
     $authenticator = new Authenticator('at_b33c2bFrKAPmQr5-BaG');
     $this->client = (new Client($authenticator))->mock([
-        create_response('0'),
-        create_response('This is reply message.'),
-        create_response(
+        response('0'),
+        response('This is reply message.'),
+        response(
             <<<'error'
                 {
                   "errors": [

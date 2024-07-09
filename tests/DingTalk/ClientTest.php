@@ -31,8 +31,8 @@ beforeEach(function (): void {
         'SECc32bb7345c0f73da2b9786f0f7dd5083bd768a29b82e6d460149d730eee51730',
     );
     $this->client = (new Client($authenticator))->mock([
-        create_response('{"errcode":0,"errmsg":"ok"}'),
-        create_response('{"errcode":300005,"errmsg":"token is not exist"}'),
+        response('{"errcode":0,"errmsg":"ok"}'),
+        response('{"errcode":300005,"errmsg":"token is not exist"}'),
     ]);
 });
 

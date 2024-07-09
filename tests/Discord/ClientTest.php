@@ -82,8 +82,8 @@ it('can send message', function (): void {
 
     expect($client)
         ->mock([
-            create_response('', 204),
-            create_response('{"message": "Invalid Webhook Token", "code": 50027}', 401),
+            response('', 204),
+            response('{"message": "Invalid Webhook Token", "code": 50027}', 401),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

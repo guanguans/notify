@@ -30,8 +30,8 @@ use Guanguans\Notify\WeWork\Messages\VoiceMessage;
 beforeEach(function (): void {
     $authenticator = new Authenticator('73a3d5a3-ceff-4da8-bcf3-ff5891778');
     $this->client = (new Client($authenticator))->mock([
-        create_response('{"errcode":0,"errmsg":"ok"}'),
-        create_response('{"errcode":93000,"errmsg":"invalid webhook url, hint: [1708397705432012366598976], from ip: 218.72.126.124, more info at https://open.work.weixin.qq.com/devtool/query?e=93000"}'),
+        response('{"errcode":0,"errmsg":"ok"}'),
+        response('{"errcode":93000,"errmsg":"invalid webhook url, hint: [1708397705432012366598976], from ip: 218.72.126.124, more info at https://open.work.weixin.qq.com/devtool/query?e=93000"}'),
     ]);
 });
 
@@ -43,8 +43,8 @@ it('can send upload media message', function (): void {
 
     expect($this->client)
         ->mock([
-            create_response('{"errcode":0,"errmsg":"ok","type":"file","media_id":"3h9Ps2X6_-HSlzxXyRJibTGRREIkBPgtZIG0dPRJFlOl5bKroWVHXaTQQV6sSPz5h","created_at":"1709387991"}'),
-            create_response('{"errcode":40058,"errmsg":"invalid param \'key\', hint: [1709388087101961098685339], from ip: 211.90.236.131, more info at https://open.work.weixin.qq.com/devtool/query?e=40058"}'),
+            response('{"errcode":0,"errmsg":"ok","type":"file","media_id":"3h9Ps2X6_-HSlzxXyRJibTGRREIkBPgtZIG0dPRJFlOl5bKroWVHXaTQQV6sSPz5h","created_at":"1709387991"}'),
+            response('{"errcode":40058,"errmsg":"invalid param \'key\', hint: [1709388087101961098685339], from ip: 211.90.236.131, more info at https://open.work.weixin.qq.com/devtool/query?e=40058"}'),
         ])
         ->assertCanSendMessage($uploadMediaMessage);
 })->group(__DIR__, __FILE__);

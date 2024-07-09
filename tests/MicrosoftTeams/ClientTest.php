@@ -111,7 +111,7 @@ it('can send message', function (): void {
 
     expect($client)
         ->mock([
-            create_response(faker()->text()),
+            response(faker()->text()),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

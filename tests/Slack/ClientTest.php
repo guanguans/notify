@@ -72,8 +72,8 @@ it('can send message', function (): void {
 
     expect($client)
         ->mock([
-            create_response('ok'),
-            create_response('invalid_token', 403),
+            response('ok'),
+            response('invalid_token', 403),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

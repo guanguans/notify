@@ -32,8 +32,8 @@ it('can send message', function (): void {
 
     expect($client)
         ->mock([
-            create_response('{"active":true,"iden":"ujEkbcC7F0esjuPmSKdbKC","created":1709867052.256945,"modified":1709867052.256945,"type":"link","dismissed":false,"direction":"self","sender_iden":"ujEkbcC7F0e","sender_email":"yzmguanguans@gmail.com","sender_email_normalized":"yzmguanguans@gmail.com","sender_name":"姚明明","receiver_iden":"ujEkbcC7F0e","receiver_email":"yzmguanguans@gmail.com","receiver_email_normalized":"yzmguanguans@gmail.com","title":"This is title.","body":"This is body.","url":"https://github.com/guanguans/notify"}'),
-            create_response('{"error":{"code":"invalid_access_token","type":"invalid_request","message":"Access token is missing or invalid.","cat":"(=^･ω･^)y＝"},"error_code":"invalid_access_token"}', 401),
+            response('{"active":true,"iden":"ujEkbcC7F0esjuPmSKdbKC","created":1709867052.256945,"modified":1709867052.256945,"type":"link","dismissed":false,"direction":"self","sender_iden":"ujEkbcC7F0e","sender_email":"yzmguanguans@gmail.com","sender_email_normalized":"yzmguanguans@gmail.com","sender_name":"姚明明","receiver_iden":"ujEkbcC7F0e","receiver_email":"yzmguanguans@gmail.com","receiver_email_normalized":"yzmguanguans@gmail.com","title":"This is title.","body":"This is body.","url":"https://github.com/guanguans/notify"}'),
+            response('{"error":{"code":"invalid_access_token","type":"invalid_request","message":"Access token is missing or invalid.","cat":"(=^･ω･^)y＝"},"error_code":"invalid_access_token"}', 401),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

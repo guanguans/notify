@@ -50,8 +50,8 @@ it('can send message', function (): void {
 
     expect($client)
         ->mock([
-            create_response('{"success":true}'),
-            create_response('{"success":false,"error":"Invalid integration id or token provided."}'),
+            response('{"success":true}'),
+            response('{"success":false,"error":"Invalid integration id or token provided."}'),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

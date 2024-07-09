@@ -24,7 +24,7 @@ use function Pest\Faker\faker;
 beforeEach(function (): void {
     $authenticator = new Authenticator('vpNVue4teSl93ijHBVT6sDT4sHLP7OMTzFCfdQb0QxLYvL');
     $this->client = (new Client($authenticator))->mock([
-        create_response(faker()->text()),
+        response(faker()->text()),
     ]);
 });
 

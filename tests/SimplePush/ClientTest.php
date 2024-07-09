@@ -44,8 +44,8 @@ it('can send message', function (): void {
 
     expect($client)
         ->mock([
-            create_response('{"status":"OK"}'),
-            create_response('', 406),
+            response('{"status":"OK"}'),
+            response('', 406),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

@@ -32,8 +32,8 @@ it('can send message', function (): void {
 
     expect($client)
         ->mock([
-            create_response('{"code":0,"message":"请求成功","data":{"messageIdList":["1341726823083966464"]}}'),
-            create_response('{"code":46001,"message":"通道不存在","data":null}'),
+            response('{"code":0,"message":"请求成功","data":{"messageIdList":["1341726823083966464"]}}'),
+            response('{"code":46001,"message":"通道不存在","data":null}'),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

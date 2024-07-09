@@ -27,8 +27,8 @@ use Guanguans\Notify\Chanify\Messages\TextMessage;
 beforeEach(function (): void {
     $authenticator = new Authenticator('CICwhbIGEiJBQVdIWlVKS1JORVY0UlVETFZYVVpRTlNLTlVZVlZPT1JFIgIIAQ.orHlBVavQPrY-ZP3eqQKDgjyTtNdZPdNYV6lpAx8');
     $this->client = (new Client($authenticator))->mock([
-        create_response('{"request-uid":"03fe6123-2098-4af8-a210-658010a69d9c"}'),
-        create_response('{"res":400,"msg":"bad request"}', 400),
+        response('{"request-uid":"03fe6123-2098-4af8-a210-658010a69d9c"}'),
+        response('{"res":400,"msg":"bad request"}', 400),
     ]);
 });
 

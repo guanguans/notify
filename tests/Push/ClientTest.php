@@ -25,8 +25,8 @@ use Guanguans\Notify\Push\Messages\Message;
 beforeEach(function (): void {
     $authenticator = new Authenticator('5db80e8a-1f9b-4f98-929a-75892cedc');
     $this->client = (new Client($authenticator))->mock([
-        create_response('{"success":true,"responses":[{"success":true,"message":"Message send to device"},{"success":true,"message":"Message send to device"}]}'),
-        create_response('{"success":false,"message":"Invalid API key, authentication failed"}', 401),
+        response('{"success":true,"responses":[{"success":true,"message":"Message send to device"},{"success":true,"message":"Message send to device"}]}'),
+        response('{"success":false,"message":"Invalid API key, authentication failed"}', 401),
     ]);
 });
 

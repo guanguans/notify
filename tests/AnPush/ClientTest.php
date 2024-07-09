@@ -32,8 +32,8 @@ it('can send message', function (): void {
 
     expect($client)
         ->mock([
-            create_response('{"msg":"success","code":200,"data":{"msgIds":[{"channelId":"94412","msgId":1715333937401}]}}'),
-            create_response('{"msg":"Token not found","code":10006}'),
+            response('{"msg":"success","code":200,"data":{"msgIds":[{"channelId":"94412","msgId":1715333937401}]}}'),
+            response('{"msg":"Token not found","code":10006}'),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

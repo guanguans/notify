@@ -30,8 +30,8 @@ beforeEach(function (): void {
         'WeqWRCyD9pawyIPGqldUYe',
     );
     $this->client = (new Client($authenticator))->mock([
-        create_response('{"StatusCode":0,"StatusMessage":"success","code":0,"data":{},"msg":"success"}'),
-        create_response('{"code":19001,"data":{},"msg":"param invalid: incoming webhook access token invalid"}'),
+        response('{"StatusCode":0,"StatusMessage":"success","code":0,"data":{},"msg":"success"}'),
+        response('{"code":19001,"data":{},"msg":"param invalid: incoming webhook access token invalid"}'),
     ]);
 });
 

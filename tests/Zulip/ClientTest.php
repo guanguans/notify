@@ -28,8 +28,8 @@ beforeEach(function (): void {
     $this->client = (new Client($authenticator))
         ->baseUri('https://xxx.zulipchat.com/')
         ->mock([
-            create_response('{"result":"success","msg":"","id":1740849}'),
-            create_response('{"result":"error","msg":"Malformed API key","code":"UNAUTHORIZED"}', 401),
+            response('{"result":"success","msg":"","id":1740849}'),
+            response('{"result":"error","msg":"Malformed API key","code":"UNAUTHORIZED"}', 401),
         ]);
 });
 

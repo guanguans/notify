@@ -24,8 +24,8 @@ use Guanguans\Notify\XiZhi\Messages\SingleMessage;
 beforeEach(function (): void {
     $authenticator = new Authenticator('XZf0db6d069509ec52afc1f3493b76e');
     $this->client = (new Client($authenticator))->mock([
-        create_response('{"code":200,"msg":"推送成功"}'),
-        create_response('{"code":10000,"msg":"用户不存在"}'),
+        response('{"code":200,"msg":"推送成功"}'),
+        response('{"code":10000,"msg":"用户不存在"}'),
     ]);
 });
 

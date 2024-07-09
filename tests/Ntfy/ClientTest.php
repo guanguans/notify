@@ -47,12 +47,12 @@ it('can send message', function (): void {
 
     expect($client)
         ->mock([
-            create_response('{"id":"ChjDFVOPqaBK","time":1708335367,"expires":1708378567,"event":"message","topic":"guanguans","title":"This is title.","message":"This is message.","priority":1,"tags":["tag1","tag2"],"click":"https://example.com","icon":"https://www.guanguans.cn","attachment":{"name":"file.jpg","url":"https://www.guanguans.cn"}}'),
-            create_response(
+            response('{"id":"ChjDFVOPqaBK","time":1708335367,"expires":1708378567,"event":"message","topic":"guanguans","title":"This is title.","message":"This is message.","priority":1,"tags":["tag1","tag2"],"click":"https://example.com","icon":"https://www.guanguans.cn","attachment":{"name":"file.jpg","url":"https://www.guanguans.cn"}}'),
+            response(
                 '{"code":40035,"http":400,"error":"invalid request: anonymous phone calls are not allowed","link":"https://ntfy.sh/docs/publish/#phone-calls"}',
                 400,
             ),
-            create_response('{"code":40003,"http":400,"error":"delayed e-mail notifications are not supported"}', 400),
+            response('{"code":40003,"http":400,"error":"delayed e-mail notifications are not supported"}', 400),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);
