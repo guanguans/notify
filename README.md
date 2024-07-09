@@ -14,6 +14,7 @@
 ## Platform support
 
 [//]: # (https://github.com/dschep/ntfy)
+
 * [AnPush](./src/AnPush/README.md)
 * [Bark](./src/Bark/README.md)
 * [Chanify](./src/Chanify/README.md)
@@ -62,6 +63,8 @@ composer require guanguans/notify -v
 ```
 
 ## Usage example
+
+### Quick start
 
 ```php
 // 1. Create authenticator
@@ -116,6 +119,21 @@ $response = $client
     ->dump()
     // ->throw()
     ->json();
+```
+
+### Asynchronous requests
+
+```php
+$promise = $client->sendAsync($message);
+$response = $promise->wait();
+```
+
+### Concurrent requests
+
+```php
+/** @var list<\Guanguans\Notify\Foundation\Contracts\Message> $messages */
+/** @var list<\Guanguans\Notify\Foundation\Response|\Psr\Http\Message\ResponseInterface> $responses */
+$responses = $client->pool($messages);
 ```
 
 ## Testing
