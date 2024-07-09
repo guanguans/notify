@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.11.1"></a>
+## [2.11.1] - 2024-07-09
+### Docs
+- **docs:** add additional code examples to README.md
+- **types:** Update PHPDoc comments for type hints in Client class
+
+### Test
+- **test:** add test for concurrent message sending
+
+
 <a name="2.11.0"></a>
 ## [2.11.0] - 2024-07-09
 ### CI
@@ -907,7 +917,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.11.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.11.1...HEAD
+[2.11.1]: https://github.com/guanguans/notify/compare/2.11.0...2.11.1
 [2.11.0]: https://github.com/guanguans/notify/compare/2.10.0...2.11.0
 [2.10.0]: https://github.com/guanguans/notify/compare/2.9.0...2.10.0
 [2.9.0]: https://github.com/guanguans/notify/compare/2.8.4...2.9.0
