@@ -75,12 +75,12 @@ class Client implements Contracts\Client
     }
 
     /**
-     * @param iterable<Message> $messages
+     * @param iterable<array-key, Message> $messages
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Throwable
      *
-     * @return list<Response|ResponseInterface>
+     * @return array<array-key, Response|ResponseInterface>
      */
     public function pool(iterable $messages): array
     {

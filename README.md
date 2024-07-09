@@ -131,8 +131,8 @@ $response = $promise->wait();
 ### Concurrent requests
 
 ```php
-/** @var list<\Guanguans\Notify\Foundation\Contracts\Message> $messages */
-/** @var list<\Guanguans\Notify\Foundation\Response|\Psr\Http\Message\ResponseInterface> $responses */
+/** @var iterable<array-key, \Guanguans\Notify\Foundation\Contracts\Message> $messages */
+/** @var array<array-key, \Guanguans\Notify\Foundation\Response|\Psr\Http\Message\ResponseInterface> $responses */
 $responses = $client->pool($messages);
 ```
 
