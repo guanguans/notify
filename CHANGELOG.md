@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.11.4"></a>
+## [2.11.4] - 2024-07-10
+### Feat
+- **Utils:** add normalizeHttpOptions method
+
+### Refactor
+- **utils:** update Utils references
+
+
 <a name="2.11.3"></a>
 ## [2.11.3] - 2024-07-09
 ### Perf
@@ -932,7 +941,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.11.3...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.11.4...HEAD
+[2.11.4]: https://github.com/guanguans/notify/compare/2.11.3...2.11.4
 [2.11.3]: https://github.com/guanguans/notify/compare/2.11.2...2.11.3
 [2.11.2]: https://github.com/guanguans/notify/compare/2.11.1...2.11.2
 [2.11.1]: https://github.com/guanguans/notify/compare/2.11.0...2.11.1
