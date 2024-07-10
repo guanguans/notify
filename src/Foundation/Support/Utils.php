@@ -174,6 +174,18 @@ class Utils
         );
     }
 
+    public static function normalizeHttpOptions(array $httpOptions, int $options = MULTIPART_TRY_OPEN_FILE): array
+    {
+        if (isset($httpOptions[RequestOptions::MULTIPART])) {
+            $httpOptions[RequestOptions::MULTIPART] = self::multipartFor(
+                $httpOptions[RequestOptions::MULTIPART],
+                $options,
+            );
+        }
+
+        return $httpOptions;
+    }
+
     /**
      * @param array<string, scalar> $agents
      */
