@@ -28,6 +28,86 @@ use Psr\Http\Message\StreamInterface;
 class Utils
 {
     /**
+     * Replace the given options with the current request options.
+     */
+    public static function mergeHttpOptions(array $originalOptions, array ...$options): array
+    {
+        return array_replace_recursive(
+            array_merge_recursive($originalOptions, Arr::only($options, [
+                RequestOptions::COOKIES,
+                RequestOptions::FORM_PARAMS,
+                RequestOptions::HEADERS,
+                RequestOptions::JSON,
+                RequestOptions::MULTIPART,
+                RequestOptions::QUERY,
+            ])),
+            ...$options,
+        );
+    }
+
+    public static function normalizeHttpOptions(array $httpOptions, int $options = MULTIPART_TRY_OPEN_FILE): array
+    {
+        if (isset($httpOptions[RequestOptions::MULTIPART])) {
+            $httpOptions[RequestOptions::MULTIPART] = self::multipartFor(
+                $httpOptions[RequestOptions::MULTIPART],
+                $options,
+            );
+        }
+
+        return $httpOptions;
+    }
+
+    /**
+     * Retrieves the HTTP options constants.
+     *
+     * @return array<string, string>
+     */
+    public static function httpOptionConstants(): array
+    {
+        $constants = (new \ReflectionClass(RequestOptions::class))->getConstants() + [
+            // '_CONDITIONAL' => '_conditional',
+            'BASE_URI' => 'base_uri',
+            'CURL' => 'curl',
+        ];
+
+        asort($constants);
+
+        return $constants;
+    }
+
+    /**
+     * Return an array of defined properties for the given object.
+     *
+     * @psalm-suppress InvalidScope
+     *
+     * @param class-string|Message $object
+     *
+     * @throws \ReflectionException
+     *
+     * @return list<string>
+     */
+    public static function definedFor($object): array
+    {
+        if (\is_string($object)) {
+            $reflectionClass = new \ReflectionClass($object);
+
+            $properties = $reflectionClass->getDefaultProperties();
+
+            return array_unique(array_merge(
+                $properties['defined'] ?? [],
+                $properties['required'] ?? []
+            ));
+        }
+
+        return array_unique(
+            (fn (): array => array_merge(
+                $this->defined ?? [],
+                $this->required ?? [],
+            ))->call($object)
+        );
+    }
+
+    /**
      * Convert a form array into a multipart array.
      */
     public static function multipartFor(array $data, int $options = 0): array
@@ -104,86 +184,6 @@ class Utils
             },
             array_merge([], ...$parts),
         );
-    }
-
-    /**
-     * Return an array of defined properties for the given object.
-     *
-     * @psalm-suppress InvalidScope
-     *
-     * @param class-string|Message $object
-     *
-     * @throws \ReflectionException
-     *
-     * @return list<string>
-     */
-    public static function definedFor($object): array
-    {
-        if (\is_string($object)) {
-            $reflectionClass = new \ReflectionClass($object);
-
-            $properties = $reflectionClass->getDefaultProperties();
-
-            return array_unique(array_merge(
-                $properties['defined'] ?? [],
-                $properties['required'] ?? []
-            ));
-        }
-
-        return array_unique(
-            (fn (): array => array_merge(
-                $this->defined ?? [],
-                $this->required ?? [],
-            ))->call($object)
-        );
-    }
-
-    /**
-     * Retrieves the HTTP options constants.
-     *
-     * @return array<string, string>
-     */
-    public static function httpOptionConstants(): array
-    {
-        $constants = (new \ReflectionClass(RequestOptions::class))->getConstants() + [
-            // '_CONDITIONAL' => '_conditional',
-            'BASE_URI' => 'base_uri',
-            'CURL' => 'curl',
-        ];
-
-        asort($constants);
-
-        return $constants;
-    }
-
-    /**
-     * Replace the given options with the current request options.
-     */
-    public static function mergeHttpOptions(array $originalOptions, array ...$options): array
-    {
-        return array_replace_recursive(
-            array_merge_recursive($originalOptions, Arr::only($options, [
-                RequestOptions::COOKIES,
-                RequestOptions::FORM_PARAMS,
-                RequestOptions::HEADERS,
-                RequestOptions::JSON,
-                RequestOptions::MULTIPART,
-                RequestOptions::QUERY,
-            ])),
-            ...$options,
-        );
-    }
-
-    public static function normalizeHttpOptions(array $httpOptions, int $options = MULTIPART_TRY_OPEN_FILE): array
-    {
-        if (isset($httpOptions[RequestOptions::MULTIPART])) {
-            $httpOptions[RequestOptions::MULTIPART] = self::multipartFor(
-                $httpOptions[RequestOptions::MULTIPART],
-                $options,
-            );
-        }
-
-        return $httpOptions;
     }
 
     /**

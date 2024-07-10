@@ -21,7 +21,7 @@ use GuzzleHttp\RequestOptions;
 trait AsMultipart
 {
     /**
-     * @see \Guanguans\Notify\Foundation\Client::normalizeHttpOptions()
+     * @see \Guanguans\Notify\Foundation\Support\Utils::normalizeHttpOptions()
      * @see \Guanguans\Notify\Foundation\Client::send()
      */
     public function toHttpOptions(): array

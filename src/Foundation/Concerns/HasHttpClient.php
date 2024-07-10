@@ -123,7 +123,7 @@ trait HasHttpClient
 
     public function getHttpClientResolver(): callable
     {
-        return $this->httpClientResolver ??= fn (): Client => new Client($this->normalizeHttpOptions(
+        return $this->httpClientResolver ??= fn (): Client => new Client(Utils::normalizeHttpOptions(
             Utils::mergeHttpOptions($this->defaultHttpOptions(), $this->getHttpOptions()),
         ));
     }
@@ -168,18 +168,6 @@ trait HasHttpClient
                 Response::setTransferStats($transferStats);
             },
         ];
-    }
-
-    public function normalizeHttpOptions(array $options): array
-    {
-        if (isset($options[RequestOptions::MULTIPART])) {
-            $options[RequestOptions::MULTIPART] = Utils::multipartFor(
-                $options[RequestOptions::MULTIPART],
-                MULTIPART_TRY_OPEN_FILE,
-            );
-        }
-
-        return $options;
     }
 
     /**

@@ -20,9 +20,9 @@ use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Concerns\HasHttpClient;
 use Guanguans\Notify\Foundation\Contracts\Authenticator;
 use Guanguans\Notify\Foundation\Contracts\Message;
+use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Promise\Utils;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 
@@ -70,7 +70,7 @@ class Client implements Contracts\Client
         return $this->getHttpClient()->requestAsync(
             $message->toHttpMethod(),
             $message->toHttpUri(),
-            $this->normalizeHttpOptions($this->authenticator->applyToOptions($message->toHttpOptions())),
+            Utils::normalizeHttpOptions($this->authenticator->applyToOptions($message->toHttpOptions())),
         );
     }
 
@@ -89,7 +89,7 @@ class Client implements Contracts\Client
     {
         // return Utils::settle($promises)->wait();
         /** @noinspection PhpParamsInspection */
-        return Utils::unwrap(
+        return \GuzzleHttp\Promise\Utils::unwrap(
             (function (iterable $messages): \Generator {
                 foreach ($messages as $key => $message) {
                     yield $key => $this->sendAsync($message);
