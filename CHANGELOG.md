@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.11.6"></a>
+## [2.11.6] - 2024-07-16
+### Docs
+- **benchmark:** update benchmark results
+
+### Test
+- **benchmarks:** rename NotifyBench.php to SendMessageBench.php
+
+
 <a name="2.11.5"></a>
 ## [2.11.5] - 2024-07-16
 ### Docs
@@ -951,7 +960,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.11.5...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.11.6...HEAD
+[2.11.6]: https://github.com/guanguans/notify/compare/2.11.5...2.11.6
 [2.11.5]: https://github.com/guanguans/notify/compare/2.11.4...2.11.5
 [2.11.4]: https://github.com/guanguans/notify/compare/2.11.3...2.11.4
 [2.11.3]: https://github.com/guanguans/notify/compare/2.11.2...2.11.3
