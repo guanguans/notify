@@ -149,14 +149,14 @@ composer benchmark
 ```
 
 ```shell
-+-------------+--------------------------+-----+-------+-----+----------+-----------+--------+
-| benchmark   | subject                  | set | revs  | its | mem_peak | mode      | rstdev |
-+-------------+--------------------------+-----+-------+-----+----------+-----------+--------+
-| NotifyBench | benchCreateAuthenticator |     | 10000 | 3   | 9.154mb  | 0.753μs   | ±0.62% |
-| NotifyBench | benchCreateMessage       |     | 10000 | 3   | 9.154mb  | 1.772μs   | ±0.40% |
-| NotifyBench | benchCreateClient        |     | 10000 | 3   | 9.154mb  | 13.558μs  | ±0.39% |
-| NotifyBench | benchSendMessage         |     | 10000 | 3   | 9.347mb  | 185.905μs | ±0.09% |
-+-------------+--------------------------+-----+-------+-----+----------+-----------+--------+
++---------------------+--------------------------+-----+-------+-----+----------+-----------+--------+
+| benchmark           | subject                  | set | revs  | its | mem_peak | mode      | rstdev |
++---------------------+--------------------------+-----+-------+-----+----------+-----------+--------+
+| SendMessageBench    | benchSendMessage         |     | 10000 | 3   | 9.345mb  | 186.142μs | ±0.05% |
+| CreateInstanceBench | benchCreateAuthenticator |     | 10000 | 3   | 6.970mb  | 0.775μs   | ±0.44% |
+| CreateInstanceBench | benchCreateMessage       |     | 10000 | 3   | 6.970mb  | 1.776μs   | ±0.56% |
+| CreateInstanceBench | benchCreateClient        |     | 10000 | 3   | 7.410mb  | 12.889μs  | ±0.58% |
++---------------------+--------------------------+-----+-------+-----+----------+-----------+--------+
 ```
 
 ## Changelog
