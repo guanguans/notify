@@ -99,6 +99,7 @@
         "pestphp/pest": "^1.23 || ^2.0",
         "pestphp/pest-plugin-faker": "^1.0 || ^2.0",
         "php-mock/php-mock-phpunit": "^2.10",
+        "phpbench/phpbench": "^1.2",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^1.11",
         "phpstan/phpstan-deprecation-rules": "^1.2",
@@ -171,7 +172,7 @@
         ],
         "ai-commit": "@php ./vendor/bin/ai-commit commit --generator=bito_cli --ansi",
         "ai-commit-no-verify": "@ai-commit --commit-options=--no-verify",
-        "benchmark": "@php ./vendor/bin/phpbench run --warmup=1 --retry-threshold=1 --iterations=3 --revs=5 --ansi -v",
+        "benchmark": "@php ./vendor/bin/phpbench run --warmup=1 --retry-threshold=1 --report=default --ansi -v",
         "cghooks": "@php ./vendor/bin/cghooks --ansi -v",
         "checks": [
             "@composer-normalize",
