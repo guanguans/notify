@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.11.5"></a>
+## [2.11.5] - 2024-07-16
+### Docs
+- **benchmark:** Add benchmarking command to README.md
+
+### Test
+- Update benchmark command in composer.json
+- Add phpbench for benchmarking
+
+
 <a name="2.11.4"></a>
 ## [2.11.4] - 2024-07-10
 ### Feat
@@ -941,7 +951,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.11.4...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.11.5...HEAD
+[2.11.5]: https://github.com/guanguans/notify/compare/2.11.4...2.11.5
 [2.11.4]: https://github.com/guanguans/notify/compare/2.11.3...2.11.4
 [2.11.3]: https://github.com/guanguans/notify/compare/2.11.2...2.11.3
 [2.11.2]: https://github.com/guanguans/notify/compare/2.11.1...2.11.2
