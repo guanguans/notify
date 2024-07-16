@@ -23,15 +23,42 @@ use GuzzleHttp\Psr7\HttpFactory;
 /**
  * @beforeMethods({"setUp"})
  *
- * @warmup(1)
- *
  * @revs(10000)
- *
- * @iterations(3)
  */
 final class NotifyBench
 {
-    public function setUp(): void {}
+    private \Guanguans\Notify\Foundation\Message $message;
+    private \Guanguans\Notify\Foundation\Client $client;
+
+    public function setUp(): void
+    {
+        $this->message = Message::make([
+            'title' => 'This is title.',
+            'body' => 'This is body.',
+            'level' => 'active',
+            'badge' => 3,
+            'autoCopy' => 1,
+            'copy' => 'This is copy.',
+            'sound' => 'bell',
+            'icon' => 'https://avatars0.githubusercontent.com/u/25671453?s=200&v=4',
+            'group' => 'This is group.',
+            'isArchive' => 1,
+            'url' => 'https://github.com/guanguans/notify',
+        ]);
+
+        $this->client = (new Client(new Authenticator('yetwhxBm7wCBSUTjeqh')))->mock(
+            (static function (int $times): array {
+                $response = (new HttpFactory)->createResponse(200, '{"code":200,"message":"success","timestamp":1708331409}');
+                $responses = [];
+
+                for ($i = 0; $i < $times; ++$i) {
+                    $responses[] = $response;
+                }
+
+                return $responses;
+            })(10001) // revs + warmup
+        );
+    }
 
     public function benchCreateAuthenticator(): void
     {
@@ -65,23 +92,6 @@ final class NotifyBench
      */
     public function benchSendMessage(): void
     {
-        (new Client(new Authenticator('yetwhxBm7wCBSUTjeqh')))
-            ->mock([
-                (new HttpFactory)->createResponse(200, '{"code":200,"message":"success","timestamp":1708331409}'),
-                // (new HttpFactory)->createResponse(400, '{"code":400,"message":"failed to get device token: failed to get [yetwhxBm7wCBSUTjeqh] device token from database","timestamp":1708331590}'),
-            ])
-            ->send(Message::make([
-                'title' => 'This is title.',
-                'body' => 'This is body.',
-                'level' => 'active',
-                'badge' => 3,
-                'autoCopy' => 1,
-                'copy' => 'This is copy.',
-                'sound' => 'bell',
-                'icon' => 'https://avatars0.githubusercontent.com/u/25671453?s=200&v=4',
-                'group' => 'This is group.',
-                'isArchive' => 1,
-                'url' => 'https://github.com/guanguans/notify',
-            ]));
+        $this->client->send($this->message);
     }
 }
