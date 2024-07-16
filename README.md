@@ -142,6 +142,23 @@ $responses = $client->pool($messages);
 composer test
 ```
 
+## Benchmark
+
+```bash
+composer benchmark
+```
+
+```shell
++-------------+--------------------------+-----+-------+-----+----------+-----------+--------+
+| benchmark   | subject                  | set | revs  | its | mem_peak | mode      | rstdev |
++-------------+--------------------------+-----+-------+-----+----------+-----------+--------+
+| NotifyBench | benchCreateAuthenticator |     | 10000 | 3   | 9.154mb  | 0.753μs   | ±0.62% |
+| NotifyBench | benchCreateMessage       |     | 10000 | 3   | 9.154mb  | 1.772μs   | ±0.40% |
+| NotifyBench | benchCreateClient        |     | 10000 | 3   | 9.154mb  | 13.558μs  | ±0.39% |
+| NotifyBench | benchSendMessage         |     | 10000 | 3   | 9.347mb  | 185.905μs | ±0.09% |
++-------------+--------------------------+-----+-------+-----+----------+-----------+--------+
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
