@@ -25,7 +25,7 @@ use GuzzleHttp\Psr7\HttpFactory;
  *
  * @revs(10000)
  */
-final class NotifyBench
+final class SendMessageBench
 {
     private \Guanguans\Notify\Foundation\Message $message;
     private \Guanguans\Notify\Foundation\Client $client;
@@ -58,33 +58,6 @@ final class NotifyBench
                 return $responses;
             })(10001) // revs + warmup
         );
-    }
-
-    public function benchCreateAuthenticator(): void
-    {
-        new Authenticator('yetwhxBm7wCBSUTjeqh');
-    }
-
-    public function benchCreateMessage(): void
-    {
-        Message::make([
-            'title' => 'This is title.',
-            'body' => 'This is body.',
-            'level' => 'active',
-            'badge' => 3,
-            'autoCopy' => 1,
-            'copy' => 'This is copy.',
-            'sound' => 'bell',
-            'icon' => 'https://avatars0.githubusercontent.com/u/25671453?s=200&v=4',
-            'group' => 'This is group.',
-            'isArchive' => 1,
-            'url' => 'https://github.com/guanguans/notify',
-        ]);
-    }
-
-    public function benchCreateClient(): void
-    {
-        new Client(new Authenticator('yetwhxBm7wCBSUTjeqh'));
     }
 
     /**
