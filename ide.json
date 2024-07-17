@@ -1,0 +1,59 @@
+{
+    "$schema": "https://laravel-ide.com/schema/laravel-ide-v2.json",
+    "completions": [
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Bark\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Bark\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "default",
+                    "duplicate"
+                ]
+            }
+        },
+        {
+            "complete": "classFields",
+            "condition": [
+                {
+                    "classParentFqn": [
+                        "\\Guanguans\\Notify\\Foundation\\Message"
+                    ],
+                    "newClassParentFqn": [
+                        "\\Guanguans\\Notify\\Foundation\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "fieldsFilter": {
+                    "fetch": "own",
+                    "modifier": [
+                        "public"
+                    ]
+                }
+            }
+        }
+    ]
+}
