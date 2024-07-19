@@ -8,6 +8,21 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.11.7"></a>
+## [2.11.7] - 2024-07-19
+### Docs
+- Add completion.jpg image
+- **ServerChan:** update links in README
+
+### Feat
+- **generate-ide-json:** add script to generate ide.json for PHP IDE assistance
+- **ide:** Add completions for staticStrings and classFields
+
+### Pull Requests
+- Merge pull request [#92](https://github.com/guanguans/notify/issues/92) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.80.1
+- Merge pull request [#90](https://github.com/guanguans/notify/issues/90) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.80.0
+
+
 <a name="2.11.6"></a>
 ## [2.11.6] - 2024-07-16
 ### Docs
@@ -960,7 +975,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.11.6...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.11.7...HEAD
+[2.11.7]: https://github.com/guanguans/notify/compare/2.11.6...2.11.7
 [2.11.6]: https://github.com/guanguans/notify/compare/2.11.5...2.11.6
 [2.11.5]: https://github.com/guanguans/notify/compare/2.11.4...2.11.5
 [2.11.4]: https://github.com/guanguans/notify/compare/2.11.3...2.11.4
