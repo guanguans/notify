@@ -136,6 +136,13 @@ $response = $promise->wait();
 $responses = $client->pool($messages);
 ```
 
+### Completion
+
+> [!TIP]
+> Required to install [Laravel Idea](https://plugins.jetbrains.com/plugin/13441-laravel-idea) plugin.
+
+![completion](docs/completion.jpg)
+
 ## Testing
 
 ```bash
