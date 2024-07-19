@@ -22,6 +22,7 @@ use Rector\CodeQuality\Rector\ClassMethod\ExplicitReturnNullRector;
 use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
+use Rector\CodingStyle\Rector\ArrowFunction\StaticArrowFunctionRector;
 use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
@@ -80,6 +81,7 @@ return static function (RectorConfig $rectorConfig): void {
         __DIR__.'/.*.php',
         __DIR__.'/*.php',
         __DIR__.'/composer-updater',
+        __DIR__.'/generate-ide-json',
         __DIR__.'/platform-lint',
     ]);
 
@@ -106,9 +108,10 @@ return static function (RectorConfig $rectorConfig): void {
             __DIR__.'/src/Foundation/Authenticators/AggregateAuthenticator.php',
             __DIR__.'/src/Foundation/Exceptions/RequestException.php',
         ],
-        // StaticClosureRector::class => [
-        //     __DIR__.'/tests',
-        // ],
+        StaticArrowFunctionRector::class => $staticArrowFunctionPaths = [
+            __DIR__.'/tests',
+        ],
+        StaticClosureRector::class => $staticArrowFunctionPaths,
         StringToClassConstantRector::class => [
             __DIR__.'/src/Foundation/Rfc',
             __DIR__.'/src/*/Messages/*.php',
@@ -141,6 +144,8 @@ return static function (RectorConfig $rectorConfig): void {
 
     // This is magic but it works.
     $rectorConfig->rules([
+        StaticArrowFunctionRector::class,
+        StaticClosureRector::class,
         HasOptionsDocCommentRector::class,
     ]);
 

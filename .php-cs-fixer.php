@@ -196,6 +196,7 @@ return Config\Factory::fromRuleSet($ruleSet)
             ->append(glob(__DIR__.'/{*,.*}.php', \GLOB_BRACE))
             ->append([
                 __DIR__.'/composer-updater',
+                __DIR__.'/generate-ide-json',
                 __DIR__.'/platform-lint',
             ])
             ->notPath([

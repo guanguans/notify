@@ -6,6 +6,34 @@
             "condition": [
                 {
                     "classFqn": [
+                        "\\Guanguans\\Notify\\AnPush\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\AnPush\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "channel",
+                    "content",
+                    "title",
+                    "to"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
                         "\\Guanguans\\Notify\\Bark\\Messages\\Message"
                     ],
                     "newClassFqn": [
@@ -22,20 +50,29 @@
             ],
             "options": {
                 "strings": [
-                    "default",
-                    "duplicate"
+                    "autoCopy",
+                    "badge",
+                    "body",
+                    "copy",
+                    "group",
+                    "icon",
+                    "isArchive",
+                    "level",
+                    "sound",
+                    "title",
+                    "url"
                 ]
             }
         },
         {
-            "complete": "classFields",
+            "complete": "staticStrings",
             "condition": [
                 {
-                    "classParentFqn": [
-                        "\\Guanguans\\Notify\\Foundation\\Message"
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\AudioMessage"
                     ],
-                    "newClassParentFqn": [
-                        "\\Guanguans\\Notify\\Foundation\\Message"
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\AudioMessage"
                     ],
                     "methodNames": [
                         "make"
@@ -47,12 +84,2230 @@
                 }
             ],
             "options": {
-                "fieldsFilter": {
-                    "fetch": "own",
-                    "modifier": [
-                        "public"
-                    ]
+                "strings": [
+                    "audio"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\FileMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\FileMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
                 }
+            ],
+            "options": {
+                "strings": [
+                    "file"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\ImageMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\ImageMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "image"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\LinkMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\LinkMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "link",
+                    "priority",
+                    "sound"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": []
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\TextMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Chanify\\Messages\\TextMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "actions",
+                    "autocopy",
+                    "copy",
+                    "interruptionlevel",
+                    "priority",
+                    "sound",
+                    "text",
+                    "timeline",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\BtnsActionCardMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\BtnsActionCardMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "btnOrientation",
+                    "btns",
+                    "text",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\FeedCardMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\FeedCardMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "links"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\LinkMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\LinkMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "messageUrl",
+                    "picUrl",
+                    "text",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\MarkdownMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\MarkdownMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "atDingtalkIds",
+                    "atMobiles",
+                    "isAtAll",
+                    "text",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": []
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\SingleActionCardMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\SingleActionCardMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "btnOrientation",
+                    "singleTitle",
+                    "singleURL",
+                    "text",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\TextMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\DingTalk\\Messages\\TextMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "atDingtalkIds",
+                    "atMobiles",
+                    "content",
+                    "isAtAll"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Discord\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Discord\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "allowed_mentions",
+                    "attachments",
+                    "avatar_url",
+                    "components",
+                    "content",
+                    "embeds",
+                    "files",
+                    "payload_json",
+                    "tts",
+                    "username"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Gitter\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Gitter\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "text"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\GoogleChat\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\GoogleChat\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "actionResponse",
+                    "annotations",
+                    "argumentText",
+                    "attachment",
+                    "cards",
+                    "createTime",
+                    "fallbackText",
+                    "lastUpdateTime",
+                    "name",
+                    "previewText",
+                    "sender",
+                    "slashCommand",
+                    "space",
+                    "text",
+                    "thread"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\IGot\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\IGot\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "automaticallyCopy",
+                    "content",
+                    "copy",
+                    "detail",
+                    "title",
+                    "urgent",
+                    "url"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\CardMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\CardMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "card_link",
+                    "config",
+                    "elements",
+                    "header",
+                    "i18n_elements"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\ImageMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\ImageMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "image_key"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": []
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\PostMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\PostMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "post"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\ShareChatMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\ShareChatMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "share_chat_id"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\TextMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Lark\\Messages\\TextMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "text"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Mattermost\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Mattermost\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "channel_id",
+                    "create_at",
+                    "edit_at",
+                    "file_ids",
+                    "is_pinned",
+                    "message",
+                    "original_id",
+                    "participants",
+                    "pending_post_id",
+                    "props",
+                    "root_id",
+                    "type"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\MicrosoftTeams\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\MicrosoftTeams\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "@context",
+                    "@type",
+                    "correlationId",
+                    "expectedActors",
+                    "hideOriginalBody",
+                    "originator",
+                    "potentialAction",
+                    "sections",
+                    "summary",
+                    "text",
+                    "themeColor",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\NowPush\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\NowPush\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "device_type",
+                    "message_type",
+                    "note",
+                    "url"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Ntfy\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Ntfy\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "actions",
+                    "attach",
+                    "cache",
+                    "call",
+                    "click",
+                    "delay",
+                    "email",
+                    "filename",
+                    "firebase",
+                    "icon",
+                    "markdown",
+                    "message",
+                    "poll_id",
+                    "priority",
+                    "tags",
+                    "title",
+                    "topic",
+                    "unified_push"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Push\\Messages\\AsyncMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Push\\Messages\\AsyncMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "body",
+                    "channel",
+                    "groupId",
+                    "image",
+                    "link",
+                    "sound",
+                    "timeSensitive",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Push\\Messages\\GroupMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Push\\Messages\\GroupMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "body",
+                    "channel",
+                    "groupId",
+                    "image",
+                    "link",
+                    "sound",
+                    "timeSensitive",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Push\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Push\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "body",
+                    "channel",
+                    "groupId",
+                    "image",
+                    "link",
+                    "sound",
+                    "timeSensitive",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\PushBullet\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\PushBullet\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "body",
+                    "channel_tag",
+                    "client_iden",
+                    "device_iden",
+                    "email",
+                    "file_name",
+                    "file_type",
+                    "file_url",
+                    "guid",
+                    "source_device_iden",
+                    "title",
+                    "type",
+                    "url"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\PushDeer\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\PushDeer\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "desp",
+                    "text",
+                    "type"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\PushPlus\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\PushPlus\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "callbackUrl",
+                    "channel",
+                    "content",
+                    "template",
+                    "timestamp",
+                    "title",
+                    "to",
+                    "topic",
+                    "webhook"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Pushback\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Pushback\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "action1",
+                    "action2",
+                    "body",
+                    "id",
+                    "reply",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Pushback\\Messages\\SyncMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Pushback\\Messages\\SyncMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "action1",
+                    "action2",
+                    "body",
+                    "id",
+                    "reply",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Pushover\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Pushover\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "attachment",
+                    "callback",
+                    "device",
+                    "expire",
+                    "html",
+                    "message",
+                    "monospace",
+                    "priority",
+                    "retry",
+                    "sound",
+                    "timestamp",
+                    "title",
+                    "ttl",
+                    "url",
+                    "url_title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\QQ\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\QQ\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "ark",
+                    "channel_id",
+                    "content",
+                    "embed",
+                    "event_id",
+                    "file_image",
+                    "image",
+                    "markdown",
+                    "message_reference",
+                    "msg_id"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\RocketChat\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\RocketChat\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "alias",
+                    "attachments",
+                    "avatar",
+                    "channel",
+                    "emoji",
+                    "roomId",
+                    "text",
+                    "tmid",
+                    "tshow"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\ServerChan\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\ServerChan\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "channel",
+                    "desp",
+                    "noip",
+                    "openid",
+                    "short",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\ShowdocPush\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\ShowdocPush\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "content",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\SimplePush\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\SimplePush\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "actions",
+                    "attachments",
+                    "event",
+                    "msg",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Slack\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Slack\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "as_user",
+                    "attachments",
+                    "blocks",
+                    "channel",
+                    "icon_emoji",
+                    "icon_url",
+                    "link_names",
+                    "metadata",
+                    "mrkdwn",
+                    "parse",
+                    "reply_broadcast",
+                    "text",
+                    "thread_ts",
+                    "unfurl_links",
+                    "unfurl_media",
+                    "username"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\AnimationMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\AnimationMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "animation",
+                    "caption",
+                    "caption_entities",
+                    "chat_id",
+                    "disable_notification",
+                    "duration",
+                    "has_spoiler",
+                    "height",
+                    "message_thread_id",
+                    "parse_mode",
+                    "protect_content",
+                    "reply_markup",
+                    "reply_parameters",
+                    "thumbnail",
+                    "width"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\AudioMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\AudioMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "audio",
+                    "caption",
+                    "caption_entities",
+                    "chat_id",
+                    "disable_notification",
+                    "duration",
+                    "message_thread_id",
+                    "parse_mode",
+                    "performer",
+                    "protect_content",
+                    "reply_markup",
+                    "reply_parameters",
+                    "thumbnail",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\ChatActionMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\ChatActionMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "action",
+                    "chat_id",
+                    "message_thread_id"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\ContactMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\ContactMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "chat_id",
+                    "disable_notification",
+                    "first_name",
+                    "last_name",
+                    "message_thread_id",
+                    "phone_number",
+                    "protect_content",
+                    "reply_markup",
+                    "reply_parameters",
+                    "vcard"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\DiceMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\DiceMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "chat_id",
+                    "disable_notification",
+                    "emoji",
+                    "message_thread_id",
+                    "protect_content",
+                    "reply_markup",
+                    "reply_parameters"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\DocumentMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\DocumentMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "caption",
+                    "caption_entities",
+                    "chat_id",
+                    "disable_content_type_detection",
+                    "disable_notification",
+                    "document",
+                    "message_thread_id",
+                    "parse_mode",
+                    "protect_content",
+                    "reply_markup",
+                    "reply_parameters",
+                    "thumbnail"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\GetUpdatesMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\GetUpdatesMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "allowed_updates",
+                    "limit",
+                    "offset",
+                    "timeout"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\LocationMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\LocationMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "chat_id",
+                    "disable_notification",
+                    "heading",
+                    "horizontal_accuracy",
+                    "latitude",
+                    "live_period",
+                    "longitude",
+                    "message_thread_id",
+                    "protect_content",
+                    "proximity_alert_radius",
+                    "reply_markup",
+                    "reply_parameters"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\MediaGroupMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\MediaGroupMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "chat_id",
+                    "disable_notification",
+                    "media",
+                    "message_thread_id",
+                    "protect_content",
+                    "reply_parameters"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": []
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\PhotoMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\PhotoMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "caption",
+                    "caption_entities",
+                    "chat_id",
+                    "disable_notification",
+                    "has_spoiler",
+                    "message_thread_id",
+                    "parse_mode",
+                    "photo",
+                    "protect_content",
+                    "reply_markup",
+                    "reply_parameters"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\PollMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\PollMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "allows_multiple_answers",
+                    "chat_id",
+                    "close_date",
+                    "correct_option_id",
+                    "disable_notification",
+                    "explanation",
+                    "explanation_entities",
+                    "explanation_parse_mode",
+                    "is_anonymous",
+                    "is_closed",
+                    "message_thread_id",
+                    "open_period",
+                    "options",
+                    "protect_content",
+                    "question",
+                    "reply_markup",
+                    "reply_parameters",
+                    "type"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\TextMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\TextMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "chat_id",
+                    "disable_notification",
+                    "entities",
+                    "link_preview_options",
+                    "message_thread_id",
+                    "parse_mode",
+                    "protect_content",
+                    "reply_markup",
+                    "reply_parameters",
+                    "text"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\VenueMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\VenueMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "address",
+                    "chat_id",
+                    "disable_notification",
+                    "foursquare_id",
+                    "foursquare_type",
+                    "google_place_id",
+                    "google_place_type",
+                    "latitude",
+                    "longitude",
+                    "message_thread_id",
+                    "protect_content",
+                    "reply_markup",
+                    "reply_parameters",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\VideoMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\VideoMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "caption",
+                    "caption_entities",
+                    "chat_id",
+                    "disable_notification",
+                    "duration",
+                    "has_spoiler",
+                    "height",
+                    "message_thread_id",
+                    "parse_mode",
+                    "protect_content",
+                    "reply_markup",
+                    "reply_parameters",
+                    "supports_streaming",
+                    "thumbnail",
+                    "video",
+                    "width"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\VideoNoteMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\VideoNoteMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "chat_id",
+                    "disable_notification",
+                    "duration",
+                    "length",
+                    "message_thread_id",
+                    "protect_content",
+                    "reply_markup",
+                    "reply_parameters",
+                    "thumbnail",
+                    "video_note"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\VoiceMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Telegram\\Messages\\VoiceMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "caption",
+                    "caption_entities",
+                    "chat_id",
+                    "disable_notification",
+                    "duration",
+                    "message_thread_id",
+                    "parse_mode",
+                    "protect_content",
+                    "reply_markup",
+                    "reply_parameters",
+                    "voice"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\WPush\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\WPush\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "channel",
+                    "content",
+                    "title",
+                    "topic_code"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\FileMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\FileMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "media_id"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\ImageMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\ImageMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "image"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\MarkdownMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\MarkdownMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "content"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": []
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\NewsMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\NewsMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "articles"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\TemplateCardMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\TemplateCardMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "card_action",
+                    "card_image",
+                    "card_type",
+                    "emphasis_content",
+                    "horizontal_content_list",
+                    "image_text_area",
+                    "jump_list",
+                    "main_title",
+                    "quote_area",
+                    "source",
+                    "sub_title_text",
+                    "vertical_content_list"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\TextMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\TextMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "content",
+                    "mentioned_list",
+                    "mentioned_mobile_list"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\UploadMediaMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\UploadMediaMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "media",
+                    "type"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\VoiceMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\WeWork\\Messages\\VoiceMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "media_id"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\XiZhi\\Messages\\ChannelMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\XiZhi\\Messages\\ChannelMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "content",
+                    "date",
+                    "time",
+                    "title",
+                    "type"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\XiZhi\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\XiZhi\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "content",
+                    "date",
+                    "time",
+                    "title",
+                    "type"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\XiZhi\\Messages\\SingleMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\XiZhi\\Messages\\SingleMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "content",
+                    "date",
+                    "time",
+                    "title",
+                    "type"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\YiFengChuanHua\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\YiFengChuanHua\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "body",
+                    "delayMilliseconds",
+                    "head",
+                    "url"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\Zulip\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\Zulip\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "content",
+                    "local_id",
+                    "queue_id",
+                    "read_by_sender",
+                    "to",
+                    "topic",
+                    "type"
+                ]
             }
         }
     ]
