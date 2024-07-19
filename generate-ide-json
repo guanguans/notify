@@ -56,7 +56,7 @@ require __DIR__.'/vendor/autoload.php';
 
             return [$class => new ReflectionClass($class)];
         })
-        ->filter(static fn (ReflectionClass $reflectionClass) => $reflectionClass->isSubclassOf(Message::class))
+        ->filter(static fn (ReflectionClass $reflectionClass): bool => $reflectionClass->isSubclassOf(Message::class))
         ->map(static function (ReflectionClass $reflectionClass, string $class): array {
             $defined = Utils::definedFor($class);
 
@@ -87,7 +87,7 @@ require __DIR__.'/vendor/autoload.php';
                 'strings' => $defined,
             ],
         ])
-        ->pipe(fn (Collection $completions) => collect([
+        ->pipe(static fn (Collection $completions): Collection => collect([
             '$schema' => 'https://laravel-ide.com/schema/laravel-ide-v2.json',
             'completions' => $completions->values()->all(),
         ]))
