@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.11.8"></a>
+## [2.11.8] - 2024-07-22
+### Perf
+- **src:** improve performance by using const instead of define
+
+
 <a name="2.11.7"></a>
 ## [2.11.7] - 2024-07-19
 ### Docs
@@ -975,7 +981,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.11.7...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.11.8...HEAD
+[2.11.8]: https://github.com/guanguans/notify/compare/2.11.7...2.11.8
 [2.11.7]: https://github.com/guanguans/notify/compare/2.11.6...2.11.7
 [2.11.6]: https://github.com/guanguans/notify/compare/2.11.5...2.11.6
 [2.11.5]: https://github.com/guanguans/notify/compare/2.11.4...2.11.5
