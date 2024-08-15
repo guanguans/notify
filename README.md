@@ -183,6 +183,10 @@ Please review [our security policy](../../security/policy) on how to report secu
 * [guanguans](https://github.com/guanguans)
 * [All Contributors](../../contributors)
 
+## Thanks
+
+[![](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/?from=https://github.com/guanguans)
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
