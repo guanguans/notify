@@ -8,6 +8,24 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.11.9"></a>
+## [2.11.9] - 2024-08-16
+### Docs
+- **README:** Add JetBrains logo and link
+
+### Pull Requests
+- Merge pull request [#102](https://github.com/guanguans/notify/issues/102) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.81.9
+- Merge pull request [#101](https://github.com/guanguans/notify/issues/101) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.81.8
+- Merge pull request [#100](https://github.com/guanguans/notify/issues/100) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.81.7
+- Merge pull request [#99](https://github.com/guanguans/notify/issues/99) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.81.6
+- Merge pull request [#98](https://github.com/guanguans/notify/issues/98) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.81.5
+- Merge pull request [#97](https://github.com/guanguans/notify/issues/97) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.81.4
+- Merge pull request [#96](https://github.com/guanguans/notify/issues/96) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.80.5
+- Merge pull request [#95](https://github.com/guanguans/notify/issues/95) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.80.4
+- Merge pull request [#94](https://github.com/guanguans/notify/issues/94) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.80.3
+- Merge pull request [#93](https://github.com/guanguans/notify/issues/93) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.80.2
+
+
 <a name="2.11.8"></a>
 ## [2.11.8] - 2024-07-22
 ### Perf
@@ -981,7 +999,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.11.8...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.11.9...HEAD
+[2.11.9]: https://github.com/guanguans/notify/compare/2.11.8...2.11.9
 [2.11.8]: https://github.com/guanguans/notify/compare/2.11.7...2.11.8
 [2.11.7]: https://github.com/guanguans/notify/compare/2.11.6...2.11.7
 [2.11.6]: https://github.com/guanguans/notify/compare/2.11.5...2.11.6
