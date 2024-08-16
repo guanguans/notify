@@ -92,14 +92,14 @@ trait HasHttpClient
         if (\in_array($snakedName = Str::snake($name), Utils::httpOptionConstants(), true)) {
             if (empty($arguments)) {
                 throw new InvalidArgumentException(
-                    sprintf('The method [%s::%s] require an argument.', static::class, $name),
+                    \sprintf('The method [%s::%s] require an argument.', static::class, $name),
                 );
             }
 
             return $this->setHttpOptions([$snakedName => $arguments[0]]);
         }
 
-        throw new BadMethodCallException(sprintf('The method [%s::%s] does not exist.', static::class, $name));
+        throw new BadMethodCallException(\sprintf('The method [%s::%s] does not exist.', static::class, $name));
     }
 
     public function setHttpClient(Client $httpClient): self

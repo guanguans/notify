@@ -19,7 +19,7 @@ require __DIR__.'/vendor/autoload.php';
 
 (static function (): void {
     $echo = static function ($messages, int $color = 0): void {
-        echo sprintf("\033[{$color}m%s\033[0m\n", implode(\PHP_EOL, (array) $messages).\PHP_EOL);
+        echo \sprintf("\033[{$color}m%s\033[0m\n", implode(\PHP_EOL, (array) $messages).\PHP_EOL);
     };
 
     $success = static function ($messages) use ($echo): void {

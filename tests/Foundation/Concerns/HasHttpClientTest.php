@@ -26,14 +26,14 @@ it('will throw InvalidArgumentException when argument is empty', function (): vo
     (new Client)->verify();
 })
     ->group(__DIR__, __FILE__)
-    ->throws(InvalidArgumentException::class, sprintf('The method [%s::verify] require an argument.', Client::class));
+    ->throws(InvalidArgumentException::class, \sprintf('The method [%s::verify] require an argument.', Client::class));
 
 it('will throw BadMethodCallException when calling an undefined method', function (): void {
     /** @noinspection PhpUndefinedMethodInspection */
     (new Client)->foo();
 })
     ->group(__DIR__, __FILE__)
-    ->throws(BadMethodCallException::class, sprintf('The method [%s::foo] does not exist.', Client::class));
+    ->throws(BadMethodCallException::class, \sprintf('The method [%s::foo] does not exist.', Client::class));
 
 it('can set http client', function (): void {
     expect(new Client)

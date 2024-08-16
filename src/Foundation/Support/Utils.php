@@ -212,7 +212,7 @@ class Utils
         }
 
         if (\function_exists('php_uname')) {
-            $defaults['OS'] = sprintf('%s(%s)', php_uname('s'), php_uname('r'));
+            $defaults['OS'] = \sprintf('%s(%s)', php_uname('s'), php_uname('r'));
         }
 
         $defaults = array_merge($defaults, $agents);

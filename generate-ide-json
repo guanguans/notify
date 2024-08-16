@@ -21,7 +21,7 @@ require __DIR__.'/vendor/autoload.php';
 
 (static function (): void {
     $echo = static function ($messages, int $color = 0): void {
-        echo sprintf("\033[{$color}m%s\033[0m\n", implode(\PHP_EOL, (array) $messages).\PHP_EOL);
+        echo \sprintf("\033[{$color}m%s\033[0m\n", implode(\PHP_EOL, (array) $messages).\PHP_EOL);
     };
 
     $success = static function ($messages) use ($echo): void {
@@ -49,7 +49,7 @@ require __DIR__.'/vendor/autoload.php';
 
     collect($files)
         ->mapWithKeys(static function (\Symfony\Component\Finder\SplFileInfo $fileInfo): array {
-            $class = sprintf(
+            $class = \sprintf(
                 '\\Guanguans\\Notify\\%s',
                 str_replace('/', '\\', rtrim($fileInfo->getRelativePathname(), '.php'))
             );

@@ -38,6 +38,6 @@ class Authenticator extends AggregateAuthenticator
 
     private function sign(string $secret, int $timestamp): string
     {
-        return base64_encode(hash_hmac('sha256', '', sprintf("%s\n%s", $timestamp, $secret), true));
+        return base64_encode(hash_hmac('sha256', '', \sprintf("%s\n%s", $timestamp, $secret), true));
     }
 }

@@ -98,7 +98,7 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
         foreach ($configuration as $class) {
             if (!\array_key_exists(HasOptions::class, (new \ReflectionClass($class))->getTraits())) {
                 throw new InvalidArgumentException(
-                    sprintf('The class [%s] must use trait [%s].', $class, HasOptions::class),
+                    \sprintf('The class [%s] must use trait [%s].', $class, HasOptions::class),
                 );
             }
         }

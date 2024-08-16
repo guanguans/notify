@@ -57,7 +57,7 @@ trait HasOptions
             if (\in_array($casedName, $defined, true)) {
                 if (empty($arguments)) {
                     throw new InvalidArgumentException(
-                        sprintf('The method [%s::%s] require an argument.', static::class, $name),
+                        \sprintf('The method [%s::%s] require an argument.', static::class, $name),
                     );
                 }
 
@@ -65,7 +65,7 @@ trait HasOptions
             }
         }
 
-        throw new BadMethodCallException(sprintf('The method [%s::%s] does not exist.', static::class, $name));
+        throw new BadMethodCallException(\sprintf('The method [%s::%s] does not exist.', static::class, $name));
     }
 
     public function setOption(string $option, $value): self
