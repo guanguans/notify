@@ -14,6 +14,7 @@ declare(strict_types=1);
 use Ergebnis\Rector\Rules\Arrays\SortAssociativeArrayByKeyRector;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
+use Guanguans\Notify\Foundation\Concerns\HasOptions;
 use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\HasOptionsDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
@@ -43,6 +44,9 @@ use Rector\Set\ValueObject\SetList;
 use Rector\Transform\Rector\String_\StringToClassConstantRector;
 use Rector\Transform\ValueObject\StringToClassConstant;
 use Rector\ValueObject\PhpVersion;
+use Rector\ValueObject\Visibility;
+use Rector\Visibility\Rector\ClassMethod\ChangeMethodVisibilityRector;
+use Rector\Visibility\ValueObject\ChangeMethodVisibility;
 
 return static function (RectorConfig $rectorConfig): void {
     // \define('MHASH_XXH3', 2 << 0);
@@ -190,6 +194,10 @@ return static function (RectorConfig $rectorConfig): void {
             [],
         ),
     );
+
+    $rectorConfig->ruleWithConfiguration(ChangeMethodVisibilityRector::class, [
+        new ChangeMethodVisibility(HasOptions::class, 'preConfigureOptionsResolver', Visibility::PROTECTED),
+    ]);
 
     $rectorConfig->ruleWithConfiguration(RemoveTraitUseRector::class, [
         AsJson::class,
