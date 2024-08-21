@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.11.10"></a>
+## [2.11.10] - 2024-08-21
+### Refactor
+- **messages:** rename toHttpOptions to toPayload
+
+### Test
+- **HasOptions:** add validation checks for options
+
+
 <a name="2.11.9"></a>
 ## [2.11.9] - 2024-08-16
 ### Docs
@@ -999,7 +1008,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.11.9...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.11.10...HEAD
+[2.11.10]: https://github.com/guanguans/notify/compare/2.11.9...2.11.10
 [2.11.9]: https://github.com/guanguans/notify/compare/2.11.8...2.11.9
 [2.11.8]: https://github.com/guanguans/notify/compare/2.11.7...2.11.8
 [2.11.7]: https://github.com/guanguans/notify/compare/2.11.6...2.11.7
