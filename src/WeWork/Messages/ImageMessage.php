@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
-use GuzzleHttp\RequestOptions;
-
 /**
  * @method self image($image)
  */
@@ -24,15 +22,15 @@ class ImageMessage extends Message
         'image',
     ];
 
-    public function toHttpOptions(): array
+    protected function toPayload(): array
     {
+        $payload = parent::toPayload();
+
         return [
-            RequestOptions::JSON => [
-                'msgtype' => $this->type(),
-                $this->type() => [
-                    'base64' => base64_encode_file($image = $this->getValidatedOption('image')),
-                    'md5' => md5_file($image),
-                ],
+            'msgtype' => $payload['msgtype'],
+            $this->type() => [
+                'base64' => base64_encode_file($image = $payload['image']['image']),
+                'md5' => md5_file($image),
             ],
         ];
     }
