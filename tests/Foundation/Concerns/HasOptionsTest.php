@@ -80,7 +80,9 @@ it('can get options', function (): void {
             ];
         }
     })
+        ->getOption('foo')->toBeString()
         ->getOptions()->toBeArray()
+        ->getValidatedOption('foo')->toBeString()
         ->getValidatedOptions()->toBeArray();
 })->group(__DIR__, __FILE__);
 
