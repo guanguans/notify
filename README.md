@@ -136,6 +136,28 @@ $response = $promise->wait();
 $responses = $client->pool($messages);
 ```
 
+### Hyperf integration
+
+```php
+use Guanguans\Notify\Foundation\Client;
+use Guanguans\Notify\Foundation\Middleware\Authenticate;
+use Guanguans\Notify\Foundation\Middleware\Response;
+use Hyperf\Guzzle\CoroutineHandler;
+use Hyperf\Guzzle\HandlerStackFactory;
+
+// Set Handler directly
+$client->setHandler(new CoroutineHandler);
+
+// Or set HandlerStackResolver
+$client->setHandlerStackResolver(static function (Client $client) {
+    $handlerStack = (new HandlerStackFactory)->create();
+    $handlerStack->push(new Authenticate($client->getAuthenticator()), Authenticate::class);
+    $handlerStack->push(new Response, Response::class);
+
+    return $handlerStack;
+});
+```
+
 ### Completion
 
 > [!TIP]
