@@ -145,8 +145,9 @@ use Hyperf\Guzzle\HandlerStackFactory;
 use Hyperf\Guzzle\PoolHandler;
 
 // Set Handler directly
-// $client->setHandler(new PoolHandler);
-$client->setHandler(new CoroutineHandler);
+// $client->setHandler(make(CoroutineHandler::class));
+// $client->setHandler(make(PoolHandler::class));
+$client->setHandler((fn () => $this->getHandler($this->option))->call(new HandlerStackFactory));
 
 // Or set HandlerStackResolver
 $client->setHandlerStackResolver(static function (Client $client) {
