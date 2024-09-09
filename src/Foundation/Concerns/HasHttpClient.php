@@ -200,6 +200,17 @@ trait HasHttpClient
     }
 
     /**
+     * @return array<string, callable(callable): callable>
+     */
+    public function defaultMiddleware(): array
+    {
+        return [
+            Authenticate::class => new Authenticate($this->authenticator),
+            Response::class => new Response,
+        ];
+    }
+
+    /**
      * @param null|list<ResponseInterface|\Throwable> $queue
      */
     public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
