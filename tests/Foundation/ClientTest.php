@@ -19,6 +19,7 @@ namespace Guanguans\NotifyTests\Foundation;
 
 use Guanguans\Notify\AnPush\Authenticator;
 use Guanguans\Notify\AnPush\Messages\Message;
+use Guanguans\Notify\Foundation\Authenticators\NullAuthenticator;
 use Guanguans\Notify\Foundation\Client;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Illuminate\Support\Collection;
@@ -29,6 +30,12 @@ it('can dump debug info', function (): void {
     expect(new class extends Client {
         use AsNullUri;
     })->dump()->toBeInstanceOf(Client::class);
+})->group(__DIR__, __FILE__);
+
+it('can set Authenticator', function (): void {
+    expect(new class extends Client {})
+        ->setAuthenticator($authenticator = new NullAuthenticator)->toBeInstanceOf(Client::class)
+        ->getAuthenticator()->toBe($authenticator);
 })->group(__DIR__, __FILE__);
 
 it('can concurrent send messages', function (): void {

@@ -52,3 +52,9 @@ it('can set handler stack', function (): void {
     expect(new Client)
         ->setHandlerStack(HandlerStack::create())->toBeInstanceOf(Client::class);
 })->group(__DIR__, __FILE__);
+
+it('can set handler stack resolver', function (): void {
+    expect(new Client)
+        ->setHandlerStackResolver($handlerStack = HandlerStack::create())->toBeInstanceOf(Client::class)
+        ->getHandlerStackResolver()->toBe($handlerStack);
+})->group(__DIR__, __FILE__);
