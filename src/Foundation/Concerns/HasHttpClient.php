@@ -129,9 +129,7 @@ trait HasHttpClient
 
     public function getHttpClientResolver(): callable
     {
-        return $this->httpClientResolver ??= fn (): Client => new Client(Utils::normalizeHttpOptions(
-            Utils::mergeHttpOptions($this->defaultHttpOptions(), $this->getHttpOptions()),
-        ));
+        return $this->httpClientResolver ??= fn (): Client => new Client($this->allNormalizedHttpOptions());
     }
 
     public function setHandlerStack(HandlerStack $handlerStack): self
@@ -177,6 +175,13 @@ trait HasHttpClient
     public function getHttpOptions(): array
     {
         return $this->httpOptions;
+    }
+
+    public function allNormalizedHttpOptions(): array
+    {
+        return Utils::normalizeHttpOptions(
+            Utils::mergeHttpOptions($this->defaultHttpOptions(), $this->getHttpOptions()),
+        );
     }
 
     public function defaultHttpOptions(): array
