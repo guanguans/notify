@@ -76,11 +76,11 @@ trait HasHttpClient
 {
     private ?Client $httpClient = null;
 
-    /** @var null|callable */
+    /** @var null|callable(static): \GuzzleHttp\Client */
     private $httpClientResolver;
     private ?HandlerStack $handlerStack = null;
 
-    /** @var null|callable */
+    /** @var null|callable(static): \GuzzleHttp\HandlerStack */
     private $handlerStackResolver;
     private array $httpOptions = [];
 
@@ -117,6 +117,9 @@ trait HasHttpClient
         return $this->httpClient ??= $this->getHttpClientResolver()($this);
     }
 
+    /**
+     * @param callable(static): \GuzzleHttp\Client $httpClientResolver
+     */
     public function setHttpClientResolver(callable $httpClientResolver): self
     {
         $this->httpClientResolver = $httpClientResolver;
@@ -143,6 +146,9 @@ trait HasHttpClient
         return $this->handlerStack ??= $this->getHandlerStackResolver()($this);
     }
 
+    /**
+     * @param callable(static): \GuzzleHttp\HandlerStack $handlerStackResolver
+     */
     public function setHandlerStackResolver(callable $handlerStackResolver): self
     {
         $this->handlerStackResolver = $handlerStackResolver;
