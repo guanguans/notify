@@ -48,6 +48,18 @@ class Client implements Contracts\Client
         ]);
     }
 
+    public function getAuthenticator(): Authenticator
+    {
+        return $this->authenticator;
+    }
+
+    public function setAuthenticator(Authenticator $authenticator): self
+    {
+        $this->authenticator = $authenticator;
+
+        return $this;
+    }
+
     /**
      * @throws GuzzleException
      *
