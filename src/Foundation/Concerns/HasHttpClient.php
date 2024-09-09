@@ -79,6 +79,9 @@ trait HasHttpClient
     /** @var null|callable */
     private $httpClientResolver;
     private ?HandlerStack $handlerStack = null;
+
+    /** @var null|callable */
+    private $handlerStackResolver;
     private array $httpOptions = [];
 
     public function __call($name, $arguments)
@@ -141,6 +144,24 @@ trait HasHttpClient
             $handlerStack->push(new Authenticate($this->authenticator), Authenticate::class);
             $handlerStack->push(new Response, Response::class);
         });
+    }
+
+    public function setHandlerStackResolver(callable $handlerStackResolver): self
+    {
+        $this->handlerStackResolver = $handlerStackResolver;
+
+        return $this;
+    }
+
+    public function getHandlerStackResolver(): callable
+    {
+        return $this->handlerStackResolver ??= fn (): HandlerStack => tap(
+            HandlerStack::create(),
+            function (HandlerStack $handlerStack): void {
+                $handlerStack->push(new Authenticate($this->authenticator), Authenticate::class);
+                $handlerStack->push(new Response, Response::class);
+            }
+        );
     }
 
     public function setHttpOptions(array $httpOptions): self
