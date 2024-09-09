@@ -8,6 +8,27 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.12.0"></a>
+## [2.12.0] - 2024-09-09
+### Docs
+- **http-client:** Update type hints for resolvers
+- **readme:** add coroutine handler example
+
+### Feat
+- **Client:** add getter and setter for authenticator
+- **http-client:** add handler stack resolver methods
+- **rector:** add ChangeMethodVisibilityRector configuration
+
+### Refactor
+- **http:** Add handlerStackResolver to Client
+
+### Test
+- **client:** add tests for setting authenticator and handler stack resolver
+
+### Pull Requests
+- Merge pull request [#103](https://github.com/guanguans/notify/issues/103) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.81.10
+
+
 <a name="2.11.10"></a>
 ## [2.11.10] - 2024-08-21
 ### Refactor
@@ -1008,7 +1029,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.11.10...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.12.0...HEAD
+[2.12.0]: https://github.com/guanguans/notify/compare/2.11.10...2.12.0
 [2.11.10]: https://github.com/guanguans/notify/compare/2.11.9...2.11.10
 [2.11.9]: https://github.com/guanguans/notify/compare/2.11.8...2.11.9
 [2.11.8]: https://github.com/guanguans/notify/compare/2.11.7...2.11.8
