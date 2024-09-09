@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.12.1"></a>
+## [2.12.1] - 2024-09-09
+### Docs
+- **readme:** update middleware usage in client handler
+
+### Feat
+- **http-client:** add default middleware method
+
+### Refactor
+- **http-client:** rename method and streamline middleware handling
+- **http-client:** simplify http client resolver logic
+
+
 <a name="2.12.0"></a>
 ## [2.12.0] - 2024-09-09
 ### Docs
@@ -1029,7 +1042,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.12.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.12.1...HEAD
+[2.12.1]: https://github.com/guanguans/notify/compare/2.12.0...2.12.1
 [2.12.0]: https://github.com/guanguans/notify/compare/2.11.10...2.12.0
 [2.11.10]: https://github.com/guanguans/notify/compare/2.11.9...2.11.10
 [2.11.9]: https://github.com/guanguans/notify/compare/2.11.8...2.11.9
