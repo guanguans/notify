@@ -43,6 +43,7 @@ class Client implements Contracts\Client
             'httpClient' => $this->getHttpClient(),
             'httpClientResolver' => $this->getHttpClientResolver(),
             'handlerStack' => $this->getHandlerStack(),
+            'handlerStackResolver' => $this->getHandlerStackResolver(),
             'httpOptions' => $this->getHttpOptions(),
         ]);
     }

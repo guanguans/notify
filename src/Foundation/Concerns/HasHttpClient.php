@@ -140,10 +140,7 @@ trait HasHttpClient
 
     public function getHandlerStack(): HandlerStack
     {
-        return $this->handlerStack ??= tap(HandlerStack::create(), function (HandlerStack $handlerStack): void {
-            $handlerStack->push(new Authenticate($this->authenticator), Authenticate::class);
-            $handlerStack->push(new Response, Response::class);
-        });
+        return $this->handlerStack ??= $this->getHandlerStackResolver()($this);
     }
 
     public function setHandlerStackResolver(callable $handlerStackResolver): self
