@@ -159,8 +159,9 @@ trait HasHttpClient
         return $this->handlerStackResolver ??= fn (): HandlerStack => tap(
             HandlerStack::create(),
             function (HandlerStack $handlerStack): void {
-                $handlerStack->push(new Authenticate($this->authenticator), Authenticate::class);
-                $handlerStack->push(new Response, Response::class);
+                foreach ($this->defaultMiddlewares() as $name => $middleware) {
+                    $handlerStack->push($middleware, $name);
+                }
             }
         );
     }
@@ -202,7 +203,7 @@ trait HasHttpClient
     /**
      * @return array<string, callable(callable): callable>
      */
-    public function defaultMiddleware(): array
+    public function defaultMiddlewares(): array
     {
         return [
             Authenticate::class => new Authenticate($this->authenticator),
