@@ -140,6 +140,7 @@ $responses = $client->pool($messages);
 
 ```php
 use Guanguans\Notify\Foundation\Client;
+use GuzzleHttp\HandlerStack;
 use Hyperf\Guzzle\CoroutineHandler;
 use Hyperf\Guzzle\HandlerStackFactory;
 use Hyperf\Guzzle\PoolHandler;
@@ -150,15 +151,11 @@ use Hyperf\Guzzle\PoolHandler;
 $client->setHandler((fn () => $this->getHandler($this->option))->call(new HandlerStackFactory));
 
 // Or set HandlerStackResolver
-$client->setHandlerStackResolver(static function (Client $client) {
-    $handlerStack = (new HandlerStackFactory)->create();
-
-    foreach ($client->defaultMiddlewares() as $name => $middleware) {
-        $handlerStack->push($middleware, $name);
-    }
-
-    return $handlerStack;
-});
+$client->setHandlerStackResolver(static fn (Client $client): HandlerStack => array_reduce(
+    $client->defaultMiddlewares(),
+    static fn (HandlerStack $handlerStack, callable $middleware) => tap($handlerStack)->push($middleware),
+    (new HandlerStackFactory)->create()
+));
 ```
 
 ### Completion
