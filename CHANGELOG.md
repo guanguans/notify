@@ -8,6 +8,31 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.12.2"></a>
+## [2.12.2] - 2024-10-01
+### Docs
+- **README:** Improve HandlerStackResolver example
+- **README:** Update client handler setup instructions
+
+### Feat
+- **Authenticator:** update base URI construction logic
+- **Message:** add tags method and property
+- **rector:** add sensitive parameter attribute rector
+
+### Refactor
+- **ServerChan:** refactor Authenticator and Message classes
+
+### Test
+- **ServerChan:** refactor message sending test to use dynamic key
+
+### Pull Requests
+- Merge pull request [#109](https://github.com/guanguans/notify/issues/109) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.82.6
+- Merge pull request [#108](https://github.com/guanguans/notify/issues/108) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.82.5
+- Merge pull request [#107](https://github.com/guanguans/notify/issues/107) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.82.3
+- Merge pull request [#105](https://github.com/guanguans/notify/issues/105) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.82.2
+- Merge pull request [#104](https://github.com/guanguans/notify/issues/104) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.82.1
+
+
 <a name="2.12.1"></a>
 ## [2.12.1] - 2024-09-09
 ### Docs
@@ -1042,7 +1067,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.12.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.12.2...HEAD
+[2.12.2]: https://github.com/guanguans/notify/compare/2.12.1...2.12.2
 [2.12.1]: https://github.com/guanguans/notify/compare/2.12.0...2.12.1
 [2.12.0]: https://github.com/guanguans/notify/compare/2.11.10...2.12.0
 [2.11.10]: https://github.com/guanguans/notify/compare/2.11.9...2.11.10
