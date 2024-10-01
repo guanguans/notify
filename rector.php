@@ -18,6 +18,7 @@ use Guanguans\Notify\Foundation\Concerns\HasOptions;
 use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\HasOptionsDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
+use Guanguans\Notify\Foundation\Response;
 use GuzzleHttp\RequestOptions;
 use Rector\CodeQuality\Rector\ClassMethod\ExplicitReturnNullRector;
 use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
@@ -41,7 +42,10 @@ use Rector\Removing\Rector\Class_\RemoveTraitUseRector;
 use Rector\Set\ValueObject\DowngradeLevelSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\Transform\Rector\ClassMethod\ReturnTypeWillChangeRector;
+use Rector\Transform\Rector\FileWithoutNamespace\RectorConfigBuilderRector;
 use Rector\Transform\Rector\String_\StringToClassConstantRector;
+use Rector\Transform\ValueObject\ClassMethodReference;
 use Rector\Transform\ValueObject\StringToClassConstant;
 use Rector\ValueObject\PhpVersion;
 use Rector\ValueObject\Visibility;
@@ -80,6 +84,7 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->paths([
+        __FILE__,
         __DIR__.'/src',
         __DIR__.'/tests',
         __DIR__.'/.*.php',
@@ -151,6 +156,7 @@ return static function (RectorConfig $rectorConfig): void {
         StaticArrowFunctionRector::class,
         StaticClosureRector::class,
         HasOptionsDocCommentRector::class,
+        RectorConfigBuilderRector::class,
     ]);
 
     $rectorConfig->sets([
@@ -194,6 +200,12 @@ return static function (RectorConfig $rectorConfig): void {
             [],
         ),
     );
+
+    $rectorConfig->ruleWithConfiguration(ReturnTypeWillChangeRector::class, [
+        new ClassMethodReference(ArrayAccess::class, 'offsetGet'),
+        new ClassMethodReference(HasOptions::class, 'offsetGet'),
+        new ClassMethodReference(Response::class, 'offsetGet'),
+    ]);
 
     $rectorConfig->ruleWithConfiguration(ChangeMethodVisibilityRector::class, [
         new ChangeMethodVisibility(HasOptions::class, 'preConfigureOptionsResolver', Visibility::PROTECTED),
