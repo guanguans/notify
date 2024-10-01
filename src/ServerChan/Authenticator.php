@@ -21,6 +21,10 @@ class Authenticator extends OptionsAuthenticator
         #[\SensitiveParameter]
         string $key
     ) {
-        parent::__construct(['base_uri' => "https://sctapi.ftqq.com/$key.send"]);
+        parent::__construct([
+            'base_uri' => 0 === strncmp($key, 'sctp', 4)
+                ? "https://$key.push.ft07.com/send"
+                : "https://sctapi.ftqq.com/$key.send",
+        ]);
     }
 }
