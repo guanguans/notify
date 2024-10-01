@@ -13,6 +13,14 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ServerChan;
 
-use Guanguans\Notify\Foundation\Authenticators\TokenUriTemplateAuthenticator;
+use Guanguans\Notify\Foundation\Authenticators\OptionsAuthenticator;
 
-class Authenticator extends TokenUriTemplateAuthenticator {}
+class Authenticator extends OptionsAuthenticator
+{
+    public function __construct(
+        #[\SensitiveParameter]
+        string $key
+    ) {
+        parent::__construct(['base_uri' => "https://sctapi.ftqq.com/$key.send"]);
+    }
+}

@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ServerChan\Messages;
 
+use Guanguans\Notify\Foundation\Concerns\AsNullUri;
+
 /**
  * @method self channel($channel)
  * @method self desp($desp)
@@ -24,6 +26,7 @@ namespace Guanguans\Notify\ServerChan\Messages;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    use AsNullUri;
     protected array $defined = [
         'title',
         'desp',
@@ -37,11 +40,6 @@ class Message extends \Guanguans\Notify\Foundation\Message
         // 'key',
         // 'uid',
     ];
-
-    public function toHttpUri(): string
-    {
-        return '{token}.send';
-    }
 
     /**
      * @codeCoverageIgnore
