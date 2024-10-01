@@ -19,6 +19,7 @@ namespace Guanguans\Notify\ServerChan\Messages;
  * @method self noip($noip)
  * @method self openid($openid)
  * @method self short($short)
+ * @method self tags($tags)
  * @method self title($title)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
@@ -26,6 +27,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $defined = [
         'title',
         'desp',
+        'tags',
         'short',
         'noip',
         'channel',

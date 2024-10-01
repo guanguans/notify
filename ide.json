@@ -1220,6 +1220,7 @@
                     "noip",
                     "openid",
                     "short",
+                    "tags",
                     "title"
                 ]
             }
