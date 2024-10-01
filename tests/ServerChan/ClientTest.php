@@ -20,8 +20,8 @@ use Guanguans\Notify\ServerChan\Authenticator;
 use Guanguans\Notify\ServerChan\Client;
 use Guanguans\Notify\ServerChan\Messages\Message;
 
-it('can send message', function (): void {
-    $authenticator = new Authenticator('SCT35149Thtf1g2Bc14QJuQ6HFpW5Y');
+it('can send message', function (string $key): void {
+    $authenticator = new Authenticator($key);
     $client = new Client($authenticator);
     $message = Message::make([
         'title' => 'This is title.',
@@ -41,4 +41,7 @@ it('can send message', function (): void {
             ),
         ])
         ->assertCanSendMessage($message);
-})->group(__DIR__, __FILE__);
+})->group(__DIR__, __FILE__)->with([
+    ['key' => 'sctp35149Thtf1g2Bc14QJuQ6HFpW5Y'],
+    ['key' => 'SCT35149Thtf1g2Bc14QJuQ6HFpW5Y'],
+]);
