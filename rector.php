@@ -36,6 +36,7 @@ use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php73\Rector\String_\SensitiveHereNowDocRector;
+use Rector\Php82\Rector\Param\AddSensitiveParameterAttributeRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\AddSeeTestAnnotationRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Removing\Rector\Class_\RemoveTraitUseRector;
@@ -205,6 +206,16 @@ return static function (RectorConfig $rectorConfig): void {
         new ClassMethodReference(ArrayAccess::class, 'offsetGet'),
         new ClassMethodReference(HasOptions::class, 'offsetGet'),
         new ClassMethodReference(Response::class, 'offsetGet'),
+    ]);
+
+    $rectorConfig->ruleWithConfiguration(AddSensitiveParameterAttributeRector::class, [
+        AddSensitiveParameterAttributeRector::SENSITIVE_PARAMETERS => [
+            'accessToken',
+            'key',
+            'password',
+            'token',
+            'webHook,',
+        ],
     ]);
 
     $rectorConfig->ruleWithConfiguration(ChangeMethodVisibilityRector::class, [
