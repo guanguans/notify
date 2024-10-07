@@ -14,6 +14,7 @@
 ## Platform support
 
 [//]: # (https://github.com/dschep/ntfy)
+[//]: # (https://github.com/nikoksr/notify)
 
 * [AnPush](./src/AnPush/README.md)
 * [Bark](./src/Bark/README.md)
