@@ -8,21 +8,51 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.12.3"></a>
+## [2.12.3] - 2024-11-14
+### Build
+- **dependencies:** Update phpstan versions and ai-commit commands
+
+### CI
+- **chglog:** Update configuration for commit types
+
+### Docs
+- **README:** Add blank line for Markdown formatting
+- **readme:** Add example for DingTalk client usage
+
+### Features
+- **response:** Add resource method to retrieve response body
+
+### Pull Requests
+- Merge pull request [#121](https://github.com/guanguans/notify/issues/121) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.83.6
+- Merge pull request [#120](https://github.com/guanguans/notify/issues/120) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.83.5
+- Merge pull request [#119](https://github.com/guanguans/notify/issues/119) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.83.4
+- Merge pull request [#118](https://github.com/guanguans/notify/issues/118) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.83.3
+- Merge pull request [#117](https://github.com/guanguans/notify/issues/117) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.83.2
+- Merge pull request [#116](https://github.com/guanguans/notify/issues/116) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.83.0
+- Merge pull request [#115](https://github.com/guanguans/notify/issues/115) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.82.13
+- Merge pull request [#114](https://github.com/guanguans/notify/issues/114) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.82.12
+- Merge pull request [#113](https://github.com/guanguans/notify/issues/113) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.82.11
+- Merge pull request [#112](https://github.com/guanguans/notify/issues/112) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.82.9
+- Merge pull request [#111](https://github.com/guanguans/notify/issues/111) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.82.8
+- Merge pull request [#110](https://github.com/guanguans/notify/issues/110) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.82.7
+
+
 <a name="2.12.2"></a>
 ## [2.12.2] - 2024-10-01
+### Code Refactoring
+- **ServerChan:** refactor Authenticator and Message classes
+
 ### Docs
 - **README:** Improve HandlerStackResolver example
 - **README:** Update client handler setup instructions
 
-### Feat
+### Features
 - **Authenticator:** update base URI construction logic
 - **Message:** add tags method and property
 - **rector:** add sensitive parameter attribute rector
 
-### Refactor
-- **ServerChan:** refactor Authenticator and Message classes
-
-### Test
+### Tests
 - **ServerChan:** refactor message sending test to use dynamic key
 
 ### Pull Requests
@@ -35,32 +65,32 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.12.1"></a>
 ## [2.12.1] - 2024-09-09
+### Code Refactoring
+- **http-client:** rename method and streamline middleware handling
+- **http-client:** simplify http client resolver logic
+
 ### Docs
 - **readme:** update middleware usage in client handler
 
-### Feat
+### Features
 - **http-client:** add default middleware method
-
-### Refactor
-- **http-client:** rename method and streamline middleware handling
-- **http-client:** simplify http client resolver logic
 
 
 <a name="2.12.0"></a>
 ## [2.12.0] - 2024-09-09
+### Code Refactoring
+- **http:** Add handlerStackResolver to Client
+
 ### Docs
 - **http-client:** Update type hints for resolvers
 - **readme:** add coroutine handler example
 
-### Feat
+### Features
 - **Client:** add getter and setter for authenticator
 - **http-client:** add handler stack resolver methods
 - **rector:** add ChangeMethodVisibilityRector configuration
 
-### Refactor
-- **http:** Add handlerStackResolver to Client
-
-### Test
+### Tests
 - **client:** add tests for setting authenticator and handler stack resolver
 
 ### Pull Requests
@@ -69,10 +99,10 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.11.10"></a>
 ## [2.11.10] - 2024-08-21
-### Refactor
+### Code Refactoring
 - **messages:** rename toHttpOptions to toPayload
 
-### Test
+### Tests
 - **HasOptions:** add validation checks for options
 
 
@@ -96,17 +126,23 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.11.8"></a>
 ## [2.11.8] - 2024-07-22
-### Perf
+### Performance Improvements
 - **src:** improve performance by using const instead of define
+
+### Style
+- **generate-ide-json:** improve readability of filter and pipe functions
 
 
 <a name="2.11.7"></a>
 ## [2.11.7] - 2024-07-19
+### Build
+- **deps:** update guzzlehttp/guzzle version
+
 ### Docs
 - Add completion.jpg image
 - **ServerChan:** update links in README
 
-### Feat
+### Features
 - **generate-ide-json:** add script to generate ide.json for PHP IDE assistance
 - **ide:** Add completions for staticStrings and classFields
 
@@ -120,7 +156,7 @@ All notable changes to this project will be documented in this file.
 ### Docs
 - **benchmark:** update benchmark results
 
-### Test
+### Tests
 - **benchmarks:** rename NotifyBench.php to SendMessageBench.php
 
 
@@ -129,23 +165,23 @@ All notable changes to this project will be documented in this file.
 ### Docs
 - **benchmark:** Add benchmarking command to README.md
 
-### Test
+### Tests
 - Update benchmark command in composer.json
 - Add phpbench for benchmarking
 
 
 <a name="2.11.4"></a>
 ## [2.11.4] - 2024-07-10
-### Feat
-- **Utils:** add normalizeHttpOptions method
-
-### Refactor
+### Code Refactoring
 - **utils:** update Utils references
+
+### Features
+- **Utils:** add normalizeHttpOptions method
 
 
 <a name="2.11.3"></a>
 ## [2.11.3] - 2024-07-09
-### Perf
+### Performance Improvements
 - **src:** improve performance of Client pool method
 
 
@@ -164,7 +200,7 @@ All notable changes to this project will be documented in this file.
 - **docs:** add additional code examples to README.md
 - **types:** Update PHPDoc comments for type hints in Client class
 
-### Test
+### Tests
 - **test:** add test for concurrent message sending
 
 
@@ -173,24 +209,27 @@ All notable changes to this project will be documented in this file.
 ### CI
 - **composer-require-checker:** Add GuzzleHttp PromiseInterface and Utils
 
-### Feat
+### Features
 - **Client:** add pool method to handle multiple messages asynchronously
 - **Client:** add asynchronous message sending capability
 
 
 <a name="2.10.0"></a>
 ## [2.10.0] - 2024-07-09
-### Refactor
+### Code Refactoring
 - **messages:** refactor postFor method in PostMessage class
 - **tests:** refactor create_response to response
 
 
 <a name="2.9.0"></a>
 ## [2.9.0] - 2024-07-08
+### Build
+- **composer.json:** update dependencies versions
+
 ### CI
 - **release:** update rector.php configuration
 
-### Feat
+### Features
 - **authenticators:** improve constructor parameter formatting
 
 ### Pull Requests
@@ -202,13 +241,13 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.8.4"></a>
 ## [2.8.4] - 2024-06-14
+### Bug Fixes
+- **Support:** Fix undefined constant issue
+
 ### CI
 - **psalm:** Update psalm baseline and remove unused closure param
 
-### Fix
-- **Support:** Fix undefined constant issue
-
-### Test
+### Tests
 - **test:** add tests for form params, query, and Multipart conversion
 
 
@@ -217,18 +256,21 @@ All notable changes to this project will be documented in this file.
 ### CI
 - **composer.json:** Add pest-highest and putenvs scripts
 
-### Feat
+### Features
 - **Message:** Add new methods to handle form parameters, query strings, and multipart data
 
 
 <a name="2.8.2"></a>
 ## [2.8.2] - 2024-06-13
-### Fix
+### Bug Fixes
 - **HasOptions:** Fix offsetGet method
 
 
 <a name="2.8.1"></a>
 ## [2.8.1] - 2024-06-13
+### Build
+- **php-cs-fixer:** Add parallel config support
+
 ### Pull Requests
 - Merge pull request [#84](https://github.com/guanguans/notify/issues/84) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.78.1
 - Merge pull request [#83](https://github.com/guanguans/notify/issues/83) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.78.0
@@ -241,7 +283,7 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.8.0"></a>
 ## [2.8.0] - 2024-05-10
-### Feat
+### Features
 - **WPush:** Add WPush package with Authenticator, Client, Message classes and README.md file
 - **tests:** add ClientTest for WPush
 
@@ -251,7 +293,7 @@ All notable changes to this project will be documented in this file.
 ### Docs
 - **readme:** update push notification SDK list
 
-### Feat
+### Features
 - **AnPush:** add ClientTest.php for sending message
 - **AnPush:** Add AnPush Authenticator, Client, and Message classes
 
@@ -267,7 +309,7 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.6.0"></a>
 ## [2.6.0] - 2024-04-22
-### Test
+### Tests
 - Add tests for getting headers and reason in Response class
 
 ### Pull Requests
@@ -280,7 +322,7 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.5.1"></a>
 ## [2.5.1] - 2024-03-22
-### Refactor
+### Code Refactoring
 - **Response:** improve request and response summary handling
 
 ### Pull Requests
@@ -290,10 +332,10 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.5.0"></a>
 ## [2.5.0] - 2024-03-20
-### Feat
+### Features
 - **SimplePush:** Add SimplePush package with Authenticator, Client, and Messages
 
-### Test
+### Tests
 - **SimplePush:** add test case for sending message
 
 
@@ -309,27 +351,31 @@ All notable changes to this project will be documented in this file.
 ### CI
 - apply php-cs-fixer
 
+### Code Refactoring
+- **utils:** Improve property retrieval in Utils class
+- **utils:** improve handling of properties in Utils class
+
 ### Docs
 - **readme:** Add list of supported Push notification SDKs
 
-### Refactor
-- **utils:** Improve property retrieval in Utils class
-- **utils:** improve handling of properties in Utils class
+### Style
+- **.php-cs-fixer:** improve code style and remove redundant rules
+- **.php-cs-fixer.php:** update coding style rules
 
 
 <a name="2.4.1"></a>
 ## [2.4.1] - 2024-03-11
-### Docs
-- Update push notification SDK list in README
-
-### Feat
-- **Utils:** Add method to get defined properties for an object
-
-### Refactor
+### Code Refactoring
 - **HasOptions:** Improve preConfigureOptionsResolver method
 - **platform-lint:** Update platform handling and documentation
 - **tests:** Improve HasOptionsTest.php test coverage
 - **utils:** Use Utils::definedFor() method in HasOptions
+
+### Docs
+- Update push notification SDK list in README
+
+### Features
+- **Utils:** Add method to get defined properties for an object
 
 
 <a name="2.4.0"></a>
@@ -337,17 +383,17 @@ All notable changes to this project will be documented in this file.
 ### CI
 - apply php-cs-fixer
 
-### Feat
-- **helper:** add error_silencer function
-- **src:** Add Method interface and related RFCs
-- **tests:** add Faker trait for generating fake data
-
-### Refactor
+### Code Refactoring
 - improve StringToClassConstantRector
 - **rector:** Update namespace for rector classes
 - **utils:** Rename getHttpOptionsConstants to httpOptionConstants
 - **utils:** improve user agent method
 - **utils:** Improve clarity and consistency in multipartFor method
+
+### Features
+- **helper:** add error_silencer function
+- **src:** Add Method interface and related RFCs
+- **tests:** add Faker trait for generating fake data
 
 ### Pull Requests
 - Merge pull request [#61](https://github.com/guanguans/notify/issues/61) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.69.0
@@ -355,27 +401,27 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.3.1"></a>
 ## [2.3.1] - 2024-03-08
-### Feat
-- **Utils:** Add userAgent method to generate user agent string
-- **httpclient:** Add User-Agent header to HTTP requests
-
-### Refactor
+### Code Refactoring
 - **Authenticator:** improve constructor logic
 - **HasHttpClient:** adjust multipart options handling
 - **HasHttpClient:** Improve HTTP client options handling
 - **Utils:** improve multipartFor method
 - **Utils:** Improve handling of contents in Utils class
 
-### Test
+### Features
+- **Utils:** Add userAgent method to generate user agent string
+- **httpclient:** Add User-Agent header to HTTP requests
+
+### Tests
 - **AuthenticatorTest:** add tests for Authenticator class
 
 
 <a name="2.3.0"></a>
 ## [2.3.0] - 2024-03-08
-### Feat
+### Features
 - **pushbullet:** add PushBullet integration
 
-### Test
+### Tests
 - **PushBullet:** add test for sending message functionality
 
 ### Pull Requests
@@ -384,16 +430,7 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.2.1"></a>
 ## [2.2.1] - 2024-03-07
-### Docs
-- **README:** Update baseUri parameter in code comments
-
-### Feat
-- **Str:** Add kebab case conversion method
-- **php:** Add StringToClassConstantRector for GuzzleHttp RequestOptions
-- **platform-lint:** Add platform-lint script for linting platforms
-- **tests:** add new test files for Foundation
-
-### Refactor
+### Code Refactoring
 - **Message:** Improve JSON serialization method
 - **auth:** Improve CompactToVariablesRector
 - **debug:** Use mergeDebugInfo instead of withDebugInfo
@@ -401,18 +438,22 @@ All notable changes to this project will be documented in this file.
 - **options:** Improve options handling and validation
 - **uri:** improve UriTemplateAuthenticator applyToRequest method
 
-### Test
+### Docs
+- **README:** Update baseUri parameter in code comments
+
+### Features
+- **Str:** Add kebab case conversion method
+- **php:** Add StringToClassConstantRector for GuzzleHttp RequestOptions
+- **platform-lint:** Add platform-lint script for linting platforms
+- **tests:** add new test files for Foundation
+
+### Tests
 - **MessageTest:** add validation for options
 
 
 <a name="2.2.0"></a>
 ## [2.2.0] - 2024-03-06
-### Feat
-- **Client:** Add __debugInfo method for debugging
-- **HasHttpClient:** Add ability to set HttpClientResolver
-- **tests:** add AsNullUri to Message class and update PostMessage structure
-
-### Refactor
+### Code Refactoring
 - **AsBody:** improve handling of message body serialization
 - **HasHttpClient:** configure HTTP options in getHttpClient method
 - **HasOptions:** Improve options handling
@@ -421,14 +462,15 @@ All notable changes to this project will be documented in this file.
 - **http:** improve HTTP client configuration
 - **rectors:** Move rector classes to appropriate namespace
 
+### Features
+- **Client:** Add __debugInfo method for debugging
+- **HasHttpClient:** Add ability to set HttpClientResolver
+- **tests:** add AsNullUri to Message class and update PostMessage structure
+
 
 <a name="2.1.2"></a>
 ## [2.1.2] - 2024-03-05
-### Feat
-- **NewsMessage:** add method to configure options for articles
-- **auth:** add OptionsAuthenticator and mergeHttpOptions method
-
-### Refactor
+### Code Refactoring
 - Remove unnecessary trait use in rector.php
 - **HasOptionsDocCommentRector:** Sort properties in alphabetical order
 - **Message:** Improve attachment handling in Message class
@@ -441,16 +483,26 @@ All notable changes to this project will be documented in this file.
 - **message:** Improve section and potential action handling
 - **postmessage:** Improve language-specific post setting
 
+### Features
+- **NewsMessage:** add method to configure options for articles
+- **auth:** add OptionsAuthenticator and mergeHttpOptions method
+
 ### Pull Requests
 - Merge pull request [#59](https://github.com/guanguans/notify/issues/59) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.68.4
 
 
 <a name="2.1.1"></a>
 ## [2.1.1] - 2024-03-04
+### Code Refactoring
+- **client:** Remove Makeable trait from Client class
+- **media:** Improve media handling in MediaGroupMessage
+- **message:** Improve make method in Message class
+- **pushplus:** Rename Pushplus to PushPlus and update namespaces
+
 ### Docs
 - Update push notification SDK list
 
-### Feat
+### Features
 - **Telegram:** Add support for multipart requests in Telegram messages
 - **dingtalk:** add DingTalk notification support
 - **extract-platform:** add script to extract platform information
@@ -458,35 +510,29 @@ All notable changes to this project will be documented in this file.
 - **telegram:** Add AsJson trait to GetUpdatesMessage and ClientTest
 - **telegram:** Add constructor to Client class
 
-### Refactor
-- **client:** Remove Makeable trait from Client class
-- **media:** Improve media handling in MediaGroupMessage
-- **message:** Improve make method in Message class
-- **pushplus:** Rename Pushplus to PushPlus and update namespaces
-
 
 <a name="2.1.0"></a>
 ## [2.1.0] - 2024-03-03
-### Feat
-- **PushDeer:** Add PushDeer service with related classes
-
-### Refactor
+### Code Refactoring
 - **tests:** improve assertCanSendMessage method
+
+### Features
+- **PushDeer:** Add PushDeer service with related classes
 
 
 <a name="2.0.6"></a>
 ## [2.0.6] - 2024-03-02
-### Feat
+### Code Refactoring
+- **Message:** Remove redundant array definition
+- **TemplateCardMessage:** optimize options configuration
+- **message:** Update message classes structure
+
+### Features
 - **Message:** add delayMilliseconds and url methods
 - **Slack:** Add metadata to Message options
 - **Zulip:** add Message class with message creation methods
 - **messages:** add type, date, and time properties
 - **messages:** Add support for FileMessage and TemplateCardMessage
-
-### Refactor
-- **Message:** Remove redundant array definition
-- **TemplateCardMessage:** optimize options configuration
-- **message:** Update message classes structure
 
 
 <a name="2.0.5"></a>
@@ -495,12 +541,12 @@ All notable changes to this project will be documented in this file.
 - **ShowdocPush:** Update ShowdocPush documentation
 - **slack:** Update Slack Message class methods and properties
 
-### Feat
+### Features
 - **Message:** Add channel, webhook, callbackUrl, and timestamp properties to Message class
 - **QQ:** add constructor to Client class
 - **RocketChat:** Add message sending functionality with attachments
 
-### Test
+### Tests
 - **ClientTest:** Add new message fields
 - **ClientTest:** refactor message creation in ClientTest
 - **ClientTest:** Add attachment and device to message
@@ -508,32 +554,23 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.0.4"></a>
 ## [2.0.4] - 2024-03-01
-### Feat
-- **Push:** add support for different message types
-
-### Refactor
+### Code Refactoring
 - **Response:** Improve handling of decoded JSON response
 - **httpclient:** optimize setting http options
 - **messages:** Update message classes with new traits and methods
 - **push:** Update Authenticator to use AggregateAuthenticator and PayloadAuthenticator
 - **pushback:** Remove commented out code and update URLs in README
 
-### Test
+### Features
+- **Push:** add support for different message types
+
+### Tests
 - **ClientTest:** update message sending feature
 
 
 <a name="2.0.3"></a>
 ## [2.0.3] - 2024-02-29
-### Docs
-- **readme:** update Gitter links and remove Gitter from phpunit.xml.dist
-
-### Feat
-- **GoogleChat:** Add compact payload creation in Authenticator
-- **IGot:** Add title, url, copy, and detail to message
-- **Message:** Add support for [@type](https://github.com/type) and [@context](https://github.com/context) in Message
-- **MicrosoftTeams:** Add test for sending message
-
-### Refactor
+### Code Refactoring
 - **ClientTest:** Refactor test cases for sending messages
 - **Message:** Remove base_uri usage and update toHttpUri method
 - **Message:** Improve Message class structure
@@ -543,7 +580,16 @@ All notable changes to this project will be documented in this file.
 - **tests:** improve custom expectation function naming
 - **types:** Update type declarations to bool in message classes
 
-### Test
+### Docs
+- **readme:** update Gitter links and remove Gitter from phpunit.xml.dist
+
+### Features
+- **GoogleChat:** Add compact payload creation in Authenticator
+- **IGot:** Add title, url, copy, and detail to message
+- **Message:** Add support for [@type](https://github.com/type) and [@context](https://github.com/context) in Message
+- **MicrosoftTeams:** Add test for sending message
+
+### Tests
 - Add Mattermost ClientTest and update Message.php
 - Add Gitter and GoogleChat ClientTest files
 
@@ -553,37 +599,37 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.0.2"></a>
 ## [2.0.2] - 2024-02-28
-### Feat
-- **Chanify:** add support for audio, file, and image messages
-- **Discord:** Add ability to send messages with rich content
-- **Pest:** add assertCanSendMessage expectation
-
-### Refactor
+### Code Refactoring
 - **Message:** update message class properties and methods
 - **MockHandler:** Remove unnecessary code and improve readability
 - **tests:** Update ClientTest.php for message sending functionality
 
-### Test
+### Features
+- **Chanify:** add support for audio, file, and image messages
+- **Discord:** Add ability to send messages with rich content
+- **Pest:** add assertCanSendMessage expectation
+
+### Tests
 - **ClientTest:** Refactor message creation in ClientTest
 
 
 <a name="2.0.1"></a>
 ## [2.0.1] - 2024-02-27
-### Docs
-- Add README.md files for various messaging platforms
-- **HasOptions:** Add support for nested options
-
-### Feat
-- **notifications:** Add Bark notification support
-- **options:** Add support for ignoreUndefined property
-- **support:** Improve array handling in HasHttpClient
-
-### Refactor
+### Code Refactoring
 - **HasOptions:** Improve handling of defined and required options
 - **HasOptions:** update deprecated options handling
 - **tests:** rename wsse authenticator test file and add certificate authenticator test
 
-### Test
+### Docs
+- Add README.md files for various messaging platforms
+- **HasOptions:** Add support for nested options
+
+### Features
+- **notifications:** Add Bark notification support
+- **options:** Add support for ignoreUndefined property
+- **support:** Improve array handling in HasHttpClient
+
+### Tests
 - Add unit tests for Client and Message classes
 - add CertificateAuthenticatorTest and WsseAuthenticatorTest
 
@@ -593,39 +639,39 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.0.0"></a>
 ## [2.0.0] - 2024-02-26
-### Feat
-- **Message:** Add __debugInfo method
-- **Utils:** Add objectWithDebugInfo method
-
-### Refactor
+### Code Refactoring
 - **concerns:** Update mixin references in traits
 - **debug:** Improve debug info handling
+
+### Features
+- **Message:** Add __debugInfo method
+- **Utils:** Add objectWithDebugInfo method
 
 
 <a name="2.0.0-rc1"></a>
 ## [2.0.0-rc1] - 2024-02-23
-### Feat
-- **composer:** add illuminate/collections dependency
-
-### Refactor
+### Code Refactoring
 - **HasOptions:** Remove resolveOptions method and update getOption method
 - **Response:** improve response class structure and add new methods
 - **http:** Ensure required middleware in HasHttpClient trait
 - **utils:** Rename method to more descriptive name
 
+### Features
+- **composer:** add illuminate/collections dependency
+
 
 <a name="2.0.0-beta3"></a>
 ## [2.0.0-beta3] - 2024-02-22
-### Feat
+### Code Refactoring
+- **Exceptions:** Remove unused exception classes
+- **src:** Improve code readability and remove redundant functions
+- **src:** Update ToInternalExceptionRector to handle new class nodes
+
+### Features
 - **Notify:** Add WithDumpable trait and dump method
 - **Response:** Add __debugInfo method for Response class
 - **ToInternalExceptionRector:** Add ToInternalExceptionRector rule
 - **ToInternalExceptionRector:** Add ToInternalExceptionRector for internal exceptions handling
-
-### Refactor
-- **Exceptions:** Remove unused exception classes
-- **src:** Improve code readability and remove redundant functions
-- **src:** Update ToInternalExceptionRector to handle new class nodes
 
 ### Pull Requests
 - Merge pull request [#56](https://github.com/guanguans/notify/issues/56) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.68.0
@@ -633,20 +679,20 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.0.0-beta2"></a>
 ## [2.0.0-beta2] - 2024-02-21
-### Feat
-- **ClientTest:** add support for sending different types of messages
-- **YiFengChuanHua:** add ClientTest.php for sending message
-- **utils:** Add Utils class for converting form array into multipart array
-- **zulip:** add test for sending direct message
-
-### Refactor
+### Code Refactoring
 - **client:** remove Conditionable and Tappable traits
 - **concerns:** rename Traits to Concerns
 - **doc:** Update Http client doc comment
 - **doc:** Has options doc comment
 - **utils:** Improve readability of getHttpOptionsConstants method
 
-### Test
+### Features
+- **ClientTest:** add support for sending different types of messages
+- **YiFengChuanHua:** add ClientTest.php for sending message
+- **utils:** Add Utils class for converting form array into multipart array
+- **zulip:** add test for sending direct message
+
+### Tests
 - **Chanify:** Add tests for sending text and link messages
 - **ClientTest:** Add test case for sending message
 - **ClientTest:** Add test case for sending message
@@ -675,24 +721,7 @@ All notable changes to this project will be documented in this file.
 
 <a name="2.0.0-beta1"></a>
 ## [2.0.0-beta1] - 2024-02-19
-### Docs
-- Update links and add examples for RocketChat and Slack clients
-
-### Feat
-- **Client:** add async method for sending messages
-- **DocCommentRector:** Add DocCommentRector class
-- **HasHttpClient:** Add mock method
-- **Notify:** add delete, head, patch, and put methods
-- **bark:** add Bark client, credential, and message classes
-- **client:** Add EnsureResponse middleware
-- **commit:** Add Conditionable and Macroable traits
-- **credentials:** add AggregateCredential class
-- **credentials:** add CertificateCredential class
-- **github:** add secrets check workflow
-- **mock:** add MockHandler class
-- **tests:** add XiZhi\ClientTest
-
-### Refactor
+### Code Refactoring
 - Improve DocCommentRector and HasOptions
 - Update credentials classes
 - **Credentials:** Update ApiKeyCredential, DigestAuthCredential, HeaderCredential, and QueryCredential
@@ -718,6 +747,23 @@ All notable changes to this project will be documented in this file.
 - **middleware:** Refactor ApplyAuthenticatorToRequest and EnsureResponse middleware
 - **options:** Improve options handling in Traits
 
+### Docs
+- Update links and add examples for RocketChat and Slack clients
+
+### Features
+- **Client:** add async method for sending messages
+- **DocCommentRector:** Add DocCommentRector class
+- **HasHttpClient:** Add mock method
+- **Notify:** add delete, head, patch, and put methods
+- **bark:** add Bark client, credential, and message classes
+- **client:** Add EnsureResponse middleware
+- **commit:** Add Conditionable and Macroable traits
+- **credentials:** add AggregateCredential class
+- **credentials:** add CertificateCredential class
+- **github:** add secrets check workflow
+- **mock:** add MockHandler class
+- **tests:** add XiZhi\ClientTest
+
 ### Pull Requests
 - Merge pull request [#53](https://github.com/guanguans/notify/issues/53) from guanguans/1.x
 - Merge pull request [#52](https://github.com/guanguans/notify/issues/52) from guanguans/dependabot/composer/rector/rector-tw-0.19or-tw-1.0
@@ -730,10 +776,10 @@ All notable changes to this project will be documented in this file.
 
 <a name="1.27.2"></a>
 ## [1.27.2] - 2024-01-17
-### Feat
+### Features
 - **.zhlintrc:** add .zhlintrc file
 
-### Test
+### Tests
 - **rocketChat:** Skip RocketChat test
 
 ### Pull Requests
@@ -750,10 +796,10 @@ All notable changes to this project will be documented in this file.
 
 <a name="1.27.0"></a>
 ## [1.27.0] - 2023-10-07
-### Fix
+### Bug Fixes
 - **client:** Update PushPlus request URL
 
-### Test
+### Tests
 - **QqChannelBotTest:** Skip testQqChannelBot
 
 
@@ -768,20 +814,20 @@ All notable changes to this project will be documented in this file.
 
 <a name="1.26.0"></a>
 ## [1.26.0] - 2023-08-16
+### Bug Fixes
+- **composer:** Resolve conflict with symplify/monorepo-builder
+
 ### CI
 - **psalm.xml.dist:** update psalm config file
+
+### Code Refactoring
+- **src:** apply rector
 
 ### Docs
 - **readme:** update README-EN.md and README.md
 
-### Feat
+### Features
 - **monorepo-builder:** add new monorepo-builder.php file
-
-### Fix
-- **composer:** Resolve conflict with symplify/monorepo-builder
-
-### Refactor
-- **src:** apply rector
 
 ### Pull Requests
 - Merge pull request [#38](https://github.com/guanguans/notify/issues/38) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-1.6.0
@@ -996,12 +1042,20 @@ All notable changes to this project will be documented in this file.
 
 <a name="v1.0.3"></a>
 ## [v1.0.3] - 2021-10-17
+### Build
+- **deps-dev:** Update friendsofphp/php-cs-fixer requirement || ^3.0
+
 ### Pull Requests
 - Merge pull request [#4](https://github.com/guanguans/notify/issues/4) from guanguans/dependabot/composer/friendsofphp/php-cs-fixer-tw-2.16or-tw-3.0
 
 
 <a name="v1.0.2"></a>
 ## [v1.0.2] - 2021-10-10
+### Build
+- **deps:** Bump codecov/codecov-action from 1 to 2.1.0
+- **deps-dev:** Update overtrue/phplint requirement || ^3.0
+- **deps-dev:** Update vimeo/psalm requirement || ^4.0
+
 ### Pull Requests
 - Merge pull request [#3](https://github.com/guanguans/notify/issues/3) from guanguans/dependabot/composer/overtrue/phplint-tw-2.3or-tw-3.0
 - Merge pull request [#1](https://github.com/guanguans/notify/issues/1) from guanguans/dependabot/github_actions/codecov/codecov-action-2.1.0
@@ -1013,23 +1067,35 @@ All notable changes to this project will be documented in this file.
 ### Docs
 - Update docs
 
-### Feat
+### Features
 - Add separate method for separate setting option
 
-### Perf
+### Performance Improvements
 - Perf messages
 - Perf clients
 
 
 <a name="v1.0.0"></a>
 ## v1.0.0 - 2021-05-16
+### Bug Fixes
+- Fix message with secret
+
+### Code Refactoring
+- Refactor
+- Refactor
+- Refactor FeiShu
+- Refactor FeiShu client
+- Refactor WeWork client
+- Refactor clients
+- Refactor Chanify client
+
 ### Docs
 - Update docs
 - Add global `tap` function
 - Update README.md
 - Update README.md
 
-### Feat
+### Features
 - Add some messages for FeiShu
 - Add FeiShu client
 - Add WeWork client
@@ -1039,10 +1105,7 @@ All notable changes to this project will be documented in this file.
 - Add XiZhi client
 - Add Chanify client
 
-### Fix
-- Fix message with secret
-
-### Perf
+### Performance Improvements
 - Perf ServerChan
 - Perf XiZhi
 - Perf WeWork
@@ -1054,20 +1117,15 @@ All notable changes to this project will be documented in this file.
 - Finish Chanify
 - Finish Bark
 
-### Refactor
-- Refactor
-- Refactor
-- Refactor FeiShu
-- Refactor FeiShu client
-- Refactor WeWork client
-- Refactor clients
-- Refactor Chanify client
+### Style
+- Fix style
 
-### Test
+### Tests
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.12.2...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.12.3...HEAD
+[2.12.3]: https://github.com/guanguans/notify/compare/2.12.2...2.12.3
 [2.12.2]: https://github.com/guanguans/notify/compare/2.12.1...2.12.2
 [2.12.1]: https://github.com/guanguans/notify/compare/2.12.0...2.12.1
 [2.12.0]: https://github.com/guanguans/notify/compare/2.11.10...2.12.0
