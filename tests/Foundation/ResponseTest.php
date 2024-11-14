@@ -119,6 +119,18 @@ it('can convert to collect', function (): void {
     )->toBeInstanceOf(Collection::class);
 })->group(__DIR__, __FILE__);
 
+it('can convert to resource', function (): void {
+    expect(
+        Response::fromPsrResponse(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode(['foo' => 'bar'], \JSON_THROW_ON_ERROR),
+            ),
+        )->resource(),
+    )->toBeResource();
+})->group(__DIR__, __FILE__);
+
 it('can convert to data url', function (): void {
     expect(
         Response::fromPsrResponse(

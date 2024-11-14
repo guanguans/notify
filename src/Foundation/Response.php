@@ -22,6 +22,7 @@ use Guanguans\Notify\Foundation\Exceptions\RuntimeException;
 use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Psr7\Message;
+use GuzzleHttp\Psr7\StreamWrapper;
 use GuzzleHttp\TransferStats;
 use Illuminate\Support\Collection;
 use Psr\Http\Message\RequestInterface;
@@ -198,6 +199,18 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
         }
 
         return Collection::make($this->json($key));
+    }
+
+    /**
+     * Get the body of the response as a PHP resource.
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return resource
+     */
+    public function resource()
+    {
+        return StreamWrapper::getResource($this->getBody());
     }
 
     /**
