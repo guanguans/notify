@@ -7,21 +7,26 @@ options:
   commits:
     filters:
       Type:
+        - build
+        # - chore
+        - ci
+        - docs
         - feat
         - fix
         - perf
         - refactor
-        - docs
-        - test
-        - ci
         - revert
+        - style
+        - test
   commit_groups:
     title_maps:
+      chore: Chores
       ci: CI
-#      feat: Features
-#      fix: Bug Fixes
-#      perf: Performance Improvements
-#      refactor: Code Refactoring
+      feat: Features
+      fix: Bug Fixes
+      perf: Performance Improvements
+      refactor: Code Refactoring
+      test: Tests
   header:
     pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
     pattern_maps:
