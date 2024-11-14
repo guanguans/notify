@@ -68,6 +68,20 @@ composer require guanguans/notify -v
 ### Quick start
 
 ```php
+$response = (new Guanguans\Notify\DingTalk\Client(
+        new Guanguans\Notify\DingTalk\Authenticator('c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73')
+    ))
+    ->send(
+        Guanguans\Notify\DingTalk\Messages\BtnsActionCardMessage::make([
+            'title' => 'This is title(keyword).',
+            'text' => 'This is text.',
+        ])
+    )
+    // ->dump()
+    ->json();
+```
+
+```php
 // 1. Create authenticator
 $authenticator = new Guanguans\Notify\DingTalk\Authenticator(
     'c44fec1ddaa8a833156efb77b7865d62ae13775418030d94d05da08bfca73',
