@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.12.4"></a>
+## [2.12.4] - 2024-11-15
+### Features
+- **Response:** Add rawStream method for temporary resources
+- **Response:** Add stream method to retrieve body as stream
+
+### Performance Improvements
+- **Response:** Improve documentation for collect method
+
+### Tests
+- **Response:** Refactor saveAs method and add new test case
+
+
 <a name="2.12.3"></a>
 ## [2.12.3] - 2024-11-14
 ### Build
@@ -1124,7 +1137,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.12.3...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.12.4...HEAD
+[2.12.4]: https://github.com/guanguans/notify/compare/2.12.3...2.12.4
 [2.12.3]: https://github.com/guanguans/notify/compare/2.12.2...2.12.3
 [2.12.2]: https://github.com/guanguans/notify/compare/2.12.1...2.12.2
 [2.12.1]: https://github.com/guanguans/notify/compare/2.12.0...2.12.1
