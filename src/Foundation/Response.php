@@ -122,6 +122,34 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     }
 
     /**
+     * Get the body as a stream.
+     */
+    public function stream(): StreamInterface
+    {
+        $stream = $this->getBody();
+
+        if ($stream->isSeekable()) {
+            $stream->rewind();
+        }
+
+        return $stream;
+    }
+
+    /**
+     * Get the body of the response as a PHP resource.
+     * Useful for storing the file.
+     * Make sure to close the [guzzle://stream] resource after you have used it.
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return resource
+     */
+    public function resource()
+    {
+        return StreamWrapper::getResource($this->getBody());
+    }
+
+    /**
      * Get the JSON decoded body of the response as an array or scalar value.
      *
      * @noinspection JsonEncodingApiUsageInspection
@@ -203,32 +231,6 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     public function dataUrl(): string
     {
         return \sprintf('data:%s;base64,%s', $this->getHeaderLine('Content-Type'), base64_encode($this->body()));
-    }
-
-    /**
-     * Get the body as a stream.
-     */
-    public function stream(): StreamInterface
-    {
-        $stream = $this->getBody();
-
-        if ($stream->isSeekable()) {
-            $stream->rewind();
-        }
-
-        return $stream;
-    }
-
-    /**
-     * Get the body of the response as a PHP resource.
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return resource
-     */
-    public function resource()
-    {
-        return StreamWrapper::getResource($this->getBody());
     }
 
     /**
