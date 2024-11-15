@@ -26,6 +26,7 @@ use GuzzleHttp\TransferStats;
 use Illuminate\Support\Collection;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 
 /**
@@ -197,6 +198,28 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     }
 
     /**
+     * Generate a data URL from the content type and body.
+     */
+    public function dataUrl(): string
+    {
+        return \sprintf('data:%s;base64,%s', $this->getHeaderLine('Content-Type'), base64_encode($this->body()));
+    }
+
+    /**
+     * Get the body as a stream.
+     */
+    public function stream(): StreamInterface
+    {
+        $stream = $this->getBody();
+
+        if ($stream->isSeekable()) {
+            $stream->rewind();
+        }
+
+        return $stream;
+    }
+
+    /**
      * Get the body of the response as a PHP resource.
      *
      * @throws \InvalidArgumentException
@@ -206,14 +229,6 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     public function resource()
     {
         return StreamWrapper::getResource($this->getBody());
-    }
-
-    /**
-     * Generate a data URL from the content type and body.
-     */
-    public function dataUrl(): string
-    {
-        return \sprintf('data:%s;base64,%s', $this->getHeaderLine('Content-Type'), base64_encode($this->body()));
     }
 
     /**
@@ -235,11 +250,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
 
         rewind($resource);
 
-        $stream = $this->getBody();
-
-        if ($stream->isSeekable()) {
-            $stream->rewind();
-        }
+        $stream = $this->stream();
 
         while (!$stream->eof()) {
             fwrite($resource, $stream->read(1024));
