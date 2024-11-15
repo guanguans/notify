@@ -105,6 +105,7 @@ it('will throw RuntimeException when illuminate/collections is not installed', f
     )->collect();
 })
     ->group(__DIR__, __FILE__)
+    ->skip()
     ->throws(RuntimeException::class);
 
 it('can convert to collect', function (): void {

@@ -18,7 +18,6 @@ use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Exceptions\LogicException;
 use Guanguans\Notify\Foundation\Exceptions\RequestException;
-use Guanguans\Notify\Foundation\Exceptions\RuntimeException;
 use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Psr7\Message;
@@ -185,8 +184,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
 
     /**
      * Get the JSON decoded body of the response as a collection.
-     *
-     * Requires Laravel Collections (composer require illuminate/collections)
+     * To use the "collect" method you must install the illuminate/collections package.
+     * Requires Laravel Collections (composer require illuminate/collections).
      *
      * @see https://github.com/illuminate/collections
      *
@@ -194,10 +193,6 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function collect($key = null): Collection
     {
-        if (!class_exists(Collection::class)) {
-            throw new RuntimeException('To use the "collect" method you must install the illuminate/collections package.');
-        }
-
         return Collection::make($this->json($key));
     }
 
