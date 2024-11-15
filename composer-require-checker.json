@@ -51,6 +51,7 @@
         "PHPStan\\PhpDocParser\\Ast\\PhpDoc\\PhpDocTagNode",
         "Psr\\Http\\Message\\RequestInterface",
         "Psr\\Http\\Message\\ResponseInterface",
+        "Psr\\Http\\Message\\StreamInterface",
         "Rector\\BetterPhpDocParser\\PhpDocInfo\\PhpDocInfo",
         "Rector\\BetterPhpDocParser\\PhpDocInfo\\PhpDocInfoFactory",
         "Rector\\Comments\\NodeDocBlock\\DocBlockUpdater",

@@ -120,18 +120,6 @@ it('can convert to collect', function (): void {
     )->toBeInstanceOf(Collection::class);
 })->group(__DIR__, __FILE__);
 
-it('can convert to resource', function (): void {
-    expect(
-        Response::fromPsrResponse(
-            new \GuzzleHttp\Psr7\Response(
-                200,
-                [],
-                json_encode(['foo' => 'bar'], \JSON_THROW_ON_ERROR),
-            ),
-        )->resource(),
-    )->toBeResource();
-})->group(__DIR__, __FILE__);
-
 it('can convert to data url', function (): void {
     expect(
         Response::fromPsrResponse(
@@ -142,6 +130,18 @@ it('can convert to data url', function (): void {
             ),
         )->dataUrl(),
     )->toBe('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAG1BMVEXMzMyWlpaqqqq3t7exsbGcnJy+vr6jo6PFxcUFpPI/AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAQUlEQVQ4jWNgGAWjgP6ASdncAEaiAhaGiACmFhCJLsMaIiDAEQEi0WXYEiMCOCJAJIY9KuYGTC0gknpuHwXDGwAA5fsIZw0iYWYAAAAASUVORK5CYII=');
+})->group(__DIR__, __FILE__);
+
+it('can convert to resource', function (): void {
+    expect(
+        Response::fromPsrResponse(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode(['foo' => 'bar'], \JSON_THROW_ON_ERROR),
+            ),
+        )->resource(),
+    )->toBeResource();
 })->group(__DIR__, __FILE__);
 
 it('will throw InvalidArgumentException when save to null', function (): void {

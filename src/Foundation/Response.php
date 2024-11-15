@@ -122,37 +122,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     }
 
     /**
-     * Get the body as a stream.
-     */
-    public function stream(): StreamInterface
-    {
-        $stream = $this->getBody();
-
-        if ($stream->isSeekable()) {
-            $stream->rewind();
-        }
-
-        return $stream;
-    }
-
-    /**
-     * Get the body of the response as a PHP resource.
-     * Useful for storing the file.
-     * Make sure to close the [guzzle://stream] resource after you have used it.
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return resource
-     */
-    public function resource()
-    {
-        return StreamWrapper::getResource($this->getBody());
-    }
-
-    /**
      * Get the JSON decoded body of the response as an array or scalar value.
-     *
-     * @noinspection JsonEncodingApiUsageInspection
      *
      * @param null|array-key $key
      * @param mixed $default
@@ -185,30 +155,10 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
 
     /**
      * Get the JSON decoded body of the response as an object.
-     *
-     * @noinspection JsonEncodingApiUsageInspection
      */
     public function object(): ?object
     {
         return json_decode($this->body());
-    }
-
-    /**
-     * Convert the XML response into a \SimpleXMLElement.
-     *
-     * Suitable for reading small, simple XML responses but not suitable for
-     * more advanced XML responses with namespaces and prefixes. Consider
-     * using the xmlReader method instead for better compatability.
-     *
-     * @see https://www.php.net/manual/en/book.simplexml.php
-     *
-     * @noinspection PhpReturnDocTypeMismatchInspection
-     *
-     * @return false|\SimpleXMLElement
-     */
-    public function xml(...$arguments)
-    {
-        return simplexml_load_string($this->body(), ...$arguments);
     }
 
     /**
@@ -226,6 +176,22 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     }
 
     /**
+     * Convert the XML response into a \SimpleXMLElement.
+     *
+     * Suitable for reading small, simple XML responses but not suitable for
+     * more advanced XML responses with namespaces and prefixes. Consider
+     * using the xmlReader method instead for better compatability.
+     *
+     * @see https://www.php.net/manual/en/book.simplexml.php
+     *
+     * @return false|\SimpleXMLElement
+     */
+    public function xml(...$arguments)
+    {
+        return simplexml_load_string($this->body(), ...$arguments);
+    }
+
+    /**
      * Generate a data URL from the content type and body.
      */
     public function dataUrl(): string
@@ -234,11 +200,39 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     }
 
     /**
+     * Get the body of the response as a PHP resource.
+     * Useful for storing the file.
+     * Make sure to close the [guzzle://stream] resource after you have used it.
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return resource
+     */
+    public function resource()
+    {
+        return StreamWrapper::getResource($this->getBody());
+    }
+
+    /**
+     * Get the body as a stream.
+     */
+    public function stream(): StreamInterface
+    {
+        $stream = $this->getBody();
+
+        if ($stream->isSeekable()) {
+            $stream->rewind();
+        }
+
+        return $stream;
+    }
+
+    /**
      * Save the response to resource or file.
      *
      * @param resource|string $resourceOrPath
      */
-    public function saveAs($resourceOrPath, bool $closeResource = true): void
+    public function saveAs($resourceOrPath): void
     {
         if (!\is_string($resourceOrPath) && !\is_resource($resourceOrPath)) {
             throw new InvalidArgumentException('The $resourceOrPath argument must be either a file path or a resource.');
@@ -251,18 +245,14 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
         }
 
         rewind($resource);
-
         $stream = $this->stream();
 
         while (!$stream->eof()) {
             fwrite($resource, $stream->read(1024));
         }
 
-        rewind($resource);
-
-        if ($closeResource) {
-            fclose($resource);
-        }
+        // rewind($resource);
+        fclose($resource);
     }
 
     /**
