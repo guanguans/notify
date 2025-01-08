@@ -103,7 +103,7 @@
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^1.12 || ^2.0",
         "phpstan/phpstan-deprecation-rules": "^1.2 || ^2.0",
-        "rector/rector": "^1.2",
+        "rector/rector": "^1.2 || ^2.0",
         "symfony/var-dumper": "^5.4 || ^6.0 || ^7.0",
         "vimeo/psalm": "^5.26"
     },
