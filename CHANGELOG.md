@@ -8,6 +8,35 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.13.0"></a>
+## [2.13.0] - 2025-01-09
+### Build
+- **dependencies:** Update development dependencies versions
+
+### CI
+- **config:** Update PHPStan baseline and error configurations
+- **core:** Update copyright year to 2025
+- **workflows:** Add PHP 8.4 to test matrix
+
+### Features
+- **response:** Add fluent method for JSON response handling
+
+### Pull Requests
+- Merge pull request [#135](https://github.com/guanguans/notify/issues/135) from guanguans/dependabot/composer/rector/rector-tw-1.2or-tw-2.0
+- Merge pull request [#134](https://github.com/guanguans/notify/issues/134) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.1
+- Merge pull request [#133](https://github.com/guanguans/notify/issues/133) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.0
+- Merge pull request [#132](https://github.com/guanguans/notify/issues/132) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.87.2
+- Merge pull request [#131](https://github.com/guanguans/notify/issues/131) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.87.1
+- Merge pull request [#130](https://github.com/guanguans/notify/issues/130) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.86.1
+- Merge pull request [#129](https://github.com/guanguans/notify/issues/129) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.86.0
+- Merge pull request [#127](https://github.com/guanguans/notify/issues/127) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.85.0
+- Merge pull request [#126](https://github.com/guanguans/notify/issues/126) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.84.2
+- Merge pull request [#122](https://github.com/guanguans/notify/issues/122) from guanguans/dependabot/github_actions/codecov/codecov-action-5
+- Merge pull request [#125](https://github.com/guanguans/notify/issues/125) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.84.1
+- Merge pull request [#124](https://github.com/guanguans/notify/issues/124) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.84.0
+- Merge pull request [#123](https://github.com/guanguans/notify/issues/123) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.83.7
+
+
 <a name="2.12.4"></a>
 ## [2.12.4] - 2024-11-15
 ### Features
@@ -1137,7 +1166,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.12.4...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.13.0...HEAD
+[2.13.0]: https://github.com/guanguans/notify/compare/2.12.4...2.13.0
 [2.12.4]: https://github.com/guanguans/notify/compare/2.12.3...2.12.4
 [2.12.3]: https://github.com/guanguans/notify/compare/2.12.2...2.12.3
 [2.12.2]: https://github.com/guanguans/notify/compare/2.12.1...2.12.2
