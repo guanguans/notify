@@ -106,7 +106,7 @@
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "rector/rector": "^2.0",
         "symfony/var-dumper": "^5.4 || ^6.0 || ^7.0",
-        "vimeo/psalm": "^5.26"
+        "vimeo/psalm": "^5.26 || ^6.0"
     },
     "suggest": {
         "illuminate/collections": "Required to use the method [Response::collect()].",
@@ -203,7 +203,7 @@
         "composer-require-checker": "@php ./vendor/bin/composer-require-checker check --config-file=composer-require-checker.json composer.json --ansi -v",
         "composer-require-checker-json": "@php ./vendor/bin/composer-require-checker check --config-file=composer-require-checker.json composer.json --ansi -v --output=json | jq",
         "composer-unused": "@php ./vendor/bin/composer-unused --ansi -v",
-        "composer-updater": "@php ./composer-updater --highest-php-binary=/opt/homebrew/opt/php@8.3/bin/php --except-packages=pestphp/pest-plugin-laravel --ansi",
+        "composer-updater": "@php ./composer-updater --highest-php-binary=/opt/homebrew/opt/php@8.4/bin/php --except-packages=pestphp/pest-plugin-laravel --ansi",
         "composer-updater-dry-run": "@composer-updater --dry-run",
         "composer-validate": "@composer validate --check-lock --strict --ansi -v",
         "generate-ide-json": "@php generate-ide-json",
