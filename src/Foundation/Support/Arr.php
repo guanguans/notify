@@ -58,8 +58,7 @@ class Arr
             return $array = $value;
         }
 
-        /** @var array $keys */
-        $keys = explode('.', $key);
+        $keys = (array) explode('.', $key);
 
         /** @noinspection SuspiciousLoopInspection */
         foreach ($keys as $i => $key) {
