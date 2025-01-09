@@ -25,6 +25,7 @@ use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\TransferStats;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Fluent;
 use Psr\Http\Message\RequestInterface;
 use function Pest\Faker\faker;
 
@@ -118,6 +119,18 @@ it('can convert to collect', function (): void {
             ),
         )->collect(),
     )->toBeInstanceOf(Collection::class);
+})->group(__DIR__, __FILE__);
+
+it('can convert to fluent', function (): void {
+    expect(
+        Response::fromPsrResponse(
+            new \GuzzleHttp\Psr7\Response(
+                200,
+                [],
+                json_encode(['foo' => 'bar'], \JSON_THROW_ON_ERROR),
+            ),
+        )->fluent(),
+    )->toBeInstanceOf(Fluent::class);
 })->group(__DIR__, __FILE__);
 
 it('can convert to data url', function (): void {

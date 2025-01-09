@@ -24,6 +24,7 @@ use GuzzleHttp\Psr7\Message;
 use GuzzleHttp\Psr7\StreamWrapper;
 use GuzzleHttp\TransferStats;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Fluent;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -162,7 +163,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     }
 
     /**
-     * Get the JSON decoded body of the response as a collection.
+     * Get the JSON decoded body of the response as a collection object.
      * To use the "collect" method you must install the illuminate/collections package.
      * Requires Laravel Collections (composer require illuminate/collections).
      *
@@ -173,6 +174,18 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     public function collect($key = null): Collection
     {
         return Collection::make($this->json($key));
+    }
+
+    /**
+     * Get the JSON decoded body of the response as a fluent object.
+     * To use the "fluent" method you must install the illuminate/support package.
+     * Requires Laravel Support (composer require illuminate/support).
+     *
+     * @param null|array-key $key
+     */
+    public function fluent($key = null): Fluent
+    {
+        return new Fluent((array) $this->json($key));
     }
 
     /**

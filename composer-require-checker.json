@@ -41,6 +41,7 @@
         "GuzzleHttp\\Psr7\\StreamWrapper",
         "GuzzleHttp\\Psr7\\Utils",
         "Illuminate\\Support\\Collection",
+        "Illuminate\\Support\\Fluent",
         "PhpParser\\Node",
         "PhpParser\\Node\\Expr\\New_",
         "PhpParser\\Node\\Name",
