@@ -15,6 +15,8 @@
 
 [//]: # (https://github.com/dschep/ntfy)
 [//]: # (https://github.com/nikoksr/notify)
+[//]: # (https://github.com/LeslieLeung/heimdallr)
+[//]: # (https://github.com/caronc/apprise)
 
 * [AnPush](./src/AnPush/README.md)
 * [Bark](./src/Bark/README.md)
