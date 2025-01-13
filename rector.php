@@ -211,10 +211,15 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->ruleWithConfiguration(AddSensitiveParameterAttributeRector::class, [
         AddSensitiveParameterAttributeRector::SENSITIVE_PARAMETERS => [
             'accessToken',
+            'apiKey',
+            'botApiKey',
             'key',
             'password',
+            'pushKey',
+            'secret',
+            'tempKey',
             'token',
-            'webHook,',
+            'webHook',
         ],
     ]);
 

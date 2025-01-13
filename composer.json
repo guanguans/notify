@@ -247,6 +247,8 @@
         ],
         "rector": "@php ./vendor/bin/rector --clear-cache --ansi -v",
         "rector-dry-run": "@rector --dry-run",
+        "rector-php82": "@rector --config=rector-php82.php",
+        "rector-php82-dry-run": "@rector-php82 --dry-run",
         "release": "@php ./vendor/bin/monorepo-builder release --ansi -v",
         "release-major": "@release major",
         "release-major-dry-run": "@release-major --dry-run",
