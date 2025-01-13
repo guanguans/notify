@@ -18,14 +18,18 @@ use Guanguans\Notify\Foundation\Support\Utils;
 class OptionsAuthenticator extends NullAuthenticator
 {
     private array $options;
+    private bool $reversed;
 
-    public function __construct(array $options)
+    public function __construct(array $options, bool $reversed = false)
     {
         $this->options = $options;
+        $this->reversed = $reversed;
     }
 
     public function applyToOptions(array $options): array
     {
-        return Utils::mergeHttpOptions($options, $this->options);
+        return $this->reversed
+            ? Utils::mergeHttpOptions($this->options, $options)
+            : Utils::mergeHttpOptions($options, $this->options);
     }
 }
