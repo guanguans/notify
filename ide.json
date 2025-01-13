@@ -1000,6 +1000,36 @@
             "condition": [
                 {
                     "classFqn": [
+                        "\\Guanguans\\Notify\\PushMe\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\PushMe\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "content",
+                    "date",
+                    "push_key",
+                    "temp_key",
+                    "title",
+                    "type"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
                         "\\Guanguans\\Notify\\PushPlus\\Messages\\Message"
                     ],
                     "newClassFqn": [
