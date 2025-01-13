@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.13.1"></a>
+## [2.13.1] - 2025-01-13
+### Code Refactoring
+- **Response:** Refactor is() method
+
+### Pull Requests
+- Merge pull request [#136](https://github.com/guanguans/notify/issues/136) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.2
+
+
 <a name="2.13.0"></a>
 ## [2.13.0] - 2025-01-09
 ### Build
@@ -1166,7 +1175,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.13.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.13.1...HEAD
+[2.13.1]: https://github.com/guanguans/notify/compare/2.13.0...2.13.1
 [2.13.0]: https://github.com/guanguans/notify/compare/2.12.4...2.13.0
 [2.12.4]: https://github.com/guanguans/notify/compare/2.12.3...2.12.4
 [2.12.3]: https://github.com/guanguans/notify/compare/2.12.2...2.12.3
