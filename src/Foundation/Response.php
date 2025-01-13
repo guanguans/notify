@@ -21,6 +21,7 @@ use Guanguans\Notify\Foundation\Exceptions\RequestException;
 use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Psr7\Message;
+use GuzzleHttp\Psr7\MimeType;
 use GuzzleHttp\Psr7\StreamWrapper;
 use GuzzleHttp\TransferStats;
 use Illuminate\Support\Collection;
@@ -272,31 +273,14 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      * Check if the content type matches the given type.
      *
      * @noinspection MultipleReturnStatementsInspection
+     *
+     * @psalm-suppress UndefinedConstant
      */
     public function is(string $type): bool
     {
-        $contentType = $this->getHeaderLine('Content-Type');
+        $mimeTypes = (new \ReflectionClass(MimeType::class))->getConstant('MIME_TYPES');
 
-        switch (strtolower($type)) {
-            case 'json':
-                return false !== strpos($contentType, '/json');
-            case 'xml':
-                return false !== strpos($contentType, '/xml');
-            case 'html':
-                return false !== strpos($contentType, '/html');
-            case 'image':
-                return false !== strpos($contentType, 'image/');
-            case 'audio':
-                return false !== strpos($contentType, 'audio/');
-            case 'video':
-                return false !== strpos($contentType, 'video/');
-            case 'text':
-                return false !== strpos($contentType, 'text/')
-                    || false !== strpos($contentType, '/json')
-                    || false !== strpos($contentType, '/xml');
-            default:
-                return false;
-        }
+        return strtolower($this->getHeaderLine('Content-Type')) === ($mimeTypes[strtolower($type)] ?? null);
     }
 
     /**

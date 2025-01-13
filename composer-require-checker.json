@@ -36,6 +36,7 @@
         "GuzzleHttp\\Promise\\Utils",
         "GuzzleHttp\\Psr7\\HttpFactory",
         "GuzzleHttp\\Psr7\\Message",
+        "GuzzleHttp\\Psr7\\MimeType",
         "GuzzleHttp\\Psr7\\MultipartStream",
         "GuzzleHttp\\Psr7\\Response",
         "GuzzleHttp\\Psr7\\StreamWrapper",
