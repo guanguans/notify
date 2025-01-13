@@ -8,6 +8,13 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.14.0"></a>
+## [2.14.0] - 2025-01-13
+### Features
+- **Authenticators:** Add `reversed` option to OptionsAuthenticator
+- **PushMe:** adds PushMe package
+
+
 <a name="2.13.1"></a>
 ## [2.13.1] - 2025-01-13
 ### Code Refactoring
@@ -1175,7 +1182,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.13.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.14.0...HEAD
+[2.14.0]: https://github.com/guanguans/notify/compare/2.13.1...2.14.0
 [2.13.1]: https://github.com/guanguans/notify/compare/2.13.0...2.13.1
 [2.13.0]: https://github.com/guanguans/notify/compare/2.12.4...2.13.0
 [2.12.4]: https://github.com/guanguans/notify/compare/2.12.3...2.12.4
