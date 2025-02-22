@@ -8,6 +8,26 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="2.14.1"></a>
+## [2.14.1] - 2025-02-22
+### CI
+- **composer-updater:** Add additional options to process command
+- **github:** Update PHP version in workflows and composer
+- **scope:** Update composer.json and add ractor-php82
+
+### Pull Requests
+- Merge pull request [#147](https://github.com/guanguans/notify/issues/147) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.12
+- Merge pull request [#146](https://github.com/guanguans/notify/issues/146) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.11
+- Merge pull request [#145](https://github.com/guanguans/notify/issues/145) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.9
+- Merge pull request [#144](https://github.com/guanguans/notify/issues/144) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.8
+- Merge pull request [#143](https://github.com/guanguans/notify/issues/143) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.7
+- Merge pull request [#142](https://github.com/guanguans/notify/issues/142) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.6
+- Merge pull request [#141](https://github.com/guanguans/notify/issues/141) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.5
+- Merge pull request [#140](https://github.com/guanguans/notify/issues/140) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.4
+- Merge pull request [#139](https://github.com/guanguans/notify/issues/139) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.3
+- Merge pull request [#138](https://github.com/guanguans/notify/issues/138) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-2.3.0
+
+
 <a name="2.14.0"></a>
 ## [2.14.0] - 2025-01-13
 ### Features
@@ -1182,7 +1202,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.14.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/2.14.1...HEAD
+[2.14.1]: https://github.com/guanguans/notify/compare/2.14.0...2.14.1
 [2.14.0]: https://github.com/guanguans/notify/compare/2.13.1...2.14.0
 [2.13.1]: https://github.com/guanguans/notify/compare/2.13.0...2.13.1
 [2.13.0]: https://github.com/guanguans/notify/compare/2.12.4...2.13.0
