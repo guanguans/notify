@@ -52,6 +52,7 @@ use Rector\Transform\Rector\String_\StringToClassConstantRector;
 use Rector\Transform\ValueObject\ClassMethodReference;
 use Rector\Transform\ValueObject\ScalarValueToConstFetch;
 use Rector\Transform\ValueObject\StringToClassConstant;
+use Rector\ValueObject\PhpVersion;
 use Rector\ValueObject\Visibility;
 use Rector\Visibility\Rector\ClassMethod\ChangeMethodVisibilityRector;
 use Rector\Visibility\ValueObject\ChangeMethodVisibility;
@@ -73,10 +74,14 @@ return RectorConfig::configure()
     ->withCache(__DIR__.'/.build/rector/')
     ->withParallel()
     // ->withoutParallel()
-    ->withImportNames(false)
+    ->withImportNames(
+        importDocBlockNames: false,
+        importShortClasses: false,
+    )
     ->withFluentCallNewLine()
     ->withAttributesSets(phpunit: true)
     ->withComposerBased(phpunit: true)
+    ->withPhpVersion(PhpVersion::PHP_80)
     ->withDowngradeSets(php80: true)
     ->withPhpSets(php80: true)
     ->withSets([

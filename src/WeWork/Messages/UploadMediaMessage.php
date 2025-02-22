@@ -14,12 +14,13 @@ declare(strict_types=1);
 namespace Guanguans\Notify\WeWork\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
+use Guanguans\Notify\Foundation\Message;
 
 /**
  * @method self media($media)
  * @method self type($type)
  */
-class UploadMediaMessage extends \Guanguans\Notify\Foundation\Message
+class UploadMediaMessage extends Message
 {
     use AsMultipart;
     protected array $defined = [

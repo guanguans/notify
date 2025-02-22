@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Authenticators;
 
-use Guanguans\Notify\Foundation\Contracts;
+use Guanguans\Notify\Foundation\Contracts\Authenticator;
 use Psr\Http\Message\RequestInterface;
 
-class NullAuthenticator implements Contracts\Authenticator
+class NullAuthenticator implements Authenticator
 {
     public function applyToOptions(array $options): array
     {

@@ -15,6 +15,7 @@ namespace Guanguans\Notify\Foundation\Rectors;
 
 use Guanguans\Notify\Foundation\Support\Str;
 use PhpParser\Node;
+use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Name;
 use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Rector\AbstractRector;
@@ -62,7 +63,7 @@ final class ToInternalExceptionRector extends AbstractRector implements Configur
     public function getNodeTypes(): array
     {
         return [
-            Node\Expr\New_::class,
+            New_::class,
         ];
     }
 

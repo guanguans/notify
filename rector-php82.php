@@ -15,25 +15,17 @@ use Rector\Config\RectorConfig;
 use Rector\Php82\Rector\Param\AddSensitiveParameterAttributeRector;
 use Rector\ValueObject\PhpVersion;
 
-return static function (RectorConfig $rectorConfig): void {
-    $rectorConfig->importNames(false, false);
-    $rectorConfig->importShortClasses(false);
-    $rectorConfig->parallel(240);
-    // $rectorConfig->disableParallel();
-    $rectorConfig->phpstanConfig(__DIR__.'/phpstan.neon');
-    $rectorConfig->phpVersion(PhpVersion::PHP_82);
-
-    $rectorConfig->paths([
+return RectorConfig::configure()
+    ->withPaths([
         __DIR__.'/src/*/Authenticator.php',
         __DIR__.'/src/*/*/*Authenticator.php',
-    ]);
-
-    $rectorConfig->skip([
+    ])
+    ->withSkip([
         __DIR__.'/src/Foundation/Support',
         __DIR__.'/src/Foundation/Response.php',
-    ]);
-
-    $rectorConfig->ruleWithConfiguration(AddSensitiveParameterAttributeRector::class, [
+    ])
+    ->withPhpVersion(PhpVersion::PHP_82)
+    ->withConfiguredRule(AddSensitiveParameterAttributeRector::class, [
         AddSensitiveParameterAttributeRector::SENSITIVE_PARAMETERS => [
             'accessToken',
             'apiKey',
@@ -47,4 +39,3 @@ return static function (RectorConfig $rectorConfig): void {
             'webHook',
         ],
     ]);
-};

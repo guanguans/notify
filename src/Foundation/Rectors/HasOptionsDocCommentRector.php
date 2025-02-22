@@ -19,6 +19,7 @@ use Guanguans\Notify\Foundation\Message;
 use Guanguans\Notify\Foundation\Support\Str;
 use Guanguans\Notify\Foundation\Support\Utils;
 use PhpParser\Node;
+use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\Property;
 use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
@@ -125,7 +126,7 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
         }
 
         // Sort properties
-        usort($node->stmts, static function (Node\Stmt $a, Node\Stmt $b): int {
+        usort($node->stmts, static function (Stmt $a, Stmt $b): int {
             if (!$a instanceof Property || !$b instanceof Property) {
                 return 0;
             }
