@@ -18,8 +18,12 @@ use GuzzleHttp\RequestOptions;
 
 class Authenticator extends OptionsAuthenticator
 {
-    public function __construct(?string $pushKey = null, ?string $tempKey = null)
-    {
+    public function __construct(
+        #[\SensitiveParameter]
+        ?string $pushKey = null,
+        #[\SensitiveParameter]
+        ?string $tempKey = null
+    ) {
         parent::__construct(
             [RequestOptions::JSON => ['push_key' => $pushKey, 'temp_key' => $tempKey]],
             true

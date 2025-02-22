@@ -196,6 +196,7 @@
             "@test",
             "@psalm",
             "@rector-dry-run",
+            "@rector-php82-dry-run",
             "@infection-dirty"
         ],
         "composer-bin-all-update": "@composer bin all update --ansi -v",

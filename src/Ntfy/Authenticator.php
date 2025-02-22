@@ -23,8 +23,11 @@ use GuzzleHttp\RequestOptions;
 
 class Authenticator extends AggregateAuthenticator
 {
-    public function __construct(?string $usernameOrToken = null, ?string $password = null)
-    {
+    public function __construct(
+        ?string $usernameOrToken = null,
+        #[\SensitiveParameter]
+        ?string $password = null
+    ) {
         $authenticators = match (\func_num_args()) {
             0 => [
                 new NullAuthenticator,

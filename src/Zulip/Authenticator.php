@@ -17,8 +17,11 @@ use Guanguans\Notify\Foundation\Authenticators\BasicAuthenticator;
 
 class Authenticator extends BasicAuthenticator
 {
-    public function __construct(string $botEmail, string $botApiKey)
-    {
+    public function __construct(
+        string $botEmail,
+        #[\SensitiveParameter]
+        string $botApiKey
+    ) {
         parent::__construct($botEmail, $botApiKey);
     }
 }

@@ -20,8 +20,12 @@ use GuzzleHttp\RequestOptions;
 
 class Authenticator extends AggregateAuthenticator
 {
-    public function __construct(string $token, ?string $secret = null)
-    {
+    public function __construct(
+        #[\SensitiveParameter]
+        string $token,
+        #[\SensitiveParameter]
+        ?string $secret = null
+    ) {
         $authenticators = [new TokenUriTemplateAuthenticator($token)];
 
         if ($secret) {
@@ -36,8 +40,11 @@ class Authenticator extends AggregateAuthenticator
         parent::__construct(...$authenticators);
     }
 
-    private function sign(string $secret, int $timestamp): string
-    {
+    private function sign(
+        #[\SensitiveParameter]
+        string $secret,
+        int $timestamp
+    ): string {
         return base64_encode(hash_hmac('sha256', '', \sprintf("%s\n%s", $timestamp, $secret), true));
     }
 }

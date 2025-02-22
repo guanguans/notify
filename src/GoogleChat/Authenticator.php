@@ -20,8 +20,14 @@ use GuzzleHttp\RequestOptions;
 
 class Authenticator extends AggregateAuthenticator
 {
-    public function __construct(string $spaceId, string $key, string $token, ?string $threadKey = null)
-    {
+    public function __construct(
+        string $spaceId,
+        #[\SensitiveParameter]
+        string $key,
+        #[\SensitiveParameter]
+        string $token,
+        ?string $threadKey = null
+    ) {
         $query = ['key' => $key, 'token' => $token];
         $threadKey and $query['threadKey'] = $threadKey;
 

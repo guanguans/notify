@@ -19,8 +19,11 @@ use Guanguans\Notify\Foundation\Authenticators\UriTemplateAuthenticator;
 
 class Authenticator extends AggregateAuthenticator
 {
-    public function __construct(string $roomId, string $token)
-    {
+    public function __construct(
+        string $roomId,
+        #[\SensitiveParameter]
+        string $token
+    ) {
         parent::__construct(
             new UriTemplateAuthenticator(['roomId' => $roomId]),
             new BearerAuthenticator($token),

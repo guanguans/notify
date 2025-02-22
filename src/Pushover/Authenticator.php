@@ -18,8 +18,11 @@ use GuzzleHttp\RequestOptions;
 
 class Authenticator extends OptionsAuthenticator
 {
-    public function __construct(string $user, string $token)
-    {
+    public function __construct(
+        string $user,
+        #[\SensitiveParameter]
+        string $token
+    ) {
         parent::__construct([RequestOptions::QUERY => ['user' => $user, 'token' => $token]]);
     }
 }

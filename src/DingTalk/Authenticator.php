@@ -18,8 +18,12 @@ use GuzzleHttp\RequestOptions;
 
 class Authenticator extends OptionsAuthenticator
 {
-    public function __construct(string $token, ?string $secret = null)
-    {
+    public function __construct(
+        #[\SensitiveParameter]
+        string $token,
+        #[\SensitiveParameter]
+        ?string $secret = null
+    ) {
         $query = ['access_token' => $token];
 
         if ($secret) {
@@ -33,8 +37,11 @@ class Authenticator extends OptionsAuthenticator
         parent::__construct([RequestOptions::QUERY => $query]);
     }
 
-    private function sign(string $secret, string $timestamp): string
-    {
+    private function sign(
+        #[\SensitiveParameter]
+        string $secret,
+        string $timestamp
+    ): string {
         return urlencode(base64_encode(hash_hmac(
             'sha256',
             "$timestamp\n$secret",

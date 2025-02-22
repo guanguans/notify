@@ -17,8 +17,11 @@ use Guanguans\Notify\Foundation\Authenticators\BearerAuthenticator;
 
 class Authenticator extends BearerAuthenticator
 {
-    public function __construct(string $appid, string $token)
-    {
+    public function __construct(
+        string $appid,
+        #[\SensitiveParameter]
+        string $token
+    ) {
         parent::__construct("$appid.$token", 'Bot');
     }
 }

@@ -20,8 +20,10 @@ use GuzzleHttp\RequestOptions;
 
 class Authenticator extends AggregateAuthenticator
 {
-    public function __construct(string $apiKey)
-    {
+    public function __construct(
+        #[\SensitiveParameter]
+        string $apiKey
+    ) {
         parent::__construct(
             new TokenUriTemplateAuthenticator($apiKey),
             new OptionsAuthenticator([RequestOptions::HEADERS => ['X-Api-Key' => $apiKey]]),
