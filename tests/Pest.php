@@ -88,13 +88,11 @@ expect()->extend('assertCanSendMessage', function (Message $message): Expectatio
  */
 
 /**
- * @param object|string $class
- *
  * @throws ReflectionException
  */
-function class_namespace($class): string
+function class_namespace(object|string $class): string
 {
-    $class = \is_object($class) ? \get_class($class) : $class;
+    $class = \is_object($class) ? $class::class : $class;
 
     return (new ReflectionClass($class))->getNamespaceName();
 }
@@ -106,11 +104,9 @@ function fixtures_path(string $path = ''): string
 
 /**
  * @noinspection ParameterDefaultsNullInspection
- *
- * @param null|mixed $body
  */
 function response(
-    $body = null,
+    mixed $body = null,
     int $status = 200,
     array $headers = [],
     string $version = '1.1',

@@ -21,6 +21,7 @@
         "false",
         "int",
         "iterable",
+        "mixed",
         "null",
         "object",
         "parent",

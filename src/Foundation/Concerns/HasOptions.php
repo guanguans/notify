@@ -42,12 +42,9 @@ trait HasOptions
     protected array $options = [];
 
     /**
-     * @param mixed $name
-     * @param mixed $arguments
-     *
      * @throws \ReflectionException
      */
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments)
     {
         $defined = Utils::definedFor($this);
 

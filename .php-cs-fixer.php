@@ -28,7 +28,7 @@ $license = License\Type\MIT::text(
 
 $license->save();
 
-$ruleSet = Config\RuleSet\Php74::create()
+$ruleSet = Config\RuleSet\Php80::create()
     ->withHeader($license->header())
     ->withRules(Config\Rules::fromArray([
         '@PHP70Migration' => true,
@@ -38,8 +38,8 @@ $ruleSet = Config\RuleSet\Php74::create()
         '@PHP73Migration' => true,
         '@PHP74Migration' => true,
         '@PHP74Migration:risky' => true,
-        // '@PHP80Migration' => true,
-        // '@PHP80Migration:risky' => true,
+        '@PHP80Migration' => true,
+        '@PHP80Migration:risky' => true,
         // '@PHP81Migration' => true,
         // '@PHP82Migration' => true,
         // '@PHP83Migration' => true,
@@ -49,6 +49,9 @@ $ruleSet = Config\RuleSet\Php74::create()
         // '@DoctrineAnnotation' => true,
         // '@PhpCsFixer' => true,
         // '@PhpCsFixer:risky' => true,
+        'attribute_empty_parentheses' => [
+            'use_parentheses' => false,
+        ],
         'blank_line_before_statement' => [
             'statements' => [
                 'break',

@@ -54,11 +54,9 @@ abstract class Message implements \ArrayAccess, Contracts\Message
     /**
      * @noinspection PhpHierarchyChecksInspection
      *
-     * @param array|mixed $options
-     *
      * @return static
      */
-    final public static function make($options = []): self
+    final public static function make(mixed $options = []): self
     {
         if (0 === \func_num_args()) {
             return new static($options);
