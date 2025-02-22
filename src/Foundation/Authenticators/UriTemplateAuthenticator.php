@@ -24,12 +24,12 @@ use Psr\Http\Message\UriFactoryInterface;
  */
 class UriTemplateAuthenticator extends NullAuthenticator
 {
-    private array $variables;
     private UriFactoryInterface $uriFactory;
 
-    public function __construct(array $variables, ?UriFactoryInterface $uriFactory = null)
-    {
-        $this->variables = $variables;
+    public function __construct(
+        private array $variables,
+        ?UriFactoryInterface $uriFactory = null
+    ) {
         $this->uriFactory = $uriFactory ?? new HttpFactory;
     }
 

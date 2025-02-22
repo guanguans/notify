@@ -38,7 +38,7 @@ use Psr\Http\Message\UriInterface;
  * @see https://github.com/saloonphp/saloon
  * @see https://github.com/w7corp/easywechat
  */
-class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
+class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Stringable
 {
     use DeterminesStatusCode;
     use Dumpable;
@@ -65,7 +65,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
     protected ?TransferStats $transferStats = null;
 
     /** The decoded JSON response. */
-    protected mixed $decoded;
+    protected mixed $decoded = null;
 
     /**
      * Provide debug information about the response.
@@ -126,7 +126,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      */
     public function json($key = null, mixed $default = null): mixed
     {
-        if (!isset($this->decoded)) {
+        if (null === $this->decoded) {
             $this->decoded = json_decode($this->body(), true);
         }
 
@@ -142,7 +142,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess
      *
      * @param null|array-key $key
      */
-    public function array($key = null, mixed $default = null)
+    public function array($key = null, mixed $default = null): mixed
     {
         return $this->json($key, $default);
     }

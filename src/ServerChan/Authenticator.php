@@ -22,7 +22,7 @@ class Authenticator extends OptionsAuthenticator
         string $key
     ) {
         parent::__construct([
-            'base_uri' => 0 === strncmp($key, 'sctp', 4)
+            'base_uri' => str_starts_with($key, 'sctp')
                 ? "https://$key.push.ft07.com/send"
                 : "https://sctapi.ftqq.com/$key.send",
         ]);

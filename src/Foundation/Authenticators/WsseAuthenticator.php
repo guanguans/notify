@@ -17,17 +17,11 @@ use Psr\Http\Message\RequestInterface;
 
 class WsseAuthenticator extends NullAuthenticator
 {
-    private string $username;
-    private string $password;
-
     public function __construct(
-        string $username,
+        private string $username,
         #[\SensitiveParameter]
-        string $password
-    ) {
-        $this->username = $username;
-        $this->password = $password;
-    }
+        private string $password
+    ) {}
 
     public function applyToRequest(RequestInterface $request): RequestInterface
     {

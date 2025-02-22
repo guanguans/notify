@@ -31,8 +31,6 @@ use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
-use Rector\DowngradePhp80\Rector\FuncCall\DowngradeArrayFilterNullableCallbackRector;
-use Rector\EarlyReturn\Rector\If_\ChangeAndIfToEarlyReturnRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php73\Rector\String_\SensitiveHereNowDocRector;
@@ -63,7 +61,7 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->parallel(240);
     // $rectorConfig->disableParallel();
     $rectorConfig->phpstanConfig(__DIR__.'/phpstan.neon');
-    $rectorConfig->phpVersion(PhpVersion::PHP_74);
+    $rectorConfig->phpVersion(PhpVersion::PHP_80);
     // $rectorConfig->cacheClass(FileCacheStorage::class);
     // $rectorConfig->cacheDirectory(__DIR__.'/build/rector');
     // $rectorConfig->containerCacheDirectory(__DIR__.'/build/rector');
@@ -97,8 +95,6 @@ return static function (RectorConfig $rectorConfig): void {
 
     $rectorConfig->skip([
         // AddSeeTestAnnotationRector::class,
-        // ChangeAndIfToEarlyReturnRector::class,
-        DowngradeArrayFilterNullableCallbackRector::class,
         EncapsedStringsToSprintfRector::class,
         ExplicitBoolCompareRector::class,
         LogicalToBooleanRector::class,
@@ -161,8 +157,8 @@ return static function (RectorConfig $rectorConfig): void {
     ]);
 
     $rectorConfig->sets([
-        DowngradeLevelSetList::DOWN_TO_PHP_74,
-        LevelSetList::UP_TO_PHP_74,
+        DowngradeLevelSetList::DOWN_TO_PHP_80,
+        LevelSetList::UP_TO_PHP_80,
         SetList::CODE_QUALITY,
         SetList::CODING_STYLE,
         SetList::DEAD_CODE,

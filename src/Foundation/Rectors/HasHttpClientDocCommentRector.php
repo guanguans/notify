@@ -39,8 +39,6 @@ use Webmozart\Assert\Assert;
  */
 final class HasHttpClientDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
 {
-    private DocBlockUpdater $docBlockUpdater;
-    private PhpDocInfoFactory $phpDocInfoFactory;
     private array $except = [
         '__*',
         'create',
@@ -49,11 +47,10 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
         'getConfig',
     ];
 
-    public function __construct(DocBlockUpdater $docBlockUpdater, PhpDocInfoFactory $phpDocInfoFactory)
-    {
-        $this->docBlockUpdater = $docBlockUpdater;
-        $this->phpDocInfoFactory = $phpDocInfoFactory;
-    }
+    public function __construct(
+        private DocBlockUpdater $docBlockUpdater,
+        private PhpDocInfoFactory $phpDocInfoFactory
+    ) {}
 
     /**
      * @throws PoorDocumentationException

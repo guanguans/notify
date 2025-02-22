@@ -52,7 +52,7 @@ trait HasOptions
             $casedName = $case ? Str::{$case}($name) : $name;
 
             if (\in_array($casedName, $defined, true)) {
-                if (empty($arguments)) {
+                if ([] === $arguments) {
                     throw new InvalidArgumentException(
                         \sprintf('The method [%s::%s] require an argument.', static::class, $name),
                     );

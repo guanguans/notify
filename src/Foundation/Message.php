@@ -24,7 +24,7 @@ use GuzzleHttp\Psr7\MultipartStream;
 /**
  * @template-implements \ArrayAccess<string, mixed>
  */
-abstract class Message implements \ArrayAccess, Contracts\Message
+abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
 {
     use AsJson;
     use AsPost;

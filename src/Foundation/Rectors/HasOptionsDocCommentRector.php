@@ -41,14 +41,11 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
     private array $classes = [
         Message::class,
     ];
-    private DocBlockUpdater $docBlockUpdater;
-    private PhpDocInfoFactory $phpDocInfoFactory;
 
-    public function __construct(DocBlockUpdater $docBlockUpdater, PhpDocInfoFactory $phpDocInfoFactory)
-    {
-        $this->docBlockUpdater = $docBlockUpdater;
-        $this->phpDocInfoFactory = $phpDocInfoFactory;
-    }
+    public function __construct(
+        private DocBlockUpdater $docBlockUpdater,
+        private PhpDocInfoFactory $phpDocInfoFactory
+    ) {}
 
     /**
      * @throws PoorDocumentationException
@@ -199,21 +196,11 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
     {
         $option = Str::camel($option);
 
-        switch ((array) $optionAllowedTypes) {
-            case ['bool']:
-            case ['boolean']:
-                $type = 'bool ';
-
-                break;
-            case ['array']:
-                $type = 'array ';
-
-                break;
-            default:
-                $type = '';
-
-                break;
-        }
+        $type = match ((array) $optionAllowedTypes) {
+            ['bool'], ['boolean'] => 'bool ',
+            ['array'] => 'array ',
+            default => '',
+        };
 
         return new PhpDocTagNode('@method', new GenericTagValueNode("self $option($type\$$option)"));
     }

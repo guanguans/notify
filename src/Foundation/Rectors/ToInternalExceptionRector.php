@@ -80,12 +80,8 @@ final class ToInternalExceptionRector extends AbstractRector implements Configur
         if (
             !$class instanceof Name
             || Str::is($this->except, $class->toString())
-            || 0 === strncmp(
-                $class->toString(),
-                'Guanguans\\Notify\\Foundation\\Exceptions\\',
-                \strlen('Guanguans\\Notify\\Foundation\\Exceptions\\'),
-            )
-            || 0 !== substr_compare($class->toString(), 'Exception', -\strlen('Exception'))
+            || str_starts_with($class->toString(), 'Guanguans\\Notify\\Foundation\\Exceptions\\')
+            || !str_ends_with($class->toString(), 'Exception')
         ) {
             return;
         }

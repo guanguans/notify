@@ -17,14 +17,10 @@ use Guanguans\Notify\Foundation\Support\Utils;
 
 class OptionsAuthenticator extends NullAuthenticator
 {
-    private array $options;
-    private bool $reversed;
-
-    public function __construct(array $options, bool $reversed = false)
-    {
-        $this->options = $options;
-        $this->reversed = $reversed;
-    }
+    public function __construct(
+        private array $options,
+        private bool $reversed = false
+    ) {}
 
     public function applyToOptions(array $options): array
     {

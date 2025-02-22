@@ -73,12 +73,7 @@ if (!\function_exists('tap')) {
     {
         if (null === $callback) {
             return new class($value) {
-                public $target;
-
-                public function __construct($target)
-                {
-                    $this->target = $target;
-                }
+                public function __construct(public $target) {}
 
                 public function __call($method, $parameters)
                 {

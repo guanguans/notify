@@ -122,7 +122,7 @@ class Arr
 
         try {
             $items = array_map($callback, $array, $keys);
-        } catch (\ArgumentCountError $argumentCountError) {
+        } catch (\ArgumentCountError) {
             $items = array_map($callback, $array);
         }
 
