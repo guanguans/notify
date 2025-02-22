@@ -5,7 +5,6 @@
 .php-cs-fixer.cache
 .phpunit.result.cache
 .build/
-build/
 composer.lock
 coverage/
 clover.xml

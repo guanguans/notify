@@ -63,8 +63,8 @@ return static function (RectorConfig $rectorConfig): void {
     $rectorConfig->phpstanConfig(__DIR__.'/phpstan.neon');
     $rectorConfig->phpVersion(PhpVersion::PHP_80);
     // $rectorConfig->cacheClass(FileCacheStorage::class);
-    // $rectorConfig->cacheDirectory(__DIR__.'/build/rector');
-    // $rectorConfig->containerCacheDirectory(__DIR__.'/build/rector');
+    // $rectorConfig->cacheDirectory(__DIR__.'/.build/rector');
+    // $rectorConfig->containerCacheDirectory(__DIR__.'/.build/rector');
     // $rectorConfig->disableParallel();
     // $rectorConfig->fileExtensions(['php']);
     // $rectorConfig->indent(' ', 4);

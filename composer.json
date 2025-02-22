@@ -221,7 +221,7 @@
         "md-fix": "@md-lint --fix",
         "md-lint": "lint-md --config .lintmdrc ./*.md ./.github/ ./docs/ ./src/*/*.md",
         "pest": "@php ./vendor/bin/pest --coverage",
-        "pest-coverage": "@pest --coverage-html=./build/phpunit/ --coverage-clover=./clover.xml",
+        "pest-coverage": "@pest --coverage-html=./.build/phpunit/ --coverage-clover=./clover.xml",
         "pest-highest": [
             "@putenvs",
             "$PHP83 ./vendor/bin/pest --coverage"
@@ -265,8 +265,8 @@
         "test-coverage": "@pest-coverage",
         "test-highest": "@pest-highest",
         "test-migrate-configuration": "@pest-migrate-configuration",
-        "test-phpunit": "@php ./vendor/bin/phpunit --cache-result-file=./build/phpunit/.phpunit.result.cache --coverage-text --ansi -v",
-        "test-phpunit-coverage": "@test --coverage-html=./build/phpunit/ --coverage-clover=clover.xml",
+        "test-phpunit": "@php ./vendor/bin/phpunit --cache-result-file=./.build/phpunit/.phpunit.result.cache --coverage-text --ansi -v",
+        "test-phpunit-coverage": "@test --coverage-html=./.build/phpunit/ --coverage-clover=clover.xml",
         "test-type-coverage": "@pest-type-coverage",
         "trufflehog": "trufflehog git https://github.com/guanguans/notify --only-verified",
         "yaml-lint": "@php ./vendor/bin/yaml-lint .github --ansi -v",

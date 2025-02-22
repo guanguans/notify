@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-  cacheDirectory="./build/psalm/"
+  cacheDirectory="./.build/psalm/"
   errorBaseline="psalm-baseline.xml"
   errorLevel="4"
   findUnusedBaselineEntry="true"

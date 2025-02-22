@@ -2,8 +2,8 @@
     "ignoreMsiWithNoMutations": true,
     "logs": {
         "github": false,
-        "html": "build/infection/infection.html",
-        "text": "build/infection/infection.text"
+        "html": ".build/infection/infection.html",
+        "text": ".build/infection/infection.text"
     },
     "minCoveredMsi": 80,
     "minMsi": 80,

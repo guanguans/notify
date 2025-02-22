@@ -191,7 +191,6 @@ return Config\Factory::fromRuleSet($ruleSet)
                 '.build/',
                 '.chglog/',
                 '.github/',
-                'build/',
                 'docs/',
                 'vendor-bin/',
                 '__snapshots__/',
@@ -218,4 +217,4 @@ return Config\Factory::fromRuleSet($ruleSet)
     ->setRiskyAllowed(true)
     ->setUsingCache(true)
     ->setParallelConfig(ParallelConfigFactory::detect())
-    ->setCacheFile(__DIR__.'/build/php-cs-fixer/.php-cs-fixer.cache');
+    ->setCacheFile(__DIR__.'/.build/php-cs-fixer/.php-cs-fixer.cache');
