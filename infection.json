@@ -30,6 +30,7 @@
         "AssignCoalesce": false,
         "Assignment": false,
         "BitwiseOr": false,
+        "CastArray": false,
         "CastString": false,
         "Coalesce": false,
         "Concat": false,

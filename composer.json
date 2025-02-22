@@ -208,7 +208,7 @@
         "composer-updater-dry-run": "@composer-updater --dry-run",
         "composer-validate": "@composer validate --check-lock --strict --ansi -v",
         "generate-ide-json": "@php generate-ide-json",
-        "infection": "@php ./vendor/bin/infection --configuration=infection.json --show-mutations --threads=8 --ansi -v",
+        "infection": "@php ./vendor/bin/infection --configuration=infection.json --show-mutations --threads=8 --git-diff-base=origin/main --ansi -v",
         "infection-dirty": "@infection --git-diff-filter=AM",
         "json-lint": "@php ./vendor/bin/jsonlint *.json .*rc",
         "lint": [
