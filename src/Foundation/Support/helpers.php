@@ -11,14 +11,15 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
+namespace Guanguans\Notify\Foundation\Support;
+
 const MULTIPART_TRY_OPEN_FILE = 1 << 0;
 const MULTIPART_TRY_OPEN_URL = 1 << 1;
 
-if (!\function_exists('error_silencer')) {
+if (!\function_exists('Guanguans\Notify\Foundation\Support\error_silencer')) {
     /**
      * @noinspection ForgottenDebugOutputInspection
      * @noinspection DebugFunctionUsageInspection
-     * @noinspection PhpExpressionResultUnusedInspection
      *
      * @psalm-suppress ForbiddenCode
      * @psalm-suppress InvalidArgument
@@ -43,17 +44,17 @@ if (!\function_exists('error_silencer')) {
     }
 }
 
-if (!\function_exists('value')) {
+if (!\function_exists('Guanguans\Notify\Foundation\Support\value')) {
     /**
      * Return the default value of the given value.
      */
     function value(mixed $value, ...$args): mixed
     {
-        return $value instanceof Closure ? $value(...$args) : $value;
+        return $value instanceof \Closure ? $value(...$args) : $value;
     }
 }
 
-if (!\function_exists('base64_encode_file')) {
+if (!\function_exists('Guanguans\Notify\Foundation\Support\base64_encode_file')) {
     /**
      * Encodes a file to base64.
      */
@@ -63,7 +64,7 @@ if (!\function_exists('base64_encode_file')) {
     }
 }
 
-if (!\function_exists('tap')) {
+if (!\function_exists('Guanguans\Notify\Foundation\Support\tap')) {
     /**
      * Call the given Closure with the given value then return the value.
      *

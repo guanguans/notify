@@ -25,6 +25,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\TransferStats;
 use Psr\Http\Message\ResponseInterface;
+use function Guanguans\Notify\Foundation\Support\tap;
 
 /**
  * @method self setHandler(callable $handler)

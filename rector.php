@@ -66,8 +66,9 @@ return RectorConfig::configure()
         __DIR__.'/generate-ide-json',
         __DIR__.'/platform-lint',
     ])
-    ->withSkipPath(__DIR__.'/tests.php')
+    // ->withSkipPath(__DIR__.'/tests.php')
     ->withSkip([
+        __DIR__.'/tests.php',
         '**/fixtures/*',
         '**/__snapshots__/*',
     ])
@@ -161,8 +162,10 @@ return RectorConfig::configure()
             'test' => 'it',
         ] + array_reduce(
             [
-                // 'make',
-                // 'env_explode',
+                'error_silencer',
+                'value',
+                'base64_encode_file',
+                'tap',
             ],
             static function (array $carry, string $func): array {
                 /** @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Support/functions.php */

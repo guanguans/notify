@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
+use function Guanguans\Notify\Foundation\Support\base64_encode_file;
+
 /**
  * @method self image($image)
  */

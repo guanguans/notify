@@ -20,6 +20,7 @@ use Guanguans\Notify\Foundation\Concerns\HasOptions;
 use Guanguans\Notify\Foundation\Support\Arr;
 use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\Psr7\MultipartStream;
+use const Guanguans\Notify\Foundation\Support\MULTIPART_TRY_OPEN_FILE;
 
 /**
  * @template-implements \ArrayAccess<string, mixed>
