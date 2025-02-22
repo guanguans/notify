@@ -84,7 +84,7 @@
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.8",
-        "brainmaestro/composer-git-hooks": "^2.8 || ^3.0",
+        "brainmaestro/composer-git-hooks": "^3.0",
         "ergebnis/composer-normalize": "^2.45",
         "ergebnis/license": "^2.6",
         "ergebnis/php-cs-fixer-config": "dev-main",
@@ -92,8 +92,8 @@
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
         "icanhazstring/composer-unused": "^0.8",
-        "illuminate/collections": "^8.83 || ^9.0 || ^10.0 || ^11.0",
-        "illuminate/support": "^8.83 || ^9.0 || ^10.0 || ^11.0",
+        "illuminate/collections": "^9.52 || ^10.0 || ^11.0",
+        "illuminate/support": "^9.52 || ^10.0 || ^11.0",
         "infection/extension-installer": "^0.1",
         "infection/infection": "^0.26",
         "maglnet/composer-require-checker": "^3.8 || ^4.0",
@@ -106,7 +106,7 @@
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "rector/rector": "^2.0",
-        "symfony/var-dumper": "^5.4 || ^6.0 || ^7.0",
+        "symfony/var-dumper": "^6.0 || ^7.0",
         "vimeo/psalm": "^5.26 || ^6.0"
     },
     "suggest": {
