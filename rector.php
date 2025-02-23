@@ -208,7 +208,7 @@ return RectorConfig::configure()
             new ClassConstFetch(new FullyQualified(Response::class), new Identifier($constant))
         ),
         $constants = array_filter(
-            (new \ReflectionClass(Response::class))->getConstants(),
+            (new ReflectionClass(Response::class))->getConstants(),
             static fn ($value): bool => \is_int($value),
         ),
         array_keys($constants)

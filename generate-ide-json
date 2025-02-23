@@ -48,7 +48,7 @@ require __DIR__.'/vendor/autoload.php';
         ->files();
 
     collect($files)
-        ->mapWithKeys(static function (\Symfony\Component\Finder\SplFileInfo $fileInfo): array {
+        ->mapWithKeys(static function (Symfony\Component\Finder\SplFileInfo $fileInfo): array {
             $class = \sprintf(
                 '\\Guanguans\\Notify\\%s',
                 str_replace('/', '\\', rtrim($fileInfo->getRelativePathname(), '.php'))

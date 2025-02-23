@@ -215,12 +215,10 @@ class Utils
             $defaults['OS'] = \sprintf('%s(%s)', php_uname('s'), php_uname('r'));
         }
 
-        $defaults = array_merge($defaults, $agents);
-
         return trim(implode(' ', array_map(
             static fn (mixed $value, string $name): string => "$name/$value",
-            $defaults,
-            array_keys($defaults),
+            $agents += $defaults,
+            array_keys($agents),
         )));
     }
 }
