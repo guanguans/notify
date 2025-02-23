@@ -46,7 +46,7 @@ return static function (MBConfig $mbConfig): void {
         // UpdateChangelogViaPhpReleaseWorker::class,
         CreateGithubReleaseReleaseWorker::class,
         // SetNextMutualDependenciesReleaseWorker::class,
-        // UpdateBranchAliasReleaseWorker::class,
+        UpdateBranchAliasReleaseWorker::class,
         // PushNextDevReleaseWorker::class,
     ]);
 

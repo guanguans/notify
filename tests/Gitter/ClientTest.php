@@ -19,7 +19,6 @@ namespace Guanguans\NotifyTests\Bark;
 use Guanguans\Notify\Gitter\Authenticator;
 use Guanguans\Notify\Gitter\Client;
 use Guanguans\Notify\Gitter\Messages\Message;
-use function Pest\Faker\faker;
 
 it('can send message', function (): void {
     $authenticator = new Authenticator(

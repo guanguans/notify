@@ -18,7 +18,6 @@ namespace Guanguans\NotifyTests\Ntfy;
 
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Ntfy\Authenticator;
-use function Pest\Faker\faker;
 
 it('will throw an InvalidArgumentException', function (): void {
     new Authenticator('foo', 'bar', 'baz');

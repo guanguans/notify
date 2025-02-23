@@ -19,7 +19,6 @@ namespace Guanguans\NotifyTests\Bark;
 use Guanguans\Notify\GoogleChat\Authenticator;
 use Guanguans\Notify\GoogleChat\Client;
 use Guanguans\Notify\GoogleChat\Messages\Message;
-use function Pest\Faker\faker;
 
 it('can send message', function (): void {
     $authenticator = new Authenticator('spaceId', 'key', 'token', 'threadKey');

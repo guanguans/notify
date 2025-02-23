@@ -19,7 +19,6 @@ namespace Guanguans\NotifyTests\PushDeer;
 use Guanguans\Notify\PushDeer\Authenticator;
 use Guanguans\Notify\PushDeer\Client;
 use Guanguans\Notify\PushDeer\Messages\Message;
-use function Pest\Faker\faker;
 
 it('can send message', function (): void {
     $authenticator = new Authenticator('PDU3062THLWPFpHEmFQrKhFp9Tlz9q0qE9Nfz');

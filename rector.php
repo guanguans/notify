@@ -23,6 +23,7 @@ use Guanguans\Notify\Foundation\Rectors\HasOptionsDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
 use Guanguans\Notify\Foundation\Response;
 use GuzzleHttp\RequestOptions;
+use Kcs\ClassFinder\Finder\ComposerFinder;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name\FullyQualified;
@@ -41,6 +42,8 @@ use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php73\Rector\String_\SensitiveHereNowDocRector;
+use Rector\Php80\Rector\Class_\AnnotationToAttributeRector;
+use Rector\Php80\ValueObject\AnnotationToAttribute;
 use Rector\Php82\Rector\Param\AddSensitiveParameterAttributeRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Removing\Rector\Class_\RemoveTraitUseRector;
@@ -60,6 +63,7 @@ use Rector\Visibility\ValueObject\ChangeMethodVisibility;
 return RectorConfig::configure()
     ->withRootFiles()
     ->withPaths([
+        __DIR__.'/benchmarks',
         __DIR__.'/src',
         __DIR__.'/tests',
         __DIR__.'/composer-updater',
@@ -120,6 +124,14 @@ return RectorConfig::configure()
         new ClassMethodReference(HasOptions::class, 'offsetGet'),
         new ClassMethodReference(Response::class, 'offsetGet'),
     ])
+    ->withConfiguredRule(AnnotationToAttributeRector::class, array_map(
+        static fn (string $class) => new AnnotationToAttribute(class_basename($class), $class, [], true),
+        array_keys(iterator_to_array(
+            (new ComposerFinder)
+                ->inNamespace('PhpBench\Attributes')
+                ->filter(static fn (ReflectionClass $reflectionClass): bool => $reflectionClass->isInstantiable())
+        ))
+    ))
     ->withConfiguredRule(AddSensitiveParameterAttributeRector::class, [
         AddSensitiveParameterAttributeRector::SENSITIVE_PARAMETERS => [
             'accessToken',
@@ -134,48 +146,45 @@ return RectorConfig::configure()
             'webHook',
         ],
     ])
-    ->withConfiguredRule(
-        StringToClassConstantRector::class,
-        array_reduce(
-            [
-                Guanguans\Notify\Foundation\Method::class,
-                RequestOptions::class,
-            ],
-            static fn (array $carry, string $class): array => array_merge(
-                $carry,
-                array_map(
-                    static fn (string $string, string $constant): StringToClassConstant => new StringToClassConstant(
-                        $string,
-                        $class,
-                        $constant,
-                    ),
-                    $constants = (new ReflectionClass($class))->getConstants(),
-                    array_keys($constants),
-                ),
-            ),
-            [],
-        ),
-    )
-    ->withConfiguredRule(
-        RenameFunctionRector::class,
+    ->withConfiguredRule(RenameFunctionRector::class, [
+        'test' => 'it',
+        'Pest\Faker\faker' => 'faker',
+        'Pest\Faker\fake' => 'fake',
+        // 'faker' => 'fake',
+    ] + array_reduce(
         [
-            'test' => 'it',
-        ] + array_reduce(
-            [
-                'error_silencer',
-                'value',
-                'base64_encode_file',
-                'tap',
-            ],
-            static function (array $carry, string $func): array {
-                /** @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Support/functions.php */
-                $carry[$func] = "Guanguans\\Notify\\Foundation\\Support\\$func";
+            'error_silencer',
+            'value',
+            'base64_encode_file',
+            'tap',
+        ],
+        static function (array $carry, string $func): array {
+            /** @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Support/functions.php */
+            $carry[$func] = "Guanguans\\Notify\\Foundation\\Support\\$func";
 
-                return $carry;
-            },
-            []
-        )
-    )
+            return $carry;
+        },
+        []
+    ))
+    ->withConfiguredRule(StringToClassConstantRector::class, array_reduce(
+        [
+            Guanguans\Notify\Foundation\Method::class,
+            RequestOptions::class,
+        ],
+        static fn (array $carry, string $class): array => array_merge(
+            $carry,
+            array_map(
+                static fn (string $string, string $constant): StringToClassConstant => new StringToClassConstant(
+                    $string,
+                    $class,
+                    $constant,
+                ),
+                $constants = (new ReflectionClass($class))->getConstants(),
+                array_keys($constants),
+            ),
+        ),
+        [],
+    ))
     ->withConfiguredRule(ScalarValueToConstFetchRector::class, array_map(
         static fn (int $value, string $constant): ScalarValueToConstFetch => new ScalarValueToConstFetch(
             new LNumber($value),
@@ -214,6 +223,7 @@ return RectorConfig::configure()
         ],
         StaticClosureRector::class => $staticArrowFunctionPaths,
         StringToClassConstantRector::class => [
+            __DIR__.'/benchmarks',
             __DIR__.'/src/Foundation/Rfc',
             __DIR__.'/src/*/Messages/*.php',
             __DIR__.'/tests',
@@ -221,6 +231,7 @@ return RectorConfig::configure()
             __DIR__.'/src/Foundation/Response.php',
         ],
         SortAssociativeArrayByKeyRector::class => [
+            __DIR__.'/benchmarks',
             __DIR__.'/src',
             __DIR__.'/tests',
         ],

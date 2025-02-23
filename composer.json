@@ -94,6 +94,7 @@
         "illuminate/collections": "^9.52 || ^10.0 || ^11.0",
         "illuminate/support": "^9.52 || ^10.0 || ^11.0",
         "infection/extension-installer": "^0.1",
+        "kcs/class-finder": "^0.3",
         "maglnet/composer-require-checker": "^3.8 || ^4.0",
         "mockery/mockery": "^1.6",
         "pestphp/pest": "^1.23 || ^2.0 || ^3.0",
@@ -193,6 +194,7 @@
             "@style-lint",
             "@test",
             "@psalm",
+            "@phpstan",
             "@rector-dry-run",
             "@rector-php82-dry-run",
             "@infection-dirty"

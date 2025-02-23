@@ -20,7 +20,6 @@ use Guanguans\Notify\Foundation\Authenticators\CertificateAuthenticator;
 use Guanguans\Notify\Foundation\Authenticators\WsseAuthenticator;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
-use function Pest\Faker\faker;
 
 it('can apply the certificate to options', function (): void {
     expect(new CertificateAuthenticator(fixtures_path('cert.pem'), faker()->password))

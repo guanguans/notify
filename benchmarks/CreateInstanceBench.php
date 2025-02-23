@@ -18,12 +18,11 @@ namespace Guanguans\PackageSkeleton\Tests\Benchmark;
 use Guanguans\Notify\Bark\Authenticator;
 use Guanguans\Notify\Bark\Client;
 use Guanguans\Notify\Bark\Messages\Message;
+use PhpBench\Attributes\BeforeMethods;
+use PhpBench\Attributes\Revs;
 
-/**
- * @beforeMethods({"setUp"})
- *
- * @revs(10000)
- */
+#[BeforeMethods('setUp')]
+#[Revs(10000)]
 final class CreateInstanceBench
 {
     private \Guanguans\Notify\Foundation\Contracts\Authenticator $authenticator;

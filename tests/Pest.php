@@ -14,6 +14,8 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
+use Faker\Factory;
+use Faker\Generator;
 use Guanguans\Notify\Foundation\Client;
 use Guanguans\Notify\Foundation\Message;
 use Guanguans\NotifyTests\TestCase;
@@ -113,4 +115,14 @@ function response(
     ?string $reason = null
 ): ResponseInterface {
     return new Response($status, $headers, $body, $version, $reason);
+}
+
+function faker(string $locale = Factory::DEFAULT_LOCALE): Generator
+{
+    return fake($locale);
+}
+
+function fake(string $locale = Factory::DEFAULT_LOCALE): Generator
+{
+    return Factory::create($locale);
 }
