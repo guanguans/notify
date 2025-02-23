@@ -151,7 +151,7 @@
             "target-directory": "vendor-bin"
         },
         "branch-alias": {
-            "dev-main": "2.x-dev"
+            "dev-main": "3.x-dev"
         },
         "composer-normalize": {
             "indent-size": 4,

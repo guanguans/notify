@@ -29,6 +29,7 @@ use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateReplaceReleaseWorker;
 return static function (MBConfig $mbConfig): void {
     require __DIR__.'/vendor/autoload.php';
     $mbConfig->defaultBranch('main');
+    // $mbConfig->disableDefaultWorkers();
 
     /**
      * release workers - in order to execute.
@@ -46,7 +47,7 @@ return static function (MBConfig $mbConfig): void {
         // UpdateChangelogViaPhpReleaseWorker::class,
         CreateGithubReleaseReleaseWorker::class,
         // SetNextMutualDependenciesReleaseWorker::class,
-        UpdateBranchAliasReleaseWorker::class,
+        // UpdateBranchAliasReleaseWorker::class,
         // PushNextDevReleaseWorker::class,
     ]);
 
