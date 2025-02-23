@@ -124,9 +124,11 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Get the JSON decoded body of the response as an array or scalar value.
      *
+     * @noinspection JsonEncodingApiUsageInspection
+     *
      * @param null|array-key $key
      */
-    public function json($key = null, mixed $default = null): mixed
+    public function json(mixed $key = null, mixed $default = null): mixed
     {
         if (null === $this->decoded) {
             $this->decoded = json_decode($this->body(), true);
@@ -144,13 +146,15 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @param null|array-key $key
      */
-    public function array($key = null, mixed $default = null): mixed
+    public function array(mixed $key = null, mixed $default = null): mixed
     {
         return $this->json($key, $default);
     }
 
     /**
      * Get the JSON decoded body of the response as an object.
+     *
+     * @noinspection JsonEncodingApiUsageInspection
      */
     public function object(): ?object
     {
@@ -166,7 +170,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @param null|array-key $key
      */
-    public function collect($key = null): Collection
+    public function collect(mixed $key = null): Collection
     {
         return Collection::make($this->json($key));
     }
@@ -178,7 +182,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @param null|array-key $key
      */
-    public function fluent($key = null): Fluent
+    public function fluent(mixed $key = null): Fluent
     {
         return new Fluent((array) $this->json($key));
     }
@@ -216,7 +220,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @return resource
      */
-    public function resource()
+    public function resource(): mixed
     {
         return StreamWrapper::getResource($this->getBody());
     }
@@ -240,7 +244,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @param resource|string $resourceOrPath
      */
-    public function saveAs($resourceOrPath): void
+    public function saveAs(mixed $resourceOrPath): void
     {
         if (!\is_string($resourceOrPath) && !\is_resource($resourceOrPath)) {
             throw new InvalidArgumentException('The $resourceOrPath argument must be either a file path or a resource.');
@@ -533,11 +537,9 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * Get the value for a given offset.
      *
      * @param mixed|string $offset
-     *
-     * @return mixed
      */
     #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->json()[$offset] ?? null;
     }

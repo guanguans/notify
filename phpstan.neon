@@ -34,8 +34,6 @@ parameters:
         - '#^@readonly property Guanguans\\Notify\\Foundation\\Response\:\:\$.* is assigned outside of the constructor\.$#'
         - '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
         - '#^Call to method sendAsync\(\) on an unknown class Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient\.$#'
-        - '#^Method Guanguans\\Notify\\Foundation\\Rectors\\.*Rector\:\:refactor\(\) never returns .* so it can be removed from the return type\.$#'
-        - '#^Method Guanguans\\Notify\\Foundation\\Rectors\\.*Rector\:\:refactor\(\) should return 1\|2\|3\|4\|array\<PhpParser\\Node\>\|PhpParser\\Node\|null but empty return statement found\.$#'
         - '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\As.* is used zero times and is not analysed\.$#'
         - '#^Unsafe usage of new static\(\)\.$#'
         - '#^Unused result of "and" operator\.$#'

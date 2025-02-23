@@ -105,13 +105,13 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
      *
      * @throws \ReflectionException
      */
-    public function refactor(Node $node)
+    public function refactor(Node $node): ?Node
     {
         /** @var class-string $trait */
         $trait = $node->getAttribute('scope')->getClassReflection()->getName();
 
         if (HasHttpClient::class !== $trait) {
-            return;
+            return null;
         }
 
         $node->setAttribute('comments', []);
@@ -175,7 +175,6 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
                 $reflectionMethod->getParameters(),
                 static function (string $carry, \ReflectionParameter $reflectionParameter): string {
                     if ($reflectionParameter->hasType()) {
-                        /** @noinspection PhpVoidFunctionResultUsedInspection */
                         $type = $reflectionParameter->getType();
                         \assert($type instanceof \ReflectionNamedType);
                         $type->isBuiltin() or $carry .= '\\';

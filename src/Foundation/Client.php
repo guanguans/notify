@@ -63,7 +63,7 @@ class Client implements Contracts\Client
     /**
      * @throws GuzzleException
      *
-     * @return Response|ResponseInterface
+     * @return Response
      */
     public function send(Message $message): ResponseInterface
     {

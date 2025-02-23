@@ -116,13 +116,13 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
      *
      * @throws \ReflectionException
      */
-    public function refactor(Node $node)
+    public function refactor(Node $node): ?Node
     {
         /** @var class-string $class */
         $class = $node->getAttribute('scope')->getClassReflection()->getName();
 
         if (!$this->isSubclassesOf($class)) {
-            return;
+            return null;
         }
 
         // Sort properties
@@ -161,7 +161,7 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
         asort($defined);
 
         if ([] === $defined) {
-            return;
+            return null;
         }
 
         $node->setAttribute('comments', []);

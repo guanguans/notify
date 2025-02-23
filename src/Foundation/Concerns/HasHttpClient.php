@@ -85,7 +85,7 @@ trait HasHttpClient
     private $handlerStackResolver;
     private array $httpOptions = [];
 
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments): self
     {
         if (method_exists($this->getHandlerStack(), $name)) {
             $this->getHandlerStack()->{$name}(...$arguments);
@@ -94,7 +94,7 @@ trait HasHttpClient
         }
 
         if (\in_array($snakedName = Str::snake($name), Utils::httpOptionConstants(), true)) {
-            if (empty($arguments)) {
+            if ([] === $arguments) {
                 throw new InvalidArgumentException(
                     \sprintf('The method [%s::%s] require an argument.', static::class, $name),
                 );
