@@ -46,8 +46,12 @@ class Message extends \Guanguans\Notify\Foundation\Message
      *
      * @noinspection EncryptionInitializationVectorRandomnessInspection
      */
-    private function encrypt(string $content, string $key, string $iv): string
-    {
+    private function encrypt(
+        string $content,
+        #[\SensitiveParameter]
+        string $key,
+        string $iv
+    ): string {
         $key = substr(md5($key), 0, 16);
         $iv = substr(md5($iv), 0, 16);
 

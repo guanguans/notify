@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpInternalEntityUsedInspection */
+
 declare(strict_types=1);
 
 /**
@@ -11,12 +13,16 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
+use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
+use Guanguans\Notify\Foundation\Rectors\HasOptionsDocCommentRector;
+use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
 use Rector\Config\RectorConfig;
 use Rector\Php82\Rector\Param\AddSensitiveParameterAttributeRector;
 use Rector\ValueObject\PhpVersion;
 
 return RectorConfig::configure()
     ->withPaths([
+        __DIR__.'/src/',
         __DIR__.'/src/*/Authenticator.php',
         __DIR__.'/src/*/*/*Authenticator.php',
     ])
@@ -25,6 +31,11 @@ return RectorConfig::configure()
         __DIR__.'/src/Foundation/Response.php',
     ])
     ->withPhpVersion(PhpVersion::PHP_82)
+    ->withRules([
+        // HasHttpClientDocCommentRector::class,
+        HasOptionsDocCommentRector::class,
+        // ToInternalExceptionRector::class,
+    ])
     ->withConfiguredRule(AddSensitiveParameterAttributeRector::class, [
         AddSensitiveParameterAttributeRector::SENSITIVE_PARAMETERS => [
             'accessToken',
