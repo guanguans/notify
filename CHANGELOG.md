@@ -8,6 +8,33 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.0.0"></a>
+## [3.0.0] - 2025-02-23
+### CI
+- apply rector
+- apply rector
+- apply php-cs-fixer
+- **config:** Update infection command and json configuration
+- **dependencies:** Remove unused packages and add new ones
+- **editorconfig:** Update indentation settings
+- **rector:** Refactor autoload function handling in configuration
+
+### Code Refactoring
+- Add rector configuration file
+- Move cache and build files to .build directory
+- **support:** Improve function availability checks
+
+### Features
+- **auth:** Mark sensitive parameters in constructors
+- **dependencies:** Update composer Git hooks and illuminate versions
+- **workflows:** upgrade PHP version to 8.0
+
+### Tests
+- **composer:** Add phpunit-slow-test-detector dependency
+- **config:** Update PHPUnit configuration and dependencies
+- **rector:** Replace usage of Pest Faker functions
+
+
 <a name="2.14.1"></a>
 ## [2.14.1] - 2025-02-22
 ### CI
@@ -1202,7 +1229,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/2.14.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/guanguans/notify/compare/2.14.1...3.0.0
 [2.14.1]: https://github.com/guanguans/notify/compare/2.14.0...2.14.1
 [2.14.0]: https://github.com/guanguans/notify/compare/2.13.1...2.14.0
 [2.13.1]: https://github.com/guanguans/notify/compare/2.13.0...2.13.1
