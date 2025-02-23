@@ -14,6 +14,22 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
 >
+  <testsuites>
+    <testsuite name="Guanguans Test Suite">
+      <directory>tests/</directory>
+      <exclude>vendor/</exclude>
+    </testsuite>
+  </testsuites>
+  <source>
+    <include>
+      <directory suffix=".php">src/</directory>
+    </include>
+    <exclude>
+      <directory>src/Foundation/Rectors</directory>
+      <directory>src/Foundation/Support</directory>
+      <file>src/Skeleton.php</file>
+    </exclude>
+  </source>
   <coverage>
     <include>
       <directory suffix=".php">src/</directory>
@@ -24,10 +40,4 @@
       <file>src/Skeleton.php</file>
     </exclude>
   </coverage>
-  <testsuites>
-    <testsuite name="Guanguans Test Suite">
-      <directory>tests/</directory>
-      <exclude>vendor/</exclude>
-    </testsuite>
-  </testsuites>
 </phpunit>

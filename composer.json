@@ -106,7 +106,8 @@
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "rector/rector": "^2.0",
         "symfony/var-dumper": "^6.0 || ^7.0",
-        "vimeo/psalm": "^5.26 || ^6.0"
+        "vimeo/psalm": "^5.26 || ^6.0",
+        "yoast/phpunit-polyfills": "^4.0"
     },
     "suggest": {
         "illuminate/collections": "Required to use the method [Response::collect()].",
