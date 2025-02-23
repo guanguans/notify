@@ -86,7 +86,7 @@ class Utils
      *
      * @return list<string>
      */
-    public static function definedFor($object): array
+    public static function definedFor(Message|string $object): array
     {
         if (\is_string($object)) {
             $reflectionClass = new \ReflectionClass($object);
@@ -130,7 +130,7 @@ class Utils
          *     filename: string,
          * }[]
          */
-        $partResolver = static function ($key, $value) use (&$partResolver): array {
+        $partResolver = static function (mixed $key, mixed $value) use (&$partResolver): array {
             if (!\is_array($value)) {
                 return [['name' => $key, 'contents' => $value]];
             }
@@ -155,7 +155,7 @@ class Utils
             return array_merge([], ...$parts);
         };
 
-        $contentsNormalizer = static function ($contents, int $options) {
+        $contentsNormalizer = static function (mixed $contents, int $options) {
             if (!\is_string($contents)) {
                 return $contents;
             }
@@ -218,7 +218,7 @@ class Utils
         $defaults = array_merge($defaults, $agents);
 
         return trim(implode(' ', array_map(
-            static fn ($value, string $name): string => "$name/$value",
+            static fn (mixed $value, string $name): string => "$name/$value",
             $defaults,
             array_keys($defaults),
         )));

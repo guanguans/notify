@@ -457,9 +457,9 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
         $callback = \func_get_args()[0] ?? null;
 
         if ($this->failed()) {
-            throw tap($this->toException(), function ($exception) use ($callback): void {
+            throw tap($this->toException(), function (?RequestException $requestException) use ($callback): void {
                 if ($callback && \is_callable($callback)) {
-                    $callback($this, $exception);
+                    $callback($this, $requestException);
                 }
             });
         }
@@ -527,6 +527,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
 
     /**
      * Determine if the given offset exists.
+     *
+     * @param array-key $offset
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -536,7 +538,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Get the value for a given offset.
      *
-     * @param mixed|string $offset
+     * @param array-key $offset
      */
     #[\ReturnTypeWillChange]
     public function offsetGet(mixed $offset): mixed
@@ -547,6 +549,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Set the value at the given offset.
      *
+     * @param array-key $offset
+     *
      * @throws \LogicException
      */
     public function offsetSet(mixed $offset, mixed $value): void
@@ -556,6 +560,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
 
     /**
      * Unset the value at the given offset.
+     *
+     * @param array-key $offset
      *
      * @throws \LogicException
      */

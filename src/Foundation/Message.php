@@ -103,7 +103,7 @@ abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
     {
         return Arr::rejectRecursive(
             $this->getValidatedOptions(),
-            static fn ($value): bool => [] === $value || null === $value,
+            static fn (mixed $value): bool => [] === $value || null === $value,
         );
     }
 }

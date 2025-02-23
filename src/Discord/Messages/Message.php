@@ -85,7 +85,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                 ])
                 ->setNormalizer('color', static fn (
                     OptionsResolver $optionsResolver,
-                    $value
+                    int|string $value
                 ): float|int => \is_int($value) ? $value : hexdec($value))
                 ->setAllowedTypes('footer', 'array')
                 ->setDefault('footer', static function (OptionsResolver $optionsResolver): void {

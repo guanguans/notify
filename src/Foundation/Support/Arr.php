@@ -28,7 +28,7 @@ class Arr
      *
      * @param array-key|float $key
      */
-    public static function exists(array|\ArrayAccess $array, $key): bool
+    public static function exists(array|\ArrayAccess $array, mixed $key): bool
     {
         if ($array instanceof \ArrayAccess) {
             return $array->offsetExists($key);
@@ -45,8 +45,10 @@ class Arr
      * Set an array item to a given value using "dot" notation.
      *
      * If no key is given to the method, the entire array will be replaced.
+     *
+     * @param null|array-key $key
      */
-    public static function set(array &$array, null|int|string $key, mixed $value): array
+    public static function set(array &$array, mixed $key, mixed $value): array
     {
         if (null === $key) {
             return $array = $value;
@@ -84,7 +86,7 @@ class Arr
      *
      * @param null|array-key $key
      */
-    public static function get(array|\ArrayAccess $array, $key, mixed $default = null): mixed
+    public static function get(array|\ArrayAccess $array, mixed $key, mixed $default = null): mixed
     {
         if (!static::accessible($array)) {
             return value($default);
@@ -131,16 +133,20 @@ class Arr
 
     /**
      * Get a subset of the items from the given array.
+     *
+     * @param array-key|list<array-key> $keys
      */
-    public static function only(array $array, array|string $keys): array
+    public static function only(array $array, mixed $keys): array
     {
         return array_intersect_key($array, array_flip((array) $keys));
     }
 
     /**
      * Get all keys of the given array except for a specified array of keys.
+     *
+     * @param array-key|list<array-key> $keys
      */
-    public static function except(array $array, array|float|int|string $keys): array
+    public static function except(array $array, mixed $keys): array
     {
         static::forget($array, $keys);
 
@@ -149,8 +155,10 @@ class Arr
 
     /**
      * Remove one or many array items from a given array using "dot" notation.
+     *
+     * @param array-key|list<array-key> $keys
      */
-    public static function forget(array &$array, array|float|int|string $keys): void
+    public static function forget(array &$array, mixed $keys): void
     {
         $original = &$array;
 

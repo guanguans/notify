@@ -102,23 +102,35 @@ trait HasOptions
         });
     }
 
-    public function offsetExists($offset): bool
+    /**
+     * @param array-key $offset
+     */
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->options[$offset]);
     }
 
+    /**
+     * @param array-key $offset
+     */
     #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->getOption($offset);
     }
 
-    public function offsetSet($offset, $value): void
+    /**
+     * @param array-key $offset
+     */
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->setOption($offset, $value);
     }
 
-    public function offsetUnset($offset): void
+    /**
+     * @param array-key $offset
+     */
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->options[$offset]);
     }

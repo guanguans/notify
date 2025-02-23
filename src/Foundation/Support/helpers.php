@@ -74,9 +74,9 @@ if (!\function_exists('Guanguans\Notify\Foundation\Support\tap')) {
     {
         if (null === $callback) {
             return new class($value) {
-                public function __construct(public $target) {}
+                public function __construct(public mixed $target) {}
 
-                public function __call($method, $parameters)
+                public function __call(string $method, array $parameters): mixed
                 {
                     $this->target->{$method}(...$parameters);
 

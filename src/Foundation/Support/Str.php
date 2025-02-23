@@ -83,15 +83,13 @@ class Str
 
         $words = explode(' ', static::replace(['-', '_'], ' ', $value));
 
-        $studlyWords = array_map(static fn ($word): string => static::ucfirst($word), $words);
+        $studlyWords = array_map(static fn (string $word): string => static::ucfirst($word), $words);
 
         return static::$studlyCache[$key] = implode('', $studlyWords);
     }
 
     /**
      * Determine if a given string matches a given pattern.
-     *
-     * @param iterable<string>|string $patterns
      */
     public static function is(iterable|string $patterns, string $value): bool
     {
@@ -127,14 +125,14 @@ class Str
     /**
      * Replace the given value in the given string.
      *
-     * @param iterable<string>|string $search
-     * @param iterable<string>|string $replace
-     * @param iterable<string>|string $subject
-     *
      * @return list<string>|string
      */
-    public static function replace(iterable|string $search, iterable|string $replace, iterable|string $subject, bool $caseSensitive = true): array|string
-    {
+    public static function replace(
+        iterable|string $search,
+        iterable|string $replace,
+        iterable|string $subject,
+        bool $caseSensitive = true
+    ): array|string {
         if ($search instanceof \Traversable) {
             $search = iterator_to_array($search);
         }

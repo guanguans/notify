@@ -20,7 +20,7 @@ trait Dumpable
     /**
      * @codeCoverageIgnore
      */
-    public function dd(...$args): void
+    public function dd(mixed ...$args): void
     {
         $this->dump(...$args);
 
@@ -33,7 +33,7 @@ trait Dumpable
      *
      * @psalm-suppress ForbiddenCode
      */
-    public function dump(...$args): self
+    public function dump(mixed ...$args): self
     {
         $args[] = $this;
         $varDumperExists = class_exists(VarDumper::class);
