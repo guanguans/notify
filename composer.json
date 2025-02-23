@@ -88,6 +88,7 @@
         "ergebnis/composer-normalize": "^2.45",
         "ergebnis/license": "^2.6",
         "ergebnis/php-cs-fixer-config": "dev-main",
+        "ergebnis/phpunit-slow-test-detector": "^2.18",
         "ergebnis/rector-rules": "^1.3",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
