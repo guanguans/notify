@@ -8,6 +8,17 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.0.1"></a>
+## [3.0.1] - 2025-02-23
+### Build
+- **config:** Update branch alias to 3.x-dev
+
+### Performance Improvements
+- **Response:** Refactor response methods for type clarity
+- **dependencies:** Add PHPStan extensions and improve type hints
+- **rector:** Remove Deprecated ReturnTypeWillChange Annotations
+
+
 <a name="3.0.0"></a>
 ## [3.0.0] - 2025-02-23
 ### CI
@@ -1229,7 +1240,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.0.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.0.1...HEAD
+[3.0.1]: https://github.com/guanguans/notify/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/guanguans/notify/compare/2.14.1...3.0.0
 [2.14.1]: https://github.com/guanguans/notify/compare/2.14.0...2.14.1
 [2.14.0]: https://github.com/guanguans/notify/compare/2.13.1...2.14.0
