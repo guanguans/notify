@@ -14,6 +14,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
+use Composer\Autoload\ClassLoader;
 use Ergebnis\Rector\Rules\Arrays\SortAssociativeArrayByKeyRector;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
@@ -23,6 +24,7 @@ use Guanguans\Notify\Foundation\Rectors\HasOptionsDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
 use Guanguans\Notify\Foundation\Response;
 use GuzzleHttp\RequestOptions;
+use Illuminate\Support\Collection;
 use Kcs\ClassFinder\Finder\ComposerFinder;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Identifier;
@@ -124,13 +126,28 @@ return RectorConfig::configure()
         new ClassMethodReference(HasOptions::class, 'offsetGet'),
         new ClassMethodReference(Response::class, 'offsetGet'),
     ])
+    // ->withConfiguredRule(AnnotationToAttributeRector::class, array_map(
+    //     static fn (string $class) => new AnnotationToAttribute(class_basename($class), $class, [], true),
+    //     array_keys(iterator_to_array(
+    //         (new ComposerFinder)
+    //             ->inNamespace('PhpBench\Attributes')
+    //             ->filter(static fn (ReflectionClass $reflectionClass): bool => $reflectionClass->isInstantiable())
+    //     ))
+    // ))
     ->withConfiguredRule(AnnotationToAttributeRector::class, array_map(
         static fn (string $class) => new AnnotationToAttribute(class_basename($class), $class, [], true),
-        array_keys(iterator_to_array(
-            (new ComposerFinder)
-                ->inNamespace('PhpBench\Attributes')
-                ->filter(static fn (ReflectionClass $reflectionClass): bool => $reflectionClass->isInstantiable())
-        ))
+        collect(spl_autoload_functions())
+            ->pipe(static function (Collection $splAutoloadFunctions): Collection {
+                $autoloadFunction = $splAutoloadFunctions->firstOrFail(
+                    static fn (mixed $loader): bool => \is_array($loader) && $loader[0] instanceof ClassLoader
+                );
+
+                return collect($autoloadFunction[0]->getClassMap());
+            })
+            ->keys()
+            ->filter(static fn (string $class): bool => str_starts_with($class, 'PhpBench\Attributes'))
+            ->filter(static fn (string $class): bool => (new ReflectionClass($class))->isInstantiable())
+            ->all()
     ))
     ->withConfiguredRule(AddSensitiveParameterAttributeRector::class, [
         AddSensitiveParameterAttributeRector::SENSITIVE_PARAMETERS => [
