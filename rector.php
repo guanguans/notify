@@ -121,11 +121,11 @@ return RectorConfig::configure()
         AsJson::class,
         AsPost::class,
     ])
-    ->withConfiguredRule(ReturnTypeWillChangeRector::class, [
-        new ClassMethodReference(ArrayAccess::class, 'offsetGet'),
-        new ClassMethodReference(HasOptions::class, 'offsetGet'),
-        new ClassMethodReference(Response::class, 'offsetGet'),
-    ])
+    // ->withConfiguredRule(ReturnTypeWillChangeRector::class, [
+    //     new ClassMethodReference(ArrayAccess::class, 'offsetGet'),
+    //     new ClassMethodReference(HasOptions::class, 'offsetGet'),
+    //     new ClassMethodReference(Response::class, 'offsetGet'),
+    // ])
     // ->withConfiguredRule(AnnotationToAttributeRector::class, array_map(
     //     static fn (string $class) => new AnnotationToAttribute(class_basename($class), $class, [], true),
     //     array_keys(iterator_to_array(

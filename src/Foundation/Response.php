@@ -540,7 +540,6 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @param array-key $offset
      */
-    #[\ReturnTypeWillChange]
     public function offsetGet(mixed $offset): mixed
     {
         return $this->json()[$offset] ?? null;

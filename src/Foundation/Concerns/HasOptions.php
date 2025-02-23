@@ -113,7 +113,6 @@ trait HasOptions
     /**
      * @param array-key $offset
      */
-    #[\ReturnTypeWillChange]
     public function offsetGet(mixed $offset): mixed
     {
         return $this->getOption($offset);
