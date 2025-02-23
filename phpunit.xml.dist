@@ -7,6 +7,9 @@
   verbose="true"
   xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
 >
+  <!--printerClass="NunoMaduro\Collision\Adapters\Phpunit\Printer"-->
+  <!--printerClass="NunoMaduro\Collision\Adapters\Phpunit\Printers\DefaultPrinter"-->
+  <!--printerClass="NunoMaduro\Collision\Adapters\Phpunit\Printers\ReportablePrinter"-->
   <testsuites>
     <testsuite name="Guanguans Test Suite">
       <directory>tests/</directory>

@@ -11,4 +11,3 @@
 /.php_cs            export-ignore
 /.github            export-ignore
 /psalm.xml          export-ignore
-

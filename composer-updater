@@ -96,6 +96,9 @@ $status = (new SingleCommandApplication)
                 $this->differ = $differ ?? new Differ;
             }
 
+            /**
+             * @noinspection NullPointerExceptionInspection
+             */
             public function __invoke(): void
             {
                 $this
@@ -160,7 +163,7 @@ $status = (new SingleCommandApplication)
             {
                 $outdatedComposerPackages = $this->getOutdatedComposerPackages();
                 $decodedComposerJson = json_decode(file_get_contents($this->composerJsonPath), true);
-                (fn () => self::reload(null))->call(new InstalledVersions);
+                InstalledVersions::reload([]);
 
                 foreach ($decodedComposerJson as $name => &$value) {
                     if (!\in_array($name, ['require', 'require-dev'], true)) {
@@ -234,7 +237,6 @@ $status = (new SingleCommandApplication)
             }
 
             /**
-             * @noinspection MissingParameterTypeDeclarationInspection
              * @noinspection PhpSameParameterValueInspection
              *
              * @param mixed $input The input as stream resource, scalar or \Traversable, or null for no input
@@ -280,7 +282,6 @@ $status = (new SingleCommandApplication)
             /**
              * @noinspection SuspiciousLoopInspection
              * @noinspection ComparisonScalarOrderInspection
-             * @noinspection MissingParameterTypeDeclarationInspection
              */
             private function strIs(array|string $pattern, string $value): bool
             {

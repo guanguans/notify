@@ -115,7 +115,7 @@
         "illuminate/support": "Required to use the method [Response::fluent()].",
         "symfony/var-dumper": "Required to use the the trait [WithDumpable]."
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
@@ -223,6 +223,8 @@
         "mark-start": "printf '\\n!\\n!\\t\\033[0;36m%s\\033[0m\\n!\\n\\n' \"Started\"",
         "md-fix": "@md-lint --fix",
         "md-lint": "lint-md --config .lintmdrc ./*.md ./.github/ ./docs/ ./src/*/*.md",
+        "peck": "/opt/homebrew/opt/php@8.3/bin/php ./vendor/bin/peck check --path=src/ --config=peck.json --ansi -v",
+        "peck-init": "@peck --init",
         "pest": "@php ./vendor/bin/pest --coverage",
         "pest-coverage": "@pest --coverage-html=./.build/phpunit/ --coverage-clover=./clover.xml",
         "pest-highest": [
@@ -232,6 +234,8 @@
         "pest-migrate-configuration": "@pest --migrate-configuration",
         "pest-profile": "@pest --profile",
         "pest-type-coverage": "@pest --type-coverage",
+        "pest-update-snapshots": "@pest -d --update-snapshots",
+        "phpmnd": "@php ./vendor/bin/phpmnd src --exclude-path=Support/Utils.php --hint --progress --ansi -v",
         "phpstan": "@php ./vendor/bin/phpstan analyse --ansi -v",
         "phpstan-baseline": "@phpstan --generate-baseline --allow-empty-baseline",
         "platform-lint": "@php platform-lint",
@@ -250,10 +254,16 @@
             "@putenv PHP84=/opt/homebrew/opt/php@8.4/bin/php"
         ],
         "rector": "@php ./vendor/bin/rector --clear-cache --ansi -v",
+        "rector-custom-rule": "@rector custom-rule",
+        "rector-detect-node": "@rector detect-node --loop",
         "rector-dry-run": "@rector --dry-run",
+        "rector-list-rules": "@rector list-rules",
         "rector-php82": "@rector --config=rector-php82.php",
         "rector-php82-dry-run": "@rector-php82 --dry-run",
+        "rector-setup-ci": "@rector setup-ci",
         "release": "@php ./vendor/bin/monorepo-builder release --ansi -v",
+        "release-1.0.0-BETA1": "@release 1.0.0-BETA1",
+        "release-1.0.0-BETA1-dry-run": "@release-1.0.0-BETA1 --dry-run",
         "release-major": "@release major",
         "release-major-dry-run": "@release-major --dry-run",
         "release-minor": "@release minor",
@@ -271,9 +281,24 @@
         "test-phpunit": "@php ./vendor/bin/phpunit --cache-result-file=./.build/phpunit/.phpunit.result.cache --coverage-text --ansi -v",
         "test-phpunit-coverage": "@test --coverage-html=./.build/phpunit/ --coverage-clover=clover.xml",
         "test-type-coverage": "@pest-type-coverage",
+        "test-update-snapshots": "@pest-update-snapshots",
         "trufflehog": "trufflehog git https://github.com/guanguans/notify --only-verified",
         "yaml-lint": "@php ./vendor/bin/yaml-lint .github --ansi -v",
         "zh-fix": "@zh-lint --fix",
         "zh-lint": "zhlint {./,docs/,docs/**/}*-zh_CN.md"
+    },
+    "scripts-aliases": {
+        "pest": [
+            "test"
+        ],
+        "pest-coverage": [
+            "test-coverage"
+        ],
+        "pest-migrate-configuration": [
+            "test-migrate-configuration"
+        ],
+        "pest-update-snapshots": [
+            "test-update-snapshots"
+        ]
     }
 }
