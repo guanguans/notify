@@ -167,7 +167,7 @@ return RectorConfig::configure()
         'test' => 'it',
     ] + array_reduce(
         [
-            'error_silencer',
+            'rescue',
             'value',
             'base64_encode_file',
             'tap',

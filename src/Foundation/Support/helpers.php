@@ -16,12 +16,8 @@ namespace Guanguans\Notify\Foundation\Support;
 const MULTIPART_TRY_OPEN_FILE = 1 << 0;
 const MULTIPART_TRY_OPEN_URL = 1 << 1;
 
-if (!\function_exists('Guanguans\Notify\Foundation\Support\error_silencer')) {
-    /**
-     * @noinspection ForgottenDebugOutputInspection
-     * @noinspection DebugFunctionUsageInspection
-     */
-    function error_silencer(callable $callback, bool $debug = false)
+if (!\function_exists('Guanguans\Notify\Foundation\Support\rescue')) {
+    function rescue(callable $callback, ?callable $rescuer = null)
     {
         /** @phpstan-ignore-next-line  */
         set_error_handler(static function (
@@ -29,11 +25,19 @@ if (!\function_exists('Guanguans\Notify\Foundation\Support\error_silencer')) {
             string $errStr,
             string $errFile = '',
             int $errLine = 0
-        ) use ($debug): void {
-            $debug and var_dump($errNo, $errStr, $errFile, $errLine);
+        ) use ($rescuer, &$result): void {
+            $rescuer and $result = $rescuer($errNo, $errStr, $errFile, $errLine);
         });
 
-        $result = $callback();
+        // set_exception_handler(static function (\Throwable $throwable) use ($rescuer, &$result): void {
+        //     $rescuer and $result = $rescuer($throwable);
+        // });
+
+        try {
+            $result = $callback();
+        } catch (\Throwable $throwable) {
+            $rescuer and $result = $rescuer($throwable);
+        }
 
         restore_error_handler();
 
