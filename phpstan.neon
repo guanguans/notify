@@ -10,12 +10,12 @@ parameters:
     paths:
         - src
     tmpDir: .build/phpstan
-#    errorFormat: symplify
-    errorFormat: friendly
-    friendly:
-        lineBefore: 3
-        lineAfter: 3
-        editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+    errorFormat: symplify
+#    errorFormat: friendly
+#    friendly:
+#        lineBefore: 3
+#        lineAfter: 3
+#        editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
     type_coverage:
         declare: 100
         return_type: 100

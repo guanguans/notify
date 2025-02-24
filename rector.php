@@ -26,7 +26,6 @@ use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
 use Guanguans\Notify\Foundation\Response;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Collection;
-use Kcs\ClassFinder\Finder\ComposerFinder;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name\FullyQualified;

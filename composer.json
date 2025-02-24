@@ -88,14 +88,12 @@
         "ergebnis/composer-normalize": "^2.45",
         "ergebnis/license": "^2.6",
         "ergebnis/php-cs-fixer-config": "dev-main",
-        "ergebnis/phpunit-slow-test-detector": "^2.18",
         "ergebnis/rector-rules": "^1.3",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
         "illuminate/collections": "^9.52 || ^10.0 || ^11.0",
         "illuminate/support": "^9.52 || ^10.0 || ^11.0",
         "infection/extension-installer": "^0.1",
-        "kcs/class-finder": "^0.3",
         "maglnet/composer-require-checker": "^3.8 || ^4.0",
         "mockery/mockery": "^1.6",
         "pestphp/pest": "^1.23 || ^2.0 || ^3.0",
@@ -108,9 +106,7 @@
         "rector/rector": "^2.0",
         "symfony/var-dumper": "^6.0 || ^7.0",
         "symplify/phpstan-extensions": "^12.0",
-        "tomasvotruba/type-coverage": "^2.0",
-        "yamadashy/phpstan-friendly-formatter": "^1.2",
-        "yoast/phpunit-polyfills": "^4.0"
+        "tomasvotruba/type-coverage": "^2.0"
     },
     "suggest": {
         "illuminate/collections": "Required to use the method [Response::collect()].",

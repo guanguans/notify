@@ -248,7 +248,9 @@ return Factory::fromRuleSet($ruleSet)
             ])
             ->notName([
                 '*.blade.php',
-                // '_ide_helper.php',
+                '.phpstorm.meta.php',
+                '_ide_helper.php',
+                '_ide_helper_models.php',
             ])
             ->ignoreDotFiles(true)
             ->ignoreVCS(true)
