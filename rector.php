@@ -40,6 +40,7 @@ use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
+use Rector\DeadCode\Rector\ClassLike\RemoveAnnotationRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
@@ -81,10 +82,9 @@ return RectorConfig::configure()
     ->withCache(__DIR__.'/.build/rector/')
     ->withParallel()
     // ->withoutParallel()
-    ->withImportNames(
-        importDocBlockNames: false,
-        importShortClasses: false,
-    )
+    // ->withImportNames(importNames: false)
+    ->withImportNames(importDocBlockNames: false, importShortClasses: false)
+    ->withPhpVersion(PhpVersion::PHP_80)
     ->withFluentCallNewLine()
     ->withAttributesSets(phpunit: true)
     ->withComposerBased(phpunit: true)
@@ -116,6 +116,9 @@ return RectorConfig::configure()
     ])
     ->withConfiguredRule(ChangeMethodVisibilityRector::class, [
         new ChangeMethodVisibility(HasOptions::class, 'preConfigureOptionsResolver', Visibility::PROTECTED),
+    ])
+    ->withConfiguredRule(RemoveAnnotationRector::class, [
+        'psalm-suppress',
     ])
     ->withConfiguredRule(RemoveTraitUseRector::class, [
         AsJson::class,

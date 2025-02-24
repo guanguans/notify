@@ -110,8 +110,6 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
     }
 
     /**
-     * @psalm-suppress MoreSpecificImplementedParamType
-     *
      * @param Class_ $node
      *
      * @throws \ReflectionException

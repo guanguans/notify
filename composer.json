@@ -109,7 +109,6 @@
         "symfony/var-dumper": "^6.0 || ^7.0",
         "symplify/phpstan-extensions": "^12.0",
         "tomasvotruba/type-coverage": "^2.0",
-        "vimeo/psalm": "^5.26 || ^6.0",
         "yamadashy/phpstan-friendly-formatter": "^1.2",
         "yoast/phpunit-polyfills": "^4.0"
     },
@@ -198,7 +197,6 @@
             "@zh-lint",
             "@style-lint",
             "@test",
-            "@psalm",
             "@phpstan",
             "@rector-dry-run",
             "@rector-php82-dry-run"

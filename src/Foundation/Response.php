@@ -271,8 +271,6 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * Check if the content type matches the given type.
      *
      * @noinspection MultipleReturnStatementsInspection
-     *
-     * @psalm-suppress UndefinedConstant
      */
     public function is(string $type): bool
     {

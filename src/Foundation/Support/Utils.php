@@ -78,8 +78,6 @@ class Utils
     /**
      * Return an array of defined properties for the given object.
      *
-     * @psalm-suppress InvalidScope
-     *
      * @param class-string|Message $object
      *
      * @throws \ReflectionException

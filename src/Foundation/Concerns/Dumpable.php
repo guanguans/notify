@@ -30,8 +30,6 @@ trait Dumpable
     /**
      * @noinspection ForgottenDebugOutputInspection
      * @noinspection DebugFunctionUsageInspection
-     *
-     * @psalm-suppress ForbiddenCode
      */
     public function dump(mixed ...$args): self
     {

@@ -68,8 +68,6 @@ final class ToInternalExceptionRector extends AbstractRector implements Configur
     }
 
     /**
-     * @psalm-suppress MoreSpecificImplementedParamType
-     *
      * @param Node\Expr\New_ $node
      *
      * @throws \ReflectionException

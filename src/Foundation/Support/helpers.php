@@ -20,9 +20,6 @@ if (!\function_exists('Guanguans\Notify\Foundation\Support\error_silencer')) {
     /**
      * @noinspection ForgottenDebugOutputInspection
      * @noinspection DebugFunctionUsageInspection
-     *
-     * @psalm-suppress ForbiddenCode
-     * @psalm-suppress InvalidArgument
      */
     function error_silencer(callable $callback, bool $debug = false)
     {
