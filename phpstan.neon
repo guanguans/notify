@@ -1,14 +1,23 @@
 includes:
     - phpstan-baseline.neon
-#    - vendor/roave/no-floaters/rules.neon
-#    - vendor/phpstan/phpstan-strict-rules/rules.neon
-#    - vendor/ergebnis/phpstan-rules/rules.neon
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-dangerous-calls.neon
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-execution-calls.neon
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-insecure-calls.neon
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-loose-calls.neon
+#    - vendor-bin/larastan/vendor/larastan/larastan/extension.neon
 #    - vendor/ekino/phpstan-banned-code/extension.neon
+#    - vendor/ergebnis/phpstan-rules/rules.neon
+#    - vendor/phpstan/phpstan-strict-rules/rules.neon
+#    - vendor/roave/no-floaters/rules.neon
 
 parameters:
-    level: 5
     paths:
         - src
+        - .php-cs-fixer.php
+    excludePaths:
+            - tests/fixtures/
+#    level: max
+    level: 5
     tmpDir: .build/phpstan
     errorFormat: symplify
 #    errorFormat: friendly
@@ -26,7 +35,6 @@ parameters:
 #    checkModelProperties: true
 #    checkMissingIterableValueType: true
 #    disallowFloatsEverywhere: true
-
 #    strictRules:
 #        allRules: false
 #        booleansInConditions: false
@@ -40,7 +48,16 @@ parameters:
 #        strictCalls: false
 #        switchConditionsMatchingType: false
 #        noVariableVariables: false
-
+    disallowedFunctionCalls:
+        -
+            function: 'env()'
+            message: 'use config() instead'
+        -
+            function: 'env_explode()'
+            message: 'use config() instead'
+        -
+            function: 'env_getcsv()'
+            message: 'use config() instead'
     ignoreErrors:
         - '#^@readonly property cannot have a default value\.$#'
         - '#^@readonly property Guanguans\\Notify\\Foundation\\Response\:\:\$.* is assigned outside of the constructor\.$#'
@@ -50,3 +67,28 @@ parameters:
         - '#^Unsafe usage of new static\(\)\.$#'
         - '#^Unused result of "and" operator\.$#'
         - '#^Unused result of "or" operator\.$#'
+        -
+            message: '#^Calling sha1\(\) is forbidden, use hash\(\) with at least SHA\-256 for secure hash, or password_hash\(\) for passwords\.$#'
+            path: src/Foundation/Authenticators/WsseAuthenticator.php
+        -
+            message: '#^Calling uniqid\(\) is forbidden, it is not a cryptographically secure generator, use random_bytes\(\) instead\.$#'
+            path: src/Foundation/Authenticators/WsseAuthenticator.php
+
+        -
+            message: '#^Calling var_dump\(\) is forbidden, use some logger instead\.$#'
+            path: src/Foundation/Client.php
+
+        -
+            message: '#^Calling var_dump\(\) is forbidden, use some logger instead\.$#'
+            path: src/Foundation/Message.php
+
+        -
+            message: '#^Calling var_dump\(\) is forbidden, use some logger instead\.$#'
+            path: src/Foundation/Response.php
+
+        -
+            message: '#^Calling md5\(\) is forbidden, use hash\(\) with at least SHA\-256 for secure hash, or password_hash\(\) for passwords\.$#'
+            path: src/ServerChan/Messages/Message.php
+        -
+            message: '#^Calling md5_file\(\) is forbidden, use hash_file\(\) with at least SHA\-256 for secure hash\.$#'
+            path: src/WeWork/Messages/ImageMessage.php
