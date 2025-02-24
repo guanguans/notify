@@ -82,13 +82,6 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
             'handlerStats' => $this->handlerStats(),
             'requestSummary' => $this->request instanceof RequestInterface ? Message::toString($this->request) : null,
             'responseSummary' => Message::toString($this),
-            // 'headers' => Arr::map(
-            //     $this->headers(),
-            //     fn (array $header, string $name): string => $this->getHeaderLine($name),
-            // ),
-            // 'status' => $this->status(),
-            // 'reason' => $this->reason(),
-            // 'body' => $this->body(),
             'decodedBody' => $this->json(),
         ]);
     }
@@ -159,8 +152,10 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * Get the JSON decoded body of the response as an object.
      *
      * @noinspection JsonEncodingApiUsageInspection
+     *
+     * @return mixed|object
      */
-    public function object(): ?object
+    public function object(): mixed
     {
         return json_decode($this->body());
     }
@@ -267,7 +262,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
             fwrite($resource, $stream->read(1024));
         }
 
-        // rewind($resource);
+        rewind($resource);
         fclose($resource);
     }
 
@@ -454,15 +449,11 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @throws RequestException
      */
-    public function throw(): self
+    public function throw(?callable $callback = null): self
     {
-        $callback = \func_get_args()[0] ?? null;
-
         if ($this->failed()) {
             throw tap($this->toException(), function (?RequestException $requestException) use ($callback): void {
-                if ($callback && \is_callable($callback)) {
-                    $callback($this, $requestException);
-                }
+                $callback and $callback($this, $requestException);
             });
         }
 
@@ -472,11 +463,13 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Throw an exception if a server or client error occurred and the given condition evaluates to true.
      *
+     * @param bool|\Closure|mixed $condition
+     *
      * @throws RequestException
      */
-    public function throwIf(bool|\Closure $condition): self
+    public function throwIf(mixed $condition, ?callable $callback = null): self
     {
-        return value($condition, $this) ? $this->throw(\func_get_args()[1] ?? null) : $this;
+        return value($condition, $this) ? $this->throw($callback) : $this;
     }
 
     /**
