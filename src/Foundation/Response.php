@@ -66,7 +66,11 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      */
     protected ?TransferStats $transferStats = null;
 
-    /** The decoded JSON response. */
+    /**
+     * The decoded JSON response.
+     *
+     * @var array|mixed
+     */
     protected mixed $decoded = null;
 
     /**
@@ -126,7 +130,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @noinspection JsonEncodingApiUsageInspection
      *
-     * @param null|array-key $key
+     * @param array-key $key
      */
     public function json(mixed $key = null, mixed $default = null): mixed
     {
@@ -144,7 +148,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Alias of json().
      *
-     * @param null|array-key $key
+     * @param array-key $key
      */
     public function array(mixed $key = null, mixed $default = null): mixed
     {
@@ -168,7 +172,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @see https://github.com/illuminate/collections
      *
-     * @param null|array-key $key
+     * @param array-key $key
      */
     public function collect(mixed $key = null): Collection
     {
@@ -180,7 +184,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * To use the "fluent" method you must install the illuminate/support package.
      * Requires Laravel Support (composer require illuminate/support).
      *
-     * @param null|array-key $key
+     * @param array-key $key
      */
     public function fluent(mixed $key = null): Fluent
     {
