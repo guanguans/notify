@@ -1,7 +1,11 @@
 <?php
 
 /** @noinspection AnonymousFunctionStaticInspection */
-/** @noinspection DuplicateCustomExpectationInspection */
+/** @noinspection PhpInternalEntityUsedInspection */
+/** @noinspection PhpUndefinedClassInspection */
+/** @noinspection PhpUnused */
+/** @noinspection StaticClosureCanBeUsedInspection */
+/** @noinspection VirtualTypeCheckInspection */
 
 declare(strict_types=1);
 
@@ -45,11 +49,11 @@ expect()->extend('toBetween', fn (int $min, int $max): Expectation => expect($th
     ->toBeGreaterThanOrEqual($min)
     ->toBeLessThanOrEqual($max));
 
-expect()->extend('assert', function (Closure $assertions): Expectation {
-    $assertions($this->value);
-
-    return $this;
-});
+// expect()->extend('assert', function (Closure $assertions): Expectation {
+//     $assertions($this->value);
+//
+//     return $this;
+// });
 
 expect()->extend('assertCanSendMessage', function (Message $message): Expectation {
     $this->toBeInstanceOf(Client::class);

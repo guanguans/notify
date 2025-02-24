@@ -1,8 +1,11 @@
 <?php
 
+/** @noinspection AnonymousFunctionStaticInspection */
 /** @noinspection OffsetOperationsInspection */
-/** @noinspection StaticClosureCanBeUsedInspection */
+/** @noinspection AnonymousFunctionStaticInspection */
+/** @noinspection PhpPossiblePolymorphicInvocationInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection StaticClosureCanBeUsedInspection */
 
 declare(strict_types=1);
 
