@@ -19,6 +19,7 @@ use Ergebnis\Rector\Rules\Arrays\SortAssociativeArrayByKeyRector;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
+use Guanguans\Notify\Foundation\Method;
 use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\HasOptionsDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
@@ -30,8 +31,6 @@ use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name\FullyQualified;
 use PhpParser\Node\Scalar\LNumber;
-use Rector\CodeQuality\Rector\ClassMethod\ExplicitReturnNullRector;
-use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
 use Rector\CodingStyle\Rector\ArrowFunction\StaticArrowFunctionRector;
@@ -41,10 +40,9 @@ use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\ClassLike\RemoveAnnotationRector;
-use Rector\DeadCode\Rector\ClassMethod\RemoveUselessReturnTagRector;
+use Rector\DowngradePhp81\Rector\Array_\DowngradeArraySpreadStringKeyRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
-use Rector\Php73\Rector\String_\SensitiveHereNowDocRector;
 use Rector\Php80\Rector\Class_\AnnotationToAttributeRector;
 use Rector\Php80\ValueObject\AnnotationToAttribute;
 use Rector\Php82\Rector\Param\AddSensitiveParameterAttributeRector;
@@ -52,7 +50,6 @@ use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Removing\Rector\Class_\RemoveTraitUseRector;
 use Rector\Renaming\Rector\FuncCall\RenameFunctionRector;
 use Rector\Transform\Rector\ClassMethod\ReturnTypeWillChangeRector;
-use Rector\Transform\Rector\FileWithoutNamespace\RectorConfigBuilderRector;
 use Rector\Transform\Rector\Scalar\ScalarValueToConstFetchRector;
 use Rector\Transform\Rector\String_\StringToClassConstantRector;
 use Rector\Transform\ValueObject\ClassMethodReference;
@@ -64,7 +61,6 @@ use Rector\Visibility\Rector\ClassMethod\ChangeMethodVisibilityRector;
 use Rector\Visibility\ValueObject\ChangeMethodVisibility;
 
 return RectorConfig::configure()
-    ->withRootFiles()
     ->withPaths([
         __DIR__.'/benchmarks',
         __DIR__.'/src',
@@ -73,6 +69,7 @@ return RectorConfig::configure()
         __DIR__.'/generate-ide-json',
         __DIR__.'/platform-lint',
     ])
+    ->withRootFiles()
     // ->withSkipPath(__DIR__.'/tests.php')
     ->withSkip([
         __DIR__.'/tests.php',
@@ -106,7 +103,6 @@ return RectorConfig::configure()
         phpunitCodeQuality: true,
     )
     ->withRules([
-        RectorConfigBuilderRector::class,
         StaticArrowFunctionRector::class,
         StaticClosureRector::class,
         SortAssociativeArrayByKeyRector::class,
@@ -138,15 +134,13 @@ return RectorConfig::configure()
     //     ))
     // ))
     ->withConfiguredRule(AnnotationToAttributeRector::class, array_map(
-        static fn (string $class) => new AnnotationToAttribute(class_basename($class), $class, [], true),
+        static fn (string $class): AnnotationToAttribute => new AnnotationToAttribute(class_basename($class), $class, [], true),
         collect(spl_autoload_functions())
-            ->pipe(static function (Collection $splAutoloadFunctions): Collection {
-                $autoloadFunction = $splAutoloadFunctions->firstOrFail(
-                    static fn (mixed $loader): bool => \is_array($loader) && $loader[0] instanceof ClassLoader
-                );
-
-                return collect($autoloadFunction[0]->getClassMap());
-            })
+            ->pipe(static fn (Collection $splAutoloadFunctions): Collection => collect(
+                $splAutoloadFunctions
+                    ->firstOrFail(static fn (mixed $loader): bool => \is_array($loader) && $loader[0] instanceof ClassLoader)[0]
+                    ->getClassMap()
+            ))
             ->keys()
             ->filter(static fn (string $class): bool => str_starts_with($class, 'PhpBench\Attributes'))
             ->filter(static fn (string $class): bool => (new ReflectionClass($class))->isInstantiable())
@@ -167,10 +161,10 @@ return RectorConfig::configure()
         ],
     ])
     ->withConfiguredRule(RenameFunctionRector::class, [
-        'test' => 'it',
-        'Pest\Faker\faker' => 'faker',
         'Pest\Faker\fake' => 'fake',
+        'Pest\Faker\faker' => 'faker',
         // 'faker' => 'fake',
+        'test' => 'it',
     ] + array_reduce(
         [
             'error_silencer',
@@ -188,7 +182,7 @@ return RectorConfig::configure()
     ))
     ->withConfiguredRule(StringToClassConstantRector::class, array_reduce(
         [
-            Guanguans\Notify\Foundation\Method::class,
+            Method::class,
             RequestOptions::class,
         ],
         static fn (array $carry, string $class): array => array_merge(
@@ -221,15 +215,12 @@ return RectorConfig::configure()
         ExplicitBoolCompareRector::class,
         LogicalToBooleanRector::class,
         NewlineAfterStatementRector::class,
-        RemoveUselessReturnTagRector::class,
-        ExplicitReturnNullRector::class,
         ReturnBinaryOrToEarlyReturnRector::class,
-        SensitiveHereNowDocRector::class,
         WrapEncapsedVariableInCurlyBracesRector::class,
     ])
     ->withSkip([
-        CompactToVariablesRector::class => [
-            __DIR__.'/src/Foundation/Support/Utils.php',
+        DowngradeArraySpreadStringKeyRector::class => [
+            __DIR__.'/.php-cs-fixer.php',
         ],
         RemoveTraitUseRector::class => [
             __DIR__.'/src/Foundation/Message.php',

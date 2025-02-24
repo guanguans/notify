@@ -27,7 +27,7 @@ beforeEach(function (): void {
         response('0'),
         response('This is reply message.'),
         response(
-            <<<'error'
+            <<<'error_WRAP'
                 {
                   "errors": [
                     {
@@ -35,7 +35,7 @@ beforeEach(function (): void {
                     }
                   ]
                 }
-                error,
+                error_WRAP,
             401,
         ),
     ]);

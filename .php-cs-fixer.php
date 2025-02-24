@@ -11,26 +11,35 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-use Ergebnis\License;
-use Ergebnis\PhpCsFixer\Config;
+use Ergebnis\License\Holder;
+use Ergebnis\License\Range;
+use Ergebnis\License\Type\MIT;
+use Ergebnis\License\Url;
+use Ergebnis\License\Year;
+use Ergebnis\PhpCsFixer\Config\Factory;
+use Ergebnis\PhpCsFixer\Config\Fixers;
+use Ergebnis\PhpCsFixer\Config\Rules;
+use Ergebnis\PhpCsFixer\Config\RuleSet\Php80;
 use PhpCsFixer\Finder;
+use PhpCsFixer\Fixer\DeprecatedFixerInterface;
 use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
+use PhpCsFixerCustomFixers\Fixer\AbstractFixer;
 
-$license = License\Type\MIT::text(
+$license = MIT::text(
     __DIR__.'/LICENSE',
-    License\Range::since(
-        License\Year::fromString('2021'),
+    Range::since(
+        Year::fromString('2021'),
         new DateTimeZone('Asia/Shanghai'),
     ),
-    License\Holder::fromString('guanguans<ityaozm@gmail.com>'),
-    License\Url::fromString('https://github.com/guanguans/notify'),
+    Holder::fromString('guanguans<ityaozm@gmail.com>'),
+    Url::fromString('https://github.com/guanguans/notify'),
 );
 
 $license->save();
 
-$ruleSet = Config\RuleSet\Php80::create()
+$ruleSet = Php80::create()
     ->withHeader($license->header())
-    ->withRules(Config\Rules::fromArray([
+    ->withRules(Rules::fromArray([
         '@PHP70Migration' => true,
         '@PHP70Migration:risky' => true,
         '@PHP71Migration' => true,
@@ -166,13 +175,17 @@ $ruleSet = Config\RuleSet\Php80::create()
         ],
         'phpdoc_order' => [
             'order' => [
+                'noinspection',
+                'phan-suppress',
+                'phpcsSuppress',
+                'phpstan-ignore',
+                'psalm-suppress',
+
                 'deprecated',
                 'internal',
                 'covers',
                 'uses',
                 'dataProvider',
-                'noinspection',
-                'psalm-suppress',
                 'param',
                 'throws',
                 'return',
@@ -180,14 +193,17 @@ $ruleSet = Config\RuleSet\Php80::create()
         ],
         'phpdoc_to_param_type' => [
             'scalar_types' => true,
+            'types_map' => [],
             'union_types' => true,
         ],
         'phpdoc_to_property_type' => [
             'scalar_types' => true,
+            'types_map' => [],
             'union_types' => true,
         ],
         'phpdoc_to_return_type' => [
             'scalar_types' => true,
+            'types_map' => [],
             'union_types' => true,
         ],
         'simplified_if_return' => true,
@@ -199,17 +215,15 @@ $ruleSet = Config\RuleSet\Php80::create()
         'static_lambda' => false, // pest
     ]));
 
-$ruleSet->withCustomFixers(Config\Fixers::fromFixers(
+$ruleSet->withCustomFixers(Fixers::fromFixers(
     ...array_filter(
         iterator_to_array(new PhpCsFixerCustomFixers\Fixers),
-        static fn (
-            PhpCsFixerCustomFixers\Fixer\AbstractFixer $fixer
-        ): bool => !$fixer instanceof PhpCsFixer\Fixer\DeprecatedFixerInterface
+        static fn (AbstractFixer $fixer): bool => !$fixer instanceof DeprecatedFixerInterface
             && !\array_key_exists($fixer->getName(), $ruleSet->rules()->toArray())
     )
 ));
 
-return Config\Factory::fromRuleSet($ruleSet)
+return Factory::fromRuleSet($ruleSet)
     ->setFinder(
         Finder::create()
             ->in(__DIR__)
@@ -219,19 +233,18 @@ return Config\Factory::fromRuleSet($ruleSet)
                 '.github/',
                 'docs/',
                 'vendor-bin/',
-                '__snapshots__/',
             ])
-            ->append(glob(__DIR__.'/{*,.*}.php', \GLOB_BRACE))
             ->append([
+                ...glob(__DIR__.'/{*,.*}.php', \GLOB_BRACE),
                 __DIR__.'/composer-updater',
                 __DIR__.'/generate-ide-json',
                 __DIR__.'/platform-lint',
             ])
             ->notPath([
+                '*/__snapshots__/*',
                 'bootstrap/*',
-                'storage/*',
                 'resources/view/mail/*',
-                'vendor-bin/*',
+                'storage/*',
             ])
             ->notName([
                 '*.blade.php',
