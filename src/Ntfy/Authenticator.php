@@ -28,7 +28,7 @@ class Authenticator extends AggregateAuthenticator
         #[\SensitiveParameter]
         ?string $password = null
     ) {
-        $authenticators = match (\func_num_args()) {
+        parent::__construct(...match (\func_num_args()) {
             0 => [
                 new NullAuthenticator,
             ],
@@ -42,8 +42,6 @@ class Authenticator extends AggregateAuthenticator
                 new BasicAuthenticator($usernameOrToken, $password),
             ],
             default => throw new InvalidArgumentException('The number of arguments must be 0, 1 or 2.'),
-        };
-
-        parent::__construct(...$authenticators);
+        });
     }
 }

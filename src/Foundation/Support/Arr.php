@@ -54,7 +54,7 @@ class Arr
             return $array = $value;
         }
 
-        $keys = (array) explode('.', $key);
+        $keys = explode('.', $key);
 
         /** @noinspection SuspiciousLoopInspection */
         foreach ($keys as $i => $key) {
@@ -82,11 +82,10 @@ class Arr
     /**
      * Get an item from an array using "dot" notation.
      *
-     * @noinspection MultipleReturnStatementsInspection
-     *
+     * @param array|\ArrayAccess|mixed $array
      * @param null|array-key $key
      */
-    public static function get(array|\ArrayAccess $array, mixed $key, mixed $default = null): mixed
+    public static function get(mixed $array, mixed $key, mixed $default = null): mixed
     {
         if (!static::accessible($array)) {
             return value($default);

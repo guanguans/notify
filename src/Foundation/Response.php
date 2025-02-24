@@ -98,7 +98,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     }
 
     /**
-     * Create a instance from a PSR response.
+     * Create an instance from a PSR response.
      */
     public static function fromPsrResponse(ResponseInterface $response): self
     {

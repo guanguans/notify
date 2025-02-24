@@ -16,6 +16,12 @@ parameters:
         lineBefore: 3
         lineAfter: 3
         editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+    type_coverage:
+        declare: 100
+        return_type: 100
+        param_type: 100
+        property_type: 100
+        constant_type: 100
 #    checkOctaneCompatibility: true
 #    checkModelProperties: true
 #    checkMissingIterableValueType: true

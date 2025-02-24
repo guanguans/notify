@@ -13,9 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
-use Guanguans\Notify\Foundation\Authenticators\AggregateAuthenticator;
 use Guanguans\Notify\Foundation\Authenticators\NullAuthenticator;
-use Guanguans\Notify\Foundation\Authenticators\OptionsAuthenticator;
 use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Concerns\HasHttpClient;
 use Guanguans\Notify\Foundation\Contracts\Authenticator;
@@ -23,7 +21,6 @@ use Guanguans\Notify\Foundation\Contracts\Message;
 use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 
 class Client implements Contracts\Client

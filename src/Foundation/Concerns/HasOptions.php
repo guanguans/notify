@@ -1,8 +1,5 @@
 <?php
 
-/** @noinspection MissingReturnTypeInspection */
-/** @noinspection MissingParameterTypeDeclarationInspection */
-
 declare(strict_types=1);
 
 /**
@@ -44,14 +41,16 @@ trait HasOptions
     /**
      * @throws \ReflectionException
      */
-    public function __call(string $name, array $arguments)
+    public function __call(string $name, array $arguments): self
     {
-        $defined = Utils::definedFor($this);
-
         foreach ([null, 'snake', 'pascal', 'kebab'] as $case) {
-            $casedName = $case ? Str::{$case}($name) : $name;
-
-            if (\in_array($casedName, $defined, true)) {
+            if (
+                \in_array(
+                    $casedName = $case ? Str::{$case}($name) : $name,
+                    $defined ??= Utils::definedFor($this),
+                    true
+                )
+            ) {
                 if ([] === $arguments) {
                     throw new InvalidArgumentException(
                         \sprintf('The method [%s::%s] require an argument.', static::class, $name),
@@ -65,7 +64,7 @@ trait HasOptions
         throw new BadMethodCallException(\sprintf('The method [%s::%s] does not exist.', static::class, $name));
     }
 
-    public function setOption(string $option, $value): self
+    public function setOption(string $option, mixed $value): self
     {
         $this->options[$option] = $value;
 
@@ -79,7 +78,7 @@ trait HasOptions
         return $this;
     }
 
-    public function getOption(string $option, $default = null)
+    public function getOption(string $option, mixed $default = null): mixed
     {
         return $this->options[$option] ?? $default;
     }
@@ -89,7 +88,7 @@ trait HasOptions
         return $this->options;
     }
 
-    public function getValidatedOption(string $option, $default = null)
+    public function getValidatedOption(string $option, mixed $default = null): mixed
     {
         return $this->getValidatedOptions()[$option] ?? $default;
     }
