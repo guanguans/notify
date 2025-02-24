@@ -8,6 +8,31 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.0.2"></a>
+## [3.0.2] - 2025-02-24
+### Bug Fixes
+- **configuration:** Add additional rector rules and update paths
+
+### CI
+- **workflows:** Remove Psalm workflow and configuration files
+
+### Code Refactoring
+- **Response:** Simplify exception handling and cleaner code
+- **Support:** Rename error_silencer to error_handler
+- **config:** Improve message handling and array functions
+
+### Performance Improvements
+- **Response:** Improve type hinting for key parameters
+- **doc:** Improve type coverage and doc comments
+
+### Style
+- **config:** Refactor license and PHP CS Fixer configuration
+- **config:** Enhance PHP CS Fixer and clean imports
+
+### Tests
+- update test case templates and improve code quality
+
+
 <a name="3.0.1"></a>
 ## [3.0.1] - 2025-02-23
 ### Build
@@ -1240,7 +1265,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.0.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.0.2...HEAD
+[3.0.2]: https://github.com/guanguans/notify/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/guanguans/notify/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/guanguans/notify/compare/2.14.1...3.0.0
 [2.14.1]: https://github.com/guanguans/notify/compare/2.14.0...2.14.1
