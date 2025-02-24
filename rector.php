@@ -37,6 +37,7 @@ use Rector\CodingStyle\Rector\ArrowFunction\StaticArrowFunctionRector;
 use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
+use Rector\CodingStyle\Rector\FuncCall\ArraySpreadInsteadOfArrayMergeRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\ClassLike\RemoveAnnotationRector;
@@ -103,6 +104,7 @@ return RectorConfig::configure()
         phpunitCodeQuality: true,
     )
     ->withRules([
+        ArraySpreadInsteadOfArrayMergeRector::class,
         StaticArrowFunctionRector::class,
         StaticClosureRector::class,
         SortAssociativeArrayByKeyRector::class,
@@ -221,6 +223,7 @@ return RectorConfig::configure()
     ->withSkip([
         DowngradeArraySpreadStringKeyRector::class => [
             __DIR__.'/.php-cs-fixer.php',
+            __DIR__.'/src/Foundation/Message.php',
         ],
         RemoveTraitUseRector::class => [
             __DIR__.'/src/Foundation/Message.php',

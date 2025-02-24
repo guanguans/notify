@@ -87,9 +87,7 @@ class Utils
     public static function definedFor(Message|string $object): array
     {
         if (\is_string($object)) {
-            $reflectionClass = new \ReflectionClass($object);
-
-            $properties = $reflectionClass->getDefaultProperties();
+            $properties = (new \ReflectionClass($object))->getDefaultProperties();
 
             return array_unique(array_merge(
                 $properties['defined'] ?? [],

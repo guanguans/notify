@@ -64,11 +64,6 @@ class Client implements Contracts\Client
      */
     public function send(Message $message): ResponseInterface
     {
-        // $this->authenticator = new AggregateAuthenticator(
-        //     $this->authenticator,
-        //     new OptionsAuthenticator([RequestOptions::SYNCHRONOUS => true])
-        // );
-
         return $this->synchronous(true)->sendAsync($message)->wait();
     }
 
@@ -97,7 +92,6 @@ class Client implements Contracts\Client
      */
     public function pool(iterable $messages): array
     {
-        // return Utils::settle($promises)->wait();
         /** @noinspection PhpParamsInspection */
         return \GuzzleHttp\Promise\Utils::unwrap(
             (function (iterable $messages): \Generator {
