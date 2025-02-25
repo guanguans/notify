@@ -1,15 +1,29 @@
 includes:
     - baselines/loader.neon
 #    - phpstan-baseline.neon
+
     - vendor/spaze/phpstan-disallowed-calls/disallowed-dangerous-calls.neon
     - vendor/spaze/phpstan-disallowed-calls/disallowed-execution-calls.neon
     - vendor/spaze/phpstan-disallowed-calls/disallowed-insecure-calls.neon
     - vendor/spaze/phpstan-disallowed-calls/disallowed-loose-calls.neon
+#    - vendor/spaze/phpstan-disallowed-calls/extension.neon
+
 #    - vendor-bin/larastan/vendor/larastan/larastan/extension.neon
 #    - vendor/ekino/phpstan-banned-code/extension.neon
 #    - vendor/ergebnis/phpstan-rules/rules.neon
 #    - vendor/phpstan/phpstan-strict-rules/rules.neon
 #    - vendor/roave/no-floaters/rules.neon
+
+    - vendor/symplify/phpstan-rules/config/code-complexity-rules.neon
+#    - vendor/symplify/phpstan-rules/config/configurable-rules.neon
+#    - vendor/symplify/phpstan-rules/config/naming-rules.neon
+#    - vendor/symplify/phpstan-rules/config/static-rules.neon
+#    - vendor/symplify/phpstan-rules/config/symplify-rules.neon
+
+#    - vendor/symplify/phpstan-rules/config/doctrine-rules.neon
+#    - vendor/symplify/phpstan-rules/config/phpunit-rules.neon
+#    - vendor/symplify/phpstan-rules/config/rector-rules.neon
+#    - vendor/symplify/phpstan-rules/config/symfony-rules.neon
 
 parameters:
     paths:
@@ -32,10 +46,6 @@ parameters:
         param_type: 100
         property_type: 100
         constant_type: 100
-#    checkOctaneCompatibility: true
-#    checkModelProperties: true
-#    checkMissingIterableValueType: true
-#    disallowFloatsEverywhere: true
     disallowedFunctionCalls:
         -
             function: 'env()'
@@ -55,28 +65,10 @@ parameters:
         - '#^Unsafe usage of new static\(\)\.$#'
         - '#^Unused result of "and" operator\.$#'
         - '#^Unused result of "or" operator\.$#'
+        - '#^Use explicit names over dynamic ones$#'
         -
             message: '#^Calling sha1\(\) is forbidden, use hash\(\) with at least SHA\-256 for secure hash, or password_hash\(\) for passwords\.$#'
             path: src/Foundation/Authenticators/WsseAuthenticator.php
         -
             message: '#^Calling uniqid\(\) is forbidden, it is not a cryptographically secure generator, use random_bytes\(\) instead\.$#'
             path: src/Foundation/Authenticators/WsseAuthenticator.php
-
-        -
-            message: '#^Calling var_dump\(\) is forbidden, use some logger instead\.$#'
-            path: src/Foundation/Client.php
-
-        -
-            message: '#^Calling var_dump\(\) is forbidden, use some logger instead\.$#'
-            path: src/Foundation/Message.php
-
-        -
-            message: '#^Calling var_dump\(\) is forbidden, use some logger instead\.$#'
-            path: src/Foundation/Response.php
-
-        -
-            message: '#^Calling md5\(\) is forbidden, use hash\(\) with at least SHA\-256 for secure hash, or password_hash\(\) for passwords\.$#'
-            path: src/ServerChan/Messages/Message.php
-        -
-            message: '#^Calling md5_file\(\) is forbidden, use hash_file\(\) with at least SHA\-256 for secure hash\.$#'
-            path: src/WeWork/Messages/ImageMessage.php

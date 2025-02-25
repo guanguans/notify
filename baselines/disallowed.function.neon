@@ -1,0 +1,28 @@
+# total 6 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Calling var_dump\(\) is forbidden, use some logger instead\.$#'
+            count: 1
+            path: ../src/Foundation/Client.php
+
+        -
+            message: '#^Calling var_dump\(\) is forbidden, use some logger instead\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Calling var_dump\(\) is forbidden, use some logger instead\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Calling md5\(\) is forbidden, use hash\(\) with at least SHA\-256 for secure hash, or password_hash\(\) for passwords\.$#'
+            count: 2
+            path: ../src/ServerChan/Messages/Message.php
+
+        -
+            message: '#^Calling md5_file\(\) is forbidden, use hash_file\(\) with at least SHA\-256 for secure hash\.$#'
+            count: 1
+            path: ../src/WeWork/Messages/ImageMessage.php

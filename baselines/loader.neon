@@ -1,2 +1,3 @@
 includes:
+    - disallowed.function.neon
     - method.unused.neon

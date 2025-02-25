@@ -1,5 +1,0 @@
-{
-    "require-dev": {
-        "ekino/phpstan-banned-code": "^1.0"
-    }
-}
