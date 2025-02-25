@@ -58,19 +58,14 @@ parameters:
             message: 'use config() instead'
     ignoreErrors:
         - '#^.* .* no value type specified in iterable type .*\.$#'
-        - '#^@readonly property cannot have a default value\.$#'
         - '#^@readonly property Guanguans\\Notify\\Foundation\\Response\:\:\$.* is assigned outside of the constructor\.$#'
         - '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
-        - '#^Call to method sendAsync\(\) on an unknown class Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient\.$#'
         - '#^Method Guanguans\\Notify\\.* with generic .* does not specify its types\: TKey, TValue$#'
         - '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\As.* is used zero times and is not analysed\.$#'
         - '#^Unable to resolve the template type TMake.* in call to method static method Illuminate\\Support\\Collection\<\(int\|string\),mixed\>\:\:make\(\)$#'
         - '#^Unsafe usage of new static\(\)\.$#'
         - '#^Unused result of .* operator\.$#'
         - '#^Use explicit names over dynamic ones$#'
-        -
-            message: '#^Calling sha1\(\) is forbidden, use hash\(\) with at least SHA\-256 for secure hash, or password_hash\(\) for passwords\.$#'
-            path: src/Foundation/Authenticators/WsseAuthenticator.php
-        -
-            message: '#^Calling uniqid\(\) is forbidden, it is not a cryptographically secure generator, use random_bytes\(\) instead\.$#'
-            path: src/Foundation/Authenticators/WsseAuthenticator.php
+#        -
+#            message: '#^Calling sha1\(\) is forbidden, use hash\(\) with at least SHA\-256 for secure hash, or password_hash\(\) for passwords\.$#'
+#            path: src/Foundation/Authenticators/WsseAuthenticator.php

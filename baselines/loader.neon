@@ -1,3 +1,5 @@
 includes:
+    - class.notFound.neon
     - disallowed.function.neon
     - method.unused.neon
+    - property.readOnlyByPhpDocDefaultValue.neon

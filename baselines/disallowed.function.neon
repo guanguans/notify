@@ -1,7 +1,17 @@
-# total 6 errors
+# total 9 errors
 
 parameters:
     ignoreErrors:
+        -
+            message: '#^Calling sha1\(\) is forbidden, use hash\(\) with at least SHA\-256 for secure hash, or password_hash\(\) for passwords\.$#'
+            count: 2
+            path: ../src/Foundation/Authenticators/WsseAuthenticator.php
+
+        -
+            message: '#^Calling uniqid\(\) is forbidden, it is not a cryptographically secure generator, use random_bytes\(\) instead\.$#'
+            count: 1
+            path: ../src/Foundation/Authenticators/WsseAuthenticator.php
+
         -
             message: '#^Calling var_dump\(\) is forbidden, use some logger instead\.$#'
             count: 1

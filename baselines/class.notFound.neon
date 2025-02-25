@@ -1,0 +1,8 @@
+# total 1 error
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Call to method sendAsync\(\) on an unknown class Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient\.$#'
+            count: 1
+            path: ../src/Foundation/Client.php
