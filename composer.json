@@ -86,7 +86,6 @@
         "bamarni/composer-bin-plugin": "^1.8",
         "brainmaestro/composer-git-hooks": "^3.0",
         "ergebnis/composer-normalize": "^2.45",
-        "ergebnis/license": "^2.6",
         "ergebnis/rector-rules": "^1.3",
         "guanguans/ai-commit": "dev-main",
         "guanguans/monorepo-builder-worker": "^1.4",
@@ -102,8 +101,9 @@
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-deprecation-rules": "^2.0",
-        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpstan/phpstan-webmozart-assert": "^2.0",
         "rector/rector": "^2.0",
+        "shipmonk/phpstan-baseline-per-identifier": "^2.1",
         "spaze/phpstan-disallowed-calls": "^4.4",
         "symfony/var-dumper": "^6.0 || ^7.0",
         "symfony/yaml": "^6.0 || ^7.0",
@@ -237,6 +237,11 @@
         "phpmnd": "@php ./vendor/bin/phpmnd src --exclude-path=Support/Utils.php --hint --progress --ansi -v",
         "phpstan": "@php ./vendor/bin/phpstan analyse --ansi -v",
         "phpstan-baseline": "@phpstan --generate-baseline --allow-empty-baseline",
+        "phpstan-split-baseline": [
+            "@phpstan --generate-baseline=baselines/loader.neon --allow-empty-baseline",
+            "find baselines/ -type f -not -name loader.neon -delete",
+            "@php ./vendor/bin/split-phpstan-baseline baselines/loader.neon"
+        ],
         "platform-lint": "@php platform-lint",
         "post-merge": [
             "composer install --ansi -v"

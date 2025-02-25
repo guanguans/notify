@@ -1,0 +1,8 @@
+# total 1 error
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Method Guanguans\\Notify\\ServerChan\\Messages\\Message\:\:encrypt\(\) is unused\.$#'
+            count: 1
+            path: ../src/ServerChan/Messages/Message.php

@@ -1,5 +1,6 @@
 includes:
-    - phpstan-baseline.neon
+    - baselines/loader.neon
+#    - phpstan-baseline.neon
     - vendor/spaze/phpstan-disallowed-calls/disallowed-dangerous-calls.neon
     - vendor/spaze/phpstan-disallowed-calls/disallowed-execution-calls.neon
     - vendor/spaze/phpstan-disallowed-calls/disallowed-insecure-calls.neon
@@ -13,7 +14,7 @@ includes:
 parameters:
     paths:
         - src
-        - .php-cs-fixer.php
+#        - .php-cs-fixer.php
     excludePaths:
             - tests/fixtures/
 #    level: max
@@ -35,19 +36,6 @@ parameters:
 #    checkModelProperties: true
 #    checkMissingIterableValueType: true
 #    disallowFloatsEverywhere: true
-#    strictRules:
-#        allRules: false
-#        booleansInConditions: false
-#        uselessCast: false
-#        requireParentConstructorCall: false
-#        disallowedConstructs: false
-#        overwriteVariablesWithLoop: false
-#        closureUsesThis: false
-#        matchingInheritedMethodNames: false
-#        numericOperandsInArithmeticOperators: false
-#        strictCalls: false
-#        switchConditionsMatchingType: false
-#        noVariableVariables: false
     disallowedFunctionCalls:
         -
             function: 'env()'
