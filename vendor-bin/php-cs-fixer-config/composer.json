@@ -1,0 +1,5 @@
+{
+    "require-dev": {
+        "ergebnis/php-cs-fixer-config": "dev-main"
+    }
+}
