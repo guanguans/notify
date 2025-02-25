@@ -8,6 +8,23 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.1.0"></a>
+## [3.1.0] - 2025-02-25
+### Bug Fixes
+- **config:** Update PHPStan level and improve typing
+- **workflows:** Update PHP CS Fixer command in CI configuration
+
+### CI
+- **baselines:** Add new baseline and update existing files
+- **config:** Update dependencies and improve PHPStan configuration
+- **config:** Adjust PHP CS Fixer and remove unused packages
+- **dependencies:** Add symplify/phpstan-rules for code quality
+- **dependencies:** Add PHPStan baseline and unused method checks
+
+### Features
+- **deps:** Update symfony/options-resolver version constraint to support only 6.0 and 7.0
+
+
 <a name="3.0.2"></a>
 ## [3.0.2] - 2025-02-24
 ### Bug Fixes
@@ -1265,7 +1282,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.0.2...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.1.0...HEAD
+[3.1.0]: https://github.com/guanguans/notify/compare/3.0.2...3.1.0
 [3.0.2]: https://github.com/guanguans/notify/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/guanguans/notify/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/guanguans/notify/compare/2.14.1...3.0.0
