@@ -197,7 +197,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @return false|\SimpleXMLElement
      */
-    public function xml(...$arguments): bool|\SimpleXMLElement
+    public function xml(mixed ...$arguments): bool|\SimpleXMLElement
     {
         return simplexml_load_string($this->body(), ...$arguments);
     }

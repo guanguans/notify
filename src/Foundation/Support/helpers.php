@@ -17,7 +17,7 @@ const MULTIPART_TRY_OPEN_FILE = 1 << 0;
 const MULTIPART_TRY_OPEN_URL = 1 << 1;
 
 if (!\function_exists('Guanguans\Notify\Foundation\Support\rescue')) {
-    function rescue(callable $callback, ?callable $rescuer = null)
+    function rescue(callable $callback, ?callable $rescuer = null): mixed
     {
         /** @phpstan-ignore-next-line  */
         set_error_handler(static function (
@@ -71,7 +71,7 @@ if (!\function_exists('Guanguans\Notify\Foundation\Support\tap')) {
      *
      * @see https://github.com/laravel/framework
      */
-    function tap(mixed $value, ?callable $callback = null)
+    function tap(mixed $value, ?callable $callback = null): mixed
     {
         if (null === $callback) {
             return new class($value) {

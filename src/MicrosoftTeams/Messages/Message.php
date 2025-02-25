@@ -45,7 +45,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'sections',
         'potentialAction',
     ];
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'hideOriginalBody' => 'bool',
         'expectedActors' => 'array',
         'sections' => 'array',

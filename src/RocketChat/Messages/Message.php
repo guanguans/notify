@@ -41,7 +41,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'tmid',
         'tshow',
     ];
-    protected $allowedTypes = [
+    protected array $allowedTypes = [
         'attachments' => 'array',
         'tshow' => 'bool',
     ];
