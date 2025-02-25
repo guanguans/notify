@@ -115,6 +115,8 @@ return RectorConfig::configure()
         new ChangeMethodVisibility(HasOptions::class, 'preConfigureOptionsResolver', Visibility::PROTECTED),
     ])
     ->withConfiguredRule(RemoveAnnotationRector::class, [
+        'phpstan-ignore',
+        'phpstan-ignore-next-line',
         'psalm-suppress',
     ])
     ->withConfiguredRule(RemoveTraitUseRector::class, [
