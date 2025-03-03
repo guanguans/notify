@@ -30,7 +30,7 @@ parameters:
         - src
 #        - .php-cs-fixer.php
     excludePaths:
-            - tests/fixtures/
+        - tests/fixtures/
 #    level: max
     level: 6
     tmpDir: .build/phpstan
@@ -57,15 +57,23 @@ parameters:
             function: 'env_getcsv()'
             message: 'use config() instead'
     ignoreErrors:
-        - '#^.* .* no value type specified in iterable type .*\.$#'
         - '#^@readonly property Guanguans\\Notify\\Foundation\\Response\:\:\$.* is assigned outside of the constructor\.$#'
         - '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
-        - '#^Method Guanguans\\Notify\\.* with generic .* does not specify its types\: TKey, TValue$#'
         - '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\As.* is used zero times and is not analysed\.$#'
-        - '#^Unable to resolve the template type TMake.* in call to method static method Illuminate\\Support\\Collection\<\(int\|string\),mixed\>\:\:make\(\)$#'
-        - '#^Unsafe usage of new static\(\)\.$#'
-        - '#^Unused result of .* operator\.$#'
-        - '#^Use explicit names over dynamic ones$#'
+        -
+            identifier: argument.templateType
+        -
+            identifier: missingType.generics
+        -
+            identifier: missingType.iterableValue
+        -
+            identifier: new.static
+        -
+            identifier: logicalAnd.resultUnused
+        -
+            identifier: logicalOr.resultUnused
+        -
+            identifier: symplify.noDynamicName
 #        -
 #            message: '#^Calling sha1\(\) is forbidden, use hash\(\) with at least SHA\-256 for secure hash, or password_hash\(\) for passwords\.$#'
 #            path: src/Foundation/Authenticators/WsseAuthenticator.php

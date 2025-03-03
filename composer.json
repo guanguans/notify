@@ -226,7 +226,7 @@
         "peck": "/opt/homebrew/opt/php@8.3/bin/php ./vendor/bin/peck check --path=src/ --config=peck.json --ansi -v",
         "peck-init": "@peck --init",
         "pest": "@php ./vendor/bin/pest --coverage",
-        "pest-coverage": "@pest --coverage-html=./.build/phpunit/ --coverage-clover=./clover.xml",
+        "pest-coverage": "@pest --coverage-html=./.build/phpunit/ --coverage-clover=./.build/phpunit/clover.xml",
         "pest-highest": [
             "@putenvs",
             "$PHP83 ./vendor/bin/pest --coverage"
