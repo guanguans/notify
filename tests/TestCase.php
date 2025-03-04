@@ -19,9 +19,9 @@ use Symfony\Component\VarDumper\Test\VarDumperTestTrait;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
-    use PHPMock;
     use Faker;
     use MockeryPHPUnitIntegration;
+    use PHPMock;
     use VarDumperTestTrait;
 
     /**

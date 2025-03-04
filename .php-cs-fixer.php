@@ -143,6 +143,9 @@ $ruleSet = Php80::create()
             'anonymous_class' => false,
             'named_class' => false,
         ],
+        'ordered_traits' => [
+            'case_sensitive' => true,
+        ],
         'php_unit_data_provider_name' => [
             'prefix' => 'provide',
             'suffix' => 'Cases',
@@ -226,34 +229,28 @@ $ruleSet->withCustomFixers(Fixers::fromFixers(
 return Factory::fromRuleSet($ruleSet)
     ->setFinder(
         Finder::create()
-            ->in(__DIR__)
+            ->in([
+                __DIR__.'/benchmarks/',
+                __DIR__.'/src/',
+                __DIR__.'/tests/',
+            ])
             ->exclude([
-                '.build/',
-                '.chglog/',
-                '.github/',
-                'docs/',
-                'vendor-bin/',
+                '__snapshots__',
+                'Fixtures',
             ])
             ->append([
-                ...glob(__DIR__.'/{*,.*}.php', \GLOB_BRACE),
+                ...array_filter(
+                    glob(__DIR__.'/{*,.*}.php', \GLOB_BRACE),
+                    static fn (string $filename): bool => !\in_array($filename, [
+                        __DIR__.'/.phpstorm.meta.php',
+                        // __DIR__.'/_ide_helper.php',
+                        __DIR__.'/_ide_helper_models.php',
+                    ], true)
+                ),
                 __DIR__.'/composer-updater',
                 __DIR__.'/generate-ide-json',
                 __DIR__.'/platform-lint',
             ])
-            ->notPath([
-                '*/__snapshots__/*',
-                'bootstrap/*',
-                'resources/view/mail/*',
-                'storage/*',
-            ])
-            ->notName([
-                '*.blade.php',
-                '.phpstorm.meta.php',
-                '_ide_helper.php',
-                '_ide_helper_models.php',
-            ])
-            ->ignoreDotFiles(true)
-            ->ignoreVCS(true)
     )
     ->setRiskyAllowed(true)
     ->setUsingCache(true)
