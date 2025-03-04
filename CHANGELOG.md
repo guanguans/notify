@@ -8,6 +8,23 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.1.1"></a>
+## [3.1.1] - 2025-03-04
+### CI
+- **rector:** Add PHPStan ignore rules to configuration
+- **workflows:** Add coverage file path to Codecov config
+
+### Code Refactoring
+- **tests:** Rename directory from fixtures to Fixtures
+
+### Style
+- **config:** Improve PHP CS Fixer configuration and order traits
+
+### Pull Requests
+- Merge pull request [#149](https://github.com/guanguans/notify/issues/149) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.14
+- Merge pull request [#148](https://github.com/guanguans/notify/issues/148) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.13
+
+
 <a name="3.1.0"></a>
 ## [3.1.0] - 2025-02-25
 ### Bug Fixes
@@ -1282,7 +1299,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.1.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.1.1...HEAD
+[3.1.1]: https://github.com/guanguans/notify/compare/3.1.0...3.1.1
 [3.1.0]: https://github.com/guanguans/notify/compare/3.0.2...3.1.0
 [3.0.2]: https://github.com/guanguans/notify/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/guanguans/notify/compare/3.0.0...3.0.1
