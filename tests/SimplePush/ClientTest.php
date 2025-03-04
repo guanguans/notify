@@ -40,7 +40,7 @@ it('can send message', function (): void {
             ],
         ],
         'attachments' => [
-            'https://raw.githubusercontent.com/guanguans/notify/main/tests/fixtures/image.png',
+            'https://raw.githubusercontent.com/guanguans/notify/main/tests/Fixtures/image.png',
         ],
     ]);
 

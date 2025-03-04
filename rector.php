@@ -73,7 +73,7 @@ return RectorConfig::configure()
     // ->withSkipPath(__DIR__.'/tests.php')
     ->withSkip([
         __DIR__.'/tests.php',
-        '**/fixtures/*',
+        '**/Fixtures/*',
         '**/__snapshots__/*',
     ])
     ->withCache(__DIR__.'/.build/rector/')

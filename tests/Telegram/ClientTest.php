@@ -106,7 +106,7 @@ it('can send text message', function (): void {
 it('can send animation message', function (): void {
     $animationMessage = AnimationMessage::make([
         'chat_id' => 6173634402,
-        'animation' => 'tests/fixtures/image.png',
+        'animation' => fixtures_path('image.png'),
         'caption_entities' => [
             $captionEntity = [
                 'type' => 'https://telegram.org',
@@ -121,7 +121,7 @@ it('can send animation message', function (): void {
 it('can send audio message', function (): void {
     $audioMessage = AudioMessage::make([
         'chat_id' => 6173634402,
-        'audio' => 'tests/fixtures/image.png',
+        'audio' => fixtures_path('image.png'),
         'caption_entities' => [
             $captionEntity = [
                 'type' => 'https://telegram.org',
@@ -164,7 +164,7 @@ it('can send dice message', function (): void {
 it('can send document message', function (): void {
     $documentMessage = DocumentMessage::make([
         'chat_id' => 6173634402,
-        'document' => 'tests/fixtures/image.png',
+        'document' => fixtures_path('image.png'),
         'caption_entities' => [
             $captionEntity = [
                 'type' => 'https://telegram.org',
@@ -205,7 +205,7 @@ it('can send photo message', function (): void {
         'chat_id' => 6173634402,
         // 'photo' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
         // 'photo' => 'AgACAgQAAxkDAAMeZeVV5od56saRAAH9k_AC_wQZAAHd-AACma0xG7QSDVLARHylspn9xwEAAwIAA3gAAzQE',
-        'photo' => 'tests/fixtures/image.png',
+        'photo' => fixtures_path('image.png'),
         'caption_entities' => [
             $captionEntity = [
                 'type' => 'https://telegram.org',
@@ -251,7 +251,7 @@ it('can send venue message', function (): void {
 it('can send video message', function (): void {
     $videoMessage = VideoMessage::make([
         'chat_id' => 6173634402,
-        'video' => 'tests/fixtures/image.png',
+        'video' => fixtures_path('image.png'),
         'caption_entities' => [
             $captionEntity = [
                 'type' => 'https://telegram.org',
@@ -266,7 +266,7 @@ it('can send video message', function (): void {
 it('can send video note message', function (): void {
     $videoNoteMessage = VideoNoteMessage::make([
         'chat_id' => 6173634402,
-        'video_note' => 'tests/fixtures/image.png',
+        'video_note' => fixtures_path('image.png'),
     ]);
 
     expect($this->client)->assertCanSendMessage($videoNoteMessage);
@@ -275,7 +275,7 @@ it('can send video note message', function (): void {
 it('can send voice message', function (): void {
     $voiceMessage = VoiceMessage::make([
         'chat_id' => 6173634402,
-        'voice' => 'tests/fixtures/image.png',
+        'voice' => fixtures_path('image.png'),
         'caption_entities' => [
             $captionEntity = [
                 'type' => 'https://telegram.org',

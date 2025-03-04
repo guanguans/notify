@@ -30,7 +30,7 @@ parameters:
         - src
 #        - .php-cs-fixer.php
     excludePaths:
-        - tests/fixtures/
+        - tests/Fixtures/
 #    level: max
     level: 6
     tmpDir: .build/phpstan

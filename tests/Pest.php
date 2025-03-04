@@ -105,7 +105,7 @@ function class_namespace(object|string $class): string
 
 function fixtures_path(string $path = ''): string
 {
-    return __DIR__.\DIRECTORY_SEPARATOR.'fixtures'.($path ? \DIRECTORY_SEPARATOR.$path : $path);
+    return __DIR__.\DIRECTORY_SEPARATOR.'Fixtures'.($path ? \DIRECTORY_SEPARATOR.$path : $path);
 }
 
 /**

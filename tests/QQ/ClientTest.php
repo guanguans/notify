@@ -53,7 +53,7 @@ it('can send message', function (): void {
         ],
         'message_reference' => [],
         'image' => 'https://avatars.githubusercontent.com/u/22309277?v=4',
-        'file_image' => 'tests/fixtures/image.png',
+        'file_image' => fixtures_path('image.png'),
         'msg_id' => 'This is msg id.',
         // 'event_id' => 'This is event id.',
         'markdown' => [],

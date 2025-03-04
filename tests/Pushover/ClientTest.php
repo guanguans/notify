@@ -30,7 +30,7 @@ it('can send message', function (): void {
     $client = new Client($authenticator);
     $message = Message::make([
         'message' => 'This is message.',
-        'attachment' => 'tests/fixtures/image.png',
+        'attachment' => fixtures_path('image.png'),
         'device' => 'This is device.',
         'html' => 1,
         'priority' => 2,
