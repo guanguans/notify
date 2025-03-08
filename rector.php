@@ -65,6 +65,7 @@ return RectorConfig::configure()
         __DIR__.'/benchmarks',
         __DIR__.'/src',
         __DIR__.'/tests',
+        ...glob(__DIR__.'/{*,.*}.php', \GLOB_BRACE),
         __DIR__.'/composer-updater',
         __DIR__.'/generate-ide-json',
         __DIR__.'/platform-lint',
@@ -81,9 +82,8 @@ return RectorConfig::configure()
     // ->withoutParallel()
     // ->withImportNames(importNames: false)
     ->withImportNames(importDocBlockNames: false, importShortClasses: false)
-    ->withPhpVersion(PhpVersion::PHP_80)
     ->withFluentCallNewLine()
-    ->withAttributesSets(phpunit: true)
+    ->withAttributesSets(phpunit: true, all: true)
     ->withComposerBased(phpunit: true)
     ->withPhpVersion(PhpVersion::PHP_80)
     ->withDowngradeSets(php80: true)
@@ -100,6 +100,7 @@ return RectorConfig::configure()
         naming: true,
         instanceOf: true,
         earlyReturn: true,
+        rectorPreset: true,
         phpunitCodeQuality: true,
     )
     ->withRules([
@@ -223,8 +224,8 @@ return RectorConfig::configure()
     ])
     ->withSkip([
         DowngradeArraySpreadStringKeyRector::class => [
-            __DIR__.'/.php-cs-fixer.php',
             __DIR__.'/src/Foundation/Message.php',
+            __FILE__,
         ],
         RemoveTraitUseRector::class => [
             __DIR__.'/src/Foundation/Message.php',
