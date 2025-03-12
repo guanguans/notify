@@ -8,6 +8,20 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.1.2"></a>
+## [3.1.2] - 2025-03-12
+### Bug Fixes
+- **Authenticator:** Improve argument validation logic
+
+### CI
+- **config:** Enhance Rector configuration for flexibility
+- **dependency:** Add composer dependency analyser configuration
+
+### Pull Requests
+- Merge pull request [#151](https://github.com/guanguans/notify/issues/151) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.16
+- Merge pull request [#150](https://github.com/guanguans/notify/issues/150) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.15
+
+
 <a name="3.1.1"></a>
 ## [3.1.1] - 2025-03-04
 ### CI
@@ -1299,7 +1313,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.1.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.1.2...HEAD
+[3.1.2]: https://github.com/guanguans/notify/compare/3.1.1...3.1.2
 [3.1.1]: https://github.com/guanguans/notify/compare/3.1.0...3.1.1
 [3.1.0]: https://github.com/guanguans/notify/compare/3.0.2...3.1.0
 [3.0.2]: https://github.com/guanguans/notify/compare/3.0.1...3.0.2
