@@ -22,10 +22,10 @@ use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Ntfy\Authenticator;
 
 it('will throw an InvalidArgumentException', function (): void {
-    new Authenticator('foo', 'bar', 'baz');
+    new Authenticator(password: faker()->password());
 })
     ->group(__DIR__, __FILE__)
-    ->throws(InvalidArgumentException::class, 'The number of arguments must be 0, 1 or 2.');
+    ->throws(InvalidArgumentException::class, 'When the password is not null, the usernameOrToken must be not null.');
 
 it('can create an Authenticator', function (): void {
     expect([

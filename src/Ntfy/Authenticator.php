@@ -28,20 +28,20 @@ class Authenticator extends AggregateAuthenticator
         #[\SensitiveParameter]
         ?string $password = null
     ) {
-        parent::__construct(...match (\func_num_args()) {
-            0 => [
+        parent::__construct(...match (true) {
+            !isset($usernameOrToken) && !isset($password) => [
                 new NullAuthenticator,
             ],
-            1 => [
+            isset($usernameOrToken) && !isset($password) => [
                 new BearerAuthenticator($usernameOrToken),
                 new OptionsAuthenticator([
                     RequestOptions::QUERY => [RequestOptions::AUTH => $usernameOrToken],
                 ]),
             ],
-            2 => [
+            isset($usernameOrToken, $password) => [
                 new BasicAuthenticator($usernameOrToken, $password),
             ],
-            default => throw new InvalidArgumentException('The number of arguments must be 0, 1 or 2.'),
+            default => throw new InvalidArgumentException('When the password is not null, the usernameOrToken must be not null.'),
         });
     }
 }
