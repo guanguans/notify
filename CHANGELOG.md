@@ -8,6 +8,34 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.2.0"></a>
+## [3.2.0] - 2025-03-25
+### Bug Fixes
+- **Response:** Simplify exception handling in throw method
+- **Response:** Remove readonly annotations from properties
+- **ServerChan:** Remove deprecated encryption method
+- **arr:** add paramOut.type to phpstan.neon
+- **baselines:** Remove deprecated method.nonObject baseline
+- **baselines:** Remove unused baseline file for argument unpacking
+- **baselines:** Improve baseline error handling and add files
+- **composer-updater:** Replace strIs method with Str::is
+- **dependencies:** Ignore errors for specific extensions and packages
+- **phpstan:** Improve strictness of type checking
+
+### CI
+- **config:** Update PHPStan configuration for type checks
+
+### Features
+- **composer:** Update dependencies and remove unused packages
+
+### Tests
+- **tests:** Improve autoload class retrieval in Pest
+
+### Pull Requests
+- Merge pull request [#153](https://github.com/guanguans/notify/issues/153) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.18
+- Merge pull request [#152](https://github.com/guanguans/notify/issues/152) from guanguans/dependabot/github_actions/trufflesecurity/trufflehog-3.88.17
+
+
 <a name="3.1.2"></a>
 ## [3.1.2] - 2025-03-12
 ### Bug Fixes
@@ -1313,7 +1341,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.1.2...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.2.0...HEAD
+[3.2.0]: https://github.com/guanguans/notify/compare/3.1.2...3.2.0
 [3.1.2]: https://github.com/guanguans/notify/compare/3.1.1...3.1.2
 [3.1.1]: https://github.com/guanguans/notify/compare/3.1.0...3.1.1
 [3.1.0]: https://github.com/guanguans/notify/compare/3.0.2...3.1.0
