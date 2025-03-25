@@ -1,0 +1,13 @@
+# total 4 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Parameter &\$array by\-ref type of method Guanguans\\Notify\\Foundation\\Support\\Arr\:\:forget\(\) expects array, mixed given\.$#'
+            count: 3
+            path: ../src/Foundation/Support/Arr.php
+
+        -
+            message: '#^Parameter &\$array by\-ref type of method Guanguans\\Notify\\Foundation\\Support\\Arr\:\:set\(\) expects array, mixed given\.$#'
+            count: 1
+            path: ../src/Foundation/Support/Arr.php

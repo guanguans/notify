@@ -151,8 +151,8 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
             );
         });
 
-        $defaultProperties = (new \ReflectionClass($class))->getDefaultProperties();
-        $allowedTypes = $defaultProperties['allowedTypes'] ?? [];
+        /** @var array<string, mixed> $allowedTypes */
+        $allowedTypes = (new \ReflectionClass($class))->getDefaultProperties()['allowedTypes'] ?? [];
         $defined = array_filter(
             Utils::definedFor($class),
             static fn (string $option): bool => !Str::is(['*@*'], $option),

@@ -32,8 +32,8 @@ parameters:
         - vendor/composer/InstalledVersions.php
     excludePaths:
         - tests/Fixtures/
-#    level: max
-    level: 8
+    level: max
+#    level: 10
     tmpDir: .build/phpstan
 #    errorFormat: symplify
     errorFormat: friendly
@@ -66,19 +66,21 @@ parameters:
             message: 'use config() instead'
     ignoreErrors:
 #        - identifier: binaryOp.invalid
-#        - identifier: cast.string
-#        - identifier: encapsedStringPart.nonString
 #        - identifier: return.void
-        - identifier: return.type
-        - identifier: argument.type
+        - identifier: offsetAccess.nonOffsetAccessible
         - identifier: argument.templateType
+        - identifier: argument.type
+        - identifier: cast.string
+        - identifier: encapsedStringPart.nonString
         - identifier: logicalAnd.resultUnused
         - identifier: logicalOr.resultUnused
         - identifier: missingType.generics
         - identifier: missingType.iterableValue
         - identifier: new.static
+        - identifier: return.type
         - identifier: symplify.noDynamicName
         - identifier: typePerfect.noMixedMethodCaller
         - '#^@readonly property Guanguans\\Notify\\Foundation\\Response\:\:\$.* is assigned outside of the constructor\.$#'
         - '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
         - '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\As.* is used zero times and is not analysed\.$#'
+

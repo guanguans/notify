@@ -1,7 +1,13 @@
-# total 17 errors
+# total 33 errors
 includes:
+    - argument.unpackNonIterable.neon
+    - arrayUnpacking.nonIterable.neon
+    - assign.propertyType.neon
     - class.notFound.neon
     - disallowed.function.neon
+    - method.nonObject.neon
     - method.unused.neon
+    - parameterByRef.type.neon
     - property.readOnlyByPhpDocDefaultValue.neon
+    - throw.notThrowable.neon
     - typePerfect.narrowPublicClassMethodParamType.neon

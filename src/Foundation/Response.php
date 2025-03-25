@@ -66,12 +66,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      */
     protected ?TransferStats $transferStats = null;
 
-    /**
-     * The decoded JSON response.
-     *
-     * @var array|mixed
-     */
-    protected mixed $decoded = null;
+    /** The decoded JSON response. */
+    protected array $decoded;
 
     /**
      * Provide debug information about the response.
@@ -121,14 +117,16 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Get the JSON decoded body of the response as an array or scalar value.
      *
-     * @noinspection JsonEncodingApiUsageInspection
-     *
      * @param array-key $key
+     *
+     * @throws \JsonException
+     *
+     * @return array|mixed
      */
     public function json(mixed $key = null, mixed $default = null): mixed
     {
-        if (null === $this->decoded) {
-            $this->decoded = json_decode($this->body(), true);
+        if (!isset($this->decoded)) {
+            $this->decoded = json_decode($this->body() ?: '[]', true, 512, \JSON_THROW_ON_ERROR);
         }
 
         if (null === $key) {
@@ -273,9 +271,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      */
     public function is(string $type): bool
     {
-        $mimeTypes = (new \ReflectionClass(MimeType::class))->getConstant('MIME_TYPES');
-
-        return strtolower($this->getHeaderLine('Content-Type')) === ($mimeTypes[strtolower($type)] ?? null);
+        return strtolower($this->getHeaderLine('Content-Type')) === MimeType::fromExtension($type);
     }
 
     /**

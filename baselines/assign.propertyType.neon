@@ -1,0 +1,18 @@
+# total 3 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Property Guanguans\\Notify\\Foundation\\Client\:\:\$handlerStack \(GuzzleHttp\\HandlerStack\|null\) does not accept mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Client.php
+
+        -
+            message: '#^Property Guanguans\\Notify\\Foundation\\Client\:\:\$httpClient \(GuzzleHttp\\Client\|null\) does not accept mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Client.php
+
+        -
+            message: '#^Property Guanguans\\Notify\\Foundation\\Response\:\:\$decoded \(array\) does not accept mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php

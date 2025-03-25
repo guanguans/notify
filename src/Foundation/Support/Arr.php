@@ -91,6 +91,7 @@ class Arr
             return value($default);
         }
 
+        /** @var array|\ArrayAccess $array */
         if (null === $key) {
             return $array;
         }

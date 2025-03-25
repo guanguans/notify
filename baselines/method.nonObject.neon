@@ -1,0 +1,28 @@
+# total 5 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Cannot call method then\(\) on mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Middleware/Response.php
+
+        -
+            message: '#^Cannot call method getClassReflection\(\) on mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasHttpClientDocCommentRector.php
+
+        -
+            message: '#^Cannot call method getName\(\) on mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasHttpClientDocCommentRector.php
+
+        -
+            message: '#^Cannot call method getClassReflection\(\) on mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasOptionsDocCommentRector.php
+
+        -
+            message: '#^Cannot call method getName\(\) on mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasOptionsDocCommentRector.php
