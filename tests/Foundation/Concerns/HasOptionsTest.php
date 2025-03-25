@@ -35,7 +35,7 @@ it('will throw InvalidArgumentException when argument is empty', function (): vo
     })->foo();
 })
     ->group(__DIR__, __FILE__)
-    ->throws(InvalidArgumentException::class);
+    ->throws(InvalidArgumentException::class, '::foo] only accepts 1 argument, 0 given.');
 
 it('will throw BadMethodCallException when calling an undefined method', function (): void {
     expect(new class(['foo' => 'bar']) extends Message {

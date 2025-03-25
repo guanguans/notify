@@ -93,20 +93,20 @@ trait HasHttpClient
             return $this;
         }
 
-        if (\in_array($snakedName = Str::snake($name), Utils::httpOptionConstants(), true)) {
-            if (1 !== ($numberOfArguments = \count($arguments))) {
-                throw new InvalidArgumentException(\sprintf(
-                    'The method [%s::%s] only accepts 1 argument, %s given.',
-                    static::class,
-                    $name,
-                    $numberOfArguments
-                ));
-            }
-
-            return $this->setHttpOptions([$snakedName => $arguments[0]]);
+        if (!\in_array($snakedName = Str::snake($name), Utils::httpOptionConstants(), true)) {
+            throw new BadMethodCallException(\sprintf('The method [%s::%s] does not exist.', static::class, $name));
         }
 
-        throw new BadMethodCallException(\sprintf('The method [%s::%s] does not exist.', static::class, $name));
+        if (1 !== ($numberOfArguments = \count($arguments))) {
+            throw new InvalidArgumentException(\sprintf(
+                'The method [%s::%s] only accepts 1 argument, %s given.',
+                static::class,
+                $name,
+                $numberOfArguments
+            ));
+        }
+
+        return $this->setHttpOptions([$snakedName => $arguments[0]]);
     }
 
     public function setHttpClient(Client $httpClient): self

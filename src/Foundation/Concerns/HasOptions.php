@@ -43,22 +43,28 @@ trait HasOptions
      */
     public function __call(string $name, array $arguments): self
     {
-        foreach ([null, 'snake', 'pascal', 'kebab'] as $case) {
-            if (
-                \in_array(
-                    $casedName = $case ? Str::{$case}($name) : $name,
-                    $defined ??= Utils::definedFor($this),
-                    true
-                )
-            ) {
-                if ([] === $arguments) {
-                    throw new InvalidArgumentException(
-                        \sprintf('The method [%s::%s] require an argument.', static::class, $name),
-                    );
-                }
-
-                return $this->setOption($casedName, $arguments[0]);
+        foreach (
+            [
+                static fn (string $name): string => $name,
+                static fn (string $name): string => Str::snake($name),
+                static fn (string $name): string => Str::pascal($name),
+                static fn (string $name): string => Str::kebab($name),
+            ] as $caster
+        ) {
+            if (!\in_array($castedName = $caster($name), $defined ??= Utils::definedFor($this), true)) {
+                continue;
             }
+
+            if (1 !== ($numberOfArguments = \count($arguments))) {
+                throw new InvalidArgumentException(\sprintf(
+                    'The method [%s::%s] only accepts 1 argument, %s given.',
+                    static::class,
+                    $name,
+                    $numberOfArguments
+                ));
+            }
+
+            return $this->setOption($castedName, $arguments[0]);
         }
 
         throw new BadMethodCallException(\sprintf('The method [%s::%s] does not exist.', static::class, $name));
