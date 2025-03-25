@@ -23,6 +23,7 @@ class AggregateAuthenticator implements Authenticator
 
     public function __construct(Authenticator ...$authenticators)
     {
+        /** @var list<Authenticator> $authenticators */
         $this->authenticators = $authenticators;
     }
 

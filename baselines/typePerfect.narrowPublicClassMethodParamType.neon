@@ -1,0 +1,18 @@
+# total 3 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Parameters should have "array" types as the only types passed to this method$#'
+            count: 1
+            path: ../src/Foundation/Client.php
+
+        -
+            message: '#^Parameters should have "array" types as the only types passed to this method$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Parameters should have "array" types as the only types passed to this method$#'
+            count: 1
+            path: ../src/Foundation/Response.php

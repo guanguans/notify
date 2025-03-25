@@ -33,7 +33,7 @@ parameters:
     excludePaths:
         - tests/Fixtures/
 #    level: max
-    level: 6
+    level: 8
     tmpDir: .build/phpstan
 #    errorFormat: symplify
     errorFormat: friendly
@@ -48,12 +48,12 @@ parameters:
         constant_type: 100
         property_type: 100
     type_perfect:
-        narrow_param: false
-        narrow_return: false
-        null_over_false: false
-        no_mixed: false
-        no_mixed_property: false
-        no_mixed_caller: false
+        narrow_param: true
+        narrow_return: true
+        null_over_false: true
+        no_mixed: true
+        no_mixed_property: true
+        no_mixed_caller: true
     disallowedFunctionCalls:
         -
             function: 'env()'
@@ -65,13 +65,12 @@ parameters:
             function: 'env_getcsv()'
             message: 'use config() instead'
     ignoreErrors:
-#        - identifier: argument.type
 #        - identifier: binaryOp.invalid
 #        - identifier: cast.string
 #        - identifier: encapsedStringPart.nonString
-#        - identifier: return.type
 #        - identifier: return.void
-#        - identifier: typePerfect.noMixedMethodCaller
+        - identifier: return.type
+        - identifier: argument.type
         - identifier: argument.templateType
         - identifier: logicalAnd.resultUnused
         - identifier: logicalOr.resultUnused
@@ -79,6 +78,7 @@ parameters:
         - identifier: missingType.iterableValue
         - identifier: new.static
         - identifier: symplify.noDynamicName
+        - identifier: typePerfect.noMixedMethodCaller
         - '#^@readonly property Guanguans\\Notify\\Foundation\\Response\:\:\$.* is assigned outside of the constructor\.$#'
         - '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
         - '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\As.* is used zero times and is not analysed\.$#'

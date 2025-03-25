@@ -1,5 +1,7 @@
+# total 17 errors
 includes:
     - class.notFound.neon
     - disallowed.function.neon
     - method.unused.neon
     - property.readOnlyByPhpDocDefaultValue.neon
+    - typePerfect.narrowPublicClassMethodParamType.neon
