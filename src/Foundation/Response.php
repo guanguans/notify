@@ -30,7 +30,6 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
-use function Guanguans\Notify\Foundation\Support\tap;
 use function Guanguans\Notify\Foundation\Support\value;
 
 /**
@@ -436,9 +435,11 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     public function throw(?callable $callback = null): self
     {
         if ($this->failed()) {
-            throw tap($this->toException(), function (?RequestException $requestException) use ($callback): void {
-                $callback and $callback($this, $requestException);
-            });
+            /** @var \Guanguans\Notify\Foundation\Exceptions\RequestException $requestException */
+            $requestException = $this->toException();
+            $callback and $callback($this, $requestException);
+
+            throw $requestException;
         }
 
         return $this;

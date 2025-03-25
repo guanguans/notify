@@ -68,7 +68,7 @@ parameters:
     ignoreErrors:
 #        - identifier: binaryOp.invalid
 #        - identifier: return.void
-        - identifier: offsetAccess.nonOffsetAccessible
+#        - identifier: typePerfect.noMixedMethodCaller
         - identifier: argument.templateType
         - identifier: argument.type
         - identifier: cast.string
@@ -78,10 +78,11 @@ parameters:
         - identifier: missingType.generics
         - identifier: missingType.iterableValue
         - identifier: new.static
+        - identifier: offsetAccess.nonOffsetAccessible
+        - identifier: paramOut.type
         - identifier: return.type
         - identifier: symplify.noDynamicName
-        - identifier: paramOut.type
-#        - identifier: typePerfect.noMixedMethodCaller
-        - '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
-        - '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\As.* is used zero times and is not analysed\.$#'
-
+        - identifier: trait.unused
+        -
+            message: '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
+            path: src/Foundation/Message.php

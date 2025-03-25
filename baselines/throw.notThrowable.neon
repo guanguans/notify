@@ -1,8 +1,0 @@
-# total 1 error
-
-parameters:
-    ignoreErrors:
-        -
-            message: '#^Invalid type mixed to throw\.$#'
-            count: 1
-            path: ../src/Foundation/Response.php
