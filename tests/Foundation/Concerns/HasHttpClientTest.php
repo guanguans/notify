@@ -30,7 +30,7 @@ it('will throw InvalidArgumentException when argument is empty', function (): vo
     (new Client)->verify();
 })
     ->group(__DIR__, __FILE__)
-    ->throws(InvalidArgumentException::class, \sprintf('The method [%s::verify] require an argument.', Client::class));
+    ->throws(InvalidArgumentException::class, \sprintf('The method [%s::verify] only accepts 1 argument, 0 given.', Client::class));
 
 it('will throw BadMethodCallException when calling an undefined method', function (): void {
     /** @noinspection PhpUndefinedMethodInspection */

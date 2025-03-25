@@ -94,10 +94,13 @@ trait HasHttpClient
         }
 
         if (\in_array($snakedName = Str::snake($name), Utils::httpOptionConstants(), true)) {
-            if ([] === $arguments) {
-                throw new InvalidArgumentException(
-                    \sprintf('The method [%s::%s] require an argument.', static::class, $name),
-                );
+            if (1 !== ($numberOfArguments = \count($arguments))) {
+                throw new InvalidArgumentException(\sprintf(
+                    'The method [%s::%s] only accepts 1 argument, %s given.',
+                    static::class,
+                    $name,
+                    $numberOfArguments
+                ));
             }
 
             return $this->setHttpOptions([$snakedName => $arguments[0]]);

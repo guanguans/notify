@@ -51,7 +51,7 @@
 * [YiFengChuanHua](./src/YiFengChuanHua/README.md)
 * [Zulip](./src/Zulip/README.md)
 
-## Related repository
+## Related repositories
 
 * [https://github.com/guanguans/laravel-exception-notify](https://github.com/guanguans/laravel-exception-notify)
 * [https://github.com/guanguans/yii-log-target](https://github.com/guanguans/yii-log-target)
