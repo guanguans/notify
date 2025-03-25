@@ -107,10 +107,7 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
      */
     public function refactor(Node $node): ?Node
     {
-        /** @var class-string $trait */
-        $trait = $node->getAttribute('scope')->getClassReflection()->getName();
-
-        if (HasHttpClient::class !== $trait) {
+        if (!$this->isName($node, HasHttpClient::class)) {
             return null;
         }
 

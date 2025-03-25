@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Middleware;
 
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\TransferStats;
 use Psr\Http\Message\RequestInterface;
@@ -22,6 +23,9 @@ class Response
 {
     private static ?TransferStats $transferStats = null;
 
+    /**
+     * @param callable(RequestInterface, array): PromiseInterface $handler
+     */
     public function __invoke(callable $handler): callable
     {
         return static fn (RequestInterface $request, array $options) => $handler($request, $options)->then(

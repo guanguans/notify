@@ -119,7 +119,7 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
     public function refactor(Node $node): ?Node
     {
         /** @var class-string $class */
-        $class = $node->getAttribute('scope')->getClassReflection()->getName();
+        $class = $this->getName($node);
 
         if (!$this->isSubclassesOf($class)) {
             return null;
