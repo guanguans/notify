@@ -46,6 +46,8 @@ class Arr
      *
      * If no key is given to the method, the entire array will be replaced.
      *
+     * @param-out  array  $array
+     *
      * @param null|array-key $key
      */
     public static function set(array &$array, mixed $key, mixed $value): array
@@ -155,6 +157,8 @@ class Arr
 
     /**
      * Remove one or many array items from a given array using "dot" notation.
+     *
+     * @param-out array $array
      *
      * @param array-key|list<array-key> $keys
      */
