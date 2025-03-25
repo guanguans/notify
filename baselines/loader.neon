@@ -1,8 +1,7 @@
-# total 22 errors
+# total 19 errors
 includes:
     - assign.propertyType.neon
     - disallowed.function.neon
-    - method.unused.neon
     - parameterByRef.type.neon
     - property.readOnlyByPhpDocDefaultValue.neon
     - throw.notThrowable.neon

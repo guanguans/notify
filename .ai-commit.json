@@ -1,0 +1,8 @@
+{
+    "diff_options": [
+        ":!*-lock.json",
+        ":!*.lock",
+        ":!/baselines/*.neon",
+        ":!*.sum"
+    ]
+}

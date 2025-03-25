@@ -40,21 +40,4 @@ class Message extends \Guanguans\Notify\Foundation\Message
         // 'key',
         // 'uid',
     ];
-
-    /**
-     * @codeCoverageIgnore
-     *
-     * @noinspection EncryptionInitializationVectorRandomnessInspection
-     */
-    private function encrypt(
-        string $content,
-        #[\SensitiveParameter]
-        string $key,
-        string $iv
-    ): string {
-        $key = substr(md5($key), 0, 16);
-        $iv = substr(md5($iv), 0, 16);
-
-        return openssl_encrypt(base64_encode($content), 'AES-128-CBC', $key, 0, $iv);
-    }
 }
