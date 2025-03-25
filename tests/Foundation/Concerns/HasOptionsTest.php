@@ -103,5 +103,7 @@ it('can array access', function (): void {
     expect($message['foo'])->toBe('baz');
 
     unset($message['foo']);
+
+    /** @noinspection PhpConditionAlreadyCheckedInspection */
     expect(isset($message['foo']))->toBeFalse();
 })->group(__DIR__, __FILE__);

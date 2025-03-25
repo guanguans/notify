@@ -2,10 +2,7 @@
 
 /** @noinspection AnonymousFunctionStaticInspection */
 /** @noinspection PhpInternalEntityUsedInspection */
-/** @noinspection PhpUndefinedClassInspection */
-/** @noinspection PhpUnused */
 /** @noinspection StaticClosureCanBeUsedInspection */
-/** @noinspection VirtualTypeCheckInspection */
 
 declare(strict_types=1);
 
@@ -18,6 +15,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
+use Composer\Autoload\ClassLoader;
 use Faker\Factory;
 use Faker\Generator;
 use Guanguans\Notify\Foundation\Client;
@@ -25,6 +23,7 @@ use Guanguans\Notify\Foundation\Message;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Collection;
 use Pest\Expectation;
 use Psr\Http\Message\ResponseInterface;
 
@@ -92,6 +91,19 @@ expect()->extend('assertCanSendMessage', function (Message $message): Expectatio
 | global functions to help you to reduce the number of lines of code in your test files.
 |
  */
+
+function classes(): Collection
+{
+    return collect(spl_autoload_functions())
+        ->pipe(static fn (Collection $splAutoloadFunctions): Collection => collect(
+            $splAutoloadFunctions
+                ->firstOrFail(
+                    static fn (mixed $loader): bool => \is_array($loader) && $loader[0] instanceof ClassLoader
+                )[0]
+                ->getClassMap()
+        ))
+        ->keys();
+}
 
 /**
  * @throws ReflectionException
