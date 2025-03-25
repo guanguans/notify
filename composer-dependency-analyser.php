@@ -29,6 +29,7 @@ return (new Configuration)
         // SensitiveParameter::class,
         'SensitiveParameter',
     ])
+    /** @see \ShipMonk\ComposerDependencyAnalyser\Analyser::CORE_EXTENSIONS */
     ->ignoreErrorsOnExtensions(
         [
             'ext-ctype',
@@ -47,9 +48,13 @@ return (new Configuration)
         ],
         [ErrorType::SHADOW_DEPENDENCY]
     )
+    ->ignoreErrorsOnPackageAndPath(
+        'guanguans/ai-commit',
+        __DIR__.'/src/Foundation/Support/Str.php',
+        [ErrorType::DEV_DEPENDENCY_IN_PROD]
+    )
     ->ignoreErrorsOnPackages(
         [
-            'guanguans/ai-commit',
             'illuminate/collections',
             'illuminate/support',
             'symfony/var-dumper',
