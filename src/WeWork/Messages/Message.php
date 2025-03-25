@@ -13,12 +13,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
-use Guanguans\Notify\Foundation\Concerns\AsBody;
-
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
-    // use AsBody;
-
     final public function toHttpUri(): string
     {
         return 'cgi-bin/webhook/send?key={token}';

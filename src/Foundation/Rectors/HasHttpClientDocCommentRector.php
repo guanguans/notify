@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpMultipleClassDeclarationsInspection */
-
 declare(strict_types=1);
 
 /**
@@ -17,10 +15,10 @@ namespace Guanguans\Notify\Foundation\Rectors;
 
 use Guanguans\Notify\Foundation\Client;
 use Guanguans\Notify\Foundation\Concerns\HasHttpClient;
-use Guanguans\Notify\Foundation\Support\Str;
 use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\RequestOptions;
+use Illuminate\Support\Str;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Trait_;
 use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
@@ -69,13 +67,13 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
                         CODE_SAMPLE,
                     <<<'CODE_SAMPLE'
                         /**
-                         * @method self setHandler(callable $handler)
-                         * @method self unshift(callable $middleware, string $name = null)
+                         * @method \Guanguans\Notify\Foundation\Client setHandler(callable $handler)
+                         * @method \Guanguans\Notify\Foundation\Client unshift(callable $middleware, string $name = null)
                          * ...
-                         * @method self remove($remove)
-                         * @method self allowRedirects($allowRedirects)
+                         * @method \Guanguans\Notify\Foundation\Client remove($remove)
+                         * @method \Guanguans\Notify\Foundation\Client allowRedirects($allowRedirects)
                          * ...
-                         * @method self version($version)
+                         * @method \Guanguans\Notify\Foundation\Client version($version)
                          *
                          * @see \GuzzleHttp\HandlerStack
                          * @see \GuzzleHttp\RequestOptions
@@ -102,8 +100,6 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
 
     /**
      * @param Trait_ $node
-     *
-     * @throws \ReflectionException
      */
     public function refactor(Node $node): ?Node
     {
@@ -111,10 +107,7 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
             return null;
         }
 
-        $node->setAttribute('comments', []);
-        $phpDocInfo = $this->phpDocInfoFactory->createFromNodeOrEmpty($node);
-
-        $this->addMixinDoc($phpDocInfo);
+        $this->addMixinDoc($phpDocInfo = $this->phpDocInfoFactory->createEmpty($node));
         $this->addRequestOptionsDoc($phpDocInfo);
 
         $phpDocInfo->addPhpDocTagNode($this->createEmptyDocTagNode());
@@ -128,9 +121,6 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
         return $node;
     }
 
-    /**
-     * @throws \ReflectionException
-     */
     private function addMixinDoc(PhpDocInfo $phpDocInfo): void
     {
         $reflectionMethods = array_filter(
@@ -147,7 +137,10 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
     {
         foreach (Utils::httpOptionConstants() as $constant) {
             $name = Str::camel($constant);
-            $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode('@method', new GenericTagValueNode("self $name(\$$name)")));
+            $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode(
+                '@method',
+                new GenericTagValueNode('\\'.Client::class." $name(\$$name)")
+            ));
         }
     }
 
@@ -156,48 +149,28 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
         return new PhpDocTagNode('', new GenericTagValueNode(''));
     }
 
-    /**
-     * @throws \ReflectionException
-     */
     private function createMethodPhpDocTagNode(\ReflectionMethod $reflectionMethod): PhpDocTagNode
     {
-        $static = $reflectionMethod->isStatic() ? 'static ' : '';
+        $parameters = collect($reflectionMethod->getParameters())
+            ->map(
+                static fn (\ReflectionParameter $reflectionParameter) => Str::of((string) $reflectionParameter)
+                    ->match(
+                        /** @lang PhpRegExp */
+                        '/\[ <(?:required|optional)> (.*?) ]/',
+                    )
+                    ->replace('NULL', 'null')
+            )
+            ->implode(', ');
 
-        $returnType = 'self ';
-
-        $name = $reflectionMethod->getName();
-
-        $parameters = rtrim(
-            array_reduce(
-                $reflectionMethod->getParameters(),
-                static function (string $carry, \ReflectionParameter $reflectionParameter): string {
-                    if ($reflectionParameter->hasType()) {
-                        $type = $reflectionParameter->getType();
-                        \assert($type instanceof \ReflectionNamedType);
-                        $type->isBuiltin() or $carry .= '\\';
-                        $carry .= $type->getName().' ';
-                    }
-
-                    $carry .= '$'.$reflectionParameter->getName();
-
-                    if ($reflectionParameter->isDefaultValueAvailable()) {
-                        $defaultValue = $reflectionParameter->getDefaultValue();
-
-                        /** @noinspection DebugFunctionUsageInspection */
-                        $export = var_export($defaultValue, true);
-                        null === $defaultValue and $export = 'null';
-                        [] === $defaultValue and $export = '[]';
-
-                        $carry .= ' = '.$export;
-                    }
-
-                    return $carry.', ';
-                },
-                '',
-            ),
-            ', ',
+        return new PhpDocTagNode(
+            '@method',
+            new GenericTagValueNode(
+                collect([
+                    $reflectionMethod->isStatic() ? 'static' : null,
+                    '\\'.Client::class,
+                    $reflectionMethod->getName(),
+                ])->filter()->implode(' ')."($parameters)"
+            )
         );
-
-        return new PhpDocTagNode('@method', new GenericTagValueNode("$static$returnType$name($parameters)"));
     }
 }

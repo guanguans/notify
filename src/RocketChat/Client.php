@@ -14,6 +14,8 @@ declare(strict_types=1);
 namespace Guanguans\Notify\RocketChat;
 
 /**
+ * @noinspection GrazieInspection
+ *
  * @see https://docs.rocket.chat/guides/administration/admin-panel/integrations
  *
  * ```

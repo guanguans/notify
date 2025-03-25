@@ -67,6 +67,7 @@ parameters:
             message: 'use config() instead'
     ignoreErrors:
 #        - identifier: binaryOp.invalid
+#        - identifier: logicalOr.resultUnused
 #        - identifier: return.void
 #        - identifier: typePerfect.noMixedMethodCaller
         - identifier: argument.templateType
@@ -74,7 +75,6 @@ parameters:
         - identifier: cast.string
         - identifier: encapsedStringPart.nonString
         - identifier: logicalAnd.resultUnused
-        - identifier: logicalOr.resultUnused
         - identifier: missingType.generics
         - identifier: missingType.iterableValue
         - identifier: new.static

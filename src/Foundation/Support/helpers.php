@@ -70,6 +70,8 @@ if (!\function_exists('Guanguans\Notify\Foundation\Support\tap')) {
      * Call the given Closure with the given value then return the value.
      *
      * @see https://github.com/laravel/framework
+     *
+     * @noinspection PhpMixedReturnTypeCanBeReducedInspection
      */
     function tap(mixed $value, ?callable $callback = null): mixed
     {

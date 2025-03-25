@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpMultipleClassDeclarationsInspection */
-
 declare(strict_types=1);
 
 /**
@@ -125,8 +123,40 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
             return null;
         }
 
-        // Sort properties
-        usort($node->stmts, static function (Stmt $a, Stmt $b): int {
+        $this->sortProperties($node);
+
+        if ([] === ($defined = $this->definedFor($class))) {
+            return $node;
+        }
+
+        $phpDocInfo = $this->phpDocInfoFactory->createEmpty($node);
+
+        /** @var array<string, mixed> $allowedTypes */
+        $allowedTypes = (new \ReflectionClass($class))->getDefaultProperties()['allowedTypes'] ?? [];
+
+        foreach ($defined as $option) {
+            $phpDocInfo->addPhpDocTagNode($this->createMethodPhpDocTagNode($option, $allowedTypes[$option] ?? []));
+        }
+
+        $this->docBlockUpdater->updateRefactoredNodeWithPhpDocInfo($node);
+
+        return $node;
+    }
+
+    private function isSubclassesOf(string $object): bool
+    {
+        foreach ($this->classes as $class) {
+            if (is_subclass_of($object, $class)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private function sortProperties(Class_ $class): void
+    {
+        usort($class->stmts, static function (Stmt $a, Stmt $b): int {
             if (!$a instanceof Property || !$b instanceof Property) {
                 return 0;
             }
@@ -150,59 +180,46 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
                 true,
             );
         });
-
-        /** @var array<string, mixed> $allowedTypes */
-        $allowedTypes = (new \ReflectionClass($class))->getDefaultProperties()['allowedTypes'] ?? [];
-        $defined = array_filter(
-            Utils::definedFor($class),
-            static fn (string $option): bool => !Str::is(['*@*'], $option),
-        );
-
-        asort($defined);
-
-        if ([] === $defined) {
-            return null;
-        }
-
-        $node->setAttribute('comments', []);
-
-        $phpDocInfo = $this->phpDocInfoFactory->createFromNodeOrEmpty($node);
-
-        foreach ($defined as $option) {
-            $phpDocInfo->addPhpDocTagNode(
-                $this->createMethodPhpDocTagNode($option, $allowedTypes[$option] ?? []),
-            );
-        }
-
-        $this->docBlockUpdater->updateRefactoredNodeWithPhpDocInfo($node);
-
-        return $node;
-    }
-
-    private function isSubclassesOf(string $object): bool
-    {
-        foreach ($this->classes as $class) {
-            if (is_subclass_of($object, $class)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**
+     * @throws \ReflectionException
+     *
+     * @return list<string>
+     */
+    private function definedFor(string $class): array
+    {
+        return collect(Utils::definedFor($class))
+            ->filter(static fn (string $option): bool => !Str::is(['*@*'], $option))
+            ->sort()
+            ->all();
+    }
+
+    /**
+     * @see \Symfony\Component\OptionsResolver\OptionsResolver::VALIDATION_FUNCTIONS
+     *
      * @param list<string>|string $optionAllowedTypes
      */
     private function createMethodPhpDocTagNode(string $option, array|string $optionAllowedTypes): PhpDocTagNode
     {
-        $option = Str::camel($option);
+        $parameter = collect([
+            collect((array) $optionAllowedTypes)
+                ->map(static fn (string $type): array|string => match ($type) {
+                    'boolean' => 'bool',
+                    'integer', 'long' => 'int',
+                    'double', 'real' => 'float',
+                    'numeric' => ['int', 'float'],
+                    'scalar', 'resource' => 'mixed',
+                    'countable' => '\\'.\Countable::class,
+                    default => $type,
+                })
+                ->flatten()
+                ->unique()
+                ->sort()
+                ->implode('|'),
+            \sprintf('$%s', $camelCasedOption = Str::camel($option)),
+        ])->filter()->implode(' ');
 
-        $type = match ((array) $optionAllowedTypes) {
-            ['bool'], ['boolean'] => 'bool ',
-            ['array'] => 'array ',
-            default => '',
-        };
-
-        return new PhpDocTagNode('@method', new GenericTagValueNode("self $option($type\$$option)"));
+        return new PhpDocTagNode('@method', new GenericTagValueNode("self $camelCasedOption($parameter)"));
     }
 }

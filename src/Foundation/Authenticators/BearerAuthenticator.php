@@ -17,6 +17,9 @@ use GuzzleHttp\RequestOptions;
 
 class BearerAuthenticator extends OptionsAuthenticator
 {
+    /**
+     * @noinspection PhpAttributeCanBeAddedToOverriddenMemberInspection
+     */
     public function __construct(
         #[\SensitiveParameter]
         string $token,

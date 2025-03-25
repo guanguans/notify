@@ -71,7 +71,7 @@ class TextMessage extends Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
-            ->setDefault('entities', static function (OptionsResolver $optionsResolver): void {
+            ->setDefault('entities', $defaultEntities = static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -120,7 +120,7 @@ class TextMessage extends Message
                     ->setAllowedTypes('prefer_large_media', 'bool')
                     ->setAllowedTypes('show_above_text', 'bool');
             })
-            ->setDefault('reply_parameters', static function (OptionsResolver $optionsResolver): void {
+            ->setDefault('reply_parameters', static function (OptionsResolver $optionsResolver) use ($defaultEntities): void {
                 $optionsResolver
                     ->setDefined([
                         'message_id',
@@ -133,41 +133,7 @@ class TextMessage extends Message
                     ])
                     ->setAllowedTypes('allow_sending_without_reply', 'bool')
                     ->setAllowedTypes('quote_entities', 'array')
-                    ->setDefault('quote_entities', static function (OptionsResolver $optionsResolver): void {
-                        $optionsResolver
-                            ->setPrototype(true)
-                            ->setDefined([
-                                'type',
-                                'offset',
-                                'length',
-                                'url',
-                                'user',
-                                'language',
-                                'custom_emoji_id',
-                            ])
-                            ->setAllowedTypes('user', 'array')
-                            ->setDefault('user', static function (OptionsResolver $optionsResolver): void {
-                                $optionsResolver
-                                    ->setDefined([
-                                        'id',
-                                        'is_bot',
-                                        'first_name',
-                                        'last_name',
-                                        'username',
-                                        'language_code',
-                                        'is_premium',
-                                        'added_to_attachment_menu',
-                                        'can_join_groups',
-                                        'can_read_all_group_messages',
-                                        'supports_inline_queries',
-                                    ])
-                                    ->setAllowedTypes('is_bot', 'bool')
-                                    ->setAllowedTypes('is_premium', 'bool')
-                                    ->setAllowedTypes('can_join_groups', 'bool')
-                                    ->setAllowedTypes('can_read_all_group_messages', 'bool')
-                                    ->setAllowedTypes('supports_inline_queries', 'bool');
-                            });
-                    });
+                    ->setDefault('quote_entities', $defaultEntities);
             })
             ->setDefault('reply_markup', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver

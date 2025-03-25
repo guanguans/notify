@@ -13,6 +13,7 @@ declare(strict_types=1);
  */
 
 use Composer\InstalledVersions;
+use Illuminate\Support\Str;
 use SebastianBergmann\Diff\Differ;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -172,8 +173,8 @@ $status = (new SingleCommandApplication)
 
                     foreach ($value as $package => &$dependencyVersion) {
                         if (
-                            $this->strIs($this->exceptPackages, $package)
-                            || $this->strIs($this->exceptDependencyVersions, $dependencyVersion)
+                            Str::is($this->exceptPackages, $package)
+                            || Str::is($this->exceptDependencyVersions, $dependencyVersion)
                         ) {
                             continue;
                         }
@@ -277,36 +278,6 @@ $status = (new SingleCommandApplication)
             private function toArrayVersion(string $version): array
             {
                 return explode('.', ltrim($version, 'v'));
-            }
-
-            /**
-             * @noinspection SuspiciousLoopInspection
-             * @noinspection ComparisonScalarOrderInspection
-             */
-            private function strIs(array|string $pattern, string $value): bool
-            {
-                $patterns = (array) $pattern;
-
-                if (empty($patterns)) {
-                    return false;
-                }
-
-                foreach ($patterns as $pattern) {
-                    $pattern = (string) $pattern;
-
-                    if ($pattern === $value) {
-                        return true;
-                    }
-
-                    $pattern = preg_quote($pattern, '#');
-                    $pattern = str_replace('\*', '.*', $pattern);
-
-                    if (1 === preg_match('#^'.$pattern.'\z#u', $value)) {
-                        return true;
-                    }
-                }
-
-                return false;
             }
 
             private function formatDiff(string $diff): string

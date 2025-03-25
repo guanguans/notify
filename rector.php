@@ -26,6 +26,7 @@ use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
 use Guanguans\Notify\Foundation\Response;
 use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name\FullyQualified;
@@ -50,9 +51,11 @@ use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Removing\Rector\Class_\RemoveTraitUseRector;
 use Rector\Renaming\Rector\FuncCall\RenameFunctionRector;
 use Rector\Transform\Rector\ClassMethod\ReturnTypeWillChangeRector;
+use Rector\Transform\Rector\FuncCall\FuncCallToStaticCallRector;
 use Rector\Transform\Rector\Scalar\ScalarValueToConstFetchRector;
 use Rector\Transform\Rector\String_\StringToClassConstantRector;
 use Rector\Transform\ValueObject\ClassMethodReference;
+use Rector\Transform\ValueObject\FuncCallToStaticCall;
 use Rector\Transform\ValueObject\ScalarValueToConstFetch;
 use Rector\Transform\ValueObject\StringToClassConstant;
 use Rector\ValueObject\PhpVersion;
@@ -109,7 +112,7 @@ return RectorConfig::configure()
         StaticClosureRector::class,
         SortAssociativeArrayByKeyRector::class,
         HasHttpClientDocCommentRector::class,
-        // HasOptionsDocCommentRector::class,
+        HasOptionsDocCommentRector::class,
         ToInternalExceptionRector::class,
     ])
     ->withConfiguredRule(ChangeMethodVisibilityRector::class, [
@@ -119,6 +122,9 @@ return RectorConfig::configure()
         'phpstan-ignore',
         'phpstan-ignore-next-line',
         'psalm-suppress',
+    ])
+    ->withConfiguredRule(FuncCallToStaticCallRector::class, [
+        new FuncCallToStaticCall('str', Str::class, 'of'),
     ])
     ->withConfiguredRule(RemoveTraitUseRector::class, [
         AsJson::class,

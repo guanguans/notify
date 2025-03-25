@@ -1,6 +1,7 @@
 <?php
 
 /** @noinspection AnonymousFunctionStaticInspection */
+/** @noinspection NullPointerExceptionInspection */
 /** @noinspection PhpPossiblePolymorphicInvocationInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 /** @noinspection StaticClosureCanBeUsedInspection */
@@ -44,8 +45,8 @@ it('can send text message', function (): void {
         'priority' => 5,
         'interruptionlevel' => 'active',
         'actions' => [
-            'ActionName1|http://<action host>/<action1>',
-            'ActionName2|http://<action host>/<action2>',
+            'ActionName1|https://<action host>/<action1>',
+            'ActionName2|https://<action host>/<action2>',
         ],
         'timeline' => [
             'code' => '<timeline code>',

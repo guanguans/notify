@@ -58,6 +58,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
 
     /**
      * Provide debug information about the response.
+     *
+     * @throws \JsonException
      */
     public function __debugInfo(): array
     {
@@ -127,6 +129,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * Alias of json().
      *
      * @param array-key $key
+     *
+     * @throws \JsonException
      */
     public function array(mixed $key = null, mixed $default = null): mixed
     {
@@ -153,6 +157,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * @see https://github.com/illuminate/collections
      *
      * @param array-key $key
+     *
+     * @throws \JsonException
      */
     public function collect(mixed $key = null): Collection
     {
@@ -165,6 +171,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * Requires Laravel Support (composer require illuminate/support).
      *
      * @param array-key $key
+     *
+     * @throws \JsonException
      */
     public function fluent(mixed $key = null): Fluent
     {
@@ -253,8 +261,6 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
 
     /**
      * Check if the content type matches the given type.
-     *
-     * @noinspection MultipleReturnStatementsInspection
      */
     public function is(string $type): bool
     {
@@ -509,6 +515,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * Determine if the given offset exists.
      *
      * @param array-key $offset
+     *
+     * @throws \JsonException
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -519,6 +527,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * Get the value for a given offset.
      *
      * @param array-key $offset
+     *
+     * @throws \JsonException
      */
     public function offsetGet(mixed $offset): mixed
     {
