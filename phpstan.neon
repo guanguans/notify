@@ -27,25 +27,33 @@ includes:
 
 parameters:
     paths:
-        - src
-#        - .php-cs-fixer.php
+        - src/
+    scanFiles:
+        - vendor/composer/InstalledVersions.php
     excludePaths:
         - tests/Fixtures/
 #    level: max
     level: 6
     tmpDir: .build/phpstan
-    errorFormat: symplify
-#    errorFormat: friendly
-#    friendly:
-#        lineBefore: 3
-#        lineAfter: 3
-#        editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+#    errorFormat: symplify
+    errorFormat: friendly
+    friendly:
+        lineBefore: 3
+        lineAfter: 3
+        editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
     type_coverage:
         declare: 100
-        return_type: 100
         param_type: 100
-        property_type: 100
+        return_type: 100
         constant_type: 100
+        property_type: 100
+    type_perfect:
+        narrow_param: false
+        narrow_return: false
+        null_over_false: false
+        no_mixed: false
+        no_mixed_property: false
+        no_mixed_caller: false
     disallowedFunctionCalls:
         -
             function: 'env()'
@@ -57,9 +65,13 @@ parameters:
             function: 'env_getcsv()'
             message: 'use config() instead'
     ignoreErrors:
-        - '#^@readonly property Guanguans\\Notify\\Foundation\\Response\:\:\$.* is assigned outside of the constructor\.$#'
-        - '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
-        - '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\As.* is used zero times and is not analysed\.$#'
+#        - identifier: argument.type
+#        - identifier: binaryOp.invalid
+#        - identifier: cast.string
+#        - identifier: encapsedStringPart.nonString
+#        - identifier: return.type
+#        - identifier: return.void
+#        - identifier: typePerfect.noMixedMethodCaller
         - identifier: argument.templateType
         - identifier: logicalAnd.resultUnused
         - identifier: logicalOr.resultUnused
@@ -67,3 +79,6 @@ parameters:
         - identifier: missingType.iterableValue
         - identifier: new.static
         - identifier: symplify.noDynamicName
+        - '#^@readonly property Guanguans\\Notify\\Foundation\\Response\:\:\$.* is assigned outside of the constructor\.$#'
+        - '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
+        - '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\As.* is used zero times and is not analysed\.$#'
