@@ -45,25 +45,13 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     use DeterminesStatusCode;
     use Dumpable;
 
-    /**
-     * The request that generated response.
-     *
-     * @readonly
-     */
+    /** The request that generated response. */
     protected ?RequestInterface $request = null;
 
-    /**
-     * The request cookies.
-     *
-     * @readonly
-     */
+    /** The request cookies. */
     protected ?CookieJar $cookies = null;
 
-    /**
-     * The transfer stats for the request.
-     *
-     * @readonly
-     */
+    /** The transfer stats for the request. */
     protected ?TransferStats $transferStats = null;
 
     /** The decoded JSON response. */

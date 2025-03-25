@@ -1,8 +1,0 @@
-# total 3 errors
-
-parameters:
-    ignoreErrors:
-        -
-            message: '#^@readonly property cannot have a default value\.$#'
-            count: 3
-            path: ../src/Foundation/Response.php

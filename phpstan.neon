@@ -82,7 +82,6 @@ parameters:
         - identifier: symplify.noDynamicName
         - identifier: paramOut.type
 #        - identifier: typePerfect.noMixedMethodCaller
-        - '#^@readonly property Guanguans\\Notify\\Foundation\\Response\:\:\$.* is assigned outside of the constructor\.$#'
         - '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
         - '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\As.* is used zero times and is not analysed\.$#'
 

@@ -1,7 +1,6 @@
-# total 15 errors
+# total 12 errors
 includes:
     - assign.propertyType.neon
     - disallowed.function.neon
-    - property.readOnlyByPhpDocDefaultValue.neon
     - throw.notThrowable.neon
     - typePerfect.narrowPublicClassMethodParamType.neon
