@@ -64,7 +64,7 @@ abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
         }
 
         $properties = (new \ReflectionClass(static::class))->getDefaultProperties();
-        $defined = array_unique([...($properties['defined'] ?? []), ...($properties['required'] ?? [])]);
+        $defined = array_unique([...(array) ($properties['defined'] ?? []), ...(array) ($properties['required'] ?? [])]);
 
         if (1 === \count($defined)) {
             return new static([current($defined) => $options]);

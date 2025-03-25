@@ -29,6 +29,7 @@ parameters:
     paths:
         - src/
     scanFiles:
+        - src/Foundation/Concerns/HasHttpClient.php
         - vendor/composer/InstalledVersions.php
     excludePaths:
         - tests/Fixtures/

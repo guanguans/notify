@@ -28,45 +28,45 @@ use Psr\Http\Message\ResponseInterface;
 use function Guanguans\Notify\Foundation\Support\tap;
 
 /**
- * @method self setHandler(callable $handler)
- * @method self unshift(callable $middleware, string $name = null)
- * @method self push(callable $middleware, string $name = '')
- * @method self before(string $findName, callable $middleware, string $withName = '')
- * @method self after(string $findName, callable $middleware, string $withName = '')
- * @method self remove($remove)
- * @method self allowRedirects($allowRedirects)
- * @method self auth($auth)
- * @method self baseUri($baseUri)
- * @method self body($body)
- * @method self cert($cert)
- * @method self connectTimeout($connectTimeout)
- * @method self cookies($cookies)
- * @method self cryptoMethod($cryptoMethod)
- * @method self curl($curl)
- * @method self debug($debug)
- * @method self decodeContent($decodeContent)
- * @method self delay($delay)
- * @method self expect($expect)
- * @method self forceIpResolve($forceIpResolve)
- * @method self formParams($formParams)
- * @method self headers($headers)
- * @method self httpErrors($httpErrors)
- * @method self idnConversion($idnConversion)
- * @method self json($json)
- * @method self multipart($multipart)
- * @method self onHeaders($onHeaders)
- * @method self onStats($onStats)
- * @method self progress($progress)
- * @method self proxy($proxy)
- * @method self query($query)
- * @method self readTimeout($readTimeout)
- * @method self sink($sink)
- * @method self sslKey($sslKey)
- * @method self stream($stream)
- * @method self synchronous($synchronous)
- * @method self timeout($timeout)
- * @method self verify($verify)
- * @method self version($version)
+ * @method static setHandler(callable $handler)
+ * @method static unshift(callable $middleware, string $name = null)
+ * @method static push(callable $middleware, string $name = '')
+ * @method static before(string $findName, callable $middleware, string $withName = '')
+ * @method static after(string $findName, callable $middleware, string $withName = '')
+ * @method static remove($remove)
+ * @method static allowRedirects($allowRedirects)
+ * @method static auth($auth)
+ * @method static baseUri($baseUri)
+ * @method static body($body)
+ * @method static cert($cert)
+ * @method static connectTimeout($connectTimeout)
+ * @method static cookies($cookies)
+ * @method static cryptoMethod($cryptoMethod)
+ * @method static curl($curl)
+ * @method static debug($debug)
+ * @method static decodeContent($decodeContent)
+ * @method static delay($delay)
+ * @method static expect($expect)
+ * @method static forceIpResolve($forceIpResolve)
+ * @method static formParams($formParams)
+ * @method static headers($headers)
+ * @method static httpErrors($httpErrors)
+ * @method static idnConversion($idnConversion)
+ * @method static json($json)
+ * @method static multipart($multipart)
+ * @method static onHeaders($onHeaders)
+ * @method static onStats($onStats)
+ * @method static progress($progress)
+ * @method static proxy($proxy)
+ * @method static query($query)
+ * @method static readTimeout($readTimeout)
+ * @method static sink($sink)
+ * @method static sslKey($sslKey)
+ * @method static stream($stream)
+ * @method static synchronous($synchronous)
+ * @method static timeout($timeout)
+ * @method static verify($verify)
+ * @method static version($version)
  *
  * @see \GuzzleHttp\HandlerStack
  * @see \GuzzleHttp\RequestOptions
@@ -128,6 +128,9 @@ trait HasHttpClient
         return $this;
     }
 
+    /**
+     * @return callable(static): \GuzzleHttp\Client
+     */
     public function getHttpClientResolver(): callable
     {
         return $this->httpClientResolver ??= fn (): Client => new Client($this->allNormalizedHttpOptions());
@@ -155,6 +158,9 @@ trait HasHttpClient
         return $this;
     }
 
+    /**
+     * @return callable(static): \GuzzleHttp\HandlerStack
+     */
     public function getHandlerStackResolver(): callable
     {
         return $this->handlerStackResolver ??= fn (): HandlerStack => tap(

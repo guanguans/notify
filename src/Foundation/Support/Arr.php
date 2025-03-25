@@ -200,9 +200,9 @@ class Arr
      */
     public static function rejectRecursive(array $array, ?callable $callback = null, int $flag = 0): array
     {
-        $callback ??= static fn (...$args): bool => (bool) $args[0];
+        $callback ??= static fn (mixed ...$args): bool => (bool) $args[0];
 
-        return static::filterRecursive($array, static fn (...$args): bool => !$callback(...$args), $flag);
+        return static::filterRecursive($array, static fn (mixed ...$args): bool => !$callback(...$args), $flag);
     }
 
     /**

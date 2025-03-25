@@ -1,9 +1,6 @@
-# total 33 errors
+# total 27 errors
 includes:
-    - argument.unpackNonIterable.neon
-    - arrayUnpacking.nonIterable.neon
     - assign.propertyType.neon
-    - class.notFound.neon
     - disallowed.function.neon
     - method.nonObject.neon
     - method.unused.neon
