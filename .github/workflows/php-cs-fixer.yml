@@ -26,8 +26,7 @@ jobs:
         run: composer install --no-interaction --prefer-dist --ansi -v
 
       - name: Run php-cs-fixer
-        # run: composer style-fix
-        run: ./vendor-bin/php-cs-fixer-config/vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --config=.php-cs-fixer.php --show-progress=dots --diff --ansi -v --dry-run
+        run: composer style-fix
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5

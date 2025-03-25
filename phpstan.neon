@@ -60,20 +60,10 @@ parameters:
         - '#^@readonly property Guanguans\\Notify\\Foundation\\Response\:\:\$.* is assigned outside of the constructor\.$#'
         - '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
         - '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\As.* is used zero times and is not analysed\.$#'
-        -
-            identifier: argument.templateType
-        -
-            identifier: missingType.generics
-        -
-            identifier: missingType.iterableValue
-        -
-            identifier: new.static
-        -
-            identifier: logicalAnd.resultUnused
-        -
-            identifier: logicalOr.resultUnused
-        -
-            identifier: symplify.noDynamicName
-#        -
-#            message: '#^Calling sha1\(\) is forbidden, use hash\(\) with at least SHA\-256 for secure hash, or password_hash\(\) for passwords\.$#'
-#            path: src/Foundation/Authenticators/WsseAuthenticator.php
+        - identifier: argument.templateType
+        - identifier: logicalAnd.resultUnused
+        - identifier: logicalOr.resultUnused
+        - identifier: missingType.generics
+        - identifier: missingType.iterableValue
+        - identifier: new.static
+        - identifier: symplify.noDynamicName
