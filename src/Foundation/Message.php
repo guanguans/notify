@@ -55,6 +55,8 @@ abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
     /**
      * @noinspection PhpHierarchyChecksInspection
      *
+     * @throws \ReflectionException
+     *
      * @return static
      */
     final public static function make(mixed $options = []): self
@@ -63,10 +65,7 @@ abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
             return new static($options);
         }
 
-        $properties = (new \ReflectionClass(static::class))->getDefaultProperties();
-        $defined = array_unique([...(array) ($properties['defined'] ?? []), ...(array) ($properties['required'] ?? [])]);
-
-        if (1 === \count($defined)) {
+        if (1 === \count($defined = Utils::definedFor(static::class))) {
             return new static([current($defined) => $options]);
         }
 

@@ -78,7 +78,7 @@ class Utils
     /**
      * Return an array of defined properties for the given object.
      *
-     * @param class-string|Message $object
+     * @param class-string<Message>|Message $object
      *
      * @throws \ReflectionException
      *
@@ -89,17 +89,11 @@ class Utils
         if (\is_string($object)) {
             $properties = (new \ReflectionClass($object))->getDefaultProperties();
 
-            return array_unique(array_merge(
-                $properties['defined'] ?? [],
-                $properties['required'] ?? []
-            ));
+            return array_unique(array_merge($properties['defined'] ?? [], $properties['required'] ?? []));
         }
 
         return array_unique(
-            (fn (): array => array_merge(
-                $this->defined ?? [],
-                $this->required ?? [],
-            ))->call($object)
+            (fn (): array => array_merge($this->defined ?? [], $this->required ?? []))->call($object)
         );
     }
 
