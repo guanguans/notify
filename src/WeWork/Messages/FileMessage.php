@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\WeWork\Messages;
 
 /**
- * @method self mediaId($mediaId)
+ * @method self mediaId(mixed $mediaId)
  */
 class FileMessage extends Message
 {

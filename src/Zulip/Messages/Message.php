@@ -16,13 +16,13 @@ namespace Guanguans\Notify\Zulip\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsFormParams;
 
 /**
- * @method self content($content)
- * @method self localId($localId)
- * @method self queueId($queueId)
+ * @method self content(mixed $content)
+ * @method self localId(mixed $localId)
+ * @method self queueId(mixed $queueId)
  * @method self readBySender(bool $readBySender)
- * @method self to($to)
- * @method self topic($topic)
- * @method self type($type)
+ * @method self to(mixed $to)
+ * @method self topic(mixed $topic)
+ * @method self type(mixed $type)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

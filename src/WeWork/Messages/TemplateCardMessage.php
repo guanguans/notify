@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @method self cardAction(array $cardAction)
  * @method self cardImage(array $cardImage)
- * @method self cardType($cardType)
+ * @method self cardType(mixed $cardType)
  * @method self emphasisContent(array $emphasisContent)
  * @method self horizontalContentList(array $horizontalContentList)
  * @method self imageTextArea(array $imageTextArea)
@@ -26,7 +26,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self mainTitle(array $mainTitle)
  * @method self quoteArea(array $quoteArea)
  * @method self source(array $source)
- * @method self subTitleText($subTitleText)
+ * @method self subTitleText(mixed $subTitleText)
  * @method self verticalContentList(array $verticalContentList)
  */
 class TemplateCardMessage extends Message

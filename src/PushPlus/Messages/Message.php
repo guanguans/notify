@@ -14,15 +14,15 @@ declare(strict_types=1);
 namespace Guanguans\Notify\PushPlus\Messages;
 
 /**
- * @method self callbackUrl($callbackUrl)
- * @method self channel($channel)
- * @method self content($content)
- * @method self template($template)
- * @method self timestamp($timestamp)
- * @method self title($title)
- * @method self to($to)
- * @method self topic($topic)
- * @method self webhook($webhook)
+ * @method self callbackUrl(mixed $callbackUrl)
+ * @method self channel(mixed $channel)
+ * @method self content(mixed $content)
+ * @method self template(mixed $template)
+ * @method self timestamp(mixed $timestamp)
+ * @method self title(mixed $title)
+ * @method self to(mixed $to)
+ * @method self topic(mixed $topic)
+ * @method self webhook(mixed $webhook)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

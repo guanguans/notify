@@ -14,12 +14,12 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Pushback\Messages;
 
 /**
- * @method self action1($action1)
- * @method self action2($action2)
- * @method self body($body)
- * @method self id($id)
- * @method self reply($reply)
- * @method self title($title)
+ * @method self action1(mixed $action1)
+ * @method self action2(mixed $action2)
+ * @method self body(mixed $body)
+ * @method self id(mixed $id)
+ * @method self reply(mixed $reply)
+ * @method self title(mixed $title)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

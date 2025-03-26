@@ -17,12 +17,12 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method self chatId($chatId)
- * @method self disableNotification($disableNotification)
+ * @method self chatId(mixed $chatId)
+ * @method self disableNotification(mixed $disableNotification)
  * @method self media(array $media)
- * @method self messageThreadId($messageThreadId)
- * @method self protectContent($protectContent)
- * @method self replyParameters($replyParameters)
+ * @method self messageThreadId(mixed $messageThreadId)
+ * @method self protectContent(mixed $protectContent)
+ * @method self replyParameters(mixed $replyParameters)
  */
 class MediaGroupMessage extends Message
 {

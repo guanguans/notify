@@ -14,13 +14,13 @@ declare(strict_types=1);
 namespace Guanguans\Notify\IGot\Messages;
 
 /**
- * @method self automaticallyCopy($automaticallyCopy)
- * @method self content($content)
- * @method self copy($copy)
+ * @method self automaticallyCopy(mixed $automaticallyCopy)
+ * @method self content(mixed $content)
+ * @method self copy(mixed $copy)
  * @method self detail(array $detail)
- * @method self title($title)
- * @method self urgent($urgent)
- * @method self url($url)
+ * @method self title(mixed $title)
+ * @method self urgent(mixed $urgent)
+ * @method self url(mixed $url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

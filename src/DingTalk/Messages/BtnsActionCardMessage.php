@@ -16,10 +16,10 @@ namespace Guanguans\Notify\DingTalk\Messages;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method self btnOrientation($btnOrientation)
+ * @method self btnOrientation(mixed $btnOrientation)
  * @method self btns(array $btns)
- * @method self text($text)
- * @method self title($title)
+ * @method self text(mixed $text)
+ * @method self title(mixed $title)
  */
 class BtnsActionCardMessage extends Message
 {

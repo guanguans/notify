@@ -17,16 +17,16 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method self correlationId($correlationId)
+ * @method self correlationId(mixed $correlationId)
  * @method self expectedActors(array $expectedActors)
  * @method self hideOriginalBody(bool $hideOriginalBody)
- * @method self originator($originator)
+ * @method self originator(mixed $originator)
  * @method self potentialAction(array $potentialAction)
  * @method self sections(array $sections)
- * @method self summary($summary)
- * @method self text($text)
- * @method self themeColor($themeColor)
- * @method self title($title)
+ * @method self summary(mixed $summary)
+ * @method self text(mixed $text)
+ * @method self themeColor(mixed $themeColor)
+ * @method self title(mixed $title)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

@@ -14,16 +14,16 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method self chatId($chatId)
- * @method self disableNotification($disableNotification)
- * @method self firstName($firstName)
- * @method self lastName($lastName)
- * @method self messageThreadId($messageThreadId)
- * @method self phoneNumber($phoneNumber)
- * @method self protectContent($protectContent)
- * @method self replyMarkup($replyMarkup)
- * @method self replyParameters($replyParameters)
- * @method self vcard($vcard)
+ * @method self chatId(mixed $chatId)
+ * @method self disableNotification(mixed $disableNotification)
+ * @method self firstName(mixed $firstName)
+ * @method self lastName(mixed $lastName)
+ * @method self messageThreadId(mixed $messageThreadId)
+ * @method self phoneNumber(mixed $phoneNumber)
+ * @method self protectContent(mixed $protectContent)
+ * @method self replyMarkup(mixed $replyMarkup)
+ * @method self replyParameters(mixed $replyParameters)
+ * @method self vcard(mixed $vcard)
  */
 class ContactMessage extends Message
 {

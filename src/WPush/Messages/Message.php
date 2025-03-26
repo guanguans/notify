@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Guanguans\Notify\WPush\Messages;
 
 /**
- * @method self channel($channel)
- * @method self content($content)
- * @method self title($title)
- * @method self topicCode($topicCode)
+ * @method self channel(mixed $channel)
+ * @method self content(mixed $content)
+ * @method self title(mixed $title)
+ * @method self topicCode(mixed $topicCode)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

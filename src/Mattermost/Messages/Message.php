@@ -14,18 +14,18 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Mattermost\Messages;
 
 /**
- * @method self channelId($channelId)
- * @method self createAt($createAt)
- * @method self editAt($editAt)
+ * @method self channelId(mixed $channelId)
+ * @method self createAt(mixed $createAt)
+ * @method self editAt(mixed $editAt)
  * @method self fileIds(array $fileIds)
  * @method self isPinned(bool $isPinned)
- * @method self message($message)
- * @method self originalId($originalId)
- * @method self participants($participants)
- * @method self pendingPostId($pendingPostId)
+ * @method self message(mixed $message)
+ * @method self originalId(mixed $originalId)
+ * @method self participants(mixed $participants)
+ * @method self pendingPostId(mixed $pendingPostId)
  * @method self props(array $props)
- * @method self rootId($rootId)
- * @method self type($type)
+ * @method self rootId(mixed $rootId)
+ * @method self type(mixed $type)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

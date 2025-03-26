@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Guanguans\Notify\YiFengChuanHua\Messages;
 
 /**
- * @method self body($body)
- * @method self delayMilliseconds($delayMilliseconds)
- * @method self head($head)
- * @method self url($url)
+ * @method self body(mixed $body)
+ * @method self delayMilliseconds(mixed $delayMilliseconds)
+ * @method self head(mixed $head)
+ * @method self url(mixed $url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

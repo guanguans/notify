@@ -15,9 +15,9 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self allowedUpdates(array $allowedUpdates)
- * @method self limit($limit)
- * @method self offset($offset)
- * @method self timeout($timeout)
+ * @method self limit(mixed $limit)
+ * @method self offset(mixed $offset)
+ * @method self timeout(mixed $timeout)
  */
 class GetUpdatesMessage extends Message
 {

@@ -16,21 +16,21 @@ namespace Guanguans\Notify\Pushover\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 
 /**
- * @method self attachment($attachment)
- * @method self callback($callback)
- * @method self device($device)
- * @method self expire($expire)
- * @method self html($html)
- * @method self message($message)
- * @method self monospace($monospace)
- * @method self priority($priority)
- * @method self retry($retry)
- * @method self sound($sound)
- * @method self timestamp($timestamp)
- * @method self title($title)
- * @method self ttl($ttl)
- * @method self url($url)
- * @method self urlTitle($urlTitle)
+ * @method self attachment(mixed $attachment)
+ * @method self callback(mixed $callback)
+ * @method self device(mixed $device)
+ * @method self expire(mixed $expire)
+ * @method self html(mixed $html)
+ * @method self message(mixed $message)
+ * @method self monospace(mixed $monospace)
+ * @method self priority(mixed $priority)
+ * @method self retry(mixed $retry)
+ * @method self sound(mixed $sound)
+ * @method self timestamp(mixed $timestamp)
+ * @method self title(mixed $title)
+ * @method self ttl(mixed $ttl)
+ * @method self url(mixed $url)
+ * @method self urlTitle(mixed $urlTitle)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

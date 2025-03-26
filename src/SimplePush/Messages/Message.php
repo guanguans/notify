@@ -18,9 +18,9 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 /**
  * @method self actions(array $actions)
  * @method self attachments(array $attachments)
- * @method self event($event)
- * @method self msg($msg)
- * @method self title($title)
+ * @method self event(mixed $event)
+ * @method self msg(mixed $msg)
+ * @method self title(mixed $title)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

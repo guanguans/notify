@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Guanguans\Notify\XiZhi\Messages;
 
 /**
- * @method self content($content)
- * @method self date($date)
- * @method self time($time)
- * @method self title($title)
- * @method self type($type)
+ * @method self content(mixed $content)
+ * @method self date(mixed $date)
+ * @method self time(mixed $time)
+ * @method self title(mixed $title)
+ * @method self type(mixed $type)
  */
 class SingleMessage extends Message
 {

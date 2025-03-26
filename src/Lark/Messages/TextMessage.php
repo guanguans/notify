@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Lark\Messages;
 
 /**
- * @method self text($text)
+ * @method self text(mixed $text)
  */
 class TextMessage extends Message
 {

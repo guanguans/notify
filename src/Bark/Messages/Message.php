@@ -14,17 +14,17 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Bark\Messages;
 
 /**
- * @method self autoCopy($autoCopy)
- * @method self badge($badge)
- * @method self body($body)
- * @method self copy($copy)
- * @method self group($group)
- * @method self icon($icon)
- * @method self isArchive($isArchive)
- * @method self level($level)
- * @method self sound($sound)
- * @method self title($title)
- * @method self url($url)
+ * @method self autoCopy(mixed $autoCopy)
+ * @method self badge(mixed $badge)
+ * @method self body(mixed $body)
+ * @method self copy(mixed $copy)
+ * @method self group(mixed $group)
+ * @method self icon(mixed $icon)
+ * @method self isArchive(mixed $isArchive)
+ * @method self level(mixed $level)
+ * @method self sound(mixed $sound)
+ * @method self title(mixed $title)
+ * @method self url(mixed $url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

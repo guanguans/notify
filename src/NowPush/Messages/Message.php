@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Guanguans\Notify\NowPush\Messages;
 
 /**
- * @method self deviceType($deviceType)
- * @method self messageType($messageType)
- * @method self note($note)
- * @method self url($url)
+ * @method self deviceType(mixed $deviceType)
+ * @method self messageType(mixed $messageType)
+ * @method self note(mixed $note)
+ * @method self url(mixed $url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

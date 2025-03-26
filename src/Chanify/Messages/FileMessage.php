@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Chanify\Messages;
 
 /**
- * @method self file($file)
+ * @method self file(mixed $file)
  */
 class FileMessage extends Message
 {

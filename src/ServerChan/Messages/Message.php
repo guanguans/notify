@@ -16,13 +16,13 @@ namespace Guanguans\Notify\ServerChan\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 
 /**
- * @method self channel($channel)
- * @method self desp($desp)
- * @method self noip($noip)
- * @method self openid($openid)
- * @method self short($short)
- * @method self tags($tags)
- * @method self title($title)
+ * @method self channel(mixed $channel)
+ * @method self desp(mixed $desp)
+ * @method self noip(mixed $noip)
+ * @method self openid(mixed $openid)
+ * @method self short(mixed $short)
+ * @method self tags(mixed $tags)
+ * @method self title(mixed $title)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

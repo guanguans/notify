@@ -16,7 +16,7 @@ namespace Guanguans\Notify\DingTalk\Messages;
 /**
  * @method self atDingtalkIds(array $atDingtalkIds)
  * @method self atMobiles(array $atMobiles)
- * @method self content($content)
+ * @method self content(mixed $content)
  * @method self isAtAll(bool $isAtAll)
  */
 class TextMessage extends Message

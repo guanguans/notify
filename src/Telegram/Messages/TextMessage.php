@@ -16,16 +16,16 @@ namespace Guanguans\Notify\Telegram\Messages;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method self chatId($chatId)
+ * @method self chatId(mixed $chatId)
  * @method self disableNotification(bool $disableNotification)
  * @method self entities(array $entities)
  * @method self linkPreviewOptions(array $linkPreviewOptions)
- * @method self messageThreadId($messageThreadId)
- * @method self parseMode($parseMode)
+ * @method self messageThreadId(mixed $messageThreadId)
+ * @method self parseMode(mixed $parseMode)
  * @method self protectContent(bool $protectContent)
  * @method self replyMarkup(array $replyMarkup)
  * @method self replyParameters(array $replyParameters)
- * @method self text($text)
+ * @method self text(mixed $text)
  */
 class TextMessage extends Message
 {

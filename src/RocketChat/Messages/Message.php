@@ -17,14 +17,14 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @method self alias($alias)
+ * @method self alias(mixed $alias)
  * @method self attachments(array $attachments)
- * @method self avatar($avatar)
- * @method self channel($channel)
- * @method self emoji($emoji)
- * @method self roomId($roomId)
- * @method self text($text)
- * @method self tmid($tmid)
+ * @method self avatar(mixed $avatar)
+ * @method self channel(mixed $channel)
+ * @method self emoji(mixed $emoji)
+ * @method self roomId(mixed $roomId)
+ * @method self text(mixed $text)
+ * @method self tmid(mixed $tmid)
  * @method self tshow(bool $tshow)
  */
 class Message extends \Guanguans\Notify\Foundation\Message

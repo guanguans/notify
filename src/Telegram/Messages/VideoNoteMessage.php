@@ -14,16 +14,16 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Telegram\Messages;
 
 /**
- * @method self chatId($chatId)
- * @method self disableNotification($disableNotification)
- * @method self duration($duration)
- * @method self length($length)
- * @method self messageThreadId($messageThreadId)
- * @method self protectContent($protectContent)
- * @method self replyMarkup($replyMarkup)
- * @method self replyParameters($replyParameters)
- * @method self thumbnail($thumbnail)
- * @method self videoNote($videoNote)
+ * @method self chatId(mixed $chatId)
+ * @method self disableNotification(mixed $disableNotification)
+ * @method self duration(mixed $duration)
+ * @method self length(mixed $length)
+ * @method self messageThreadId(mixed $messageThreadId)
+ * @method self protectContent(mixed $protectContent)
+ * @method self replyMarkup(mixed $replyMarkup)
+ * @method self replyParameters(mixed $replyParameters)
+ * @method self thumbnail(mixed $thumbnail)
+ * @method self videoNote(mixed $videoNote)
  */
 class VideoNoteMessage extends Message
 {

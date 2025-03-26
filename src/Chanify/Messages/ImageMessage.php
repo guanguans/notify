@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Chanify\Messages;
 
 /**
- * @method self image($image)
+ * @method self image(mixed $image)
  */
 class ImageMessage extends Message
 {

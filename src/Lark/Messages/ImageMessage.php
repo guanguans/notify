@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Lark\Messages;
 
 /**
- * @method self imageKey($imageKey)
+ * @method self imageKey(mixed $imageKey)
  */
 class ImageMessage extends Message
 {

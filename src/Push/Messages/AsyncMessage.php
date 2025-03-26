@@ -14,14 +14,14 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Push\Messages;
 
 /**
- * @method self body($body)
- * @method self channel($channel)
- * @method self groupId($groupId)
- * @method self image($image)
- * @method self link($link)
- * @method self sound($sound)
+ * @method self body(mixed $body)
+ * @method self channel(mixed $channel)
+ * @method self groupId(mixed $groupId)
+ * @method self image(mixed $image)
+ * @method self link(mixed $link)
+ * @method self sound(mixed $sound)
  * @method self timeSensitive(bool $timeSensitive)
- * @method self title($title)
+ * @method self title(mixed $title)
  */
 class AsyncMessage extends Message
 {

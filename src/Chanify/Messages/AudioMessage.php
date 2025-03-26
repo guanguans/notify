@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Chanify\Messages;
 
 /**
- * @method self audio($audio)
+ * @method self audio(mixed $audio)
  */
 class AudioMessage extends Message
 {

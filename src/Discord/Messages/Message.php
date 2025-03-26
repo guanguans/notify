@@ -19,14 +19,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @method self allowedMentions(array $allowedMentions)
  * @method self attachments(array $attachments)
- * @method self avatarUrl($avatarUrl)
+ * @method self avatarUrl(mixed $avatarUrl)
  * @method self components(array $components)
- * @method self content($content)
+ * @method self content(mixed $content)
  * @method self embeds(array $embeds)
  * @method self files(array $files)
- * @method self payloadJson($payloadJson)
+ * @method self payloadJson(mixed $payloadJson)
  * @method self tts(bool $tts)
- * @method self username($username)
+ * @method self username(mixed $username)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

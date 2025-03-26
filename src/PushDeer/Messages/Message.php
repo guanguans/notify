@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Guanguans\Notify\PushDeer\Messages;
 
 /**
- * @method self desp($desp)
- * @method self text($text)
- * @method self type($type)
+ * @method self desp(mixed $desp)
+ * @method self text(mixed $text)
+ * @method self type(mixed $type)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

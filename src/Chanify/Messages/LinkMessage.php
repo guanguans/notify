@@ -14,9 +14,9 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Chanify\Messages;
 
 /**
- * @method self link($link)
- * @method self priority($priority)
- * @method self sound($sound)
+ * @method self link(mixed $link)
+ * @method self priority(mixed $priority)
+ * @method self sound(mixed $sound)
  */
 class LinkMessage extends Message
 {

@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\WeWork\Messages;
 
 /**
- * @method self content($content)
+ * @method self content(mixed $content)
  */
 class MarkdownMessage extends Message
 {

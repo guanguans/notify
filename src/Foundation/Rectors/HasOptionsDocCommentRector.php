@@ -135,7 +135,7 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
         $allowedTypes = (new \ReflectionClass($class))->getDefaultProperties()['allowedTypes'] ?? [];
 
         foreach ($defined as $option) {
-            $phpDocInfo->addPhpDocTagNode($this->createMethodPhpDocTagNode($option, $allowedTypes[$option] ?? []));
+            $phpDocInfo->addPhpDocTagNode($this->createMethodPhpDocTagNode($option, $allowedTypes[$option] ?? null));
         }
 
         $this->docBlockUpdater->updateRefactoredNodeWithPhpDocInfo($node);
@@ -200,10 +200,10 @@ final class HasOptionsDocCommentRector extends AbstractRector implements Configu
      *
      * @param list<string>|string $optionAllowedTypes
      */
-    private function createMethodPhpDocTagNode(string $option, array|string $optionAllowedTypes): PhpDocTagNode
+    private function createMethodPhpDocTagNode(string $option, null|array|string $optionAllowedTypes): PhpDocTagNode
     {
         $parameter = collect([
-            collect((array) $optionAllowedTypes)
+            collect((array) ($optionAllowedTypes ?? 'mixed'))
                 ->map(static fn (string $type): array|string => match ($type) {
                     'boolean' => 'bool',
                     'integer', 'long' => 'int',

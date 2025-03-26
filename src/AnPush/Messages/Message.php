@@ -16,10 +16,10 @@ namespace Guanguans\Notify\AnPush\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsFormParams;
 
 /**
- * @method self channel($channel)
- * @method self content($content)
- * @method self title($title)
- * @method self to($to)
+ * @method self channel(mixed $channel)
+ * @method self content(mixed $content)
+ * @method self title(mixed $title)
+ * @method self to(mixed $to)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

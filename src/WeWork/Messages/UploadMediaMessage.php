@@ -17,8 +17,8 @@ use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 use Guanguans\Notify\Foundation\Message;
 
 /**
- * @method self media($media)
- * @method self type($type)
+ * @method self media(mixed $media)
+ * @method self type(mixed $type)
  */
 class UploadMediaMessage extends Message
 {

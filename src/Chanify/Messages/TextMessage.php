@@ -17,14 +17,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @method self actions(array $actions)
- * @method self autocopy($autocopy)
- * @method self copy($copy)
- * @method self interruptionlevel($interruptionlevel)
- * @method self priority($priority)
- * @method self sound($sound)
- * @method self text($text)
+ * @method self autocopy(mixed $autocopy)
+ * @method self copy(mixed $copy)
+ * @method self interruptionlevel(mixed $interruptionlevel)
+ * @method self priority(mixed $priority)
+ * @method self sound(mixed $sound)
+ * @method self text(mixed $text)
  * @method self timeline(array $timeline)
- * @method self title($title)
+ * @method self title(mixed $title)
  */
 class TextMessage extends Message
 {

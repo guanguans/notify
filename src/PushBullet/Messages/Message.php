@@ -14,19 +14,19 @@ declare(strict_types=1);
 namespace Guanguans\Notify\PushBullet\Messages;
 
 /**
- * @method self body($body)
- * @method self channelTag($channelTag)
- * @method self clientIden($clientIden)
- * @method self deviceIden($deviceIden)
- * @method self email($email)
- * @method self fileName($fileName)
- * @method self fileType($fileType)
- * @method self fileUrl($fileUrl)
- * @method self guid($guid)
- * @method self sourceDeviceIden($sourceDeviceIden)
- * @method self title($title)
- * @method self type($type)
- * @method self url($url)
+ * @method self body(mixed $body)
+ * @method self channelTag(mixed $channelTag)
+ * @method self clientIden(mixed $clientIden)
+ * @method self deviceIden(mixed $deviceIden)
+ * @method self email(mixed $email)
+ * @method self fileName(mixed $fileName)
+ * @method self fileType(mixed $fileType)
+ * @method self fileUrl(mixed $fileUrl)
+ * @method self guid(mixed $guid)
+ * @method self sourceDeviceIden(mixed $sourceDeviceIden)
+ * @method self title(mixed $title)
+ * @method self type(mixed $type)
+ * @method self url(mixed $url)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

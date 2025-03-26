@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Lark\Messages;
 
 /**
- * @method self shareChatId($shareChatId)
+ * @method self shareChatId(mixed $shareChatId)
  */
 class ShareChatMessage extends Message
 {

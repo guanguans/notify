@@ -18,15 +18,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * @method self ark(array $ark)
- * @method self channelId($channelId)
- * @method self content($content)
+ * @method self channelId(mixed $channelId)
+ * @method self content(mixed $content)
  * @method self embed(array $embed)
- * @method self eventId($eventId)
- * @method self fileImage($fileImage)
- * @method self image($image)
+ * @method self eventId(mixed $eventId)
+ * @method self fileImage(mixed $fileImage)
+ * @method self image(mixed $image)
  * @method self markdown(array $markdown)
  * @method self messageReference(array $messageReference)
- * @method self msgId($msgId)
+ * @method self msgId(mixed $msgId)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

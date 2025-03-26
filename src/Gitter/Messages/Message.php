@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Gitter\Messages;
 
 /**
- * @method self text($text)
+ * @method self text(mixed $text)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {

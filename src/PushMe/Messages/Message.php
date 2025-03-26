@@ -16,12 +16,12 @@ namespace Guanguans\Notify\PushMe\Messages;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 
 /**
- * @method self content($content)
- * @method self date($date)
- * @method self pushKey($pushKey)
- * @method self tempKey($tempKey)
- * @method self title($title)
- * @method self type($type)
+ * @method self content(mixed $content)
+ * @method self date(mixed $date)
+ * @method self pushKey(mixed $pushKey)
+ * @method self tempKey(mixed $tempKey)
+ * @method self title(mixed $title)
+ * @method self type(mixed $type)
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
