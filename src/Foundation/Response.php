@@ -84,7 +84,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      */
     public static function fromPsrResponse(ResponseInterface $response): self
     {
-        return $response instanceof static ? $response : new static(
+        return $response instanceof self ? $response : new self(
             $response->getStatusCode(),
             $response->getHeaders(),
             $response->getBody(),

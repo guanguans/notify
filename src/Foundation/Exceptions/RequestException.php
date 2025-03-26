@@ -23,7 +23,7 @@ class RequestException extends GuzzleRequestException implements Throwable
 {
     public static function wrapException(RequestInterface $request, \Throwable $e): GuzzleRequestException
     {
-        return static::fromGuzzleRequestException(parent::wrapException($request, $e));
+        return self::fromGuzzleRequestException(parent::wrapException($request, $e));
     }
 
     public static function create(
@@ -33,7 +33,7 @@ class RequestException extends GuzzleRequestException implements Throwable
         array $handlerContext = [],
         ?BodySummarizerInterface $bodySummarizer = null
     ): self {
-        return static::fromGuzzleRequestException(parent::create(
+        return self::fromGuzzleRequestException(parent::create(
             $request,
             $response,
             $previous,
@@ -44,7 +44,7 @@ class RequestException extends GuzzleRequestException implements Throwable
 
     public static function fromGuzzleRequestException(GuzzleRequestException $requestException): self
     {
-        return $requestException instanceof static ? $requestException : new static(
+        return $requestException instanceof self ? $requestException : new self(
             $requestException->getMessage(),
             $requestException->getRequest(),
             $requestException->getResponse(),

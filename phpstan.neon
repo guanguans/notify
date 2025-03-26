@@ -68,6 +68,7 @@ parameters:
     ignoreErrors:
 #        - identifier: binaryOp.invalid
 #        - identifier: logicalOr.resultUnused
+#        - identifier: new.static
 #        - identifier: return.void
 #        - identifier: typePerfect.noMixedMethodCaller
         - identifier: argument.templateType
@@ -77,7 +78,6 @@ parameters:
         - identifier: logicalAnd.resultUnused
         - identifier: missingType.generics
         - identifier: missingType.iterableValue
-        - identifier: new.static
         - identifier: offsetAccess.nonOffsetAccessible
         - identifier: paramOut.type
         - identifier: return.type

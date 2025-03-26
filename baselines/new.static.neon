@@ -1,0 +1,8 @@
+# total 3 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Unsafe usage of new static\(\)\.$#'
+            count: 3
+            path: ../src/Foundation/Message.php
