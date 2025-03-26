@@ -1,0 +1,10 @@
+name: update license
+
+# https://github.com/Laravel-Lang/lang/blob/main/.github/workflows/license.yml
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Update:
+    uses: TheDragonCode/.github/.github/workflows/license.yml@main
