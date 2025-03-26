@@ -29,6 +29,8 @@ class Utils
 {
     /**
      * Replace the given options with the current request options.
+     *
+     * @see https://github.com/laravel/framework/blob/12.x/src/Illuminate/Http/Client/PendingRequest.php
      */
     public static function mergeHttpOptions(array $originalOptions, array ...$options): array
     {

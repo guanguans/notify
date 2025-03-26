@@ -20,6 +20,8 @@ declare(strict_types=1);
 
 namespace Guanguans\NotifyTests\Foundation\Concerns;
 
+use Guanguans\Notify\AnPush\Authenticator;
+use Guanguans\Notify\AnPush\Messages\Message;
 use Guanguans\Notify\Foundation\Client;
 use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
@@ -61,4 +63,21 @@ it('can set handler stack resolver', function (): void {
     expect(new Client)
         ->setHandlerStackResolver($handlerStack = HandlerStack::create())->toBeInstanceOf(Client::class)
         ->getHandlerStackResolver()->toBe($handlerStack);
+})->group(__DIR__, __FILE__);
+
+it('can mock response', function (): void {
+    $authenticator = new Authenticator('FE3LGGYQZXRZ6A50BN66M42H0BY');
+    $client = new \Guanguans\Notify\AnPush\Client($authenticator);
+    $message = Message::make([
+        'title' => 'This is title.',
+        'content' => 'This is content.',
+        'channel' => '94412',
+        // 'to' => 'ov_1i8jk39d****',
+    ]);
+
+    expect($client)
+        ->mock()
+        ->assertCanSendMessage($message)
+        ->mock(response('{"msg":"success","code":200,"data":{"msgIds":[{"channelId":"94412","msgId":1715333937401}]}}'))
+        ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

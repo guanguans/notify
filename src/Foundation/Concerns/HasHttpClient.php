@@ -222,10 +222,14 @@ trait HasHttpClient
     }
 
     /**
-     * @param null|list<ResponseInterface|\Throwable> $queue
+     * @param null|list<ResponseInterface|\Throwable>|ResponseInterface|\Throwable $queue
      */
-    public function mock(?array $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
+    public function mock(mixed $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
     {
+        if (null !== $queue && !\is_array($queue)) {
+            $queue = [$queue];
+        }
+
         $this->setHandler(new MockHandler($queue, $onFulfilled, $onRejected));
 
         return $this;
