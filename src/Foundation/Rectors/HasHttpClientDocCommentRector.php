@@ -15,14 +15,19 @@ namespace Guanguans\Notify\Foundation\Rectors;
 
 use Guanguans\Notify\Foundation\Client;
 use Guanguans\Notify\Foundation\Concerns\HasHttpClient;
+use Guanguans\Notify\Foundation\Exceptions\LogicException;
 use Guanguans\Notify\Foundation\Support\Utils;
+use GuzzleHttp\Cookie\CookieJarInterface;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\RequestOptions;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Trait_;
 use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagNode;
+use Psr\Http\Message\StreamInterface;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfo;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
@@ -133,15 +138,63 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
         }
     }
 
+    /**
+     * @see \Guanguans\Notify\Foundation\Support\Utils::httpOptionConstants()
+     */
     private function addRequestOptionsDoc(PhpDocInfo $phpDocInfo): void
     {
-        foreach (Utils::httpOptionConstants() as $constant) {
-            $name = Str::camel($constant);
-            $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode(
-                '@method',
-                new GenericTagValueNode('\\'.Client::class." $name(\$$name)")
-            ));
-        }
+        collect((new \ReflectionClass(RequestOptions::class))->getReflectionConstants())
+            ->mapWithKeys(static fn (\ReflectionClassConstant $reflectionClassConstant) => [
+                $reflectionClassConstant->getValue() => Str::of($reflectionClassConstant->getDocComment())
+                    ->match(
+                        /** @lang PhpRegExp */
+                        // '/:\s*\((.*?)\)/',
+                        '/:\s*\((.*?)(?:,\s*default=.*?)?\)/',
+                    )
+                    ->whenEmpty(static fn (): Stringable => Str::of('mixed'))
+                    ->explode($delimiter = '|')
+                    ->map(
+                        static fn (string $type) => Str::of($type)
+                            ->replace(
+                                ['StreamInterface', CookieJarInterface::class],
+                                ['\\'.StreamInterface::class, '\\'.CookieJarInterface::class]
+                            )
+                            ->toString()
+                    )
+                    ->sort(static function (string $a, string $b): int {
+                        if ('null' !== $a && 'null' === $b) {
+                            return 1;
+                        }
+
+                        if ('null' === $a && 'null' !== $b) {
+                            return -1;
+                        }
+
+                        return strcasecmp(ltrim($a, '\\'), ltrim($b, '\\'));
+                    })
+                    ->implode($delimiter),
+            ])
+            ->merge([
+                'base_uri' => 'string',
+                'curl' => 'array',
+            ])
+            ->tap(static function (Collection $collection): void {
+                $asserter = static function (Collection $collection): void {
+                    throw new LogicException(
+                        \sprintf('The http option constants [%s] are different.', $collection->keys()->implode('、'))
+                    );
+                };
+
+                $collection->diffKeys($constants = array_flip(Utils::httpOptionConstants()))->whenNotEmpty($asserter);
+                collect($constants)->diffKeys($collection)->whenNotEmpty($asserter);
+            })
+            ->sortKeys()
+            ->each(static function (string $type, string $name) use ($phpDocInfo): void {
+                $phpDocInfo->addPhpDocTagNode(new PhpDocTagNode(
+                    '@method',
+                    new GenericTagValueNode(\sprintf('\\%s %s(%s $%s)', Client::class, $name = Str::camel($name), $type, $name))
+                ));
+            });
     }
 
     private function createEmptyDocTagNode(): PhpDocTagNode
@@ -153,12 +206,11 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
     {
         $parameters = collect($reflectionMethod->getParameters())
             ->map(
-                static fn (\ReflectionParameter $reflectionParameter) => Str::of((string) $reflectionParameter)
-                    ->match(
-                        /** @lang PhpRegExp */
-                        '/\[ <(?:required|optional)> (.*?) ]/',
-                    )
+                static fn (\ReflectionParameter $reflectionParameter): Stringable => Str::of((string) $reflectionParameter)
+                    /** @lang PhpRegExp */
+                    ->match('/\[ <(?:required|optional)> (.*?) ]/')
                     ->replace('NULL', 'null')
+                    ->whenStartsWith('$', static fn (Stringable $stringable): Stringable => $stringable->prepend('mixed '))
             )
             ->implode(', ');
 

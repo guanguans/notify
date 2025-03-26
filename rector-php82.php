@@ -32,9 +32,9 @@ return RectorConfig::configure()
     ])
     ->withPhpVersion(PhpVersion::PHP_82)
     ->withRules([
-        // HasHttpClientDocCommentRector::class,
+        HasHttpClientDocCommentRector::class,
         HasOptionsDocCommentRector::class,
-        // ToInternalExceptionRector::class,
+        ToInternalExceptionRector::class,
     ])
     ->withConfiguredRule(AddSensitiveParameterAttributeRector::class, [
         AddSensitiveParameterAttributeRector::SENSITIVE_PARAMETERS => [
