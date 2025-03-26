@@ -8,6 +8,23 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.2.2"></a>
+## [3.2.2] - 2025-03-26
+### Bug Fixes
+- **doc:** Update method parameter types to 'mixed' in message classes
+- **doc:** Update doc comments for HTTP client methods
+- **response:** Improve JSON handling and add error throwing
+
+### CI
+- **workflows:** Add license update workflow
+
+### Code Refactoring
+- **utils:** Improve type annotation and streamline code
+
+### Features
+- **http-client:** Improve mock method for response handling
+
+
 <a name="3.2.1"></a>
 ## [3.2.1] - 2025-03-26
 ### Bug Fixes
@@ -1350,7 +1367,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.2.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.2.2...HEAD
+[3.2.2]: https://github.com/guanguans/notify/compare/3.2.1...3.2.2
 [3.2.1]: https://github.com/guanguans/notify/compare/3.2.0...3.2.1
 [3.2.0]: https://github.com/guanguans/notify/compare/3.1.2...3.2.0
 [3.1.2]: https://github.com/guanguans/notify/compare/3.1.1...3.1.2
