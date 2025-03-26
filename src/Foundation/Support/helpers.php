@@ -16,6 +16,16 @@ namespace Guanguans\Notify\Foundation\Support;
 const MULTIPART_TRY_OPEN_FILE = 1 << 0;
 const MULTIPART_TRY_OPEN_URL = 1 << 1;
 
+if (!\function_exists('Guanguans\Notify\Foundation\Support\base64_encode_file')) {
+    /**
+     * Encodes a file to base64.
+     */
+    function base64_encode_file(string $file): string
+    {
+        return base64_encode(file_get_contents($file));
+    }
+}
+
 if (!\function_exists('Guanguans\Notify\Foundation\Support\rescue')) {
     function rescue(callable $callback, ?callable $rescuer = null): mixed
     {
@@ -45,26 +55,6 @@ if (!\function_exists('Guanguans\Notify\Foundation\Support\rescue')) {
     }
 }
 
-if (!\function_exists('Guanguans\Notify\Foundation\Support\value')) {
-    /**
-     * Return the default value of the given value.
-     */
-    function value(mixed $value, mixed ...$args): mixed
-    {
-        return $value instanceof \Closure ? $value(...$args) : $value;
-    }
-}
-
-if (!\function_exists('Guanguans\Notify\Foundation\Support\base64_encode_file')) {
-    /**
-     * Encodes a file to base64.
-     */
-    function base64_encode_file(string $file): string
-    {
-        return base64_encode(file_get_contents($file));
-    }
-}
-
 if (!\function_exists('Guanguans\Notify\Foundation\Support\tap')) {
     /**
      * Call the given Closure with the given value then return the value.
@@ -91,5 +81,15 @@ if (!\function_exists('Guanguans\Notify\Foundation\Support\tap')) {
         $callback($value);
 
         return $value;
+    }
+}
+
+if (!\function_exists('Guanguans\Notify\Foundation\Support\value')) {
+    /**
+     * Return the default value of the given value.
+     */
+    function value(mixed $value, mixed ...$args): mixed
+    {
+        return $value instanceof \Closure ? $value(...$args) : $value;
     }
 }

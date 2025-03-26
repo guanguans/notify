@@ -44,6 +44,7 @@ use Rector\DeadCode\Rector\ClassLike\RemoveAnnotationRector;
 use Rector\DowngradePhp81\Rector\Array_\DowngradeArraySpreadStringKeyRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
+use Rector\Php73\Rector\FuncCall\JsonThrowOnErrorRector;
 use Rector\Php80\Rector\Class_\AnnotationToAttributeRector;
 use Rector\Php80\ValueObject\AnnotationToAttribute;
 use Rector\Php82\Rector\Param\AddSensitiveParameterAttributeRector;
@@ -108,6 +109,7 @@ return RectorConfig::configure()
     )
     ->withRules([
         ArraySpreadInsteadOfArrayMergeRector::class,
+        JsonThrowOnErrorRector::class,
         StaticArrowFunctionRector::class,
         StaticClosureRector::class,
         SortAssociativeArrayByKeyRector::class,
@@ -177,10 +179,10 @@ return RectorConfig::configure()
         'test' => 'it',
     ] + array_reduce(
         [
-            'rescue',
-            'value',
             'base64_encode_file',
+            'rescue',
             'tap',
+            'value',
         ],
         static function (array $carry, string $func): array {
             /** @see https://github.com/laravel/framework/blob/11.x/src/Illuminate/Support/functions.php */

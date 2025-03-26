@@ -131,6 +131,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * @param array-key $key
      *
      * @throws \JsonException
+     *
+     * @return array|mixed
      */
     public function array(mixed $key = null, mixed $default = null): mixed
     {
@@ -140,13 +142,13 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Get the JSON decoded body of the response as an object.
      *
-     * @noinspection JsonEncodingApiUsageInspection
+     * @throws \JsonException
      *
      * @return mixed|object
      */
     public function object(): mixed
     {
-        return json_decode($this->body());
+        return json_decode($this->body(), null, 512, \JSON_THROW_ON_ERROR);
     }
 
     /**
@@ -187,10 +189,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * using the xmlReader method instead for better compatability.
      *
      * @see https://www.php.net/manual/en/book.simplexml.php
-     *
-     * @return false|\SimpleXMLElement
      */
-    public function xml(mixed ...$arguments): bool|\SimpleXMLElement
+    public function xml(mixed ...$arguments): false|\SimpleXMLElement
     {
         return simplexml_load_string($this->body(), ...$arguments);
     }
