@@ -301,17 +301,8 @@
         "zh-lint": "zhlint {./,docs/,docs/**/}*-zh_CN.md"
     },
     "scripts-aliases": {
-        "pest": [
-            "test"
-        ],
-        "pest-coverage": [
-            "test-coverage"
-        ],
-        "pest-migrate-configuration": [
-            "test-migrate-configuration"
-        ],
-        "pest-update-snapshots": [
-            "test-update-snapshots"
+        "lint": [
+            "php-lint"
         ]
     },
     "$schema": "https://getcomposer.org/schema.json"
