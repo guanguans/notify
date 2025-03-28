@@ -71,8 +71,6 @@ return RectorConfig::configure()
         __DIR__.'/tests',
         ...glob(__DIR__.'/{*,.*}.php', \GLOB_BRACE),
         __DIR__.'/composer-updater',
-        __DIR__.'/generate-ide-json',
-        __DIR__.'/platform-lint',
     ])
     ->withRootFiles()
     // ->withSkipPath(__DIR__.'/tests.php')

@@ -24,6 +24,7 @@ return (new Configuration)
     ->addPathsToExclude([
         __DIR__.'/tests',
         __DIR__.'/src/Foundation/Rectors',
+        __DIR__.'/src/Foundation/Support/ComposerScripts.php',
     ])
     ->ignoreUnknownClasses([
         // SensitiveParameter::class,

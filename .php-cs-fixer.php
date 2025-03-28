@@ -248,8 +248,6 @@ return Factory::fromRuleSet($ruleSet)
                     ], true)
                 ),
                 __DIR__.'/composer-updater',
-                __DIR__.'/generate-ide-json',
-                __DIR__.'/platform-lint',
             ])
     )
     ->setRiskyAllowed(true)
