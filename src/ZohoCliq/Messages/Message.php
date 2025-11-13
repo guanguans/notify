@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ZohoCliq\Messages;
 
+use Guanguans\Notify\Foundation\Concerns\AsNullUri;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
  * @method self bot(array $bot)
  * @method self buttons(array $buttons)
@@ -23,24 +26,90 @@ namespace Guanguans\Notify\ZohoCliq\Messages;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    use AsNullUri;
+    protected array $required = [
+        // 'text',
+    ];
     protected array $defined = [
         'text',
         'bot',
         'card',
+        'styles',
         'slides',
         'buttons',
-        'styles',
     ];
     protected array $allowedTypes = [
         'bot' => 'array',
         'card' => 'array',
-        'slides' => 'array',
-        'buttons' => 'array',
         'styles' => 'array',
+        'slides' => 'array[]',
+        'buttons' => 'array[]',
+    ];
+    protected array $options = [
+        'slides' => [],
+        'buttons' => [],
     ];
 
-    public function toHttpUri(): string
+    public function addSlide(array $slide): self
     {
-        return 'company/{companyId}/api/v2/channelsbyname/{channelUniqueName}/message';
+        $this->options['slides'][] = $slide;
+
+        return $this;
+    }
+
+    public function addButton(array $button): self
+    {
+        $this->options['buttons'][] = $button;
+
+        return $this;
+    }
+
+    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    {
+        $optionsResolver
+            ->setDefault('bot', static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setDefined([
+                        'name',
+                        'image',
+                    ]);
+            })
+            ->setDefault('card', static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setDefined([
+                        'title',
+                        'theme',
+                        'thumbnail',
+                        'icon',
+                        'preview',
+                    ]);
+            })
+            ->setDefault('styles', static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setDefined([
+                        'highlight',
+                    ])
+                    ->setAllowedTypes('highlight', 'bool');
+            })
+            ->setDefault('slides', static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setPrototype(true)
+                    ->setDefined([
+                        'type',
+                        'title',
+                        'data',
+                    ]);
+            })
+            ->setDefault('buttons', static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setPrototype(true)
+                    ->setDefined([
+                        'label',
+                        'hint',
+                        'key',
+                        'type',
+                        'action',
+                    ]);
+            });
     }
 }

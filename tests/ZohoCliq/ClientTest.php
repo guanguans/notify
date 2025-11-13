@@ -24,67 +24,83 @@ use Guanguans\Notify\ZohoCliq\Client;
 use Guanguans\Notify\ZohoCliq\Messages\Message;
 
 it('can send message', function (): void {
-    // $token = Authenticator::generateToken('client-id', 'client-secret');
-    $authenticator = new Authenticator('company-id', 'your-channel', 'use $token');
+    $authenticator = new Authenticator(
+        'https://cliq.zoho.com/api/v2/channelsbyname/announcements/message?zapikey=1001.4805235707f212af4b11be76483da614.d95141b05ae0550eabe503061a598'
+    );
     $client = new Client($authenticator);
     $message = Message::make([
-        'text' => 'This is a test message from ZohoCliq integration.',
-    ]);
-
-    expect($client)
-        ->mock([
-            response(faker()->text()),
-        ])
-        ->assertCanSendMessage($message);
-})->group(__DIR__, __FILE__);
-
-it('can send message with bot customization', function (): void {
-    // $token = Authenticator::generateToken('client-id', 'client-secret');
-    $authenticator = new Authenticator('company-id', 'your-channel', 'use $token');
-    $client = new Client($authenticator);
-    $message = Message::make([
-        'text' => 'Hello from custom bot!',
+        'text' => 'This is text.',
         'bot' => [
-            'name' => 'Custom Bot',
-            'image' => 'https://example.com/bot-icon.png',
+            'name' => 'This is bot name.',
+            'image' => 'https://www.zoho.com/cliq/help/restapi/images/bot-custom.png',
         ],
-    ]);
-
-    expect($client)
-        ->mock([
-            response(faker()->text()),
-        ])
-        ->assertCanSendMessage($message);
-})->group(__DIR__, __FILE__);
-
-it('can send message with card', function (): void {
-    // $token = Authenticator::generateToken('client-id', 'client-secret');
-    $authenticator = new Authenticator('company-id', 'your-channel', 'use $token');
-    $client = new Client($authenticator);
-    $message = Message::make([
-        'text' => 'Check out this notification!',
         'card' => [
-            'title' => 'Important Update',
+            'title' => 'This is card title.',
             'theme' => 'modern-inline',
-            'thumbnail' => 'https://example.com/notification-icon.png',
+            'thumbnail' => 'https://www.zoho.com/cliq/help/restapi/images/announce_icon.png',
         ],
-        'buttons' => [
+        'slides' => [
             [
-                'label' => 'View Details',
-                'type' => '+',
-                'action' => [
-                    'type' => 'open.url',
-                    'data' => [
-                        'web' => 'https://example.com/details',
+                'type' => 'table',
+                'title' => 'This is slide table title.',
+                'data' => [
+                    'headers' => [
+                        'Name',
+                        'Team',
+                        'Reporting To',
+                    ],
+                    'rows' => [
+                        [
+                            'Name' => 'Paula Rojas',
+                            'Team' => 'Zylker-Sales',
+                            'Reporting To' => 'Li Jung',
+                        ],
+                        [
+                            'Name' => 'Quinn Rivers',
+                            'Team' => 'Zylker-Marketing',
+                            'Reporting To' => 'Patricia James',
+                        ],
                     ],
                 ],
             ],
         ],
-    ]);
+        'buttons' => [
+            [
+                'label' => 'View button',
+                'type' => '+',
+                'action' => [
+                    'type' => 'invoke.function',
+                    'data' => [
+                        'name' => 'internlist',
+                    ],
+                ],
+            ],
+        ],
+    ])
+        ->addSlide([
+            'type' => 'list',
+            'title' => 'This is slide list title.',
+            'data' => [
+                'Time - Tracking for Tasks',
+                'Prioritize requirements effectively',
+                'Identify and work on a fix for bugs instantly',
+            ],
+        ])
+        ->addButton([
+            'label' => 'Cancel button',
+            'type' => '-',
+            'action' => [
+                'type' => 'invoke.function',
+                'data' => [
+                    'name' => 'internlist',
+                ],
+            ],
+        ]);
 
     expect($client)
         ->mock([
-            response(faker()->text()),
+            response(status: 204),
+            response('{"code":"oauthtoken_invalid","message":"Invalid OAuth token passed."}', 401),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);
