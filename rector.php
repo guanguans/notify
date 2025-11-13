@@ -21,7 +21,7 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
 use Guanguans\Notify\Foundation\Method;
 use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
-use Guanguans\Notify\Foundation\Rectors\HasOptionsDocCommentRector;
+use Guanguans\Notify\Foundation\Rectors\HasOptionsRector;
 use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
 use Guanguans\Notify\Foundation\Response;
 use GuzzleHttp\RequestOptions;
@@ -113,7 +113,7 @@ return RectorConfig::configure()
         StaticClosureRector::class,
         SortAssociativeArrayByKeyRector::class,
         HasHttpClientDocCommentRector::class,
-        HasOptionsDocCommentRector::class,
+        HasOptionsRector::class,
         ToInternalExceptionRector::class,
     ])
     ->withConfiguredRule(ChangeMethodVisibilityRector::class, [
