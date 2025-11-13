@@ -144,8 +144,8 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
     private function addRequestOptionsDoc(PhpDocInfo $phpDocInfo): void
     {
         collect((new \ReflectionClass(RequestOptions::class))->getReflectionConstants())
-            ->mapWithKeys(static fn (\ReflectionClassConstant $reflectionClassConstant) => [
-                $reflectionClassConstant->getValue() => Str::of($reflectionClassConstant->getDocComment())
+            ->mapWithKeys(static fn (\ReflectionClassConstant $reflectionClassConstant): array => [
+                (string) $reflectionClassConstant->getValue() => Str::of($reflectionClassConstant->getDocComment())
                     ->match(
                         /** @lang PhpRegExp */
                         // '/:\s*\((.*?)\)/',

@@ -2315,6 +2315,36 @@
             "condition": [
                 {
                     "classFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "bot",
+                    "buttons",
+                    "card",
+                    "slides",
+                    "styles",
+                    "text"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
                         "\\Guanguans\\Notify\\Zulip\\Messages\\Message"
                     ],
                     "newClassFqn": [

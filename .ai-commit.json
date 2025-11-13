@@ -3,6 +3,15 @@
         ":!*-lock.json",
         ":!*.lock",
         ":!*.sum",
-        ":!/baselines/*.neon"
-    ]
+        ":!/baselines/*.neon",
+        ":(exclude)public/vendor/",
+        ":(exclude)tests/__snapshots__/"
+    ],
+    "no_verify": true,
+    "generator": "github_models_cli",
+    "generators": {
+        "github_models_cli": {
+            "model": "openai/gpt-4.1-mini"
+        }
+    }
 }

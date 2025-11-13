@@ -41,7 +41,8 @@ use Rector\CodingStyle\Rector\FuncCall\ArraySpreadInsteadOfArrayMergeRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\ClassLike\RemoveAnnotationRector;
-use Rector\DowngradePhp81\Rector\Array_\DowngradeArraySpreadStringKeyRector;
+use Rector\DowngradePhp74\Rector\Array_\DowngradeArraySpreadRector;
+use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php73\Rector\FuncCall\JsonThrowOnErrorRector;
@@ -221,6 +222,8 @@ return RectorConfig::configure()
         array_keys($constants)
     ))
     ->withSkip([
+        ChangeOrIfContinueToMultiContinueRector::class,
+        DowngradeArraySpreadRector::class,
         EncapsedStringsToSprintfRector::class,
         ExplicitBoolCompareRector::class,
         LogicalToBooleanRector::class,
@@ -229,10 +232,6 @@ return RectorConfig::configure()
         WrapEncapsedVariableInCurlyBracesRector::class,
     ])
     ->withSkip([
-        DowngradeArraySpreadStringKeyRector::class => [
-            __DIR__.'/src/Foundation/Message.php',
-            __FILE__,
-        ],
         RemoveTraitUseRector::class => [
             __DIR__.'/src/Foundation/Message.php',
         ],
@@ -245,12 +244,13 @@ return RectorConfig::configure()
         ],
         StaticClosureRector::class => $staticArrowFunctionPaths,
         StringToClassConstantRector::class => [
-            __DIR__.'/benchmarks',
-            __DIR__.'/src/Foundation/Rfc',
+            __DIR__.'/benchmarks/',
+            __DIR__.'/composer-updater',
             __DIR__.'/src/*/Messages/*.php',
-            __DIR__.'/tests',
-            __DIR__.'/src/Foundation/Support/Utils.php',
             __DIR__.'/src/Foundation/Response.php',
+            __DIR__.'/src/Foundation/Rfc/',
+            __DIR__.'/src/Foundation/Support/Utils.php',
+            __DIR__.'/tests/',
         ],
         SortAssociativeArrayByKeyRector::class => [
             __DIR__.'/benchmarks',

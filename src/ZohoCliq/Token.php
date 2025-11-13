@@ -13,26 +13,24 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ZohoCliq;
 
+use Guanguans\Notify\Foundation\Method;
 use GuzzleHttp\Client;
+use GuzzleHttp\RequestOptions;
 
 class Token
 {
-    private string $clientId;
-    private string $clientSecret;
-
-    public function __construct(string $clientId, string $clientSecret)
-    {
-        $this->clientId = $clientId;
-        $this->clientSecret = $clientSecret;
-    }
+    public function __construct(
+        private string $clientId,
+        private string $clientSecret
+    ) {}
 
     public function generateToken(): string
     {
         $response = (new Client)->request(
-            'POST',
+            Method::POST,
             'https://accounts.zoho.com/oauth/v2/token',
             [
-                'form_params' => [
+                RequestOptions::FORM_PARAMS => [
                     'client_id' => $this->clientId,
                     'client_secret' => $this->clientSecret,
                     'grant_type' => 'client_credentials',

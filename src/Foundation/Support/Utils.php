@@ -45,7 +45,7 @@ class Utils
         }
 
         return array_unique(
-            (fn (): array => array_merge($this->defined ?? [], $this->required ?? []))->call($object)
+            (fn (): array => [...$this->defined ?? [], ...$this->required ?? []])->call($object)
         );
     }
 
@@ -76,14 +76,14 @@ class Utils
     {
         /**
          * @param array-key $key
-         * @param  null|resource|scalar|StreamInterface|array{
+         * @param  null|array{
          *     name: string,
          *     contents: null|resource|scalar|StreamInterface,
          *     headers: array<string, string>,
          *     filename: string,
          *     foo: mixed,
          *     bar: mixed,
-         * }  $value
+         * }|resource|scalar|StreamInterface  $value
          *
          * @return array{
          *     name: string,

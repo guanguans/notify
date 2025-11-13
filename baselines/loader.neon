@@ -1,6 +1,8 @@
-# total 14 errors
+# total 15 errors
+
 includes:
     - assign.propertyType.neon
     - disallowed.function.neon
+    - function.alreadyNarrowedType.neon
     - new.static.neon
     - typePerfect.narrowPublicClassMethodParamType.neon

@@ -49,11 +49,11 @@ return (new Configuration)
         ],
         [ErrorType::SHADOW_DEPENDENCY]
     )
-    ->ignoreErrorsOnPackageAndPath(
-        'guanguans/ai-commit',
-        __DIR__.'/src/Foundation/Support/Str.php',
-        [ErrorType::DEV_DEPENDENCY_IN_PROD]
-    )
+    // ->ignoreErrorsOnPackageAndPath(
+    //     'guanguans/ai-commit',
+    //     __DIR__.'/src/Foundation/Support/Str.php',
+    //     [ErrorType::DEV_DEPENDENCY_IN_PROD]
+    // )
     ->ignoreErrorsOnPackages(
         [
             'illuminate/collections',

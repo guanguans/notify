@@ -22,7 +22,6 @@ use Ergebnis\PhpCsFixer\Config\Rules;
 use Ergebnis\PhpCsFixer\Config\RuleSet\Php80;
 use PhpCsFixer\Finder;
 use PhpCsFixer\Fixer\DeprecatedFixerInterface;
-use PhpCsFixer\Runner\Parallel\ParallelConfigFactory;
 use PhpCsFixerCustomFixers\Fixer\AbstractFixer;
 
 $license = MIT::text(
@@ -40,15 +39,15 @@ $license->save();
 $ruleSet = Php80::create()
     ->withHeader($license->header())
     ->withRules(Rules::fromArray([
-        '@PHP70Migration' => true,
-        '@PHP70Migration:risky' => true,
-        '@PHP71Migration' => true,
-        '@PHP71Migration:risky' => true,
-        '@PHP73Migration' => true,
-        '@PHP74Migration' => true,
-        '@PHP74Migration:risky' => true,
-        '@PHP80Migration' => true,
-        '@PHP80Migration:risky' => true,
+        '@PHP7x0Migration' => true,
+        '@PHP7x0Migration:risky' => true,
+        '@PHP7x1Migration' => true,
+        '@PHP7x1Migration:risky' => true,
+        '@PHP7x3Migration' => true,
+        '@PHP7x4Migration' => true,
+        '@PHP7x4Migration:risky' => true,
+        '@PHP8x0Migration' => true,
+        '@PHP8x0Migration:risky' => true,
         // '@PHP81Migration' => true,
         // '@PHP82Migration' => true,
         // '@PHP83Migration' => true,
@@ -143,6 +142,24 @@ $ruleSet = Php80::create()
             'anonymous_class' => false,
             'named_class' => false,
         ],
+        'no_extra_blank_lines' => [
+            'tokens' => [
+                'attribute',
+                'break',
+                'case',
+                // 'comma',
+                'continue',
+                'curly_brace_block',
+                'default',
+                'extra',
+                'parenthesis_brace_block',
+                'return',
+                'square_brace_block',
+                'switch',
+                'throw',
+                'use',
+            ],
+        ],
         'ordered_traits' => [
             'case_sensitive' => true,
         ],
@@ -194,6 +211,25 @@ $ruleSet = Php80::create()
                 'return',
             ],
         ],
+        'phpdoc_order_by_value' => [
+            'annotations' => [
+                'author',
+                'covers',
+                'coversNothing',
+                'dataProvider',
+                'depends',
+                'group',
+                'internal',
+                'method',
+                'mixin',
+                'property',
+                'property-read',
+                'property-write',
+                'requires',
+                'throws',
+                'uses',
+            ],
+        ],
         'phpdoc_to_param_type' => [
             'scalar_types' => true,
             'types_map' => [],
@@ -216,6 +252,7 @@ $ruleSet = Php80::create()
             'stick_comment_to_next_continuous_control_statement' => true,
         ],
         'static_lambda' => false, // pest
+        'static_private_method' => false,
     ]));
 
 $ruleSet->withCustomFixers(Fixers::fromFixers(
@@ -252,5 +289,4 @@ return Factory::fromRuleSet($ruleSet)
     )
     ->setRiskyAllowed(true)
     ->setUsingCache(true)
-    ->setParallelConfig(ParallelConfigFactory::detect())
     ->setCacheFile(__DIR__.'/.build/php-cs-fixer/.php-cs-fixer.cache');
