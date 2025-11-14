@@ -13,7 +13,14 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\CliqZoho;
 
-use Guanguans\Notify\Foundation\Authenticators\BearerAuthenticator;
+use Guanguans\Notify\Foundation\Authenticators\NullAuthenticator;
+use Guanguans\Notify\Foundation\Concerns\AsFormParams;
+use Guanguans\Notify\Foundation\Exceptions\RequestException;
+use Guanguans\Notify\Foundation\Message;
+use GuzzleHttp\Middleware;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\SimpleCache\CacheInterface;
 
 /**
  * ```
@@ -33,4 +40,98 @@ use Guanguans\Notify\Foundation\Authenticators\BearerAuthenticator;
  * --header 'Authorization: Zoho-oauthtoken 1000.80e9143983dcc190427cad7e8f029e25.cdc1c1043e5e7f0555fc14fc7faf3' \
  * ```.
  */
-class Authenticator extends BearerAuthenticator {}
+class Authenticator extends NullAuthenticator
+{
+    private static ?string $accessToken;
+
+    public function __construct(
+        private string $clientId,
+        private string $clientSecret,
+        private ?CacheInterface $cache = null,
+    ) {}
+
+    public function __invoke(callable $handler): callable
+    {
+        return Middleware::mapRequest(
+            fn (RequestInterface $request): RequestInterface => $request->withHeader('Authorization', "Bearer {$this->getAccessToken()}"),
+        )($handler);
+    }
+
+    public function retry(callable $handler): callable
+    {
+        return Middleware::retry(function (int $retries, RequestInterface &$request, ?ResponseInterface $response = null) {
+            if (1 <= $retries) {
+                return false;
+            }
+
+            /** @var \Guanguans\Notify\Foundation\Response $response */
+            if ($response?->unauthorized()) {
+                $request = $request->withHeader('Authorization', "Bearer {$this->refreshAccessToken()}");
+
+                return true;
+            }
+
+            return false;
+        })($handler);
+    }
+
+    public static function flushAccessToken(): void
+    {
+        self::$accessToken = null;
+    }
+
+    private function refreshAccessToken(): string
+    {
+        self::flushAccessToken();
+
+        return $this->getAccessToken();
+    }
+
+    /**
+     * Temporary memory cache.
+     *
+     * @todo psr cache
+     * @todo retry on authentication failure
+     * @todo data center
+     */
+    private function getAccessToken(): string
+    {
+        return self::$accessToken ??= $this->fetchAccessToken();
+    }
+
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
+     */
+    private function fetchAccessToken(): string
+    {
+        $response = (new \Guanguans\Notify\Foundation\Client)
+            ->send(
+                new class([
+                    'client_id' => $this->clientId,
+                    'client_secret' => $this->clientSecret,
+                    'grant_type' => 'client_credentials',
+                    'scope' => 'ZohoCliq.Webhooks.CREATE',
+                ]) extends Message {
+                    use AsFormParams;
+                    protected array $defined = [
+                        'client_id',
+                        'client_secret',
+                        'grant_type',
+                        'scope',
+                    ];
+
+                    public function toHttpUri(): string
+                    {
+                        return 'https://accounts.zoho.com/oauth/v2/token';
+                    }
+                }
+            );
+
+        if ($response->json('error')) {
+            throw RequestException::create($response->request(), $response);
+        }
+
+        return $response->json('access_token');
+    }
+}
