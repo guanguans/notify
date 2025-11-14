@@ -8,6 +8,13 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.4.0"></a>
+## [3.4.0] - 2025-11-14
+### 💅 Code Refactorings
+- **rectors:** Rename HasOptionsDocCommentRector to HasOptionsRector and improve options ([952d176](https://github.com/guanguans/notify/commit/952d176))
+- **zoho:** Simplify Authenticator and enhance Message class ([cc76977](https://github.com/guanguans/notify/commit/cc76977))
+
+
 <a name="3.3.0"></a>
 ## [3.3.0] - 2025-11-13
 ### ✨ Features
@@ -1407,7 +1414,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.3.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.4.0...HEAD
+[3.4.0]: https://github.com/guanguans/notify/compare/3.3.0...3.4.0
 [3.3.0]: https://github.com/guanguans/notify/compare/3.2.2...3.3.0
 [3.2.2]: https://github.com/guanguans/notify/compare/3.2.1...3.2.2
 [3.2.1]: https://github.com/guanguans/notify/compare/3.2.0...3.2.1
