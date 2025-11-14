@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\CliqZoho\Messages;
 
+use Guanguans\Notify\Foundation\Support\Arr;
+
 /**
  * @method self bot(array $bot)
  * @method self buttons(array $buttons)
@@ -21,4 +23,26 @@ namespace Guanguans\Notify\CliqZoho\Messages;
  * @method self styles(array $styles)
  * @method self text(mixed $text)
  */
-class Message extends \Guanguans\Notify\ZohoCliq\Messages\Message {}
+class BotMessage extends Message
+{
+    protected array $defined = [
+        'bot_unique_name',
+
+        'text',
+        'bot',
+        'card',
+        'styles',
+        'slides',
+        'buttons',
+    ];
+
+    public function toHttpUri(): string
+    {
+        return "api/v2/bots/{$this->getOption('bot_unique_name')}/message";
+    }
+
+    protected function toPayload(): array
+    {
+        return Arr::except(parent::toPayload(), ['bot_unique_name']);
+    }
+}

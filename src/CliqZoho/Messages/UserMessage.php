@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\CliqZoho\Messages;
 
+use Guanguans\Notify\Foundation\Support\Arr;
+
 /**
  * @method self bot(array $bot)
  * @method self buttons(array $buttons)
@@ -21,4 +23,26 @@ namespace Guanguans\Notify\CliqZoho\Messages;
  * @method self styles(array $styles)
  * @method self text(mixed $text)
  */
-class Message extends \Guanguans\Notify\ZohoCliq\Messages\Message {}
+class UserMessage extends Message
+{
+    protected array $defined = [
+        'email_id',
+
+        'text',
+        'bot',
+        'card',
+        'styles',
+        'slides',
+        'buttons',
+    ];
+
+    public function toHttpUri(): string
+    {
+        return "api/v2/buddies/{$this->getOption('email_id')}/message";
+    }
+
+    protected function toPayload(): array
+    {
+        return Arr::except(parent::toPayload(), ['email_id']);
+    }
+}
