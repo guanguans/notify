@@ -73,6 +73,7 @@ parameters:
 #        - identifier: typePerfect.noMixedMethodCaller
         - identifier: argument.templateType
         - identifier: argument.type
+        - identifier: cast.int
         - identifier: cast.string
         - identifier: encapsedStringPart.nonString
         - identifier: logicalAnd.resultUnused

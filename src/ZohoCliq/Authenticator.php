@@ -14,15 +14,20 @@ declare(strict_types=1);
 namespace Guanguans\Notify\ZohoCliq;
 
 use Guanguans\Notify\Foundation\Authenticators\NullAuthenticator;
+use Guanguans\Notify\Foundation\Caches\FileCache;
 use Guanguans\Notify\Foundation\Client;
 use Guanguans\Notify\Foundation\Exceptions\RequestException;
 use Guanguans\Notify\ZohoCliq\Messages\AccessTokenMessage;
 use GuzzleHttp\Middleware;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\SimpleCache\CacheInterface;
 
 /**
+ * @see https://github.com/w7corp/easywechat/blob/6.x/src/OfficialAccount/AccessToken.php
  * @see https://github.com/w7corp/easywechat/blob/6.x/src/OpenPlatform/ComponentAccessToken.php
+ * @see https://github.com/w7corp/easywechat/blob/6.x/src/OpenWork/AuthorizerAccessToken.php
+ * @see https://github.com/w7corp/easywechat/blob/6.x/src/Work/AccessToken.php
  *
  * ```
  * curl --location 'https://accounts.zoho.com/oauth/v2/token' \
@@ -41,18 +46,34 @@ use Psr\Http\Message\ResponseInterface;
  * --header 'Authorization: Zoho-oauthtoken 1000.80e9143983dcc190427cad7e8f029e25.cdc1c1043e5e7f0555fc14fc7faf3' \
  * ```
  */
-class Authenticator extends NullAuthenticator
+class Authenticator extends NullAuthenticator implements \Stringable
 {
-    private static ?string $accessToken;
+    private CacheInterface $cache;
+    private string $cacheKey;
     private Client $client;
 
     public function __construct(
         private string $clientId,
         #[\SensitiveParameter]
         private string $clientSecret,
+        ?CacheInterface $cache = null,
+        ?string $cacheKey = null,
         ?Client $client = null,
     ) {
+        $this->cache = $cache ?? new FileCache;
+        $this->cacheKey = $cacheKey ?? "zoho_cliq.access_token.$clientId.$clientSecret";
         $this->client = $client ?? new Client;
+    }
+
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws \ReflectionException
+     */
+    public function __toString(): string
+    {
+        return $this->getToken();
     }
 
     public function applyToMiddleware(callable $handler): callable
@@ -66,11 +87,6 @@ class Authenticator extends NullAuthenticator
             static fn (callable $handler, callable $middleware): callable => $middleware($handler),
             $handler,
         );
-    }
-
-    public static function flushAccessToken(): void
-    {
-        self::$accessToken = null;
     }
 
     /**
@@ -87,7 +103,7 @@ class Authenticator extends NullAuthenticator
             fn (RequestInterface $request): RequestInterface => $request->withHeader(
                 'Authorization',
                 // "Bearer xxx",
-                "Bearer {$this->getAccessToken()}",
+                "Bearer {$this->getToken()}",
             ),
         )($handler);
     }
@@ -100,8 +116,8 @@ class Authenticator extends NullAuthenticator
                     return false;
                 }
 
-                if ($response?->getStatusCode() === 401) {
-                    $request = $request->withHeader('Authorization', "Bearer {$this->refreshAccessToken()}");
+                if (401 === $response?->getStatusCode()) {
+                    $request = $request->withHeader('Authorization', "Bearer {$this->refreshToken()}");
 
                     return true;
                 }
@@ -111,39 +127,50 @@ class Authenticator extends NullAuthenticator
         )($handler);
     }
 
-    private function refreshAccessToken(): string
-    {
-        self::flushAccessToken();
-
-        return $this->getAccessToken();
-    }
-
     /**
-     * Temporary memory cache.
-     *
-     * @todo psr cache
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonException
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     * @throws \ReflectionException
      */
-    private function getAccessToken(): string
+    private function getToken(): string
     {
-        return self::$accessToken ??= $this->fetchAccessToken();
+        if (($token = $this->cache->get($this->cacheKey)) && \is_string($token)) {
+            return $token;
+        }
+
+        return $this->refreshToken();
     }
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \JsonException
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws \ReflectionException
+     *
+     * ```json
+     * {
+     *     "access_token": "1000.86e0701b6f279bfad7b6a05352dc304d.3106ea5d20401799c010212da3da1",
+     *     "scope": "ZohoCliq.Webhooks.CREATE",
+     *     "api_domain": "https://www.zohoapis.com",
+     *     "token_type": "Bearer",
+     *     "expires_in": 3600
+     * }
+     * ```
      */
-    private function fetchAccessToken(): string
+    private function refreshToken(): string
     {
         $response = $this->client->send(AccessTokenMessage::make([
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
         ]));
 
-        if (!$accessToken = $response->json('access_token')) {
+        if (!$token = $response->json('access_token')) {
             throw RequestException::create($response->request(), $response);
         }
 
-        return $accessToken;
+        $this->cache->set($this->cacheKey, $token, abs((int) $response->json('expires_in') - 100));
+
+        return $token;
     }
 }
