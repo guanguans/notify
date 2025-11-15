@@ -129,22 +129,11 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
             return null;
         }
 
-        $this->addMethodsOfListTypeOption($node);
+        // $this->addMethodsOfListTypeOption($node);
         $this->sortProperties($node);
         $this->addPhpDocTagNodesOfMethod($node);
 
         return $node;
-    }
-
-    private function isSubclassesOf(string $object): bool
-    {
-        foreach ($this->classes as $class) {
-            if (is_subclass_of($object, $class)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**
@@ -153,7 +142,7 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
      *
      * @throws \ReflectionException
      */
-    private function addMethodsOfListTypeOption(Class_ $class): void
+    public function addMethodsOfListTypeOption(Class_ $class): void
     {
         collect($this->allowedTypesFor($this->getName($class)))
             ->filter(
@@ -229,6 +218,17 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
                     $class->stmts[] = $nodes[0]->stmts[0];
                 });
             });
+    }
+
+    private function isSubclassesOf(string $object): bool
+    {
+        foreach ($this->classes as $class) {
+            if (is_subclass_of($object, $class)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private function sortProperties(Class_ $class): void

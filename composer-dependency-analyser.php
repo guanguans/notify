@@ -46,7 +46,7 @@ return (new Configuration)
             'guzzlehttp/psr7',
             'psr/http-factory',
             'psr/http-message',
-            'psr/simple-cache',
+            // 'psr/simple-cache',
         ],
         [ErrorType::SHADOW_DEPENDENCY]
     )

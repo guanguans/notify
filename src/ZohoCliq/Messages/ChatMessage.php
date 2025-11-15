@@ -13,12 +13,11 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ZohoCliq\Messages;
 
-use Guanguans\Notify\Foundation\Support\Arr;
-
 /**
  * @method self bot(array $bot)
  * @method self buttons(array $buttons)
  * @method self card(array $card)
+ * @method self chatId(mixed $chatId)
  * @method self slides(array $slides)
  * @method self styles(array $styles)
  * @method self text(mixed $text)
@@ -39,10 +38,5 @@ class ChatMessage extends Message
     public function toHttpUri(): string
     {
         return "api/v2/chats/{$this->getOption('chat_id')}/message";
-    }
-
-    protected function toPayload(): array
-    {
-        return Arr::except(parent::toPayload(), ['chat_id']);
     }
 }

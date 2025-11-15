@@ -14,13 +14,13 @@ declare(strict_types=1);
 namespace Guanguans\Notify\ZohoCliq;
 
 use Guanguans\Notify\Foundation\Authenticators\NullAuthenticator;
+use Guanguans\Notify\Foundation\Client;
 use Guanguans\Notify\Foundation\Concerns\AsFormParams;
 use Guanguans\Notify\Foundation\Exceptions\RequestException;
 use Guanguans\Notify\Foundation\Message;
 use GuzzleHttp\Middleware;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Psr\SimpleCache\CacheInterface;
 
 /**
  * ```
@@ -47,7 +47,6 @@ class Authenticator extends NullAuthenticator
     public function __construct(
         private string $clientId,
         private string $clientSecret,
-        private ?CacheInterface $cache = null,
     ) {}
 
     public function __invoke(callable $handler): callable
@@ -59,7 +58,7 @@ class Authenticator extends NullAuthenticator
 
     public function retry(callable $handler): callable
     {
-        return Middleware::retry(function (int $retries, RequestInterface &$request, ?ResponseInterface $response = null) {
+        return Middleware::retry(function (int $retries, RequestInterface &$request, ?ResponseInterface $response = null): bool {
             if (1 <= $retries) {
                 return false;
             }
@@ -105,7 +104,7 @@ class Authenticator extends NullAuthenticator
      */
     private function fetchAccessToken(): string
     {
-        $response = (new \Guanguans\Notify\Foundation\Client)
+        $response = (new Client)
             ->send(
                 new class([
                     'client_id' => $this->clientId,
