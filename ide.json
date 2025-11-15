@@ -2315,10 +2315,10 @@
             "condition": [
                 {
                     "classFqn": [
-                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\Message"
+                        "\\Guanguans\\Notify\\ZohoCliqWebHook\\Messages\\Message"
                     ],
                     "newClassFqn": [
-                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\Message"
+                        "\\Guanguans\\Notify\\ZohoCliqWebHook\\Messages\\Message"
                     ],
                     "methodNames": [
                         "make"

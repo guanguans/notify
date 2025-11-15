@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\Notify\ZohoCliq\Messages;
+namespace Guanguans\Notify\ZohoCliqWebHook\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Symfony\Component\OptionsResolver\OptionsResolver;

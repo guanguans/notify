@@ -1,7 +1,7 @@
 # notify
 
 > [!NOTE]
-> Push notification SDK(AnPush、Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、Pushback、PushBullet、PushDeer、PushMe、Pushover、PushPlus、QQ、RocketChat、ServerChan、ShowdocPush、SimplePush、Slack、Telegram、WeWork、WPush、XiZhi、YiFengChuanHua、ZohoCliq、Zulip).
+> Push notification SDK(AnPush、Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、Pushback、PushBullet、PushDeer、PushMe、Pushover、PushPlus、QQ、RocketChat、ServerChan、ShowdocPush、SimplePush、Slack、Telegram、WeWork、WPush、XiZhi、YiFengChuanHua、ZohoCliqWebHook、Zulip).
 
 [![tests](https://github.com/guanguans/notify/actions/workflows/tests.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/tests.yml)
 [![check & fix styling](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml)
@@ -49,7 +49,7 @@
 * [WPush](./src/WPush/README.md)
 * [XiZhi](./src/XiZhi/README.md)
 * [YiFengChuanHua](./src/YiFengChuanHua/README.md)
-* [ZohoCliq](./src/ZohoCliq/README.md)
+* [ZohoCliqWebHook](src/ZohoCliqWebHook/README.md)
 * [Zulip](./src/Zulip/README.md)
 
 ## Related repositories

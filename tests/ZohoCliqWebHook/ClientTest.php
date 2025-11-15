@@ -17,11 +17,11 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\ZohoCliq;
+namespace Guanguans\NotifyTests\ZohoCliqWebHook;
 
-use Guanguans\Notify\ZohoCliq\Authenticator;
-use Guanguans\Notify\ZohoCliq\Client;
-use Guanguans\Notify\ZohoCliq\Messages\Message;
+use Guanguans\Notify\ZohoCliqWebHook\Authenticator;
+use Guanguans\Notify\ZohoCliqWebHook\Client;
+use Guanguans\Notify\ZohoCliqWebHook\Messages\Message;
 
 it('can send message', function (): void {
     $authenticator = new Authenticator(

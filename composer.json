@@ -1,6 +1,6 @@
 {
     "name": "guanguans/notify",
-    "description": "Push notification SDK(AnPush、Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、Pushback、PushBullet、PushDeer、PushMe、Pushover、PushPlus、QQ、RocketChat、ServerChan、ShowdocPush、SimplePush、Slack、Telegram、WeWork、WPush、XiZhi、YiFengChuanHua、ZohoCliq、Zulip).",
+    "description": "Push notification SDK(AnPush、Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、Pushback、PushBullet、PushDeer、PushMe、Pushover、PushPlus、QQ、RocketChat、ServerChan、ShowdocPush、SimplePush、Slack、Telegram、WeWork、WPush、XiZhi、YiFengChuanHua、ZohoCliqWebHook、Zulip).",
     "license": "MIT",
     "type": "library",
     "keywords": [
@@ -52,7 +52,7 @@
         "WPush",
         "XiZhi",
         "YiFengChuanHua",
-        "ZohoCliq",
+        "ZohoCliqWebHook",
         "Zulip"
     ],
     "authors": [

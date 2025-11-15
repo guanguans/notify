@@ -1,6 +1,6 @@
-# ZohoCliq
+# ZohoCliqWebHook
 
-## [Usage example](./../../tests/ZohoCliq/ClientTest.php)
+## [Usage example](./../../tests/ZohoCliqWebHook/ClientTest.php)
 
 ## Related links
 

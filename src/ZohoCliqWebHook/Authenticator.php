@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\Notify\ZohoCliq;
+namespace Guanguans\Notify\ZohoCliqWebHook;
 
 use Guanguans\Notify\Foundation\Authenticators\WebHookAuthenticator;
 
