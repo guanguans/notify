@@ -2315,6 +2315,160 @@
             "condition": [
                 {
                     "classFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\BotMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\BotMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "bot",
+                    "bot_unique_name",
+                    "buttons",
+                    "card",
+                    "slides",
+                    "styles",
+                    "text"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\ChannelMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\ChannelMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "bot",
+                    "buttons",
+                    "card",
+                    "channel_unique_name",
+                    "slides",
+                    "styles",
+                    "text"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\ChatMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\ChatMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "bot",
+                    "buttons",
+                    "card",
+                    "chat_id",
+                    "slides",
+                    "styles",
+                    "text"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "bot",
+                    "buttons",
+                    "card",
+                    "slides",
+                    "styles",
+                    "text"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\UserMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\UserMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "bot",
+                    "buttons",
+                    "card",
+                    "email_id",
+                    "slides",
+                    "styles",
+                    "text"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
                         "\\Guanguans\\Notify\\ZohoCliqWebHook\\Messages\\Message"
                     ],
                     "newClassFqn": [
