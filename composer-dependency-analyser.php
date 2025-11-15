@@ -46,7 +46,6 @@ return (new Configuration)
             'guzzlehttp/psr7',
             'psr/http-factory',
             'psr/http-message',
-            // 'psr/simple-cache',
         ],
         [ErrorType::SHADOW_DEPENDENCY]
     )
@@ -60,6 +59,7 @@ return (new Configuration)
             'illuminate/collections',
             'illuminate/support',
             'symfony/var-dumper',
+            'psr/simple-cache',
         ],
         [ErrorType::DEV_DEPENDENCY_IN_PROD]
     );

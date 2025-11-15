@@ -51,4 +51,9 @@ return RectorConfig::configure()
             'token',
             'webHook',
         ],
+    ])
+    ->withSkip([
+        AddSensitiveParameterAttributeRector::class => [
+            __DIR__.'/src/Foundation/Caches/',
+        ],
     ]);

@@ -82,8 +82,9 @@ $status = (new SingleCommandApplication)
                 $this->highestComposerBinary = $this->getComposerBinary($composerBinary, $highestPhpBinary);
                 $this->composerBinary = $this->getComposerBinary($composerBinary);
                 $this->exceptPackages = array_merge([
-                    'php',
                     'ext-*',
+                    'php',
+                    'psr/*',
                 ], $exceptPackages);
                 $this->exceptDependencyVersions = array_merge([
                     '\*',

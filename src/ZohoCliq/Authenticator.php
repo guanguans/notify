@@ -140,10 +140,10 @@ class Authenticator extends NullAuthenticator
             'client_secret' => $this->clientSecret,
         ]));
 
-        if ($response->json('error')) {
+        if (!$accessToken = $response->json('access_token')) {
             throw RequestException::create($response->request(), $response);
         }
 
-        return $response->json('access_token');
+        return $accessToken;
     }
 }
