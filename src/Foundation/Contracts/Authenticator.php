@@ -20,4 +20,6 @@ interface Authenticator
     public function applyToOptions(array $options): array;
 
     public function applyToRequest(RequestInterface $request): RequestInterface;
+
+    public function applyToMiddleware(callable $handler): callable;
 }

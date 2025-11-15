@@ -27,4 +27,9 @@ class NullAuthenticator implements Authenticator
     {
         return $request;
     }
+
+    public function applyToMiddleware(callable $handler): callable
+    {
+        return $handler;
+    }
 }

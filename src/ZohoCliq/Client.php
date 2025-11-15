@@ -13,9 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ZohoCliq;
 
-use Guanguans\Notify\Foundation\Middleware\Authenticate;
-use Guanguans\Notify\Foundation\Middleware\Response;
-
 /**
  * @see https://cliq.zoho.com/integrations/webhook-tokens
  * @see https://www.zoho.com/cliq/help/platform/webhook-tokens.html
@@ -39,7 +36,5 @@ class Client extends \Guanguans\Notify\Foundation\Client
     {
         parent::__construct($authenticator);
         $this->baseUri('https://cliq.zoho.com/');
-        $this->after(Authenticate::class, $authenticator, $authenticator::class.'::auth');
-        $this->before(Response::class, [$authenticator, 'retry'], $authenticator::class.'::retry');
     }
 }

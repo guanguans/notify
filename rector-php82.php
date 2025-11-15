@@ -24,17 +24,17 @@ return RectorConfig::configure()
     ->withPaths([
         __DIR__.'/src/',
         __DIR__.'/src/*/Authenticator.php',
-        __DIR__.'/src/*/*/*Authenticator.php',
+        __DIR__.'/src/Foundation/Authenticators/*Authenticator.php',
     ])
     ->withSkip([
         __DIR__.'/src/Foundation/Support',
         __DIR__.'/src/Foundation/Response.php',
     ])
-    ->withoutParallel()
-    // ->withPhpVersion(PhpVersion::PHP_82)
+    // ->withoutParallel()
+    ->withPhpVersion(PhpVersion::PHP_82)
     ->withRules([
         HasHttpClientDocCommentRector::class,
-        // HasOptionsRector::class,
+        HasOptionsRector::class,
         ToInternalExceptionRector::class,
     ])
     ->withConfiguredRule(AddSensitiveParameterAttributeRector::class, [
@@ -42,6 +42,7 @@ return RectorConfig::configure()
             'accessToken',
             'apiKey',
             'botApiKey',
+            'clientSecret',
             'key',
             'password',
             'pushKey',

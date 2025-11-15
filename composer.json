@@ -283,7 +283,7 @@
         "rector-list-rules": "@rector list-rules",
         "rector-only": "@rector-clear-cache --only=Guanguans\\MonorepoBuilderWorker\\Support\\Rectors\\RenameToPsrNameRector",
         "rector-only-dry-run": "@rector-only --dry-run",
-        "rector-php82": "@rector --config=rector-php82.php",
+        "rector-php82": "@rector-clear-cache --config=rector-php82.php",
         "rector-php82-dry-run": "@rector-php82 --dry-run",
         "rector-setup-ci": "@rector setup-ci",
         "release": "@php ./vendor/bin/monorepo-builder release --ansi -v",

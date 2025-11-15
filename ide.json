@@ -2315,6 +2315,38 @@
             "condition": [
                 {
                     "classFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\AccessTokenMessage"
+                    ],
+                    "newClassFqn": [
+                        "\\Guanguans\\Notify\\ZohoCliq\\Messages\\AccessTokenMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "client_id",
+                    "client_secret",
+                    "code",
+                    "data_center",
+                    "grant_type",
+                    "redirect_uri",
+                    "refresh_token",
+                    "scope"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
                         "\\Guanguans\\Notify\\ZohoCliq\\Messages\\BotMessage"
                     ],
                     "newClassFqn": [

@@ -15,14 +15,15 @@ namespace Guanguans\Notify\ZohoCliq;
 
 use Guanguans\Notify\Foundation\Authenticators\NullAuthenticator;
 use Guanguans\Notify\Foundation\Client;
-use Guanguans\Notify\Foundation\Concerns\AsFormParams;
 use Guanguans\Notify\Foundation\Exceptions\RequestException;
-use Guanguans\Notify\Foundation\Message;
+use Guanguans\Notify\ZohoCliq\Messages\AccessTokenMessage;
 use GuzzleHttp\Middleware;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
+ * @see https://github.com/w7corp/easywechat/blob/6.x/src/OpenPlatform/ComponentAccessToken.php
+ *
  * ```
  * curl --location 'https://accounts.zoho.com/oauth/v2/token' \
  * --form 'client_id="1000.TTFROV098VVFG8NB686LR98TCDR"' \
@@ -38,45 +39,76 @@ use Psr\Http\Message\ResponseInterface;
  *
  * curl --location 'https://cliq.zoho.com/api/v2/users?limit=5' \
  * --header 'Authorization: Zoho-oauthtoken 1000.80e9143983dcc190427cad7e8f029e25.cdc1c1043e5e7f0555fc14fc7faf3' \
- * ```.
+ * ```
  */
 class Authenticator extends NullAuthenticator
 {
     private static ?string $accessToken;
+    private Client $client;
 
     public function __construct(
         private string $clientId,
+        #[\SensitiveParameter]
         private string $clientSecret,
-    ) {}
-
-    public function __invoke(callable $handler): callable
-    {
-        return Middleware::mapRequest(
-            fn (RequestInterface $request): RequestInterface => $request->withHeader('Authorization', "Bearer {$this->getAccessToken()}"),
-        )($handler);
+        ?Client $client = null,
+    ) {
+        $this->client = $client ?? new Client;
     }
 
-    public function retry(callable $handler): callable
+    public function applyToMiddleware(callable $handler): callable
     {
-        return Middleware::retry(function (int $retries, RequestInterface &$request, ?ResponseInterface $response = null): bool {
-            if (1 <= $retries) {
-                return false;
-            }
-
-            /** @var \Guanguans\Notify\Foundation\Response $response */
-            if ($response?->unauthorized()) {
-                $request = $request->withHeader('Authorization', "Bearer {$this->refreshAccessToken()}");
-
-                return true;
-            }
-
-            return false;
-        })($handler);
+        return array_reduce(
+            [
+                [$this, 'dataCenter'],
+                [$this, 'retry'],
+                [$this, 'authenticate'],
+            ],
+            static fn (callable $handler, callable $middleware): callable => $middleware($handler),
+            $handler,
+        );
     }
 
     public static function flushAccessToken(): void
     {
         self::$accessToken = null;
+    }
+
+    /**
+     * @todo
+     */
+    private function dataCenter(callable $handler): callable
+    {
+        return $handler;
+    }
+
+    private function authenticate(callable $handler): callable
+    {
+        return Middleware::mapRequest(
+            fn (RequestInterface $request): RequestInterface => $request->withHeader(
+                'Authorization',
+                // "Bearer xxx",
+                "Bearer {$this->getAccessToken()}",
+            ),
+        )($handler);
+    }
+
+    private function retry(callable $handler): callable
+    {
+        return Middleware::retry(
+            function (int $retries, RequestInterface &$request, ?ResponseInterface $response = null): bool {
+                if (1 <= $retries) {
+                    return false;
+                }
+
+                if ($response?->getStatusCode() === 401) {
+                    $request = $request->withHeader('Authorization', "Bearer {$this->refreshAccessToken()}");
+
+                    return true;
+                }
+
+                return false;
+            }
+        )($handler);
     }
 
     private function refreshAccessToken(): string
@@ -90,8 +122,6 @@ class Authenticator extends NullAuthenticator
      * Temporary memory cache.
      *
      * @todo psr cache
-     * @todo retry on authentication failure
-     * @todo data center
      */
     private function getAccessToken(): string
     {
@@ -101,31 +131,14 @@ class Authenticator extends NullAuthenticator
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \JsonException
+     * @throws \ReflectionException
      */
     private function fetchAccessToken(): string
     {
-        $response = (new Client)
-            ->send(
-                new class([
-                    'client_id' => $this->clientId,
-                    'client_secret' => $this->clientSecret,
-                    'grant_type' => 'client_credentials',
-                    'scope' => 'ZohoCliq.Webhooks.CREATE',
-                ]) extends Message {
-                    use AsFormParams;
-                    protected array $defined = [
-                        'client_id',
-                        'client_secret',
-                        'grant_type',
-                        'scope',
-                    ];
-
-                    public function toHttpUri(): string
-                    {
-                        return 'https://accounts.zoho.com/oauth/v2/token';
-                    }
-                }
-            );
+        $response = $this->client->send(AccessTokenMessage::make([
+            'client_id' => $this->clientId,
+            'client_secret' => $this->clientSecret,
+        ]));
 
         if ($response->json('error')) {
             throw RequestException::create($response->request(), $response);

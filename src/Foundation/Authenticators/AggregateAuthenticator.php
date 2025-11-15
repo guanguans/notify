@@ -47,4 +47,13 @@ class AggregateAuthenticator implements Authenticator
             $request,
         );
     }
+
+    public function applyToMiddleware(callable $handler): callable
+    {
+        return array_reduce(
+            $this->authenticators,
+            static fn (callable $handler, Authenticator $authenticator): callable => $authenticator->applyToMiddleware($handler),
+            $handler,
+        );
+    }
 }
