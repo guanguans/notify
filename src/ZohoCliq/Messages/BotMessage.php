@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\Notify\CliqZoho\Messages;
+namespace Guanguans\Notify\ZohoCliq\Messages;
 
 use Guanguans\Notify\Foundation\Support\Arr;
 
@@ -23,10 +23,10 @@ use Guanguans\Notify\Foundation\Support\Arr;
  * @method self styles(array $styles)
  * @method self text(mixed $text)
  */
-class ChannelMessage extends Message
+class BotMessage extends Message
 {
     protected array $defined = [
-        'channel_unique_name',
+        'bot_unique_name',
 
         'text',
         'bot',
@@ -38,11 +38,11 @@ class ChannelMessage extends Message
 
     public function toHttpUri(): string
     {
-        return "api/v2/channelsbyname/{$this->getOption('channel_unique_name')}/message";
+        return "api/v2/bots/{$this->getOption('bot_unique_name')}/message";
     }
 
     protected function toPayload(): array
     {
-        return Arr::except(parent::toPayload(), ['channel_unique_name']);
+        return Arr::except(parent::toPayload(), ['bot_unique_name']);
     }
 }

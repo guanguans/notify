@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\Notify\CliqZoho;
+namespace Guanguans\Notify\ZohoCliq;
 
 use Guanguans\Notify\Foundation\Middleware\Authenticate;
 use Guanguans\Notify\Foundation\Middleware\Response;

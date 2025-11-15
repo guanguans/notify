@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\Notify\CliqZoho\Messages;
+namespace Guanguans\Notify\ZohoCliq\Messages;
 
 use Guanguans\Notify\Foundation\Support\Arr;
 

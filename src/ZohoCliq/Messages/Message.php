@@ -11,7 +11,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\Notify\CliqZoho\Messages;
+namespace Guanguans\Notify\ZohoCliq\Messages;
 
 /**
  * @method self bot(array $bot)
@@ -21,4 +21,4 @@ namespace Guanguans\Notify\CliqZoho\Messages;
  * @method self styles(array $styles)
  * @method self text(mixed $text)
  */
-class Message extends \Guanguans\Notify\ZohoCliq\Messages\Message {}
+class Message extends \Guanguans\Notify\ZohoCliqWebHook\Messages\Message {}
