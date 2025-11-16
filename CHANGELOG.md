@@ -8,6 +8,27 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.5.0"></a>
+## [3.5.0] - 2025-11-16
+### ✨ Features
+- **cache:** add FileCache implementation for file-based caching ([4d4e7a7](https://github.com/guanguans/notify/commit/4d4e7a7))
+- **cliqzoho:** Implement OAuth 2.0 Authenticator with token management ([a8d8ee5](https://github.com/guanguans/notify/commit/a8d8ee5))
+- **cliqzoho:** Introduce message classes for bot, channel, chat, and user ([58dbae7](https://github.com/guanguans/notify/commit/58dbae7))
+- **cliqzoho:** Add Message and Authenticator classes ([b78ddff](https://github.com/guanguans/notify/commit/b78ddff))
+- **zohoCliq:** implement caching for access token using PSR simple cache ([746d3e1](https://github.com/guanguans/notify/commit/746d3e1))
+- **zohoCliq:** add IDE autocomplete support and update documentation ([55878f5](https://github.com/guanguans/notify/commit/55878f5))
+
+### 💅 Code Refactorings
+- **CliqZoho:** rename CliqZoho namespace to ZohoCliq ([eece3e9](https://github.com/guanguans/notify/commit/eece3e9))
+- **authenticator:** introduce applyToMiddleware method for middleware composition ([0d8380b](https://github.com/guanguans/notify/commit/0d8380b))
+- **message:** change toMultipart() return type from MultipartStream to string ([2ba8f2a](https://github.com/guanguans/notify/commit/2ba8f2a))
+- **message:** unify ZohoCliq message classes and enhance message payload handling ([a088022](https://github.com/guanguans/notify/commit/a088022))
+- **zoho-cliq-webhook:** rename ZohoCliq namespace and files to ZohoCliqWebHook ([94f0855](https://github.com/guanguans/notify/commit/94f0855))
+
+### ✅ Tests
+- **ZohoCliq:** add ClientTest to verify message sending functionality ([c5da21e](https://github.com/guanguans/notify/commit/c5da21e))
+
+
 <a name="3.4.0"></a>
 ## [3.4.0] - 2025-11-14
 ### 💅 Code Refactorings
@@ -1414,7 +1435,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.4.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.5.0...HEAD
+[3.5.0]: https://github.com/guanguans/notify/compare/3.4.0...3.5.0
 [3.4.0]: https://github.com/guanguans/notify/compare/3.3.0...3.4.0
 [3.3.0]: https://github.com/guanguans/notify/compare/3.2.2...3.3.0
 [3.2.2]: https://github.com/guanguans/notify/compare/3.2.1...3.2.2
