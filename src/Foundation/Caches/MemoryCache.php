@@ -161,8 +161,8 @@ class MemoryCache implements CacheInterface
      */
     protected function checkKey(string $key): string
     {
-        if ('' === $key || !preg_match('/^[A-Za-z0-9_.]{1,64}$/', $key)) {
-            throw new CacheInvalidArgumentException("Invalid key: '$key'. Must be alphanumeric, can contain _ and . and can be maximum of 64 chars.");
+        if ('' === $key || !preg_match('/^[A-Za-z0-9_.]{1,256}$/', $key)) {
+            throw new CacheInvalidArgumentException("Invalid key: '$key'. Must be alphanumeric, can contain _ and . and can be maximum of 256 chars.");
         }
 
         return $key;

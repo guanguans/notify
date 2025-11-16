@@ -1,0 +1,126 @@
+<?php
+
+/** @noinspection AnonymousFunctionStaticInspection */
+/** @noinspection NullPointerExceptionInspection */
+/** @noinspection PhpPossiblePolymorphicInvocationInspection */
+/** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection StaticClosureCanBeUsedInspection */
+
+declare(strict_types=1);
+
+/**
+ * Copyright (c) 2021-2025 guanguans<ityaozm@gmail.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * @see https://github.com/guanguans/notify
+ */
+
+namespace Guanguans\NotifyTests\ZohoCliq;
+
+use Guanguans\Notify\Foundation\Caches\MemoryCache;
+use Guanguans\Notify\Foundation\Caches\NullCache;
+use Guanguans\Notify\ZohoCliq\Authenticator;
+use Guanguans\Notify\ZohoCliq\Client;
+use Guanguans\Notify\ZohoCliq\Messages\ChannelMessage;
+
+it('can send message', function (): void {
+    $authenticator = new Authenticator(
+        clientId: '1000.TTFROV098VVFG8NB686LR98TCDR',
+        clientSecret: 'ffddfbd23c86a677e024003b4b8b8b7f2371ac6',
+        // cache: new MemoryCache,
+        cache: new NullCache,
+        client: (new \Guanguans\Notify\Foundation\Client)->mock([
+            response(
+                $successful = <<<'JSON'
+                    {
+                        "access_token": "1000.86e0701b6f279bfad7b6a05352dc304d.3106ea5d20401799c010212da3da1",
+                        "scope": "ZohoCliq.Webhooks.CREATE",
+                        "api_domain": "https://www.zohoapis.com",
+                        "token_type": "Bearer",
+                        "expires_in": 3600
+                    }
+                    JSON
+            ),
+            response($successful),
+        ])
+    );
+    $client = new Client($authenticator);
+    $message = ChannelMessage::make([
+        'channel_unique_name' => 'guanguans',
+        'text' => 'This is text.',
+        'bot' => [
+            'name' => 'This is bot name.',
+            'image' => 'https://www.zoho.com/cliq/help/restapi/images/bot-custom.png',
+        ],
+        'card' => [
+            'title' => 'This is card title.',
+            'theme' => 'modern-inline',
+            'thumbnail' => 'https://www.zoho.com/cliq/help/restapi/images/announce_icon.png',
+        ],
+        'slides' => [
+            [
+                'type' => 'table',
+                'title' => 'This is slide table title.',
+                'data' => [
+                    'headers' => [
+                        'Name',
+                        'Team',
+                        'Reporting To',
+                    ],
+                    'rows' => [
+                        [
+                            'Name' => 'Paula Rojas',
+                            'Team' => 'Zylker-Sales',
+                            'Reporting To' => 'Li Jung',
+                        ],
+                        [
+                            'Name' => 'Quinn Rivers',
+                            'Team' => 'Zylker-Marketing',
+                            'Reporting To' => 'Patricia James',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'buttons' => [
+            [
+                'label' => 'View button',
+                'type' => '+',
+                'action' => [
+                    'type' => 'invoke.function',
+                    'data' => [
+                        'name' => 'internlist',
+                    ],
+                ],
+            ],
+        ],
+    ])
+        ->addSlide([
+            'type' => 'list',
+            'title' => 'This is slide list title.',
+            'data' => [
+                'Time - Tracking for Tasks',
+                'Prioritize requirements effectively',
+                'Identify and work on a fix for bugs instantly',
+            ],
+        ])
+        ->addButton([
+            'label' => 'Cancel button',
+            'type' => '-',
+            'action' => [
+                'type' => 'invoke.function',
+                'data' => [
+                    'name' => 'internlist',
+                ],
+            ],
+        ]);
+
+    expect($client)
+        ->mock([
+            response(status: 204),
+            response('{"code":"oauthtoken_invalid","message":"Invalid OAuth token passed."}', 401),
+        ])
+        ->assertCanSendMessage($message);
+})->group(__DIR__, __FILE__)->skip();
