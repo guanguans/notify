@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Caches;
 
+use Guanguans\Notify\Foundation\Exceptions\CacheRuntimeException;
 use Psr\SimpleCache\CacheInterface;
 
 /**
@@ -30,8 +31,8 @@ class FileCache implements CacheInterface
     {
         $this->directory = $directory ?? (sys_get_temp_dir().\DIRECTORY_SEPARATOR.self::CACHE_FOLDER_NAME); // @pest-mutate-ignore
 
-        if (!is_dir($this->directory)) { // @pest-mutate-ignore
-            mkdir($this->directory, recursive: true);
+        if (!is_dir($this->directory) && !mkdir(directory: $this->directory, recursive: true) && !is_dir($this->directory)) { // @pest-mutate-ignore
+            throw new CacheRuntimeException("The directory [$this->directory] was not created."); // @codeCoverageIgnore
         }
     }
 
@@ -63,11 +64,11 @@ class FileCache implements CacheInterface
         foreach ((array) glob($this->directory.\DIRECTORY_SEPARATOR.'*') as $fileName) {
             // @pest-mutate-ignore
             if (false === $fileName) {
-                continue;
+                continue; // @codeCoverageIgnore
             }
 
             if (!str_starts_with(basename($fileName), 'cache-')) {
-                continue;
+                continue; // @codeCoverageIgnore
             }
 
             // @pest-mutate-ignore
@@ -99,7 +100,7 @@ class FileCache implements CacheInterface
 
         foreach ($values as $key => $value) {
             if (!$this->set($key, $value, $ttl)) {
-                $result = false;
+                $result = false; // @codeCoverageIgnore
             }
         }
 
@@ -117,7 +118,7 @@ class FileCache implements CacheInterface
 
         foreach ($keys as $key) {
             if (!$this->delete($key)) {
-                $result = false;
+                $result = false; // @codeCoverageIgnore
             }
         }
 
@@ -171,19 +172,15 @@ class FileCache implements CacheInterface
         $content = file_get_contents($this->filePathFromKey($key));
 
         if (false === $content) { // @pest-mutate-ignore
-            return $this->emptyPayload();
+            return $this->emptyPayload(); // @codeCoverageIgnore
         }
 
         try {
-            $expire = (int) substr(
-                $content,
-                0,
-                10
-            );
-        } catch (\Exception) {
-            $this->delete($key);
+            $expire = (int) substr($content, 0, 10);
+        } catch (\Throwable) { // @codeCoverageIgnore
+            $this->delete($key); // @codeCoverageIgnore
 
-            return $this->emptyPayload();
+            return $this->emptyPayload(); // @codeCoverageIgnore
         }
 
         if (time() >= $expire) {
@@ -194,10 +191,10 @@ class FileCache implements CacheInterface
 
         try {
             $data = unserialize(substr($content, 10));
-        } catch (\Exception) {
-            $this->delete($key);
+        } catch (\Throwable) { // @codeCoverageIgnore
+            $this->delete($key); // @codeCoverageIgnore
 
-            return $this->emptyPayload();
+            return $this->emptyPayload(); // @codeCoverageIgnore
         }
 
         return $data;

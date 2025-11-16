@@ -21,7 +21,6 @@ namespace Guanguans\NotifyTests\Foundation;
 
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Guanguans\Notify\Foundation\Message;
-use GuzzleHttp\Psr7\MultipartStream;
 
 it('can dump debug info', function (): void {
     expect(new class extends Message {
@@ -42,7 +41,7 @@ it('can to query', function (): void {
 })->group(__DIR__, __FILE__);
 
 it('can to Multipart', function (): void {
-    expect((fn (): MultipartStream => $this->toMultiPart())->call(new class extends Message {
+    expect((fn (): string => $this->toMultiPart())->call(new class extends Message {
         use AsNullUri;
-    }))->toBeInstanceOf(MultipartStream::class);
+    }))->toBeString();
 })->group(__DIR__, __FILE__);

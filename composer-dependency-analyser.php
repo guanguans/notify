@@ -59,7 +59,6 @@ return (new Configuration)
             'illuminate/collections',
             'illuminate/support',
             'symfony/var-dumper',
-            'psr/simple-cache',
         ],
         [ErrorType::DEV_DEPENDENCY_IN_PROD]
     );

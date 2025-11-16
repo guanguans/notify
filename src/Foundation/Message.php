@@ -47,6 +47,9 @@ abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
         ]);
     }
 
+    /**
+     * @see \GuzzleHttp\Client::applyOptions()
+     */
     public function __toString(): string
     {
         return $this->toJson();
@@ -88,9 +91,9 @@ abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
         return http_build_query($this->toPayload(), $numericPrefix, $argSeparator, $encodingType);
     }
 
-    protected function toMultipart(int $options = MULTIPART_TRY_OPEN_FILE): MultipartStream
+    protected function toMultipart(int $options = MULTIPART_TRY_OPEN_FILE): string
     {
-        return new MultipartStream(Utils::multipartFor($this->toPayload(), $options));
+        return (new MultipartStream(Utils::multipartFor($this->toPayload(), $options)))->getContents();
     }
 
     protected function toJson(int $options = \JSON_THROW_ON_ERROR | \JSON_UNESCAPED_UNICODE, int $depth = 512): string
