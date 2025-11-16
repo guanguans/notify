@@ -48,21 +48,29 @@ use Psr\SimpleCache\CacheInterface;
  */
 class Authenticator extends NullAuthenticator implements \Stringable
 {
+    private DataCenter $dataCenter;
     private CacheInterface $cache;
     private string $cacheKey;
     private Client $client;
 
+    /**
+     * @noinspection PhpDocSignatureInspection
+     *
+     * @param null|key-of<\Guanguans\Notify\ZohoCliq\DataCenter::BASE_URI_MAP> $dataCenter
+     */
     public function __construct(
         private string $clientId,
         #[\SensitiveParameter]
         private string $clientSecret,
+        ?string $dataCenter = null,
         ?CacheInterface $cache = null,
         ?string $cacheKey = null,
         ?Client $client = null,
     ) {
+        $this->dataCenter = new DataCenter($dataCenter);
         $this->cache = $cache ?? new FileCache;
-        $this->cacheKey = $cacheKey ?? "zoho_cliq.access_token.$clientId.$clientSecret";
-        $this->client = $client ?? new Client;
+        $this->cacheKey = $cacheKey ?? "zoho_cliq.access_token.$this->dataCenter.$clientId.$clientSecret";
+        $this->client = ($client ?? new Client)->push($this->baseUriMiddleware($this->dataCenter->toOauthBaseUri()));
     }
 
     /**
@@ -80,9 +88,9 @@ class Authenticator extends NullAuthenticator implements \Stringable
     {
         return array_reduce(
             [
-                [$this, 'dataCenter'],
-                [$this, 'retry'],
-                [$this, 'authenticate'],
+                $this->retryMiddleware(),
+                $this->authMiddleware(),
+                $this->baseUriMiddleware($this->dataCenter->toBaseUri()),
             ],
             static fn (callable $handler, callable $next): callable => $next($handler),
             $handler,
@@ -90,25 +98,10 @@ class Authenticator extends NullAuthenticator implements \Stringable
     }
 
     /**
-     * @todo
-     */
-    private function dataCenter(callable $handler): callable
-    {
-        return $handler;
-    }
-
-    private function authenticate(callable $handler): callable
-    {
-        return Middleware::mapRequest(
-            fn (RequestInterface $request): RequestInterface => $request->withHeader('Authorization', "Bearer $this"),
-        )($handler);
-    }
-
-    /**
      * @see \GuzzleHttp\RetryMiddleware::onFulfilled()
      * @see \GuzzleHttp\RetryMiddleware::onRejected()
      */
-    private function retry(callable $handler): callable
+    private function retryMiddleware(): callable
     {
         return Middleware::retry(
             function (int $retries, RequestInterface &$request, ?ResponseInterface $response = null): bool {
@@ -124,7 +117,31 @@ class Authenticator extends NullAuthenticator implements \Stringable
 
                 return false;
             }
-        )($handler);
+        );
+    }
+
+    private function authMiddleware(): callable
+    {
+        return Middleware::mapRequest(
+            fn (RequestInterface $request): RequestInterface => $request->withHeader('Authorization', "Bearer $this"),
+        );
+    }
+
+    /**
+     * @see \GuzzleHttp\Client::buildUri()
+     * @see \GuzzleHttp\Client::requestAsync()
+     * @see \GuzzleHttp\Client::sendAsync()
+     */
+    private function baseUriMiddleware(string $baseUri): callable
+    {
+        $parsedBaseUri = parse_url($baseUri);
+
+        return Middleware::mapRequest(
+            static fn (RequestInterface $request): RequestInterface => $request->withUri(
+                $request->getUri()->withScheme($parsedBaseUri['scheme'])->withHost($parsedBaseUri['host']),
+                $request->hasHeader('Host')
+            ),
+        );
     }
 
     /**
@@ -156,6 +173,10 @@ class Authenticator extends NullAuthenticator implements \Stringable
      *     "token_type": "Bearer",
      *     "expires_in": 3600
      * }
+     * ```
+     *
+     * ```json
+     * {"error":"invalid_client_secret"}
      * ```
      */
     private function refreshToken(): string

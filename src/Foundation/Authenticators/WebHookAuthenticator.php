@@ -31,6 +31,6 @@ class WebHookAuthenticator extends NullAuthenticator
 
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
-        return $request->withUri($this->uriFactory->createUri($this->webHook));
+        return $request->withUri($this->uriFactory->createUri($this->webHook), $request->hasHeader('Host'));
     }
 }

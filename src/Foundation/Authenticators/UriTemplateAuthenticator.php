@@ -42,6 +42,7 @@ class UriTemplateAuthenticator extends NullAuthenticator
             $this->uriFactory->createUri(
                 UriTemplate::expand(urldecode((string) $request->getUri()), $this->variables),
             ),
+            $request->hasHeader('Host')
         );
     }
 }

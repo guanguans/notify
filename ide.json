@@ -2334,7 +2334,6 @@
                     "client_id",
                     "client_secret",
                     "code",
-                    "data_center",
                     "grant_type",
                     "redirect_uri",
                     "refresh_token",

@@ -26,6 +26,5 @@ class Client extends \Guanguans\Notify\Foundation\Client
     public function __construct(Authenticator $authenticator)
     {
         parent::__construct($authenticator);
-        $this->baseUri('https://cliq.zoho.com/');
     }
 }

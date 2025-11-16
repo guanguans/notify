@@ -15,13 +15,11 @@ namespace Guanguans\Notify\ZohoCliq\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsFormParams;
 use Guanguans\Notify\Foundation\Message;
-use Guanguans\Notify\Foundation\Support\Arr;
 
 /**
  * @method self clientId(mixed $clientId)
  * @method self clientSecret(mixed $clientSecret)
  * @method self code(mixed $code)
- * @method self dataCenter(mixed $dataCenter)
  * @method self grantType(mixed $grantType)
  * @method self redirectUri(mixed $redirectUri)
  * @method self refreshToken(mixed $refreshToken)
@@ -31,8 +29,6 @@ final class AccessTokenMessage extends Message // @internal
 {
     use AsFormParams;
     protected array $defined = [
-        'data_center',
-
         'client_id',
         'client_secret',
         'grant_type',
@@ -49,13 +45,6 @@ final class AccessTokenMessage extends Message // @internal
 
     public function toHttpUri(): string
     {
-        return 'https://accounts.zoho.com/oauth/v2/token';
-    }
-
-    protected function toPayload(): array
-    {
-        return Arr::except(parent::toPayload(), [
-            'data_center',
-        ]);
+        return 'oauth/v2/token';
     }
 }
