@@ -84,7 +84,7 @@ class Authenticator extends NullAuthenticator implements \Stringable
                 [$this, 'retry'],
                 [$this, 'authenticate'],
             ],
-            static fn (callable $handler, callable $middleware): callable => $middleware($handler),
+            static fn (callable $handler, callable $next): callable => $next($handler),
             $handler,
         );
     }
@@ -100,14 +100,14 @@ class Authenticator extends NullAuthenticator implements \Stringable
     private function authenticate(callable $handler): callable
     {
         return Middleware::mapRequest(
-            fn (RequestInterface $request): RequestInterface => $request->withHeader(
-                'Authorization',
-                // "Bearer xxx",
-                "Bearer {$this->getToken()}",
-            ),
+            fn (RequestInterface $request): RequestInterface => $request->withHeader('Authorization', "Bearer $this"),
         )($handler);
     }
 
+    /**
+     * @see \GuzzleHttp\RetryMiddleware::onFulfilled()
+     * @see \GuzzleHttp\RetryMiddleware::onRejected()
+     */
     private function retry(callable $handler): callable
     {
         return Middleware::retry(

@@ -21,5 +21,9 @@ interface Authenticator
 
     public function applyToRequest(RequestInterface $request): RequestInterface;
 
+    /**
+     * @see \GuzzleHttp\HandlerStack::create()
+     * @see \GuzzleHttp\HandlerStack::resolve()
+     */
     public function applyToMiddleware(callable $handler): callable;
 }
