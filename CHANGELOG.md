@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.5.1"></a>
+## [3.5.1] - 2025-11-17
+### ✨ Features
+- **zohoCliq:** add DataCenter class for Zoho Cliq API integration ([fe63036](https://github.com/guanguans/notify/commit/fe63036))
+
+### 🐞 Bug Fixes
+- **authenticator:** correct middleware callback parameter name and add docblock ([0836713](https://github.com/guanguans/notify/commit/0836713))
+
+
 <a name="3.5.0"></a>
 ## [3.5.0] - 2025-11-16
 ### ✨ Features
@@ -1435,7 +1444,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.5.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.5.1...HEAD
+[3.5.1]: https://github.com/guanguans/notify/compare/3.5.0...3.5.1
 [3.5.0]: https://github.com/guanguans/notify/compare/3.4.0...3.5.0
 [3.4.0]: https://github.com/guanguans/notify/compare/3.3.0...3.4.0
 [3.3.0]: https://github.com/guanguans/notify/compare/3.2.2...3.3.0
