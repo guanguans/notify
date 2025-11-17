@@ -134,13 +134,15 @@ class Authenticator extends NullAuthenticator implements \Stringable
      */
     private function baseUriMiddleware(string $baseUri): callable
     {
-        $parsedBaseUri = parse_url($baseUri);
-
         return Middleware::mapRequest(
-            static fn (RequestInterface $request): RequestInterface => $request->withUri(
-                $request->getUri()->withScheme($parsedBaseUri['scheme'])->withHost($parsedBaseUri['host']),
-                $request->hasHeader('Host')
-            ),
+            static function (RequestInterface $request) use ($baseUri): RequestInterface {
+                $parsedBaseUri = parse_url($baseUri);
+
+                return $request->withUri(
+                    $request->getUri()->withScheme($parsedBaseUri['scheme'])->withHost($parsedBaseUri['host']),
+                    $request->hasHeader('Host')
+                );
+            },
         );
     }
 

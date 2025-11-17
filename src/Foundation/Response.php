@@ -63,11 +63,13 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      */
     public function __debugInfo(): array
     {
+        $this->json();
+
         return $this->mergeDebugInfo([
-            'handlerStats' => $this->handlerStats(),
+            // 'handlerStats' => $this->handlerStats(),
             'requestSummary' => $this->request instanceof RequestInterface ? Message::toString($this->request) : null,
             'responseSummary' => Message::toString($this),
-            'decodedBody' => $this->json(),
+            // 'decodedBody' => $this->json(),
         ]);
     }
 

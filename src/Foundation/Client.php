@@ -36,12 +36,14 @@ class Client implements Contracts\Client
 
     public function __debugInfo(): array
     {
+        $this->getHttpClient();
+
         return $this->mergeDebugInfo([
-            'httpClient' => $this->getHttpClient(),
-            'httpClientResolver' => $this->getHttpClientResolver(),
-            'handlerStack' => $this->getHandlerStack(),
-            'handlerStackResolver' => $this->getHandlerStackResolver(),
-            'httpOptions' => $this->getHttpOptions(),
+            // 'httpClient' => $this->getHttpClient(),
+            // 'httpClientResolver' => $this->getHttpClientResolver(),
+            // 'handlerStack' => $this->getHandlerStack(),
+            // 'handlerStackResolver' => $this->getHandlerStackResolver(),
+            // 'httpOptions' => $this->getHttpOptions(),
         ]);
     }
 
