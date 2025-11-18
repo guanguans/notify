@@ -38,6 +38,7 @@ beforeEach(function (): void {
         // dataCenter: DataCenter::US,
         // cache: new MemoryCache,
         cache: new NullCache,
+        retryDelay: fn (): int => 0,
         client: (new \Guanguans\Notify\Foundation\Client)->mock(array_pad(
             [],
             6,
@@ -165,7 +166,7 @@ it('can send user message', function (): void {
 
 it('can retry send user message', function (): void {
     /** @var \Guanguans\Notify\Foundation\Response $response */
-    $message = UserMessage::make($this->message)->emailId(fake()->email());
+    $userMessage = UserMessage::make($this->message)->emailId(fake()->email());
     $response = $this
         ->client
         ->mock([
@@ -173,7 +174,7 @@ it('can retry send user message', function (): void {
             response('retries1', 401),
             response('retries2', 401),
             response(status: 204),
-        ])->send($message);
+        ])->send($userMessage);
     expect($response)
         ->body()->toBe('retries1')
         ->status()->toBe(401);
@@ -184,7 +185,7 @@ it('can retry send user message', function (): void {
             response('retries0', 400),
             response('retries1', 401),
             response(status: 204),
-        ])->send($message);
+        ])->send($userMessage);
     expect($response)
         ->body()->toBe('retries0')
         ->status()->toBe(400);
@@ -195,7 +196,7 @@ it('can retry send user message', function (): void {
             response('retries0', 200),
             response('retries1', 401),
             response(status: 204),
-        ])->send($message);
+        ])->send($userMessage);
     expect($response)
         ->body()->toBe('retries0')
         ->status()->toBe(200);
@@ -205,7 +206,7 @@ it('can retry send user message', function (): void {
         ->mock([
             response('retries0', 401),
             response(status: 204),
-        ])->send($message);
+        ])->send($userMessage);
     expect($response)
         ->body()->toBeEmpty()
         ->status()->toBe(204);

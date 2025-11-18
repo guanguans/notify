@@ -51,6 +51,9 @@ class Authenticator extends NullAuthenticator implements \Stringable
     private DataCenter $dataCenter;
     private CacheInterface $cache;
     private string $cacheKey;
+
+    /** @var null|callable */
+    private $retryDelay;
     private Client $client;
 
     /**
@@ -65,11 +68,13 @@ class Authenticator extends NullAuthenticator implements \Stringable
         ?string $dataCenter = null,
         ?CacheInterface $cache = null,
         ?string $cacheKey = null,
+        ?callable $retryDelay = null,
         ?Client $client = null,
     ) {
         $this->dataCenter = new DataCenter($dataCenter);
         $this->cache = $cache ?? new FileCache;
         $this->cacheKey = $cacheKey ?? "zoho_cliq.access_token.$this->dataCenter.$clientId.$clientSecret";
+        $this->retryDelay = $retryDelay;
         $this->client = ($client ?? new Client)->push($this->baseUriMiddleware($this->dataCenter->toOauthBaseUri()));
     }
 
@@ -124,6 +129,7 @@ class Authenticator extends NullAuthenticator implements \Stringable
     }
 
     /**
+     * @see \GuzzleHttp\RetryMiddleware::exponentialDelay()
      * @see \GuzzleHttp\RetryMiddleware::onFulfilled()
      * @see \GuzzleHttp\RetryMiddleware::onRejected()
      */
@@ -143,7 +149,8 @@ class Authenticator extends NullAuthenticator implements \Stringable
                 }
 
                 return false;
-            }
+            },
+            $this->retryDelay
         );
     }
 
