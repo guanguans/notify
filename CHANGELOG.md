@@ -8,6 +8,17 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.5.2"></a>
+## [3.5.2] - 2025-11-18
+### 🐞 Bug Fixes
+- **authenticator:** reorder retry middleware and update retry logic ([a9758c0](https://github.com/guanguans/notify/commit/a9758c0))
+
+### 💅 Code Refactorings
+- **ClientTest:** simplify mock responses and remove unused cache ([e09a937](https://github.com/guanguans/notify/commit/e09a937))
+- **HasOptionsRector:** improve method visibility and logic ([e33dc6a](https://github.com/guanguans/notify/commit/e33dc6a))
+- **debug:** simplify debug info output in Client and Response classes ([4d4a9da](https://github.com/guanguans/notify/commit/4d4a9da))
+
+
 <a name="3.5.1"></a>
 ## [3.5.1] - 2025-11-17
 ### ✨ Features
@@ -1444,7 +1455,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.5.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.5.2...HEAD
+[3.5.2]: https://github.com/guanguans/notify/compare/3.5.1...3.5.2
 [3.5.1]: https://github.com/guanguans/notify/compare/3.5.0...3.5.1
 [3.5.0]: https://github.com/guanguans/notify/compare/3.4.0...3.5.0
 [3.4.0]: https://github.com/guanguans/notify/compare/3.3.0...3.4.0
