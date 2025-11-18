@@ -88,42 +88,12 @@ class Authenticator extends NullAuthenticator implements \Stringable
     {
         return array_reduce(
             [
-                $this->retryMiddleware(),
-                $this->authMiddleware(),
                 $this->baseUriMiddleware($this->dataCenter->toBaseUri()),
+                $this->authMiddleware(),
+                $this->retryMiddleware(),
             ],
             static fn (callable $handler, callable $next): callable => $next($handler),
             $handler,
-        );
-    }
-
-    /**
-     * @see \GuzzleHttp\RetryMiddleware::onFulfilled()
-     * @see \GuzzleHttp\RetryMiddleware::onRejected()
-     */
-    private function retryMiddleware(): callable
-    {
-        return Middleware::retry(
-            function (int $retries, RequestInterface &$request, ?ResponseInterface $response = null): bool {
-                if (1 <= $retries) {
-                    return false;
-                }
-
-                if (401 === $response?->getStatusCode()) {
-                    $request = $request->withHeader('Authorization', "Bearer {$this->refreshToken()}");
-
-                    return true;
-                }
-
-                return false;
-            }
-        );
-    }
-
-    private function authMiddleware(): callable
-    {
-        return Middleware::mapRequest(
-            fn (RequestInterface $request): RequestInterface => $request->withHeader('Authorization', "Bearer $this"),
         );
     }
 
@@ -143,6 +113,37 @@ class Authenticator extends NullAuthenticator implements \Stringable
                     $request->hasHeader('Host')
                 );
             },
+        );
+    }
+
+    private function authMiddleware(): callable
+    {
+        return Middleware::mapRequest(
+            fn (RequestInterface $request): RequestInterface => $request->withHeader('Authorization', "Bearer $this"),
+        );
+    }
+
+    /**
+     * @see \GuzzleHttp\RetryMiddleware::onFulfilled()
+     * @see \GuzzleHttp\RetryMiddleware::onRejected()
+     */
+    private function retryMiddleware(): callable
+    {
+        return Middleware::retry(
+            function (int $retries, RequestInterface $request, ?ResponseInterface $response = null): bool {
+                if (1 <= $retries) {
+                    return false;
+                }
+
+                if (401 === $response?->getStatusCode()) {
+                    // $request = $request->withHeader('Authorization', "Bearer {$this->refreshToken()}");
+                    $this->cache->delete($this->cacheKey);
+
+                    return true;
+                }
+
+                return false;
+            }
         );
     }
 
