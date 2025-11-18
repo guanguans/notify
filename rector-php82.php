@@ -30,7 +30,7 @@ return RectorConfig::configure()
         __DIR__.'/src/Foundation/Support',
         __DIR__.'/src/Foundation/Response.php',
     ])
-    // ->withoutParallel()
+    ->withoutParallel()
     ->withPhpVersion(PhpVersion::PHP_82)
     ->withRules([
         HasHttpClientDocCommentRector::class,

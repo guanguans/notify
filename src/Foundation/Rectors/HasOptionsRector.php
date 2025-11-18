@@ -34,6 +34,7 @@ use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagNode;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
 use Rector\Contract\Rector\ConfigurableRectorInterface;
+use Rector\PhpParser\Node\Value\ValueResolver;
 use Rector\PhpParser\Parser\SimplePhpParser;
 use Rector\Rector\AbstractRector;
 use Symplify\RuleDocGenerator\Exception\PoorDocumentationException;
@@ -55,6 +56,7 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
         private DocBlockUpdater $docBlockUpdater,
         private PhpDocInfoFactory $phpDocInfoFactory,
         private SimplePhpParser $simplePhpParser,
+        private ValueResolver $valueResolver,
     ) {}
 
     /**
@@ -129,7 +131,7 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
             return null;
         }
 
-        // $this->addMethodsOfListTypeOption($node);
+        $this->addMethodsOfListTypeOption($node);
         $this->sortProperties($node);
         $this->addPhpDocTagNodesOfMethod($node);
 
@@ -142,19 +144,33 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
      *
      * @throws \ReflectionException
      */
-    public function addMethodsOfListTypeOption(Class_ $class): void
+    private function addMethodsOfListTypeOption(Class_ $class): void
     {
-        collect($this->allowedTypesFor($this->getName($class)))
+        $allowedTypesProperty = collect($class->stmts)->first(
+            fn (Stmt $stmt): bool => $stmt instanceof Property && $this->isName($stmt, 'allowedTypes')
+        );
+
+        if (
+            !$allowedTypesProperty instanceof Property
+            || !($default = $allowedTypesProperty->props[0]->default) instanceof Array_
+        ) {
+            return;
+        }
+
+        collect($default->items)
+            ->mapWithKeys(fn (ArrayItem $arrayItem): array => [
+                (string) $this->valueResolver->getValue($arrayItem->key) => $this->valueResolver->getValue($arrayItem->value),
+            ])
             ->filter(
                 static fn (array|string $allowedType): bool => \is_string($allowedType) && str_ends_with($allowedType, '[]')
             )
             ->keys()
             ->whenNotEmpty(function (Collection $options) use ($class): void {
-                $property = collect($class->stmts)->first(
+                $optionsProperty = collect($class->stmts)->first(
                     fn (Stmt $stmt): bool => $stmt instanceof Property && $this->isName($stmt, 'options')
                 );
 
-                if (!$property instanceof Property) {
+                if (!$optionsProperty instanceof Property) {
                     $class->stmts[] = (new PropertyBuilder('options'))
                         ->makeProtected()
                         ->setType('array')
@@ -164,33 +180,28 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
                     return;
                 }
 
-                $options->each(function (string $option) use ($property): void {
-                    if (!($default = $property->props[0]->default) instanceof Array_) {
+                $options->each(function (string $option) use ($optionsProperty): void {
+                    if (!($default = $optionsProperty->props[0]->default) instanceof Array_) {
                         return;
                     }
 
                     $arrayItem = collect($default->items)->first(
-                        fn (ArrayItem $arrayItem): bool => $this->isName($arrayItem->key, $option)
+                        fn (ArrayItem $arrayItem): bool => $this->valueResolver->getValue($arrayItem->key) === $option
                     );
 
                     $arrayItem instanceof ArrayItem
                         ? $arrayItem->value = $this->nodeFactory->createArray([])
-                        : $default->items[] = new ArrayItem(
-                            $this->nodeFactory->createArray([]),
-                            new String_($option)
-                        );
+                        : $default->items[] = new ArrayItem($this->nodeFactory->createArray([]), new String_($option));
                 });
             })
             ->whenNotEmpty(function (Collection $options) use ($class): void {
                 $options->each(function (string $option) use ($class): void {
-                    if (
-                        collect($class->stmts)->first(
-                            fn (Stmt $stmt): bool => $stmt instanceof ClassMethod && $this->isName(
-                                $stmt,
-                                'add'.Str::studly(Pluralizer::singular($option))
-                            )
-                        ) instanceof ClassMethod
-                    ) {
+                    if (collect($class->stmts)->first(
+                        fn (Stmt $stmt): bool => $stmt instanceof ClassMethod && $this->isName(
+                            $stmt,
+                            'add'.Str::studly(Pluralizer::singular($option))
+                        )
+                    )) {
                         return;
                     }
 
@@ -209,9 +220,9 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
                                 }
                                 code,
                             Str::studly($singularOption = Pluralizer::singular($option)),
-                            $singularOption,
+                            $camelSingularOption = Str::camel($singularOption),
                             $option,
-                            $singularOption,
+                            $camelSingularOption,
                         )
                     );
 
@@ -269,7 +280,7 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
         }
 
         $phpDocInfo = $this->phpDocInfoFactory->createEmpty($node);
-        $allowedTypes = $this->allowedTypesFor($class);
+        $allowedTypes = (new \ReflectionClass($class))->getDefaultProperties()['allowedTypes'] ?? [];
 
         foreach ($defined as $option) {
             $phpDocInfo->addPhpDocTagNode($this->createPhpDocTagNodeOfMethod($option, $allowedTypes[$option] ?? null));
@@ -289,16 +300,6 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
             ->filter(static fn (string $option): bool => !Str::is(['*@*'], $option))
             ->sort()
             ->all();
-    }
-
-    /**
-     * @throws \ReflectionException
-     *
-     * @return array<string, mixed>
-     */
-    private function allowedTypesFor(string $class): array
-    {
-        return (new \ReflectionClass($class))->getDefaultProperties()['allowedTypes'] ?? [];
     }
 
     /**
