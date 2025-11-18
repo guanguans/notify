@@ -297,6 +297,13 @@ it('can get/set transferStats', function (): void {
         ->transferStats(new TransferStats(\Mockery::spy(RequestInterface::class)))->toBeInstanceOf(TransferStats::class);
 })->group(__DIR__, __FILE__);
 
+it('can get handlerStats', function (): void {
+    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response))
+        ->handlerStats()->toBeNull()
+        ->transferStats(new TransferStats(\Mockery::spy(RequestInterface::class)))->toBeInstanceOf(TransferStats::class)
+        ->handlerStats()->toBeArray();
+})->group(__DIR__, __FILE__);
+
 it('can close the body', function (): void {
     expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response))
         ->close()->toBeInstanceOf(Response::class);

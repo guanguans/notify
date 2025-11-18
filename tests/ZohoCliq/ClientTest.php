@@ -21,19 +21,28 @@ namespace Guanguans\NotifyTests\ZohoCliq;
 
 use Guanguans\Notify\Foundation\Caches\MemoryCache;
 use Guanguans\Notify\Foundation\Caches\NullCache;
+use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
+use Guanguans\Notify\Foundation\Exceptions\RequestException;
 use Guanguans\Notify\ZohoCliq\Authenticator;
 use Guanguans\Notify\ZohoCliq\Client;
+use Guanguans\Notify\ZohoCliq\DataCenter;
+use Guanguans\Notify\ZohoCliq\Messages\BotMessage;
 use Guanguans\Notify\ZohoCliq\Messages\ChannelMessage;
+use Guanguans\Notify\ZohoCliq\Messages\ChatMessage;
+use Guanguans\Notify\ZohoCliq\Messages\UserMessage;
 
-it('can send message', function (): void {
+beforeEach(function (): void {
     $authenticator = new Authenticator(
         clientId: '1000.TTFROV098VVFG8NB686LR98TCDR',
         clientSecret: 'ffddfbd23c86a677e024003b4b8b8b7f2371ac6',
+        // dataCenter: DataCenter::US,
         // cache: new MemoryCache,
         cache: new NullCache,
-        client: (new \Guanguans\Notify\Foundation\Client)->mock([
+        client: (new \Guanguans\Notify\Foundation\Client)->mock(array_pad(
+            [],
+            2,
             response(
-                $successful = <<<'JSON'
+                <<<'JSON'
                     {
                         "access_token": "1000.86e0701b6f279bfad7b6a05352dc304d.3106ea5d20401799c010212da3da1",
                         "scope": "ZohoCliq.Webhooks.CREATE",
@@ -42,13 +51,24 @@ it('can send message', function (): void {
                         "expires_in": 3600
                     }
                     JSON
-            ),
-            response($successful),
-        ])
+            )
+        ))
     );
-    $client = new Client($authenticator);
-    $message = ChannelMessage::make([
-        'channel_unique_name' => 'guanguans',
+    $this->client = (new Client($authenticator))->mock([
+        // response('{"code":"oauthtoken_invalid","message":"Invalid OAuth token passed."}', 401),
+        response(
+            <<<'JSON_WRAP'
+                {"code":"extra_key_found","message":"'content' is an extra key in the JSON Object."}
+                JSON_WRAP,
+            400
+        ),
+        response(status: 204),
+    ]);
+    $this->message = [
+        // 'channel_unique_name' => 'announcements',
+        // 'bot_unique_name' => 'botname',
+        // 'chat_id' => 'CT_2242272070192345152_905914233-B1',
+        // 'email_id' => fake()->email(),
         'text' => 'This is text.',
         'bot' => [
             'name' => 'This is bot name.',
@@ -96,7 +116,12 @@ it('can send message', function (): void {
                 ],
             ],
         ],
-    ])
+    ];
+});
+
+it('can send bot message', function (): void {
+    $botMessage = BotMessage::make($this->message)
+        ->botUniqueName('botname')
         ->addSlide([
             'type' => 'list',
             'title' => 'This is slide list title.',
@@ -117,10 +142,79 @@ it('can send message', function (): void {
             ],
         ]);
 
-    expect($client)
+    expect($this->client)->assertCanSendMessage($botMessage);
+})->group(__DIR__, __FILE__);
+
+it('can send channel message', function (): void {
+    $channelMessage = ChannelMessage::make($this->message)->channelUniqueName('announcements');
+
+    expect($this->client)->assertCanSendMessage($channelMessage);
+})->group(__DIR__, __FILE__);
+
+it('can send chat message', function (): void {
+    $chatMessage = ChatMessage::make($this->message)->chatId('CT_2242272070192345152_905914233-B1');
+
+    expect($this->client)->assertCanSendMessage($chatMessage);
+})->group(__DIR__, __FILE__);
+
+it('can send user message', function (): void {
+    $userMessage = UserMessage::make($this->message)->emailId(fake()->email());
+
+    expect($this->client)->assertCanSendMessage($userMessage);
+})->group(__DIR__, __FILE__);
+
+it('can retry send user message', function (): void {
+    /** @var \Guanguans\Notify\Foundation\Response $response */
+    $response = $this
+        ->client
         ->mock([
-            response(status: 204),
             response('{"code":"oauthtoken_invalid","message":"Invalid OAuth token passed."}', 401),
+            response(status: 204),
         ])
-        ->assertCanSendMessage($message);
-})->group(__DIR__, __FILE__)->skip();
+        ->send(UserMessage::make($this->message)->emailId(fake()->email()));
+
+    expect($response)
+        ->body()->toBeEmpty()
+        ->status()->toBe(204);
+})->group(__DIR__, __FILE__);
+
+it('can throw InvalidArgumentException when data center is invalid', function (): void {
+    new DataCenter('invalid_data_center');
+})->group(__DIR__, __FILE__)->throws(InvalidArgumentException::class);
+
+it('can get token from cache', function (): void {
+    $authenticator = new Authenticator(
+        clientId: '1000.TTFROV098VVFG8NB686LR98TCDR',
+        clientSecret: 'ffddfbd23c86a677e024003b4b8b8b7f2371ac6',
+        cache: new MemoryCache,
+        client: (new \Guanguans\Notify\Foundation\Client)->mock([
+            response(
+                <<<'JSON'
+                    {
+                        "access_token": "1000.86e0701b6f279bfad7b6a05352dc304d.3106ea5d20401799c010212da3da1",
+                        "scope": "ZohoCliq.Webhooks.CREATE",
+                        "api_domain": "https://www.zohoapis.com",
+                        "token_type": "Bearer",
+                        "expires_in": 3600
+                    }
+                    JSON
+            ),
+        ])
+    );
+    expect((string) $authenticator)->toEqual((string) $authenticator);
+})->group(__DIR__, __FILE__);
+
+it('can throw RequestException when request failed', function (): void {
+    expect((string) new Authenticator(
+        clientId: '1000.TTFROV098VVFG8NB686LR98TCDR',
+        clientSecret: 'ffddfbd23c86a677e024003b4b8b8b7f2371ac6',
+        cache: new NullCache,
+        client: (new \Guanguans\Notify\Foundation\Client)->mock([
+            response(
+                <<<'JSON'
+                    {"error":"invalid_client_secret"}
+                    JSON
+            ),
+        ])
+    ))->toBeString();
+})->group(__DIR__, __FILE__)->throws(RequestException::class);

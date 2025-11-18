@@ -168,7 +168,7 @@ class Authenticator extends NullAuthenticator implements \Stringable
      * @throws \Psr\SimpleCache\InvalidArgumentException
      * @throws \ReflectionException
      *
-     * ```json
+     * ```200
      * {
      *     "access_token": "1000.86e0701b6f279bfad7b6a05352dc304d.3106ea5d20401799c010212da3da1",
      *     "scope": "ZohoCliq.Webhooks.CREATE",
@@ -178,8 +178,13 @@ class Authenticator extends NullAuthenticator implements \Stringable
      * }
      * ```
      *
-     * ```json
+     * ```200
      * {"error":"invalid_client_secret"}
+     * ```
+     *
+     * ```400
+     * {"error_description":"You have made too many requests continuously. Please try again after some time.","error":"Access Denied","status":"failure"}
+     * {"error_description":"您已连续提出过多请求，请稍后再试。","error":"拒绝访问","status":"failure"}
      * ```
      */
     private function refreshToken(): string
@@ -187,7 +192,7 @@ class Authenticator extends NullAuthenticator implements \Stringable
         $response = $this->client->send(AccessTokenMessage::make([
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
-        ]));
+        ]))->throw();
 
         if (!$token = $response->json('access_token')) {
             throw RequestException::create($response->request(), $response);
