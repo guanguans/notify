@@ -40,7 +40,7 @@ beforeEach(function (): void {
         cache: new NullCache,
         client: (new \Guanguans\Notify\Foundation\Client)->mock(array_pad(
             [],
-            2,
+            6,
             response(
                 <<<'JSON'
                     {
@@ -165,14 +165,47 @@ it('can send user message', function (): void {
 
 it('can retry send user message', function (): void {
     /** @var \Guanguans\Notify\Foundation\Response $response */
+    $message = UserMessage::make($this->message)->emailId(fake()->email());
     $response = $this
         ->client
         ->mock([
-            response('{"code":"oauthtoken_invalid","message":"Invalid OAuth token passed."}', 401),
+            response('retries0', 401),
+            response('retries1', 401),
+            response('retries2', 401),
             response(status: 204),
-        ])
-        ->send(UserMessage::make($this->message)->emailId(fake()->email()));
+        ])->send($message);
+    expect($response)
+        ->body()->toBe('retries1')
+        ->status()->toBe(401);
 
+    $response = $this
+        ->client
+        ->mock([
+            response('retries0', 400),
+            response('retries1', 401),
+            response(status: 204),
+        ])->send($message);
+    expect($response)
+        ->body()->toBe('retries0')
+        ->status()->toBe(400);
+
+    $response = $this
+        ->client
+        ->mock([
+            response('retries0', 200),
+            response('retries1', 401),
+            response(status: 204),
+        ])->send($message);
+    expect($response)
+        ->body()->toBe('retries0')
+        ->status()->toBe(200);
+
+    $response = $this
+        ->client
+        ->mock([
+            response('retries0', 401),
+            response(status: 204),
+        ])->send($message);
     expect($response)
         ->body()->toBeEmpty()
         ->status()->toBe(204);
