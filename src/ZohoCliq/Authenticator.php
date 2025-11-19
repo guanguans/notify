@@ -75,7 +75,7 @@ class Authenticator extends NullAuthenticator implements \Stringable
         $this->cache = $cache ?? new FileCache;
         $this->cacheKey = $cacheKey ?? "zoho_cliq.access_token.$this->dataCenter.$clientId.$clientSecret";
         $this->retryDelay = $retryDelay;
-        $this->client = ($client ?? new Client)->push($this->baseUriMiddleware($this->dataCenter->toOauthBaseUri()));
+        $this->client = ($client ?? new Client)->baseUri($this->dataCenter->toOauthBaseUri());
     }
 
     /**
@@ -93,7 +93,7 @@ class Authenticator extends NullAuthenticator implements \Stringable
     {
         return array_reduce(
             [
-                $this->baseUriMiddleware($this->dataCenter->toBaseUri()),
+                $this->baseUriMiddleware(),
                 $this->authMiddleware(),
                 $this->retryMiddleware(),
             ],
@@ -107,11 +107,11 @@ class Authenticator extends NullAuthenticator implements \Stringable
      * @see \GuzzleHttp\Client::requestAsync()
      * @see \GuzzleHttp\Client::sendAsync()
      */
-    private function baseUriMiddleware(string $baseUri): callable
+    private function baseUriMiddleware(): callable
     {
         return Middleware::mapRequest(
-            static function (RequestInterface $request) use ($baseUri): RequestInterface {
-                $parsedBaseUri = parse_url($baseUri);
+            function (RequestInterface $request): RequestInterface {
+                $parsedBaseUri = parse_url($this->dataCenter->toBaseUri());
 
                 return $request->withUri(
                     $request->getUri()->withScheme($parsedBaseUri['scheme'])->withHost($parsedBaseUri['host']),
