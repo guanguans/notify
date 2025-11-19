@@ -142,7 +142,7 @@ class Authenticator extends NullAuthenticator implements \Stringable
                 }
 
                 if (401 === $response?->getStatusCode()) {
-                    // $request = $request->withHeader('Authorization', "Bearer {$this->refreshToken()}");
+                    // $request = &$request->withHeader('Authorization', "Bearer {$this->refreshToken()}");
                     $this->cache->delete($this->cacheKey);
 
                     return true;

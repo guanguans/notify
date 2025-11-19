@@ -1,0 +1,5 @@
+{
+    "require-dev": {
+        "azjezz/psl": "^1.9"
+    }
+}
