@@ -8,6 +8,22 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.5.3"></a>
+## [3.5.3] - 2025-11-19
+### 📖 Documents
+- add guidelines for writing effective git commit messages ([1dace96](https://github.com/guanguans/notify/commit/1dace96))
+
+### 💅 Code Refactorings
+- **authenticator:** simplify base URI handling in middleware ([b6edba9](https://github.com/guanguans/notify/commit/b6edba9))
+- **authenticator:** extract retry logic to configurable callbacks ([1b49323](https://github.com/guanguans/notify/commit/1b49323))
+
+### ✅ Tests
+- **ZohoCliq:** enhance client retry logic tests ([adc134d](https://github.com/guanguans/notify/commit/adc134d))
+
+### 📦 Builds
+- **dependencies:** remove unused dev dependencies and add separate composer.json for psl ([89bf372](https://github.com/guanguans/notify/commit/89bf372))
+
+
 <a name="3.5.2"></a>
 ## [3.5.2] - 2025-11-18
 ### 🐞 Bug Fixes
@@ -1455,7 +1471,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.5.2...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.5.3...HEAD
+[3.5.3]: https://github.com/guanguans/notify/compare/3.5.2...3.5.3
 [3.5.2]: https://github.com/guanguans/notify/compare/3.5.1...3.5.2
 [3.5.1]: https://github.com/guanguans/notify/compare/3.5.0...3.5.1
 [3.5.0]: https://github.com/guanguans/notify/compare/3.4.0...3.5.0
