@@ -147,13 +147,21 @@ it('can send bot message', function (): void {
 })->group(__DIR__, __FILE__);
 
 it('can send channel message', function (): void {
-    $channelMessage = ChannelMessage::make($this->message)->channelUniqueName('announcements');
+    $channelMessage = ChannelMessage::make($this->message)
+        ->channelUniqueName('announcements')
+        ->setThreadId(123, 123)
+        ->setThreadTitle('Thread Title')
+        ->setThreadPostInParent();
 
     expect($this->client)->assertCanSendMessage($channelMessage);
 })->group(__DIR__, __FILE__);
 
 it('can send chat message', function (): void {
-    $chatMessage = ChatMessage::make($this->message)->chatId('CT_2242272070192345152_905914233-B1');
+    $chatMessage = ChatMessage::make($this->message)
+        ->chatId('CT_2242272070192345152_905914233-B1')
+        ->setThreadId(123, 123)
+        ->setThreadTitle('Thread Title')
+        ->setThreadPostInParent();
 
     expect($this->client)->assertCanSendMessage($chatMessage);
 })->group(__DIR__, __FILE__);
