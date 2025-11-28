@@ -33,6 +33,11 @@ class ChatMessage extends Message
         'styles',
         'slides',
         'buttons',
+
+        // To send message in thread
+        'thread_message_id',
+        'thread_title',
+        'post_in_parent',
     ];
 
     public function toHttpUri(): string

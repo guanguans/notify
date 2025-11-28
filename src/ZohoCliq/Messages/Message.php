@@ -26,6 +26,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
+    use ThreadConfig;
     protected array $required = [
         // 'channel_unique_name',
         // 'bot_unique_name',
@@ -40,6 +41,11 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         'styles',
         'slides',
         'buttons',
+
+        // To send message in thread
+        'thread_message_id',
+        'thread_title',
+        'post_in_parent',
     ];
     protected array $allowedTypes = [
         'bot' => 'array',

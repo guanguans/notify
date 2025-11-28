@@ -95,7 +95,10 @@ it('can send message', function (): void {
                     'name' => 'internlist',
                 ],
             ],
-        ]);
+        ])
+        ->setThreadId(123, 123)
+        ->setThreadTitle('Thread Title')
+        ->setThreadPostInParent();
 
     expect($client)
         ->mock([
