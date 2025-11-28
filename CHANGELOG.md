@@ -8,6 +8,22 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.5.4"></a>
+## [3.5.4] - 2025-11-28
+### ✨ Features
+- **zohocliq:** Full Thread support with Title and Posting Options ([2d39706](https://github.com/guanguans/notify/commit/2d39706))
+
+### 💅 Code Refactorings
+- **zoho cliq:** remove ThreadConfig trait and add thread properties directly to message classes ([52813aa](https://github.com/guanguans/notify/commit/52813aa))
+
+### 📦 Builds
+- **dependencies:** update Symfony options-resolver and other dev dependencies ([ff06ef9](https://github.com/guanguans/notify/commit/ff06ef9))
+
+### Pull Requests
+- Merge pull request [#175](https://github.com/guanguans/notify/issues/175) from ricardoapaes/add_support_thread_messages_zoho_cliq
+- Merge pull request [#174](https://github.com/guanguans/notify/issues/174) from guanguans/dependabot/github_actions/actions/checkout-6
+
+
 <a name="3.5.3"></a>
 ## [3.5.3] - 2025-11-19
 ### 📖 Documents
@@ -1471,7 +1487,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.5.3...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.5.4...HEAD
+[3.5.4]: https://github.com/guanguans/notify/compare/3.5.3...3.5.4
 [3.5.3]: https://github.com/guanguans/notify/compare/3.5.2...3.5.3
 [3.5.2]: https://github.com/guanguans/notify/compare/3.5.1...3.5.2
 [3.5.1]: https://github.com/guanguans/notify/compare/3.5.0...3.5.1
