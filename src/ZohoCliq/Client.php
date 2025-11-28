@@ -17,6 +17,7 @@ namespace Guanguans\Notify\ZohoCliq;
  * @see https://accounts.zoho.com/developerconsole
  * @see https://www.zoho.com/cliq/help/restapi/v2/#authentication
  * @see https://www.zoho.com/cliq/help/restapi/v2/#Post_Message_Channel
+ * @see https://www.zoho.com/cliq/help/restapi/v2/#create-thread
  * @see https://www.zoho.com/cliq/help/restapi/v2/#Message_Object
  * @see https://github.com/Weble/ZohoClient
  * @see https://github.com/MarJose123/laravel-zoho-cliq-alert

@@ -2397,9 +2397,12 @@
                     "buttons",
                     "card",
                     "channel_unique_name",
+                    "post_in_parent",
                     "slides",
                     "styles",
-                    "text"
+                    "text",
+                    "thread_message_id",
+                    "thread_title"
                 ]
             }
         },
@@ -2428,9 +2431,12 @@
                     "buttons",
                     "card",
                     "chat_id",
+                    "post_in_parent",
                     "slides",
                     "styles",
-                    "text"
+                    "text",
+                    "thread_message_id",
+                    "thread_title"
                 ]
             }
         },
@@ -2458,9 +2464,12 @@
                     "bot",
                     "buttons",
                     "card",
+                    "post_in_parent",
                     "slides",
                     "styles",
-                    "text"
+                    "text",
+                    "thread_message_id",
+                    "thread_title"
                 ]
             }
         },
@@ -2519,9 +2528,12 @@
                     "bot",
                     "buttons",
                     "card",
+                    "post_in_parent",
                     "slides",
                     "styles",
-                    "text"
+                    "text",
+                    "thread_message_id",
+                    "thread_title"
                 ]
             }
         },

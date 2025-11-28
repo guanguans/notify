@@ -19,9 +19,12 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
  * @method self bot(array $bot)
  * @method self buttons(array $buttons)
  * @method self card(array $card)
+ * @method self postInParent(mixed $postInParent)
  * @method self slides(array $slides)
  * @method self styles(array $styles)
  * @method self text(mixed $text)
+ * @method self threadMessageId(mixed $threadMessageId)
+ * @method self threadTitle(mixed $threadTitle)
  */
 class Message extends \Guanguans\Notify\ZohoCliq\Messages\Message
 {

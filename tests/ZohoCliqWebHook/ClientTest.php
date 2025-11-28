@@ -96,9 +96,9 @@ it('can send message', function (): void {
                 ],
             ],
         ])
-        ->setThreadId(123, 123)
-        ->setThreadTitle('Thread Title')
-        ->setThreadPostInParent();
+        ->threadMessageId('1599044334698_117280617320')
+        ->threadTitle('This is thread title.')
+        ->postInParent(true);
 
     expect($client)
         ->mock([

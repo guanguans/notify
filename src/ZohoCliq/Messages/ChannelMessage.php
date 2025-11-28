@@ -18,9 +18,12 @@ namespace Guanguans\Notify\ZohoCliq\Messages;
  * @method self buttons(array $buttons)
  * @method self card(array $card)
  * @method self channelUniqueName(mixed $channelUniqueName)
+ * @method self postInParent(mixed $postInParent)
  * @method self slides(array $slides)
  * @method self styles(array $styles)
  * @method self text(mixed $text)
+ * @method self threadMessageId(mixed $threadMessageId)
+ * @method self threadTitle(mixed $threadTitle)
  */
 class ChannelMessage extends Message
 {
