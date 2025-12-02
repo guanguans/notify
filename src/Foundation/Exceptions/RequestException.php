@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation\Exceptions;
 
 use Guanguans\Notify\Foundation\Contracts\Throwable;
+use Guanguans\Notify\Foundation\Response;
 use GuzzleHttp\BodySummarizerInterface;
 use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 use Psr\Http\Message\RequestInterface;
@@ -24,6 +25,15 @@ class RequestException extends GuzzleRequestException implements Throwable
     public static function wrapException(RequestInterface $request, \Throwable $e): GuzzleRequestException
     {
         return self::fromGuzzleRequestException(parent::wrapException($request, $e));
+    }
+
+    public static function createFromResponse(
+        Response $response,
+        ?\Throwable $previous = null,
+        array $handlerContext = [],
+        ?BodySummarizerInterface $bodySummarizer = null
+    ) {
+        return self::create($response->request(), $response, $previous, $handlerContext, $bodySummarizer);
     }
 
     public static function create(

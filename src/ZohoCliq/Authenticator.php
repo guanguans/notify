@@ -202,7 +202,7 @@ class Authenticator extends NullAuthenticator implements \Stringable
         ]))->throw();
 
         if (!$token = $response->json('access_token')) {
-            throw RequestException::create($response->request(), $response);
+            throw RequestException::createFromResponse($response);
         }
 
         $this->cache->set($this->cacheKey, $token, abs((int) $response->json('expires_in') - 100));
