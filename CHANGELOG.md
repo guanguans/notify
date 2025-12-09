@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.5.5"></a>
+## [3.5.5] - 2025-12-09
+### 🐞 Bug Fixes
+- Adapt symfony/options-resolver 8 ([754f9b6](https://github.com/guanguans/notify/commit/754f9b6))
+- **exceptions:** Update return type declaration in RequestException ([ab25484](https://github.com/guanguans/notify/commit/ab25484))
+
+### 💅 Code Refactorings
+- **exceptions:** Add createFromResponse method to RequestException ([d885f1b](https://github.com/guanguans/notify/commit/d885f1b))
+
+
 <a name="3.5.4"></a>
 ## [3.5.4] - 2025-11-28
 ### ✨ Features
@@ -1487,7 +1497,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.5.4...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.5.5...HEAD
+[3.5.5]: https://github.com/guanguans/notify/compare/3.5.4...3.5.5
 [3.5.4]: https://github.com/guanguans/notify/compare/3.5.3...3.5.4
 [3.5.3]: https://github.com/guanguans/notify/compare/3.5.2...3.5.3
 [3.5.2]: https://github.com/guanguans/notify/compare/3.5.1...3.5.2
