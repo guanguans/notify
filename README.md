@@ -13,10 +13,12 @@
 
 ## Platform support
 
-[//]: # (https://github.com/dschep/ntfy)
-[//]: # (https://github.com/nikoksr/notify)
-[//]: # (https://github.com/LeslieLeung/heimdallr)
+[//]: # (https://github.com/CaoMeiYouRen/push-all-in-one)
 [//]: # (https://github.com/caronc/apprise)
+[//]: # (https://github.com/dschep/ntfy)
+[//]: # (https://github.com/LeslieLeung/heimdallr)
+[//]: # (https://github.com/nikoksr/notify)
+[//]: # (https://github.com/songquanpeng/message-pusher)
 
 * [AnPush](./src/AnPush/README.md)
 * [Bark](./src/Bark/README.md)

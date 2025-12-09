@@ -34,6 +34,7 @@ use PhpParser\Node\Scalar\LNumber;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
 use Rector\CodingStyle\Rector\ArrowFunction\StaticArrowFunctionRector;
+use Rector\CodingStyle\Rector\ClassLike\NewlineBetweenClassLikeStmtsRector;
 use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
@@ -80,6 +81,8 @@ return RectorConfig::configure()
         __DIR__.'/tests.php',
         '**/Fixtures/*',
         '**/__snapshots__/*',
+        '**/__snapshots__/*',
+        __FILE__,
     ])
     ->withCache(__DIR__.'/.build/rector/')
     ->withParallel()
@@ -173,9 +176,9 @@ return RectorConfig::configure()
         ],
     ])
     ->withConfiguredRule(RenameFunctionRector::class, [
+        'faker' => 'fake',
         'Pest\Faker\fake' => 'fake',
-        'Pest\Faker\faker' => 'faker',
-        // 'faker' => 'fake',
+        'Pest\Faker\faker' => 'fake',
         'test' => 'it',
     ] + array_reduce(
         [
@@ -229,6 +232,7 @@ return RectorConfig::configure()
         ExplicitBoolCompareRector::class,
         LogicalToBooleanRector::class,
         NewlineAfterStatementRector::class,
+        NewlineBetweenClassLikeStmtsRector::class,
         PreferPHPUnitThisCallRector::class,
         ReturnBinaryOrToEarlyReturnRector::class,
         WrapEncapsedVariableInCurlyBracesRector::class,

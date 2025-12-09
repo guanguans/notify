@@ -133,12 +133,12 @@ function response(
     return new Response($status, $headers, $body, $version, $reason);
 }
 
-function faker(string $locale = Factory::DEFAULT_LOCALE): Generator
-{
-    return fake($locale);
-}
-
-function fake(string $locale = Factory::DEFAULT_LOCALE): Generator
-{
-    return Factory::create($locale);
+if (!\function_exists('fake')) {
+    /**
+     * @see https://github.com/laravel/framework/blob/12.x/src/Illuminate/Foundation/helpers.php#L515
+     */
+    function fake(string $locale = Factory::DEFAULT_LOCALE): Generator
+    {
+        return Factory::create($locale);
+    }
 }

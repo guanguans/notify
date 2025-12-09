@@ -33,7 +33,7 @@ it('can send message', function (): void {
 
     expect($client)
         ->mock([
-            response(faker()->text()),
+            response(fake()->text()),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

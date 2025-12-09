@@ -32,7 +32,7 @@ class RequestException extends GuzzleRequestException implements Throwable
         ?\Throwable $previous = null,
         array $handlerContext = [],
         ?BodySummarizerInterface $bodySummarizer = null
-    ) {
+    ): self {
         return self::create($response->request(), $response, $previous, $handlerContext, $bodySummarizer);
     }
 

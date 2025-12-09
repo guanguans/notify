@@ -23,7 +23,7 @@ use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Ntfy\Authenticator;
 
 it('will throw an InvalidArgumentException', function (): void {
-    new Authenticator(password: faker()->password());
+    new Authenticator(password: fake()->password());
 })
     ->group(__DIR__, __FILE__)
     ->throws(InvalidArgumentException::class, 'When the password is not null, the usernameOrToken must be not null.');
@@ -31,8 +31,8 @@ it('will throw an InvalidArgumentException', function (): void {
 it('can create an Authenticator', function (): void {
     expect([
         new Authenticator,
-        new Authenticator(faker()->sha1()),
-        new Authenticator(faker()->userName(), faker()->password()),
+        new Authenticator(fake()->sha1()),
+        new Authenticator(fake()->userName(), fake()->password()),
     ])->each->toBeInstanceOf(Authenticator::class);
 })
     ->group(__DIR__, __FILE__);

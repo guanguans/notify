@@ -234,11 +234,11 @@ $status = (new SingleCommandApplication)
 
             private function getComposerBinary(?string $composerBinary = null, ?string $phpBinary = null): string
             {
-                return \sprintf(
-                    '%s %s',
+                return implode(' ', [
                     escapeshellarg($phpBinary ?? (new PhpExecutableFinder)->find()),
-                    escapeshellarg((string) ($composerBinary ?? (new ExecutableFinder)->find('composer')))
-                );
+                    '-d', escapeshellarg('error_reporting=E_ALL &~ E_DEPRECATED'),
+                    escapeshellarg((string) ($composerBinary ?? (new ExecutableFinder)->find('composer'))),
+                ]);
             }
 
             /**
@@ -270,7 +270,10 @@ $status = (new SingleCommandApplication)
 
                 return $process
                     ->setWorkingDirectory(\dirname($this->composerJsonPath))
-                    ->setEnv(['COMPOSER_MEMORY_LIMIT' => -1])
+                    ->setEnv([
+                        'COMPOSER_MEMORY_LIMIT' => -1,
+                        'XDEBUG_MODE' => 'off',
+                    ])
                     ->mustRun(function (string $type, string $buffer): void {
                         $this->symfonyStyle->isVerbose() and $this->symfonyStyle->write($buffer);
                     });

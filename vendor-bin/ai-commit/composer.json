@@ -5,8 +5,11 @@
     },
     "config": {
         "allow-plugins": {
-            "wikimedia/composer-merge-plugin": true,
-            "theofidry/composer-inheritance-plugin": true
+            "wikimedia/composer-merge-plugin": false,
+            "theofidry/composer-inheritance-plugin": false,
+            "pestphp/pest-plugin": false,
+            "ergebnis/composer-normalize": true,
+            "phpstan/extension-installer": false
         }
     }
 }

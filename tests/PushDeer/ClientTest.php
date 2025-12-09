@@ -35,7 +35,7 @@ it('can send message', function (): void {
     expect($client)
         ->mock([
             response('{"code":0,"content":{"result":["{\"counts\":1,\"logs\":[],\"success\":\"ok\"}","{\"counts\":1,\"logs\":[],\"success\":\"ok\"}"]}}'),
-            response(faker()->randomHtml(), 500),
+            response(fake()->randomHtml(), 500),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

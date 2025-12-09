@@ -25,11 +25,11 @@ use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 
 it('can apply the certificate to options', function (): void {
-    expect(new CertificateAuthenticator(fixtures_path('cert.pem'), faker()->password))
+    expect(new CertificateAuthenticator(fixtures_path('cert.pem'), fake()->password))
         ->applyToOptions([])->toBeArray();
 })->group(__DIR__, __FILE__);
 
 it('can apply the wsse to request', function (): void {
-    expect(new WsseAuthenticator(faker()->userName(), faker()->password()))
-        ->applyToRequest(new Request('GET', faker()->url()))->toBeInstanceOf(RequestInterface::class);
+    expect(new WsseAuthenticator(fake()->userName(), fake()->password()))
+        ->applyToRequest(new Request('GET', fake()->url()))->toBeInstanceOf(RequestInterface::class);
 })->group(__DIR__, __FILE__);

@@ -45,7 +45,7 @@ it('can send message', function (): void {
         // ->baseUri('https://guanguans.cloud.mattermost.com')
         ->baseUri('Your mattermost server url.')
         ->mock([
-            response(faker()->text()),
+            response(fake()->text()),
         ])
         ->assertCanSendMessage($message);
 })->group(__DIR__, __FILE__);

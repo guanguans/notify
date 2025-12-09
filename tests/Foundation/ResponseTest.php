@@ -183,7 +183,7 @@ it('will throw LogicException when save to unable open the resource', function (
             ['Content-Type' => 'image/png'],
             file_get_contents(fixtures_path('image.png')),
         ),
-    )->saveAs(faker()->filePath());
+    )->saveAs(fake()->filePath());
 })
     ->group(__DIR__, __FILE__)
     ->throws(LogicException::class);
@@ -313,7 +313,7 @@ it('can convert to exception', function (): void {
     expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response))
         ->toException()->toBeNull()
         ->and(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(500)))
-        ->request(new Request('GET', faker()->url()))->toBeInstanceOf(RequestInterface::class)
+        ->request(new Request('GET', fake()->url()))->toBeInstanceOf(RequestInterface::class)
         ->toException()->toBeInstanceOf(RequestException::class);
 })->group(__DIR__, __FILE__);
 
@@ -321,7 +321,7 @@ it('will throw RequestException when response fail', function (): void {
     expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response))
         ->throw()->toBeInstanceOf(Response::class)
         ->and(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response(500)))
-        ->request(new Request('GET', faker()->url()))->toBeInstanceOf(RequestInterface::class)
+        ->request(new Request('GET', fake()->url()))->toBeInstanceOf(RequestInterface::class)
         ->throw(static fn (): string => 'callback');
 })
     ->group(__DIR__, __FILE__)
