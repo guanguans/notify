@@ -1,0 +1,13 @@
+# total 2 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Call to an undefined method Symfony\\Component\\OptionsResolver\\OptionsResolver\:\:setOptions\(\)\.$#'
+            count: 1
+            path: ../src/WeWork/Messages/TemplateCardMessage.php
+
+        -
+            message: '#^Call to an undefined method Symfony\\Component\\OptionsResolver\\OptionsResolver\:\:setOptions\(\)\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Messages/Message.php

@@ -17,6 +17,7 @@ use Composer\InstalledVersions;
 use Guanguans\Notify\Foundation\Message;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\StreamInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 // \define('MULTIPART_TRY_OPEN_FILE', 1 << 0);
 // \define('MULTIPART_TRY_OPEN_URL', 1 << 1);
@@ -27,6 +28,16 @@ use Psr\Http\Message\StreamInterface;
  */
 class Utils
 {
+    /**
+     * @return value-of<array{'setOptions', 'setDefault'}>
+     */
+    public static function methodNameOfSetDefault(): string
+    {
+        return method_exists(OptionsResolver::class, 'setOptions')
+            ? 'setOptions'
+            : 'setDefault';
+    }
+
     /**
      * Return an array of defined properties for the given object.
      *

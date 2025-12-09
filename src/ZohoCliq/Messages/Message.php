@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\ZohoCliq\Messages;
 
 use Guanguans\Notify\Foundation\Support\Arr;
+use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -105,7 +106,7 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
                         'preview',
                     ]);
             })
-            ->setDefault('styles', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('styles', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'highlight',

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
+use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -106,7 +107,7 @@ class TemplateCardMessage extends Message
                     'desc',
                 ]);
             })
-            ->setDefault('emphasis_content', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('emphasis_content', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'title',
                     'desc',
@@ -130,13 +131,13 @@ class TemplateCardMessage extends Message
                     'pagepath',
                 ]);
             })
-            ->setDefault('card_image', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('card_image', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'url',
                     'aspect_ratio',
                 ]);
             })
-            ->setDefault('image_text_area', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('image_text_area', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'type',
                     'url',

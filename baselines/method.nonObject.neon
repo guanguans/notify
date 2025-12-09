@@ -1,4 +1,4 @@
-# total 1 error
+# total 10 errors
 
 parameters:
     ignoreErrors:
@@ -6,3 +6,18 @@ parameters:
             message: '#^Cannot call method whenNotEmpty\(\) on Illuminate\\Support\\Collection\<int, string\>\|null\.$#'
             count: 1
             path: ../src/Foundation/Rectors/HasOptionsRector.php
+
+        -
+            message: '#^Cannot call method setDefault\(\) on mixed\.$#'
+            count: 5
+            path: ../src/WeWork/Messages/TemplateCardMessage.php
+
+        -
+            message: '#^Cannot call method setOptions\(\) on mixed\.$#'
+            count: 2
+            path: ../src/WeWork/Messages/TemplateCardMessage.php
+
+        -
+            message: '#^Cannot call method setDefault\(\) on mixed\.$#'
+            count: 2
+            path: ../src/ZohoCliq/Messages/Message.php
