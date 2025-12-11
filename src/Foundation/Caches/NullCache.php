@@ -25,6 +25,10 @@ use Psr\SimpleCache\CacheInterface;
  * @see https://github.com/serbanghita/Mobile-Detect/blob/4.8.x/src/Cache/Cache.php
  * @see https://github.com/SpartnerNL/Laravel-Excel/blob/3.1/src/Cache/BatchCache.php
  * @see https://github.com/SpartnerNL/Laravel-Excel/blob/3.1/src/Cache/MemoryCache.php
+ * @see https://github.com/cakephp/cache
+ * @see https://github.com/codeigniter4/cache
+ * @see https://github.com/spiral/cache
+ * @see https://github.com/yiisoft?q=cache&type=all&language=&sort=
  */
 class NullCache implements CacheInterface
 {
