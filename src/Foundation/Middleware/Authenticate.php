@@ -19,7 +19,7 @@ use Psr\Http\Message\RequestInterface;
 
 class Authenticate
 {
-    public function __construct(private Authenticator $authenticator) {}
+    public function __construct(private readonly Authenticator $authenticator) {}
 
     public function __invoke(callable $handler): callable
     {

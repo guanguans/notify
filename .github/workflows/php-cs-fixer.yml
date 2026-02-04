@@ -1,6 +1,6 @@
 name: check & fix styling
 
-on: [ workflow_dispatch, push ]
+on: [workflow_dispatch, push]
 
 jobs:
   php-cs-fixer:

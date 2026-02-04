@@ -21,7 +21,6 @@ use Psr\SimpleCache\CacheInterface;
  */
 class FileCache implements CacheInterface
 {
-    /** @var string */
     private const CACHE_FOLDER_NAME = 'notify-cache';
 
     /** @readonly */

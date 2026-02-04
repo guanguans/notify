@@ -67,7 +67,7 @@ if (!\function_exists('Guanguans\Notify\Foundation\Support\tap')) {
     {
         if (null === $callback) {
             return new class($value) {
-                public function __construct(private object $target) {}
+                public function __construct(private readonly object $target) {}
 
                 public function __call(string $method, array $parameters): mixed
                 {

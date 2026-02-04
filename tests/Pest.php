@@ -57,8 +57,8 @@ expect()->extend('toBetween', fn (int $min, int $max): Expectation => expect($th
 expect()->extend('assertCanSendMessage', function (Message $message): Expectation {
     $this->toBeInstanceOf(Client::class);
 
-    /** @var Client $client */
     $client = $this->value;
+    \assert($client instanceof Client);
 
     $queue = (fn (): array => (function (): array {
         expect($this->handler)->toBeInstanceOf(MockHandler::class);
@@ -69,8 +69,8 @@ expect()->extend('assertCanSendMessage', function (Message $message): Expectatio
     expect($queue)->each(function (Expectation $expectation) use ($client, $message): void {
         $expectation->toBeInstanceOf(ResponseInterface::class);
 
-        /** @var ResponseInterface $response */
         $response = $expectation->value;
+        \assert($response instanceof ResponseInterface);
 
         expect($client->send($message))
             ->toBeInstanceOf(ResponseInterface::class)

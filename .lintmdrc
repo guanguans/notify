@@ -1,8 +1,13 @@
 {
     "excludeFiles": [
+        ".build/",
+        "baselines/",
+        "config/",
+        "src/",
         "tests/",
         "vendor/",
-        "./CHANGELOG.md"
+        "vendor-bin/",
+        "CHANGELOG.md"
     ],
     "rules": {
         "space-around-alphabet": 2,

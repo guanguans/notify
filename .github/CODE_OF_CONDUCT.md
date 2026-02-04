@@ -1,21 +1,3 @@
-
-统计
-升级会员享更多高级权益
-立即升级
-生词
-已掌握
-例句库
-PDF 翻译
-beta
-
-管理黑名单
-本页生词
-(0)
-已掌握
-(0)
-Search
-我的
-设置
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge

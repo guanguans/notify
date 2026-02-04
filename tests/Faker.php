@@ -20,9 +20,7 @@ trait Faker
 {
     final protected static function faker(string $locale = Factory::DEFAULT_LOCALE): Generator
     {
-        /**
-         * @var array<string, Generator> $fakers
-         */
+        /** @var array<string, Generator> $fakers */
         static $fakers = [];
 
         if (!\array_key_exists($locale, $fakers)) {

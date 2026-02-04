@@ -23,7 +23,7 @@ class WebHookAuthenticator extends NullAuthenticator
 
     public function __construct(
         #[\SensitiveParameter]
-        private string $webHook,
+        private readonly string $webHook,
         ?UriFactoryInterface $uriFactory = null
     ) {
         $this->uriFactory = $uriFactory ?? new HttpFactory;

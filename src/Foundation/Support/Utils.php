@@ -41,7 +41,7 @@ class Utils
     /**
      * Return an array of defined properties for the given object.
      *
-     * @param class-string<Message>|Message $object
+     * @param class-string<Message>|\Guanguans\Notify\Foundation\Message $object
      *
      * @throws \ReflectionException
      *
@@ -94,7 +94,7 @@ class Utils
          *     filename: string,
          *     foo: mixed,
          *     bar: mixed,
-         * }|resource|scalar|StreamInterface  $value
+         * }|\Psr\Http\Message\StreamInterface|resource|scalar  $value
          *
          * @return array{
          *     name: string,

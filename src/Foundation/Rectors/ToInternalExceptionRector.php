@@ -19,8 +19,6 @@ use PhpParser\Node\Expr\New_;
 use PhpParser\Node\Name;
 use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Rector\AbstractRector;
-use Symplify\RuleDocGenerator\Exception\PoorDocumentationException;
-use Symplify\RuleDocGenerator\Exception\ShouldNotHappenException;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
@@ -33,8 +31,8 @@ final class ToInternalExceptionRector extends AbstractRector implements Configur
     private array $except = [];
 
     /**
-     * @throws PoorDocumentationException
-     * @throws ShouldNotHappenException
+     * @throws \Symplify\RuleDocGenerator\Exception\PoorDocumentationException
+     * @throws \Symplify\RuleDocGenerator\Exception\ShouldNotHappenException
      */
     public function getRuleDefinition(): RuleDefinition
     {
@@ -54,12 +52,6 @@ final class ToInternalExceptionRector extends AbstractRector implements Configur
         );
     }
 
-    public function configure(array $configuration): void
-    {
-        Assert::allStringNotEmpty($configuration);
-        $this->except = array_merge($this->except, $configuration);
-    }
-
     public function getNodeTypes(): array
     {
         return [
@@ -68,7 +60,7 @@ final class ToInternalExceptionRector extends AbstractRector implements Configur
     }
 
     /**
-     * @param Node\Expr\New_ $node
+     * @param \PhpParser\Node\Expr\New_ $node
      *
      * @throws \ReflectionException
      */
@@ -94,6 +86,12 @@ final class ToInternalExceptionRector extends AbstractRector implements Configur
         $node->class = new Name($internalExceptionClass, $class->getAttributes());
 
         return $node;
+    }
+
+    public function configure(array $configuration): void
+    {
+        Assert::allStringNotEmpty($configuration);
+        $this->except = array_merge($this->except, $configuration);
     }
 
     /**

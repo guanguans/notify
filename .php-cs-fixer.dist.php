@@ -3,12 +3,12 @@
 declare(strict_types=1);
 
 /**
- * Copyright (c) 2024-2026 guanguans<ityaozm@gmail.com>
+ * Copyright (c) 2021-2026 guanguans<ityaozm@gmail.com>
  *
  * For the full copyright and license information, please view
  * the LICENSE file that was distributed with this source code.
  *
- * @see https://github.com/guanguans/laravel-api-response
+ * @see https://github.com/guanguans/notify
  */
 
 use Ergebnis\License\Holder;
@@ -48,23 +48,9 @@ return Factory::fromRuleSet(Php81::create()
     ->withRules(Rules::fromArray([
         '@autoPHPUnitMigration:risky' => true,
         // 'final_public_method_for_abstract_class' => false,
-        'AdamWojs/phpdoc_force_fqcn_fixer' => false,
-        'ErickSkrauch/ordered_overrides' => false,
-        'multiline_promoted_properties' => false,
-        'PhpCsFixerCustomFixers/constructor_empty_braces' => false,
         'PhpCsFixerCustomFixers/function_parameter_separation' => false,
-        'PhpCsFixerCustomFixers/no_useless_parenthesis' => false,
-        'PhpCsFixerCustomFixers/phpdoc_no_incorrect_var_annotation' => false,
         'PhpCsFixerCustomFixers/phpdoc_property_sorted' => false,
-        'PhpCsFixerCustomFixers/phpdoc_single_line_var' => false,
-        'PhpCsFixerCustomFixers/phpdoc_var_annotation_to_assert' => false,
-        'PhpCsFixerCustomFixers/readonly_promoted_properties' => false,
-        'general_phpdoc_tag_rename' => false,
-        'header_comment' => false,
-        'braces_position' => false,
-        'phpdoc_order' => false,
-        'phpdoc_summary' => false,
-        'random_api_migration' => false,
+        // 'PhpCsFixerCustomFixers/readonly_promoted_properties' => false,
     ])))
     ->setUsingCache(true)
     ->setCacheFile(\sprintf('%s/.build/php-cs-fixer/%s.cache', __DIR__, pathinfo(__FILE__, \PATHINFO_FILENAME)))

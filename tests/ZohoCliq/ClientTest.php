@@ -173,7 +173,6 @@ it('can send user message', function (): void {
 })->group(__DIR__, __FILE__);
 
 it('can retry send user message', function (): void {
-    /** @var \Guanguans\Notify\Foundation\Response $response */
     $userMessage = UserMessage::make($this->message)->emailId(fake()->email());
     $response = $this
         ->client

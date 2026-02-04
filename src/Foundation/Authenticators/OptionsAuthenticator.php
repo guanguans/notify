@@ -18,8 +18,8 @@ use Guanguans\Notify\Foundation\Support\Utils;
 class OptionsAuthenticator extends NullAuthenticator
 {
     public function __construct(
-        private array $options,
-        private bool $reversed = false
+        private readonly array $options,
+        private readonly bool $reversed = false
     ) {}
 
     public function applyToOptions(array $options): array

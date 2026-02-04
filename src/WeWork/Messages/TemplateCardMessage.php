@@ -86,11 +86,6 @@ class TemplateCardMessage extends Message
         return $this;
     }
 
-    protected function type(): string
-    {
-        return 'template_card';
-    }
-
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
@@ -179,5 +174,10 @@ class TemplateCardMessage extends Message
                         'desc',
                     ]);
             });
+    }
+
+    protected function type(): string
+    {
+        return 'template_card';
     }
 }

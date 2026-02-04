@@ -33,8 +33,6 @@ use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
 use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Rector\AbstractRector;
-use Symplify\RuleDocGenerator\Exception\PoorDocumentationException;
-use Symplify\RuleDocGenerator\Exception\ShouldNotHappenException;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
@@ -53,13 +51,13 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
     ];
 
     public function __construct(
-        private DocBlockUpdater $docBlockUpdater,
-        private PhpDocInfoFactory $phpDocInfoFactory
+        private readonly DocBlockUpdater $docBlockUpdater,
+        private readonly PhpDocInfoFactory $phpDocInfoFactory
     ) {}
 
     /**
-     * @throws PoorDocumentationException
-     * @throws ShouldNotHappenException
+     * @throws \Symplify\RuleDocGenerator\Exception\PoorDocumentationException
+     * @throws \Symplify\RuleDocGenerator\Exception\ShouldNotHappenException
      */
     public function getRuleDefinition(): RuleDefinition
     {
@@ -92,19 +90,13 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
         );
     }
 
-    public function configure(array $configuration): void
-    {
-        Assert::allStringNotEmpty($configuration);
-        $this->except = array_merge($this->except, $configuration);
-    }
-
     public function getNodeTypes(): array
     {
         return [Trait_::class];
     }
 
     /**
-     * @param Trait_ $node
+     * @param \PhpParser\Node\Stmt\Trait_ $node
      */
     public function refactor(Node $node): ?Node
     {
@@ -124,6 +116,12 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
         $this->docBlockUpdater->updateRefactoredNodeWithPhpDocInfo($node);
 
         return $node;
+    }
+
+    public function configure(array $configuration): void
+    {
+        Assert::allStringNotEmpty($configuration);
+        $this->except = array_merge($this->except, $configuration);
     }
 
     private function addMixinDoc(PhpDocInfo $phpDocInfo): void

@@ -29,13 +29,13 @@ use Symfony\Component\Finder\SplFileInfo;
 final class ComposerScripts
 {
     /**
-     * @noinspection PhpDuplicatedCharacterInStrFunctionCallInspection
-     * @noinspection PhpUnused
-     *
      * @throws \JsonException
      * @throws \ReflectionException
      *
      * @return int<0, 0>
+     *
+     * @noinspection PhpDuplicatedCharacterInStrFunctionCallInspection
+     * @noinspection PhpUnused
      */
     public static function generateIdeJson(Event $event): int
     {
@@ -109,9 +109,9 @@ final class ComposerScripts
     }
 
     /**
-     * @noinspection PhpUnused
-     *
      * @return int<0, 0>
+     *
+     * @noinspection PhpUnused
      */
     public static function platformLint(Event $event): int
     {

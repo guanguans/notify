@@ -19,7 +19,6 @@ use Guanguans\Notify\Foundation\Concerns\HasHttpClient;
 use Guanguans\Notify\Foundation\Contracts\Authenticator;
 use Guanguans\Notify\Foundation\Contracts\Message;
 use Guanguans\Notify\Foundation\Support\Utils;
-use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -60,7 +59,7 @@ class Client implements Contracts\Client
     }
 
     /**
-     * @throws GuzzleException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return Response
      */
@@ -70,7 +69,7 @@ class Client implements Contracts\Client
     }
 
     /**
-     * @throws GuzzleException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function sendAsync(Message $message): PromiseInterface
     {

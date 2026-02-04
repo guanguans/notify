@@ -1,0 +1,37 @@
+{
+    "preset": "base",
+    "ignore": {
+        "words": [
+            "authenticator",
+            "readme",
+            "chanify",
+            "btns",
+            "authenticators",
+            "uri",
+            "wsse",
+            "params",
+            "json",
+            "dumpable",
+            "throwable",
+            "middleware",
+            "str",
+            "utils",
+            "gitter",
+            "mattermost",
+            "ntfy",
+            "async",
+            "pushback",
+            "qq",
+            "showdoc",
+            "zhi",
+            "yi",
+            "feng",
+            "chuan",
+            "hua",
+            "zoho",
+            "cliq",
+            "zulip"
+        ],
+        "paths": []
+    }
+}

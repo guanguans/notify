@@ -33,11 +33,11 @@ use Psr\Http\Message\UriInterface;
 use function Guanguans\Notify\Foundation\Support\value;
 
 /**
- * @template-implements \ArrayAccess<string, mixed>
- *
  * @see https://github.com/laravel/framework
  * @see https://github.com/saloonphp/saloon
  * @see https://github.com/w7corp/easywechat
+ *
+ * @template-implements \ArrayAccess<string, mixed>
  */
 class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Stringable
 {
@@ -188,7 +188,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * Suitable for reading small, simple XML responses but not suitable for
      * more advanced XML responses with namespaces and prefixes. Consider
-     * using the xmlReader method instead for better compatability.
+     * using the xmlReader method instead for better compatibility.
      *
      * @see https://www.php.net/manual/en/book.simplexml.php
      */
@@ -438,13 +438,13 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Throw an exception if a server or client error occurred.
      *
-     * @throws RequestException
+     * @throws \Guanguans\Notify\Foundation\Exceptions\RequestException
      */
     public function throw(?callable $callback = null): self
     {
         if ($this->failed()) {
-            /** @var \Guanguans\Notify\Foundation\Exceptions\RequestException $requestException */
             $requestException = $this->toException();
+            \assert($requestException instanceof RequestException);
             $callback and $callback($this, $requestException);
 
             throw $requestException;
@@ -458,7 +458,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @param bool|\Closure|mixed $condition
      *
-     * @throws RequestException
+     * @throws \Guanguans\Notify\Foundation\Exceptions\RequestException
      */
     public function throwIf(mixed $condition, ?callable $callback = null): self
     {
@@ -468,7 +468,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Throw an exception if the response status code matches the given code.
      *
-     * @throws RequestException
+     * @throws \Guanguans\Notify\Foundation\Exceptions\RequestException
      */
     public function throwIfStatus(callable|int $statusCode): self
     {
@@ -482,7 +482,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Throw an exception unless the response status code matches the given code.
      *
-     * @throws RequestException
+     * @throws \Guanguans\Notify\Foundation\Exceptions\RequestException
      */
     public function throwUnlessStatus(callable|int $statusCode): self
     {
@@ -496,7 +496,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Throw an exception if the response status code is a 4xx level code.
      *
-     * @throws RequestException
+     * @throws \Guanguans\Notify\Foundation\Exceptions\RequestException
      */
     public function throwIfClientError(): self
     {
@@ -506,7 +506,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /**
      * Throw an exception if the response status code is a 5xx level code.
      *
-     * @throws RequestException
+     * @throws \Guanguans\Notify\Foundation\Exceptions\RequestException
      */
     public function throwIfServerError(): self
     {

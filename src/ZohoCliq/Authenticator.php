@@ -57,14 +57,14 @@ class Authenticator extends NullAuthenticator implements \Stringable
     private Client $client;
 
     /**
-     * @noinspection PhpDocSignatureInspection
-     *
      * @param null|key-of<\Guanguans\Notify\ZohoCliq\DataCenter::BASE_URI_MAP> $dataCenter
+     *
+     * @noinspection PhpDocSignatureInspection
      */
     public function __construct(
-        private string $clientId,
+        private readonly string $clientId,
         #[\SensitiveParameter]
-        private string $clientSecret,
+        private readonly string $clientSecret,
         ?string $dataCenter = null,
         ?CacheInterface $cache = null,
         ?string $cacheKey = null,

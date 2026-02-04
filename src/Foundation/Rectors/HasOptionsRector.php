@@ -37,8 +37,6 @@ use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\PhpParser\Node\Value\ValueResolver;
 use Rector\PhpParser\Parser\SimplePhpParser;
 use Rector\Rector\AbstractRector;
-use Symplify\RuleDocGenerator\Exception\PoorDocumentationException;
-use Symplify\RuleDocGenerator\Exception\ShouldNotHappenException;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
@@ -53,15 +51,15 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
     ];
 
     public function __construct(
-        private DocBlockUpdater $docBlockUpdater,
-        private PhpDocInfoFactory $phpDocInfoFactory,
-        private SimplePhpParser $simplePhpParser,
-        private ValueResolver $valueResolver,
+        private readonly DocBlockUpdater $docBlockUpdater,
+        private readonly PhpDocInfoFactory $phpDocInfoFactory,
+        private readonly SimplePhpParser $simplePhpParser,
+        private readonly ValueResolver $valueResolver,
     ) {}
 
     /**
-     * @throws PoorDocumentationException
-     * @throws ShouldNotHappenException
+     * @throws \Symplify\RuleDocGenerator\Exception\PoorDocumentationException
+     * @throws \Symplify\RuleDocGenerator\Exception\ShouldNotHappenException
      */
     public function getRuleDefinition(): RuleDefinition
     {
@@ -97,6 +95,29 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
         );
     }
 
+    public function getNodeTypes(): array
+    {
+        return [Class_::class];
+    }
+
+    /**
+     * @param \PhpParser\Node\Stmt\Class_ $node
+     *
+     * @throws \ReflectionException
+     */
+    public function refactor(Node $node): ?Node
+    {
+        if (!$this->isSubclassesOf($this->getName($node))) {
+            return null;
+        }
+
+        $this->addMethodsOfListTypeOption($node);
+        $this->sortProperties($node);
+        $this->addPhpDocTagNodesOfMethod($node);
+
+        return $node;
+    }
+
     /**
      * @throws \ReflectionException
      */
@@ -115,34 +136,11 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
         $this->classes = array_merge($this->classes, $configuration);
     }
 
-    public function getNodeTypes(): array
-    {
-        return [Class_::class];
-    }
-
     /**
-     * @param Class_ $node
-     *
      * @throws \ReflectionException
-     */
-    public function refactor(Node $node): ?Node
-    {
-        if (!$this->isSubclassesOf($this->getName($node))) {
-            return null;
-        }
-
-        $this->addMethodsOfListTypeOption($node);
-        $this->sortProperties($node);
-        $this->addPhpDocTagNodesOfMethod($node);
-
-        return $node;
-    }
-
-    /**
+     *
      * @noinspection PhpPossiblePolymorphicInvocationInspection
      * @noinspection D
-     *
-     * @throws \ReflectionException
      */
     private function addMethodsOfListTypeOption(Class_ $class): void
     {

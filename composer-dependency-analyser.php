@@ -44,6 +44,7 @@ return (new Configuration)
         [
             'guzzlehttp/promises',
             'guzzlehttp/psr7',
+            'illuminate/collections',
             'psr/http-factory',
             'psr/http-message',
         ],
@@ -56,7 +57,6 @@ return (new Configuration)
     // )
     ->ignoreErrorsOnPackages(
         [
-            'illuminate/collections',
             'illuminate/support',
             'symfony/var-dumper',
         ],

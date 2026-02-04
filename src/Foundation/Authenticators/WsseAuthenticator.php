@@ -18,9 +18,9 @@ use Psr\Http\Message\RequestInterface;
 class WsseAuthenticator extends NullAuthenticator
 {
     public function __construct(
-        private string $username,
+        private readonly string $username,
         #[\SensitiveParameter]
-        private string $password
+        private readonly string $password
     ) {}
 
     public function applyToRequest(RequestInterface $request): RequestInterface

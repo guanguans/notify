@@ -56,11 +56,11 @@ abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
     }
 
     /**
-     * @noinspection PhpHierarchyChecksInspection
-     *
      * @throws \ReflectionException
      *
      * @return static
+     *
+     * @noinspection PhpHierarchyChecksInspection
      */
     final public static function make(mixed $options = []): self
     {

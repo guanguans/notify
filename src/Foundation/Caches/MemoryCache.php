@@ -26,7 +26,7 @@ class MemoryCache implements CacheInterface
     /**
      * {@inheritDoc}
      *
-     * @throws CacheInvalidArgumentException
+     * @throws \Guanguans\Notify\Foundation\Exceptions\CacheInvalidArgumentException
      */
     public function get(string $key, mixed $default = null): mixed
     {
@@ -48,7 +48,7 @@ class MemoryCache implements CacheInterface
     /**
      * {@inheritDoc}
      *
-     * @throws CacheInvalidArgumentException
+     * @throws \Guanguans\Notify\Foundation\Exceptions\CacheInvalidArgumentException
      */
     public function set(string $key, mixed $value, null|\DateInterval|int $ttl = null): bool
     {
@@ -65,7 +65,7 @@ class MemoryCache implements CacheInterface
         $ttl = $this->getTTL($ttl);
 
         if (null !== $ttl) {
-            $ttl = (time() + $ttl);
+            $ttl = time() + $ttl;
         }
 
         $this->cache[$key] = ['ttl' => $ttl, 'content' => $value];
@@ -92,16 +92,6 @@ class MemoryCache implements CacheInterface
         $this->cache = [];
 
         return true;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function has(string $key): bool
-    {
-        $key = $this->checkKey($key);
-
-        return isset($this->cache[$key]);
     }
 
     /**
@@ -145,6 +135,16 @@ class MemoryCache implements CacheInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function has(string $key): bool
+    {
+        $key = $this->checkKey($key);
+
+        return isset($this->cache[$key]);
+    }
+
+    /**
      * Get all cache keys.
      *
      * @internal needed for testing purposes
@@ -157,7 +157,7 @@ class MemoryCache implements CacheInterface
     }
 
     /**
-     * @throws CacheInvalidArgumentException
+     * @throws \Guanguans\Notify\Foundation\Exceptions\CacheInvalidArgumentException
      */
     protected function checkKey(string $key): string
     {

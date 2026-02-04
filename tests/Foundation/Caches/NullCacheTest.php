@@ -42,7 +42,7 @@ it('always return true when adding a value', function (): void {
         ->toBeTrue();
 })->group(__DIR__, __FILE__);
 
-it('always return true when deleteing a value', function (): void {
+it('always return true when deleting a value', function (): void {
     expect($this->cache->delete($this->key))
         ->toBeTrue();
 })->group(__DIR__, __FILE__);
@@ -70,7 +70,7 @@ it('always return true when adding multiple values', function (): void {
         ->toBeTrue();
 })->group(__DIR__, __FILE__);
 
-it('always return true when deleteing multiple values', function (): void {
+it('always return true when deleting multiple values', function (): void {
     expect($this->cache->deleteMultiple(['a', 'b']))
         ->toBeTrue();
 })->group(__DIR__, __FILE__);

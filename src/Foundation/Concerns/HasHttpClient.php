@@ -77,11 +77,11 @@ trait HasHttpClient
 {
     private ?Client $httpClient = null;
 
-    /** @var null|callable(static): \GuzzleHttp\Client */
+    /** @var null|(callable(static): \GuzzleHttp\Client) */
     private $httpClientResolver;
     private ?HandlerStack $handlerStack = null;
 
-    /** @var null|callable(static): \GuzzleHttp\HandlerStack */
+    /** @var null|(callable(static): \GuzzleHttp\HandlerStack) */
     private $handlerStackResolver;
     private array $httpOptions = [];
 
@@ -122,7 +122,7 @@ trait HasHttpClient
     }
 
     /**
-     * @param callable(static): \GuzzleHttp\Client $httpClientResolver
+     * @param (callable(static): \GuzzleHttp\Client) $httpClientResolver
      */
     public function setHttpClientResolver(callable $httpClientResolver): self
     {
@@ -132,7 +132,7 @@ trait HasHttpClient
     }
 
     /**
-     * @return callable(static): \GuzzleHttp\Client
+     * @return (callable(static): \GuzzleHttp\Client)
      */
     public function getHttpClientResolver(): callable
     {
@@ -152,7 +152,7 @@ trait HasHttpClient
     }
 
     /**
-     * @param callable(static): \GuzzleHttp\HandlerStack $handlerStackResolver
+     * @param (callable(static): \GuzzleHttp\HandlerStack) $handlerStackResolver
      */
     public function setHandlerStackResolver(callable $handlerStackResolver): self
     {
@@ -162,7 +162,7 @@ trait HasHttpClient
     }
 
     /**
-     * @return callable(static): \GuzzleHttp\HandlerStack
+     * @return (callable(static): \GuzzleHttp\HandlerStack)
      */
     public function getHandlerStackResolver(): callable
     {
@@ -222,7 +222,7 @@ trait HasHttpClient
     }
 
     /**
-     * @param null|list<ResponseInterface|\Throwable>|ResponseInterface|\Throwable $queue
+     * @param null|list<ResponseInterface|\Throwable>|\Psr\Http\Message\ResponseInterface|\Throwable $queue
      */
     public function mock(mixed $queue = null, ?callable $onFulfilled = null, ?callable $onRejected = null): self
     {

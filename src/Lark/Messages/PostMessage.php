@@ -40,11 +40,6 @@ class PostMessage extends Message
         return $this;
     }
 
-    protected function type(): string
-    {
-        return 'post';
-    }
-
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver->setDefault('post', static function (OptionsResolver $optionsResolver): void {
@@ -56,5 +51,10 @@ class PostMessage extends Message
                 ])
                 ->setAllowedTypes('content', 'array');
         });
+    }
+
+    protected function type(): string
+    {
+        return 'post';
     }
 }
