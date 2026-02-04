@@ -30,6 +30,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
+
+    /** @var list<string> */
     protected array $defined = [
         'roomId',
         'channel',
@@ -41,10 +43,14 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'tmid',
         'tshow',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'attachments' => 'array',
         'tshow' => 'bool',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'attachments' => [],
     ];

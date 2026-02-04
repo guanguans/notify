@@ -1,7 +1,12 @@
-# total 1 error
+# total 2 errors
 
 parameters:
     ignoreErrors:
+        -
+            message: '#^Call to function method_exists\(\) with Symfony\\Component\\OptionsResolver\\OptionsResolver and ''setIgnoreUndefined'' will always evaluate to true\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
         -
             message: '#^Call to function property_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''ignoreUndefined'' will always evaluate to true\.$#'
             count: 1

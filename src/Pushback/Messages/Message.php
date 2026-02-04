@@ -27,6 +27,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         // 'id',
         // 'title',
     ];
+
+    /** @var list<string> */
     protected array $defined = [
         'id',
         'title',

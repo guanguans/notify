@@ -20,6 +20,7 @@ namespace Guanguans\Notify\Chanify\Messages;
  */
 class LinkMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'link',
         'sound',

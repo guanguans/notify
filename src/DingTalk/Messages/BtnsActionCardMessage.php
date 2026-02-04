@@ -23,15 +23,20 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class BtnsActionCardMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'title',
         'text',
         'btnOrientation',
         'btns',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'btns' => 'array',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'btns' => [],
     ];

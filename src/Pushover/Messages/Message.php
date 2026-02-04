@@ -40,6 +40,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         // // 'user',
         // 'message',
     ];
+
+    /** @var list<string> */
     protected array $defined = [
         // 'token',
         // 'user',

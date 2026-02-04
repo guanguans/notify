@@ -20,6 +20,9 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         return 'open-apis/bot/v2/hook/{token}';
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function toPayload(): array
     {
         return [

@@ -33,6 +33,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         // 'content',
         // // 'topic', // stream
     ];
+
+    /** @var list<string> */
     protected array $defined = [
         'type',
         'to',
@@ -45,6 +47,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $allowedValues = [
         // 'type' => ['direct', 'private', 'stream'],
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'read_by_sender' => 'bool',
     ];

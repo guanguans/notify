@@ -20,12 +20,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class PostMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'post',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'post' => 'array',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'post' => [],
     ];

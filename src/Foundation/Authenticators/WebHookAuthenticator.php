@@ -19,15 +19,11 @@ use Psr\Http\Message\UriFactoryInterface;
 
 class WebHookAuthenticator extends NullAuthenticator
 {
-    private UriFactoryInterface $uriFactory;
-
     public function __construct(
         #[\SensitiveParameter]
         private readonly string $webHook,
-        ?UriFactoryInterface $uriFactory = null
-    ) {
-        $this->uriFactory = $uriFactory ?? new HttpFactory;
-    }
+        private readonly UriFactoryInterface $uriFactory = new HttpFactory
+    ) {}
 
     public function applyToRequest(RequestInterface $request): RequestInterface
     {

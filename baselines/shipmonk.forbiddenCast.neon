@@ -1,0 +1,23 @@
+# total 5 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Using \(array\) is discouraged, please avoid using that\.$#'
+            count: 1
+            path: ../src/Foundation/Caches/FileCache.php
+
+        -
+            message: '#^Using \(array\) is discouraged, please avoid using that\.$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasOptionsRector.php
+
+        -
+            message: '#^Using \(array\) is discouraged, please avoid using that\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Using \(array\) is discouraged, please avoid using that\.$#'
+            count: 2
+            path: ../src/Foundation/Support/Arr.php

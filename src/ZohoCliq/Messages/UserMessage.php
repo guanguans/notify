@@ -24,6 +24,7 @@ namespace Guanguans\Notify\ZohoCliq\Messages;
  */
 class UserMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'email_id',
 

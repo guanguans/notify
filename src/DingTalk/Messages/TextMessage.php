@@ -21,12 +21,15 @@ namespace Guanguans\Notify\DingTalk\Messages;
  */
 class TextMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'content',
         'atMobiles',
         'atDingtalkIds',
         'isAtAll',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'atMobiles' => 'array',
         'atDingtalkIds' => 'array',

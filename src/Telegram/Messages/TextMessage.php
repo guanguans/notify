@@ -29,6 +29,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class TextMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'chat_id',
         'message_thread_id',
@@ -44,6 +45,8 @@ class TextMessage extends Message
     protected array $allowedValues = [
         // 'parse_mode' => ['HTML', 'Markdown', 'MarkdownV2'],
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'entities' => 'array',
         'link_preview_options' => 'array',
@@ -52,6 +55,8 @@ class TextMessage extends Message
         'reply_parameters' => 'array',
         'reply_markup' => 'array',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'entities' => [],
     ];

@@ -20,6 +20,7 @@ namespace Guanguans\Notify\PushDeer\Messages;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'text',
         'desp',

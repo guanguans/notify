@@ -25,6 +25,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         // 'apikey',
         // 'title',
     ];
+
+    /** @var list<string> */
     protected array $defined = [
         'title',
         'content',

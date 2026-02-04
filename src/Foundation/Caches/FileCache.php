@@ -22,9 +22,7 @@ use Psr\SimpleCache\CacheInterface;
 class FileCache implements CacheInterface
 {
     private const CACHE_FOLDER_NAME = 'notify-cache';
-
-    /** @readonly */
-    private string $directory;
+    private readonly string $directory;
 
     public function __construct(?string $directory = null)
     {

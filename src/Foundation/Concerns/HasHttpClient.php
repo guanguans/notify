@@ -85,6 +85,9 @@ trait HasHttpClient
     private $handlerStackResolver;
     private array $httpOptions = [];
 
+    /**
+     * @param list<mixed> $arguments
+     */
     public function __call(string $name, array $arguments): self
     {
         if (method_exists($this->getHandlerStack(), $name)) {
@@ -195,6 +198,9 @@ trait HasHttpClient
         );
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function defaultHttpOptions(): array
     {
         return [

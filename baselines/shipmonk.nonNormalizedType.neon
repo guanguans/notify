@@ -1,0 +1,43 @@
+# total 9 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Found non\-normalized type \(Response \| ResponseInterface\) for return\: Response is a subtype of ResponseInterface\.$#'
+            count: 1
+            path: ../src/Foundation/Client.php
+
+        -
+            message: '#^Found non\-normalized type \(\\GuzzleHttp\\Exception\\GuzzleException \| \\Throwable\) for throws\: \\GuzzleHttp\\Exception\\GuzzleException is a subtype of \\Throwable\.$#'
+            count: 1
+            path: ../src/Foundation/Client.php
+
+        -
+            message: '#^Found non\-normalized type \(array \| mixed\) for return\: array is a subtype of mixed\.$#'
+            count: 2
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Found non\-normalized type \(bool \| \\Closure \| mixed\) for parameter \$condition\: \\Closure is a subtype of mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Found non\-normalized type \(bool \| \\Closure \| mixed\) for parameter \$condition\: bool is a subtype of mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Found non\-normalized type \(mixed \| object\) for return\: object is a subtype of mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Found non\-normalized type \(array \| \\ArrayAccess \| mixed\) for parameter \$array\: \\ArrayAccess is a subtype of mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Support/Arr.php
+
+        -
+            message: '#^Found non\-normalized type \(array \| \\ArrayAccess \| mixed\) for parameter \$array\: array is a subtype of mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Support/Arr.php

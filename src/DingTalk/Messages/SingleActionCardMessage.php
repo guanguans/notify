@@ -22,6 +22,7 @@ namespace Guanguans\Notify\DingTalk\Messages;
  */
 class SingleActionCardMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'title',
         'text',

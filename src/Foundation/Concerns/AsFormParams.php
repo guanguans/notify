@@ -20,6 +20,9 @@ use GuzzleHttp\RequestOptions;
  */
 trait AsFormParams
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function toHttpOptions(): array
     {
         return [

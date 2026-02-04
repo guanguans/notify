@@ -23,6 +23,8 @@ trait AsMultipart
     /**
      * @see \Guanguans\Notify\Foundation\Support\Utils::normalizeHttpOptions()
      * @see \Guanguans\Notify\Foundation\Client::send()
+     *
+     * @return array<string, mixed>
      */
     public function toHttpOptions(): array
     {

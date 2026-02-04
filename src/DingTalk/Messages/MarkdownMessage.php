@@ -22,6 +22,7 @@ namespace Guanguans\Notify\DingTalk\Messages;
  */
 class MarkdownMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'title',
         'text',
@@ -29,6 +30,8 @@ class MarkdownMessage extends Message
         'atDingtalkIds',
         'isAtAll',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'atMobiles' => 'array',
         'atDingtalkIds' => 'array',

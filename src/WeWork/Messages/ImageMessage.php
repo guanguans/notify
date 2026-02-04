@@ -20,6 +20,7 @@ use function Guanguans\Notify\Foundation\Support\base64_encode_file;
  */
 class ImageMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'image',
     ];

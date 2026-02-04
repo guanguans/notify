@@ -31,6 +31,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
+
+    /** @var list<string> */
     protected array $defined = [
         'content',
         'embeds',
@@ -44,6 +46,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'avatar_url',
         'tts',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'tts' => 'bool',
         'embeds' => 'array',
@@ -52,6 +56,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'files' => 'array',
         'attachments' => 'array',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'embeds' => [],
     ];

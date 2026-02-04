@@ -24,14 +24,10 @@ use Psr\Http\Message\UriFactoryInterface;
  */
 class UriTemplateAuthenticator extends NullAuthenticator
 {
-    private UriFactoryInterface $uriFactory;
-
     public function __construct(
         private readonly array $variables,
-        ?UriFactoryInterface $uriFactory = null
-    ) {
-        $this->uriFactory = $uriFactory ?? new HttpFactory;
-    }
+        private readonly UriFactoryInterface $uriFactory = new HttpFactory
+    ) {}
 
     /**
      * @noinspection ToStringCallInspection

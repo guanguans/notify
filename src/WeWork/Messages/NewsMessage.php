@@ -20,12 +20,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class NewsMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'articles',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'articles' => 'array',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'articles' => [],
     ];

@@ -1,0 +1,8 @@
+# total 1 error
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Parameter \#2 of array_filter\(\) cannot be null to avoid loose comparison semantics \(\(callable\)\|null given\)\.$#'
+            count: 1
+            path: ../src/Foundation/Support/Arr.php

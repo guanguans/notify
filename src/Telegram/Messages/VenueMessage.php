@@ -31,6 +31,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class VenueMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'chat_id',
         'message_thread_id',

@@ -1,9 +1,13 @@
 <?php
 
 /** @noinspection AnonymousFunctionStaticInspection */
-/** @noinspection PhpInternalEntityUsedInspection */
+/** @noinspection NullPointerExceptionInspection */
+/** @noinspection PhpPossiblePolymorphicInvocationInspection */
+/** @noinspection PhpUndefinedClassInspection */
+/** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection PhpVoidFunctionResultUsedInspection */
 /** @noinspection StaticClosureCanBeUsedInspection */
-
+/** @noinspection PhpInternalEntityUsedInspection */
 declare(strict_types=1);
 
 /**
@@ -90,7 +94,17 @@ expect()->extend('assertCanSendMessage', function (Message $message): Expectatio
 | project that you don't want to repeat in every file. Here you can also expose helpers as
 | global functions to help you to reduce the number of lines of code in your test files.
 |
+*/
+
+/**
+ * @throws ReflectionException
  */
+function class_namespace(object|string $class): string
+{
+    $class = \is_object($class) ? $class::class : $class;
+
+    return (new ReflectionClass($class))->getNamespaceName();
+}
 
 function classes(): Collection
 {
@@ -105,14 +119,14 @@ function classes(): Collection
         ->keys();
 }
 
-/**
- * @throws ReflectionException
- */
-function class_namespace(object|string $class): string
-{
-    $class = \is_object($class) ? $class::class : $class;
-
-    return (new ReflectionClass($class))->getNamespaceName();
+if (!\function_exists('fake')) {
+    /**
+     * @see https://github.com/laravel/framework/blob/12.x/src/Illuminate/Foundation/helpers.php#L515
+     */
+    function fake(string $locale = Factory::DEFAULT_LOCALE): Generator
+    {
+        return Factory::create($locale);
+    }
 }
 
 function fixtures_path(string $path = ''): string
@@ -131,14 +145,4 @@ function response(
     ?string $reason = null
 ): ResponseInterface {
     return new Response($status, $headers, $body, $version, $reason);
-}
-
-if (!\function_exists('fake')) {
-    /**
-     * @see https://github.com/laravel/framework/blob/12.x/src/Illuminate/Foundation/helpers.php#L515
-     */
-    function fake(string $locale = Factory::DEFAULT_LOCALE): Generator
-    {
-        return Factory::create($locale);
-    }
 }

@@ -1,0 +1,33 @@
+# total 10 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Parameter \#1 \$values \(iterable\<string, mixed\>\) of method Guanguans\\Notify\\Foundation\\Caches\\FileCache\:\:setMultiple\(\) should be contravariant with parameter \$values \(iterable\) of method Psr\\SimpleCache\\CacheInterface\:\:setMultiple\(\)$#'
+            count: 1
+            path: ../src/Foundation/Caches/FileCache.php
+
+        -
+            message: '#^Parameter \#1 \$values \(iterable\<string, mixed\>\) of method Guanguans\\Notify\\Foundation\\Caches\\NullCache\:\:setMultiple\(\) should be contravariant with parameter \$values \(iterable\) of method Psr\\SimpleCache\\CacheInterface\:\:setMultiple\(\)$#'
+            count: 1
+            path: ../src/Foundation/Caches/NullCache.php
+
+        -
+            message: '#^Parameter \#1 \$offset \(\(int\|string\)\) of method Guanguans\\Notify\\Foundation\\Message\:\:offsetSet\(\) should be contravariant with parameter \$offset \(string\|null\) of method ArrayAccess\<string,mixed\>\:\:offsetSet\(\)$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Parameter \#1 \$node \(PhpParser\\Node\\Stmt\\Trait_\) of method Guanguans\\Notify\\Foundation\\Rectors\\HasHttpClientDocCommentRector\:\:refactor\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method Rector\\Contract\\Rector\\RectorInterface\:\:refactor\(\)$#'
+            count: 3
+            path: ../src/Foundation/Rectors/HasHttpClientDocCommentRector.php
+
+        -
+            message: '#^Parameter \#1 \$node \(PhpParser\\Node\\Stmt\\Class_\) of method Guanguans\\Notify\\Foundation\\Rectors\\HasOptionsRector\:\:refactor\(\) should be contravariant with parameter \$node \(PhpParser\\Node\) of method Rector\\Contract\\Rector\\RectorInterface\:\:refactor\(\)$#'
+            count: 3
+            path: ../src/Foundation/Rectors/HasOptionsRector.php
+
+        -
+            message: '#^Parameter \#1 \$offset \(\(int\|string\)\) of method Guanguans\\Notify\\Foundation\\Response\:\:offsetSet\(\) should be contravariant with parameter \$offset \(string\|null\) of method ArrayAccess\<string,mixed\>\:\:offsetSet\(\)$#'
+            count: 1
+            path: ../src/Foundation/Response.php

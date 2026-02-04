@@ -22,6 +22,7 @@ namespace Guanguans\Notify\XiZhi\Messages;
  */
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'title',
         'content',

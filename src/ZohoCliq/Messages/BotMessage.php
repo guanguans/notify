@@ -24,6 +24,7 @@ namespace Guanguans\Notify\ZohoCliq\Messages;
  */
 class BotMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'bot_unique_name',
 

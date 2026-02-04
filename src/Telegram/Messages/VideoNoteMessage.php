@@ -27,6 +27,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class VideoNoteMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'chat_id',
         'message_thread_id',

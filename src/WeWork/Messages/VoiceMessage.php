@@ -18,6 +18,7 @@ namespace Guanguans\Notify\WeWork\Messages;
  */
 class VoiceMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'media_id',
     ];

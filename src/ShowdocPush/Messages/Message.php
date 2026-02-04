@@ -19,6 +19,7 @@ namespace Guanguans\Notify\ShowdocPush\Messages;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'title',
         'content',

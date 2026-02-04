@@ -1,0 +1,118 @@
+# total 23 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Constructor in Guanguans\\Notify\\DingTalk\\Authenticator has parameter \$secret with default value\.$#'
+            count: 1
+            path: ../src/DingTalk/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Foundation\\Authenticators\\BasicAuthenticator has parameter \$type with default value\.$#'
+            count: 1
+            path: ../src/Foundation/Authenticators/BasicAuthenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Foundation\\Authenticators\\BearerAuthenticator has parameter \$bearer with default value\.$#'
+            count: 1
+            path: ../src/Foundation/Authenticators/BearerAuthenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Foundation\\Authenticators\\CertificateAuthenticator has parameter \$password with default value\.$#'
+            count: 1
+            path: ../src/Foundation/Authenticators/CertificateAuthenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Foundation\\Authenticators\\OptionsAuthenticator has parameter \$reversed with default value\.$#'
+            count: 1
+            path: ../src/Foundation/Authenticators/OptionsAuthenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Foundation\\Authenticators\\UriTemplateAuthenticator has parameter \$uriFactory with default value\.$#'
+            count: 1
+            path: ../src/Foundation/Authenticators/UriTemplateAuthenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Foundation\\Authenticators\\WebHookAuthenticator has parameter \$uriFactory with default value\.$#'
+            count: 1
+            path: ../src/Foundation/Authenticators/WebHookAuthenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Foundation\\Caches\\FileCache has parameter \$directory with default value\.$#'
+            count: 1
+            path: ../src/Foundation/Caches/FileCache.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Foundation\\Client has parameter \$authenticator with default value\.$#'
+            count: 1
+            path: ../src/Foundation/Client.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Foundation\\Message has parameter \$options with default value\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\GoogleChat\\Authenticator has parameter \$threadKey with default value\.$#'
+            count: 1
+            path: ../src/GoogleChat/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Lark\\Authenticator has parameter \$secret with default value\.$#'
+            count: 1
+            path: ../src/Lark/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Ntfy\\Authenticator has parameter \$password with default value\.$#'
+            count: 1
+            path: ../src/Ntfy/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Ntfy\\Authenticator has parameter \$usernameOrToken with default value\.$#'
+            count: 1
+            path: ../src/Ntfy/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\Ntfy\\Client has parameter \$authenticator with default value\.$#'
+            count: 1
+            path: ../src/Ntfy/Client.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\PushMe\\Authenticator has parameter \$pushKey with default value\.$#'
+            count: 1
+            path: ../src/PushMe/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\PushMe\\Authenticator has parameter \$tempKey with default value\.$#'
+            count: 1
+            path: ../src/PushMe/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\ZohoCliq\\Authenticator has parameter \$cache with default value\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\ZohoCliq\\Authenticator has parameter \$cacheKey with default value\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\ZohoCliq\\Authenticator has parameter \$client with default value\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\ZohoCliq\\Authenticator has parameter \$dataCenter with default value\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\ZohoCliq\\Authenticator has parameter \$retryDelay with default value\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php
+
+        -
+            message: '#^Constructor in Guanguans\\Notify\\ZohoCliq\\DataCenter has parameter \$value with default value\.$#'
+            count: 1
+            path: ../src/ZohoCliq/DataCenter.php

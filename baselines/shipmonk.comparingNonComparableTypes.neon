@@ -1,0 +1,13 @@
+# total 2 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Comparison int\<1, max\> \< mixed contains non\-comparable type, only int\|float\|string\|DateTimeInterface or comparable tuple is allowed\.$#'
+            count: 1
+            path: ../src/Foundation/Caches/MemoryCache.php
+
+        -
+            message: '#^Comparison int\|false \<\=\> int\|false contains non\-comparable type, only int\|float\|string\|DateTimeInterface or comparable tuple is allowed\.$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasOptionsRector.php

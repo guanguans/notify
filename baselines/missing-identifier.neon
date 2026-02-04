@@ -1,0 +1,58 @@
+# total 35 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Do not use magic number in arithmetic operations\. Move to constant with a suitable name\.$#'
+            count: 1
+            path: ../src/DingTalk/Authenticator.php
+
+        -
+            message: '#^Do not use magic number as a function argument\. Move to constant with a suitable name\.$#'
+            count: 1
+            path: ../src/Foundation/Authenticators/WsseAuthenticator.php
+
+        -
+            message: '#^Do not return magic number\. Move to constant with a suitable name\.$#'
+            count: 1
+            path: ../src/Foundation/Caches/FileCache.php
+
+        -
+            message: '#^Do not use magic number as a function argument\. Move to constant with a suitable name\.$#'
+            count: 2
+            path: ../src/Foundation/Caches/FileCache.php
+
+        -
+            message: '#^Do not use magic number as a function argument\. Move to constant with a suitable name\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Do not use magic number as default parameter\. Move to constant with a suitable name\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Do not use magic number as a function argument\. Move to constant with a suitable name\.$#'
+            count: 3
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Do not use magic number as default parameter\. Move to constant with a suitable name\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Do not use magic number in comparison operations\. Move to constant with a suitable name\.$#'
+            count: 22
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Do not use magic number in arithmetic operations\. Move to constant with a suitable name\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php
+
+        -
+            message: '#^Do not use magic number in comparison operations\. Move to constant with a suitable name\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php

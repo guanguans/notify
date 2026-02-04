@@ -1,13 +1,13 @@
 <?php
 
 /** @noinspection AnonymousFunctionStaticInspection */
-/** @noinspection OffsetOperationsInspection */
-/** @noinspection AnonymousFunctionStaticInspection */
 /** @noinspection NullPointerExceptionInspection */
 /** @noinspection PhpPossiblePolymorphicInvocationInspection */
+/** @noinspection PhpUndefinedClassInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection PhpVoidFunctionResultUsedInspection */
 /** @noinspection StaticClosureCanBeUsedInspection */
-
+/** @noinspection OffsetOperationsInspection */
 declare(strict_types=1);
 
 /**
@@ -31,6 +31,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 it('will throw InvalidArgumentException when argument is empty', function (): void {
     expect(new class(['foo' => 'bar']) extends Message {
         use AsNullUri;
+
+        /** @var list<string> */
         protected array $required = ['foo'];
     })->foo();
 })
@@ -40,6 +42,8 @@ it('will throw InvalidArgumentException when argument is empty', function (): vo
 it('will throw BadMethodCallException when calling an undefined method', function (): void {
     expect(new class(['foo' => 'bar']) extends Message {
         use AsNullUri;
+
+        /** @var list<string> */
         protected array $defined = ['foo'];
     })->bar();
 })
@@ -49,16 +53,32 @@ it('will throw BadMethodCallException when calling an undefined method', functio
 it('can get options', function (): void {
     expect(new class(['foo' => 'foo']) extends Message {
         use AsNullUri;
+
+        /** @var array<string, mixed> */
         protected array $defaults = ['foo' => 'bar'];
+
+        /** @var list<string> */
         protected array $required = ['foo'];
+
+        /** @var list<string> */
         protected array $defined = ['foo', 'bar'];
+
+        /** @var array<int|string, list<string>|string> */
         protected array $deprecated = [
             'foo',
             'bar' => ['foo/bar', '2.0', 'The option "%name%" is deprecated.'],
         ];
+
+        /** @var array<string, \Closure> */
         protected array $normalizers = [];
+
+        /** @var array<string, mixed> */
         protected array $allowedValues = ['foo' => ['foo', 'bar']];
+
+        /** @var array<string, list<string>|string> */
         protected array $allowedTypes = ['foo' => ['string']];
+
+        /** @var array<string, string> */
         protected array $infos = ['foo' => 'Invalid foo.'];
 
         public function defaults(): array
@@ -69,6 +89,9 @@ it('can get options', function (): void {
             ];
         }
 
+        /**
+         * @return array<int|string, list<string>|string>
+         */
         public function deprecated(): array
         {
             return [
@@ -77,6 +100,9 @@ it('can get options', function (): void {
             ];
         }
 
+        /**
+         * @return array<string, \Closure(\Symfony\Component\OptionsResolver\Options $options, string $value): uppercase-string>
+         */
         public function normalizers(): array
         {
             return [
@@ -93,6 +119,8 @@ it('can get options', function (): void {
 it('can array access', function (): void {
     $message = new class(['foo' => 'bar']) extends Message {
         use AsNullUri;
+
+        /** @var list<string> */
         protected array $defined = ['foo'];
     };
 

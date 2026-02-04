@@ -52,7 +52,7 @@ class Utils
         if (\is_string($object)) {
             $properties = (new \ReflectionClass($object))->getDefaultProperties();
 
-            return array_unique(array_merge($properties['defined'] ?? [], $properties['required'] ?? []));
+            return array_unique([...$properties['defined'] ?? [], ...$properties['required'] ?? []]);
         }
 
         return array_unique(
@@ -82,6 +82,13 @@ class Utils
 
     /**
      * Convert a form array into a multipart array.
+     *
+     * @return array{
+     *     name: string,
+     *     contents: null|resource|scalar|StreamInterface,
+     *     headers?: array<string, string>,
+     *     filename?: string,
+     * }[]
      */
     public static function multipartFor(array $data, int $options = 0): array
     {
@@ -179,6 +186,9 @@ class Utils
         );
     }
 
+    /**
+     * @param array<string, mixed> $httpOptions
+     */
     public static function normalizeHttpOptions(array $httpOptions, int $options = MULTIPART_TRY_OPEN_FILE): array
     {
         if (isset($httpOptions[RequestOptions::MULTIPART])) {

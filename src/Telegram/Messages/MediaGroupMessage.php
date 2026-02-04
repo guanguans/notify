@@ -26,6 +26,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class MediaGroupMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'chat_id',
         'message_thread_id',
@@ -34,9 +35,13 @@ class MediaGroupMessage extends Message
         'protect_content',
         'reply_parameters',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'media' => 'array',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'media' => [],
     ];

@@ -1,0 +1,18 @@
+# total 3 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Only booleans are allowed in an if condition, string\|null given\.$#'
+            count: 1
+            path: ../src/DingTalk/Authenticator.php
+
+        -
+            message: '#^Only booleans are allowed in an if condition, PhpParser\\Node\\Stmt\|null given\.$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasOptionsRector.php
+
+        -
+            message: '#^Only booleans are allowed in an if condition, string\|null given\.$#'
+            count: 1
+            path: ../src/Lark/Authenticator.php

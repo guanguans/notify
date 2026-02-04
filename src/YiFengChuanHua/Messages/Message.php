@@ -24,6 +24,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $required = [
         // 'head',
     ];
+
+    /** @var list<string> */
     protected array $defined = [
         'head',
         'body',

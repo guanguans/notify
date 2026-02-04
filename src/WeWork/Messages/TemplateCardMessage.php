@@ -32,6 +32,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class TemplateCardMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'card_type',
         'source',
@@ -47,6 +48,8 @@ class TemplateCardMessage extends Message
         'image_text_area',
         'vertical_content_list',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'source' => 'array',
         'main_title' => 'array',
@@ -59,6 +62,8 @@ class TemplateCardMessage extends Message
         'image_text_area' => 'array',
         'vertical_content_list' => 'array',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'horizontal_content_list' => [],
         'jump_list' => [],

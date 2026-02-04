@@ -26,6 +26,8 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
+
+    /** @var list<string> */
     protected array $defined = [
         'push_key',
         'temp_key',

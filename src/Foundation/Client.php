@@ -26,12 +26,8 @@ class Client implements Contracts\Client
 {
     use Dumpable;
     use HasHttpClient;
-    private Authenticator $authenticator;
 
-    public function __construct(?Authenticator $authenticator = null)
-    {
-        $this->authenticator = $authenticator ?? new NullAuthenticator;
-    }
+    public function __construct(private Authenticator $authenticator = new NullAuthenticator) {}
 
     public function __debugInfo(): array
     {

@@ -1,0 +1,18 @@
+# total 3 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+            count: 1
+            path: ../src/Foundation/Middleware/Response.php
+
+        -
+            message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+            count: 1
+            path: ../src/Foundation/Support/Utils.php

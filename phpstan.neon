@@ -31,6 +31,7 @@ parameters:
     scanFiles:
         - src/Foundation/Concerns/HasHttpClient.php
         - vendor/composer/InstalledVersions.php
+        - vendor-bin/php82/vendor/composer/composer/src/Composer/Script/Event.php
     excludePaths:
         - tests/Fixtures/
     level: max
@@ -42,6 +43,11 @@ parameters:
         lineBefore: 3
         lineAfter: 3
         editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+    guanguans:
+        exceptionMustImplementNativeThrowable:
+            nativeThrowable: Guanguans\Notify\Foundation\Contracts\Throwable
+        forbiddenSideEffects:
+            enabled: false
     type_coverage:
         declare: 100
         param_type: 100

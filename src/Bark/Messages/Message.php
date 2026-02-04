@@ -28,6 +28,7 @@ namespace Guanguans\Notify\Bark\Messages;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'title',
         'body',

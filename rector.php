@@ -14,7 +14,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-use Composer\Autoload\ClassLoader;
 use Ergebnis\Rector\Rules\Arrays\SortAssociativeArrayByKeyRector;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
@@ -22,17 +21,23 @@ use Guanguans\Notify\Foundation\Concerns\HasOptions;
 use Guanguans\Notify\Foundation\Method;
 use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\HasOptionsRector;
-use Guanguans\Notify\Foundation\Rectors\ToInternalExceptionRector;
 use Guanguans\Notify\Foundation\Response;
+use Guanguans\RectorRules\Rector\ClassMethod\PrivateToProtectedVisibilityForTraitRector;
+use Guanguans\RectorRules\Rector\File\AddNoinspectionDocblockToFileFirstStmtRector;
+use Guanguans\RectorRules\Rector\FunctionLike\RenameGarbageParamNameRector;
+use Guanguans\RectorRules\Rector\Name\RenameToConventionalCaseNameRector;
+use Guanguans\RectorRules\Rector\Namespace_\RemoveNamespaceRector;
+use Guanguans\RectorRules\Set\SetList;
 use GuzzleHttp\RequestOptions;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use PhpParser\Node\Expr\ClassConstFetch;
 use PhpParser\Node\Identifier;
 use PhpParser\Node\Name\FullyQualified;
-use PhpParser\Node\Scalar\LNumber;
+use PhpParser\Node\Scalar\Int_;
+use PhpParser\NodeVisitor\ParentConnectingVisitor;
+use Rector\CodeQuality\Rector\Class_\ConvertStaticToSelfRector;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
+use Rector\CodingStyle\Rector\ArrowFunction\ArrowFunctionDelegatingCallToFirstClassCallableRector;
 use Rector\CodingStyle\Rector\ArrowFunction\StaticArrowFunctionRector;
 use Rector\CodingStyle\Rector\ClassLike\NewlineBetweenClassLikeStmtsRector;
 use Rector\CodingStyle\Rector\Closure\StaticClosureRector;
@@ -43,94 +48,101 @@ use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\ClassLike\RemoveAnnotationRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveParentDelegatingConstructorRector;
-use Rector\DowngradePhp74\Rector\Array_\DowngradeArraySpreadRector;
 use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php73\Rector\FuncCall\JsonThrowOnErrorRector;
-use Rector\Php80\Rector\Class_\AnnotationToAttributeRector;
-use Rector\Php80\ValueObject\AnnotationToAttribute;
+use Rector\Php81\Rector\Array_\ArrayToFirstClassCallableRector;
 use Rector\Php82\Rector\Param\AddSensitiveParameterAttributeRector;
-use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
-use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Removing\Rector\Class_\RemoveTraitUseRector;
 use Rector\Renaming\Rector\FuncCall\RenameFunctionRector;
+use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
 use Rector\Transform\Rector\ClassMethod\ReturnTypeWillChangeRector;
-use Rector\Transform\Rector\FuncCall\FuncCallToStaticCallRector;
 use Rector\Transform\Rector\Scalar\ScalarValueToConstFetchRector;
 use Rector\Transform\Rector\String_\StringToClassConstantRector;
 use Rector\Transform\ValueObject\ClassMethodReference;
-use Rector\Transform\ValueObject\FuncCallToStaticCall;
 use Rector\Transform\ValueObject\ScalarValueToConstFetch;
 use Rector\Transform\ValueObject\StringToClassConstant;
+use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRector;
 use Rector\ValueObject\PhpVersion;
-use Rector\ValueObject\Visibility;
-use Rector\Visibility\Rector\ClassMethod\ChangeMethodVisibilityRector;
-use Rector\Visibility\ValueObject\ChangeMethodVisibility;
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__.'/benchmarks',
-        __DIR__.'/src',
-        __DIR__.'/tests',
-        ...glob(__DIR__.'/{*,.*}.php', \GLOB_BRACE),
-        __DIR__.'/composer-updater',
+        __DIR__.'/benchmarks/',
+        __DIR__.'/src/',
+        __DIR__.'/tests/',
+        __DIR__.'/composer-bump',
     ])
     ->withRootFiles()
-    // ->withSkipPath(__DIR__.'/tests.php')
     ->withSkip([
+        '*/Fixtures/*',
+        __DIR__.'/src/Concerns/HasExceptionPipes.php',
+        __DIR__.'/src/Concerns/HasPipes.php',
         __DIR__.'/tests.php',
-        '**/Fixtures/*',
-        '**/__snapshots__/*',
-        '**/__snapshots__/*',
-        __FILE__,
     ])
     ->withCache(__DIR__.'/.build/rector/')
-    ->withParallel()
     // ->withoutParallel()
-    // ->withImportNames(importNames: false)
+    ->withParallel()
     ->withImportNames(importDocBlockNames: false, importShortClasses: false)
+    // ->withImportNames(importNames: false)
+    // ->withEditorUrl()
     ->withFluentCallNewLine()
+    ->withTreatClassesAsFinal()
     ->withAttributesSets(phpunit: true, all: true)
-    ->withComposerBased(phpunit: true)
+    ->withComposerBased(phpunit: true, laravel: true)
     ->withPhpVersion(PhpVersion::PHP_81)
     ->withDowngradeSets(php81: true)
     ->withPhpSets(php81: true)
-    ->withSets([
-        PHPUnitSetList::PHPUNIT_90,
-    ])
     ->withPreparedSets(
         deadCode: true,
         codeQuality: true,
         codingStyle: true,
         typeDeclarations: true,
+        typeDeclarationDocblocks: true,
         privatization: true,
         naming: true,
         instanceOf: true,
         earlyReturn: true,
-        rectorPreset: true,
-        phpunitCodeQuality: true,
+        // carbon: true,
     )
+    ->withSets([
+        SetList::ALL,
+    ])
     ->withRules([
-        ArraySpreadInsteadOfArrayMergeRector::class,
-        JsonThrowOnErrorRector::class,
-        StaticArrowFunctionRector::class,
-        StaticClosureRector::class,
-        SortAssociativeArrayByKeyRector::class,
         HasHttpClientDocCommentRector::class,
         HasOptionsRector::class,
-        ToInternalExceptionRector::class,
+
+        ArraySpreadInsteadOfArrayMergeRector::class,
+        JsonThrowOnErrorRector::class,
+        SafeDeclareStrictTypesRector::class,
+        SortAssociativeArrayByKeyRector::class,
+        StaticArrowFunctionRector::class,
+        StaticClosureRector::class,
     ])
-    ->withConfiguredRule(ChangeMethodVisibilityRector::class, [
-        new ChangeMethodVisibility(HasOptions::class, 'preConfigureOptionsResolver', Visibility::PROTECTED),
+    ->withConfiguredRule(AddNoinspectionDocblockToFileFirstStmtRector::class, [
+        '*/tests/*' => [
+            'AnonymousFunctionStaticInspection',
+            'NullPointerExceptionInspection',
+            'PhpPossiblePolymorphicInvocationInspection',
+            'PhpUndefinedClassInspection',
+            'PhpUnhandledExceptionInspection',
+            'PhpVoidFunctionResultUsedInspection',
+            // 'SqlResolve',
+            'StaticClosureCanBeUsedInspection',
+        ],
+    ])
+    ->registerDecoratingNodeVisitor(ParentConnectingVisitor::class)
+    ->withConfiguredRule(RenameToConventionalCaseNameRector::class, [
+        'beforeEach',
+        'MIT',
+        'PDO',
     ])
     ->withConfiguredRule(RemoveAnnotationRector::class, [
+        'codeCoverageIgnore',
+        'inheritDoc',
         'phpstan-ignore',
         'phpstan-ignore-next-line',
         'psalm-suppress',
-    ])
-    ->withConfiguredRule(FuncCallToStaticCallRector::class, [
-        new FuncCallToStaticCall('str', Str::class, 'of'),
     ])
     ->withConfiguredRule(RemoveTraitUseRector::class, [
         AsJson::class,
@@ -141,27 +153,6 @@ return RectorConfig::configure()
     //     new ClassMethodReference(HasOptions::class, 'offsetGet'),
     //     new ClassMethodReference(Response::class, 'offsetGet'),
     // ])
-    // ->withConfiguredRule(AnnotationToAttributeRector::class, array_map(
-    //     static fn (string $class) => new AnnotationToAttribute(class_basename($class), $class, [], true),
-    //     array_keys(iterator_to_array(
-    //         (new ComposerFinder)
-    //             ->inNamespace('PhpBench\Attributes')
-    //             ->filter(static fn (ReflectionClass $reflectionClass): bool => $reflectionClass->isInstantiable())
-    //     ))
-    // ))
-    ->withConfiguredRule(AnnotationToAttributeRector::class, array_map(
-        static fn (string $class): AnnotationToAttribute => new AnnotationToAttribute(class_basename($class), $class, [], true),
-        collect(spl_autoload_functions())
-            ->pipe(static fn (Collection $splAutoloadFunctions): Collection => collect(
-                $splAutoloadFunctions
-                    ->firstOrFail(static fn (mixed $loader): bool => \is_array($loader) && $loader[0] instanceof ClassLoader)[0]
-                    ->getClassMap()
-            ))
-            ->keys()
-            ->filter(static fn (string $class): bool => str_starts_with($class, 'PhpBench\Attributes'))
-            ->filter(static fn (string $class): bool => (new ReflectionClass($class))->isInstantiable())
-            ->all()
-    ))
     ->withConfiguredRule(AddSensitiveParameterAttributeRector::class, [
         AddSensitiveParameterAttributeRector::SENSITIVE_PARAMETERS => [
             'accessToken',
@@ -176,12 +167,7 @@ return RectorConfig::configure()
             'webHook',
         ],
     ])
-    ->withConfiguredRule(RenameFunctionRector::class, [
-        'faker' => 'fake',
-        'Pest\Faker\fake' => 'fake',
-        'Pest\Faker\faker' => 'fake',
-        'test' => 'it',
-    ] + array_reduce(
+    ->withConfiguredRule(RenameFunctionRector::class, array_reduce(
         [
             'base64_encode_file',
             'rescue',
@@ -201,44 +187,55 @@ return RectorConfig::configure()
             Method::class,
             RequestOptions::class,
         ],
-        static fn (array $carry, string $class): array => array_merge(
-            $carry,
-            array_map(
-                static fn (string $string, string $constant): StringToClassConstant => new StringToClassConstant(
-                    $string,
-                    $class,
-                    $constant,
-                ),
-                $constants = (new ReflectionClass($class))->getConstants(),
-                array_keys($constants),
+        static fn (array $carry, string $class): array => [...$carry, ...array_map(
+            static fn (string $string, string $constant): StringToClassConstant => new StringToClassConstant(
+                $string,
+                $class,
+                $constant,
             ),
-        ),
+            $constants = (new ReflectionClass($class))->getConstants(),
+            array_keys($constants),
+        )],
         [],
     ))
     ->withConfiguredRule(ScalarValueToConstFetchRector::class, array_map(
         static fn (int $value, string $constant): ScalarValueToConstFetch => new ScalarValueToConstFetch(
-            new LNumber($value),
+            new Int_($value),
             new ClassConstFetch(new FullyQualified(Response::class), new Identifier($constant))
         ),
         $constants = array_filter(
             (new ReflectionClass(Response::class))->getConstants(),
-            static fn ($value): bool => \is_int($value),
+            \is_int(...),
         ),
         array_keys($constants)
     ))
     ->withSkip([
+        PrivateToProtectedVisibilityForTraitRector::class,
+        RemoveNamespaceRector::class,
+        RenameGarbageParamNameRector::class,
+
+        // ArrayToFirstClassCallableRector::class,
+        // ArrowFunctionDelegatingCallToFirstClassCallableRector::class,
+        ScalarValueToConstFetchRector::class,
+
         ChangeOrIfContinueToMultiContinueRector::class,
-        DowngradeArraySpreadRector::class,
+        DisallowedEmptyRuleFixerRector::class,
         EncapsedStringsToSprintfRector::class,
         ExplicitBoolCompareRector::class,
         LogicalToBooleanRector::class,
         NewlineAfterStatementRector::class,
         NewlineBetweenClassLikeStmtsRector::class,
-        PreferPHPUnitThisCallRector::class,
         ReturnBinaryOrToEarlyReturnRector::class,
         WrapEncapsedVariableInCurlyBracesRector::class,
     ])
     ->withSkip([
+        ArrowFunctionDelegatingCallToFirstClassCallableRector::class => [
+            __DIR__.'/tests/Foundation/MessageTest.php',
+        ],
+        ConvertStaticToSelfRector::class => [
+            __DIR__.'/src/Foundation/Support/Arr.php',
+            __DIR__.'/src/Foundation/Support/Str.php',
+        ],
         RemoveParentDelegatingConstructorRector::class => [
             __DIR__.'/src/Zulip/Authenticator.php',
         ],
@@ -249,22 +246,22 @@ return RectorConfig::configure()
             __DIR__.'/src/Foundation/Authenticators/AggregateAuthenticator.php',
             __DIR__.'/src/Foundation/Exceptions/RequestException.php',
         ],
-        StaticArrowFunctionRector::class => $staticArrowFunctionPaths = [
-            __DIR__.'/tests',
+        SortAssociativeArrayByKeyRector::class => [
+            __DIR__.'/benchmarks/',
+            __DIR__.'/src/',
+            __DIR__.'/tests/',
         ],
-        StaticClosureRector::class => $staticArrowFunctionPaths,
+        StaticArrowFunctionRector::class => $staticClosureSkipPaths = [
+            __DIR__.'/tests/',
+        ],
+        StaticClosureRector::class => $staticClosureSkipPaths,
         StringToClassConstantRector::class => [
             __DIR__.'/benchmarks/',
-            __DIR__.'/composer-updater',
             __DIR__.'/src/*/Messages/*.php',
             __DIR__.'/src/Foundation/Response.php',
             __DIR__.'/src/Foundation/Rfc/',
             __DIR__.'/src/Foundation/Support/Utils.php',
             __DIR__.'/tests/',
-        ],
-        SortAssociativeArrayByKeyRector::class => [
-            __DIR__.'/benchmarks',
-            __DIR__.'/src',
-            __DIR__.'/tests',
+            __DIR__.'/composer-bump',
         ],
     ]);

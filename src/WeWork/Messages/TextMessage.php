@@ -20,11 +20,14 @@ namespace Guanguans\Notify\WeWork\Messages;
  */
 class TextMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'content',
         'mentioned_list',
         'mentioned_mobile_list',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'mentioned_list' => 'array',
         'mentioned_mobile_list' => 'array',

@@ -25,6 +25,8 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
+
+    /** @var list<string> */
     protected array $defined = [
         // 'key',
         'msg',
@@ -33,6 +35,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'actions',
         'attachments',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'actions' => 'array',
         'attachments' => 'array',

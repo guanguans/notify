@@ -22,6 +22,7 @@ namespace Guanguans\Notify\Lark\Messages;
  */
 class CardMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'header',
         'elements',
@@ -29,6 +30,8 @@ class CardMessage extends Message
         'config',
         'card_link',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'header' => 'array',
         'elements' => 'array',
@@ -37,6 +40,9 @@ class CardMessage extends Message
         'card_link' => 'array',
     ];
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function toPayload(): array
     {
         $payload = parent::toPayload();

@@ -29,6 +29,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $required = [
         // 'content',
     ];
+
+    /** @var list<string> */
     protected array $defined = [
         'topic', // 群组消息
         'to', // 好友消息

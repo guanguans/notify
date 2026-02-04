@@ -27,6 +27,7 @@ use Guanguans\Notify\Foundation\Support\Arr;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'groupId',
 
@@ -38,6 +39,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'image',
         'timeSensitive',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'timeSensitive' => 'bool',
     ];

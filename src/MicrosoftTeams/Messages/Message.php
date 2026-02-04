@@ -31,6 +31,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
+
+    /** @var list<string> */
     protected array $defined = [
         '@type',
         '@context',
@@ -45,12 +47,16 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'sections',
         'potentialAction',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'hideOriginalBody' => 'bool',
         'expectedActors' => 'array',
         'sections' => 'array',
         'potentialAction' => 'array',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         '@type' => 'MessageCard',
         '@context' => 'https://schema.org/extensions',

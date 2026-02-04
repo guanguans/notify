@@ -1,0 +1,18 @@
+# total 4 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Only booleans are allowed in and, \(callable\)\|null given on the left side\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Only booleans are allowed in and, \(callable\)\|null given on the left side\.$#'
+            count: 2
+            path: ../src/Foundation/Support/helpers.php
+
+        -
+            message: '#^Only booleans are allowed in and, string\|null given on the left side\.$#'
+            count: 1
+            path: ../src/GoogleChat/Authenticator.php

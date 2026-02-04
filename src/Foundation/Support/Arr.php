@@ -56,7 +56,7 @@ class Arr
             return $array = $value;
         }
 
-        $keys = explode('.', $key);
+        $keys = explode('.', (string) $key);
 
         /** @noinspection SuspiciousLoopInspection */
         foreach ($keys as $i => $key) {
@@ -101,11 +101,11 @@ class Arr
             return $array[$key];
         }
 
-        if (!str_contains($key, '.')) {
+        if (!str_contains((string) $key, '.')) {
             return $array[$key] ?? value($default);
         }
 
-        foreach (explode('.', $key) as $segment) {
+        foreach (explode('.', (string) $key) as $segment) {
             if (static::accessible($array) && static::exists($array, $segment)) {
                 $array = $array[$segment];
             } else {
@@ -179,7 +179,7 @@ class Arr
                 continue;
             }
 
-            $parts = explode('.', $key);
+            $parts = explode('.', (string) $key);
 
             // clean up before each pass
             $array = &$original;

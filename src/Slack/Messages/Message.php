@@ -36,6 +36,8 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
+
+    /** @var list<string> */
     protected array $defined = [
         'channel',
         'attachments',
@@ -54,6 +56,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'unfurl_media',
         'username',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'attachments' => 'array',
         'blocks' => 'array',
@@ -65,6 +69,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'unfurl_links' => 'bool',
         'unfurl_media' => 'bool',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'attachments' => [],
         'blocks' => [],

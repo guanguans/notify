@@ -46,6 +46,7 @@ use Webmozart\Assert\Assert;
  */
 final class HasOptionsRector extends AbstractRector implements ConfigurableRectorInterface
 {
+    /** @var list<class-string<\Guanguans\Notify\Foundation\Message>> */
     private array $classes = [
         Message::class,
     ];
@@ -133,7 +134,7 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
             }
         }
 
-        $this->classes = array_merge($this->classes, $configuration);
+        $this->classes = [...$this->classes, ...$configuration];
     }
 
     /**

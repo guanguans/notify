@@ -18,6 +18,7 @@ namespace Guanguans\Notify\Lark\Messages;
  */
 class ImageMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'image_key',
     ];

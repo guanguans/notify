@@ -29,7 +29,6 @@ if (!\function_exists('Guanguans\Notify\Foundation\Support\base64_encode_file'))
 if (!\function_exists('Guanguans\Notify\Foundation\Support\rescue')) {
     function rescue(callable $callback, ?callable $rescuer = null): mixed
     {
-        /** @phpstan-ignore-next-line  */
         set_error_handler(static function (
             int $errNo,
             string $errStr,

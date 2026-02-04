@@ -20,6 +20,9 @@ use GuzzleHttp\RequestOptions;
  */
 trait AsBody
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function toHttpOptions(): array
     {
         return [

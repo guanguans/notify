@@ -1,0 +1,8 @@
+# total 1 error
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^The @param \$optionAllowedTypes phpdoc does not contain null, but native return type does$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasOptionsRector.php

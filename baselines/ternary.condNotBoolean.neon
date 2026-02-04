@@ -1,0 +1,8 @@
+# total 1 error
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Only booleans are allowed in a ternary operator condition, mixed given\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php

@@ -1,0 +1,13 @@
+# total 2 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Method getNodeTypes always return list, but is marked as array\<class\-string\<PhpParser\\Node\>\>$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasHttpClientDocCommentRector.php
+
+        -
+            message: '#^Method getNodeTypes always return list, but is marked as array\<class\-string\<PhpParser\\Node\>\>$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasOptionsRector.php

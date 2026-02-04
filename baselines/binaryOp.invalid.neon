@@ -1,0 +1,8 @@
+# total 1 error
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Binary operation "\." between mixed and ''/autoload\.php'' results in an error\.$#'
+            count: 1
+            path: ../src/Foundation/Support/ComposerScripts.php

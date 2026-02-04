@@ -27,6 +27,7 @@ namespace Guanguans\Notify\ZohoCliq\Messages;
  */
 class ChannelMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'channel_unique_name',
 

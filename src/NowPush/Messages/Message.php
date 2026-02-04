@@ -21,16 +21,21 @@ namespace Guanguans\Notify\NowPush\Messages;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'message_type',
         'note',
         'device_type',
         'url',
     ];
+
+    /** @var array<string, mixed> */
     protected array $allowedValues = [
         // 'message_type' => ['nowpush_note', 'nowpush_img', 'nowpush_link'],
         'device_type' => 'api',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'device_type' => 'api',
     ];

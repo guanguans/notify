@@ -30,6 +30,7 @@ namespace Guanguans\Notify\PushBullet\Messages;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'type',
         'title',

@@ -29,6 +29,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class DocumentMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'chat_id',
         'message_thread_id',
@@ -43,6 +44,8 @@ class DocumentMessage extends Message
         'reply_parameters',
         'reply_markup',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'caption_entities' => [],
     ];

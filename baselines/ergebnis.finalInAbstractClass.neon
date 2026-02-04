@@ -1,0 +1,153 @@
+# total 30 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Method Guanguans\\Notify\\DingTalk\\Messages\\Message\:\:toPayload\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/DingTalk/Messages/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:__call\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:__debugInfo\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:__toString\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:configureAndResolveOptions\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:configureOptionsResolver\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:dd\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:dump\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:getOption\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:getOptions\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:getValidatedOption\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:getValidatedOptions\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:offsetExists\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:offsetGet\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:offsetSet\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:offsetUnset\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:setOption\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:setOptions\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:toFormParams\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:toHttpMethod\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:toHttpOptions\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:toJson\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:toMultipart\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:toPayload\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Message\:\:toQuery\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Lark\\Messages\\Message\:\:toPayload\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Lark/Messages/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Telegram\\Messages\\Message\:\:toHttpOptions\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/Telegram/Messages/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\WeWork\\Messages\\Message\:\:toPayload\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/WeWork/Messages/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\ZohoCliq\\Messages\\Message\:\:configureOptionsResolver\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Messages/Message.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\ZohoCliq\\Messages\\Message\:\:toPayload\(\) is not final, but since the containing class is abstract, it should be\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Messages/Message.php

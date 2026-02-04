@@ -1,0 +1,43 @@
+# total 17 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Language construct isset\(\) should not be used\.$#'
+            count: 2
+            path: ../src/Foundation/Caches/MemoryCache.php
+
+        -
+            message: '#^Language construct isset\(\) should not be used\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Language construct isset\(\) should not be used\.$#'
+            count: 2
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Language construct isset\(\) should not be used\.$#'
+            count: 2
+            path: ../src/Foundation/Support/Arr.php
+
+        -
+            message: '#^Language construct isset\(\) should not be used\.$#'
+            count: 2
+            path: ../src/Foundation/Support/Str.php
+
+        -
+            message: '#^Language construct isset\(\) should not be used\.$#'
+            count: 2
+            path: ../src/Foundation/Support/Utils.php
+
+        -
+            message: '#^Language construct isset\(\) should not be used\.$#'
+            count: 5
+            path: ../src/Ntfy/Authenticator.php
+
+        -
+            message: '#^Language construct isset\(\) should not be used\.$#'
+            count: 1
+            path: ../src/ZohoCliq/DataCenter.php

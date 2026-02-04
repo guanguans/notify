@@ -19,5 +19,8 @@ interface Message
 
     public function toHttpUri(): string;
 
+    /**
+     * @return array<string, mixed>
+     */
     public function toHttpOptions(): array;
 }

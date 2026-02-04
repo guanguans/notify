@@ -42,6 +42,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $required = [
         // 'topic',
     ];
+
+    /** @var list<string> */
     protected array $defined = [
         'topic',
         'message',
@@ -67,10 +69,14 @@ class Message extends \Guanguans\Notify\Foundation\Message
         // 'cache' => ['yes', 'no'],
         // 'firebase' => ['yes', 'no'],
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'tags' => 'array',
         'actions' => 'array',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'actions' => [],
     ];

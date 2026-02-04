@@ -1,0 +1,48 @@
+# total 9 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Caches\\MemoryCache\:\:getTTL\(\) has a nullable return type declaration\.$#'
+            count: 1
+            path: ../src/Foundation/Caches/MemoryCache.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Rectors\\HasHttpClientDocCommentRector\:\:refactor\(\) has a nullable return type declaration\.$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasHttpClientDocCommentRector.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Rectors\\HasOptionsRector\:\:refactor\(\) has a nullable return type declaration\.$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasOptionsRector.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Response\:\:cookies\(\) has a nullable return type declaration\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Response\:\:effectiveUri\(\) has a nullable return type declaration\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Response\:\:handlerStats\(\) has a nullable return type declaration\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Response\:\:request\(\) has a nullable return type declaration\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Response\:\:toException\(\) has a nullable return type declaration\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Response\:\:transferStats\(\) has a nullable return type declaration\.$#'
+            count: 1
+            path: ../src/Foundation/Response.php

@@ -24,6 +24,7 @@ namespace Guanguans\Notify\IGot\Messages;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'title',
         'content',
@@ -33,6 +34,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'copy',
         'detail',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'detail' => 'array',
     ];

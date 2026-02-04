@@ -1,0 +1,23 @@
+# total 5 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Only booleans are allowed in and, Symfony\\Component\\OptionsResolver\\OptionsResolver given on the right side\.$#'
+            count: 2
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Only booleans are allowed in and, array\<int, string\> given on the right side\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Only booleans are allowed in and, int\<1, max\> given on the right side\.$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Only booleans are allowed in and, string given on the right side\.$#'
+            count: 1
+            path: ../src/GoogleChat/Authenticator.php

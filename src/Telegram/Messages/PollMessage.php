@@ -38,6 +38,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class PollMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'chat_id',
         'message_thread_id',
@@ -58,6 +59,8 @@ class PollMessage extends Message
         'reply_parameters',
         'reply_markup',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'explanation_entities' => [],
     ];

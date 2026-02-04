@@ -1,0 +1,8 @@
+# total 4 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Assign by reference should not be used\.$#'
+            count: 4
+            path: ../src/Foundation/Support/Arr.php

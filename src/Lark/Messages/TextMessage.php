@@ -18,6 +18,7 @@ namespace Guanguans\Notify\Lark\Messages;
  */
 class TextMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'text',
     ];

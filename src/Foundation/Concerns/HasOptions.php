@@ -36,9 +36,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 trait HasOptions
 {
+    /** @var array<string, mixed> */
     protected array $options = [];
 
     /**
+     * @param list<mixed> $arguments
+     *
      * @throws \ReflectionException
      */
     public function __call(string $name, array $arguments): self
@@ -47,8 +50,8 @@ trait HasOptions
             [
                 static fn (string $name): string => $name,
                 static fn (string $name): string => Str::snake($name),
-                static fn (string $name): string => Str::pascal($name),
-                static fn (string $name): string => Str::kebab($name),
+                Str::pascal(...),
+                Str::kebab(...),
             ] as $caster
         ) {
             if (!\in_array($castedName = $caster($name), $defined ??= Utils::definedFor($this), true)) {
@@ -79,7 +82,7 @@ trait HasOptions
 
     public function setOptions(array $options): self
     {
-        $this->options = array_merge($this->options, $options);
+        $this->options = [...$this->options, ...$options];
 
         return $this;
     }
@@ -155,10 +158,10 @@ trait HasOptions
 
     private function preConfigureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        $optionsResolver->setDefaults(array_merge(
-            property_exists($this, 'defaults') ? $this->defaults : [],
-            method_exists($this, 'defaults') ? $this->defaults() : [],
-        ));
+        $optionsResolver->setDefaults([
+            ...property_exists($this, 'defaults') ? $this->defaults : [],
+            ...method_exists($this, 'defaults') ? $this->defaults() : [],
+        ]);
 
         property_exists($this, 'required') and $optionsResolver->setRequired($this->required);
         property_exists($this, 'defined') and $optionsResolver->setDefined($this->defined);
@@ -171,10 +174,10 @@ trait HasOptions
             $optionsResolver->setIgnoreUndefined($this->ignoreUndefined); // @codeCoverageIgnore
         }
 
-        $deprecated = array_merge(
-            property_exists($this, 'deprecated') ? $this->deprecated : [],
-            method_exists($this, 'deprecated') ? $this->deprecated() : [],
-        );
+        $deprecated = [
+            ...property_exists($this, 'deprecated') ? $this->deprecated : [],
+            ...method_exists($this, 'deprecated') ? $this->deprecated() : [],
+        ];
 
         foreach ($deprecated as $option => $arguments) {
             // Required symfony/options-resolver < 6.0
@@ -185,10 +188,11 @@ trait HasOptions
             $optionsResolver->setDeprecated(...array_pad($arguments, 3, ''));
         }
 
-        $normalizers = array_merge(
-            property_exists($this, 'normalizers') ? $this->normalizers : [],
-            method_exists($this, 'normalizers') ? $this->normalizers() : [],
-        );
+        /** @var array<string, \Closure> $normalizers */
+        $normalizers = [
+            ...property_exists($this, 'normalizers') ? $this->normalizers : [],
+            ...method_exists($this, 'normalizers') ? $this->normalizers() : [],
+        ];
 
         foreach ($normalizers as $option => $normalizer) {
             $optionsResolver->setNormalizer($option, $normalizer);

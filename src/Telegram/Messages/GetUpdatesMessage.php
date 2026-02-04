@@ -21,12 +21,15 @@ namespace Guanguans\Notify\Telegram\Messages;
  */
 class GetUpdatesMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'offset',
         'limit',
         'timeout',
         'allowed_updates',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'allowed_updates' => 'array',
     ];

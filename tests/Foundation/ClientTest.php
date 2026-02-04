@@ -1,12 +1,13 @@
 <?php
 
-/** @noinspection PhpInternalEntityUsedInspection */
 /** @noinspection AnonymousFunctionStaticInspection */
 /** @noinspection NullPointerExceptionInspection */
 /** @noinspection PhpPossiblePolymorphicInvocationInspection */
+/** @noinspection PhpUndefinedClassInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection PhpVoidFunctionResultUsedInspection */
 /** @noinspection StaticClosureCanBeUsedInspection */
-
+/** @noinspection PhpInternalEntityUsedInspection */
 declare(strict_types=1);
 
 /**

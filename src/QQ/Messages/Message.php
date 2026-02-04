@@ -31,6 +31,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsMultipart;
+
+    /** @var list<string> */
     protected array $defined = [
         'channel_id',
         'content',
@@ -43,6 +45,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'event_id',
         'markdown',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'embed' => 'array',
         'ark' => 'array',

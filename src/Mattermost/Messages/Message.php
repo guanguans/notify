@@ -32,6 +32,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $required = [
         // 'channel_id',
     ];
+
+    /** @var list<string> */
     protected array $defined = [
         'channel_id',
         'message',
@@ -46,6 +48,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'pending_post_id',
         'participants',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'file_ids' => 'array',
         'props' => 'array',

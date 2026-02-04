@@ -18,6 +18,7 @@ namespace Guanguans\Notify\Chanify\Messages;
  */
 class ImageMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'image',
     ];

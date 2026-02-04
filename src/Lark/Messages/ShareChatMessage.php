@@ -18,6 +18,7 @@ namespace Guanguans\Notify\Lark\Messages;
  */
 class ShareChatMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'share_chat_id',
     ];

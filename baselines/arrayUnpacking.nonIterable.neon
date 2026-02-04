@@ -1,0 +1,8 @@
+# total 2 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Only iterables can be unpacked, mixed given\.$#'
+            count: 2
+            path: ../src/Foundation/Support/Utils.php

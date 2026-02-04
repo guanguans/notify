@@ -1,0 +1,8 @@
+# total 3 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Calling iterator_to_array without 2nd parameter \$preserve_keys\. Default value true might cause failures or data loss\.$#'
+            count: 3
+            path: ../src/Foundation/Support/Str.php

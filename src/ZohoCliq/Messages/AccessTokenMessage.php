@@ -28,6 +28,8 @@ use Guanguans\Notify\Foundation\Message;
 final class AccessTokenMessage extends Message // @internal
 {
     use AsFormParams;
+
+    /** @var list<string> */
     protected array $defined = [
         'client_id',
         'client_secret',
@@ -38,6 +40,8 @@ final class AccessTokenMessage extends Message // @internal
         'redirect_uri',
         'refresh_token',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'grant_type' => 'client_credentials',
         'scope' => 'ZohoCliq.Webhooks.CREATE',

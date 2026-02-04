@@ -37,6 +37,8 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         // 'email_id',
         // 'text',
     ];
+
+    /** @var list<string> */
     protected array $defined = [
         'text',
         'bot',
@@ -50,6 +52,8 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         'thread_title',
         'post_in_parent',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'bot' => 'array',
         'card' => 'array',
@@ -57,6 +61,8 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         'slides' => 'array[]',
         'buttons' => 'array[]',
     ];
+
+    /** @var array<string, mixed> */
     protected array $options = [
         'slides' => [],
         'buttons' => [],

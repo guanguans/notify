@@ -64,7 +64,7 @@ class Str
         if (!ctype_lower($value)) {
             $value = preg_replace('/\s+/u', '', ucwords($value));
 
-            $value = static::lower(preg_replace('/(.)(?=[A-Z])/u', '$1'.$delimiter, $value));
+            $value = static::lower(preg_replace('/(.)(?=[A-Z])/u', '$1'.$delimiter, (string) $value));
         }
 
         return static::$snakeCache[$key][$delimiter] = $value;
@@ -83,7 +83,7 @@ class Str
 
         $words = explode(' ', static::replace(['-', '_'], ' ', $value));
 
-        $studlyWords = array_map(static fn (string $word): string => static::ucfirst($word), $words);
+        $studlyWords = array_map(static::ucfirst(...), $words);
 
         return static::$studlyCache[$key] = implode('', $studlyWords);
     }

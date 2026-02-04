@@ -27,6 +27,7 @@ namespace Guanguans\Notify\ZohoCliq\Messages;
  */
 class ChatMessage extends Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'chat_id',
 

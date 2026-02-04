@@ -32,6 +32,7 @@ namespace Guanguans\Notify\GoogleChat\Messages;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $defined = [
         'text',
         'cards',
@@ -49,6 +50,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'slashCommand',
         'attachment',
     ];
+
+    /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'cards' => 'array',
         'sender' => 'array',

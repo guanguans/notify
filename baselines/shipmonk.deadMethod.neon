@@ -1,0 +1,743 @@
+# total 148 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Unused Guanguans\\Notify\\AnPush\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/AnPush/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Bark\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Bark/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Chanify\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Chanify/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\DingTalk\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/DingTalk/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\DingTalk\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/DingTalk/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\DingTalk\\Messages\\BtnsActionCardMessage\:\:addBtn$#'
+            count: 1
+            path: ../src/DingTalk/Messages/BtnsActionCardMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\DingTalk\\Messages\\FeedCardMessage\:\:addLink$#'
+            count: 1
+            path: ../src/DingTalk/Messages/FeedCardMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Discord\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Discord/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Discord\\Messages\\Message\:\:addEmbed$#'
+            count: 1
+            path: ../src/Discord/Messages/Message.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Authenticators\\CertificateAuthenticator\:\:__construct$#'
+            count: 1
+            path: ../src/Foundation/Authenticators/CertificateAuthenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Authenticators\\WebHookAuthenticator\:\:__construct$#'
+            count: 1
+            path: ../src/Foundation/Authenticators/WebHookAuthenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Authenticators\\WsseAuthenticator\:\:__construct$#'
+            count: 1
+            path: ../src/Foundation/Authenticators/WsseAuthenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Caches\\FileCache\:\:directory$#'
+            count: 1
+            path: ../src/Foundation/Caches/FileCache.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Caches\\MemoryCache\:\:getKeys$#'
+            count: 1
+            path: ../src/Foundation/Caches/MemoryCache.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Client\:\:getAuthenticator$#'
+            count: 1
+            path: ../src/Foundation/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Client\:\:pool$#'
+            count: 1
+            path: ../src/Foundation/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Client\:\:setAuthenticator$#'
+            count: 1
+            path: ../src/Foundation/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\AsBody\:\:toHttpOptions$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsBody.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\AsDelete\:\:toHttpMethod$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsDelete.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\AsGet\:\:toHttpMethod$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsGet.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\AsHead\:\:toHttpMethod$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsHead.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\AsPatch\:\:toHttpMethod$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsPatch.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\AsPut\:\:toHttpMethod$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsPut.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\AsQuery\:\:toHttpOptions$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsQuery.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:accepted$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:badRequest$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:conflict$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:created$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:forbidden$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:found$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:movedPermanently$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:noContent$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:notFound$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:notModified$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:ok$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:paymentRequired$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:requestTimeout$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:tooManyRequests$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:unauthorized$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\DeterminesStatusCode\:\:unprocessableEntity$#'
+            count: 1
+            path: ../src/Foundation/Concerns/DeterminesStatusCode.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\Dumpable\:\:dd$#'
+            count: 1
+            path: ../src/Foundation/Concerns/Dumpable.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient\:\:mock$#'
+            count: 1
+            path: ../src/Foundation/Concerns/HasHttpClient.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient\:\:setHandlerStack$#'
+            count: 1
+            path: ../src/Foundation/Concerns/HasHttpClient.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient\:\:setHandlerStackResolver$#'
+            count: 1
+            path: ../src/Foundation/Concerns/HasHttpClient.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient\:\:setHttpClient$#'
+            count: 1
+            path: ../src/Foundation/Concerns/HasHttpClient.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient\:\:setHttpClientResolver$#'
+            count: 1
+            path: ../src/Foundation/Concerns/HasHttpClient.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\HasOptions\:\:getOptions$#'
+            count: 1
+            path: ../src/Foundation/Concerns/HasOptions.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Concerns\\HasOptions\:\:getValidatedOption$#'
+            count: 1
+            path: ../src/Foundation/Concerns/HasOptions.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Contracts\\Client\:\:send$#'
+            count: 1
+            path: ../src/Foundation/Contracts/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Message\:\:toFormParams$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Message\:\:toMultipart$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Rectors\\HasHttpClientDocCommentRector\:\:__construct$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasHttpClientDocCommentRector.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Rectors\\HasHttpClientDocCommentRector\:\:getRuleDefinition$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasHttpClientDocCommentRector.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Rectors\\HasOptionsRector\:\:__construct$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasOptionsRector.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Rectors\\HasOptionsRector\:\:getRuleDefinition$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasOptionsRector.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:array$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:close$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:collect$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:dataUrl$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:effectiveUri$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:fluent$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:handlerStats$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:header$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:headers$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:is$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:object$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:onError$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:reason$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:redirect$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:resource$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:saveAs$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:successful$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:throwIf$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:throwIfClientError$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:throwIfServerError$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:throwIfStatus$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:throwUnlessStatus$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Response\:\:xml$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Support\\Arr\:\:set$#'
+            count: 1
+            path: ../src/Foundation/Support/Arr.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Support\\ComposerScripts\:\:generateIdeJson$#'
+            count: 1
+            path: ../src/Foundation/Support/ComposerScripts.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Support\\ComposerScripts\:\:makeRectorConfig$#'
+            count: 1
+            path: ../src/Foundation/Support/ComposerScripts.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Support\\ComposerScripts\:\:platformLint$#'
+            count: 1
+            path: ../src/Foundation/Support/ComposerScripts.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Support\\Str\:\:flushCache$#'
+            count: 1
+            path: ../src/Foundation/Support/Str.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Foundation\\Support\\Str\:\:lcfirst$#'
+            count: 1
+            path: ../src/Foundation/Support/Str.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Gitter\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/Gitter/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Gitter\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Gitter/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\GoogleChat\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/GoogleChat/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\GoogleChat\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/GoogleChat/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\IGot\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/IGot/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Lark\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/Lark/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Lark\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Lark/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Lark\\Messages\\PostMessage\:\:postFor$#'
+            count: 1
+            path: ../src/Lark/Messages/PostMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Mattermost\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Mattermost/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\MicrosoftTeams\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/MicrosoftTeams/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\MicrosoftTeams\\Messages\\Message\:\:addPotentialAction$#'
+            count: 1
+            path: ../src/MicrosoftTeams/Messages/Message.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\MicrosoftTeams\\Messages\\Message\:\:addSection$#'
+            count: 1
+            path: ../src/MicrosoftTeams/Messages/Message.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\NowPush\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/NowPush/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Ntfy\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Ntfy/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Ntfy\\Messages\\Message\:\:addAction$#'
+            count: 1
+            path: ../src/Ntfy/Messages/Message.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Push\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/Push/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Push\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Push/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\PushBullet\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/PushBullet/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\PushBullet\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/PushBullet/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\PushDeer\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/PushDeer/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\PushMe\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/PushMe/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\PushMe\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/PushMe/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\PushPlus\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/PushPlus/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Pushback\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Pushback/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Pushover\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/Pushover/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Pushover\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Pushover/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\QQ\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/QQ/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\QQ\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/QQ/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\RocketChat\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/RocketChat/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\RocketChat\\Messages\\Message\:\:addAttachment$#'
+            count: 1
+            path: ../src/RocketChat/Messages/Message.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\ServerChan\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/ServerChan/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\ServerChan\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/ServerChan/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\ShowdocPush\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/ShowdocPush/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\SimplePush\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/SimplePush/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\SimplePush\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/SimplePush/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Slack\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Slack/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Slack\\Messages\\Message\:\:addAttachment$#'
+            count: 1
+            path: ../src/Slack/Messages/Message.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Slack\\Messages\\Message\:\:addBlock$#'
+            count: 1
+            path: ../src/Slack/Messages/Message.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Telegram\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Telegram/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Telegram\\Messages\\AnimationMessage\:\:addCaptionEntity$#'
+            count: 1
+            path: ../src/Telegram/Messages/AnimationMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Telegram\\Messages\\AudioMessage\:\:addCaptionEntity$#'
+            count: 1
+            path: ../src/Telegram/Messages/AudioMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Telegram\\Messages\\DocumentMessage\:\:addCaptionEntity$#'
+            count: 1
+            path: ../src/Telegram/Messages/DocumentMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Telegram\\Messages\\MediaGroupMessage\:\:addMedia$#'
+            count: 1
+            path: ../src/Telegram/Messages/MediaGroupMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Telegram\\Messages\\PhotoMessage\:\:addCaptionEntity$#'
+            count: 1
+            path: ../src/Telegram/Messages/PhotoMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Telegram\\Messages\\PollMessage\:\:addExplanationEntity$#'
+            count: 1
+            path: ../src/Telegram/Messages/PollMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Telegram\\Messages\\TextMessage\:\:addEntity$#'
+            count: 1
+            path: ../src/Telegram/Messages/TextMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Telegram\\Messages\\VideoMessage\:\:addCaptionEntity$#'
+            count: 1
+            path: ../src/Telegram/Messages/VideoMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Telegram\\Messages\\VoiceMessage\:\:addCaptionEntity$#'
+            count: 1
+            path: ../src/Telegram/Messages/VoiceMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\WPush\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/WPush/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\WPush\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/WPush/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\WeWork\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/WeWork/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\WeWork\\Messages\\NewsMessage\:\:addArticle$#'
+            count: 1
+            path: ../src/WeWork/Messages/NewsMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\WeWork\\Messages\\TemplateCardMessage\:\:addHorizontalContent$#'
+            count: 1
+            path: ../src/WeWork/Messages/TemplateCardMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\WeWork\\Messages\\TemplateCardMessage\:\:addJump$#'
+            count: 1
+            path: ../src/WeWork/Messages/TemplateCardMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\WeWork\\Messages\\TemplateCardMessage\:\:addVerticalContent$#'
+            count: 1
+            path: ../src/WeWork/Messages/TemplateCardMessage.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\XiZhi\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/XiZhi/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\YiFengChuanHua\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/YiFengChuanHua/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\ZohoCliq\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\ZohoCliq\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/ZohoCliq/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\ZohoCliq\\Messages\\Message\:\:addButton$#'
+            count: 1
+            path: ../src/ZohoCliq/Messages/Message.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\ZohoCliq\\Messages\\Message\:\:addSlide$#'
+            count: 1
+            path: ../src/ZohoCliq/Messages/Message.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\ZohoCliqWebHook\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/ZohoCliqWebHook/Client.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Zulip\\Authenticator\:\:__construct$#'
+            count: 1
+            path: ../src/Zulip/Authenticator.php
+
+        -
+            message: '#^Unused Guanguans\\Notify\\Zulip\\Client\:\:__construct$#'
+            count: 1
+            path: ../src/Zulip/Client.php

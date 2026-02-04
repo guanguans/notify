@@ -23,6 +23,8 @@ use Guanguans\Notify\Foundation\Message;
 class UploadMediaMessage extends Message
 {
     use AsMultipart;
+
+    /** @var list<string> */
     protected array $defined = [
         'media',
         'type',

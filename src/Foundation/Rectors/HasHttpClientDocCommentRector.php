@@ -42,6 +42,7 @@ use Webmozart\Assert\Assert;
  */
 final class HasHttpClientDocCommentRector extends AbstractRector implements ConfigurableRectorInterface
 {
+    /** @var list<string> */
     private array $except = [
         '__*',
         'create',
@@ -121,7 +122,7 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
     public function configure(array $configuration): void
     {
         Assert::allStringNotEmpty($configuration);
-        $this->except = array_merge($this->except, $configuration);
+        $this->except = [...$this->except, ...$configuration];
     }
 
     private function addMixinDoc(PhpDocInfo $phpDocInfo): void
@@ -143,16 +144,16 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
     {
         collect((new \ReflectionClass(RequestOptions::class))->getReflectionConstants())
             ->mapWithKeys(static fn (\ReflectionClassConstant $reflectionClassConstant): array => [
-                (string) $reflectionClassConstant->getValue() => Str::of($reflectionClassConstant->getDocComment())
+                (string) $reflectionClassConstant->getValue() => str($reflectionClassConstant->getDocComment())
                     ->match(
                         /** @lang PhpRegExp */
                         // '/:\s*\((.*?)\)/',
                         '/:\s*\((.*?)(?:,\s*default=.*?)?\)/',
                     )
-                    ->whenEmpty(static fn (): Stringable => Str::of('mixed'))
+                    ->whenEmpty(static fn (): Stringable => str('mixed'))
                     ->explode($delimiter = '|')
                     ->map(
-                        static fn (string $type) => Str::of($type)
+                        static fn (string $type) => str($type)
                             ->replace(
                                 ['StreamInterface', CookieJarInterface::class],
                                 ['\\'.StreamInterface::class, '\\'.CookieJarInterface::class]
@@ -177,7 +178,7 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
                 'curl' => 'array',
             ])
             ->tap(static function (Collection $collection): void {
-                $asserter = static function (Collection $collection): void {
+                $asserter = static function (Collection $collection): never {
                     throw new LogicException(
                         \sprintf('The http option constants [%s] are different.', $collection->keys()->implode('、'))
                     );
@@ -204,7 +205,7 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
     {
         $parameters = collect($reflectionMethod->getParameters())
             ->map(
-                static fn (\ReflectionParameter $reflectionParameter): Stringable => Str::of((string) $reflectionParameter)
+                static fn (\ReflectionParameter $reflectionParameter): Stringable => str((string) $reflectionParameter)
                     /** @lang PhpRegExp */
                     ->match('/\[ <(?:required|optional)> (.*?) ]/')
                     ->replace('NULL', 'null')
