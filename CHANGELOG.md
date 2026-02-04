@@ -8,6 +8,22 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="3.5.6"></a>
+## [3.5.6] - 2026-02-04
+### 🐞 Bug Fixes
+- **tests:** Replace mt_getrandmax() with getrandmax() in FileCacheTest ([c5ef09b](https://github.com/guanguans/notify/commit/c5ef09b))
+
+### 📖 Documents
+- Add additional cache references in NullCache.php ([2b1e391](https://github.com/guanguans/notify/commit/2b1e391))
+
+### 🎨 Styles
+- apply php-cs-fixer ([ac4f4b7](https://github.com/guanguans/notify/commit/ac4f4b7))
+
+### Pull Requests
+- Merge pull request [#177](https://github.com/guanguans/notify/issues/177) from guanguans/dependabot/github_actions/dependabot/fetch-metadata-2.5.0
+- Merge pull request [#176](https://github.com/guanguans/notify/issues/176) from guanguans/dependabot/github_actions/actions/cache-5
+
+
 <a name="3.5.5"></a>
 ## [3.5.5] - 2025-12-09
 ### 🐞 Bug Fixes
@@ -1497,7 +1513,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.5.5...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/3.5.6...HEAD
+[3.5.6]: https://github.com/guanguans/notify/compare/3.5.5...3.5.6
 [3.5.5]: https://github.com/guanguans/notify/compare/3.5.4...3.5.5
 [3.5.4]: https://github.com/guanguans/notify/compare/3.5.3...3.5.4
 [3.5.3]: https://github.com/guanguans/notify/compare/3.5.2...3.5.3
