@@ -245,6 +245,7 @@ $ruleSet = Php80::create()
             'types_map' => [],
             'union_types' => true,
         ],
+        'random_api_migration' => false,
         'simplified_if_return' => true,
         'simplified_null_return' => true,
         'single_line_empty_body' => true,
@@ -274,6 +275,9 @@ return Factory::fromRuleSet($ruleSet)
             ->exclude([
                 '__snapshots__',
                 'Fixtures',
+            ])
+            ->notPath([
+                'Foundation/Caches/FileCacheTest.php',
             ])
             ->append([
                 ...array_filter(

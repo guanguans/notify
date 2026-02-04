@@ -42,6 +42,7 @@ use Rector\CodingStyle\Rector\FuncCall\ArraySpreadInsteadOfArrayMergeRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\ClassLike\RemoveAnnotationRector;
+use Rector\DeadCode\Rector\ClassMethod\RemoveParentDelegatingConstructorRector;
 use Rector\DowngradePhp74\Rector\Array_\DowngradeArraySpreadRector;
 use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
@@ -238,6 +239,9 @@ return RectorConfig::configure()
         WrapEncapsedVariableInCurlyBracesRector::class,
     ])
     ->withSkip([
+        RemoveParentDelegatingConstructorRector::class => [
+            __DIR__.'/src/Zulip/Authenticator.php',
+        ],
         RemoveTraitUseRector::class => [
             __DIR__.'/src/Foundation/Message.php',
         ],
