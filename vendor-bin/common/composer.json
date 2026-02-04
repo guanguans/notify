@@ -1,0 +1,15 @@
+{
+    "require-dev": {
+        "php": ">=8.1",
+        "ergebnis/composer-normalize": "^2.49",
+        "symplify/rule-doc-generator": "^12.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "theofidry/composer-inheritance-plugin": false,
+            "wikimedia/composer-merge-plugin": false
+        },
+        "sort-packages": true
+    }
+}

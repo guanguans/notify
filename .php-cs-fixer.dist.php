@@ -1,0 +1,94 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * Copyright (c) 2024-2026 guanguans<ityaozm@gmail.com>
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * @see https://github.com/guanguans/laravel-api-response
+ */
+
+use Ergebnis\License\Holder;
+use Ergebnis\License\Range;
+use Ergebnis\License\Type\MIT;
+use Ergebnis\License\Url;
+use Ergebnis\License\Year;
+use Ergebnis\PhpCsFixer\Config\Factory;
+use Ergebnis\PhpCsFixer\Config\Fixers;
+use Ergebnis\PhpCsFixer\Config\Rules;
+use Ergebnis\PhpCsFixer\Config\RuleSet\Php81;
+use PhpCsFixer\Finder;
+
+require __DIR__.'/vendor/autoload.php';
+
+return Factory::fromRuleSet(Php81::create()
+    ->withHeader(
+        (static function (): string {
+            $mit = MIT::text(
+                __DIR__.'/LICENSE',
+                Range::since(
+                    Year::fromString('2021'),
+                    new DateTimeZone('Asia/Shanghai'),
+                ),
+                Holder::fromString('guanguans<ityaozm@gmail.com>'),
+                Url::fromString('https://github.com/guanguans/notify'),
+            );
+
+            $mit->save();
+
+            return $mit->header();
+        })()
+    )
+    ->withCustomFixers(Fixers::fromFixers(... require __DIR__.'/vendor/guanguans/php-cs-fixer-custom-fixers/config/custom-fixers.php'))
+    ->withRules(Rules::fromArray(require __DIR__.'/vendor/guanguans/php-cs-fixer-custom-fixers/config/custom-rules.php'))
+    ->withRules(Rules::fromArray(require __DIR__.'/vendor/guanguans/php-cs-fixer-custom-fixers/config/rules.php'))
+    ->withRules(Rules::fromArray([
+        '@autoPHPUnitMigration:risky' => true,
+        // 'final_public_method_for_abstract_class' => false,
+        'AdamWojs/phpdoc_force_fqcn_fixer' => false,
+        'ErickSkrauch/ordered_overrides' => false,
+        'multiline_promoted_properties' => false,
+        'PhpCsFixerCustomFixers/constructor_empty_braces' => false,
+        'PhpCsFixerCustomFixers/function_parameter_separation' => false,
+        'PhpCsFixerCustomFixers/no_useless_parenthesis' => false,
+        'PhpCsFixerCustomFixers/phpdoc_no_incorrect_var_annotation' => false,
+        'PhpCsFixerCustomFixers/phpdoc_property_sorted' => false,
+        'PhpCsFixerCustomFixers/phpdoc_single_line_var' => false,
+        'PhpCsFixerCustomFixers/phpdoc_var_annotation_to_assert' => false,
+        'PhpCsFixerCustomFixers/readonly_promoted_properties' => false,
+        'general_phpdoc_tag_rename' => false,
+        'header_comment' => false,
+        'braces_position' => false,
+        'phpdoc_order' => false,
+        'phpdoc_summary' => false,
+        'random_api_migration' => false,
+    ])))
+    ->setUsingCache(true)
+    ->setCacheFile(\sprintf('%s/.build/php-cs-fixer/%s.cache', __DIR__, pathinfo(__FILE__, \PATHINFO_FILENAME)))
+    ->setUnsupportedPhpVersionAllowed(true)
+    ->setFinder(
+        Finder::create()
+            ->in(__DIR__)
+            ->exclude([
+                'Fixtures/',
+                'vendor-bin/',
+            ])
+            ->notPath([
+                // '/lang\/.*\.json$/',
+                'Foundation/Caches/FileCacheTest.php',
+            ])
+            ->notName([
+                '/\.blade\.php$/',
+            ])
+            ->ignoreDotFiles(false)
+            ->ignoreUnreadableDirs(false)
+            ->ignoreVCS(true)
+            ->ignoreVCSIgnored(true)
+            ->append([
+                __DIR__.'/composer-bump',
+                __DIR__.'/rule-doc-generator',
+            ])
+    );
