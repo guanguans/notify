@@ -13,7 +13,22 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation;
 
-use Guanguans\Notify\Foundation\Rfc\Rfc5789;
-use Guanguans\Notify\Foundation\Rfc\Rfc7231;
+enum Method: string
+{
+    /**
+     * @see https://tools.ietf.org/html/rfc7231
+     */
+    case CONNECT = 'CONNECT';
+    case DELETE = 'DELETE';
+    case GET = 'GET';
+    case HEAD = 'HEAD';
+    case OPTIONS = 'OPTIONS';
+    case POST = 'POST';
+    case PUT = 'PUT';
+    case TRACE = 'TRACE';
 
-interface Method extends Rfc5789, Rfc7231 {}
+    /**
+     * @see https://tools.ietf.org/html/rfc5789
+     */
+    case PATCH = 'PATCH';
+}

@@ -1,12 +1,10 @@
-# total 627 errors
+# total 596 errors
 
 includes:
     - argument.templateType.neon
     - arrayFilter.strict.neon
     - arrayUnpacking.nonIterable.neon
     - assign.propertyType.neon
-    - binaryOp.invalid.neon
-    - class.notFound.neon
     - complexity.functionLike.neon
     - disallowed.function.neon
     - encapsedStringPart.nonString.neon
@@ -28,7 +26,6 @@ includes:
     - public.classConstant.unused.neon
     - public.method.unused.neon
     - shipmonk.comparingNonComparableTypes.neon
-    - shipmonk.deadConstant.neon
     - shipmonk.nonNormalizedType.neon
     - shipmonk.phpDocNullabilityMismatch.neon
     - shipmonk.returnListNotUsed.neon
@@ -41,6 +38,5 @@ includes:
     - symplify.noGlobalConst.neon
     - symplify.noReference.neon
     - symplify.noReturnSetterMethod.neon
-    - symplify.requiredInterfaceContractNamespace.neon
     - trait.unused.neon
     - typePerfect.narrowPublicClassMethodParamType.neon

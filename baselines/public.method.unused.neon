@@ -1,4 +1,4 @@
-# total 80 errors
+# total 77 errors
 
 parameters:
     ignoreErrors:
@@ -241,21 +241,6 @@ parameters:
             message: '#^Public method "Guanguans\\Notify\\Foundation\\Support\\Arr\:\:set\(\)" is never used$#'
             count: 1
             path: ../src/Foundation/Support/Arr.php
-
-        -
-            message: '#^Public method "Guanguans\\Notify\\Foundation\\Support\\ComposerScripts\:\:generateIdeJson\(\)" is never used$#'
-            count: 1
-            path: ../src/Foundation/Support/ComposerScripts.php
-
-        -
-            message: '#^Public method "Guanguans\\Notify\\Foundation\\Support\\ComposerScripts\:\:makeRectorConfig\(\)" is never used$#'
-            count: 1
-            path: ../src/Foundation/Support/ComposerScripts.php
-
-        -
-            message: '#^Public method "Guanguans\\Notify\\Foundation\\Support\\ComposerScripts\:\:platformLint\(\)" is never used$#'
-            count: 1
-            path: ../src/Foundation/Support/ComposerScripts.php
 
         -
             message: '#^Public method "Guanguans\\Notify\\Foundation\\Support\\Str\:\:flushCache\(\)" is never used$#'

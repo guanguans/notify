@@ -25,6 +25,6 @@ trait AsPut
      */
     public function toHttpMethod(): string
     {
-        return Method::PUT;
+        return Method::PUT->value;
     }
 }

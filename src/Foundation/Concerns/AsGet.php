@@ -25,6 +25,6 @@ trait AsGet
      */
     public function toHttpMethod(): string
     {
-        return Method::GET;
+        return Method::GET->value;
     }
 }

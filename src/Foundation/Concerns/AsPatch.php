@@ -25,6 +25,6 @@ trait AsPatch
      */
     public function toHttpMethod(): string
     {
-        return Method::PATCH;
+        return Method::PATCH->value;
     }
 }

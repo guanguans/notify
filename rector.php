@@ -182,7 +182,7 @@ return RectorConfig::configure()
     ))
     ->withConfiguredRule(StringToClassConstantRector::class, array_reduce(
         [
-            Method::class,
+            // Method::class,
             RequestOptions::class,
         ],
         static fn (array $carry, string $class): array => [...$carry, ...array_map(

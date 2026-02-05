@@ -25,6 +25,6 @@ trait AsPost
      */
     public function toHttpMethod(): string
     {
-        return Method::POST;
+        return Method::POST->value;
     }
 }

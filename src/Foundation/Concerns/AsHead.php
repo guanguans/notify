@@ -25,6 +25,6 @@ trait AsHead
      */
     public function toHttpMethod(): string
     {
-        return Method::HEAD;
+        return Method::HEAD->value;
     }
 }

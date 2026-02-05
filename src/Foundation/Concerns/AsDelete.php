@@ -25,6 +25,6 @@ trait AsDelete
      */
     public function toHttpMethod(): string
     {
-        return Method::DELETE;
+        return Method::DELETE->value;
     }
 }
