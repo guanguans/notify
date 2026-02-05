@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Bark;
-
 use Guanguans\Notify\GoogleChat\Authenticator;
 use Guanguans\Notify\GoogleChat\Client;
 use Guanguans\Notify\GoogleChat\Messages\Message;

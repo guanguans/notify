@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\QQ;
-
 use Guanguans\Notify\QQ\Authenticator;
 use Guanguans\Notify\QQ\Client;
 use Guanguans\Notify\QQ\Messages\Message;

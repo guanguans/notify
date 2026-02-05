@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\ShowdocPush;
-
 use Guanguans\Notify\ShowdocPush\Authenticator;
 use Guanguans\Notify\ShowdocPush\Client;
 use Guanguans\Notify\ShowdocPush\Messages\Message;

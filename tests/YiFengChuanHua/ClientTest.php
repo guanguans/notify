@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\YiFengChuanHua;
-
 use Guanguans\Notify\YiFengChuanHua\Authenticator;
 use Guanguans\Notify\YiFengChuanHua\Client;
 use Guanguans\Notify\YiFengChuanHua\Messages\Message;

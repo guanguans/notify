@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Slack;
-
 use Guanguans\Notify\Slack\Authenticator;
 use Guanguans\Notify\Slack\Client;
 use Guanguans\Notify\Slack\Messages\Message;

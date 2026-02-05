@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\PushMe;
-
 use Guanguans\Notify\PushMe\Authenticator;
 use Guanguans\Notify\PushMe\Client;
 use Guanguans\Notify\PushMe\Messages\Message;

@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\DingTalk;
-
 use Guanguans\Notify\DingTalk\Authenticator;
 use Guanguans\Notify\DingTalk\Client;
 use Guanguans\Notify\DingTalk\Messages\BtnsActionCardMessage;

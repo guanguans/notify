@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Mattermost;
-
 use Guanguans\Notify\Mattermost\Authenticator;
 use Guanguans\Notify\Mattermost\Client;
 use Guanguans\Notify\Mattermost\Messages\Message;

@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Ntfy;
-
 use Guanguans\Notify\Ntfy\Client;
 use Guanguans\Notify\Ntfy\Messages\Message;
 

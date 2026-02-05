@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Pushover;
-
 use Guanguans\Notify\Pushover\Authenticator;
 use Guanguans\Notify\Pushover\Client;
 use Guanguans\Notify\Pushover\Messages\Message;

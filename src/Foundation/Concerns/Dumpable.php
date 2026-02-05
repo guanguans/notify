@@ -17,6 +17,9 @@ use Symfony\Component\VarDumper\VarDumper;
 
 trait Dumpable
 {
+    /**
+     * @codeCoverageIgnore
+     */
     public function dd(mixed ...$args): void
     {
         $this->dump(...$args);
@@ -40,7 +43,7 @@ trait Dumpable
         return $this;
     }
 
-    private function mergeDebugInfo(array $debugInfo): array
+    protected function mergeDebugInfo(array $debugInfo): array
     {
         return class_exists(VarDumper::class) ? $debugInfo : get_object_vars($this) + $debugInfo;
     }

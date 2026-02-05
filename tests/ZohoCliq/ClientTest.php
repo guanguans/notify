@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\ZohoCliq;
-
 use Guanguans\Notify\Foundation\Caches\MemoryCache;
 use Guanguans\Notify\Foundation\Caches\NullCache;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
@@ -40,7 +38,7 @@ beforeEach(function (): void {
         // cache: new MemoryCache,
         cache: new NullCache,
         retryDelay: fn (): int => 0,
-        client: (new \Guanguans\Notify\Foundation\Client)->mock(array_pad(
+        client: (new Guanguans\Notify\Foundation\Client)->mock(array_pad(
             [],
             6,
             response(
@@ -229,7 +227,7 @@ it('can get token from cache', function (): void {
         clientId: '1000.TTFROV098VVFG8NB686LR98TCDR',
         clientSecret: 'ffddfbd23c86a677e024003b4b8b8b7f2371ac6',
         cache: new MemoryCache,
-        client: (new \Guanguans\Notify\Foundation\Client)->mock([
+        client: (new Guanguans\Notify\Foundation\Client)->mock([
             response(
                 <<<'JSON'
                     {
@@ -251,7 +249,7 @@ it('can throw RequestException when request failed', function (): void {
         clientId: '1000.TTFROV098VVFG8NB686LR98TCDR',
         clientSecret: 'ffddfbd23c86a677e024003b4b8b8b7f2371ac6',
         cache: new NullCache,
-        client: (new \Guanguans\Notify\Foundation\Client)->mock([
+        client: (new Guanguans\Notify\Foundation\Client)->mock([
             response(
                 <<<'JSON'
                     {"error":"invalid_client_secret"}

@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Pushback;
-
 use Guanguans\Notify\Pushback\Authenticator;
 use Guanguans\Notify\Pushback\Client;
 use Guanguans\Notify\Pushback\Messages\Message;

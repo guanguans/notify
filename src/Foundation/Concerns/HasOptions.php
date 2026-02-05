@@ -156,7 +156,7 @@ trait HasOptions
         // Configure options resolver...
     }
 
-    private function preConfigureOptionsResolver(OptionsResolver $optionsResolver): void
+    protected function preConfigureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver->setDefaults([
             ...property_exists($this, 'defaults') ? $this->defaults : [],

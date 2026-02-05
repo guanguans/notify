@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Foundation\Concerns;
-
 use Guanguans\Notify\AnPush\Authenticator;
 use Guanguans\Notify\AnPush\Messages\Message;
 use Guanguans\Notify\Foundation\Client;
@@ -43,13 +41,13 @@ it('will throw BadMethodCallException when calling an undefined method', functio
 
 it('can set http client', function (): void {
     expect(new Client)
-        ->setHttpClient(new \GuzzleHttp\Client)->toBeInstanceOf(Client::class);
+        ->setHttpClient(new GuzzleHttp\Client)->toBeInstanceOf(Client::class);
 })->group(__DIR__, __FILE__);
 
 it('can set http client resolver', function (): void {
     expect(new Client)
         ->setHttpClientResolver(
-            static fn (Client $client): \GuzzleHttp\Client => new \GuzzleHttp\Client,
+            static fn (Client $client): GuzzleHttp\Client => new GuzzleHttp\Client,
         )
         ->toBeInstanceOf(Client::class);
 })->group(__DIR__, __FILE__);
@@ -67,7 +65,7 @@ it('can set handler stack resolver', function (): void {
 
 it('can mock response', function (): void {
     $authenticator = new Authenticator('FE3LGGYQZXRZ6A50BN66M42H0BY');
-    $client = new \Guanguans\Notify\AnPush\Client($authenticator);
+    $client = new Guanguans\Notify\AnPush\Client($authenticator);
     $message = Message::make([
         'title' => 'This is title.',
         'content' => 'This is content.',

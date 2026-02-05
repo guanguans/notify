@@ -171,7 +171,7 @@ parameters:
 #        - identifier: symplify.requireExceptionNamespace
 #        - identifier: trait.unused
 #        - identifier: typePerfect.noMixedMethodCaller
-#        - message: '#^Unused Guanguans\\laravelApiResponse\\Rector\\.*\\.*\:\:__construct$#'
+#        - message: '#^Unused Guanguans\\Notify\\Rector\\.*\\.*\:\:__construct$#'
 
         - identifier: argument.type
 #        - identifier: cast.double

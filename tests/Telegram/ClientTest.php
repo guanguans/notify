@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Telegram;
-
 use Guanguans\Notify\Telegram\Authenticator;
 use Guanguans\Notify\Telegram\Client;
 use Guanguans\Notify\Telegram\Messages\AnimationMessage;

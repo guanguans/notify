@@ -18,12 +18,10 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Foundation\Concerns;
-
 use Guanguans\Notify\Foundation\Response;
 
 it('can determine status code', function (): void {
-    expect(Response::fromPsrResponse(new \GuzzleHttp\Psr7\Response))
+    expect(Response::fromPsrResponse(new GuzzleHttp\Psr7\Response))
         ->ok()->toBeTrue()
         ->created()->toBeFalse()
         ->accepted()->toBeFalse()

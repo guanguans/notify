@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\NowPush;
-
 use Guanguans\Notify\NowPush\Authenticator;
 use Guanguans\Notify\NowPush\Client;
 use Guanguans\Notify\NowPush\Messages\Message;

@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\PushDeer;
-
 use Guanguans\Notify\PushDeer\Authenticator;
 use Guanguans\Notify\PushDeer\Client;
 use Guanguans\Notify\PushDeer\Messages\Message;

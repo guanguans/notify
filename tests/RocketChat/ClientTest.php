@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\RocketChat;
-
 use Guanguans\Notify\RocketChat\Authenticator;
 use Guanguans\Notify\RocketChat\Client;
 use Guanguans\Notify\RocketChat\Messages\Message;

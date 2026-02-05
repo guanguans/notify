@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\ServerChan;
-
 use Guanguans\Notify\ServerChan\Authenticator;
 use Guanguans\Notify\ServerChan\Client;
 use Guanguans\Notify\ServerChan\Messages\Message;

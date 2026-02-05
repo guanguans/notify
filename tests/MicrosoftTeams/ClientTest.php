@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\MicrosoftTeams;
-
 use Guanguans\Notify\MicrosoftTeams\Authenticator;
 use Guanguans\Notify\MicrosoftTeams\Client;
 use Guanguans\Notify\MicrosoftTeams\Messages\Message;

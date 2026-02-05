@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Foundation\Authenticators;
-
 use Guanguans\Notify\Foundation\Authenticators\CertificateAuthenticator;
 use Guanguans\Notify\Foundation\Authenticators\WsseAuthenticator;
 use GuzzleHttp\Psr7\Request;

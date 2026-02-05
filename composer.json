@@ -225,6 +225,7 @@
         ],
         "checks:optional": [
             "@putenv:xdebug-off",
+            "@composer:unlink",
             "@class-leak:check",
             "@composer-dependency-analyser",
             "@composer:normalize-dry-run",
@@ -289,6 +290,7 @@
         "composer:diff": "@composer diff --with-platform --ansi -vv",
         "composer:normalize": "@composer normalize --diff --ansi -vv",
         "composer:normalize-dry-run": "@composer:normalize --dry-run",
+        "composer:unlink": "@php -r \"@unlink('vendor/bin/composer');\"",
         "composer:validate": "@composer validate --check-lock --strict --ansi -vv",
         "detect-collisions": "@php vendor/bin/detect-collisions benchmarks/ src/",
         "facade:lint": "@facade:update --lint",
@@ -501,11 +503,6 @@
         "testbench:test": [
             "@testbench:clear",
             "@pest"
-        ],
-        "testbench:user-serve": [
-            "@composer-config:disable-process-timeout",
-            "@testbench:build",
-            "@php -S localhost:8123 workbench/public/index.php"
         ],
         "testbench:workbench:install": "@testbench workbench:install",
         "todo-lint": "! git --no-pager grep --extended-regexp --ignore-case 'todo|fixme' -- '*.php' ':!*.blade.php' ':(exclude)resources/'",

@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\WPush;
-
 use Guanguans\Notify\WPush\Authenticator;
 use Guanguans\Notify\WPush\Client;
 use Guanguans\Notify\WPush\Messages\Message;

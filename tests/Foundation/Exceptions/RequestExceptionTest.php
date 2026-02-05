@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Foundation\Exceptions;
-
 use Guanguans\Notify\Foundation\Exceptions\RequestException;
 use Guanguans\Notify\Foundation\Exceptions\RuntimeException;
 use GuzzleHttp\Psr7\Request;

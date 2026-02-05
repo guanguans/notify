@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Lark;
-
 use Guanguans\Notify\Lark\Authenticator;
 use Guanguans\Notify\Lark\Client;
 use Guanguans\Notify\Lark\Messages\CardMessage;

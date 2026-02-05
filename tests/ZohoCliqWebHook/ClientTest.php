@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\ZohoCliqWebHook;
-
 use Guanguans\Notify\ZohoCliqWebHook\Authenticator;
 use Guanguans\Notify\ZohoCliqWebHook\Client;
 use Guanguans\Notify\ZohoCliqWebHook\Messages\Message;

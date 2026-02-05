@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Discord;
-
 use Guanguans\Notify\Discord\Authenticator;
 use Guanguans\Notify\Discord\Client;
 use Guanguans\Notify\Discord\Messages\Message;

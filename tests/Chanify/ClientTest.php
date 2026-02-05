@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Chanify;
-
 use Guanguans\Notify\Chanify\Authenticator;
 use Guanguans\Notify\Chanify\Client;
 use Guanguans\Notify\Chanify\Messages\AudioMessage;

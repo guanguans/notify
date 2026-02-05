@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\Zulip;
-
 use Guanguans\Notify\Zulip\Authenticator;
 use Guanguans\Notify\Zulip\Client;
 use Guanguans\Notify\Zulip\Messages\Message;

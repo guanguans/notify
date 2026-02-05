@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\XiZhi;
-
 use Guanguans\Notify\XiZhi\Authenticator;
 use Guanguans\Notify\XiZhi\Client;
 use Guanguans\Notify\XiZhi\Messages\ChannelMessage;

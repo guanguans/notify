@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\PushPlus;
-
 use Guanguans\Notify\PushPlus\Authenticator;
 use Guanguans\Notify\PushPlus\Client;
 use Guanguans\Notify\PushPlus\Messages\Message;

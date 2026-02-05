@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\AnPush;
-
 use Guanguans\Notify\AnPush\Authenticator;
 use Guanguans\Notify\AnPush\Client;
 use Guanguans\Notify\AnPush\Messages\Message;

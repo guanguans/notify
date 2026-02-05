@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\IGot;
-
 use Guanguans\Notify\IGot\Authenticator;
 use Guanguans\Notify\IGot\Client;
 use Guanguans\Notify\IGot\Messages\Message;

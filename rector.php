@@ -22,11 +22,9 @@ use Guanguans\Notify\Foundation\Method;
 use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\HasOptionsRector;
 use Guanguans\Notify\Foundation\Response;
-use Guanguans\RectorRules\Rector\ClassMethod\PrivateToProtectedVisibilityForTraitRector;
 use Guanguans\RectorRules\Rector\File\AddNoinspectionDocblockToFileFirstStmtRector;
 use Guanguans\RectorRules\Rector\FunctionLike\RenameGarbageParamNameRector;
 use Guanguans\RectorRules\Rector\Name\RenameToConventionalCaseNameRector;
-use Guanguans\RectorRules\Rector\Namespace_\RemoveNamespaceRector;
 use Guanguans\RectorRules\Set\SetList;
 use GuzzleHttp\RequestOptions;
 use PhpParser\Node\Expr\ClassConstFetch;
@@ -210,12 +208,9 @@ return RectorConfig::configure()
         array_keys($constants)
     ))
     ->withSkip([
-        PrivateToProtectedVisibilityForTraitRector::class,
-        RemoveNamespaceRector::class,
-        RenameGarbageParamNameRector::class,
-
         // ArrayToFirstClassCallableRector::class,
         // ArrowFunctionDelegatingCallToFirstClassCallableRector::class,
+        RenameGarbageParamNameRector::class,
         ScalarValueToConstFetchRector::class,
 
         ChangeOrIfContinueToMultiContinueRector::class,
@@ -235,6 +230,9 @@ return RectorConfig::configure()
         ConvertStaticToSelfRector::class => [
             __DIR__.'/src/Foundation/Support/Arr.php',
             __DIR__.'/src/Foundation/Support/Str.php',
+        ],
+        RemoveAnnotationRector::class => [
+            __DIR__.'/src/Foundation/Concerns/Dumpable.php',
         ],
         RemoveParentDelegatingConstructorRector::class => [
             __DIR__.'/src/Zulip/Authenticator.php',

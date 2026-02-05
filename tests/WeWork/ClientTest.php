@@ -18,8 +18,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\NotifyTests\WeWork;
-
 use Guanguans\Notify\WeWork\Authenticator;
 use Guanguans\Notify\WeWork\Client;
 use Guanguans\Notify\WeWork\Messages\FileMessage;
