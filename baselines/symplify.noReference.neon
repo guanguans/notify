@@ -1,0 +1,8 @@
+# total 7 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Use explicit return value over magic &reference$#'
+            count: 7
+            path: ../src/Foundation/Support/Arr.php

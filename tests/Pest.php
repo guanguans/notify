@@ -19,7 +19,6 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-use Composer\Autoload\ClassLoader;
 use Faker\Factory;
 use Faker\Generator;
 use Guanguans\Notify\Foundation\Client;
@@ -27,16 +26,23 @@ use Guanguans\Notify\Foundation\Message;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
-use Illuminate\Support\Collection;
 use Pest\Expectation;
 use Psr\Http\Message\ResponseInterface;
 
 uses(TestCase::class)
+    // ->compact()
     ->beforeAll(function (): void {})
     ->beforeEach(function (): void {})
     ->afterEach(function (): void {})
     ->afterAll(function (): void {})
-    ->in(__DIR__, __DIR__.'/Feature', __DIR__.'/Unit');
+    ->in(
+        __DIR__,
+        // __DIR__.'/Arch/',
+        // __DIR__.'/Feature/',
+        // __DIR__.'/Integration/',
+        // __DIR__.'/Unit/'
+    );
+
 /*
 |--------------------------------------------------------------------------
 | Expectations
@@ -48,15 +54,27 @@ uses(TestCase::class)
 |
  */
 
-expect()->extend('toBetween', fn (int $min, int $max): Expectation => expect($this->value)
-    ->toBeGreaterThanOrEqual($min)
-    ->toBeLessThanOrEqual($max));
+/**
+ * @see expect()->toBetween()
+ */
+expect()->extend(
+    'toAssert',
+    function (Closure $assertions): Expectation {
+        $assertions($this->value);
 
-// expect()->extend('assert', function (Closure $assertions): Expectation {
-//     $assertions($this->value);
-//
-//     return $this;
-// });
+        return $this;
+    }
+);
+
+/**
+ * @see Expectation::toBeBetween()
+ */
+expect()->extend(
+    'toBetween',
+    fn (int $min, int $max): Expectation => expect($this->value)
+        ->toBeGreaterThanOrEqual($min)
+        ->toBeLessThanOrEqual($max)
+);
 
 expect()->extend('assertCanSendMessage', function (Message $message): Expectation {
     $this->toBeInstanceOf(Client::class);
@@ -106,19 +124,6 @@ function class_namespace(object|string $class): string
     return (new ReflectionClass($class))->getNamespaceName();
 }
 
-function classes(): Collection
-{
-    return collect(spl_autoload_functions())
-        ->pipe(static fn (Collection $splAutoloadFunctions): Collection => collect(
-            $splAutoloadFunctions
-                ->firstOrFail(
-                    static fn (mixed $loader): bool => \is_array($loader) && $loader[0] instanceof ClassLoader
-                )[0]
-                ->getClassMap()
-        ))
-        ->keys();
-}
-
 if (!\function_exists('fake')) {
     /**
      * @see https://github.com/laravel/framework/blob/12.x/src/Illuminate/Foundation/helpers.php#L515
@@ -145,4 +150,9 @@ function response(
     ?string $reason = null
 ): ResponseInterface {
     return new Response($status, $headers, $body, $version, $reason);
+}
+
+function running_in_github_action(): bool
+{
+    return 'true' === getenv('GITHUB_ACTIONS');
 }

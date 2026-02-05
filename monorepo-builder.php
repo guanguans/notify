@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpUnusedAliasInspection */
+
 declare(strict_types=1);
 
 /**
@@ -11,12 +13,20 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-use Guanguans\MonorepoBuilderWorker\CreateGithubReleaseReleaseWorker;
+use Guanguans\MonorepoBuilderWorker\ReleaseWorker\CreateGithubReleaseReleaseWorker;
+use Guanguans\MonorepoBuilderWorker\ReleaseWorker\UpdateChangelogViaGoReleaseWorker;
+use Guanguans\MonorepoBuilderWorker\ReleaseWorker\UpdateChangelogViaNodeReleaseWorker;
+use Guanguans\MonorepoBuilderWorker\ReleaseWorker\UpdateChangelogViaPhpReleaseWorker;
 use Guanguans\MonorepoBuilderWorker\Support\EnvironmentChecker;
-use Guanguans\MonorepoBuilderWorker\UpdateChangelogViaGoReleaseWorker;
-use Guanguans\MonorepoBuilderWorker\UpdateChangelogViaNodeReleaseWorker;
-use Guanguans\MonorepoBuilderWorker\UpdateChangelogViaPhpReleaseWorker;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Process\ExecutableFinder;
+use Symfony\Component\Process\PhpExecutableFinder;
+use Symfony\Component\Process\Process;
 use Symplify\MonorepoBuilder\Config\MBConfig;
+use Symplify\MonorepoBuilder\Contract\Git\TagResolverInterface;
+use Symplify\MonorepoBuilder\Git\BranchAwareTagResolver;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\AddTagToChangelogReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushNextDevReleaseWorker;
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\PushTagReleaseWorker;
@@ -27,9 +37,12 @@ use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateBranchAliasReleaseWorke
 use Symplify\MonorepoBuilder\Release\ReleaseWorker\UpdateReplaceReleaseWorker;
 
 return static function (MBConfig $mbConfig): void {
-    require __DIR__.'/vendor/autoload.php';
     $mbConfig->defaultBranch('main');
-    // $mbConfig->disableDefaultWorkers();
+    // MBConfig::disableDefaultWorkers();
+
+    // $services = $mbConfig->services();
+    // $services->set(BranchAwareTagResolver::class);
+    // $services->alias(TagResolverInterface::class, BranchAwareTagResolver::class);
 
     /**
      * release workers - in order to execute.
@@ -40,8 +53,8 @@ return static function (MBConfig $mbConfig): void {
         // UpdateReplaceReleaseWorker::class,
         // SetCurrentMutualDependenciesReleaseWorker::class,
         // AddTagToChangelogReleaseWorker::class,
-        TagVersionReleaseWorker::class,
-        PushTagReleaseWorker::class,
+        // TagVersionReleaseWorker::class,
+        // PushTagReleaseWorker::class,
         UpdateChangelogViaGoReleaseWorker::class,
         // UpdateChangelogViaNodeReleaseWorker::class,
         // UpdateChangelogViaPhpReleaseWorker::class,
@@ -50,6 +63,25 @@ return static function (MBConfig $mbConfig): void {
         // UpdateBranchAliasReleaseWorker::class,
         // PushNextDevReleaseWorker::class,
     ]);
+
+    if (
+        \PHP_MAJOR_VERSION === 8 && \PHP_MINOR_VERSION === 1
+        && !(new ArgvInput)->hasParameterOption('--dry-run', true)
+    ) {
+        (new Process([
+            (new PhpExecutableFinder)->find(),
+            (new ExecutableFinder)->find($composer = 'composer', $composer),
+            'run',
+            'checks:required',
+            '--ansi',
+        ]))
+            ->setEnv(['COMPOSER_MEMORY_LIMIT' => -1])
+            ->setTimeout(600)
+            ->mustRun(static function (string $_, string $buffer): void {
+                $symfonyStyle ??= new SymfonyStyle(new ArgvInput, new ConsoleOutput);
+                $symfonyStyle->write($buffer);
+            });
+    }
 
     EnvironmentChecker::checks($workers);
 };

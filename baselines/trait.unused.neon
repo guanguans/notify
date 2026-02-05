@@ -1,0 +1,38 @@
+# total 7 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\AsBody is used zero times and is not analysed\.$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsBody.php
+
+        -
+            message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\AsDelete is used zero times and is not analysed\.$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsDelete.php
+
+        -
+            message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\AsGet is used zero times and is not analysed\.$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsGet.php
+
+        -
+            message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\AsHead is used zero times and is not analysed\.$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsHead.php
+
+        -
+            message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\AsPatch is used zero times and is not analysed\.$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsPatch.php
+
+        -
+            message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\AsPut is used zero times and is not analysed\.$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsPut.php
+
+        -
+            message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\AsQuery is used zero times and is not analysed\.$#'
+            count: 1
+            path: ../src/Foundation/Concerns/AsQuery.php

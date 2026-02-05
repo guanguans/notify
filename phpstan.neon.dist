@@ -1,0 +1,200 @@
+includes:
+    - baselines/loader.neon
+#    - phpstan-baseline.neon
+
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-dangerous-calls.neon
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-execution-calls.neon
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-insecure-calls.neon
+    - vendor/spaze/phpstan-disallowed-calls/disallowed-loose-calls.neon
+#    - vendor/spaze/phpstan-disallowed-calls/extension.neon
+
+#    - vendor-bin/larastan/vendor/larastan/larastan/extension.neon
+#    - vendor/ekino/phpstan-banned-code/extension.neon
+#    - vendor/ergebnis/phpstan-rules/rules.neon
+#    - vendor/phpstan/phpstan-strict-rules/rules.neon
+#    - vendor/roave/no-floaters/rules.neon
+#    - vendor/shipmonk/dead-code-detector/rules.neon
+#    - vendor/staabm/phpstan-todo-by/extension.neon
+
+#    - vendor/symplify/phpstan-rules/config/code-complexity-rules.neon
+#    - vendor/symplify/phpstan-rules/config/configurable-rules.neon
+#    - vendor/symplify/phpstan-rules/config/naming-rules.neon
+#    - vendor/symplify/phpstan-rules/config/static-rules.neon
+    - vendor/symplify/phpstan-rules/config/symplify-rules.neon
+
+#    - vendor/symplify/phpstan-rules/config/doctrine-rules.neon
+    - vendor/symplify/phpstan-rules/config/phpunit-rules.neon
+#    - vendor/symplify/phpstan-rules/config/rector-rules.neon
+#    - vendor/symplify/phpstan-rules/config/symfony-rules.neon
+
+services:
+    # https://github.com/guanguans/notify/security/code-scanning
+    # https://github.com/jbelien/phpstan-sarif-formatter
+    errorFormatter.sarif:
+        class: PHPStanSarifErrorFormatter\SarifErrorFormatter
+        arguments:
+            relativePathHelper: @simpleRelativePathHelper
+            currentWorkingDirectory: %currentWorkingDirectory%
+            pretty: true
+#    errorFormatter.checkstyle:
+#        class: NickSdot\PhpStanPhpStormErrorIdentifiers\CheckstyleErrorFormatterPhpStorm
+    errorFormatter.llm:
+        class: NickSdot\PhpStanPhpStormErrorIdentifiers\LlmErrorFormatter
+
+parameters:
+    paths:
+        - src/
+    scanDirectories:
+        - vendor/rector/rector/vendor/symplify/rule-doc-generator-contracts/
+    scanFiles:
+        - src/Foundation/Concerns/HasHttpClient.php
+        - vendor/composer/InstalledVersions.php
+        - vendor-bin/php82/vendor/composer/composer/src/Composer/Script/Event.php
+    excludePaths:
+#        - src/Support/ComposerScripts.php
+        - tests/Fixtures/
+        - *.blade.php
+    tmpDir: .build/phpstan/
+    phpVersion: 80100
+    level: max
+    editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+    errorFormat: friendly
+    friendly:
+        lineBefore: 3
+        lineAfter: 3
+        editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+    treatPhpDocTypesAsCertain: false
+    strictRules:
+        # https://github.com/phpstan/phpstan-strict-rules
+        allRules: true
+        booleansInConditions: false
+        disallowedShortTernary: false
+    ergebnis:
+        noParameterWithNullableTypeDeclaration:
+            enabled: false
+        noParameterWithNullDefaultValue:
+            enabled: false
+        noConstructorParameterWithDefaultValue:
+            enabled: false
+        noExtends:
+            enabled: false
+        final:
+            enabled: false
+        noIsset:
+            enabled: false
+        finalInAbstractClass:
+            enabled: false
+        noParameterWithContainerTypeDeclaration:
+            enabled: false
+        noNullableReturnTypeDeclaration:
+            enabled: false
+        noNamedArgument:
+            enabled: false
+        noSwitch:
+            enabled: false
+    guanguans:
+        exceptionMustImplementNativeThrowable:
+            nativeThrowable: Guanguans\Notify\Foundation\Contracts\Throwable
+        forbiddenSideEffects:
+            enabled: false
+#    sidzIgnoreNumericStrings: true
+    sidzIgnoreMagicNumbers: [2, 3, 100, 600, 512, 0o755, 1000]
+    cognitive_complexity:
+        class: 42
+        function: 8
+        dependency_tree: 150
+        dependency_tree_types:
+#            # only these explicit types are checked, nothing else
+#            - Rector\Contract\Rector\RectorInterface
+    type_coverage:
+        declare: 100
+        param: 100
+        return: 100
+        constant: 100
+        property: 100
+    type_perfect:
+        narrow_param: true
+        narrow_return: true
+        null_over_false: true
+        no_mixed: false
+        no_mixed_property: true
+        no_mixed_caller: false
+    unused_public:
+        constants: true
+        properties: true
+        methods: true
+        local_methods: true
+        template_paths:
+#            - resources/views/
+    disallowedFunctionCalls:
+        -
+            function: 'env()'
+            message: 'use config() instead'
+        -
+            function: 'env_explode()'
+            message: 'use config() instead'
+    ignoreErrors:
+#        - identifier: argument.templateType
+#        - identifier: argument.type
+#        - identifier: arrayFilter.strict
+#        - identifier: assign.propertyType
+#        - identifier: binaryOp.invalid
+#        - identifier: cast.double
+#        - identifier: cast.int
+#        - identifier: cast.string
+#        - identifier: class.extendsFinalByPhpDoc
+#        - identifier: empty.notAllowed
+#        - identifier: encapsedStringPart.nonString
+#        - identifier: foreach.valueOverwrite
+#        - identifier: logicalAnd.resultUnused
+#        - identifier: logicalOr.resultUnused
+#        - identifier: method.childParameterType
+#        - identifier: method.dynamicName
+#        - identifier: missingType.generics
+#        - identifier: missingType.iterableValue
+#        - identifier: new.static
+#        - identifier: offsetAccess.nonOffsetAccessible
+#        - identifier: offsetAccess.notFound
+#        - identifier: paramOut.type
+#        - identifier: phpstanApi.class
+#        - identifier: return.type
+#        - identifier: return.void
+#        - identifier: symplify.explicitInterfaceSuffixName
+#        - identifier: symplify.explicitTraitSuffixName
+#        - identifier: symplify.forbiddenArrayMethodCall
+#        - identifier: symplify.forbiddenExtendOfNonAbstractClass
+#        - identifier: symplify.forbiddenNode
+#        - identifier: symplify.forbiddenStaticClassConstFetch
+#        - identifier: symplify.noArrayMapWithArrayCallable
+#        - identifier: symplify.noDynamicName
+#        - identifier: symplify.noReference
+#        - identifier: symplify.noReturnSetterMethod
+#        - identifier: symplify.requireExceptionNamespace
+#        - identifier: trait.unused
+#        - identifier: typePerfect.noMixedMethodCaller
+#        - message: '#^Unused Guanguans\\laravelApiResponse\\Rector\\.*\\.*\:\:__construct$#'
+
+        - identifier: argument.type
+#        - identifier: cast.double
+        - identifier: cast.int
+        - identifier: cast.string
+#        - identifier: empty.notAllowed
+#        - identifier: logicalOr.resultUnused
+        - identifier: method.nonObject
+        - identifier: return.type
+        - identifier: shipmonk.binaryOperationWithNull
+        - identifier: shipmonk.checkedExceptionInCallable
+        - identifier: shipmonk.deadMethod
+        - identifier: shipmonk.forbiddenCast
+        - identifier: shipmonk.iteratorToArrayWithoutPreserveKeys
+        - identifier: shipmonk.variableTypeOverwritten
+        - identifier: symplify.explicitInterfaceSuffixName
+        - identifier: symplify.explicitTraitSuffixName
+        - identifier: symplify.forbiddenFuncCall
+        - identifier: symplify.forbiddenNode
+        - identifier: symplify.forbiddenStaticClassConstFetch
+        - identifier: symplify.requireExceptionNamespace
+
+        -
+            message: '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'
+            path: src/Foundation/Message.php

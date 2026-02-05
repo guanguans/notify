@@ -232,6 +232,8 @@
             "@jack:breakpoint",
             "@jack:open-versions-dry-run",
             "@jack:raise-to-installed-dry-run",
+            "@notify:generate-ide-json",
+            "@notify:platform-lint",
             "@phpmnd",
             "@phpstan:analyse",
             "@rector:process-dry-run",
@@ -254,8 +256,6 @@
         ],
         "checks:required": [
             "@putenv:xdebug-off",
-            "@notify:platform-lint",
-            "@notify:generate-ide-json",
             "@php-cs-fixer:fix-dry-run",
             "@pest"
         ],

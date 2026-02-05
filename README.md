@@ -4,7 +4,7 @@
 > Push notification SDK(AnPush、Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、Pushback、PushBullet、PushDeer、PushMe、Pushover、PushPlus、QQ、RocketChat、ServerChan、ShowdocPush、SimplePush、Slack、Telegram、WeWork、WPush、XiZhi、YiFengChuanHua、ZohoCliq、ZohoCliqWebHook、Zulip).
 
 [![tests](https://github.com/guanguans/notify/actions/workflows/tests.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/tests.yml)
-[![check & fix styling](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml)
+[![php-cs-fixer](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml)
 [![codecov](https://codecov.io/gh/guanguans/notify/branch/main/graph/badge.svg?token=URGFAWS6S4)](https://codecov.io/gh/guanguans/notify)
 [![Latest Stable Version](https://poser.pugx.org/guanguans/notify/v)](https://packagist.org/packages/guanguans/notify)
 [![GitHub release (with filter)](https://img.shields.io/github/v/release/guanguans/notify)](https://github.com/guanguans/notify/releases)
@@ -66,7 +66,7 @@
 
 ## Installation
 
-```bash
+```shell
 composer require guanguans/notify -v
 ```
 
@@ -187,15 +187,17 @@ $client->setHandlerStackResolver(static fn (Client $client): HandlerStack => arr
 
 ![completion](docs/completion.jpg)
 
-## Testing
+## Composer scripts
 
-```bash
+```shell
+composer checks:required
+composer php-cs-fixer:fix
 composer test
 ```
 
 ## Benchmark
 
-```bash
+```shell
 composer benchmark
 ```
 

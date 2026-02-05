@@ -1,0 +1,18 @@
+# total 3 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Interface must be located in "Contract" or "Contracts" namespace$#'
+            count: 1
+            path: ../src/Foundation/Method.php
+
+        -
+            message: '#^Interface must be located in "Contract" or "Contracts" namespace$#'
+            count: 1
+            path: ../src/Foundation/Rfc/Rfc5789.php
+
+        -
+            message: '#^Interface must be located in "Contract" or "Contracts" namespace$#'
+            count: 1
+            path: ../src/Foundation/Rfc/Rfc7231.php

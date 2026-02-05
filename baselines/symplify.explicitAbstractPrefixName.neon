@@ -1,0 +1,38 @@
+# total 7 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Abstract class must be prefixed by "Abstract" exclusively$#'
+            count: 1
+            path: ../src/DingTalk/Messages/Message.php
+
+        -
+            message: '#^Abstract class must be prefixed by "Abstract" exclusively$#'
+            count: 1
+            path: ../src/Foundation/Message.php
+
+        -
+            message: '#^Abstract class must be prefixed by "Abstract" exclusively$#'
+            count: 1
+            path: ../src/Lark/Messages/Message.php
+
+        -
+            message: '#^Abstract class must be prefixed by "Abstract" exclusively$#'
+            count: 1
+            path: ../src/Telegram/Messages/Message.php
+
+        -
+            message: '#^Abstract class must be prefixed by "Abstract" exclusively$#'
+            count: 1
+            path: ../src/WeWork/Messages/Message.php
+
+        -
+            message: '#^Abstract class must be prefixed by "Abstract" exclusively$#'
+            count: 1
+            path: ../src/XiZhi/Messages/Message.php
+
+        -
+            message: '#^Abstract class must be prefixed by "Abstract" exclusively$#'
+            count: 1
+            path: ../src/ZohoCliq/Messages/Message.php

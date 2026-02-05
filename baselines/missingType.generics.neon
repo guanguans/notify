@@ -1,0 +1,18 @@
+# total 3 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Response\:\:collect\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Response\:\:fluent\(\) return type with generic class Illuminate\\Support\\Fluent does not specify its types\: TKey, TValue$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Method Guanguans\\Notify\\Foundation\\Support\\Arr\:\:exists\(\) has parameter \$array with generic interface ArrayAccess but does not specify its types\: TKey, TValue$#'
+            count: 1
+            path: ../src/Foundation/Support/Arr.php

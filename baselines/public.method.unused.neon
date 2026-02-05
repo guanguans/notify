@@ -1,4 +1,4 @@
-# total 73 errors
+# total 80 errors
 
 parameters:
     ignoreErrors:
@@ -68,6 +68,16 @@ parameters:
             path: ../src/Foundation/Response.php
 
         -
+            message: '#^Public method "Guanguans\\Notify\\Foundation\\Response\:\:body\(\)" is used only locally and should be turned protected/private$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Public method "Guanguans\\Notify\\Foundation\\Response\:\:clientError\(\)" is used only locally and should be turned protected/private$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
             message: '#^Public method "Guanguans\\Notify\\Foundation\\Response\:\:close\(\)" is never used$#'
             count: 1
             path: ../src/Foundation/Response.php
@@ -84,6 +94,11 @@ parameters:
 
         -
             message: '#^Public method "Guanguans\\Notify\\Foundation\\Response\:\:effectiveUri\(\)" is never used$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Public method "Guanguans\\Notify\\Foundation\\Response\:\:failed\(\)" is used only locally and should be turned protected/private$#'
             count: 1
             path: ../src/Foundation/Response.php
 
@@ -143,6 +158,21 @@ parameters:
             path: ../src/Foundation/Response.php
 
         -
+            message: '#^Public method "Guanguans\\Notify\\Foundation\\Response\:\:serverError\(\)" is used only locally and should be turned protected/private$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Public method "Guanguans\\Notify\\Foundation\\Response\:\:status\(\)" is used only locally and should be turned protected/private$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Public method "Guanguans\\Notify\\Foundation\\Response\:\:stream\(\)" is used only locally and should be turned protected/private$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
             message: '#^Public method "Guanguans\\Notify\\Foundation\\Response\:\:successful\(\)" is never used$#'
             count: 1
             path: ../src/Foundation/Response.php
@@ -169,6 +199,11 @@ parameters:
 
         -
             message: '#^Public method "Guanguans\\Notify\\Foundation\\Response\:\:throwUnlessStatus\(\)" is never used$#'
+            count: 1
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Public method "Guanguans\\Notify\\Foundation\\Response\:\:toException\(\)" is used only locally and should be turned protected/private$#'
             count: 1
             path: ../src/Foundation/Response.php
 

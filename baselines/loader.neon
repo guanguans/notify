@@ -1,57 +1,46 @@
-# total 1176 errors
+# total 627 errors
 
 includes:
+    - argument.templateType.neon
     - arrayFilter.strict.neon
     - arrayUnpacking.nonIterable.neon
     - assign.propertyType.neon
     - binaryOp.invalid.neon
-    - booleanAnd.leftNotBoolean.neon
-    - booleanAnd.rightNotBoolean.neon
-    - booleanNot.exprNotBoolean.neon
     - class.notFound.neon
     - complexity.functionLike.neon
     - disallowed.function.neon
-    - ergebnis.final.neon
-    - ergebnis.finalInAbstractClass.neon
+    - encapsedStringPart.nonString.neon
     - ergebnis.noAssignByReference.neon
-    - ergebnis.noConstructorParameterWithDefaultValue.neon
-    - ergebnis.noExtends.neon
-    - ergebnis.noIsset.neon
-    - ergebnis.noNamedArgument.neon
-    - ergebnis.noNullableReturnTypeDeclaration.neon
     - ergebnis.noParameterPassedByReference.neon
-    - ergebnis.noParameterWithNullDefaultValue.neon
-    - ergebnis.noParameterWithNullableTypeDeclaration.neon
     - foreach.valueOverwrite.neon
     - function.alreadyNarrowedType.neon
-    - if.condNotBoolean.neon
-    - logicalAnd.leftNotBoolean.neon
-    - logicalAnd.rightNotBoolean.neon
+    - logicalAnd.resultUnused.neon
     - method.childParameterType.neon
     - method.dynamicName.neon
     - method.nameCase.neon
-    - method.nonObject.neon
     - method.notFound.neon
     - missing-identifier.neon
+    - missingType.generics.neon
+    - missingType.iterableValue.neon
     - new.static.neon
+    - offsetAccess.nonOffsetAccessible.neon
+    - paramOut.type.neon
     - public.classConstant.unused.neon
     - public.method.unused.neon
-    - shipmonk.binaryOperationWithNull.neon
-    - shipmonk.checkedExceptionInCallable.neon
     - shipmonk.comparingNonComparableTypes.neon
     - shipmonk.deadConstant.neon
-    - shipmonk.deadMethod.neon
-    - shipmonk.forbiddenCast.neon
-    - shipmonk.iteratorToArrayWithoutPreserveKeys.neon
-    - shipmonk.missingNativeReturnTypehint.neon
     - shipmonk.nonNormalizedType.neon
     - shipmonk.phpDocNullabilityMismatch.neon
     - shipmonk.returnListNotUsed.neon
     - shipmonk.stringInterpolationWithNull.neon
     - shipmonk.unsafeArrayKey.neon
     - shipmonk.unusedMatchResult.neon
-    - shipmonk.variableTypeOverwritten.neon
-    - ternary.condNotBoolean.neon
-    - ternary.shortNotAllowed.neon
+    - symplify.explicitAbstractPrefixName.neon
+    - symplify.forbiddenExtendOfNonAbstractClass.neon
+    - symplify.noDynamicName.neon
+    - symplify.noGlobalConst.neon
+    - symplify.noReference.neon
+    - symplify.noReturnSetterMethod.neon
+    - symplify.requiredInterfaceContractNamespace.neon
+    - trait.unused.neon
     - typePerfect.narrowPublicClassMethodParamType.neon
-    - typePerfect.noMixedMethodCaller.neon

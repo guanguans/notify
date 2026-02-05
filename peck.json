@@ -32,6 +32,9 @@
             "cliq",
             "zulip"
         ],
-        "paths": []
+        "paths": [
+            "vendor/",
+            "vendor-bin/"
+        ]
     }
 }

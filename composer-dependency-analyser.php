@@ -17,18 +17,17 @@ use ShipMonk\ComposerDependencyAnalyser\Config\ErrorType;
 return (new Configuration)
     ->addPathsToScan(
         [
-            __DIR__.'/src',
+            // __DIR__.'/src/',
         ],
         false
     )
     ->addPathsToExclude([
-        __DIR__.'/tests',
-        __DIR__.'/src/Foundation/Rectors',
+        __DIR__.'/src/Foundation/Rectors/',
         __DIR__.'/src/Foundation/Support/ComposerScripts.php',
+        __DIR__.'/tests/',
     ])
     ->ignoreUnknownClasses([
-        // SensitiveParameter::class,
-        'SensitiveParameter',
+        SensitiveParameter::class,
     ])
     /** @see \ShipMonk\ComposerDependencyAnalyser\Analyser::CORE_EXTENSIONS */
     ->ignoreErrorsOnExtensions(
@@ -50,11 +49,6 @@ return (new Configuration)
         ],
         [ErrorType::SHADOW_DEPENDENCY]
     )
-    // ->ignoreErrorsOnPackageAndPath(
-    //     'guanguans/ai-commit',
-    //     __DIR__.'/src/Foundation/Support/Str.php',
-    //     [ErrorType::DEV_DEPENDENCY_IN_PROD]
-    // )
     ->ignoreErrorsOnPackages(
         [
             'illuminate/support',

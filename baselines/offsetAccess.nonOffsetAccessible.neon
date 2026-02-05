@@ -1,0 +1,163 @@
+# total 41 errors
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/DingTalk/Messages/BtnsActionCardMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/DingTalk/Messages/FeedCardMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/Discord/Messages/Message.php
+
+        -
+            message: '#^Cannot access offset ''content'' on mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Caches/MemoryCache.php
+
+        -
+            message: '#^Cannot access offset ''ttl'' on mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Caches/MemoryCache.php
+
+        -
+            message: '#^Cannot access offset string on mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Rectors/HasOptionsRector.php
+
+        -
+            message: '#^Cannot access offset \(int\|string\) on mixed\.$#'
+            count: 2
+            path: ../src/Foundation/Response.php
+
+        -
+            message: '#^Cannot access offset \(int\|string\) on mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Support/Arr.php
+
+        -
+            message: '#^Cannot access offset int\|string on mixed\.$#'
+            count: 2
+            path: ../src/Foundation/Support/Arr.php
+
+        -
+            message: '#^Cannot access offset string on mixed\.$#'
+            count: 2
+            path: ../src/Foundation/Support/Arr.php
+
+        -
+            message: '#^Cannot access offset string\|null on mixed\.$#'
+            count: 1
+            path: ../src/Foundation/Support/Arr.php
+
+        -
+            message: '#^Cannot access offset string on mixed\.$#'
+            count: 2
+            path: ../src/Foundation/Support/Str.php
+
+        -
+            message: '#^Cannot access offset string on mixed\.$#'
+            count: 1
+            path: ../src/Lark/Messages/PostMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 2
+            path: ../src/MicrosoftTeams/Messages/Message.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/Ntfy/Messages/Message.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/RocketChat/Messages/Message.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 2
+            path: ../src/Slack/Messages/Message.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/Telegram/Messages/AnimationMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/Telegram/Messages/AudioMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/Telegram/Messages/DocumentMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/Telegram/Messages/MediaGroupMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/Telegram/Messages/PhotoMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/Telegram/Messages/PollMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/Telegram/Messages/TextMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/Telegram/Messages/VideoMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/Telegram/Messages/VoiceMessage.php
+
+        -
+            message: '#^Cannot access offset ''image'' on mixed\.$#'
+            count: 1
+            path: ../src/WeWork/Messages/ImageMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 1
+            path: ../src/WeWork/Messages/NewsMessage.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 3
+            path: ../src/WeWork/Messages/TemplateCardMessage.php
+
+        -
+            message: '#^Cannot access offset ''host'' on array\{scheme\?\: string, host\?\: string, port\?\: int\<0, 65535\>, user\?\: string, pass\?\: string, path\?\: string, query\?\: string, fragment\?\: string\}\|false\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php
+
+        -
+            message: '#^Cannot access offset ''scheme'' on array\{scheme\?\: string, host\?\: string, port\?\: int\<0, 65535\>, user\?\: string, pass\?\: string, path\?\: string, query\?\: string, fragment\?\: string\}\|false\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php
+
+        -
+            message: '#^Cannot access an offset on mixed\.$#'
+            count: 2
+            path: ../src/ZohoCliq/Messages/Message.php

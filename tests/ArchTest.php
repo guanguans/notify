@@ -17,19 +17,34 @@ declare(strict_types=1);
  *
  * @see https://github.com/guanguans/notify
  */
-// arch('will not use debugging functions')
-//     ->expect([
-//         'echo',
-//         'print',
-//         'die',
-//         'exit',
-//         'printf',
-//         'vprintf',
-//         'var_dump',
-//         'dump',
-//         'dd',
-//         'ray',
-//         'print_r',
-//         'var_export',
-//     ])
-//     ->each->not->toBeUsed();
+
+use Guanguans\Notify\Foundation\Concerns\Dumpable;
+use Guanguans\Notify\Foundation\Support\ComposerScripts;
+
+arch('will not use debugging functions')
+    // ->throwsNoExceptions()
+    ->group(__DIR__, __FILE__)
+    ->expect([
+        'dd',
+        'die',
+        'dump',
+        'echo',
+        'env',
+        'env_explode',
+        'env_getcsv',
+        'exit',
+        'print',
+        'print_r',
+        'printf',
+        'ray',
+        'trap',
+        'var_dump',
+        'var_export',
+        'vprintf',
+    ])
+    // ->each
+    ->not->toBeUsed()
+    ->ignoring([
+        ComposerScripts::class,
+        Dumpable::class,
+    ]);
