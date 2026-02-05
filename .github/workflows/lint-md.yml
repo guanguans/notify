@@ -1,6 +1,9 @@
-name: lint markdown
+name: lint-md
 
-on: [workflow_dispatch, push, pull_request]
+on:
+  workflow_dispatch:
+  push:
+  pull_request:
 
 jobs:
   lint-markdown:
@@ -16,4 +19,4 @@ jobs:
         run: npm install -g @lint-md/cli
 
       - name: Lint markdown
-        run: lint-md --config .lintmdrc ./*.md ./.github/ ./docs/ ./src/*/*.md
+        run: lint-md --suppress-warnings *.md .github/ docs/

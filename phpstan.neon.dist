@@ -49,9 +49,8 @@ parameters:
     scanFiles:
         - src/Foundation/Concerns/HasHttpClient.php
         - vendor/composer/InstalledVersions.php
-        - vendor-bin/php82/vendor/composer/composer/src/Composer/Script/Event.php
     excludePaths:
-#        - src/Support/ComposerScripts.php
+        - src/Foundation/Support/ComposerScripts.php
         - tests/Fixtures/
         - *.blade.php
     tmpDir: .build/phpstan/

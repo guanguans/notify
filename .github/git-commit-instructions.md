@@ -19,7 +19,7 @@
 - The details about what was done in the body of the message.
 - Any useful details concerning the change in the body of the message.
 - Use a hyphen (-) for the bullet points in the body of the message.
-- Use {locale} language to answer..
+- Use {locale} language to answer.
 - No code blocks.
 
 ## Write 1 commit messages that accurately summarizes the changes made in the given `git diff` output, following the best practices listed above and the conventional commit format
