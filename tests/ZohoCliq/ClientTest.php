@@ -20,7 +20,6 @@ declare(strict_types=1);
 
 use Guanguans\Notify\Foundation\Caches\MemoryCache;
 use Guanguans\Notify\Foundation\Caches\NullCache;
-use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Exceptions\RequestException;
 use Guanguans\Notify\ZohoCliq\Authenticator;
 use Guanguans\Notify\ZohoCliq\Client;
@@ -217,10 +216,6 @@ it('can retry send user message', function (): void {
         ->body()->toBeEmpty()
         ->status()->toBe(204);
 })->group(__DIR__, __FILE__);
-
-it('can throw InvalidArgumentException when data center is invalid', function (): void {
-    new DataCenter('invalid_data_center');
-})->group(__DIR__, __FILE__)->throws(InvalidArgumentException::class);
 
 it('can get token from cache', function (): void {
     $authenticator = new Authenticator(

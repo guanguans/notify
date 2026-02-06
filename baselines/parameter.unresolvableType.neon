@@ -1,0 +1,8 @@
+# total 1 error
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^PHPDoc tag @param for parameter \$dataCenter contains unresolvable type\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php

@@ -48,7 +48,6 @@ use Psr\SimpleCache\CacheInterface;
  */
 class Authenticator extends NullAuthenticator implements \Stringable
 {
-    private readonly DataCenter $dataCenter;
     private readonly string $cacheKey;
 
     /** @var null|callable */
@@ -64,14 +63,13 @@ class Authenticator extends NullAuthenticator implements \Stringable
         private readonly string $clientId,
         #[\SensitiveParameter]
         private readonly string $clientSecret,
-        ?string $dataCenter = null,
+        private readonly DataCenter $dataCenter = DataCenter::US,
         private readonly CacheInterface $cache = new FileCache,
         ?string $cacheKey = null,
         ?callable $retryDelay = null,
         ?Client $client = null,
     ) {
-        $this->dataCenter = new DataCenter($dataCenter);
-        $this->cacheKey = $cacheKey ?? "zoho_cliq.access_token.$this->dataCenter.$clientId.$clientSecret";
+        $this->cacheKey = $cacheKey ?? "zoho_cliq.access_token.{$this->dataCenter->value}.$clientId.$clientSecret";
         $this->retryDelay = $retryDelay;
         $this->client = ($client ?? new Client)->baseUri($this->dataCenter->toOauthBaseUri());
     }

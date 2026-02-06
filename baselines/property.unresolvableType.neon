@@ -1,0 +1,8 @@
+# total 1 error
+
+parameters:
+    ignoreErrors:
+        -
+            message: '#^PHPDoc type for property Guanguans\\Notify\\ZohoCliq\\Authenticator\:\:\$dataCenter contains unresolvable type\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php

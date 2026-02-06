@@ -1,4 +1,4 @@
-# total 592 errors
+# total 587 errors
 
 includes:
     - argument.templateType.neon
@@ -23,7 +23,9 @@ includes:
     - new.static.neon
     - offsetAccess.nonOffsetAccessible.neon
     - paramOut.type.neon
-    - public.classConstant.unused.neon
+    - parameter.unresolvableType.neon
+    - property.phpDocType.neon
+    - property.unresolvableType.neon
     - public.method.unused.neon
     - shipmonk.comparingNonComparableTypes.neon
     - shipmonk.nonNormalizedType.neon

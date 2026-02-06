@@ -1,4 +1,4 @@
-# total 9 errors
+# total 10 errors
 
 parameters:
     ignoreErrors:
@@ -41,3 +41,8 @@ parameters:
             message: '#^Found non\-normalized type \(array \| \\ArrayAccess \| mixed\) for parameter \$array\: array is a subtype of mixed\.$#'
             count: 1
             path: ../src/Foundation/Support/Arr.php
+
+        -
+            message: '#^Found non\-normalized type \(null \| key\-of\<\\Guanguans\\Notify\\ZohoCliq\\DataCenter\:\:BASE_URI_MAP\>\) for parameter \$dataCenter\: null is a subtype of key\-of\<\\Guanguans\\Notify\\ZohoCliq\\DataCenter\:\:BASE_URI_MAP\>\.$#'
+            count: 1
+            path: ../src/ZohoCliq/Authenticator.php
