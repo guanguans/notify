@@ -2,6 +2,7 @@
 
 /** @noinspection AnonymousFunctionStaticInspection */
 /** @noinspection NullPointerExceptionInspection */
+/** @noinspection PhpFieldAssignmentTypeMismatchInspection */
 /** @noinspection PhpPossiblePolymorphicInvocationInspection */
 /** @noinspection PhpUndefinedClassInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
@@ -36,7 +37,6 @@ it('can dump debug info', function (): void {
 })->group(__DIR__, __FILE__);
 
 it('can convert to string', function (): void {
-    /** @noinspection ToStringCallInspection */
     expect((string) Response::fromPsrResponse(new GuzzleHttp\Psr7\Response))->toBeString();
 })->group(__DIR__, __FILE__);
 

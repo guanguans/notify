@@ -20,9 +20,6 @@ use Guanguans\Notify\Foundation\Method;
  */
 trait AsDelete
 {
-    /**
-     * @noinspection PhpClassConstantAccessedViaChildClassInspection
-     */
     public function toHttpMethod(): string
     {
         return Method::DELETE->value;

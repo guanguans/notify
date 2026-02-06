@@ -20,9 +20,6 @@ use Guanguans\Notify\Foundation\Method;
  */
 trait AsPatch
 {
-    /**
-     * @noinspection PhpClassConstantAccessedViaChildClassInspection
-     */
     public function toHttpMethod(): string
     {
         return Method::PATCH->value;

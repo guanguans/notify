@@ -103,8 +103,6 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
 
     /**
      * Get the body of the response.
-     *
-     * @noinspection ToStringCallInspection
      */
     public function body(): string
     {
@@ -134,7 +132,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     }
 
     /**
-     * Alias of json().
+     * Alias of JSON method.
      *
      * @param array-key $key
      *

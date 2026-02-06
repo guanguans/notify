@@ -119,6 +119,7 @@ return RectorConfig::configure()
         '*/tests/*' => [
             'AnonymousFunctionStaticInspection',
             'NullPointerExceptionInspection',
+            'PhpFieldAssignmentTypeMismatchInspection',
             'PhpPossiblePolymorphicInvocationInspection',
             'PhpUndefinedClassInspection',
             'PhpUnhandledExceptionInspection',

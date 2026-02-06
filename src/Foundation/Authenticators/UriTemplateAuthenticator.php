@@ -30,9 +30,6 @@ class UriTemplateAuthenticator extends NullAuthenticator
         private readonly UriFactoryInterface $uriFactory = new HttpFactory
     ) {}
 
-    /**
-     * @noinspection ToStringCallInspection
-     */
     public function applyToRequest(RequestInterface $request): RequestInterface
     {
         return $request->withUri(

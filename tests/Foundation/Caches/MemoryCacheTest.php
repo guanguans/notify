@@ -2,6 +2,7 @@
 
 /** @noinspection AnonymousFunctionStaticInspection */
 /** @noinspection NullPointerExceptionInspection */
+/** @noinspection PhpFieldAssignmentTypeMismatchInspection */
 /** @noinspection PhpPossiblePolymorphicInvocationInspection */
 /** @noinspection PhpUndefinedClassInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
@@ -29,13 +30,13 @@ it('get invalid cache key throws exception', function (): void {
     $this->memoryCache->get('');
 })->group(__DIR__, __FILE__)->throws(CacheInvalidArgumentException::class);
 
-it('get expiring cache key with integer ttlis deleted', function (): void {
+it('get expiring cache key with integer ttl is deleted', function (): void {
     $this->memoryCache->set('someKey', 'someValue', 1);
     sleep(1);
     expect($this->memoryCache->get('someKey'))->toBeNull();
 })->group(__DIR__, __FILE__);
 
-it('get expiring cache key with date interval ttlis deleted', function (): void {
+it('get expiring cache key with date interval ttl is deleted', function (): void {
     $this->memoryCache->set('someKey', 'someValue', new DateInterval('PT1S'));
     sleep(1);
     expect($this->memoryCache->get('someKey'))->toBeNull();
@@ -67,20 +68,20 @@ it('set get negative ttl', function (): void {
     expect($this->memoryCache->get('isMobile'))->toBeNull();
 })->group(__DIR__, __FILE__);
 
-it('set zero ttlwith invalid key throws exception', function (): void {
+it('set zero ttl with invalid key throws exception', function (): void {
     $this->memoryCache->set('', true, 0);
 })->group(__DIR__, __FILE__)->throws(CacheInvalidArgumentException::class);
 
-it('set negative ttlwith invalid key throws exception', function (): void {
+it('set negative ttl with invalid key throws exception', function (): void {
     $this->memoryCache->set('', true, -999);
 })->group(__DIR__, __FILE__)->throws(CacheInvalidArgumentException::class);
 
-it('set valid ttlas an integer returns the set value', function (): void {
+it('set valid ttl as an integer returns the set value', function (): void {
     $this->memoryCache->set('isMobile', 'someValue', 1000);
     expect($this->memoryCache->get('isMobile'))->toEqual('someValue');
 })->group(__DIR__, __FILE__);
 
-it('set null ttlreturns the set value', function (): void {
+it('set null ttl returns the set value', function (): void {
     $this->memoryCache->set('isMobile', 'abc');
     expect($this->memoryCache->get('isMobile'))->toEqual('abc');
 })->group(__DIR__, __FILE__);

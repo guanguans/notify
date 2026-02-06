@@ -2,6 +2,7 @@
 
 /** @noinspection AnonymousFunctionStaticInspection */
 /** @noinspection NullPointerExceptionInspection */
+/** @noinspection PhpFieldAssignmentTypeMismatchInspection */
 /** @noinspection PhpPossiblePolymorphicInvocationInspection */
 /** @noinspection PhpUndefinedClassInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
@@ -53,7 +54,7 @@ it('can concurrent send messages', function (): void {
     ]);
     $body = '{"msg":"success","code":200,"data":{"msgIds":[{"channelId":"94412","msgId":1715333937401}]}}';
 
-    ['messages' => $messages, 'mock' => $mock] = Collection::times(5)->reduce(
+    ['messages' => $messages, 'mock' => $mock] = (array) Collection::times(5)->reduce(
         static function (array $carry) use ($message, $body): array {
             $carry['messages'][] = $message;
             $carry['mock'][] = response($body);

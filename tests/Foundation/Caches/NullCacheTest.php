@@ -2,6 +2,7 @@
 
 /** @noinspection AnonymousFunctionStaticInspection */
 /** @noinspection NullPointerExceptionInspection */
+/** @noinspection PhpFieldAssignmentTypeMismatchInspection */
 /** @noinspection PhpPossiblePolymorphicInvocationInspection */
 /** @noinspection PhpUndefinedClassInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
@@ -32,6 +33,7 @@ it('always returns returns the default value when trying to load something from 
     expect($this->cache->get($this->key))
         ->toBeNull();
 
+    /** @noinspection PhpExpressionResultUnusedInspection */
     $this->cache->set($this->key, 'foo');
 
     expect($this->cache->get($this->key, 'bar'))
@@ -60,6 +62,7 @@ it('always returns returns the default value when trying to load multiple values
     expect($this->cache->getMultiple(['a', 'b']))
         ->toBe(['a' => null, 'b' => null]);
 
+    /** @noinspection PhpExpressionResultUnusedInspection */
     $this->cache->set('a', 'foo');
 
     expect($this->cache->getMultiple(['a', 'b'], 'bar'))

@@ -20,9 +20,6 @@ use Guanguans\Notify\Foundation\Method;
  */
 trait AsPost
 {
-    /**
-     * @noinspection PhpClassConstantAccessedViaChildClassInspection
-     */
     public function toHttpMethod(): string
     {
         return Method::POST->value;

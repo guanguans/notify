@@ -143,7 +143,6 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
      * @throws \ReflectionException
      *
      * @noinspection PhpPossiblePolymorphicInvocationInspection
-     * @noinspection D
      */
     private function addMethodsOfListTypeOption(Class_ $class): void
     {

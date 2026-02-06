@@ -20,9 +20,6 @@ use Guanguans\Notify\Foundation\Method;
  */
 trait AsHead
 {
-    /**
-     * @noinspection PhpClassConstantAccessedViaChildClassInspection
-     */
     public function toHttpMethod(): string
     {
         return Method::HEAD->value;

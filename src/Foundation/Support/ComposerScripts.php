@@ -34,7 +34,6 @@ final class ComposerScripts
      *
      * @return int<0, 0>
      *
-     * @noinspection PhpDuplicatedCharacterInStrFunctionCallInspection
      * @noinspection PhpUnused
      */
     public static function generateIdeJson(Event $event): int

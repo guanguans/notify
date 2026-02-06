@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpFullyQualifiedNameUsageInspection */
+
 declare(strict_types=1);
 
 /**
@@ -128,6 +130,8 @@ trait HasHttpClient
 
     /**
      * @param (callable(static): \GuzzleHttp\Client) $httpClientResolver
+     *
+     * @noinspection PhpDocSignatureIsNotCompleteInspection
      */
     public function setHttpClientResolver(callable $httpClientResolver): self
     {
@@ -158,6 +162,8 @@ trait HasHttpClient
 
     /**
      * @param (callable(static): \GuzzleHttp\HandlerStack) $handlerStackResolver
+     *
+     * @noinspection PhpDocSignatureIsNotCompleteInspection
      */
     public function setHandlerStackResolver(callable $handlerStackResolver): self
     {

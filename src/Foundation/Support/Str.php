@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PropertyCanBePrivateInspection */
-
 declare(strict_types=1);
 
 /**
@@ -67,6 +65,8 @@ class Str
 
     /**
      * Convert a string to snake case.
+     *
+     * @noinspection CallableParameterUseCaseInTypeContextInspection
      */
     public static function snake(string $value, string $delimiter = '_'): string
     {
@@ -107,6 +107,8 @@ class Str
      * Determine if a given string matches a given pattern.
      *
      * @param iterable<string>|string $patterns
+     *
+     * @noinspection PhpDocSignatureInspection
      */
     public static function is(iterable|string $patterns, string $value): bool
     {
@@ -147,6 +149,8 @@ class Str
      * @param iterable<string>|string $subject
      *
      * @return list<string>|string
+     *
+     * @noinspection PhpDocSignatureInspection
      */
     public static function replace(
         iterable|string $search,

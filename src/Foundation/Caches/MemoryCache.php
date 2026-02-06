@@ -52,6 +52,8 @@ class MemoryCache implements CacheInterface
      * {@inheritDoc}
      *
      * @throws \Guanguans\Notify\Foundation\Exceptions\CacheInvalidArgumentException
+     *
+     * @noinspection CallableParameterUseCaseInTypeContextInspection
      */
     public function set(string $key, mixed $value, null|\DateInterval|int $ttl = null): bool
     {

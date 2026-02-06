@@ -189,7 +189,7 @@ class FileCache implements CacheInterface
         }
 
         try {
-            $data = unserialize(substr($content, 10));
+            $data = unserialize(substr($content, 10), ['allowed_classes' => true]);
         } catch (\Throwable) { // @codeCoverageIgnore
             $this->delete($key); // @codeCoverageIgnore
 

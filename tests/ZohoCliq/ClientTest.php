@@ -2,11 +2,13 @@
 
 /** @noinspection AnonymousFunctionStaticInspection */
 /** @noinspection NullPointerExceptionInspection */
+/** @noinspection PhpFieldAssignmentTypeMismatchInspection */
 /** @noinspection PhpPossiblePolymorphicInvocationInspection */
 /** @noinspection PhpUndefinedClassInspection */
 /** @noinspection PhpUnhandledExceptionInspection */
 /** @noinspection PhpVoidFunctionResultUsedInspection */
 /** @noinspection StaticClosureCanBeUsedInspection */
+/** @noinspection PhpUnusedAliasInspection */
 declare(strict_types=1);
 
 /**
@@ -198,7 +200,7 @@ it('can retry send user message', function (): void {
     $response = $this
         ->client
         ->mock([
-            response('retries0', 200),
+            response('retries0'),
             response('retries1', 401),
             response(status: 204),
         ])->send($userMessage);
