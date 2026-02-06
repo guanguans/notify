@@ -1,4 +1,4 @@
-# total 220 errors
+# total 218 errors
 
 parameters:
     ignoreErrors:
@@ -231,16 +231,6 @@ parameters:
             message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient has PHPDoc tag @method for method sslKey\(\) parameter \#1 \$sslKey with no value type specified in iterable type array\.$#'
             count: 1
             path: ../src/Foundation/Concerns/HasHttpClient.php
-
-        -
-            message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\HasOptions has PHPDoc tag @method for method deprecated\(\) return type with no value type specified in iterable type array\.$#'
-            count: 1
-            path: ../src/Foundation/Concerns/HasOptions.php
-
-        -
-            message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\HasOptions has PHPDoc tag @property\-read for property \$deprecated with no value type specified in iterable type array\.$#'
-            count: 1
-            path: ../src/Foundation/Concerns/HasOptions.php
 
         -
             message: '#^Method Guanguans\\Notify\\Foundation\\Contracts\\Authenticator\:\:applyToOptions\(\) has parameter \$options with no value type specified in iterable type array\.$#'

@@ -1,12 +1,7 @@
-# total 2 errors
+# total 1 error
 
 parameters:
     ignoreErrors:
-        -
-            message: '#^Unused result of "and" operator\.$#'
-            count: 1
-            path: ../src/Foundation/Message.php
-
         -
             message: '#^Unused result of "and" operator\.$#'
             count: 1

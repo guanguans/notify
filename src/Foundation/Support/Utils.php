@@ -34,7 +34,7 @@ class Utils
     public static function methodNameOfSetDefault(): string
     {
         return method_exists(OptionsResolver::class, 'setOptions')
-            ? 'setOptions'
+            ? 'setOptions' // since symfony/options-resolver 7.3
             : 'setDefault';
     }
 
@@ -97,17 +97,15 @@ class Utils
          * @param  null|array{
          *     name: string,
          *     contents: null|resource|scalar|StreamInterface,
-         *     headers: array<string, string>,
-         *     filename: string,
-         *     foo: mixed,
-         *     bar: mixed,
+         *     headers?: array<string, string>,
+         *     filename?: string,
          * }|\Psr\Http\Message\StreamInterface|resource|scalar  $value
          *
          * @return array{
          *     name: string,
          *     contents: null|resource|scalar|StreamInterface,
-         *     headers: array<string, string>,
-         *     filename: string,
+         *     headers?: array<string, string>,
+         *     filename?: string,
          * }[]
          */
         $partResolver = static function (mixed $key, mixed $value) use (&$partResolver): array {

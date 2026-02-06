@@ -63,13 +63,13 @@ it('can get options', function (): void {
         /** @var list<string> */
         protected array $defined = ['foo', 'bar'];
 
-        /** @var array<int|string, list<string>|string> */
+        /** @var array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}> */
         protected array $deprecated = [
-            'foo',
-            'bar' => ['foo/bar', '2.0', 'The option "%name%" is deprecated.'],
+            'foo' => ['foo/bar', '1.0', 'The option "%name%" is deprecated.'],
+            'bar' => ['bar/foo', '2.0', 'The option "%name%" is deprecated.'],
         ];
 
-        /** @var array<string, \Closure> */
+        /** @var array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed> */
         protected array $normalizers = [];
 
         /** @var array<string, mixed> */
@@ -95,8 +95,8 @@ it('can get options', function (): void {
         public function deprecated(): array
         {
             return [
-                'foo',
-                'bar' => ['foo/bar', '2.0', 'The option "%name%" is deprecated.'],
+                'foo' => ['foo/bar', '1.0', 'The option "%name%" is deprecated.'],
+                'bar' => ['bar/foo', '2.0', 'The option "%name%" is deprecated.'],
             ];
         }
 

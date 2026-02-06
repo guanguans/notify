@@ -23,16 +23,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @property-read array<string, mixed> $defaults // Support nested options.
  * @property-read list<string> $required
  * @property-read list<string> $defined
- * @property-read bool $ignoreUndefined // Required symfony/options-resolver >= 6.3
- * @property-read array<array-key, array|string> $deprecated
- * @property-read array<string, \Closure> $normalizers
+ * @property-read bool $ignoreUndefined
+ * @property-read array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}> $deprecated
+ * @property-read array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed> $normalizers
  * @property-read array<string, mixed> $allowedValues
  * @property-read array<string, list<string>|string> $allowedTypes;
  * @property-read array<string, string> $infos
  *
  * @method array<string, mixed> defaults() // Support nested options.
- * @method array<int|string, array|string> deprecated()
- * @method array<string, \Closure> normalizers()
+ * @method (array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}>) deprecated()
+ * @method (array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed>) normalizers()
  */
 trait HasOptions
 {
@@ -169,9 +169,8 @@ trait HasOptions
         // // A prototype option can only be defined inside a nested option and during its resolution it will expect an array of arrays.
         // property_exists($this, 'prototype') and $optionsResolver->setPrototype($this->prototype);
 
-        // Required symfony/options-resolver >= 6.3
-        if (property_exists($this, 'ignoreUndefined') && method_exists($optionsResolver, 'setIgnoreUndefined')) {
-            $optionsResolver->setIgnoreUndefined($this->ignoreUndefined); // @codeCoverageIgnore
+        if (property_exists($this, 'ignoreUndefined')) {
+            $optionsResolver->setIgnoreUndefined($this->ignoreUndefined);
         }
 
         $deprecated = [
@@ -180,15 +179,12 @@ trait HasOptions
         ];
 
         foreach ($deprecated as $option => $arguments) {
-            // Required symfony/options-resolver < 6.0
-            \is_string($arguments) and $arguments = [$arguments];
+            array_unshift($arguments, $option);
 
-            \is_string($option) and array_unshift($arguments, $option);
-
-            $optionsResolver->setDeprecated(...array_pad($arguments, 3, ''));
+            $optionsResolver->setDeprecated(...$arguments);
         }
 
-        /** @var array<string, \Closure> $normalizers */
+        /** @var array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed> $normalizers */
         $normalizers = [
             ...property_exists($this, 'normalizers') ? $this->normalizers : [],
             ...method_exists($this, 'normalizers') ? $this->normalizers() : [],

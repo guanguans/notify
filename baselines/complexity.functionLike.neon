@@ -3,7 +3,7 @@
 parameters:
     ignoreErrors:
         -
-            message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Message\:\:preConfigureOptionsResolver\(\)" is 19, keep it under 8$#'
+            message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Message\:\:preConfigureOptionsResolver\(\)" is 18, keep it under 8$#'
             count: 1
             path: ../src/Foundation/Message.php
 
