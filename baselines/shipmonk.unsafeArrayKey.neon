@@ -1,8 +1,0 @@
-# total 2 errors
-
-parameters:
-    ignoreErrors:
-        -
-            message: '#^Array key must be integer or string, but string\|null given\.$#'
-            count: 2
-            path: ../src/Foundation/Support/Arr.php

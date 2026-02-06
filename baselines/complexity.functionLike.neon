@@ -1,16 +1,11 @@
-# total 5 errors
+# total 4 errors
 
 parameters:
     ignoreErrors:
         -
-            message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Message\:\:preConfigureOptionsResolver\(\)" is 18, keep it under 8$#'
+            message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Message\:\:preConfigureOptionsResolver\(\)" is 17, keep it under 8$#'
             count: 1
             path: ../src/Foundation/Message.php
-
-        -
-            message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Rectors\\HasOptionsRector\:\:addMethodsOfListTypeOption\(\)" is 12, keep it under 8$#'
-            count: 1
-            path: ../src/Foundation/Rectors/HasOptionsRector.php
 
         -
             message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Support\\Arr\:\:forget\(\)" is 11, keep it under 8$#'

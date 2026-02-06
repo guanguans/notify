@@ -1,8 +1,0 @@
-# total 1 error
-
-parameters:
-    ignoreErrors:
-        -
-            message: '#^Call to method DateTimeImmutable\:\:getTimestamp\(\) with incorrect case\: getTimeStamp$#'
-            count: 1
-            path: ../src/Foundation/Caches/MemoryCache.php

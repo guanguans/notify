@@ -1,8 +1,0 @@
-# total 1 error
-
-parameters:
-    ignoreErrors:
-        -
-            message: '#^Null value involved in string interpolation with \$bearer$#'
-            count: 1
-            path: ../src/Foundation/Authenticators/BearerAuthenticator.php

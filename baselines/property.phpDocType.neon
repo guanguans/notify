@@ -1,8 +1,0 @@
-# total 1 error
-
-parameters:
-    ignoreErrors:
-        -
-            message: '#^PHPDoc type for property Guanguans\\Notify\\ZohoCliq\\Authenticator\:\:\$dataCenter with type mixed is not subtype of native type Guanguans\\Notify\\ZohoCliq\\DataCenter\.$#'
-            count: 1
-            path: ../src/ZohoCliq/Authenticator.php

@@ -1,8 +1,0 @@
-# total 1 error
-
-parameters:
-    ignoreErrors:
-        -
-            message: '#^Unused result of "and" operator\.$#'
-            count: 1
-            path: ../src/GoogleChat/Authenticator.php

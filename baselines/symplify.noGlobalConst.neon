@@ -1,8 +1,0 @@
-# total 2 errors
-
-parameters:
-    ignoreErrors:
-        -
-            message: '#^Global constants are forbidden\. Use enum\-like class list instead$#'
-            count: 2
-            path: ../src/Foundation/Support/helpers.php
