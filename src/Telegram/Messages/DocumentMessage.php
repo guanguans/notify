@@ -55,6 +55,9 @@ class DocumentMessage extends Message
         return 'bot{token}/sendDocument';
     }
 
+    /**
+     * @api
+     */
     public function addCaptionEntity(array $captionEntity): self
     {
         $this->options['caption_entities'][] = $captionEntity;

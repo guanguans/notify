@@ -20,6 +20,9 @@ use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * @api
+ */
 class RequestException extends GuzzleRequestException implements Throwable
 {
     public static function wrapException(RequestInterface $request, \Throwable $e): GuzzleRequestException
@@ -27,6 +30,9 @@ class RequestException extends GuzzleRequestException implements Throwable
         return self::fromGuzzleRequestException(parent::wrapException($request, $e));
     }
 
+    /**
+     * @param array<string, mixed> $handlerContext
+     */
     public static function createFromResponse(
         Response $response,
         ?\Throwable $previous = null,
@@ -36,6 +42,9 @@ class RequestException extends GuzzleRequestException implements Throwable
         return self::create($response->request(), $response, $previous, $handlerContext, $bodySummarizer);
     }
 
+    /**
+     * @param array<string, mixed> $handlerContext
+     */
     public static function create(
         RequestInterface $request,
         ?ResponseInterface $response = null,

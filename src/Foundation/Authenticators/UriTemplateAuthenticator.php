@@ -25,6 +25,7 @@ use Psr\Http\Message\UriFactoryInterface;
 class UriTemplateAuthenticator extends NullAuthenticator
 {
     public function __construct(
+        /** @var array<string, mixed> */
         private readonly array $variables,
         private readonly UriFactoryInterface $uriFactory = new HttpFactory
     ) {}

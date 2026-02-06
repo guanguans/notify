@@ -29,6 +29,7 @@ namespace Guanguans\Notify\Mattermost\Messages;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $required = [
         // 'channel_id',
     ];

@@ -65,6 +65,9 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'potentialAction' => [],
     ];
 
+    /**
+     * @api
+     */
     public function addSection(array $section): self
     {
         $this->options['sections'][] = $section;
@@ -72,6 +75,9 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return $this;
     }
 
+    /**
+     * @api
+     */
     public function addPotentialAction(array $potentialAction): self
     {
         $this->options['potentialAction'][] = $potentialAction;

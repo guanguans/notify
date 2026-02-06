@@ -8,6 +8,7 @@
         "peckphp/peck": "^0.2",
         "peststan/peststan": "^0.0",
         "phpro/grumphp-shim": "^2.18",
+        "phpstan/phpstan": "^2.1",
         "roave/backward-compatibility-check": "^8.14",
         "roave/no-floaters": "^1.13"
     },

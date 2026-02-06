@@ -76,6 +76,9 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'blocks' => [],
     ];
 
+    /**
+     * @api
+     */
     public function addAttachment(array $attachment): self
     {
         $this->options['attachments'][] = $attachment;
@@ -83,6 +86,9 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return $this;
     }
 
+    /**
+     * @api
+     */
     public function addBlock(array $block): self
     {
         $this->options['blocks'][] = $block;

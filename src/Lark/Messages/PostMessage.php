@@ -36,7 +36,10 @@ class PostMessage extends Message
     ];
 
     /**
+     * @api
+     *
      * @param string $lang eg: zh_cn, en_us
+     * @param array{title: string, content: array<array-key, mixed>} $post
      */
     public function postFor(string $lang, array $post): self
     {

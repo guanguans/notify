@@ -17,10 +17,13 @@ use Guanguans\Notify\Foundation\Exceptions\CacheInvalidArgumentException;
 use Psr\SimpleCache\CacheInterface;
 
 /**
+ * @api
+ *
  * @see https://github.com/serbanghita/Mobile-Detect/blob/4.8.x/src/Cache/Cache.php
  */
 class MemoryCache implements CacheInterface
 {
+    /** @var array<string, array{ttl: null|int, content: mixed}> */
     protected array $cache = [];
 
     /**
@@ -110,6 +113,8 @@ class MemoryCache implements CacheInterface
 
     /**
      * {@inheritDoc}
+     *
+     * @param iterable<string, mixed> $values
      */
     public function setMultiple(iterable $values, null|\DateInterval|int $ttl = null): bool
     {
@@ -171,7 +176,7 @@ class MemoryCache implements CacheInterface
     protected function getTTL(null|\DateInterval|int $ttl): ?int
     {
         if ($ttl instanceof \DateInterval) {
-            return (new \DateTimeImmutable)->add($ttl)->getTimeStamp() - time();
+            return (new \DateTimeImmutable)->add($ttl)->getTimestamp() - time();
         }
 
         // We treat 0 as a valid value.

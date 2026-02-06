@@ -24,7 +24,7 @@ class Response
     private static ?TransferStats $transferStats = null;
 
     /**
-     * @param callable(RequestInterface, array): PromiseInterface $handler
+     * @param callable(RequestInterface $request, array<string, mixed> $options): PromiseInterface $handler
      */
     public function __invoke(callable $handler): callable
     {

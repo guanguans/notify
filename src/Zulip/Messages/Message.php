@@ -27,6 +27,8 @@ use Guanguans\Notify\Foundation\Concerns\AsFormParams;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsFormParams;
+
+    /** @var list<string> */
     protected array $required = [
         // 'type',
         // 'to',
@@ -44,6 +46,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'local_id',
         'read_by_sender',
     ];
+
+    /** @var array<string, mixed> */
     protected array $allowedValues = [
         // 'type' => ['direct', 'private', 'stream'],
     ];

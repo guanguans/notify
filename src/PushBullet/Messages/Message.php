@@ -47,6 +47,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'email',
         'guid',
     ];
+
+    /** @var array<string, mixed> */
     protected array $allowedValues = [
         // 'type' => ['note', 'link', 'file'],
     ];

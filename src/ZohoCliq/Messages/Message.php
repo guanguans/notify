@@ -30,6 +30,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 abstract class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $required = [
         // 'channel_unique_name',
         // 'bot_unique_name',
@@ -68,6 +69,9 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         'buttons' => [],
     ];
 
+    /**
+     * @api
+     */
     final public function addSlide(array $slide): self
     {
         $this->options['slides'][] = $slide;
@@ -75,6 +79,9 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
         return $this;
     }
 
+    /**
+     * @api
+     */
     final public function addButton(array $button): self
     {
         $this->options['buttons'][] = $button;

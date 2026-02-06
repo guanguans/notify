@@ -40,6 +40,8 @@ class TextMessage extends Message
         'actions',
         'timeline',
     ];
+
+    /** @var array<string, mixed> */
     protected array $allowedValues = [
         // 'interruptionlevel' => ['active', 'passive', 'time-sensitive'],
     ];

@@ -26,6 +26,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'desp',
         'type',
     ];
+
+    /** @var array<string, mixed> */
     protected array $allowedValues = [
         // 'type' => ['text', 'markdown', 'image'],
     ];

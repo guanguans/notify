@@ -21,6 +21,7 @@ namespace Guanguans\Notify\WPush\Messages;
  */
 class Message extends \Guanguans\Notify\Foundation\Message
 {
+    /** @var list<string> */
     protected array $required = [
         // 'apikey',
         // 'title',
@@ -33,6 +34,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'channel',
         'topic_code',
     ];
+
+    /** @var array<string, mixed> */
     protected array $allowedValues = [
         // 'channel' => ['wechat', 'webhook', 'feishu', 'feishu', 'dingtalk', 'wechat_work', 'mail', 'sms'],
     ];

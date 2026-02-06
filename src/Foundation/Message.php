@@ -23,6 +23,8 @@ use GuzzleHttp\Psr7\MultipartStream;
 use const Guanguans\Notify\Foundation\Support\MULTIPART_TRY_OPEN_FILE;
 
 /**
+ * @api
+ *
  * @template-implements \ArrayAccess<string, mixed>
  */
 abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
@@ -33,6 +35,9 @@ abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
     use HasOptions;
     protected bool $ignoreUndefined = true;
 
+    /**
+     * @param array<string, mixed> $options
+     */
     public function __construct(array $options = [])
     {
         $this->setOptions($options);
@@ -101,6 +106,9 @@ abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
         return \GuzzleHttp\Utils::jsonEncode($this->toPayload(), $options, $depth);
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function toPayload(): array
     {
         return Arr::rejectRecursive(

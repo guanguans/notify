@@ -83,6 +83,8 @@ trait HasHttpClient
 
     /** @var null|(callable(static): \GuzzleHttp\HandlerStack) */
     private $handlerStackResolver;
+
+    /** @var array<string, mixed> */
     private array $httpOptions = [];
 
     /**
@@ -179,6 +181,9 @@ trait HasHttpClient
         );
     }
 
+    /**
+     * @param array<string, mixed> $httpOptions
+     */
     public function setHttpOptions(array $httpOptions): self
     {
         $this->httpOptions = Utils::mergeHttpOptions($this->httpOptions, $httpOptions);
@@ -186,11 +191,17 @@ trait HasHttpClient
         return $this;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getHttpOptions(): array
     {
         return $this->httpOptions;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function allNormalizedHttpOptions(): array
     {
         return Utils::normalizeHttpOptions(

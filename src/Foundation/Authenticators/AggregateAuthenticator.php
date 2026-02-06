@@ -18,7 +18,7 @@ use Psr\Http\Message\RequestInterface;
 
 class AggregateAuthenticator implements Authenticator
 {
-    /** @var list<Authenticator> */
+    /** @var array<int|string, Authenticator> */
     private readonly array $authenticators;
 
     public function __construct(Authenticator ...$authenticators)

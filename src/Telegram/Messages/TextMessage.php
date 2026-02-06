@@ -42,6 +42,8 @@ class TextMessage extends Message
         'reply_parameters',
         'reply_markup',
     ];
+
+    /** @var array<string, mixed> */
     protected array $allowedValues = [
         // 'parse_mode' => ['HTML', 'Markdown', 'MarkdownV2'],
     ];
@@ -66,6 +68,9 @@ class TextMessage extends Message
         return 'bot{token}/sendMessage';
     }
 
+    /**
+     * @api
+     */
     public function addEntity(array $entity): self
     {
         $this->options['entities'][] = $entity;

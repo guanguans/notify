@@ -53,6 +53,9 @@ class VoiceMessage extends Message
         return 'bot{token}/sendVoice';
     }
 
+    /**
+     * @api
+     */
     public function addCaptionEntity(array $captionEntity): self
     {
         $this->options['caption_entities'][] = $captionEntity;

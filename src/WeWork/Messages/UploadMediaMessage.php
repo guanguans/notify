@@ -29,6 +29,8 @@ class UploadMediaMessage extends Message
         'media',
         'type',
     ];
+
+    /** @var array<string, mixed> */
     protected array $allowedValues = [
         // 'type' => ['voice', 'file'],
     ];

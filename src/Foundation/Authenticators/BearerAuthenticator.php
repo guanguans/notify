@@ -23,7 +23,7 @@ class BearerAuthenticator extends OptionsAuthenticator
     public function __construct(
         #[\SensitiveParameter]
         string $token,
-        ?string $bearer = 'Bearer'
+        string $bearer = 'Bearer'
     ) {
         parent::__construct([RequestOptions::HEADERS => ['Authorization' => ltrim("$bearer $token")]]);
     }

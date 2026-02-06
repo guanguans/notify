@@ -35,6 +35,9 @@ class FeedCardMessage extends Message
         'links' => [],
     ];
 
+    /**
+     * @api
+     */
     public function addLink(array $link): self
     {
         $this->options['links'][] = $link;

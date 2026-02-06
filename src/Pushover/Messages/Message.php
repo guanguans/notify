@@ -35,6 +35,8 @@ use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsMultipart;
+
+    /** @var list<string> */
     protected array $required = [
         // // 'token',
         // // 'user',

@@ -120,6 +120,8 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
     }
 
     /**
+     * @param list<class-string<\Guanguans\Notify\Foundation\Message>> $configuration
+     *
      * @throws \ReflectionException
      */
     public function configure(array $configuration): void
@@ -195,12 +197,15 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
             })
             ->whenNotEmpty(function (Collection $options) use ($class): void {
                 $options->each(function (string $option) use ($class): void {
-                    if (collect($class->stmts)->first(
+                    $index = collect($class->stmts)->search(
                         fn (Stmt $stmt): bool => $stmt instanceof ClassMethod && $this->isName(
                             $stmt,
                             'add'.Str::studly(Pluralizer::singular($option))
-                        )
-                    )) {
+                        ),
+                        true
+                    );
+
+                    if (false === $index || \is_int($index)) {
                         return;
                     }
 
@@ -210,7 +215,10 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
                             <<<'code'
                                 class Message
                                 {
-                                    public function add%s(array $%s): self
+                                    /**
+                                     * @api
+                                     */
+                                    final public function add%s(array $%s): self
                                     {
                                         $this->options['%s'][] = $%s;
 
@@ -225,7 +233,7 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
                         )
                     );
 
-                    $class->stmts[] = $nodes[0]->stmts[0];
+                    $class->stmts[$index] = $nodes[0]->stmts[0];
                 });
             });
     }

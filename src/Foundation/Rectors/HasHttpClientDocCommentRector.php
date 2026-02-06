@@ -119,6 +119,9 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
         return $node;
     }
 
+    /**
+     * @param list<string> $configuration
+     */
     public function configure(array $configuration): void
     {
         Assert::allStringNotEmpty($configuration);

@@ -74,8 +74,6 @@ return RectorConfig::configure()
     ->withRootFiles()
     ->withSkip([
         '*/Fixtures/*',
-        __DIR__.'/src/Concerns/HasExceptionPipes.php',
-        __DIR__.'/src/Concerns/HasPipes.php',
         __DIR__.'/tests.php',
     ])
     ->withCache(__DIR__.'/.build/rector/')

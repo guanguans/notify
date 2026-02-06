@@ -49,6 +49,7 @@ return Factory::fromRuleSet(Php81::create()
         '@autoPHPUnitMigration:risky' => true,
         // 'final_public_method_for_abstract_class' => false,
         'PhpCsFixerCustomFixers/function_parameter_separation' => false,
+        'PhpCsFixerCustomFixers/phpdoc_no_incorrect_var_annotation' => false,
         'PhpCsFixerCustomFixers/phpdoc_property_sorted' => false,
         // 'PhpCsFixerCustomFixers/readonly_promoted_properties' => false,
     ])))

@@ -53,6 +53,9 @@ class PhotoMessage extends Message
         return 'bot{token}/sendPhoto';
     }
 
+    /**
+     * @api
+     */
     public function addCaptionEntity(array $captionEntity): self
     {
         $this->options['caption_entities'][] = $captionEntity;

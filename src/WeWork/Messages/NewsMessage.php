@@ -35,6 +35,9 @@ class NewsMessage extends Message
         'articles' => [],
     ];
 
+    /**
+     * @api
+     */
     public function addArticle(array $article): self
     {
         $this->options['articles'][] = $article;

@@ -65,6 +65,9 @@ class PollMessage extends Message
         'explanation_entities' => [],
     ];
 
+    /**
+     * @api
+     */
     public function addExplanationEntity(array $explanationEntity): self
     {
         $this->options['explanation_entities'][] = $explanationEntity;

@@ -24,6 +24,8 @@ use Guanguans\Notify\Foundation\Concerns\AsFormParams;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsFormParams;
+
+    /** @var list<string> */
     protected array $required = [
         // 'title',
         // 'channel',

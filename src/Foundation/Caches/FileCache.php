@@ -17,6 +17,8 @@ use Guanguans\Notify\Foundation\Exceptions\CacheRuntimeException;
 use Psr\SimpleCache\CacheInterface;
 
 /**
+ * @api
+ *
  * @see https://github.com/pestphp/pest-plugin-mutate/blob/4.x/src/Cache/FileStore.php
  */
 class FileCache implements CacheInterface

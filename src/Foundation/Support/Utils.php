@@ -52,7 +52,7 @@ class Utils
         if (\is_string($object)) {
             $properties = (new \ReflectionClass($object))->getDefaultProperties();
 
-            return array_unique([...$properties['defined'] ?? [], ...$properties['required'] ?? []]);
+            return array_unique([...(array) ($properties['defined'] ?? []), ...(array) ($properties['required'] ?? [])]);
         }
 
         return array_unique(
@@ -82,6 +82,8 @@ class Utils
 
     /**
      * Convert a form array into a multipart array.
+     *
+     * @param array<string, mixed> $data
      *
      * @return array{
      *     name: string,
@@ -168,6 +170,11 @@ class Utils
      * Replace the given options with the current request options.
      *
      * @see https://github.com/laravel/framework/blob/12.x/src/Illuminate/Http/Client/PendingRequest.php
+     *
+     * @param array<string, mixed> $originalOptions
+     * @param array<string, mixed> $options
+     *
+     * @return array<string, mixed>
      */
     public static function mergeHttpOptions(array $originalOptions, array ...$options): array
     {
@@ -186,6 +193,8 @@ class Utils
 
     /**
      * @param array<string, mixed> $httpOptions
+     *
+     * @return array<string, mixed>
      */
     public static function normalizeHttpOptions(array $httpOptions, int $options = MULTIPART_TRY_OPEN_FILE): array
     {

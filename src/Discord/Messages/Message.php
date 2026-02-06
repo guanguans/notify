@@ -62,6 +62,9 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'embeds' => [],
     ];
 
+    /**
+     * @api
+     */
     public function addEmbed(array $embed): self
     {
         $this->options['embeds'][] = $embed;

@@ -38,6 +38,8 @@ use function Guanguans\Notify\Foundation\Support\value;
  * @see https://github.com/w7corp/easywechat
  *
  * @template-implements \ArrayAccess<string, mixed>
+ *
+ * @api
  */
 class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Stringable
 {
@@ -53,7 +55,11 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     /** The transfer stats for the request. */
     protected ?TransferStats $transferStats = null;
 
-    /** The decoded JSON response. */
+    /**
+     * The decoded JSON response.
+     *
+     * @var array<array-key, mixed>
+     */
     protected array $decoded;
 
     /**
@@ -117,7 +123,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
     public function json(mixed $key = null, mixed $default = null): mixed
     {
         if (!isset($this->decoded)) {
-            $this->decoded = json_decode($this->body() ?: '[]', true, 512, \JSON_THROW_ON_ERROR);
+            $this->decoded = (array) json_decode($this->body() ?: '[]', true, 512, \JSON_THROW_ON_ERROR);
         }
 
         if (null === $key) {
@@ -163,10 +169,12 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * @param array-key $key
      *
      * @throws \JsonException
+     *
+     * @return \Illuminate\Support\Collection<array-key, mixed>
      */
     public function collect(mixed $key = null): Collection
     {
-        return Collection::make($this->json($key));
+        return Collection::make((array) $this->json($key));
     }
 
     /**
@@ -177,6 +185,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * @param array-key $key
      *
      * @throws \JsonException
+     *
+     * @return \Illuminate\Support\Fluent<array-key, mixed>
      */
     public function fluent(mixed $key = null): Fluent
     {
@@ -279,6 +289,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
 
     /**
      * Get the headers from the response.
+     *
+     * @return array<string, list<string>>
      */
     public function headers(): array
     {
@@ -411,6 +423,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
 
     /**
      * Get the handler stats of the response.
+     *
+     * @return null|array<string, mixed>
      */
     public function handlerStats(): ?array
     {

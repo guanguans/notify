@@ -41,6 +41,9 @@ class BtnsActionCardMessage extends Message
         'btns' => [],
     ];
 
+    /**
+     * @api
+     */
     public function addBtn(array $btn): self
     {
         $this->options['btns'][] = $btn;

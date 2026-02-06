@@ -54,11 +54,6 @@ class Authenticator extends NullAuthenticator implements \Stringable
     private $retryDelay;
     private readonly Client $client;
 
-    /**
-     * @param null|key-of<\Guanguans\Notify\ZohoCliq\DataCenter::BASE_URI_MAP> $dataCenter
-     *
-     * @noinspection PhpDocSignatureInspection
-     */
     public function __construct(
         private readonly string $clientId,
         #[\SensitiveParameter]

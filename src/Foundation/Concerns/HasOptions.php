@@ -33,6 +33,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method array<string, mixed> defaults() // Support nested options.
  * @method (array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}>) deprecated()
  * @method (array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed>) normalizers()
+ *
+ * @mixin \Guanguans\Notify\Foundation\Message
  */
 trait HasOptions
 {
@@ -80,6 +82,9 @@ trait HasOptions
         return $this;
     }
 
+    /**
+     * @param array<string, mixed> $options
+     */
     public function setOptions(array $options): self
     {
         $this->options = [...$this->options, ...$options];
@@ -92,6 +97,9 @@ trait HasOptions
         return $this->options[$option] ?? $default;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getOptions(): array
     {
         return $this->options;
@@ -102,6 +110,9 @@ trait HasOptions
         return $this->getValidatedOptions()[$option] ?? $default;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getValidatedOptions(): array
     {
         return $this->configureAndResolveOptions($this->options, function (OptionsResolver $optionsResolver): void {
@@ -142,6 +153,11 @@ trait HasOptions
         unset($this->options[$offset]);
     }
 
+    /**
+     * @param array<string, mixed> $options
+     *
+     * @return array<string, mixed>
+     */
     protected function configureAndResolveOptions(array $options, callable $callback): array
     {
         $optionsResolver = new OptionsResolver;
@@ -169,9 +185,7 @@ trait HasOptions
         // // A prototype option can only be defined inside a nested option and during its resolution it will expect an array of arrays.
         // property_exists($this, 'prototype') and $optionsResolver->setPrototype($this->prototype);
 
-        if (property_exists($this, 'ignoreUndefined')) {
-            $optionsResolver->setIgnoreUndefined($this->ignoreUndefined);
-        }
+        $optionsResolver->setIgnoreUndefined($this->ignoreUndefined);
 
         $deprecated = [
             ...property_exists($this, 'deprecated') ? $this->deprecated : [],

@@ -13,10 +13,16 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Contracts;
 
+use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 
 interface Authenticator
 {
+    /**
+     * @param array<string, mixed> $options
+     *
+     * @return array<string, mixed>
+     */
     public function applyToOptions(array $options): array;
 
     public function applyToRequest(RequestInterface $request): RequestInterface;
@@ -24,6 +30,10 @@ interface Authenticator
     /**
      * @see \GuzzleHttp\HandlerStack::create()
      * @see \GuzzleHttp\HandlerStack::resolve()
+     *
+     * @param callable(RequestInterface $request, array<string, mixed> $options): PromiseInterface $handler
+     *
+     * @return callable(RequestInterface $request, array<string, mixed> $options): PromiseInterface
      */
     public function applyToMiddleware(callable $handler): callable;
 }

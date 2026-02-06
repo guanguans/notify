@@ -61,6 +61,9 @@ class AnimationMessage extends Message
         return 'bot{token}/sendAnimation';
     }
 
+    /**
+     * @api
+     */
     public function addCaptionEntity(array $captionEntity): self
     {
         $this->options['caption_entities'][] = $captionEntity;

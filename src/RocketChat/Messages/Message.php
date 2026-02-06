@@ -55,6 +55,9 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'attachments' => [],
     ];
 
+    /**
+     * @api
+     */
     public function addAttachment(array $attachment): self
     {
         $this->options['attachments'][] = $attachment;

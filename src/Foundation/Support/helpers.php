@@ -40,6 +40,9 @@ if (!\function_exists('Guanguans\Notify\Foundation\Support\tap')) {
             return new class($value) {
                 public function __construct(private readonly object $target) {}
 
+                /**
+                 * @param list<mixed> $parameters
+                 */
                 public function __call(string $method, array $parameters): mixed
                 {
                     $this->target->{$method}(...$parameters);

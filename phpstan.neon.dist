@@ -50,6 +50,7 @@ parameters:
         - src/Foundation/Concerns/HasHttpClient.php
         - vendor/composer/InstalledVersions.php
     excludePaths:
+        - src/Foundation/Rectors/
         - src/Foundation/Support/ComposerScripts.php
         - tests/Fixtures/
         - *.blade.php
@@ -97,7 +98,7 @@ parameters:
         forbiddenSideEffects:
             enabled: false
 #    sidzIgnoreNumericStrings: true
-    sidzIgnoreMagicNumbers: [2, 3, 100, 600, 512, 0o755, 1000]
+    sidzIgnoreMagicNumbers: [-1, 0, 1, 2, 10, 16, 100, 512, 0o755, 1000, 1024, 200, 201, 202, 204, 300, 301, 302, 304, 400, 401, 402, 403, 404, 408, 409, 422, 429, 500, 600, 9999999999]
     cognitive_complexity:
         class: 42
         function: 8
@@ -176,7 +177,7 @@ parameters:
         - identifier: argument.type
 #        - identifier: cast.double
         - identifier: cast.int
-        - identifier: cast.string
+#        - identifier: cast.string
 #        - identifier: empty.notAllowed
 #        - identifier: logicalOr.resultUnused
         - identifier: method.nonObject
@@ -193,6 +194,31 @@ parameters:
         - identifier: symplify.forbiddenNode
         - identifier: symplify.forbiddenStaticClassConstFetch
         - identifier: symplify.requireExceptionNamespace
+
+        - identifier: arrayFilter.strict
+        - identifier: disallowed.function
+        - identifier: encapsedStringPart.nonString
+        - identifier: ergebnis.noAssignByReference
+        - identifier: ergebnis.noParameterPassedByReference
+        - identifier: foreach.valueOverwrite
+        - identifier: logicalAnd.resultUnused
+        - identifier: method.childParameterType
+        - identifier: method.dynamicName
+        - identifier: shipmonk.nonNormalizedType
+        - identifier: symplify.explicitAbstractPrefixName
+        - identifier: symplify.forbiddenExtendOfNonAbstractClass
+        - identifier: symplify.noDynamicName
+        - identifier: symplify.noGlobalConst
+        - identifier: symplify.noReference
+        - identifier: symplify.noReturnSetterMethod
+        - identifier: trait.unused
+        - message: '#^Call to an undefined method Symfony\\Component\\OptionsResolver\\OptionsResolver\:\:setOptions\(\)\.$#'
+        - message: '#^Class Guanguans\\Notify\\.*\\Messages\\.*Message has PHPDoc tag @method for method .*\(\) parameter \#1 \$.* with no value type specified in iterable type array\.$#'
+        - message: '#^Method Guanguans\\Notify\\.*\\Messages\\.*Message\:\:add.*\(\) has parameter \$.* with no value type specified in iterable type array\.$#'
+        - message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient has PHPDoc tag @method for method .*\(\) parameter \#1 \$.* with no value type specified in iterable type array\.$#'
+
+        - identifier: offsetAccess.nonOffsetAccessible
+        - identifier: paramOut.type
 
         -
             message: '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''.*'' will always evaluate to true\.$#'

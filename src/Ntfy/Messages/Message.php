@@ -39,6 +39,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
+
+    /** @var list<string> */
     protected array $required = [
         // 'topic',
     ];
@@ -64,6 +66,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'unified_push',
         'poll_id',
     ];
+
+    /** @var array<string, mixed> */
     protected array $allowedValues = [
         // 'priority' => [5, 4, 3, 2, 1],
         // 'cache' => ['yes', 'no'],
@@ -81,6 +85,9 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'actions' => [],
     ];
 
+    /**
+     * @api
+     */
     public function addAction(array $action): self
     {
         $this->options['actions'][] = $action;

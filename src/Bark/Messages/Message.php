@@ -42,6 +42,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'isArchive',
         'url',
     ];
+
+    /** @var array<string, mixed> */
     protected array $allowedValues = [
         // 'level' => ['active', 'timeSensitive', 'passive'],
     ];

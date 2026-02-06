@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Support;
 
+/**
+ * @api
+ */
 class Arr
 {
     /**
@@ -26,6 +29,7 @@ class Arr
     /**
      * Determine if the given key exists in the provided array.
      *
+     * @param array<array-key, mixed>|\ArrayAccess<array-key, mixed> $array
      * @param array-key|float $key
      */
     public static function exists(array|\ArrayAccess $array, mixed $key): bool
@@ -46,9 +50,12 @@ class Arr
      *
      * If no key is given to the method, the entire array will be replaced.
      *
-     * @param-out  array  $array
-     *
+     * @param array<array-key, mixed> $array
      * @param null|array-key $key
+     *
+     * @param-out  array<array-key, mixed>  $array
+     *
+     * @return array<array-key, mixed>
      */
     public static function set(array &$array, mixed $key, mixed $value): array
     {
@@ -76,6 +83,7 @@ class Arr
             $array = &$array[$key];
         }
 
+        /** @var non-empty-list<string> $keys */
         $array[array_shift($keys)] = $value;
 
         return $array;
@@ -118,6 +126,10 @@ class Arr
 
     /**
      * Run a map over each of the items in the array.
+     *
+     * @param array<array-key, mixed> $array
+     *
+     * @return array<array-key, mixed>
      */
     public static function map(array $array, callable $callback): array
     {
@@ -135,7 +147,10 @@ class Arr
     /**
      * Get a subset of the items from the given array.
      *
+     * @param array<array-key, mixed> $array
      * @param array-key|list<array-key> $keys
+     *
+     * @return array<array-key, mixed>
      */
     public static function only(array $array, mixed $keys): array
     {
@@ -145,7 +160,10 @@ class Arr
     /**
      * Get all keys of the given array except for a specified array of keys.
      *
+     * @param array<array-key, mixed> $array
      * @param array-key|list<array-key> $keys
+     *
+     * @return array<array-key, mixed>
      */
     public static function except(array $array, mixed $keys): array
     {
@@ -157,9 +175,10 @@ class Arr
     /**
      * Remove one or many array items from a given array using "dot" notation.
      *
-     * @param-out array $array
-     *
+     * @param array<array-key, mixed> $array
      * @param array-key|list<array-key> $keys
+     *
+     * @param-out array<array-key, mixed> $array
      */
     public static function forget(array &$array, mixed $keys): void
     {
@@ -194,12 +213,17 @@ class Arr
                 }
             }
 
+            /** @var non-empty-list<string> $parts */
             unset($array[array_shift($parts)]);
         }
     }
 
     /**
      * Reject the array recursively using a callback function.
+     *
+     * @param array<array-key, mixed> $array
+     *
+     * @return array<array-key, mixed>
      */
     public static function rejectRecursive(array $array, ?callable $callback = null, int $flag = 0): array
     {
@@ -210,6 +234,10 @@ class Arr
 
     /**
      * Filter the array recursively using a callback function.
+     *
+     * @param array<array-key, mixed> $array
+     *
+     * @return array<array-key, mixed>
      */
     public static function filterRecursive(array $array, ?callable $callback = null, int $flag = 0): array
     {

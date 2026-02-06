@@ -22,6 +22,9 @@ use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * @api
+ */
 class Client implements Contracts\Client
 {
     use Dumpable;

@@ -46,6 +46,9 @@ class MediaGroupMessage extends Message
         'media' => [],
     ];
 
+    /**
+     * @api
+     */
     public function addMedia(array $media): self
     {
         $this->options['media'][] = $media;

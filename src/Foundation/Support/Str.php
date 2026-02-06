@@ -15,15 +15,30 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Support;
 
+/**
+ * @api
+ */
 class Str
 {
-    /** The cache of snake-cased words. */
+    /**
+     * The cache of snake-cased words.
+     *
+     * @var array<string, array<string, string>>
+     */
     protected static array $snakeCache = [];
 
-    /** The cache of camel-cased words. */
+    /**
+     * The cache of camel-cased words.
+     *
+     * @var array<string, string>
+     */
     protected static array $camelCache = [];
 
-    /** The cache of studly-cased words. */
+    /**
+     * The cache of studly-cased words.
+     *
+     * @var array<string, string>
+     */
     protected static array $studlyCache = [];
 
     /**
@@ -90,6 +105,8 @@ class Str
 
     /**
      * Determine if a given string matches a given pattern.
+     *
+     * @param iterable<string>|string $patterns
      */
     public static function is(iterable|string $patterns, string $value): bool
     {
@@ -124,6 +141,10 @@ class Str
 
     /**
      * Replace the given value in the given string.
+     *
+     * @param iterable<string>|string $search
+     * @param iterable<string>|string $replace
+     * @param iterable<string>|string $subject
      *
      * @return list<string>|string
      */

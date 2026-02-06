@@ -36,6 +36,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
         'type',
         'date',
     ];
+
+    /** @var array<string, mixed> */
     protected array $allowedValues = [
         // 'type' => ['text', 'markdown', 'data', 'markdata', 'chart'],
     ];

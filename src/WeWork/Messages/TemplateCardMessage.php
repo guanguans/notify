@@ -70,6 +70,9 @@ class TemplateCardMessage extends Message
         'vertical_content_list' => [],
     ];
 
+    /**
+     * @api
+     */
     public function addHorizontalContent(array $horizontalContent): self
     {
         $this->options['horizontal_content_list'][] = $horizontalContent;
@@ -77,6 +80,9 @@ class TemplateCardMessage extends Message
         return $this;
     }
 
+    /**
+     * @api
+     */
     public function addJump(array $jump): self
     {
         $this->options['jump_list'][] = $jump;
@@ -84,6 +90,9 @@ class TemplateCardMessage extends Message
         return $this;
     }
 
+    /**
+     * @api
+     */
     public function addVerticalContent(array $verticalContent): self
     {
         $this->options['vertical_content_list'][] = $verticalContent;
