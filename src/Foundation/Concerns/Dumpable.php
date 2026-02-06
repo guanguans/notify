@@ -28,17 +28,14 @@ trait Dumpable
     }
 
     /**
+     * @see \Illuminate\Support\Traits\Dumpable
+     *
      * @noinspection ForgottenDebugOutputInspection
      * @noinspection DebugFunctionUsageInspection
      */
     public function dump(mixed ...$args): self
     {
-        $args[] = $this;
-        $varDumperExists = class_exists(VarDumper::class);
-
-        foreach ($args as $arg) {
-            $varDumperExists ? VarDumper::dump($arg) : var_dump($arg);
-        }
+        class_exists(VarDumper::class) ? dump($this, ...$args) : var_dump($this, ...$args);
 
         return $this;
     }
