@@ -168,7 +168,6 @@ return RectorConfig::configure()
     ->withConfiguredRule(RenameFunctionRector::class, array_reduce(
         [
             'base64_encode_file',
-            'rescue',
             'tap',
             'value',
         ],

@@ -468,7 +468,7 @@ parameters:
             path: ../src/Foundation/Support/Utils.php
 
         -
-            message: '#^Method class@anonymous/Foundation/Support/helpers\.php\:68\:\:__call\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
+            message: '#^Method class@anonymous/Foundation/Support/helpers\.php\:40\:\:__call\(\) has parameter \$parameters with no value type specified in iterable type array\.$#'
             count: 1
             path: ../src/Foundation/Support/helpers.php
 

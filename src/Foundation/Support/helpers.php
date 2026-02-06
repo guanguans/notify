@@ -26,34 +26,6 @@ if (!\function_exists('Guanguans\Notify\Foundation\Support\base64_encode_file'))
     }
 }
 
-if (!\function_exists('Guanguans\Notify\Foundation\Support\rescue')) {
-    function rescue(callable $callback, ?callable $rescuer = null): mixed
-    {
-        set_error_handler(static function (
-            int $errNo,
-            string $errStr,
-            string $errFile = '',
-            int $errLine = 0
-        ) use ($rescuer, &$result): void {
-            $rescuer and $result = $rescuer($errNo, $errStr, $errFile, $errLine);
-        });
-
-        // set_exception_handler(static function (\Throwable $throwable) use ($rescuer, &$result): void {
-        //     $rescuer and $result = $rescuer($throwable);
-        // });
-
-        try {
-            $result = $callback();
-        } catch (\Throwable $throwable) {
-            $rescuer and $result = $rescuer($throwable);
-        }
-
-        restore_error_handler();
-
-        return $result;
-    }
-}
-
 if (!\function_exists('Guanguans\Notify\Foundation\Support\tap')) {
     /**
      * Call the given Closure with the given value then return the value.
