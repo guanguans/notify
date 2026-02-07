@@ -19,6 +19,7 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
 use Guanguans\Notify\Foundation\Method;
+use Guanguans\Notify\Foundation\Rectors\AddSensitiveParameterAttributeRector;
 use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
 use Guanguans\Notify\Foundation\Rectors\MessageRector;
 use Guanguans\Notify\Foundation\Response;
@@ -48,10 +49,10 @@ use Rector\DeadCode\Rector\ClassLike\RemoveAnnotationRector;
 use Rector\DeadCode\Rector\ClassMethod\RemoveParentDelegatingConstructorRector;
 use Rector\EarlyReturn\Rector\If_\ChangeOrIfContinueToMultiContinueRector;
 use Rector\EarlyReturn\Rector\Return_\ReturnBinaryOrToEarlyReturnRector;
+use Rector\Naming\Rector\Assign\RenameVariableToMatchMethodCallReturnTypeRector;
 use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php73\Rector\FuncCall\JsonThrowOnErrorRector;
 use Rector\Php81\Rector\Array_\ArrayToFirstClassCallableRector;
-use Rector\Php82\Rector\Param\AddSensitiveParameterAttributeRector;
 use Rector\Removing\Rector\Class_\RemoveTraitUseRector;
 use Rector\Renaming\Rector\FuncCall\RenameFunctionRector;
 use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
@@ -105,6 +106,7 @@ return RectorConfig::configure()
         SetList::ALL,
     ])
     ->withRules([
+        AddSensitiveParameterAttributeRector::class,
         HasHttpClientDocCommentRector::class,
         MessageRector::class,
 
@@ -150,20 +152,7 @@ return RectorConfig::configure()
     //     new ClassMethodReference(HasOptions::class, 'offsetGet'),
     //     new ClassMethodReference(Response::class, 'offsetGet'),
     // ])
-    ->withConfiguredRule(AddSensitiveParameterAttributeRector::class, [
-        AddSensitiveParameterAttributeRector::SENSITIVE_PARAMETERS => [
-            'accessToken',
-            'apiKey',
-            'botApiKey',
-            'key',
-            'password',
-            'pushKey',
-            'secret',
-            'tempKey',
-            'token',
-            'webHook',
-        ],
-    ])
+
     ->withConfiguredRule(RenameFunctionRector::class, array_reduce(
         [
             'base64_encode_file',
@@ -239,8 +228,12 @@ return RectorConfig::configure()
             __DIR__.'/src/Foundation/Message.php',
         ],
         RenameParamToMatchTypeRector::class => [
+            __DIR__.'/src/Foundation/Rectors/',
             __DIR__.'/src/Foundation/Authenticators/AggregateAuthenticator.php',
             __DIR__.'/src/Foundation/Exceptions/RequestException.php',
+        ],
+        RenameVariableToMatchMethodCallReturnTypeRector::class => [
+            __DIR__.'/src/Foundation/Rectors/',
         ],
         SortAssociativeArrayByKeyRector::class => [
             __DIR__.'/benchmarks/',

@@ -238,7 +238,6 @@
             "@phpmnd",
             "@phpstan:analyse",
             "@rector:process-dry-run",
-            "@rector:process-php82-dry-run",
             "@sk:check-commented-code",
             "@sk:check-conflicts",
             "@sk:find-multi-classes",
@@ -454,10 +453,8 @@
         "rector:process-clear-cache-dry-run": "@rector:process-clear-cache --dry-run",
         "rector:process-dry-run": "@rector:process --dry-run",
         "rector:process-dry-run-output-format-github": "@rector:process-dry-run --output-format=github",
-        "rector:process-only": "@rector:process-clear-cache src/Concerns/ConcreteHttpStatus.php --only=Guanguans\\Notify\\Support\\Rector\\ConcreteHttpStatusRector",
+        "rector:process-only": "@rector:process-clear-cache src/ --only=Guanguans\\Notify\\Foundation\\Rectors\\MessageRector",
         "rector:process-only-dry-run": "@rector:process-only --dry-run",
-        "rector:process-php82": "@rector:process-clear-cache --config=rector-php82.php",
-        "rector:process-php82-dry-run": "@rector:process-php82 --dry-run",
         "roave-backward-compatibility-check": [
             "@putenv:php",
             "$PHP82 vendor/bin/roave-backward-compatibility-check --install-development-dependencies --ansi -vv"
