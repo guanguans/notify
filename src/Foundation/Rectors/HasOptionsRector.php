@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Rectors;
 
-use Guanguans\Notify\Foundation\Concerns\HasOptions;
-use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Message;
 use Guanguans\Notify\Foundation\Support\Str;
 use Guanguans\Notify\Foundation\Support\Utils;
@@ -33,24 +31,17 @@ use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagNode;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
-use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\PhpParser\Node\Value\ValueResolver;
 use Rector\PhpParser\Parser\SimplePhpParser;
 use Rector\Rector\AbstractRector;
 use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
 use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
-use Webmozart\Assert\Assert;
 
 /**
  * @internal
  */
-final class HasOptionsRector extends AbstractRector implements ConfigurableRectorInterface
+final class HasOptionsRector extends AbstractRector
 {
-    /** @var list<class-string<\Guanguans\Notify\Foundation\Message>> */
-    private array $classes = [
-        Message::class,
-    ];
-
     public function __construct(
         private readonly DocBlockUpdater $docBlockUpdater,
         private readonly PhpDocInfoFactory $phpDocInfoFactory,
@@ -108,7 +99,7 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
      */
     public function refactor(Node $node): ?Node
     {
-        if (!$this->isSubclassesOf($this->getName($node))) {
+        if (!is_subclass_of($this->getName($node), Message::class)) {
             return null;
         }
 
@@ -117,26 +108,6 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
         $this->addPhpDocTagNodesOfMethod($node);
 
         return $node;
-    }
-
-    /**
-     * @param list<class-string<\Guanguans\Notify\Foundation\Message>> $configuration
-     *
-     * @throws \ReflectionException
-     */
-    public function configure(array $configuration): void
-    {
-        Assert::allClassExists($configuration);
-
-        foreach ($configuration as $class) {
-            if (!\array_key_exists(HasOptions::class, (new \ReflectionClass($class))->getTraits())) {
-                throw new InvalidArgumentException(
-                    \sprintf('The class [%s] must use trait [%s].', $class, HasOptions::class),
-                );
-            }
-        }
-
-        $this->classes = [...$this->classes, ...$configuration];
     }
 
     /**
@@ -235,17 +206,6 @@ final class HasOptionsRector extends AbstractRector implements ConfigurableRecto
                     $class->stmts[$index] = $nodes[0]->stmts[0];
                 });
             });
-    }
-
-    private function isSubclassesOf(string $object): bool
-    {
-        foreach ($this->classes as $class) {
-            if (is_subclass_of($object, $class)) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private function sortProperties(Class_ $class): void
