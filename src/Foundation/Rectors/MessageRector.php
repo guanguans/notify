@@ -34,13 +34,11 @@ use Rector\Comments\NodeDocBlock\DocBlockUpdater;
 use Rector\PhpParser\Node\Value\ValueResolver;
 use Rector\PhpParser\Parser\SimplePhpParser;
 use Rector\Rector\AbstractRector;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 
 /**
  * @internal
  */
-final class HasOptionsRector extends AbstractRector
+final class MessageRector extends AbstractRector
 {
     public function __construct(
         private readonly DocBlockUpdater $docBlockUpdater,
@@ -48,44 +46,6 @@ final class HasOptionsRector extends AbstractRector
         private readonly SimplePhpParser $simplePhpParser,
         private readonly ValueResolver $valueResolver,
     ) {}
-
-    /**
-     * @throws \Symplify\RuleDocGenerator\Exception\PoorDocumentationException
-     * @throws \Symplify\RuleDocGenerator\Exception\ShouldNotHappenException
-     */
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(
-            'Has options doc comment',
-            [
-                new ConfiguredCodeSample(
-                    <<<'CODE_SAMPLE'
-                        class Message extends \Guanguans\Notify\Foundation\Message
-                        {
-                            protected array $defined = [
-                                'title',
-                                'content',
-                            ];
-                        }
-                        CODE_SAMPLE,
-                    <<<'CODE_SAMPLE'
-                        /**
-                         * @method self title($title)
-                         * @method self content($content)
-                         */
-                        class Message extends \Guanguans\Notify\Foundation\Message
-                        {
-                            protected array $defined = [
-                                'title',
-                                'content',
-                            ];
-                        }
-                        CODE_SAMPLE,
-                    [Message::class => Message::class],
-                ),
-            ],
-        );
-    }
 
     public function getNodeTypes(): array
     {

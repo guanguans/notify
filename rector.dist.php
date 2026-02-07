@@ -20,7 +20,7 @@ use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
 use Guanguans\Notify\Foundation\Method;
 use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
-use Guanguans\Notify\Foundation\Rectors\HasOptionsRector;
+use Guanguans\Notify\Foundation\Rectors\MessageRector;
 use Guanguans\Notify\Foundation\Response;
 use Guanguans\RectorRules\Rector\File\AddNoinspectionDocblockToFileFirstStmtRector;
 use Guanguans\RectorRules\Rector\FunctionLike\RenameGarbageParamNameRector;
@@ -106,7 +106,7 @@ return RectorConfig::configure()
     ])
     ->withRules([
         HasHttpClientDocCommentRector::class,
-        HasOptionsRector::class,
+        MessageRector::class,
 
         ArraySpreadInsteadOfArrayMergeRector::class,
         JsonThrowOnErrorRector::class,

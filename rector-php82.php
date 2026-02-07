@@ -14,7 +14,7 @@ declare(strict_types=1);
  */
 
 use Guanguans\Notify\Foundation\Rectors\HasHttpClientDocCommentRector;
-use Guanguans\Notify\Foundation\Rectors\HasOptionsRector;
+use Guanguans\Notify\Foundation\Rectors\MessageRector;
 use Rector\Config\RectorConfig;
 use Rector\Php82\Rector\Param\AddSensitiveParameterAttributeRector;
 use Rector\ValueObject\PhpVersion;
@@ -33,7 +33,7 @@ return RectorConfig::configure()
     ->withPhpVersion(PhpVersion::PHP_82)
     ->withRules([
         HasHttpClientDocCommentRector::class,
-        HasOptionsRector::class,
+        MessageRector::class,
     ])
     ->withConfiguredRule(AddSensitiveParameterAttributeRector::class, [
         AddSensitiveParameterAttributeRector::SENSITIVE_PARAMETERS => [
