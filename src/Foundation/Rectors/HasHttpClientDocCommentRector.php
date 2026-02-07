@@ -33,8 +33,6 @@ use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
 use Rector\Contract\Rector\ConfigurableRectorInterface;
 use Rector\Rector\AbstractRector;
-use Symplify\RuleDocGenerator\ValueObject\CodeSample\ConfiguredCodeSample;
-use Symplify\RuleDocGenerator\ValueObject\RuleDefinition;
 use Webmozart\Assert\Assert;
 
 /**
@@ -56,41 +54,6 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
         private readonly PhpDocInfoFactory $phpDocInfoFactory
     ) {}
 
-    /**
-     * @throws \Symplify\RuleDocGenerator\Exception\PoorDocumentationException
-     * @throws \Symplify\RuleDocGenerator\Exception\ShouldNotHappenException
-     */
-    public function getRuleDefinition(): RuleDefinition
-    {
-        return new RuleDefinition(
-            'Has http client doc comment',
-            [
-                new ConfiguredCodeSample(
-                    <<<'CODE_SAMPLE'
-                        trait HasHttpClient {}
-                        CODE_SAMPLE,
-                    <<<'CODE_SAMPLE'
-                        /**
-                         * @method \Guanguans\Notify\Foundation\Client setHandler(callable $handler)
-                         * @method \Guanguans\Notify\Foundation\Client unshift(callable $middleware, string $name = null)
-                         * ...
-                         * @method \Guanguans\Notify\Foundation\Client remove($remove)
-                         * @method \Guanguans\Notify\Foundation\Client allowRedirects($allowRedirects)
-                         * ...
-                         * @method \Guanguans\Notify\Foundation\Client version($version)
-                         *
-                         * @see \GuzzleHttp\HandlerStack
-                         * @see \GuzzleHttp\RequestOptions
-                         *
-                         * @mixin \Guanguans\Notify\Foundation\Client
-                         */
-                        CODE_SAMPLE,
-                    ['__*' => '__*'],
-                ),
-            ],
-        );
-    }
-
     public function getNodeTypes(): array
     {
         return [Trait_::class];
@@ -105,7 +68,9 @@ final class HasHttpClientDocCommentRector extends AbstractRector implements Conf
             return null;
         }
 
-        $this->addMixinDoc($phpDocInfo = $this->phpDocInfoFactory->createEmpty($node));
+        $phpDocInfo = $this->phpDocInfoFactory->createEmpty($node);
+
+        $this->addMixinDoc($phpDocInfo);
         $this->addRequestOptionsDoc($phpDocInfo);
 
         $phpDocInfo->addPhpDocTagNode($this->createEmptyDocTagNode());

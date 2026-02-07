@@ -18,8 +18,12 @@ namespace Guanguans\Notify\Foundation\Support;
 
 use Composer\Script\Event;
 use Illuminate\Support\Collection;
+use PhpParser\Comment\Doc;
+use PhpParser\Node\Stmt\Nop;
+use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Config\RectorConfig;
 use Rector\DependencyInjection\LazyContainerFactory;
+use Rector\PhpParser\Parser\SimplePhpParser;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -155,6 +159,40 @@ final class ComposerScripts
         $event->getIO()->info('No errors');
 
         return 0;
+    }
+
+    /**
+     * @see vendor/nikic/php-parser/bin/php-parse
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     *
+     * @noinspection ForgottenDebugOutputInspection
+     * @noinspection DebugFunctionUsageInspection
+     */
+    public static function phpdocParse(Event $event): void
+    {
+        self::requireAutoload($event);
+
+        $rectorConfig = self::makeRectorConfig();
+        $path = self::makeArgvInput()->getParameterOption('--path', false, true);
+
+        if ($path) {
+            $node = $rectorConfig->make(SimplePhpParser::class)->parseFile($path)[0];
+        } else {
+            do {
+                $docComment = $event->getIO()->ask(\sprintf('Please provide a doc comment to parse:%s', \PHP_EOL));
+            } while (blank($docComment));
+
+            $node = tap(new Nop)->setDocComment(new Doc($docComment));
+        }
+
+        dump(
+            $rectorConfig
+                ->make(PhpDocInfoFactory::class)
+                ->createFromNode($node)
+                ?->getPhpDocNode(),
+            $node->getDocComment()?->getText(),
+        );
     }
 
     public static function makeRectorConfig(): RectorConfig
