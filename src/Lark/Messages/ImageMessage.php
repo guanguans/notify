@@ -16,7 +16,7 @@ namespace Guanguans\Notify\Lark\Messages;
 /**
  * @method self imageKey(mixed $imageKey)
  */
-class ImageMessage extends Message
+class ImageMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

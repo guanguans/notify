@@ -18,6 +18,9 @@ use Guanguans\Notify\Foundation\Authenticators\OptionsAuthenticator;
 use Guanguans\Notify\Foundation\Authenticators\UriTemplateAuthenticator;
 use GuzzleHttp\RequestOptions;
 
+/**
+ * @api
+ */
 class Authenticator extends AggregateAuthenticator
 {
     public function __construct(

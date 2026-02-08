@@ -24,7 +24,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self protectContent(mixed $protectContent)
  * @method self replyParameters(mixed $replyParameters)
  */
-class MediaGroupMessage extends Message
+class MediaGroupMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

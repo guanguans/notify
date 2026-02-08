@@ -26,7 +26,7 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
  * @method self threadMessageId(mixed $threadMessageId)
  * @method self threadTitle(mixed $threadTitle)
  */
-class Message extends \Guanguans\Notify\ZohoCliq\Messages\Message
+class Message extends \Guanguans\Notify\ZohoCliq\Messages\AbstractMessage
 {
     use AsNullUri;
 }

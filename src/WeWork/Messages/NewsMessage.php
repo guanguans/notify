@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @method self articles(array $articles)
  */
-class NewsMessage extends Message
+class NewsMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

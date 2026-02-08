@@ -1,5 +1,7 @@
-# total 7 errors
+# total 17 errors
 
 includes:
     - complexity.functionLike.neon
+    - foreach.valueOverwrite.neon
+    - method.nonObject.neon
     - new.static.neon

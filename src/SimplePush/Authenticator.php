@@ -16,6 +16,9 @@ namespace Guanguans\Notify\SimplePush;
 use Guanguans\Notify\Foundation\Authenticators\OptionsAuthenticator;
 use GuzzleHttp\RequestOptions;
 
+/**
+ * @api
+ */
 class Authenticator extends OptionsAuthenticator
 {
     public function __construct(

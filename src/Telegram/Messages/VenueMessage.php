@@ -29,7 +29,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self replyParameters(mixed $replyParameters)
  * @method self title(mixed $title)
  */
-class VenueMessage extends Message
+class VenueMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

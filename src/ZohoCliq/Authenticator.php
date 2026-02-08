@@ -24,6 +24,8 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\SimpleCache\CacheInterface;
 
 /**
+ * @api
+ *
  * @see https://github.com/w7corp/easywechat/blob/6.x/src/OfficialAccount/AccessToken.php
  * @see https://github.com/w7corp/easywechat/blob/6.x/src/OpenPlatform/ComponentAccessToken.php
  * @see https://github.com/w7corp/easywechat/blob/6.x/src/OpenWork/AuthorizerAccessToken.php

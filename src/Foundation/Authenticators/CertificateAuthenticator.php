@@ -15,6 +15,9 @@ namespace Guanguans\Notify\Foundation\Authenticators;
 
 use GuzzleHttp\RequestOptions;
 
+/**
+ * @api
+ */
 class CertificateAuthenticator extends OptionsAuthenticator
 {
     public function __construct(

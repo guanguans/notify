@@ -25,7 +25,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self thumbnail(mixed $thumbnail)
  * @method self videoNote(mixed $videoNote)
  */
-class VideoNoteMessage extends Message
+class VideoNoteMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

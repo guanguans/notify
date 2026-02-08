@@ -19,7 +19,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self offset(mixed $offset)
  * @method self timeout(mixed $timeout)
  */
-class GetUpdatesMessage extends Message
+class GetUpdatesMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

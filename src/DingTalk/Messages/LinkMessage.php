@@ -19,7 +19,7 @@ namespace Guanguans\Notify\DingTalk\Messages;
  * @method self text(mixed $text)
  * @method self title(mixed $title)
  */
-class LinkMessage extends Message
+class LinkMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

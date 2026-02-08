@@ -22,7 +22,7 @@ namespace Guanguans\Notify\ZohoCliq\Messages;
  * @method self styles(array $styles)
  * @method self text(mixed $text)
  */
-class BotMessage extends Message
+class BotMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

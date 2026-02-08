@@ -16,7 +16,7 @@ namespace Guanguans\Notify\Lark\Messages;
 /**
  * @method self text(mixed $text)
  */
-class TextMessage extends Message
+class TextMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

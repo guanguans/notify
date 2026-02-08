@@ -15,6 +15,9 @@ namespace Guanguans\Notify\Zulip;
 
 use Guanguans\Notify\Foundation\Authenticators\BasicAuthenticator;
 
+/**
+ * @api
+ */
 class Authenticator extends BasicAuthenticator
 {
     public function __construct(

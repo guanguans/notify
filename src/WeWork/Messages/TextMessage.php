@@ -18,7 +18,7 @@ namespace Guanguans\Notify\WeWork\Messages;
  * @method self mentionedList(array $mentionedList)
  * @method self mentionedMobileList(array $mentionedMobileList)
  */
-class TextMessage extends Message
+class TextMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

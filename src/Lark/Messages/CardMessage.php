@@ -20,7 +20,7 @@ namespace Guanguans\Notify\Lark\Messages;
  * @method self header(array $header)
  * @method self i18nElements(array $i18nElements)
  */
-class CardMessage extends Message
+class CardMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

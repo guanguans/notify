@@ -16,7 +16,7 @@ namespace Guanguans\Notify\WeWork\Messages;
 /**
  * @method self content(mixed $content)
  */
-class MarkdownMessage extends Message
+class MarkdownMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

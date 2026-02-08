@@ -15,6 +15,9 @@ namespace Guanguans\Notify\Foundation\Authenticators;
 
 use Psr\Http\Message\RequestInterface;
 
+/**
+ * @api
+ */
 class WsseAuthenticator extends NullAuthenticator
 {
     public function __construct(

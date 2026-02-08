@@ -30,7 +30,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self subTitleText(mixed $subTitleText)
  * @method self verticalContentList(array $verticalContentList)
  */
-class TemplateCardMessage extends Message
+class TemplateCardMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

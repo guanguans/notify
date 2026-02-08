@@ -29,7 +29,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self thumbnail(mixed $thumbnail)
  * @method self title(mixed $title)
  */
-class AudioMessage extends Message
+class AudioMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

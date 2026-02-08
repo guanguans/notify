@@ -22,7 +22,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self replyMarkup(mixed $replyMarkup)
  * @method self replyParameters(mixed $replyParameters)
  */
-class DiceMessage extends Message
+class DiceMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

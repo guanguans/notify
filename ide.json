@@ -2348,6 +2348,39 @@
             "condition": [
                 {
                     "classFqn": [
+                        "Guanguans\\Notify\\ZohoCliq\\Messages\\AbstractMessage"
+                    ],
+                    "newClassFqn": [
+                        "Guanguans\\Notify\\ZohoCliq\\Messages\\AbstractMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "bot",
+                    "buttons",
+                    "card",
+                    "post_in_parent",
+                    "slides",
+                    "styles",
+                    "text",
+                    "thread_message_id",
+                    "thread_title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
                         "Guanguans\\Notify\\ZohoCliq\\Messages\\AccessTokenMessage"
                     ],
                     "newClassFqn": [
@@ -2464,39 +2497,6 @@
                     "buttons",
                     "card",
                     "chat_id",
-                    "post_in_parent",
-                    "slides",
-                    "styles",
-                    "text",
-                    "thread_message_id",
-                    "thread_title"
-                ]
-            }
-        },
-        {
-            "complete": "staticStrings",
-            "condition": [
-                {
-                    "classFqn": [
-                        "Guanguans\\Notify\\ZohoCliq\\Messages\\Message"
-                    ],
-                    "newClassFqn": [
-                        "Guanguans\\Notify\\ZohoCliq\\Messages\\Message"
-                    ],
-                    "methodNames": [
-                        "make"
-                    ],
-                    "parameters": [
-                        1
-                    ],
-                    "place": "arrayKey"
-                }
-            ],
-            "options": {
-                "strings": [
-                    "bot",
-                    "buttons",
-                    "card",
                     "post_in_parent",
                     "slides",
                     "styles",

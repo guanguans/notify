@@ -15,6 +15,9 @@ namespace Guanguans\Notify\Foundation\Contracts;
 
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * @api
+ */
 interface Client
 {
     public function send(Message $message): ResponseInterface;

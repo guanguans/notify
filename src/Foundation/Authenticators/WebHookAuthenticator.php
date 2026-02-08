@@ -17,6 +17,9 @@ use GuzzleHttp\Psr7\HttpFactory;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriFactoryInterface;
 
+/**
+ * @api
+ */
 class WebHookAuthenticator extends NullAuthenticator
 {
     public function __construct(

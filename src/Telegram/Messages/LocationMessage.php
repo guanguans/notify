@@ -27,7 +27,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self replyMarkup(mixed $replyMarkup)
  * @method self replyParameters(mixed $replyParameters)
  */
-class LocationMessage extends Message
+class LocationMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

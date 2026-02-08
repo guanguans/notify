@@ -16,7 +16,7 @@ namespace Guanguans\Notify\WeWork\Messages;
 /**
  * @method self mediaId(mixed $mediaId)
  */
-class VoiceMessage extends Message
+class VoiceMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

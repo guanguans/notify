@@ -30,7 +30,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self thumbnail(mixed $thumbnail)
  * @method self width(mixed $width)
  */
-class AnimationMessage extends Message
+class AnimationMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

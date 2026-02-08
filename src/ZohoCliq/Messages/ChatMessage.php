@@ -25,7 +25,7 @@ namespace Guanguans\Notify\ZohoCliq\Messages;
  * @method self threadMessageId(mixed $threadMessageId)
  * @method self threadTitle(mixed $threadTitle)
  */
-class ChatMessage extends Message
+class ChatMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

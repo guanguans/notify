@@ -19,7 +19,7 @@ namespace Guanguans\Notify\DingTalk\Messages;
  * @method self content(mixed $content)
  * @method self isAtAll(bool $isAtAll)
  */
-class TextMessage extends Message
+class TextMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

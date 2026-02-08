@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 /**
  * @method self links(array $links)
  */
-class FeedCardMessage extends Message
+class FeedCardMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

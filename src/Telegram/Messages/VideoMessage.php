@@ -31,7 +31,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self video(mixed $video)
  * @method self width(mixed $width)
  */
-class VideoMessage extends Message
+class VideoMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

@@ -15,6 +15,9 @@ namespace Guanguans\Notify\QQ;
 
 use Guanguans\Notify\Foundation\Authenticators\BearerAuthenticator;
 
+/**
+ * @api
+ */
 class Authenticator extends BearerAuthenticator
 {
     public function __construct(

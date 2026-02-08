@@ -21,7 +21,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self text(mixed $text)
  * @method self title(mixed $title)
  */
-class BtnsActionCardMessage extends Message
+class BtnsActionCardMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

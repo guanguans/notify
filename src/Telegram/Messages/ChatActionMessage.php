@@ -18,7 +18,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self chatId(mixed $chatId)
  * @method self messageThreadId(mixed $messageThreadId)
  */
-class ChatActionMessage extends Message
+class ChatActionMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

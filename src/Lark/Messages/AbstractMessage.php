@@ -11,20 +11,23 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-namespace Guanguans\Notify\WeWork\Messages;
+namespace Guanguans\Notify\Lark\Messages;
 
-abstract class Message extends \Guanguans\Notify\Foundation\Message
+abstract class AbstractMessage extends \Guanguans\Notify\Foundation\Message
 {
     final public function toHttpUri(): string
     {
-        return 'cgi-bin/webhook/send?key={token}';
+        return 'open-apis/bot/v2/hook/{token}';
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     protected function toPayload(): array
     {
         return [
-            'msgtype' => $this->type(),
-            $this->type() => parent::toPayload(),
+            'msg_type' => $this->type(),
+            'content' => parent::toPayload(),
         ];
     }
 

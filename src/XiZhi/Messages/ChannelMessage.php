@@ -20,7 +20,7 @@ namespace Guanguans\Notify\XiZhi\Messages;
  * @method self title(mixed $title)
  * @method self type(mixed $type)
  */
-class ChannelMessage extends Message
+class ChannelMessage extends AbstractMessage
 {
     public function toHttpUri(): string
     {

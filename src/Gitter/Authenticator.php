@@ -17,6 +17,9 @@ use Guanguans\Notify\Foundation\Authenticators\AggregateAuthenticator;
 use Guanguans\Notify\Foundation\Authenticators\BearerAuthenticator;
 use Guanguans\Notify\Foundation\Authenticators\UriTemplateAuthenticator;
 
+/**
+ * @api
+ */
 class Authenticator extends AggregateAuthenticator
 {
     public function __construct(

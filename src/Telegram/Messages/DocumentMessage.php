@@ -27,7 +27,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self replyParameters(mixed $replyParameters)
  * @method self thumbnail(mixed $thumbnail)
  */
-class DocumentMessage extends Message
+class DocumentMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

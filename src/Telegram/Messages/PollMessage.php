@@ -36,7 +36,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self replyParameters(mixed $replyParameters)
  * @method self type(mixed $type)
  */
-class PollMessage extends Message
+class PollMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

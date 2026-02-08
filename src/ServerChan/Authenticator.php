@@ -15,6 +15,9 @@ namespace Guanguans\Notify\ServerChan;
 
 use Guanguans\Notify\Foundation\Authenticators\OptionsAuthenticator;
 
+/**
+ * @api
+ */
 class Authenticator extends OptionsAuthenticator
 {
     public function __construct(

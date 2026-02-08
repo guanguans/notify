@@ -16,7 +16,7 @@ namespace Guanguans\Notify\Lark\Messages;
 /**
  * @method self shareChatId(mixed $shareChatId)
  */
-class ShareChatMessage extends Message
+class ShareChatMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

@@ -20,7 +20,7 @@ namespace Guanguans\Notify\DingTalk\Messages;
  * @method self text(mixed $text)
  * @method self title(mixed $title)
  */
-class SingleActionCardMessage extends Message
+class SingleActionCardMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

@@ -25,7 +25,7 @@ namespace Guanguans\Notify\Telegram\Messages;
  * @method self replyParameters(mixed $replyParameters)
  * @method self vcard(mixed $vcard)
  */
-class ContactMessage extends Message
+class ContactMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

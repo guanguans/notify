@@ -27,7 +27,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self replyParameters(array $replyParameters)
  * @method self text(mixed $text)
  */
-class TextMessage extends Message
+class TextMessage extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [
