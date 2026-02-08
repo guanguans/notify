@@ -33,7 +33,7 @@ class BtnsActionCardMessage extends Message
 
     /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
-        'btns' => 'array',
+        'btns' => 'array[]',
     ];
 
     /** @var array<string, mixed> */
@@ -43,6 +43,8 @@ class BtnsActionCardMessage extends Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $btn
      */
     public function addBtn(array $btn): self
     {

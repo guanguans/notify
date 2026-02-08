@@ -15,7 +15,7 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 /**
  * @method self caption(mixed $caption)
- * @method self captionEntities(mixed $captionEntities)
+ * @method self captionEntities(array $captionEntities)
  * @method self chatId(mixed $chatId)
  * @method self disableNotification(mixed $disableNotification)
  * @method self hasSpoiler(mixed $hasSpoiler)
@@ -43,6 +43,11 @@ class PhotoMessage extends Message
         'reply_markup',
     ];
 
+    /** @var array<string, list<string>|string> */
+    protected array $allowedTypes = [
+        'caption_entities' => 'array[]',
+    ];
+
     /** @var array<string, mixed> */
     protected array $options = [
         'caption_entities' => [],
@@ -55,6 +60,8 @@ class PhotoMessage extends Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $captionEntity
      */
     public function addCaptionEntity(array $captionEntity): self
     {

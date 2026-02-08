@@ -23,7 +23,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self correctOptionId(mixed $correctOptionId)
  * @method self disableNotification(mixed $disableNotification)
  * @method self explanation(mixed $explanation)
- * @method self explanationEntities(mixed $explanationEntities)
+ * @method self explanationEntities(array $explanationEntities)
  * @method self explanationParseMode(mixed $explanationParseMode)
  * @method self isAnonymous(mixed $isAnonymous)
  * @method self isClosed(mixed $isClosed)
@@ -60,6 +60,11 @@ class PollMessage extends Message
         'reply_markup',
     ];
 
+    /** @var array<string, list<string>|string> */
+    protected array $allowedTypes = [
+        'explanation_entities' => 'array[]',
+    ];
+
     /** @var array<string, mixed> */
     protected array $options = [
         'explanation_entities' => [],
@@ -67,6 +72,8 @@ class PollMessage extends Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $explanationEntity
      */
     public function addExplanationEntity(array $explanationEntity): self
     {

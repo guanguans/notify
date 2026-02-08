@@ -191,6 +191,8 @@ $client->setHandlerStackResolver(static fn (Client $client): HandlerStack => arr
 
 ```shell
 composer checks:required
+composer notify:generate-ide-json
+composer notify:platform-lint
 composer php-cs-fixer:fix
 composer test
 ```

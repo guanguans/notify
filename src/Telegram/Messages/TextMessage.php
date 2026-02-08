@@ -50,7 +50,7 @@ class TextMessage extends Message
 
     /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
-        'entities' => 'array',
+        'entities' => 'array[]',
         'link_preview_options' => 'array',
         'disable_notification' => 'bool',
         'protect_content' => 'bool',
@@ -70,6 +70,8 @@ class TextMessage extends Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $entity
      */
     public function addEntity(array $entity): self
     {

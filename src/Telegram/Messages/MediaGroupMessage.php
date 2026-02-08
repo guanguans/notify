@@ -38,7 +38,7 @@ class MediaGroupMessage extends Message
 
     /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
-        'media' => 'array',
+        'media' => 'array[]',
     ];
 
     /** @var array<string, mixed> */
@@ -48,6 +48,8 @@ class MediaGroupMessage extends Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $media
      */
     public function addMedia(array $media): self
     {

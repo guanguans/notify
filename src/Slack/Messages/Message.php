@@ -59,8 +59,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
-        'attachments' => 'array',
-        'blocks' => 'array',
+        'attachments' => 'array[]',
+        'blocks' => 'array[]',
         'as_user' => 'bool',
         'link_names' => 'bool',
         'metadata' => 'array',
@@ -78,6 +78,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $attachment
      */
     public function addAttachment(array $attachment): self
     {
@@ -88,6 +90,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $block
      */
     public function addBlock(array $block): self
     {

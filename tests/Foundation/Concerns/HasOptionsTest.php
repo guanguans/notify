@@ -77,7 +77,9 @@ it('can get options', function (): void {
         protected array $allowedValues = ['foo' => ['foo', 'bar']];
 
         /** @var array<string, list<string>|string> */
-        protected array $allowedTypes = ['foo' => ['string']];
+        protected array $allowedTypes = [
+            'foo' => ['string'],
+        ];
 
         /** @var array<string, string> */
         protected array $infos = ['foo' => 'Invalid foo.'];

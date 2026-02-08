@@ -214,7 +214,7 @@ parameters:
         - identifier: trait.unused
         - message: '#^Call to an undefined method Symfony\\Component\\OptionsResolver\\OptionsResolver\:\:setOptions\(\)\.$#'
         - message: '#^Class Guanguans\\Notify\\.*\\Messages\\.*Message has PHPDoc tag @method for method .*\(\) parameter \#1 \$.* with no value type specified in iterable type array\.$#'
-        - message: '#^Method Guanguans\\Notify\\.*\\Messages\\.*Message\:\:add.*\(\) has parameter \$.* with no value type specified in iterable type array\.$#'
+#        - message: '#^Method Guanguans\\Notify\\.*\\Messages\\.*Message\:\:add.*\(\) has parameter \$.* with no value type specified in iterable type array\.$#'
         - message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient has PHPDoc tag @method for method .*\(\) parameter \#1 \$.* with no value type specified in iterable type array\.$#'
 
         - identifier: offsetAccess.nonOffsetAccessible

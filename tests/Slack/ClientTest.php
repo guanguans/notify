@@ -28,16 +28,18 @@ it('can send message', function (): void {
     $client = new Client($authenticator);
     $message = Message::make([
         'channel' => '#general',
-        'attachments' => $attachment = [
-            'fallback' => 'This is fallback.',
-            'text' => 'This is text.',
-            'pretext' => 'This is pretext.',
-            'color' => '#36a64f',
-            'fields' => [
-                [
-                    'title' => 'This is title.',
-                    'value' => 'This is value.',
-                    'short' => false,
+        'attachments' => [
+            $attachment = [
+                'fallback' => 'This is fallback.',
+                'text' => 'This is text.',
+                'pretext' => 'This is pretext.',
+                'color' => '#36a64f',
+                'fields' => [
+                    [
+                        'title' => 'This is title.',
+                        'value' => 'This is value.',
+                        'short' => false,
+                    ],
                 ],
             ],
         ],

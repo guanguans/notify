@@ -27,7 +27,7 @@ class FeedCardMessage extends Message
 
     /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
-        'links' => 'array',
+        'links' => 'array[]',
     ];
 
     /** @var array<string, mixed> */
@@ -37,6 +37,8 @@ class FeedCardMessage extends Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $link
      */
     public function addLink(array $link): self
     {

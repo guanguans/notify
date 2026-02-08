@@ -71,6 +71,8 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $slide
      */
     final public function addSlide(array $slide): self
     {
@@ -81,6 +83,8 @@ abstract class Message extends \Guanguans\Notify\Foundation\Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $button
      */
     final public function addButton(array $button): self
     {

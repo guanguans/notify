@@ -77,7 +77,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'tags' => 'array',
-        'actions' => 'array',
+        'actions' => 'array[]',
     ];
 
     /** @var array<string, mixed> */
@@ -87,6 +87,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $action
      */
     public function addAction(array $action): self
     {

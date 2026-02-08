@@ -27,7 +27,7 @@ class NewsMessage extends Message
 
     /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
-        'articles' => 'array',
+        'articles' => 'array[]',
     ];
 
     /** @var array<string, mixed> */
@@ -37,6 +37,8 @@ class NewsMessage extends Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $article
      */
     public function addArticle(array $article): self
     {

@@ -46,7 +46,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
-        'attachments' => 'array',
+        'attachments' => 'array[]',
         'tshow' => 'bool',
     ];
 
@@ -57,6 +57,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $attachment
      */
     public function addAttachment(array $attachment): self
     {

@@ -187,10 +187,7 @@ final class ComposerScripts
         }
 
         dump(
-            $rectorConfig
-                ->make(PhpDocInfoFactory::class)
-                ->createFromNode($node)
-                ?->getPhpDocNode(),
+            $rectorConfig->make(PhpDocInfoFactory::class)->createFromNode($node)?->getPhpDocNode(),
             $node->getDocComment()?->getText(),
         );
     }

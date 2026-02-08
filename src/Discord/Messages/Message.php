@@ -50,7 +50,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'tts' => 'bool',
-        'embeds' => 'array',
+        'embeds' => 'array[]',
         'allowed_mentions' => 'array',
         'components' => 'array',
         'files' => 'array',
@@ -64,6 +64,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $embed
      */
     public function addEmbed(array $embed): self
     {

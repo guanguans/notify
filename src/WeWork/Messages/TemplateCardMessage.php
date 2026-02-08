@@ -55,12 +55,12 @@ class TemplateCardMessage extends Message
         'main_title' => 'array',
         'emphasis_content' => 'array',
         'quote_area' => 'array',
-        'horizontal_content_list' => 'array',
-        'jump_list' => 'array',
+        'horizontal_content_list' => 'array[]',
+        'jump_list' => 'array[]',
         'card_action' => 'array',
         'card_image' => 'array',
         'image_text_area' => 'array',
-        'vertical_content_list' => 'array',
+        'vertical_content_list' => 'array[]',
     ];
 
     /** @var array<string, mixed> */
@@ -72,6 +72,8 @@ class TemplateCardMessage extends Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $horizontalContent
      */
     public function addHorizontalContent(array $horizontalContent): self
     {
@@ -82,6 +84,8 @@ class TemplateCardMessage extends Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $jump
      */
     public function addJump(array $jump): self
     {
@@ -92,6 +96,8 @@ class TemplateCardMessage extends Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $verticalContent
      */
     public function addVerticalContent(array $verticalContent): self
     {

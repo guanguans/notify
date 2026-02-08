@@ -52,8 +52,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected array $allowedTypes = [
         'hideOriginalBody' => 'bool',
         'expectedActors' => 'array',
-        'sections' => 'array',
-        'potentialAction' => 'array',
+        'sections' => 'array[]',
+        'potentialAction' => 'array[]',
     ];
 
     /** @var array<string, mixed> */
@@ -67,6 +67,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $section
      */
     public function addSection(array $section): self
     {
@@ -77,6 +79,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     /**
      * @api
+     *
+     * @param array<array-key, mixed> $potentialAction
      */
     public function addPotentialAction(array $potentialAction): self
     {
