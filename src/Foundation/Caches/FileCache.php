@@ -141,7 +141,7 @@ class FileCache implements CacheInterface
 
     private function filePathFromKey(string $key): string
     {
-        return $this->directory.\DIRECTORY_SEPARATOR.'cache-'.hash('md5', $key); // @pest-mutate-ignore
+        return $this->directory.\DIRECTORY_SEPARATOR.'cache-'.hash('xxh3', $key); // @pest-mutate-ignore
     }
 
     private function expiration(null|\DateInterval|int $seconds): int

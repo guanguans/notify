@@ -79,23 +79,13 @@ final class MessageRector extends AbstractRector
         $allowedTypes = (new \ReflectionClass($class))->getDefaultProperties()['allowedTypes'] ?? [];
         $phpDocInfo = $this->phpDocInfoFactory->createEmpty($classNode);
 
-        $this->definedFor($class)
+        collect(Utils::definedFor($class))
+            ->filter(static fn (string $option): bool => !str($option)->is(['*@*']))
+            ->sort()
             ->each(fn (string $option) => $phpDocInfo->addPhpDocTagNode(
                 $this->createPhpDocTagNodeOfMethod($option, $allowedTypes)
             ))
             ->whenNotEmpty(fn () => $this->docBlockUpdater->updateRefactoredNodeWithPhpDocInfo($classNode));
-    }
-
-    /**
-     * @param class-string<\Guanguans\Notify\Foundation\Message> $class
-     *
-     * @throws \ReflectionException
-     */
-    private function definedFor(string $class): Collection
-    {
-        return collect(Utils::definedFor($class))
-            ->filter(static fn (string $option): bool => !str($option)->is(['*@*']))
-            ->sort();
     }
 
     /**
@@ -129,22 +119,99 @@ final class MessageRector extends AbstractRector
         return new PhpDocTagNode('@method', new GenericTagValueNode("self $camelCasedOption($parameter)"));
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     private function updateAllowedTypesProperty(Class_ $classNode): void
     {
-        collect($classNode->getMethods())
+        // $defined = Utils::definedFor($this->getName($classNode));
+        $allowedTypes = collect($classNode->getMethods())
             ->filter(
                 fn (ClassMethod $classMethodNode): bool => 1 === \count($classMethodNode->params)
                     && str_starts_with($this->getName($classMethodNode), 'add')
             )
             ->mapWithKeys(function (ClassMethod $classMethodNode): array {
-                $option = str($this->getName($classMethodNode))->after('add')->snake()->plural()->toString();
+                // $rawOption = str($this->getName($classMethodNode))->after('add');
+                // $caster = collect([
+                //     static fn (string $name): string => $name,
+                //     static fn (string $name): string => Str::snake($name),
+                //     Str::camel(...),
+                //     Str::pascal(...),
+                //     Str::kebab(...),
+                // ])
+                //     ->flatMap(static fn (\Closure $caster): array => [
+                //         $caster,
+                //         static fn (string $name): string => $caster(\Illuminate\Support\Str::plural($name)),
+                //     ])
+                //     ->firstOrFail(fn (\Closure $caster) => $rawOption->pipe($caster)->is($defined));
+                // $option = $rawOption->pipe($caster)->toString();
+                $option = $this->valueResolver->getValue($classMethodNode->stmts[0]->expr->var->var->dim);
 
-                return [$option => $classMethodNode->params[0]->type->toString()];
-            })
-            ->dump();
+                return [$option => $this->getName($classMethodNode->params[0]->type).'[]'];
+            });
+
+        if ($allowedTypes->isEmpty()) {
+            return;
+        }
+
+        $allowedTypesPropertyNode = collect($classNode->stmts)->first(
+            fn (Stmt $stmtNode): bool => $stmtNode instanceof Property && $this->isName($stmtNode, 'allowedTypes')
+        );
+
+        if (
+            !$allowedTypesPropertyNode instanceof Property
+            || !($defaultNode = $allowedTypesPropertyNode->props[0]->default) instanceof Array_
+        ) {
+            array_splice($classNode->stmts, 1, 0, [
+                (new PropertyBuilder('allowedTypes'))
+                    ->makeProtected()
+                    ->setDocComment('/** @var array<string, list<string>|string> */')
+                    ->setType('array')
+                    ->setDefault($allowedTypes->all())
+                    ->getNode(),
+            ]);
+
+            return;
+        }
+
+        $value = $this->valueResolver->getValue($defaultNode);
+        $allowedTypes->diffAssoc($value)->each(
+            function (string $allowedType, string $option) use ($defaultNode): void {
+                $arrayItemNode = collect($defaultNode->items)->first(
+                    fn (ArrayItem $arrayItemNode) => (string) $this->valueResolver->getValue($arrayItemNode->key) === $option,
+                );
+
+                if ($arrayItemNode) {
+                    $arrayItemNode->value->value = $allowedType;
+
+                    return;
+                }
+
+                $defaultNode->items[] = new ArrayItem(new String_($allowedType), new String_($option));
+            }
+        );
+
+        // $newValue = [...$value, ...$allowedTypes->all()];
+        //
+        // if ($value !== $newValue) {
+        //     $allowedTypesPropertyNode->props[0]->default = $this->nodeFactory->createArray($newValue);
+        // }
+
+        // collect($defaultNode->items)
+        //     ->each(function (ArrayItem $arrayItemNode): void {
+        //         $key = (string) $this->valueResolver->getValue($arrayItemNode->key);
+        //
+        //         if (!isset($allowedTypes[$key])) {
+        //             return;
+        //         }
+        //
+        //         $arrayItemNode->value->value = $allowedTypes[$key];
+        //     });
     }
 
     /**
+     * @throws \ReflectionException
+     *
      * @noinspection PhpPossiblePolymorphicInvocationInspection
      */
     private function updateMethodsOfListTypeOption(Class_ $classNode): void
@@ -175,6 +242,7 @@ final class MessageRector extends AbstractRector
                 if (!$optionsPropertyNode instanceof Property) {
                     $classNode->stmts[] = (new PropertyBuilder('options'))
                         ->makeProtected()
+                        ->setDocComment('/** @var array<string, mixed> */')
                         ->setType('array')
                         ->setDefault($allowedTypes->map(static fn (): array => [])->all())
                         ->getNode();
@@ -218,7 +286,7 @@ final class MessageRector extends AbstractRector
                                 /**
                                  * @api
                                  */
-                                final public function add%s(%s $%s): self
+                                %spublic function add%s(%s $%s): self
                                 {
                                     $this->options['%s'][] = $%s;
 
@@ -226,8 +294,18 @@ final class MessageRector extends AbstractRector
                                 }
                             }
                             PHP,
+                        (new \ReflectionClass($this->getName($classNode)))->isAbstract() ? 'final ' : ' ',
                         str($option)->singular()->studly(),
                         str($allowedType)->beforeLast('[]'),
+                        // match ($type = str($allowedType)->beforeLast('[]')) {
+                        //     'array' => <<<'DOCBLOCK'
+                        //         /**
+                        //          * @param array<array-key, mixed> $array
+                        //          */
+                        //         DOCBLOCK
+                        //     ,
+                        //     default => $type,
+                        // },
                         $camelSingularOption = str($option)->singular()->camel(),
                         $option,
                         $camelSingularOption,
