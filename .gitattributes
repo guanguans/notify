@@ -36,7 +36,7 @@
 /.*/           export-ignore
 /baselines/    export-ignore
 /benchmarks/   export-ignore
-#/docs/         export-ignore
+/docs/         export-ignore
 #/examples/     export-ignore
 /tests/        export-ignore
 /vendor-bin/   export-ignore
@@ -56,8 +56,7 @@
 /phpbench.json.dist                 export-ignore
 /phpstan.neon.dist                  export-ignore
 /phpunit.xml.dist                   export-ignore
-/rector-*.php                       export-ignore
-/rector.php                         export-ignore
+/rector.dist.php                    export-ignore
 /rule-doc-generator                 export-ignore
 /testbench.yaml                     export-ignore
 /tests.*                            export-ignore

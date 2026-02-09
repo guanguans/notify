@@ -18,6 +18,7 @@ use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Exceptions\LogicException;
 use Guanguans\Notify\Foundation\Exceptions\RequestException;
+use Guanguans\Notify\Foundation\Exceptions\RuntimeException;
 use Guanguans\Notify\Foundation\Support\Arr;
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Psr7\Message;
@@ -255,7 +256,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
         $resource = \is_string($resourceOrPath) ? fopen($resourceOrPath, 'wb+') : $resourceOrPath;
 
         if (false === $resource) {
-            throw new LogicException('Unable to open the resource.');
+            throw new RuntimeException('Unable to open the resource.');
         }
 
         rewind($resource);

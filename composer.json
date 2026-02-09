@@ -351,8 +351,9 @@
             "ls -lh builds/notify.phar",
             "ls -lr builds/notify.phar"
         ],
+        "notify:generate-gitleaks-ignore": "Guanguans\\Notify\\Foundation\\Support\\ComposerScripts::generateGitleaksIgnore",
         "notify:generate-ide-json": "Guanguans\\Notify\\Foundation\\Support\\ComposerScripts::generateIdeJson",
-        "notify:phpdoc-parse": "Guanguans\\Notify\\Foundation\\Support\\ComposerScripts::phpdocParse",
+        "notify:phpdoc-parse": "Guanguans\\RectorRules\\Support\\ComposerScripts::phpdocParse",
         "notify:platform-lint": "Guanguans\\Notify\\Foundation\\Support\\ComposerScripts::platformLint",
         "peck": [
             "@putenv:php",

@@ -37,6 +37,9 @@ final class CreateInstanceBench
         new Authenticator('yetwhxBm7wCBSUTjeqh');
     }
 
+    /**
+     * @throws \ReflectionException
+     */
     public function benchCreateMessage(): void
     {
         Message::make([

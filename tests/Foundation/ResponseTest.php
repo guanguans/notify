@@ -184,7 +184,7 @@ it('will throw LogicException when save to unable open the resource', function (
     )->saveAs(fake()->filePath());
 })
     ->group(__DIR__, __FILE__)
-    ->throws(LogicException::class);
+    ->throws(RuntimeException::class);
 
 it('can save to resource or file', function (): void {
     /** @noinspection PhpVoidFunctionResultUsedInspection */

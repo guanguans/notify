@@ -18,12 +18,8 @@ namespace Guanguans\Notify\Foundation\Support;
 
 use Composer\Script\Event;
 use Illuminate\Support\Collection;
-use PhpParser\Comment\Doc;
-use PhpParser\Node\Stmt\Nop;
-use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Config\RectorConfig;
 use Rector\DependencyInjection\LazyContainerFactory;
-use Rector\PhpParser\Parser\SimplePhpParser;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputDefinition;
@@ -33,6 +29,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
+use Symfony\Component\Process\ExecutableFinder;
+use Symfony\Component\Process\PhpSubprocess;
 use function Guanguans\RectorRules\Support\classes;
 
 /**
@@ -163,34 +161,32 @@ final class ComposerScripts
     }
 
     /**
-     * @see vendor/nikic/php-parser/bin/php-parse
-     *
-     * @throws \Illuminate\Contracts\Container\BindingResolutionException
-     *
-     * @noinspection ForgottenDebugOutputInspection
-     * @noinspection DebugFunctionUsageInspection
+     * @throws \JsonException
      */
-    public static function phpdocParse(Event $event): void
+    public static function generateGitleaksIgnore(Event $event): int
     {
         self::requireAutoload($event);
 
-        $rectorConfig = self::makeRectorConfig();
-        $path = self::makeArgvInput()->getParameterOption('--path', false, true);
+        $file = __DIR__.'/../../../gitleaks-baseline.json';
 
-        if ($path) {
-            $node = $rectorConfig->make(SimplePhpParser::class)->parseFile($path)[0];
-        } else {
-            do {
-                $docComment = $event->getIO()->ask(\sprintf('Please provide a doc comment to parse:%s', \PHP_EOL));
-            } while (blank($docComment));
-
-            $node = tap(new Nop)->setDocComment(new Doc($docComment));
+        if (!file_exists($file)) {
+            (new PhpSubprocess([
+                (new ExecutableFinder)->find($composer = 'composer', $composer),
+                'run',
+                'gitleaks:generate-baseline',
+                '--ansi',
+                '-v',
+            ]))->mustRun(static fn (string $_, string $buffer) => $event->getIO()->writeRaw($buffer));
         }
 
-        dump(
-            $rectorConfig->make(PhpDocInfoFactory::class)->createFromNode($node)?->getPhpDocNode(),
-            $node->getDocComment()?->getText(),
-        );
+        collect(json_decode(file_get_contents($file), true, 512, \JSON_THROW_ON_ERROR))
+            ->pluck('Fingerprint')
+            ->each(static fn (string $fingerprint) => $event->getIO()->info($fingerprint));
+
+        $event->getIO()->info('');
+        $event->getIO()->info('No errors');
+
+        return 0;
     }
 
     public static function makeRectorConfig(): RectorConfig

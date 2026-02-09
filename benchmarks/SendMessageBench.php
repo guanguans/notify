@@ -30,6 +30,9 @@ final class SendMessageBench
     private AbstractMessage $message;
     private \Guanguans\Notify\Foundation\Client $client;
 
+    /**
+     * @throws \ReflectionException
+     */
     public function setUp(): void
     {
         $this->message = Message::make([

@@ -207,10 +207,10 @@ composer benchmark
 +---------------------+--------------------------+-----+-------+-----+----------+-----------+--------+
 | benchmark           | subject                  | set | revs  | its | mem_peak | mode      | rstdev |
 +---------------------+--------------------------+-----+-------+-----+----------+-----------+--------+
-| SendMessageBench    | benchSendMessage         |     | 10000 | 3   | 9.345mb  | 186.142μs | ±0.05% |
-| CreateInstanceBench | benchCreateAuthenticator |     | 10000 | 3   | 6.970mb  | 0.775μs   | ±0.44% |
-| CreateInstanceBench | benchCreateMessage       |     | 10000 | 3   | 6.970mb  | 1.776μs   | ±0.56% |
-| CreateInstanceBench | benchCreateClient        |     | 10000 | 3   | 7.410mb  | 12.889μs  | ±0.58% |
+| SendMessageBench    | benchSendMessage         |     | 10000 | 3   | 6.432mb  | 156.609μs | ±0.33% |
+| CreateInstanceBench | benchCreateAuthenticator |     | 10000 | 3   | 5.208mb  | 0.657μs   | ±0.68% |
+| CreateInstanceBench | benchCreateMessage       |     | 10000 | 3   | 5.208mb  | 1.769μs   | ±0.20% |
+| CreateInstanceBench | benchCreateClient        |     | 10000 | 3   | 82.791mb | 13.827μs  | ±0.40% |
 +---------------------+--------------------------+-----+-------+-----+----------+-----------+--------+
 ```
 
