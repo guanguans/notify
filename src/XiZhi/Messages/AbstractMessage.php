@@ -20,7 +20,7 @@ namespace Guanguans\Notify\XiZhi\Messages;
  * @method self title(mixed $title)
  * @method self type(mixed $type)
  */
-abstract class AbstractMessage extends \Guanguans\Notify\Foundation\Message
+abstract class AbstractMessage extends \Guanguans\Notify\Foundation\AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

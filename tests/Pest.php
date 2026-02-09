@@ -22,8 +22,8 @@ declare(strict_types=1);
 
 use Faker\Factory;
 use Faker\Generator;
+use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Client;
-use Guanguans\Notify\Foundation\Message;
 use Guanguans\NotifyTests\TestCase;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
@@ -77,7 +77,7 @@ expect()->extend(
         ->toBeLessThanOrEqual($max)
 );
 
-expect()->extend('assertCanSendMessage', function (Message $message): Expectation {
+expect()->extend('assertCanSendMessage', function (AbstractMessage $message): Expectation {
     $this->toBeInstanceOf(Client::class);
 
     $client = $this->value;

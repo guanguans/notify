@@ -15,7 +15,7 @@ namespace Guanguans\Notify\DingTalk\Messages;
 
 use Guanguans\Notify\Foundation\Support\Arr;
 
-abstract class AbstractMessage extends \Guanguans\Notify\Foundation\Message
+abstract class AbstractMessage extends \Guanguans\Notify\Foundation\AbstractMessage
 {
     final public function toHttpUri(): string
     {

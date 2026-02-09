@@ -13,13 +13,15 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\YiFengChuanHua\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
+
 /**
  * @method self body(mixed $body)
  * @method self delayMilliseconds(mixed $delayMilliseconds)
  * @method self head(mixed $head)
  * @method self url(mixed $url)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     /** @var list<string> */
     protected array $required = [

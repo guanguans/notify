@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Zulip\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsFormParams;
 
 /**
@@ -24,7 +25,7 @@ use Guanguans\Notify\Foundation\Concerns\AsFormParams;
  * @method self topic(mixed $topic)
  * @method self type(mixed $type)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     use AsFormParams;
 

@@ -28,7 +28,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self threadMessageId(mixed $threadMessageId)
  * @method self threadTitle(mixed $threadTitle)
  */
-abstract class AbstractMessage extends \Guanguans\Notify\Foundation\Message
+abstract class AbstractMessage extends \Guanguans\Notify\Foundation\AbstractMessage
 {
     /** @var list<string> */
     protected array $required = [

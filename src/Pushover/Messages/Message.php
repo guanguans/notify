@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Pushover\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 
 /**
@@ -32,7 +33,7 @@ use Guanguans\Notify\Foundation\Concerns\AsMultipart;
  * @method self url(mixed $url)
  * @method self urlTitle(mixed $urlTitle)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     use AsMultipart;
 

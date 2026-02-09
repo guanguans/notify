@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Slack\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 
 /**
@@ -33,7 +34,7 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
  * @method self unfurlMedia(bool $unfurlMedia)
  * @method self username(mixed $username)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     use AsNullUri;
 

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Ntfy\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -36,7 +37,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self topic(mixed $topic)
  * @method self unifiedPush(mixed $unifiedPush)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     use AsNullUri;
 

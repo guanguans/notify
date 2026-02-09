@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Pushback\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
+
 /**
  * @method self action1(mixed $action1)
  * @method self action2(mixed $action2)
@@ -21,7 +23,7 @@ namespace Guanguans\Notify\Pushback\Messages;
  * @method self reply(mixed $reply)
  * @method self title(mixed $title)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     /** @var list<string> */
     protected array $required = [

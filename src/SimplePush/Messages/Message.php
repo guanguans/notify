@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\SimplePush\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 
 /**
@@ -22,7 +23,7 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
  * @method self msg(mixed $msg)
  * @method self title(mixed $title)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     use AsNullUri;
 

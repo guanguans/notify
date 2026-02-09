@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Push\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Support\Arr;
 
 /**
@@ -25,7 +26,7 @@ use Guanguans\Notify\Foundation\Support\Arr;
  * @method self timeSensitive(bool $timeSensitive)
  * @method self title(mixed $title)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

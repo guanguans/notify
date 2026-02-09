@@ -34,7 +34,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method (array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}>) deprecated()
  * @method (array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed>) normalizers()
  *
- * @mixin \Guanguans\Notify\Foundation\Message
+ * @mixin \Guanguans\Notify\Foundation\AbstractMessage
  */
 trait HasOptions
 {

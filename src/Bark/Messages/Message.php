@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Bark\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
+
 /**
  * @method self autoCopy(mixed $autoCopy)
  * @method self badge(mixed $badge)
@@ -26,7 +28,7 @@ namespace Guanguans\Notify\Bark\Messages;
  * @method self title(mixed $title)
  * @method self url(mixed $url)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

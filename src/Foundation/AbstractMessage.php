@@ -17,6 +17,7 @@ use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Concerns\HasOptions;
+use Guanguans\Notify\Foundation\Contracts\Message;
 use Guanguans\Notify\Foundation\Support\Arr;
 use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\Psr7\MultipartStream;
@@ -27,7 +28,7 @@ use const Guanguans\Notify\Foundation\Support\MULTIPART_TRY_OPEN_FILE;
  *
  * @template-implements \ArrayAccess<string, mixed>
  */
-abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
+abstract class AbstractMessage implements \ArrayAccess, \Stringable, Message
 {
     use AsJson;
     use AsPost;

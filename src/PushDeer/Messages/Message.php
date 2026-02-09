@@ -13,12 +13,14 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\PushDeer\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
+
 /**
  * @method self desp(mixed $desp)
  * @method self text(mixed $text)
  * @method self type(mixed $type)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

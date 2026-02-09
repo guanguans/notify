@@ -104,6 +104,7 @@ class Authenticator extends NullAuthenticator implements \Stringable
     {
         return Middleware::mapRequest(
             function (RequestInterface $request): RequestInterface {
+                /** @var array{scheme: string, host: string} $parsedBaseUri */
                 $parsedBaseUri = parse_url($this->dataCenter->toBaseUri());
 
                 return $request->withUri(

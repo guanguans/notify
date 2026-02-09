@@ -227,6 +227,29 @@
             "condition": [
                 {
                     "classFqn": [
+                        "Guanguans\\Notify\\DingTalk\\Messages\\AbstractMessage"
+                    ],
+                    "newClassFqn": [
+                        "Guanguans\\Notify\\DingTalk\\Messages\\AbstractMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": []
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
                         "Guanguans\\Notify\\DingTalk\\Messages\\BtnsActionCardMessage"
                     ],
                     "newClassFqn": [
@@ -330,29 +353,6 @@
                     "text",
                     "title"
                 ]
-            }
-        },
-        {
-            "complete": "staticStrings",
-            "condition": [
-                {
-                    "classFqn": [
-                        "Guanguans\\Notify\\DingTalk\\Messages\\Message"
-                    ],
-                    "newClassFqn": [
-                        "Guanguans\\Notify\\DingTalk\\Messages\\Message"
-                    ],
-                    "methodNames": [
-                        "make"
-                    ],
-                    "parameters": [
-                        1
-                    ],
-                    "place": "arrayKey"
-                }
-            ],
-            "options": {
-                "strings": []
             }
         },
         {
@@ -546,6 +546,29 @@
             "condition": [
                 {
                     "classFqn": [
+                        "Guanguans\\Notify\\Lark\\Messages\\AbstractMessage"
+                    ],
+                    "newClassFqn": [
+                        "Guanguans\\Notify\\Lark\\Messages\\AbstractMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": []
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
                         "Guanguans\\Notify\\Lark\\Messages\\CardMessage"
                     ],
                     "newClassFqn": [
@@ -593,29 +616,6 @@
                 "strings": [
                     "image_key"
                 ]
-            }
-        },
-        {
-            "complete": "staticStrings",
-            "condition": [
-                {
-                    "classFqn": [
-                        "Guanguans\\Notify\\Lark\\Messages\\Message"
-                    ],
-                    "newClassFqn": [
-                        "Guanguans\\Notify\\Lark\\Messages\\Message"
-                    ],
-                    "methodNames": [
-                        "make"
-                    ],
-                    "parameters": [
-                        1
-                    ],
-                    "place": "arrayKey"
-                }
-            ],
-            "options": {
-                "strings": []
             }
         },
         {
@@ -1355,6 +1355,29 @@
             "condition": [
                 {
                     "classFqn": [
+                        "Guanguans\\Notify\\Telegram\\Messages\\AbstractMessage"
+                    ],
+                    "newClassFqn": [
+                        "Guanguans\\Notify\\Telegram\\Messages\\AbstractMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": []
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
                         "Guanguans\\Notify\\Telegram\\Messages\\AnimationMessage"
                     ],
                     "newClassFqn": [
@@ -1654,29 +1677,6 @@
             "condition": [
                 {
                     "classFqn": [
-                        "Guanguans\\Notify\\Telegram\\Messages\\Message"
-                    ],
-                    "newClassFqn": [
-                        "Guanguans\\Notify\\Telegram\\Messages\\Message"
-                    ],
-                    "methodNames": [
-                        "make"
-                    ],
-                    "parameters": [
-                        1
-                    ],
-                    "place": "arrayKey"
-                }
-            ],
-            "options": {
-                "strings": []
-            }
-        },
-        {
-            "complete": "staticStrings",
-            "condition": [
-                {
-                    "classFqn": [
                         "Guanguans\\Notify\\Telegram\\Messages\\PhotoMessage"
                     ],
                     "newClassFqn": [
@@ -1963,6 +1963,29 @@
             "condition": [
                 {
                     "classFqn": [
+                        "Guanguans\\Notify\\WeWork\\Messages\\AbstractMessage"
+                    ],
+                    "newClassFqn": [
+                        "Guanguans\\Notify\\WeWork\\Messages\\AbstractMessage"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": []
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
                         "Guanguans\\Notify\\WeWork\\Messages\\FileMessage"
                     ],
                     "newClassFqn": [
@@ -2031,29 +2054,6 @@
                 "strings": [
                     "content"
                 ]
-            }
-        },
-        {
-            "complete": "staticStrings",
-            "condition": [
-                {
-                    "classFqn": [
-                        "Guanguans\\Notify\\WeWork\\Messages\\Message"
-                    ],
-                    "newClassFqn": [
-                        "Guanguans\\Notify\\WeWork\\Messages\\Message"
-                    ],
-                    "methodNames": [
-                        "make"
-                    ],
-                    "parameters": [
-                        1
-                    ],
-                    "place": "arrayKey"
-                }
-            ],
-            "options": {
-                "strings": []
             }
         },
         {
@@ -2200,10 +2200,10 @@
             "condition": [
                 {
                     "classFqn": [
-                        "Guanguans\\Notify\\XiZhi\\Messages\\ChannelMessage"
+                        "Guanguans\\Notify\\XiZhi\\Messages\\AbstractMessage"
                     ],
                     "newClassFqn": [
-                        "Guanguans\\Notify\\XiZhi\\Messages\\ChannelMessage"
+                        "Guanguans\\Notify\\XiZhi\\Messages\\AbstractMessage"
                     ],
                     "methodNames": [
                         "make"
@@ -2229,10 +2229,10 @@
             "condition": [
                 {
                     "classFqn": [
-                        "Guanguans\\Notify\\XiZhi\\Messages\\Message"
+                        "Guanguans\\Notify\\XiZhi\\Messages\\ChannelMessage"
                     ],
                     "newClassFqn": [
-                        "Guanguans\\Notify\\XiZhi\\Messages\\Message"
+                        "Guanguans\\Notify\\XiZhi\\Messages\\ChannelMessage"
                     ],
                     "methodNames": [
                         "make"

@@ -225,7 +225,7 @@ return RectorConfig::configure()
             __DIR__.'/src/Zulip/Authenticator.php',
         ],
         RemoveTraitUseRector::class => [
-            __DIR__.'/src/Foundation/Message.php',
+            __DIR__.'/src/Foundation/AbstractMessage.php',
         ],
         RenameParamToMatchTypeRector::class => [
             __DIR__.'/src/Foundation/Rectors/',

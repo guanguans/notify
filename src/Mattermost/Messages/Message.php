@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Mattermost\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
+
 /**
  * @method self channelId(mixed $channelId)
  * @method self createAt(mixed $createAt)
@@ -27,7 +29,7 @@ namespace Guanguans\Notify\Mattermost\Messages;
  * @method self rootId(mixed $rootId)
  * @method self type(mixed $type)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     /** @var list<string> */
     protected array $required = [

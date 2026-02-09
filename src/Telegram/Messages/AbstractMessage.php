@@ -15,7 +15,7 @@ namespace Guanguans\Notify\Telegram\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 
-abstract class AbstractMessage extends \Guanguans\Notify\Foundation\Message
+abstract class AbstractMessage extends \Guanguans\Notify\Foundation\AbstractMessage
 {
     use AsMultipart;
 }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\ZohoCliqWebHook\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
+use Guanguans\Notify\ZohoCliq\Messages\AbstractMessage;
 
 /**
  * @method self bot(array $bot)
@@ -26,7 +27,7 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
  * @method self threadMessageId(mixed $threadMessageId)
  * @method self threadTitle(mixed $threadTitle)
  */
-class Message extends \Guanguans\Notify\ZohoCliq\Messages\AbstractMessage
+class Message extends AbstractMessage
 {
     use AsNullUri;
 }

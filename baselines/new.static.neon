@@ -5,4 +5,4 @@ parameters:
         -
             message: '#^Unsafe usage of new static\(\)\.$#'
             count: 3
-            path: ../src/Foundation/Message.php
+            path: ../src/Foundation/AbstractMessage.php

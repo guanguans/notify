@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\IGot\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
+
 /**
  * @method self automaticallyCopy(mixed $automaticallyCopy)
  * @method self content(mixed $content)
@@ -22,7 +24,7 @@ namespace Guanguans\Notify\IGot\Messages;
  * @method self urgent(mixed $urgent)
  * @method self url(mixed $url)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

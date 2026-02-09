@@ -21,6 +21,7 @@ declare(strict_types=1);
 
 namespace Guanguans\NotifyTests\Foundation\Concerns;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsBody;
 use Guanguans\Notify\Foundation\Concerns\AsDelete;
 use Guanguans\Notify\Foundation\Concerns\AsGet;
@@ -29,11 +30,10 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Guanguans\Notify\Foundation\Concerns\AsPatch;
 use Guanguans\Notify\Foundation\Concerns\AsPut;
 use Guanguans\Notify\Foundation\Concerns\AsQuery;
-use Guanguans\Notify\Foundation\Message;
 
 it('can convert to body option', function (): void {
     expect(
-        (new class extends Message {
+        (new class extends AbstractMessage {
             use AsBody;
             use AsNullUri;
         })->toHttpOptions(),
@@ -42,7 +42,7 @@ it('can convert to body option', function (): void {
 
 it('can convert to query option', function (): void {
     expect(
-        (new class extends Message {
+        (new class extends AbstractMessage {
             use AsNullUri;
             use AsQuery;
         })->toHttpOptions(),

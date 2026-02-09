@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Foundation\Rectors;
 
-use Guanguans\Notify\Foundation\Message;
+use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Support\Str;
 use Guanguans\Notify\Foundation\Support\Utils;
 use Illuminate\Support\Collection;
@@ -63,7 +63,7 @@ final class MessageRector extends AbstractRector
      */
     public function refactor(Node $node): ?Node
     {
-        if (!is_subclass_of($this->getName($node), Message::class)) {
+        if (!is_subclass_of($this->getName($node), AbstractMessage::class)) {
             return null;
         }
 

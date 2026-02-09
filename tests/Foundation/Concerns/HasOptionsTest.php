@@ -22,15 +22,15 @@ declare(strict_types=1);
 
 namespace Guanguans\NotifyTests\Foundation\Concerns;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
-use Guanguans\Notify\Foundation\Message;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 it('will throw InvalidArgumentException when argument is empty', function (): void {
-    expect(new class(['foo' => 'bar']) extends Message {
+    expect(new class(['foo' => 'bar']) extends AbstractMessage {
         use AsNullUri;
 
         /** @var list<string> */
@@ -41,7 +41,7 @@ it('will throw InvalidArgumentException when argument is empty', function (): vo
     ->throws(InvalidArgumentException::class, '::foo] only accepts 1 argument, 0 given.');
 
 it('will throw BadMethodCallException when calling an undefined method', function (): void {
-    expect(new class(['foo' => 'bar']) extends Message {
+    expect(new class(['foo' => 'bar']) extends AbstractMessage {
         use AsNullUri;
 
         /** @var list<string> */
@@ -52,7 +52,7 @@ it('will throw BadMethodCallException when calling an undefined method', functio
     ->throws(BadMethodCallException::class);
 
 it('can get options', function (): void {
-    expect(new class(['foo' => 'foo']) extends Message {
+    expect(new class(['foo' => 'foo']) extends AbstractMessage {
         use AsNullUri;
 
         /** @var array<string, mixed> */
@@ -120,7 +120,7 @@ it('can get options', function (): void {
 })->group(__DIR__, __FILE__);
 
 it('can array access', function (): void {
-    $message = new class(['foo' => 'bar']) extends Message {
+    $message = new class(['foo' => 'bar']) extends AbstractMessage {
         use AsNullUri;
 
         /** @var list<string> */

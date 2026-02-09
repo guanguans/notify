@@ -13,11 +13,13 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ShowdocPush\Messages;
 
+use Guanguans\Notify\Foundation\AbstractMessage;
+
 /**
  * @method self content(mixed $content)
  * @method self title(mixed $title)
  */
-class Message extends \Guanguans\Notify\Foundation\Message
+class Message extends AbstractMessage
 {
     /** @var list<string> */
     protected array $defined = [

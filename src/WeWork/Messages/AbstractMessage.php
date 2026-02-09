@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
-abstract class AbstractMessage extends \Guanguans\Notify\Foundation\Message
+abstract class AbstractMessage extends \Guanguans\Notify\Foundation\AbstractMessage
 {
     final public function toHttpUri(): string
     {

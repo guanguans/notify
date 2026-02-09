@@ -116,7 +116,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      *
      * @throws \JsonException
      *
-     * @return array|mixed
+     * @return array<array-key, mixed>|mixed
      */
     public function json(mixed $key = null, mixed $default = null): mixed
     {
@@ -534,7 +534,10 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      */
     public function offsetExists(mixed $offset): bool
     {
-        return isset($this->json()[$offset]);
+        /** @var array<array-key, mixed> $decoded */
+        $decoded = $this->json();
+
+        return isset($decoded[$offset]);
     }
 
     /**
@@ -546,7 +549,7 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      */
     public function offsetGet(mixed $offset): mixed
     {
-        return $this->json()[$offset] ?? null;
+        return $this->json($offset);
     }
 
     /**

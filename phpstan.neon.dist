@@ -45,10 +45,9 @@ parameters:
     paths:
         - src/
     scanDirectories:
-        - vendor/rector/rector/vendor/symplify/rule-doc-generator-contracts/
+#        - vendor/rector/rector/vendor/symplify/rule-doc-generator-contracts/
     scanFiles:
-        - src/Foundation/Concerns/HasHttpClient.php
-        - vendor/composer/InstalledVersions.php
+#        - vendor/composer/InstalledVersions.php
     excludePaths:
         - src/Foundation/Rectors/
         - src/Foundation/Support/ComposerScripts.php
@@ -139,7 +138,6 @@ parameters:
 #        - identifier: symplify.forbiddenArrayMethodCall
 #        - identifier: symplify.forbiddenExtendOfNonAbstractClass
 #        - identifier: symplify.forbiddenNode
-#        - identifier: symplify.forbiddenStaticClassConstFetch
 #        - identifier: symplify.noArrayMapWithArrayCallable
 #        - identifier: symplify.noDynamicName
 #        - identifier: symplify.noReference
@@ -149,11 +147,6 @@ parameters:
 #        - identifier: typePerfect.noMixedMethodCaller
 #        - message: '#^Unused Guanguans\\Notify\\Rector\\.*\\.*\:\:__construct$#'
 
-        - identifier: argument.type
-        - identifier: arrayFilter.strict
-        - identifier: cast.int
-        - identifier: disallowed.function
-        - identifier: encapsedStringPart.nonString
         - identifier: ergebnis.final
         - identifier: ergebnis.finalInAbstractClass
         - identifier: ergebnis.noAssignByReference
@@ -165,18 +158,12 @@ parameters:
         - identifier: ergebnis.noParameterPassedByReference
         - identifier: ergebnis.noParameterWithNullableTypeDeclaration
         - identifier: ergebnis.noParameterWithNullDefaultValue
-        - identifier: guanguans.forbiddenSideEffects
-        - identifier: logicalAnd.resultUnused
-        - identifier: method.childParameterType
-        - identifier: method.dynamicName
-        - identifier: return.type
         - identifier: shipmonk.binaryOperationWithNull
         - identifier: shipmonk.checkedExceptionInCallable
         - identifier: shipmonk.forbiddenCast
         - identifier: shipmonk.iteratorToArrayWithoutPreserveKeys
         - identifier: shipmonk.nonNormalizedType
         - identifier: shipmonk.variableTypeOverwritten
-#        - identifier: symplify.explicitAbstractPrefixName
         - identifier: symplify.explicitInterfaceSuffixName
         - identifier: symplify.explicitTraitSuffixName
         - identifier: symplify.forbiddenExtendOfNonAbstractClass
@@ -188,10 +175,27 @@ parameters:
         - identifier: symplify.noReference
         - identifier: symplify.noReturnSetterMethod
         - identifier: symplify.requireExceptionNamespace
+
+        - identifier: argument.type
+        - identifier: arrayFilter.strict
+        - identifier: cast.int
+        - identifier: disallowed.function
+        - identifier: encapsedStringPart.nonString
+        - identifier: foreach.valueOverwrite
+        - identifier: guanguans.forbiddenSideEffects
+        - identifier: logicalAnd.resultUnused
+        - identifier: method.childParameterType
+        - identifier: method.dynamicName
+        - identifier: return.type
         - identifier: trait.unused
         - message: '#^Call to an undefined method Symfony\\Component\\OptionsResolver\\OptionsResolver\:\:setOptions\(\)\.$#'
-        - message: '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''(defaults|deprecated|normalizers)'' will always evaluate to true\.$#'
+        - message: '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\AbstractMessage\) and ''(defaults|deprecated|normalizers)'' will always evaluate to true\.$#'
+        - message: '#^Cannot call method (setDefault|setOptions)\(\) on mixed\.$#'
         - message: '#^Class Guanguans\\Notify\\.*\\Messages\\.*Message has PHPDoc tag @method for method .*\(\) parameter \#1 \$.* with no value type specified in iterable type array\.$#'
+        - message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\AbstractMessage\:\:preConfigureOptionsResolver\(\)" is (\d|1\d), keep it under 8$#'
+        - message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Support\\Arr\:\:forget\(\)" is (\d|1\d), keep it under 8$#'
+        - message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Support\\Arr\:\:get\(\)" is (\d|1\d), keep it under 8$#'
+        - message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Support\\Utils\:\:multipartFor\(\)" is (\d|1\d), keep it under 8$#'
         - message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient has PHPDoc tag @method for method .*\(\) parameter \#1 \$.* with no value type specified in iterable type array\.$#'
         -
             identifier: paramOut.type
@@ -199,5 +203,8 @@ parameters:
         -
             identifier: shipmonk.deadMethod
             path: src/Foundation/Concerns/
-
-        - identifier: offsetAccess.nonOffsetAccessible
+        -
+            identifier: offsetAccess.nonOffsetAccessible
+            paths:
+                - src/*/Messages/*Message.php
+                - src/Foundation/Support/Arr.php
