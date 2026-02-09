@@ -97,7 +97,7 @@ class Arr
      */
     public static function get(mixed $array, mixed $key, mixed $default = null): mixed
     {
-        if (!static::accessible($array)) {
+        if (!self::accessible($array)) {
             return value($default);
         }
 
@@ -105,7 +105,7 @@ class Arr
             return $array;
         }
 
-        if (static::exists($array, $key)) {
+        if (self::exists($array, $key)) {
             return $array[$key];
         }
 
@@ -114,7 +114,7 @@ class Arr
         }
 
         foreach (explode('.', (string) $key) as $segment) {
-            if (static::accessible($array) && static::exists($array, $segment)) {
+            if (self::accessible($array) && self::exists($array, $segment)) {
                 $array = $array[$segment];
             } else {
                 return value($default);
@@ -167,7 +167,7 @@ class Arr
      */
     public static function except(array $array, mixed $keys): array
     {
-        static::forget($array, $keys);
+        self::forget($array, $keys);
 
         return $array;
     }
@@ -192,7 +192,7 @@ class Arr
 
         foreach ($keys as $key) {
             // if the exact key exists in the top-level, remove it
-            if (static::exists($array, $key)) {
+            if (self::exists($array, $key)) {
                 unset($array[$key]);
 
                 continue;
@@ -206,7 +206,7 @@ class Arr
             while (\count($parts) > 1) {
                 $part = array_shift($parts);
 
-                if (isset($array[$part]) && static::accessible($array[$part])) {
+                if (isset($array[$part]) && self::accessible($array[$part])) {
                     $array = &$array[$part];
                 } else {
                     continue 2;
@@ -229,7 +229,7 @@ class Arr
     {
         $callback ??= static fn (mixed ...$args): bool => (bool) $args[0];
 
-        return static::filterRecursive($array, static fn (mixed ...$args): bool => !$callback(...$args), $flag);
+        return self::filterRecursive($array, static fn (mixed ...$args): bool => !$callback(...$args), $flag);
     }
 
     /**
@@ -243,7 +243,7 @@ class Arr
     {
         foreach ($array as &$value) {
             if (\is_array($value)) {
-                $value = static::filterRecursive($value, $callback, $flag);
+                $value = self::filterRecursive($value, $callback, $flag);
             }
         }
 

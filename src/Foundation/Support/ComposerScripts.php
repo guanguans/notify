@@ -81,6 +81,7 @@ final class ComposerScripts
                     'strings' => collect(Utils::definedFor($reflectionClass->getName()))->sort()->values()->all(),
                 ],
             ])
+            ->filter(static fn (array $completion): bool => (bool) $completion['options']['strings'])
             ->pipe(static fn (Collection $completions): Collection => collect([
                 '$schema' => 'https://laravel-ide.com/schema/laravel-ide-v2.json',
                 'completions' => $completions->values()->all(),

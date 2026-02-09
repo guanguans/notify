@@ -32,8 +32,7 @@ use Illuminate\Support\Fluent;
 use Psr\Http\Message\RequestInterface;
 
 it('can dump debug info', function (): void {
-    expect(Response::fromPsrResponse(new GuzzleHttp\Psr7\Response))
-        ->dump()->toBeInstanceOf(Response::class);
+    expect(Response::fromPsrResponse(new GuzzleHttp\Psr7\Response)->dump())->toBeInstanceOf(Response::class);
 })->group(__DIR__, __FILE__);
 
 it('can convert to string', function (): void {

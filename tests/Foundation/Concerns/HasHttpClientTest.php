@@ -48,7 +48,7 @@ it('can set http client', function (): void {
 it('can set http client resolver', function (): void {
     expect(new Client)
         ->setHttpClientResolver(
-            static fn (Client $client): GuzzleHttp\Client => new GuzzleHttp\Client,
+            static fn (Client $_): GuzzleHttp\Client => new GuzzleHttp\Client,
         )
         ->toBeInstanceOf(Client::class);
 })->group(__DIR__, __FILE__);

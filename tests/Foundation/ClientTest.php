@@ -32,9 +32,11 @@ use Pest\Expectation;
 use Psr\Http\Message\ResponseInterface;
 
 it('can dump debug info', function (): void {
-    expect(new class extends Client {
-        use AsNullUri;
-    })->dump()->toBeInstanceOf(Client::class);
+    expect(
+        (new class extends Client {
+            use AsNullUri;
+        })->dump()
+    )->toBeInstanceOf(Client::class);
 })->group(__DIR__, __FILE__);
 
 it('can set Authenticator', function (): void {

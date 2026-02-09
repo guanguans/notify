@@ -130,7 +130,7 @@ class Authenticator extends NullAuthenticator implements \Stringable
     private function retryMiddleware(): callable
     {
         return Middleware::retry(
-            function (int $retries, RequestInterface $request, ?ResponseInterface $response = null): bool {
+            function (int $retries, RequestInterface $_, ?ResponseInterface $response = null): bool {
                 if (1 <= $retries) {
                     return false;
                 }

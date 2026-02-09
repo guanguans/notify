@@ -67,7 +67,7 @@ class MediaGroupMessage extends AbstractMessage
     {
         $optionsResolver->setNormalizer(
             'media',
-            static fn (Options $options, array $media): string => json_encode($media, \JSON_THROW_ON_ERROR),
+            static fn (Options $_, array $media): string => json_encode($media, \JSON_THROW_ON_ERROR),
         );
     }
 }

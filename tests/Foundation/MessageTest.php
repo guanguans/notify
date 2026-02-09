@@ -25,9 +25,11 @@ use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 
 it('can dump debug info', function (): void {
-    expect(new class extends AbstractMessage {
-        use AsNullUri;
-    })->dump()->toBeInstanceOf(AbstractMessage::class);
+    expect(
+        (new class extends AbstractMessage {
+            use AsNullUri;
+        })->dump()
+    )->toBeInstanceOf(AbstractMessage::class);
 })->group(__DIR__, __FILE__);
 
 it('can to form params', function (): void {

@@ -17,14 +17,11 @@ use Symfony\Component\VarDumper\VarDumper;
 
 trait Dumpable
 {
-    /**
-     * @codeCoverageIgnore
-     */
     public function dd(mixed ...$args): void
     {
-        $this->dump(...$args);
+        $this->dump(...$args); // @codeCoverageIgnoreStart
 
-        exit(1);
+        exit(1); // @codeCoverageIgnoreEnd
     }
 
     /**

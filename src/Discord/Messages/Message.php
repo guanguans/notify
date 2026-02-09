@@ -96,7 +96,7 @@ class Message extends AbstractMessage
                     'fields',
                 ])
                 ->setNormalizer('color', static fn (
-                    OptionsResolver $optionsResolver,
+                    OptionsResolver $_,
                     int|string $value
                 ): float|int => \is_int($value) ? $value : hexdec($value))
                 ->setAllowedTypes('footer', 'array')

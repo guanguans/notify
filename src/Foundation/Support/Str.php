@@ -44,7 +44,7 @@ class Str
      */
     public static function pascal(string $value): string
     {
-        return static::ucfirst(static::camel($value));
+        return self::ucfirst(self::camel($value));
     }
 
     /**
@@ -52,7 +52,7 @@ class Str
      */
     public static function camel(string $value): string
     {
-        return static::$camelCache[$value] ?? (static::$camelCache[$value] = lcfirst(static::studly($value)));
+        return self::$camelCache[$value] ?? (self::$camelCache[$value] = lcfirst(self::studly($value)));
     }
 
     /**
@@ -60,7 +60,7 @@ class Str
      */
     public static function kebab(string $value): string
     {
-        return static::snake($value, '-');
+        return self::snake($value, '-');
     }
 
     /**
@@ -72,17 +72,17 @@ class Str
     {
         $key = $value;
 
-        if (isset(static::$snakeCache[$key][$delimiter])) {
-            return static::$snakeCache[$key][$delimiter];
+        if (isset(self::$snakeCache[$key][$delimiter])) {
+            return self::$snakeCache[$key][$delimiter];
         }
 
         if (!ctype_lower($value)) {
             $value = preg_replace('/\s+/u', '', ucwords($value));
 
-            $value = static::lower(preg_replace('/(.)(?=[A-Z])/u', '$1'.$delimiter, (string) $value));
+            $value = self::lower(preg_replace('/(.)(?=[A-Z])/u', '$1'.$delimiter, (string) $value));
         }
 
-        return static::$snakeCache[$key][$delimiter] = $value;
+        return self::$snakeCache[$key][$delimiter] = $value;
     }
 
     /**
@@ -92,15 +92,15 @@ class Str
     {
         $key = $value;
 
-        if (isset(static::$studlyCache[$key])) {
-            return static::$studlyCache[$key];
+        if (isset(self::$studlyCache[$key])) {
+            return self::$studlyCache[$key];
         }
 
-        $words = explode(' ', static::replace(['-', '_'], ' ', $value));
+        $words = explode(' ', self::replace(['-', '_'], ' ', $value));
 
-        $studlyWords = array_map(static::ucfirst(...), $words);
+        $studlyWords = array_map(self::ucfirst(...), $words);
 
-        return static::$studlyCache[$key] = implode('', $studlyWords);
+        return self::$studlyCache[$key] = implode('', $studlyWords);
     }
 
     /**
@@ -180,7 +180,7 @@ class Str
      */
     public static function lcfirst(string $string): string
     {
-        return static::lower(static::substr($string, 0, 1)).static::substr($string, 1);
+        return self::lower(self::substr($string, 0, 1)).self::substr($string, 1);
     }
 
     /**
@@ -188,7 +188,7 @@ class Str
      */
     public static function ucfirst(string $string): string
     {
-        return static::upper(static::substr($string, 0, 1)).static::substr($string, 1);
+        return self::upper(self::substr($string, 0, 1)).self::substr($string, 1);
     }
 
     /**
@@ -220,8 +220,8 @@ class Str
      */
     public static function flushCache(): void
     {
-        static::$snakeCache = [];
-        static::$camelCache = [];
-        static::$studlyCache = [];
+        self::$snakeCache = [];
+        self::$camelCache = [];
+        self::$studlyCache = [];
     }
 }

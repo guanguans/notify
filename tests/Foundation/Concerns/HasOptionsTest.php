@@ -109,7 +109,7 @@ it('can get options', function (): void {
         public function normalizers(): array
         {
             return [
-                'foo' => static fn (Options $options, string $value): string => strtoupper($value),
+                'foo' => static fn (Options $_, string $value): string => strtoupper($value),
             ];
         }
     })

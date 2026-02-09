@@ -93,7 +93,7 @@ class PollMessage extends AbstractMessage
             ->setAllowedTypes('options', 'array')
             ->setNormalizer(
                 'options',
-                static fn (Options $options, array $value): string => json_encode($value, \JSON_THROW_ON_ERROR),
+                static fn (Options $_, array $value): string => json_encode($value, \JSON_THROW_ON_ERROR),
             );
     }
 }
