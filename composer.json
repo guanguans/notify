@@ -504,7 +504,7 @@
             "@pest"
         ],
         "testbench:workbench:install": "@testbench workbench:install",
-        "todo-lint": "! git --no-pager grep --extended-regexp --ignore-case 'todo|fixme' -- '*.php' ':!*.blade.php' ':(exclude)resources/'",
+        "todo-lint": "! git --no-pager grep --extended-regexp --ignore-case 'todo|fixme' -- '*.php' ':!*.blade.php' ':(exclude)src/Foundation/Concerns/HasOptions.php'",
         "touch:database-sqlite": "@php -r \"file_exists('vendor/orchestra/testbench-core/laravel/database/database.sqlite') || touch('vendor/orchestra/testbench-core/laravel/database/database.sqlite');\"",
         "trufflehog": "trufflehog git https://github.com/guanguans/notify --only-verified",
         "typos": "typos --color=always --sort --verbose",

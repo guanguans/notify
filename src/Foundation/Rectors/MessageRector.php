@@ -29,11 +29,13 @@ use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Nop;
 use PhpParser\Node\Stmt\Property;
+use PhpParser\Node\Stmt\Trait_;
 use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagNode;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
 use Rector\NodeTypeResolver\Node\AttributeKey;
+use Rector\PhpParser\Node\BetterNodeFinder;
 use Rector\PhpParser\Node\Value\ValueResolver;
 use Rector\PhpParser\Parser\SimplePhpParser;
 use Rector\Rector\AbstractRector;
@@ -44,6 +46,7 @@ use Rector\Rector\AbstractRector;
 final class MessageRector extends AbstractRector
 {
     public function __construct(
+        private readonly BetterNodeFinder $betterNodeFinder,
         private readonly BuilderFactory $builderFactory,
         private readonly DocBlockUpdater $docBlockUpdater,
         private readonly PhpDocInfoFactory $phpDocInfoFactory,
@@ -70,7 +73,6 @@ final class MessageRector extends AbstractRector
         $this->updateAllowedTypesProperty($node);
         $this->updateMethodsOfListTypeOption($node);
         $this->updateDocCommentOfProperty($node);
-        $this->updateDocCommentOfMethod($node);
         $this->updateDocCommentOfClass($node); // Must be last update doc comment.
         $this->sortPropertiesOfClass($node);
 
@@ -246,72 +248,22 @@ final class MessageRector extends AbstractRector
 
     private function updateDocCommentOfProperty(Class_ $classNode): void
     {
-        collect($classNode->getProperties())->each(function (Property $propertyNode): void {
-            $docComment = match ($this->getName($propertyNode)) {
-                'defaults', 'allowedValues', 'options' => '/** @var array<string, mixed> */',
-                'required', 'defined' => '/** @var list<string> */',
-                'ignoreUndefined' => '/** @var bool */',
-                'deprecated' => '/** @var array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}> */',
-                'normalizers' => '/** @var array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed> */',
-                'allowedTypes' => '/** @var array<string, list<string>|string> */',
-                'infos' => '/** @var array<string, string> */',
-                default => null,
-            };
+        $traitNode = $this->betterNodeFinder->findFirstInstanceOf(
+            $this->simplePhpParser->parseFile(__DIR__.'/../Concerns/HasOptions.php'),
+            Trait_::class
+        );
 
-            if (null === $docComment) {
-                return;
+        collect($classNode->stmts)->each(function (Stmt $stmtNode) use ($traitNode): void {
+            $stmtName = $this->getName($stmtNode);
+
+            $traitStmtNode = collect($traitNode->stmts)->first(
+                fn (Stmt $traitStmtNode): bool => $traitStmtNode instanceof ($stmtNode::class)
+                    && $this->isName($traitStmtNode, $stmtName)
+            );
+
+            if ($traitStmtNode instanceof Stmt && ($docComment = $traitStmtNode->getDocComment())) {
+                $stmtNode->setDocComment($docComment);
             }
-
-            $propertyNode->setDocComment(new Doc($docComment));
-        });
-    }
-
-    private function updateDocCommentOfMethod(Class_ $classNode): void
-    {
-        collect($classNode->getMethods())->each(function (ClassMethod $classMethodNode): void {
-            $name = str($this->getName($classMethodNode));
-
-            $docComment = match (true) {
-                $name->startsWith('add')
-                && 1 === \count($classMethodNode->params) => $this->isName($classMethodNode->params[0]->type, 'array')
-                    ? \sprintf(
-                        <<<'DOCBLOCK'
-                            /**
-                             * @api
-                             *
-                             * @param array<array-key, mixed> $%s
-                             */
-                            DOCBLOCK,
-                        $this->getName($classMethodNode->params[0]->var)
-                    )
-                    : <<<'DOCBLOCK'
-                        /**
-                         * @api
-                         */
-                        DOCBLOCK,
-                $name->is('defaults') => <<<'DOCBLOCK'
-                    /**
-                     * @return array<string, mixed>
-                     */
-                    DOCBLOCK,
-                $name->is('deprecated') => <<<'DOCBLOCK'
-                    /**
-                     * @return array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}>
-                     */
-                    DOCBLOCK,
-                $name->is('normalizers') => <<<'DOCBLOCK'
-                    /**
-                     * @return array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed>
-                     */
-                    DOCBLOCK,
-                default => null,
-            };
-
-            if (null === $docComment) {
-                return;
-            }
-
-            $classMethodNode->setDocComment(new Doc($docComment));
         });
     }
 
@@ -372,16 +324,8 @@ final class MessageRector extends AbstractRector
             }
 
             $sortRules = [
-                'defaults',
-                'required',
-                'defined',
-                'ignoreUndefined',
-                'deprecated',
-                'normalizers',
-                'allowedValues',
-                'allowedTypes',
-                'infos',
-                'options',
+                'defaults', 'required', 'defined', 'ignoreUndefined', 'deprecated',
+                'allowedValues', 'allowedTypes', 'infos', 'options',
             ];
 
             return array_search($this->getName($aStmtNode), $sortRules, true) <=> array_search(
