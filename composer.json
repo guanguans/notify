@@ -363,7 +363,7 @@
         "peck:init": "@peck --init",
         "pest": [
             "@putenv:xdebug-on",
-            "@php vendor/bin/pest --colors=always --min=60 --coverage --profile",
+            "@php vendor/bin/pest --colors=always --min=80 --coverage --profile",
             "@putenv:xdebug-off"
         ],
         "pest:coverage": "@pest --coverage-html=.build/phpunit/ --coverage-clover=.build/phpunit/clover.xml",
