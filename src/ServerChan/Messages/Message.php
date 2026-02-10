@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ServerChan\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 
 /**
@@ -25,7 +24,7 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
  * @method self tags(mixed $tags)
  * @method self title(mixed $title)
  */
-class Message extends AbstractMessage
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
 

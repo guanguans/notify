@@ -18,7 +18,6 @@ namespace Guanguans\PackageSkeleton\Tests\Benchmark;
 use Guanguans\Notify\Bark\Authenticator;
 use Guanguans\Notify\Bark\Client;
 use Guanguans\Notify\Bark\Messages\Message;
-use Guanguans\Notify\Foundation\AbstractMessage;
 use GuzzleHttp\Psr7\HttpFactory;
 use PhpBench\Attributes\BeforeMethods;
 use PhpBench\Attributes\Revs;
@@ -27,7 +26,7 @@ use PhpBench\Attributes\Revs;
 #[Revs(10000)]
 final class SendMessageBench
 {
-    private AbstractMessage $message;
+    private \Guanguans\Notify\Foundation\Message $message;
     private \Guanguans\Notify\Foundation\Client $client;
 
     /**

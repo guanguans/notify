@@ -13,14 +13,14 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
+use Guanguans\Notify\Foundation\Message;
 
 /**
  * @method self media(mixed $media)
  * @method self type(mixed $type)
  */
-class UploadMediaMessage extends AbstractMessage
+class UploadMediaMessage extends Message
 {
     use AsMultipart;
 

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\AnPush\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsFormParams;
 
 /**
@@ -22,7 +21,7 @@ use Guanguans\Notify\Foundation\Concerns\AsFormParams;
  * @method self title(mixed $title)
  * @method self to(mixed $to)
  */
-class Message extends AbstractMessage
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsFormParams;
 

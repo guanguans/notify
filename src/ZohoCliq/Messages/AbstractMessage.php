@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ZohoCliq\Messages;
 
+use Guanguans\Notify\Foundation\Message;
 use Guanguans\Notify\Foundation\Support\Arr;
 use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -28,7 +29,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self threadMessageId(mixed $threadMessageId)
  * @method self threadTitle(mixed $threadTitle)
  */
-abstract class AbstractMessage extends \Guanguans\Notify\Foundation\AbstractMessage
+abstract class AbstractMessage extends Message
 {
     /** @var list<string> */
     protected array $required = [

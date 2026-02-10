@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\PushBullet\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
-
 /**
  * @method self body(mixed $body)
  * @method self channelTag(mixed $channelTag)
@@ -30,7 +28,7 @@ use Guanguans\Notify\Foundation\AbstractMessage;
  * @method self type(mixed $type)
  * @method self url(mixed $url)
  */
-class Message extends AbstractMessage
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     /** @var list<string> */
     protected array $defined = [

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\RocketChat\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,7 +27,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self tmid(mixed $tmid)
  * @method self tshow(bool $tshow)
  */
-class Message extends AbstractMessage
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
 

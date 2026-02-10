@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\QQ\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -29,7 +28,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self messageReference(array $messageReference)
  * @method self msgId(mixed $msgId)
  */
-class Message extends AbstractMessage
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsMultipart;
 

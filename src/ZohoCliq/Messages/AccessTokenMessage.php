@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\ZohoCliq\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsFormParams;
+use Guanguans\Notify\Foundation\Message;
 
 /**
  * @method self clientId(mixed $clientId)
@@ -25,7 +25,7 @@ use Guanguans\Notify\Foundation\Concerns\AsFormParams;
  * @method self refreshToken(mixed $refreshToken)
  * @method self scope(mixed $scope)
  */
-final class AccessTokenMessage extends AbstractMessage // @internal
+final class AccessTokenMessage extends Message // @internal
 {
     use AsFormParams;
 

@@ -83,7 +83,7 @@ class Client implements Contracts\Client
      * @see https://docs.guzzlephp.org/en/stable/quickstart.html#concurrent-requests
      * @see \GuzzleHttp\Pool
      *
-     * @param iterable<array-key, AbstractMessage> $messages
+     * @param iterable<array-key, \Guanguans\Notify\Foundation\Contracts\Message> $messages
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Throwable

@@ -13,10 +13,9 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Chanify\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
 
-class Message extends AbstractMessage
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsMultipart;
 

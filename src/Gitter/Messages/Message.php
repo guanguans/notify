@@ -13,12 +13,10 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Gitter\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
-
 /**
  * @method self text(mixed $text)
  */
-class Message extends AbstractMessage
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     /** @var list<string> */
     protected array $defined = [

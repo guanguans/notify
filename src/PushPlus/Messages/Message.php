@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\PushPlus\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
-
 /**
  * @method self callbackUrl(mixed $callbackUrl)
  * @method self channel(mixed $channel)
@@ -26,7 +24,7 @@ use Guanguans\Notify\Foundation\AbstractMessage;
  * @method self topic(mixed $topic)
  * @method self webhook(mixed $webhook)
  */
-class Message extends AbstractMessage
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     /** @var list<string> */
     protected array $required = [

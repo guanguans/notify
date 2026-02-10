@@ -13,15 +13,13 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\NowPush\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
-
 /**
  * @method self deviceType(mixed $deviceType)
  * @method self messageType(mixed $messageType)
  * @method self note(mixed $note)
  * @method self url(mixed $url)
  */
-class Message extends AbstractMessage
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     /** @var list<string> */
     protected array $defined = [

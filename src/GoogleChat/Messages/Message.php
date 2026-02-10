@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\GoogleChat\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
-
 /**
  * @method self actionResponse(array $actionResponse)
  * @method self annotations(array $annotations)
@@ -32,7 +30,7 @@ use Guanguans\Notify\Foundation\AbstractMessage;
  * @method self text(mixed $text)
  * @method self thread(array $thread)
  */
-class Message extends AbstractMessage
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     /** @var list<string> */
     protected array $defined = [

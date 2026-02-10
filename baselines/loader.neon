@@ -1,4 +1,5 @@
-# total 3 errors
+# total 5 errors
 
 includes:
     - new.static.neon
+    - shipmonk.unsafeArrayKey.neon

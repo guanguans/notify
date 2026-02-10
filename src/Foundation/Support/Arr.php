@@ -83,7 +83,6 @@ class Arr
             $array = &$array[$key];
         }
 
-        /** @var non-empty-list<string> $keys */
         $array[array_shift($keys)] = $value;
 
         return $array;
@@ -213,7 +212,6 @@ class Arr
                 }
             }
 
-            /** @var non-empty-list<string> $parts */
             unset($array[array_shift($parts)]);
         }
     }

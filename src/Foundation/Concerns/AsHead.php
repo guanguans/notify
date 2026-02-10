@@ -16,7 +16,7 @@ namespace Guanguans\Notify\Foundation\Concerns;
 use Guanguans\Notify\Foundation\Method;
 
 /**
- * @mixin \Guanguans\Notify\Foundation\AbstractMessage
+ * @mixin \Guanguans\Notify\Foundation\Message
  */
 trait AsHead
 {

@@ -189,14 +189,17 @@ parameters:
         - identifier: return.type
         - identifier: trait.unused
         - message: '#^Call to an undefined method Symfony\\Component\\OptionsResolver\\OptionsResolver\:\:setOptions\(\)\.$#'
-        - message: '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\AbstractMessage\) and ''(defaults|deprecated|normalizers)'' will always evaluate to true\.$#'
+        - message: '#^Call to function method_exists\(\) with \$this\(Guanguans\\Notify\\Foundation\\Message\) and ''(defaults|deprecated|normalizers)'' will always evaluate to true\.$#'
         - message: '#^Cannot call method (setDefault|setOptions)\(\) on mixed\.$#'
         - message: '#^Class Guanguans\\Notify\\.*\\Messages\\.*Message has PHPDoc tag @method for method .*\(\) parameter \#1 \$.* with no value type specified in iterable type array\.$#'
-        - message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\AbstractMessage\:\:preConfigureOptionsResolver\(\)" is (\d|1\d), keep it under 8$#'
+        - message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Message\:\:preConfigureOptionsResolver\(\)" is (\d|1\d), keep it under 8$#'
         - message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Support\\Arr\:\:forget\(\)" is (\d|1\d), keep it under 8$#'
         - message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Support\\Arr\:\:get\(\)" is (\d|1\d), keep it under 8$#'
         - message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Support\\Utils\:\:multipartFor\(\)" is (\d|1\d), keep it under 8$#'
         - message: '#^Trait Guanguans\\Notify\\Foundation\\Concerns\\HasHttpClient has PHPDoc tag @method for method .*\(\) parameter \#1 \$.* with no value type specified in iterable type array\.$#'
+        -
+            identifier: symplify.explicitAbstractPrefixName
+            path: src/Foundation/Message.php
         -
             identifier: paramOut.type
             path: src/Foundation/Support/Arr.php

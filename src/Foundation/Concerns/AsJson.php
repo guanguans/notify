@@ -16,7 +16,7 @@ namespace Guanguans\Notify\Foundation\Concerns;
 use GuzzleHttp\RequestOptions;
 
 /**
- * @mixin \Guanguans\Notify\Foundation\AbstractMessage
+ * @mixin \Guanguans\Notify\Foundation\Message
  */
 trait AsJson
 {

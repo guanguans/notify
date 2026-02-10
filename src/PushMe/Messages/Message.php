@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\PushMe\Messages;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 
 /**
@@ -24,7 +23,7 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
  * @method self title(mixed $title)
  * @method self type(mixed $type)
  */
-class Message extends AbstractMessage
+class Message extends \Guanguans\Notify\Foundation\Message
 {
     use AsNullUri;
 

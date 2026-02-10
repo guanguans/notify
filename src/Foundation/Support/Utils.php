@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation\Support;
 
 use Composer\InstalledVersions;
-use Guanguans\Notify\Foundation\AbstractMessage;
+use Guanguans\Notify\Foundation\Message;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\StreamInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -41,13 +41,13 @@ class Utils
     /**
      * Return an array of defined properties for the given object.
      *
-     * @param class-string<AbstractMessage>|\Guanguans\Notify\Foundation\AbstractMessage $object
+     * @param class-string<\Guanguans\Notify\Foundation\Message>|\Guanguans\Notify\Foundation\Message $object
      *
      * @throws \ReflectionException
      *
      * @return list<string>
      */
-    public static function definedFor(AbstractMessage|string $object): array
+    public static function definedFor(Message|string $object): array
     {
         if (\is_string($object)) {
             $properties = (new \ReflectionClass($object))->getDefaultProperties();

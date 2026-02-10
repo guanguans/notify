@@ -21,31 +21,31 @@ declare(strict_types=1);
 
 namespace Guanguans\NotifyTests\Foundation;
 
-use Guanguans\Notify\Foundation\AbstractMessage;
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
+use Guanguans\Notify\Foundation\Message;
 
 it('can dump debug info', function (): void {
     expect(
-        (new class extends AbstractMessage {
+        (new class extends Message {
             use AsNullUri;
         })->dump()
-    )->toBeInstanceOf(AbstractMessage::class);
+    )->toBeInstanceOf(Message::class);
 })->group(__DIR__, __FILE__);
 
 it('can to form params', function (): void {
-    expect((fn (): string => $this->toFormParams())->call(new class extends AbstractMessage {
+    expect((fn (): string => $this->toFormParams())->call(new class extends Message {
         use AsNullUri;
     }))->toBeString();
 })->group(__DIR__, __FILE__);
 
 it('can to query', function (): void {
-    expect((fn (): string => $this->toQuery())->call(new class extends AbstractMessage {
+    expect((fn (): string => $this->toQuery())->call(new class extends Message {
         use AsNullUri;
     }))->toBeString();
 })->group(__DIR__, __FILE__);
 
 it('can to Multipart', function (): void {
-    expect((fn (): string => $this->toMultiPart())->call(new class extends AbstractMessage {
+    expect((fn (): string => $this->toMultiPart())->call(new class extends Message {
         use AsNullUri;
     }))->toBeString();
 })->group(__DIR__, __FILE__);

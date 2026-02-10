@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation\Concerns;
 
 /**
- * @mixin \Guanguans\Notify\Foundation\AbstractMessage
+ * @mixin \Guanguans\Notify\Foundation\Message
  */
 trait AsNullUri
 {
