@@ -70,8 +70,8 @@ it('can get options', function (): void {
             'bar' => ['bar/foo', '2.0', 'The option "%name%" is deprecated.'],
         ];
 
-        /** @var array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed> */
-        protected array $normalizers = [];
+        // /** @var array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed> */
+        // protected array $normalizers = [];
 
         /** @var array<string, mixed> */
         protected array $allowedValues = ['foo' => ['foo', 'bar']];

@@ -29,12 +29,19 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class Utils
 {
     /**
+     * @see \trigger_deprecation()
+     * @see \trigger_deprecation(
+     *     'symfony/options-resolver',
+     *     '7.3',
+     *     'Defining nested options via "setDefault()" is deprecated and will be removed in Symfony 8.0, use "setOptions()" method instead.'
+     * )
+     *
      * @return value-of<array{'setOptions', 'setDefault'}>
      */
     public static function methodNameOfSetDefault(): string
     {
         return method_exists(OptionsResolver::class, 'setOptions')
-            ? 'setOptions' // since symfony/options-resolver 7.3
+            ? 'setOptions'
             : 'setDefault';
     }
 

@@ -33,7 +33,6 @@ abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
     use AsPost;
     use Dumpable;
     use HasOptions;
-    protected bool $ignoreUndefined = true;
 
     /**
      * @param array<string, mixed> $options

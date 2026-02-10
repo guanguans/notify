@@ -20,24 +20,35 @@ use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @property-read array<string, mixed> $defaults // Support nested options.
- * @property-read list<string> $required
- * @property-read list<string> $defined
- * @property-read bool $ignoreUndefined
- * @property-read array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}> $deprecated
- * @property-read array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed> $normalizers
- * @property-read array<string, mixed> $allowedValues
- * @property-read array<string, list<string>|string> $allowedTypes;
- * @property-read array<string, string> $infos
- *
- * @method array<string, mixed> defaults() // Support nested options.
- * @method (array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}>) deprecated()
- * @method (array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed>) normalizers()
- *
  * @mixin \Guanguans\Notify\Foundation\Message
  */
 trait HasOptions
 {
+    /** @var array<string, (\Closure(OptionsResolver, \Symfony\Component\OptionsResolver\Options): void)|mixed> */
+    protected array $defaults = [];
+
+    /** @var list<string> */
+    protected array $required = [];
+
+    /** @var list<string> */
+    protected array $defined = [];
+    protected bool $ignoreUndefined = true;
+
+    /** @var array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}> */
+    protected array $deprecated = [];
+
+    // /** @var array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed> */
+    // protected array $normalizers = [];
+
+    /** @var array<string, mixed> */
+    protected array $allowedValues = [];
+
+    /** @var array<string, list<string>|string> */
+    protected array $allowedTypes = [];
+
+    /** @var array<string, string> */
+    protected array $infos = [];
+
     /** @var array<string, mixed> */
     protected array $options = [];
 
@@ -174,56 +185,80 @@ trait HasOptions
 
     protected function preConfigureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        $optionsResolver->setDefaults([
-            ...property_exists($this, 'defaults') ? $this->defaults : [],
-            ...method_exists($this, 'defaults') ? $this->defaults() : [],
-        ]);
-
-        property_exists($this, 'required') and $optionsResolver->setRequired($this->required);
-        property_exists($this, 'defined') and $optionsResolver->setDefined($this->defined);
-
         // // A prototype option can only be defined inside a nested option and during its resolution it will expect an array of arrays.
-        // property_exists($this, 'prototype') and $optionsResolver->setPrototype($this->prototype);
+        // $optionsResolver->setPrototype($this->prototype);
+        $optionsResolver->setDefaults([...$this->defaults, ...$this->defaults()]);
 
-        $optionsResolver->setIgnoreUndefined($this->ignoreUndefined);
+        // TODO: symfony/options-resolver:>=7.3 Refactor `configureOptionsResolver` to `nestedOptions`.
+        if (method_exists($optionsResolver, 'setOptions')) {
+            // @codeCoverageIgnoreStart
+            $nestedOptions = $this->nestedOptions() + array_filter(
+                $this->defaults(),
+                static fn (mixed $default): bool => $default instanceof \Closure
+            );
 
-        $deprecated = [
-            ...property_exists($this, 'deprecated') ? $this->deprecated : [],
-            ...method_exists($this, 'deprecated') ? $this->deprecated() : [],
-        ];
-
-        foreach ($deprecated as $option => $arguments) {
-            array_unshift($arguments, $option);
-
-            $optionsResolver->setDeprecated(...$arguments);
+            foreach ($nestedOptions as $option => $nested) {
+                $optionsResolver->setOptions($option, $nested);
+            } // @codeCoverageIgnoreEnd
         }
 
-        /** @var array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed> $normalizers */
-        $normalizers = [
-            ...property_exists($this, 'normalizers') ? $this->normalizers : [],
-            ...method_exists($this, 'normalizers') ? $this->normalizers() : [],
-        ];
+        $optionsResolver->setRequired($this->required);
+        $optionsResolver->setDefined($this->defined);
+        $optionsResolver->setIgnoreUndefined($this->ignoreUndefined);
 
-        foreach ($normalizers as $option => $normalizer) {
+        $deprecated = [...$this->deprecated, ...$this->deprecated()];
+
+        /** @var array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}> $deprecated */
+        foreach ($deprecated as $option => $arguments) {
+            $optionsResolver->setDeprecated($option, ...$arguments);
+        }
+
+        foreach ($this->normalizers() as $option => $normalizer) {
             $optionsResolver->setNormalizer($option, $normalizer);
         }
 
-        if (property_exists($this, 'allowedValues')) {
-            foreach ($this->allowedValues as $option => $allowedValue) {
-                $optionsResolver->setAllowedValues($option, $allowedValue);
-            }
+        foreach ($this->allowedValues as $option => $allowedValue) {
+            $optionsResolver->setAllowedValues($option, $allowedValue);
         }
 
-        if (property_exists($this, 'allowedTypes')) {
-            foreach ($this->allowedTypes as $option => $allowedType) {
-                $optionsResolver->setAllowedTypes($option, $allowedType);
-            }
+        foreach ($this->allowedTypes as $option => $allowedType) {
+            $optionsResolver->setAllowedTypes($option, $allowedType);
         }
 
-        if (property_exists($this, 'infos')) {
-            foreach ($this->infos as $option => $info) {
-                $optionsResolver->setInfo($option, $info);
-            }
+        foreach ($this->infos as $option => $info) {
+            $optionsResolver->setInfo($option, $info);
         }
+    }
+
+    /**
+     * @return array<string, (\Closure(OptionsResolver $resolver, \Symfony\Component\OptionsResolver\Options $parent): void)|mixed>
+     */
+    protected function defaults(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array<string, \Closure(OptionsResolver $resolver, \Symfony\Component\OptionsResolver\Options $parent): void>
+     */
+    protected function nestedOptions(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}>
+     */
+    protected function deprecated(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed>
+     */
+    protected function normalizers(): array
+    {
+        return [];
     }
 }
