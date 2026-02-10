@@ -8,6 +8,50 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="4.0.0"></a>
+## [4.0.0] - 2026-02-10
+### ✨ Features
+- **Rectors:** add AddSensitiveParameterAttributeRector class ([76f5c94](https://github.com/guanguans/notify/commit/76f5c94))
+
+### 🐞 Bug Fixes
+- **Foundation:** Correct property types and update deprecated options handling ([1adc8c3](https://github.com/guanguans/notify/commit/1adc8c3))
+- **Messages:** add allowedTypes property to message classes ([e42c0a4](https://github.com/guanguans/notify/commit/e42c0a4))
+
+### 🎨 Styles
+- apply php-cs-fixer ([c5d20d7](https://github.com/guanguans/notify/commit/c5d20d7))
+- apply php-cs-fixer ([e345cd3](https://github.com/guanguans/notify/commit/e345cd3))
+
+### 💅 Code Refactorings
+- apply phpstan ([eac8032](https://github.com/guanguans/notify/commit/eac8032))
+- apply phpstan ([c10e233](https://github.com/guanguans/notify/commit/c10e233))
+- apply inspection ([22e4c19](https://github.com/guanguans/notify/commit/22e4c19))
+- apply rector ([954ab6c](https://github.com/guanguans/notify/commit/954ab6c))
+- apply inspection ([f244d75](https://github.com/guanguans/notify/commit/f244d75))
+- apply rector ([334260e](https://github.com/guanguans/notify/commit/334260e))
+- apply rector ([9526cf7](https://github.com/guanguans/notify/commit/9526cf7))
+- apply phpstan ([e6c5c29](https://github.com/guanguans/notify/commit/e6c5c29))
+- apply rector ([6a692e8](https://github.com/guanguans/notify/commit/6a692e8))
+- **ComposerScripts:** Enhance method signatures and add utility functions ([fd1df6f](https://github.com/guanguans/notify/commit/fd1df6f))
+- **Dumpable:** Simplify dump method implementation ([2490226](https://github.com/guanguans/notify/commit/2490226))
+- **HasHttpClientDocCommentRector:** refactor HasHttpClientDocCommentRector ([ce3cd24](https://github.com/guanguans/notify/commit/ce3cd24))
+- **HasHttpClientDocCommentRector:** rename method and simplify logic ([3c7ae47](https://github.com/guanguans/notify/commit/3c7ae47))
+- **HasOptionsRector:** remove unused doc comment and simplify code ([32e547b](https://github.com/guanguans/notify/commit/32e547b))
+- **MessageRector:** enhance method visibility and simplify logic ([ae01f71](https://github.com/guanguans/notify/commit/ae01f71))
+- **Messages:** rename Message class to AbstractMessage ([564fdc6](https://github.com/guanguans/notify/commit/564fdc6))
+- **Messages:** use Utils for setting default options ([796f00a](https://github.com/guanguans/notify/commit/796f00a))
+- **Messages:** rename AbstractMessage to Message ([9973fcf](https://github.com/guanguans/notify/commit/9973fcf))
+- **Method:** Replace interface with enum for HTTP methods ([894d5e6](https://github.com/guanguans/notify/commit/894d5e6))
+- **Process:** replace PhpExecutableFinder with PhpSubprocess ([d62a3f2](https://github.com/guanguans/notify/commit/d62a3f2))
+- **composer:** update package versions and rename rector file ([1e1bb5d](https://github.com/guanguans/notify/commit/1e1bb5d))
+- **helpers:** Remove unused rescue function implementation ([41c0d54](https://github.com/guanguans/notify/commit/41c0d54))
+- **project:** Upgrade PHP version references from 8.0 to 8.1 ([1f8f78c](https://github.com/guanguans/notify/commit/1f8f78c))
+
+### 🤖 Continuous Integrations
+- **config:** Update github config files ([861346d](https://github.com/guanguans/notify/commit/861346d))
+- **config:** Update CI config files ([5831451](https://github.com/guanguans/notify/commit/5831451))
+- **config:** Update CI config files ([6969856](https://github.com/guanguans/notify/commit/6969856))
+
+
 <a name="3.5.6"></a>
 ## [3.5.6] - 2026-02-04
 ### 🐞 Bug Fixes
@@ -1513,7 +1557,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/3.5.6...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/4.0.0...HEAD
+[4.0.0]: https://github.com/guanguans/notify/compare/3.5.6...4.0.0
 [3.5.6]: https://github.com/guanguans/notify/compare/3.5.5...3.5.6
 [3.5.5]: https://github.com/guanguans/notify/compare/3.5.4...3.5.5
 [3.5.4]: https://github.com/guanguans/notify/compare/3.5.3...3.5.4
