@@ -25,7 +25,7 @@ use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 
 it('can apply the certificate to options', function (): void {
-    expect(new CertificateAuthenticator(fixtures_path('cert.pem'), fake()->password))
+    expect(new CertificateAuthenticator(fixtures_path('cert.pem'), fake()->password()))
         ->applyToOptions([])->toBeArray();
 })->group(__DIR__, __FILE__);
 

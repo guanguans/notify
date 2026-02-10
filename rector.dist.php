@@ -15,6 +15,7 @@ declare(strict_types=1);
  */
 
 use Ergebnis\Rector\Rules\Arrays\SortAssociativeArrayByKeyRector;
+use Ergebnis\Rector\Rules\Faker\GeneratorPropertyFetchToMethodCallRector;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Rectors\AddSensitiveParameterAttributeRector;
@@ -90,6 +91,7 @@ return RectorConfig::configure()
 
         ArraySpreadInsteadOfArrayMergeRector::class,
         EnumCaseToPascalCaseRector::class,
+        GeneratorPropertyFetchToMethodCallRector::class,
         JsonThrowOnErrorRector::class,
         SafeDeclareStrictTypesRector::class,
         SortAssociativeArrayByKeyRector::class,
