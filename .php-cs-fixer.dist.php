@@ -48,7 +48,6 @@ return Factory::fromRuleSet(Php81::create()
     ->withRules(Rules::fromArray([
         '@autoPHPUnitMigration:risky' => true,
         // 'final_public_method_for_abstract_class' => false,
-        'PhpCsFixerCustomFixers/function_parameter_separation' => false,
         'PhpCsFixerCustomFixers/phpdoc_property_sorted' => false,
     ])))
     ->setUsingCache(true)

@@ -17,9 +17,9 @@ use Guanguans\Notify\Foundation\Exceptions\CacheInvalidArgumentException;
 use Psr\SimpleCache\CacheInterface;
 
 /**
- * @api
- *
  * @see https://github.com/serbanghita/Mobile-Detect/blob/4.8.x/src/Cache/Cache.php
+ *
+ * @api
  */
 class MemoryCache implements CacheInterface
 {

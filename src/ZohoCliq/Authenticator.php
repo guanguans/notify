@@ -24,8 +24,6 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\SimpleCache\CacheInterface;
 
 /**
- * @api
- *
  * @see https://github.com/w7corp/easywechat/blob/6.x/src/OfficialAccount/AccessToken.php
  * @see https://github.com/w7corp/easywechat/blob/6.x/src/OpenPlatform/ComponentAccessToken.php
  * @see https://github.com/w7corp/easywechat/blob/6.x/src/OpenWork/AuthorizerAccessToken.php
@@ -47,6 +45,8 @@ use Psr\SimpleCache\CacheInterface;
  * curl --location 'https://cliq.zoho.com/api/v2/users?limit=5' \
  * --header 'Authorization: Zoho-oauthtoken 1000.80e9143983dcc190427cad7e8f029e25.cdc1c1043e5e7f0555fc14fc7faf3' \
  * ```
+ *
+ * @api
  */
 class Authenticator extends NullAuthenticator implements \Stringable
 {

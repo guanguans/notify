@@ -23,9 +23,9 @@ use GuzzleHttp\Psr7\MultipartStream;
 use const Guanguans\Notify\Foundation\Support\MULTIPART_TRY_OPEN_FILE;
 
 /**
- * @api
- *
  * @template-implements \ArrayAccess<string, mixed>
+ *
+ * @api
  */
 abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
 {
