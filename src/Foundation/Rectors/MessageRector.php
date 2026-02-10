@@ -108,7 +108,7 @@ final class MessageRector extends AbstractRector
                         ->property('allowedTypes')
                         ->makeProtected()
                         ->setType('array')
-                        ->setDefault($arrayNode = $this->nodeFactory->createArray($allowedTypes->all()))
+                        ->{Utils::methodNameOfSetDefault()}($arrayNode = $this->nodeFactory->createArray($allowedTypes->all()))
                         ->getNode();
                     collect($arrayNode->items)->each(static fn (ArrayItem $arrayItemNode) => $arrayItemNode->setAttribute(
                         AttributeKey::COMMENTS,
@@ -173,7 +173,7 @@ final class MessageRector extends AbstractRector
                         ->property('options')
                         ->makeProtected()
                         ->setType('array')
-                        ->setDefault($arrayNode = $this->nodeFactory->createArray($allowedTypes->map(static fn (): array => [])->all()))
+                        ->{Utils::methodNameOfSetDefault()}($arrayNode = $this->nodeFactory->createArray($allowedTypes->map(static fn (): array => [])->all()))
                         ->getNode();
                     collect($arrayNode->items)->each(static fn (ArrayItem $arrayItemNode) => $arrayItemNode->setAttribute(
                         AttributeKey::COMMENTS,

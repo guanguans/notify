@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
+use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -83,7 +84,7 @@ class TextMessage extends AbstractMessage
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
-            ->setDefault('entities', $defaultEntities = static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('entities', $defaultEntities = static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -96,7 +97,7 @@ class TextMessage extends AbstractMessage
                         'custom_emoji_id',
                     ])
                     ->setAllowedTypes('user', 'array')
-                    ->setDefault('user', static function (OptionsResolver $optionsResolver): void {
+                    ->{Utils::methodNameOfSetDefault()}('user', static function (OptionsResolver $optionsResolver): void {
                         $optionsResolver
                             ->setDefined([
                                 'id',
@@ -118,7 +119,7 @@ class TextMessage extends AbstractMessage
                             ->setAllowedTypes('supports_inline_queries', 'bool');
                     });
             })
-            ->setDefault('link_preview_options', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('link_preview_options', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'is_disabled',
@@ -132,7 +133,7 @@ class TextMessage extends AbstractMessage
                     ->setAllowedTypes('prefer_large_media', 'bool')
                     ->setAllowedTypes('show_above_text', 'bool');
             })
-            ->setDefault('reply_parameters', static function (OptionsResolver $optionsResolver) use ($defaultEntities): void {
+            ->{Utils::methodNameOfSetDefault()}('reply_parameters', static function (OptionsResolver $optionsResolver) use ($defaultEntities): void {
                 $optionsResolver
                     ->setDefined([
                         'message_id',
@@ -145,9 +146,9 @@ class TextMessage extends AbstractMessage
                     ])
                     ->setAllowedTypes('allow_sending_without_reply', 'bool')
                     ->setAllowedTypes('quote_entities', 'array')
-                    ->setDefault('quote_entities', $defaultEntities);
+                    ->{Utils::methodNameOfSetDefault()}('quote_entities', $defaultEntities);
             })
-            ->setDefault('reply_markup', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('reply_markup', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'inline_keyboard', // InlineKeyboardMarkup

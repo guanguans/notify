@@ -37,7 +37,8 @@
       <directory>tests/</directory>
     </testsuite>
   </testsuites>
-  <source ignoreIndirectDeprecations="true">
+  <!--<source ignoreIndirectDeprecations="true">-->
+  <source>
     <include>
       <directory>src/</directory>
     </include>

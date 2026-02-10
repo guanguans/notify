@@ -107,14 +107,14 @@ abstract class AbstractMessage extends Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
-            ->setDefault('bot', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('bot', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'name',
                         'image',
                     ]);
             })
-            ->setDefault('card', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('card', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'title',
@@ -131,7 +131,7 @@ abstract class AbstractMessage extends Message
                     ])
                     ->setAllowedTypes('highlight', 'bool');
             })
-            ->setDefault('slides', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('slides', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -140,7 +140,7 @@ abstract class AbstractMessage extends Message
                         'data',
                     ]);
             })
-            ->setDefault('buttons', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('buttons', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([

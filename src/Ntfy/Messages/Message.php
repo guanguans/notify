@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Ntfy\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
+use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -99,7 +100,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        $optionsResolver->setDefault('actions', static function (OptionsResolver $optionsResolver): void {
+        $optionsResolver->{Utils::methodNameOfSetDefault()}('actions', static function (OptionsResolver $optionsResolver): void {
             $optionsResolver
                 ->setPrototype(true)
                 ->setDefined([

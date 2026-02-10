@@ -363,7 +363,7 @@
         "peck:init": "@peck --init",
         "pest": [
             "@putenv:xdebug-on",
-            "@php vendor/bin/pest --colors=always --min=80 --coverage --profile",
+            "@php vendor/bin/pest --colors=always --min=90 --coverage --profile",
             "@putenv:xdebug-off"
         ],
         "pest:coverage": "@pest --coverage-html=.build/phpunit/ --coverage-clover=.build/phpunit/clover.xml",
@@ -371,7 +371,7 @@
         "pest:highest": [
             "@putenv:php",
             "@putenv:xdebug-on",
-            "$PHP85 vendor/bin/pest --colors=always --min=80 --coverage --profile",
+            "$PHP85 vendor/bin/pest --colors=always --min=90 --coverage --profile",
             "@putenv:xdebug-off"
         ],
         "pest:migrate-configuration": "@pest --migrate-configuration",

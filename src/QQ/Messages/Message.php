@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Guanguans\Notify\QQ\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsMultipart;
+use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -62,7 +63,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
-            ->setDefault('embed', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('embed', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'title',
@@ -72,12 +73,12 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ])
                     ->setAllowedTypes('thumbnail', 'array')
                     ->setAllowedTypes('fields', 'array')
-                    ->setDefault('thumbnail', static function (OptionsResolver $optionsResolver): void {
+                    ->{Utils::methodNameOfSetDefault()}('thumbnail', static function (OptionsResolver $optionsResolver): void {
                         $optionsResolver->setDefined([
                             'url',
                         ]);
                     })
-                    ->setDefault('fields', static function (OptionsResolver $optionsResolver): void {
+                    ->{Utils::methodNameOfSetDefault()}('fields', static function (OptionsResolver $optionsResolver): void {
                         $optionsResolver
                             ->setPrototype(true)
                             ->setDefined([
@@ -85,14 +86,14 @@ class Message extends \Guanguans\Notify\Foundation\Message
                             ]);
                     });
             })
-            ->setDefault('ark', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('ark', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'template_id',
                         'kv',
                     ])
                     ->setAllowedTypes('kv', 'array')
-                    ->setDefault('kv', static function (OptionsResolver $optionsResolver): void {
+                    ->{Utils::methodNameOfSetDefault()}('kv', static function (OptionsResolver $optionsResolver): void {
                         $optionsResolver
                             ->setPrototype(true)
                             ->setDefined([
@@ -101,14 +102,14 @@ class Message extends \Guanguans\Notify\Foundation\Message
                                 'obj',
                             ])
                             ->setAllowedTypes('obj', 'array')
-                            ->setDefault('obj', static function (OptionsResolver $optionsResolver): void {
+                            ->{Utils::methodNameOfSetDefault()}('obj', static function (OptionsResolver $optionsResolver): void {
                                 $optionsResolver
                                     ->setPrototype(true)
                                     ->setDefined([
                                         'obj_kv',
                                     ])
                                     ->setAllowedTypes('obj_kv', 'array')
-                                    ->setDefault('obj_kv', static function (OptionsResolver $optionsResolver): void {
+                                    ->{Utils::methodNameOfSetDefault()}('obj_kv', static function (OptionsResolver $optionsResolver): void {
                                         $optionsResolver
                                             ->setPrototype(true)
                                             ->setDefined([
@@ -119,7 +120,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                             });
                     });
             })
-            ->setDefault('message_reference', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('message_reference', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'template_id',
@@ -127,7 +128,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ])
                     ->setAllowedTypes('ignore_get_message_error', 'bool');
             })
-            ->setDefault('markdown', static function (OptionsResolver $optionsResolver): void {
+            ->{Utils::methodNameOfSetDefault()}('markdown', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'template_id',
@@ -136,7 +137,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                         'content',
                     ])
                     ->setAllowedTypes('params', 'array')
-                    ->setDefault('params', static function (OptionsResolver $optionsResolver): void {
+                    ->{Utils::methodNameOfSetDefault()}('params', static function (OptionsResolver $optionsResolver): void {
                         $optionsResolver
                             ->setDefined([
                                 'key',

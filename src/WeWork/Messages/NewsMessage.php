@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
+use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -49,7 +50,7 @@ class NewsMessage extends AbstractMessage
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        $optionsResolver->setDefault('articles', static function (OptionsResolver $optionsResolver): void {
+        $optionsResolver->{Utils::methodNameOfSetDefault()}('articles', static function (OptionsResolver $optionsResolver): void {
             $optionsResolver
                 ->setPrototype(true)
                 ->setDefined([
