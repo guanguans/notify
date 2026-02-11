@@ -14,12 +14,11 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation\Rectors;
 
 use Guanguans\Notify\Foundation\Message;
-use Guanguans\Notify\Foundation\Support\Str;
 use Guanguans\Notify\Foundation\Support\Utils;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 use PhpParser\BuilderFactory;
 use PhpParser\Comment;
-use PhpParser\Comment\Doc;
 use PhpParser\Node;
 use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr\Array_;
@@ -72,7 +71,7 @@ final class MessageRector extends AbstractRector
 
         $this->updateAllowedTypesProperty($node);
         $this->updateMethodsOfListTypeOption($node);
-        $this->updateDocCommentOfProperty($node);
+        $this->updateDocCommentOfStmt($node);
         $this->updateDocCommentOfClass($node); // Must be last update doc comment.
         $this->sortPropertiesOfClass($node);
 
@@ -110,13 +109,18 @@ final class MessageRector extends AbstractRector
                         ->property('allowedTypes')
                         ->makeProtected()
                         ->setType('array')
-                        ->{Utils::methodNameOfSetDefault()}($arrayNode = $this->nodeFactory->createArray($allowedTypes->all()))
+                        ->setDefault($arrayNode = $this->nodeFactory->createArray($allowedTypes->all()))
                         ->getNode();
                     collect($arrayNode->items)->each(static fn (ArrayItem $arrayItemNode) => $arrayItemNode->setAttribute(
                         AttributeKey::COMMENTS,
                         [new Comment('')]
                     ));
-                    array_splice($classNode->stmts, 1, 0, [new Nop, $propertyNode]);
+                    array_splice(
+                        $classNode->stmts,
+                        (int) collect($classNode->stmts)->search(static fn (Stmt $stmtNode): bool => $stmtNode instanceof Property, true),
+                        0,
+                        [new Nop, $propertyNode]
+                    );
 
                     return;
                 }
@@ -175,13 +179,18 @@ final class MessageRector extends AbstractRector
                         ->property('options')
                         ->makeProtected()
                         ->setType('array')
-                        ->{Utils::methodNameOfSetDefault()}($arrayNode = $this->nodeFactory->createArray($allowedTypes->map(static fn (): array => [])->all()))
+                        ->setDefault($arrayNode = $this->nodeFactory->createArray($allowedTypes->map(static fn (): array => [])->all()))
                         ->getNode();
                     collect($arrayNode->items)->each(static fn (ArrayItem $arrayItemNode) => $arrayItemNode->setAttribute(
                         AttributeKey::COMMENTS,
                         [new Comment('')]
                     ));
-                    array_splice($classNode->stmts, 2, 0, [new Nop, $propertyNode]);
+                    array_splice(
+                        $classNode->stmts,
+                        (int) collect($classNode->stmts)->search(static fn (Stmt $stmtNode): bool => $stmtNode instanceof Property, true),
+                        0,
+                        [new Nop, $propertyNode]
+                    );
 
                     return;
                 }
@@ -246,7 +255,7 @@ final class MessageRector extends AbstractRector
             });
     }
 
-    private function updateDocCommentOfProperty(Class_ $classNode): void
+    private function updateDocCommentOfStmt(Class_ $classNode): void
     {
         $traitNode = $this->betterNodeFinder->findFirstInstanceOf(
             $this->simplePhpParser->parseFile(__DIR__.'/../Concerns/HasOptions.php'),

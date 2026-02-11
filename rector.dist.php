@@ -24,6 +24,8 @@ use Guanguans\Notify\Foundation\Rectors\MessageRector;
 use Guanguans\RectorRules\Rector\File\AddNoinspectionDocblockToFileFirstStmtRector;
 use Guanguans\RectorRules\Rector\Name\RenameToConventionalCaseNameRector;
 use Guanguans\RectorRules\Set\SetList;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use PhpParser\NodeVisitor\ParentConnectingVisitor;
 use Rector\CodeQuality\Rector\If_\ExplicitBoolCompareRector;
 use Rector\CodeQuality\Rector\LogicalAnd\LogicalToBooleanRector;
@@ -44,6 +46,7 @@ use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\Php73\Rector\FuncCall\JsonThrowOnErrorRector;
 use Rector\Removing\Rector\Class_\RemoveTraitUseRector;
 use Rector\Renaming\Rector\FuncCall\RenameFunctionRector;
+use Rector\Renaming\Rector\Name\RenameClassRector;
 use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
 use Rector\Transform\Rector\String_\StringToClassConstantRector;
 use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRector;
@@ -119,6 +122,10 @@ return RectorConfig::configure()
             ->mapWithKeys(static fn (string $func): array => [$func => "Guanguans\\Notify\\Foundation\\Support\\$func"])
             ->all()
     )
+    ->withConfiguredRule(RenameClassRector::class, [
+        Arr::class => Guanguans\Notify\Foundation\Support\Arr::class,
+        Str::class => Guanguans\Notify\Foundation\Support\Str::class,
+    ])
     ->withSkip([
         ChangeOrIfContinueToMultiContinueRector::class,
         DisallowedEmptyRuleFixerRector::class,
@@ -138,6 +145,11 @@ return RectorConfig::configure()
         ],
         RemoveTraitUseRector::class => [
             __DIR__.'/src/Foundation/Message.php',
+        ],
+        RenameClassRector::class => [
+            __DIR__.'/src/Foundation/Rectors/',
+            __DIR__.'/composer-bump',
+            __FILE__,
         ],
         RenameParamToMatchTypeRector::class => [
             __DIR__.'/src/Foundation/Rectors/',
