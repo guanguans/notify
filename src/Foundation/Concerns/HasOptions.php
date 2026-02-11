@@ -243,7 +243,7 @@ trait HasOptions
      */
     protected function nestedOptions(): array
     {
-        return [];
+        return []; // @codeCoverageIgnore
     }
 
     /**
