@@ -8,6 +8,16 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="4.1.0"></a>
+## [4.1.0] - 2026-02-11
+### 💅 Code Refactorings
+- **Messages:** Rename method for updating doc comments ([b5de6f3](https://github.com/guanguans/notify/commit/b5de6f3))
+- **Messages:** Enhance property doc comments using BetterNodeFinder ([e84406a](https://github.com/guanguans/notify/commit/e84406a))
+
+### 🏎 Performance Improvements
+- **concerns:** Add explicit property definitions for option handling ([f7d8b5a](https://github.com/guanguans/notify/commit/f7d8b5a))
+
+
 <a name="4.0.0"></a>
 ## [4.0.0] - 2026-02-10
 ### ✨ Features
@@ -1557,7 +1567,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/4.0.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/4.1.0...HEAD
+[4.1.0]: https://github.com/guanguans/notify/compare/4.0.0...4.1.0
 [4.0.0]: https://github.com/guanguans/notify/compare/3.5.6...4.0.0
 [3.5.6]: https://github.com/guanguans/notify/compare/3.5.5...3.5.6
 [3.5.5]: https://github.com/guanguans/notify/compare/3.5.4...3.5.5
