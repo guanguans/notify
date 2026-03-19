@@ -8,6 +8,18 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="4.1.1"></a>
+## [4.1.1] - 2026-03-19
+### 🐞 Bug Fixes
+- **Foundation:** Ignore code coverage for nestedOptions method ([b949b10](https://github.com/guanguans/notify/commit/b949b10))
+
+### 📦 Builds
+- **deps:** update composer dependencies to latest versions ([d0b5b83](https://github.com/guanguans/notify/commit/d0b5b83))
+
+### Pull Requests
+- Merge pull request [#178](https://github.com/guanguans/notify/issues/178) from guanguans/dependabot/composer/shipmonk/dead-code-detector-tw-0.14or-tw-0.15
+
+
 <a name="4.1.0"></a>
 ## [4.1.0] - 2026-02-11
 ### 💅 Code Refactorings
@@ -1567,7 +1579,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/4.1.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/4.1.1...HEAD
+[4.1.1]: https://github.com/guanguans/notify/compare/4.1.0...4.1.1
 [4.1.0]: https://github.com/guanguans/notify/compare/4.0.0...4.1.0
 [4.0.0]: https://github.com/guanguans/notify/compare/3.5.6...4.0.0
 [3.5.6]: https://github.com/guanguans/notify/compare/3.5.5...3.5.6
