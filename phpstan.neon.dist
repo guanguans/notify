@@ -160,6 +160,7 @@ parameters:
         - identifier: ergebnis.noParameterWithNullDefaultValue
         - identifier: shipmonk.binaryOperationWithNull
         - identifier: shipmonk.checkedExceptionInCallable
+        - identifier: shipmonk.checkedExceptionInYieldingMethod
         - identifier: shipmonk.forbiddenCast
         - identifier: shipmonk.iteratorToArrayWithoutPreserveKeys
         - identifier: shipmonk.nonNormalizedType
