@@ -14,23 +14,40 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Foundation\Rectors;
 
 use Guanguans\Notify\Foundation\Contracts\Authenticator;
+use Guanguans\RectorRules\Rector\AbstractProxyRector;
 use PhpParser\Node;
 use PhpParser\Node\Param;
 use Rector\Php82\Rector\Param\AddSensitiveParameterAttributeRector as OriginalAddSensitiveParameterAttributeRector;
 use Rector\PHPStan\ScopeFetcher;
-use Rector\Rector\AbstractRector;
 
 /**
  * @internal
  */
-final class AddSensitiveParameterAttributeRector extends AbstractRector
+final class AddSensitiveParameterAttributeRector extends AbstractProxyRector
 {
-    private readonly OriginalAddSensitiveParameterAttributeRector $originalAddSensitiveParameterAttributeRector;
-
-    public function __construct(OriginalAddSensitiveParameterAttributeRector $originalAddSensitiveParameterAttributeRector)
+    /**
+     * @return list<\Symplify\RuleDocGenerator\ValueObject\CodeSample\CodeSample>
+     */
+    protected function codeSamples(): array
     {
-        $this->originalAddSensitiveParameterAttributeRector = clone $originalAddSensitiveParameterAttributeRector;
-        $this->originalAddSensitiveParameterAttributeRector->configure([
+        return [];
+    }
+
+    /**
+     * @param \PhpParser\Node\Param $node
+     *
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     * @throws \Rector\Exception\ShouldNotHappenException
+     */
+    protected function rawRefactor(Node $node): ?Node
+    {
+        $scope = ScopeFetcher::fetch($node);
+
+        if (!$scope->getClassReflection()?->getNativeReflection()->isSubclassOf(Authenticator::class)) {
+            return null;
+        }
+
+        $this->makeProxyRector()->configure([
             OriginalAddSensitiveParameterAttributeRector::SENSITIVE_PARAMETERS => [
                 'accessToken',
                 'apiKey',
@@ -45,27 +62,12 @@ final class AddSensitiveParameterAttributeRector extends AbstractRector
                 'webHook',
             ],
         ]);
+
+        return parent::rawRefactor($node);
     }
 
-    public function getNodeTypes(): array
+    protected function proxyRectorClass(): string
     {
-        // return $this->addSensitiveParameterAttributeRector->getNodeTypes();
-        return [Param::class];
-    }
-
-    /**
-     * @param \PhpParser\Node\Param $node
-     *
-     * @throws \Rector\Exception\ShouldNotHappenException
-     */
-    public function refactor(Node $node): ?Node
-    {
-        $scope = ScopeFetcher::fetch($node);
-
-        if (!$scope->getClassReflection()?->getNativeReflection()->isSubclassOf(Authenticator::class)) {
-            return null;
-        }
-
-        return $this->originalAddSensitiveParameterAttributeRector->refactor($node);
+        return OriginalAddSensitiveParameterAttributeRector::class;
     }
 }

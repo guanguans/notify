@@ -16,6 +16,7 @@ declare(strict_types=1);
 
 use Ergebnis\Rector\Rules\Arrays\SortAssociativeArrayByKeyRector;
 use Ergebnis\Rector\Rules\Faker\GeneratorPropertyFetchToMethodCallRector;
+use Ergebnis\Rector\Rules\Files\ReferenceNamespacedSymbolsRelativeToNamespacePrefixRector;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
 use Guanguans\Notify\Foundation\Concerns\AsPost;
 use Guanguans\Notify\Foundation\Rectors\AddSensitiveParameterAttributeRector;
@@ -52,6 +53,8 @@ use Rector\Transform\Rector\Scalar\ScalarValueToConstFetchRector;
 use Rector\Transform\Rector\String_\StringToClassConstantRector;
 use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRector;
 use Rector\ValueObject\PhpVersion;
+use RectorPest\Set\PestLevelSetList;
+use RectorPest\Set\PestSetList;
 
 return RectorConfig::configure()
     ->withPaths([__DIR__.'/benchmarks/', __DIR__.'/src/', __DIR__.'/tests/', __DIR__.'/composer-bump'])
@@ -66,7 +69,7 @@ return RectorConfig::configure()
     ->withFluentCallNewLine()
     ->withTreatClassesAsFinal()
     ->withAttributesSets(phpunit: true, all: true)
-    ->withComposerBased(phpunit: true, laravel: true)
+    ->withComposerBased(phpunit: true/* , laravel: true */)
     ->withPhpVersion(PhpVersion::PHP_82)
     ->withDowngradeSets(php82: true)
     ->withPhpSets(php82: true)
@@ -87,6 +90,8 @@ return RectorConfig::configure()
     )
     ->withSets([
         SetList::ALL,
+        PestLevelSetList::UP_TO_PEST_30,
+        PestSetList::PEST_CODE_QUALITY,
     ])
     ->withRules([
         AddSensitiveParameterAttributeRector::class,
@@ -116,6 +121,11 @@ return RectorConfig::configure()
     ])
     ->registerDecoratingNodeVisitor(ParentConnectingVisitor::class)
     ->withConfiguredRule(RenameToConventionalCaseNameRector::class, ['beforeEach', 'MIT', 'PDO'])
+    ->withConfiguredRule(ReferenceNamespacedSymbolsRelativeToNamespacePrefixRector::class, [
+        'namespacePrefixes' => [
+            // 'Guanguans\\Notify',
+        ],
+    ])
     ->withConfiguredRule(RemoveTraitUseRector::class, [AsJson::class, AsPost::class])
     ->withConfiguredRule(
         RenameFunctionRector::class,

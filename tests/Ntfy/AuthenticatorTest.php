@@ -33,6 +33,6 @@ it('can create an Authenticator', function (): void {
         new Authenticator,
         new Authenticator(fake()->sha1()),
         new Authenticator(fake()->userName(), fake()->password()),
-    ])->each->toBeInstanceOf(Authenticator::class);
+    ])->toContainOnlyInstancesOf(Authenticator::class);
 })
     ->group(__DIR__, __FILE__);

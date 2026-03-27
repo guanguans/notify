@@ -30,7 +30,8 @@ use GuzzleHttp\Psr7\Response;
 use Pest\Expectation;
 use Psr\Http\Message\ResponseInterface;
 
-uses(TestCase::class)
+pest()
+    ->extend(TestCase::class)
     // ->compact()
     ->beforeAll(function (): void {})
     ->beforeEach(function (): void {})
