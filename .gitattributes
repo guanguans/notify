@@ -36,7 +36,7 @@
 /.*/           export-ignore
 /baselines/    export-ignore
 /benchmarks/   export-ignore
-/docs/         export-ignore
+#/docs/         export-ignore
 #/examples/     export-ignore
 /tests/        export-ignore
 /vendor-bin/   export-ignore
@@ -51,11 +51,13 @@
 /CHANGELOG.md                       export-ignore
 /composer-bump                      export-ignore
 /composer-dependency-analyser.php   export-ignore
+/ecs.php                            export-ignore
 /monorepo-builder.php               export-ignore
 /peck.json                          export-ignore
 /phpbench.json.dist                 export-ignore
 /phpstan.neon.dist                  export-ignore
 /phpunit.xml.dist                   export-ignore
+/rector-*.php                       export-ignore
 /rector.dist.php                    export-ignore
 /rule-doc-generator                 export-ignore
 /testbench.yaml                     export-ignore

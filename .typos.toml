@@ -7,7 +7,7 @@
 ignore-hidden = false
 extend-exclude = [
   ".git/",
-  # "CHANGELOG.md",
+  "CHANGELOG.md",
 ]
 
 [default]

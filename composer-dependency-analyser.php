@@ -21,9 +21,6 @@ return (new Configuration)
         __DIR__.'/src/Foundation/Support/ComposerScripts.php',
         __DIR__.'/tests/',
     ])
-    ->ignoreUnknownClasses([
-        // SensitiveParameter::class,
-    ])
     /** @see \ShipMonk\ComposerDependencyAnalyser\Analyser::CORE_EXTENSIONS */
     ->ignoreErrorsOnExtensions(
         [

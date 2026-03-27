@@ -48,6 +48,7 @@ use Rector\Removing\Rector\Class_\RemoveTraitUseRector;
 use Rector\Renaming\Rector\FuncCall\RenameFunctionRector;
 use Rector\Renaming\Rector\Name\RenameClassRector;
 use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
+use Rector\Transform\Rector\Scalar\ScalarValueToConstFetchRector;
 use Rector\Transform\Rector\String_\StringToClassConstantRector;
 use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRector;
 use Rector\ValueObject\PhpVersion;
@@ -127,6 +128,9 @@ return RectorConfig::configure()
         Str::class => Guanguans\Notify\Foundation\Support\Str::class,
     ])
     ->withSkip([
+        Rector\Php82\Rector\Param\AddSensitiveParameterAttributeRector::class,
+        ScalarValueToConstFetchRector::class,
+
         ChangeOrIfContinueToMultiContinueRector::class,
         DisallowedEmptyRuleFixerRector::class,
         EncapsedStringsToSprintfRector::class,
