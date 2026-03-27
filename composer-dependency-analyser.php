@@ -22,7 +22,7 @@ return (new Configuration)
         __DIR__.'/tests/',
     ])
     ->ignoreUnknownClasses([
-        SensitiveParameter::class,
+        // SensitiveParameter::class,
     ])
     /** @see \ShipMonk\ComposerDependencyAnalyser\Analyser::CORE_EXTENSIONS */
     ->ignoreErrorsOnExtensions(

@@ -66,9 +66,9 @@ return RectorConfig::configure()
     ->withTreatClassesAsFinal()
     ->withAttributesSets(phpunit: true, all: true)
     ->withComposerBased(phpunit: true, laravel: true)
-    ->withPhpVersion(PhpVersion::PHP_81)
-    ->withDowngradeSets(php81: true)
-    ->withPhpSets(php81: true)
+    ->withPhpVersion(PhpVersion::PHP_82)
+    ->withDowngradeSets(php82: true)
+    ->withPhpSets(php82: true)
     ->withPreparedSets(
         deadCode: true,
         codeQuality: true,

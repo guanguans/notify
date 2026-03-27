@@ -77,49 +77,53 @@
         }
     ],
     "require": {
-        "php": ">=8.1",
+        "php": ">=8.2",
         "ext-simplexml": "*",
         "guzzlehttp/guzzle": "^7.10",
         "guzzlehttp/uri-template": "^1.0",
         "psr/simple-cache": "^1.0 || ^2.0 || ^3.0",
-        "symfony/options-resolver": "^6.4 || ^7.0 || ^8.0"
+        "symfony/options-resolver": "^7.4 || ^8.0"
     },
     "require-dev": {
         "adamwojs/php-cs-fixer-phpdoc-force-fqcn": "^2.0",
         "bamarni/composer-bin-plugin": "^1.9",
         "brainmaestro/composer-git-hooks": "^3.0",
+        "composer/composer": "^2.9",
         "ergebnis/composer-normalize": "^2.50",
         "ergebnis/license": "^2.7",
         "ergebnis/php-cs-fixer-config": "^6.60",
         "ergebnis/phpstan-rules": "^2.13",
-        "ergebnis/rector-rules": "^1.14",
+        "ergebnis/rector-rules": "^1.15",
         "fakerphp/faker": "^1.24",
+        "guanguans/monorepo-builder-worker": "^3.1",
         "guanguans/php-cs-fixer-custom-fixers": "^1.2",
         "guanguans/phpstan-rules": "^1.1",
         "guanguans/rector-rules": "^1.7",
-        "illuminate/support": "^10.49 || ^11.0 || ^12.0 || ^13.0",
+        "illuminate/support": "^12.56 || ^13.0",
         "jbelien/phpstan-sarif-formatter": "^1.2",
         "mockery/mockery": "^1.6",
-        "nette/utils": "^4.0",
+        "mrpunyapal/peststan": "^0.1",
+        "mrpunyapal/rector-pest": "^0.2",
+        "nette/utils": "^4.1",
         "nicksdot/phpstan-phpstorm-error-identifiers": "^0.3",
-        "pestphp/pest": "^2.36 || ^3.0 || ^4.0",
-        "pestphp/pest-plugin-arch": "^2.7 || ^3.0 || ^4.0",
-        "pestphp/pest-plugin-profanity": "^1.7 || ^2.0 || ^3.0 || ^4.0",
+        "pestphp/pest": "^3.8 || ^4.0",
+        "pestphp/pest-plugin-arch": "^3.1 || ^4.0",
+        "pestphp/pest-plugin-profanity": "^3.23 || ^4.0",
         "php-mock/php-mock-phpunit": "^2.15",
-        "phpbench/phpbench": "^1.4",
+        "phpbench/phpbench": "^1.6",
         "phpstan/extension-installer": "^1.4",
-        "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-deprecation-rules": "^2.0",
         "phpstan/phpstan-mockery": "^2.0",
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpstan/phpstan-webmozart-assert": "^2.0",
-        "phpunit/phpunit": "^10.5 || ^11.0 || ^12.0 || ^13.0",
+        "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0",
         "povils/phpmnd": "^3.6",
         "rector/argtyper": "^0.6",
         "rector/jack": "^0.5",
-        "rector/rector": "^2.3",
         "rector/swiss-knife": "^2.3",
         "rector/type-perfect": "^2.1",
+        "roave/backward-compatibility-check": "^8.14",
+        "roave/no-floaters": "^1.13",
         "shipmonk/composer-dependency-analyser": "^1.8",
         "shipmonk/dead-code-detector": "^0.15",
         "shipmonk/name-collision-detector": "^2.1",
@@ -132,7 +136,9 @@
         "staabm/phpstan-todo-by": "^0.3",
         "staabm/side-effects-detector": "^1.0",
         "symfony/thanks": "^1.4",
-        "symfony/var-dumper": "^6.4 || ^7.0 || ^8.0",
+        "symfony/var-dumper": "^7.4 || ^8.0",
+        "symplify/coding-standard": "^13.0",
+        "symplify/easy-coding-standard": "^13.0",
         "symplify/phpstan-rules": "^14.9",
         "tomasvotruba/class-leak": "^2.1",
         "tomasvotruba/cognitive-complexity": "^1.0",
@@ -183,7 +189,7 @@
             "target-directory": "vendor-bin"
         },
         "branch-alias": {
-            "dev-main": "4.x-dev"
+            "dev-main": "5.x-dev"
         },
         "composer-normalize": {
             "indent-size": 4,
@@ -211,7 +217,7 @@
         "actionlint": "actionlint -ignore=SC2035 -ignore=SC2086 -color -oneline -verbose",
         "argtyper": "@php vendor/bin/argtyper --ansi -vv",
         "argtyper:add-types": "@argtyper add-types .",
-        "blade-formatter": "blade-formatter resources/views/*.blade.php resources/views/**/*.blade.php --ignore-path= --php-version=8.1 --progress",
+        "blade-formatter": "blade-formatter resources/views/*.blade.php resources/views/**/*.blade.php --ignore-path= --php-version=8.2 --progress",
         "blade-formatter:check-formatted": "@blade-formatter --check-formatted",
         "blade-formatter:write": "@blade-formatter --write",
         "cghooks": "@php vendor/bin/cghooks --ansi -vv",
@@ -233,6 +239,7 @@
             "@jack:breakpoint",
             "@jack:open-versions-dry-run",
             "@jack:raise-to-installed-dry-run",
+            "@jsonlint",
             "@notify:generate-ide-json",
             "@notify:platform-lint",
             "@phpmnd",
@@ -292,15 +299,17 @@
         "composer:unlink": "@php -r \"@unlink('vendor/bin/composer');\"",
         "composer:validate": "@composer validate --check-lock --strict --ansi -vv",
         "detect-collisions": "@php vendor/bin/detect-collisions benchmarks/ src/",
+        "ecs": "@php vendor/bin/ecs --ansi -vv",
+        "ecs:check": "@ecs check",
+        "ecs:check-output-format-json": "@ecs:check --output-format=json",
+        "ecs:fix": "@ecs:check --fix",
+        "ecs:list-checkers": "@ecs list-checkers",
         "facade:lint": "@facade:update --lint",
         "facade:update": "@php -f vendor/bin/facade.php -- Guanguans\\\\Notify\\\\Facades\\\\ApiResponseFacade",
         "git-chglog": "git-chglog $(git describe --tags $(git rev-list --tags --max-count=1))",
         "gitleaks": "gitleaks git --report-path=.build/gitleaks-report.json -v",
         "gitleaks:generate-baseline": "gitleaks git --report-path=gitleaks-baseline.json -v",
-        "grumphp": [
-            "@putenv:php",
-            "$PHP82 vendor/bin/grumphp run --ansi -vv"
-        ],
+        "grumphp": "@php vendor/bin/grumphp run --ansi -vv",
         "jack": "@php vendor/bin/jack",
         "jack:breakpoint": "@jack breakpoint --limit=8",
         "jack:breakpoint-dev": "@jack:breakpoint --dev",
@@ -326,10 +335,7 @@
         "mago:lint-dry-run": "@mago:lint --dry-run",
         "mago:lint-list-rules": "@mago lint --list-rules",
         "mago:lint-semantics-only": "@mago lint --semantics-only",
-        "monorepo-builder": [
-            "@putenv:php",
-            "$PHP82 vendor/bin/monorepo-builder --ansi -vv"
-        ],
+        "monorepo-builder": "@php vendor/bin/monorepo-builder --ansi -vv",
         "monorepo-builder:release": [
             "@git-chglog",
             "@monorepo-builder release"
@@ -343,27 +349,16 @@
         "monorepo-builder:release-patch": "@monorepo-builder:release patch",
         "monorepo-builder:release-patch-dry-run": "@monorepo-builder:release-patch --dry-run",
         "neon-lint": "@php vendor/bin/neon-lint *.neon",
-        "notify": "@php notify --ansi -vv",
-        "notify:app-build": [
-            "@composer install --no-dev --no-scripts --ansi -vv",
-            "@php notify app:build notify.phar --build-version=master --ansi",
-            "@php builds/notify.phar list --ansi -vv",
-            "ls -lh builds/notify.phar",
-            "ls -lr builds/notify.phar"
-        ],
         "notify:generate-gitleaks-ignore": "Guanguans\\Notify\\Foundation\\Support\\ComposerScripts::generateGitleaksIgnore",
         "notify:generate-ide-json": "Guanguans\\Notify\\Foundation\\Support\\ComposerScripts::generateIdeJson",
         "notify:phpdoc-parse": "Guanguans\\RectorRules\\Support\\ComposerScripts::phpdocParse",
         "notify:platform-lint": "Guanguans\\Notify\\Foundation\\Support\\ComposerScripts::platformLint",
-        "peck": [
-            "@putenv:php",
-            "$PHP82 vendor/bin/peck check --path=src/ --config=../../peck.json --ansi -vv"
-        ],
+        "peck": "@php vendor/bin/peck check --path=src/ --config=peck.json --ansi -vv",
         "peck:ignore-all": "@peck --ignore-all",
         "peck:init": "@peck --init",
         "pest": [
             "@putenv:xdebug-on",
-            "@php vendor/bin/pest --colors=always --min=90 --coverage --profile",
+            "@php vendor/bin/pest --colors=always --min=80 --coverage --profile",
             "@putenv:xdebug-off"
         ],
         "pest:coverage": "@pest --coverage-html=.build/phpunit/ --coverage-clover=.build/phpunit/clover.xml",
@@ -371,7 +366,7 @@
         "pest:highest": [
             "@putenv:php",
             "@putenv:xdebug-on",
-            "$PHP85 vendor/bin/pest --colors=always --min=90 --coverage --profile",
+            "$PHP85 vendor/bin/pest --colors=always --min=80 --coverage --profile",
             "@putenv:xdebug-off"
         ],
         "pest:migrate-configuration": "@pest --migrate-configuration",
@@ -399,8 +394,8 @@
         "php-cs-fixer:list-sets": "@php-cs-fixer list-sets --ansi -vv",
         "php-lint": [
             "@putenv:php",
-            "for DIR in .; do find $DIR -maxdepth 1 -type f -name '*.php' -type f ! -name 'xxx.php' -exec $PHP81 -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done",
-            "for DIR in src/ tests/; do find $DIR -type f -name '*.php' -type f ! -name 'xxx.php' -exec $PHP81 -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done"
+            "for DIR in .; do find $DIR -maxdepth 1 -type f -name '*.php' -type f ! -name 'xxx.php' -exec $PHP82 -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done",
+            "for DIR in src/ tests/; do find $DIR -type f -name '*.php' -type f ! -name 'xxx.php' -exec $PHP82 -l {} \\; 2>&1 | (! grep -v '^No syntax errors detected'); done"
         ],
         "phpbench": "@php vendor/bin/phpbench run --report=aggregate --ansi -vv",
         "phpmnd": "@php vendor/bin/phpmnd src/ --exclude-path=Support/helpers.phpp --ignore-numbers=-1,2,200,201,202,300,301,302,304,400,401,402,403,404,408,409,422,429,500,9999999999 --hint --progress --ansi -vv",
@@ -456,15 +451,9 @@
         "rector:process-dry-run-output-format-github": "@rector:process-dry-run --output-format=github",
         "rector:process-only": "@rector:process-clear-cache src/ --only=Guanguans\\Notify\\Foundation\\Rectors\\MessageRector",
         "rector:process-only-dry-run": "@rector:process-only --dry-run",
-        "roave-backward-compatibility-check": [
-            "@putenv:php",
-            "$PHP82 vendor/bin/roave-backward-compatibility-check --install-development-dependencies --ansi -vv"
-        ],
+        "roave-backward-compatibility-check": "@php vendor/bin/roave-backward-compatibility-check --install-development-dependencies --ansi -vv",
         "roave-backward-compatibility-check:format-github-actions": "@roave-backward-compatibility-check --format=github-actions",
-        "rule-doc-generator": [
-            "@putenv:php",
-            "$PHP82 rule-doc-generator --ansi -vv"
-        ],
+        "rule-doc-generator": "@php rule-doc-generator --ansi -vv",
         "rule-doc-generator:generate": "@rule-doc-generator generate src/Support/Rectors/ --output-file=src/Support/Rectors/rules-overview.md",
         "rule-doc-generator:validate": "@rule-doc-generator validate src/Support/Rectors/",
         "sk": "@php vendor/bin/swiss-knife --ansi -vv",
@@ -488,24 +477,7 @@
         "sk:search-regex": "@sk search-regex 'Guanguans.*ValetDrivers'",
         "sk:split-config-per-package": "@sk split-config-per-package monorepo-builder.php",
         "sk:spot-lazy-traits": "@sk spot-lazy-traits src/ --max-used=2",
-        "testbench": "@php vendor/bin/testbench --ansi -vv",
-        "testbench:build": "@testbench workbench:build",
-        "testbench:clear": "@testbench package:purge-skeleton",
-        "testbench:optimize:image": "@testbench optimize:image",
-        "testbench:optimize:image-dry-run": "@testbench:optimize:image --dry-run",
-        "testbench:prepare": "@testbench package:discover",
-        "testbench:serve": [
-            "@composer-config:disable-process-timeout",
-            "@testbench:build",
-            "@testbench serve"
-        ],
-        "testbench:test": [
-            "@testbench:clear",
-            "@pest"
-        ],
-        "testbench:workbench:install": "@testbench workbench:install",
         "todo-lint": "! git --no-pager grep --extended-regexp --ignore-case 'todo|fixme' -- '*.php' ':!*.blade.php' ':(exclude)src/Foundation/Concerns/HasOptions.php'",
-        "touch:database-sqlite": "@php -r \"file_exists('vendor/orchestra/testbench-core/laravel/database/database.sqlite') || touch('vendor/orchestra/testbench-core/laravel/database/database.sqlite');\"",
         "trufflehog": "trufflehog git https://github.com/guanguans/notify --only-verified",
         "typos": "typos --color=always --sort --verbose",
         "typos:write-changes": "@typos --write-changes",

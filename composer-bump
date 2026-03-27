@@ -58,17 +58,17 @@ $statusCode = (new SingleCommandApplication)
 
 exit($statusCode);
 
-final class ComposerBump
+final readonly class ComposerBump
 {
-    private readonly string $composerJsonPath;
-    private readonly string $composer;
-    private readonly string $highestComposer;
+    private string $composerJsonPath;
+    private string $composer;
+    private string $highestComposer;
 
     /** @var list<string> */
-    private readonly array $exceptPackages;
+    private array $exceptPackages;
 
     /** @var list<string> */
-    private readonly array $exceptVersions;
+    private array $exceptVersions;
 
     /**
      * @noinspection ParameterDefaultsNullInspection
@@ -80,7 +80,7 @@ final class ComposerBump
         ?string $composerBinary = null,
         array $exceptPackages = [],
         array $exceptVersions = [],
-        private readonly SymfonyStyle $symfonyStyle = new SymfonyStyle(
+        private SymfonyStyle $symfonyStyle = new SymfonyStyle(
             new ArgvInput,
             new ConsoleOutput
         )
@@ -98,6 +98,7 @@ final class ComposerBump
     public function __invoke(): void
     {
         $this
+            ->updateComposerPackages()
             ->updateOutdatedComposerPackages()
             ->updateComposerPackages()
             ->updateOutdatedComposerPackages()
@@ -217,7 +218,7 @@ final class ComposerBump
                         ),
                         $lowestArrayVersion[0] < $highestArrayVersion[0] => array_map(
                             static fn (string $major): string => "^$major.0",
-                            range($lowestArrayVersion[0] + 1, $highestArrayVersion[0])
+                            range((int) $lowestArrayVersion[0] + 1, $highestArrayVersion[0])
                         ),
                         default => []
                     },
