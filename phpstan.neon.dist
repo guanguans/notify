@@ -26,6 +26,7 @@ includes:
     - vendor/symplify/phpstan-rules/config/phpunit-rules.neon
 #    - vendor/symplify/phpstan-rules/config/rector-rules.neon
 #    - vendor/symplify/phpstan-rules/config/symfony-rules.neon
+#    - vendor/symplify/phpstan-rules/config/symfony-config-rules.neon
 
 services:
     # https://github.com/guanguans/notify/security/code-scanning
@@ -118,8 +119,22 @@ parameters:
 #        - identifier: cast.int
 #        - identifier: cast.string
 #        - identifier: class.extendsFinalByPhpDoc
+#        - identifier: disallowed.function
 #        - identifier: empty.notAllowed
 #        - identifier: encapsedStringPart.nonString
+#        - identifier: ergebnis.final
+#        - identifier: ergebnis.finalInAbstractClass
+#        - identifier: ergebnis.noAssignByReference
+#        - identifier: ergebnis.noConstructorParameterWithDefaultValue
+#        - identifier: ergebnis.noExtends
+#        - identifier: ergebnis.noIsset
+#        - identifier: ergebnis.noNamedArgument
+#        - identifier: ergebnis.noNullableReturnTypeDeclaration
+#        - identifier: ergebnis.noParameterPassedByReference
+#        - identifier: ergebnis.noParameterWithNullableTypeDeclaration
+#        - identifier: ergebnis.noParameterWithNullDefaultValue
+#        - identifier: foreach.valueOverwrite
+#        - identifier: guanguans.forbiddenSideEffects
 #        - identifier: logicalAnd.resultUnused
 #        - identifier: logicalOr.resultUnused
 #        - identifier: method.childParameterType
@@ -133,13 +148,22 @@ parameters:
 #        - identifier: phpstanApi.class
 #        - identifier: return.type
 #        - identifier: return.void
+#        - identifier: shipmonk.binaryOperationWithNull
+#        - identifier: shipmonk.checkedExceptionInCallable
+#        - identifier: shipmonk.forbiddenCast
+#        - identifier: shipmonk.iteratorToArrayWithoutPreserveKeys
+#        - identifier: shipmonk.nonNormalizedType
+#        - identifier: shipmonk.variableTypeOverwritten
 #        - identifier: symplify.explicitInterfaceSuffixName
 #        - identifier: symplify.explicitTraitSuffixName
 #        - identifier: symplify.forbiddenArrayMethodCall
 #        - identifier: symplify.forbiddenExtendOfNonAbstractClass
+#        - identifier: symplify.forbiddenFuncCall
 #        - identifier: symplify.forbiddenNode
+#        - identifier: symplify.forbiddenStaticClassConstFetch
 #        - identifier: symplify.noArrayMapWithArrayCallable
 #        - identifier: symplify.noDynamicName
+#        - identifier: symplify.noGlobalConst
 #        - identifier: symplify.noReference
 #        - identifier: symplify.noReturnSetterMethod
 #        - identifier: symplify.requireExceptionNamespace
@@ -189,8 +213,6 @@ parameters:
         - identifier: method.dynamicName
         - identifier: return.type
         - identifier: trait.unused
-#        - message: '#^Call to an undefined method Symfony\\Component\\OptionsResolver\\OptionsResolver\:\:setOptions\(\)\.$#'
-#        - message: '#^Cannot call method (setDefault|setOptions|setAllowedTypes)\(\) on mixed\.$#'
         - message: '#^Class Guanguans\\Notify\\.*\\Messages\\.*Message has PHPDoc tag @method for method .*\(\) parameter \#1 \$.* with no value type specified in iterable type array\.$#'
         - message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Support\\Arr\:\:forget\(\)" is (\d|1\d), keep it under 8$#'
         - message: '#^Cognitive complexity for "Guanguans\\Notify\\Foundation\\Support\\Arr\:\:get\(\)" is (\d|1\d), keep it under 8$#'
