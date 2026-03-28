@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -67,7 +66,7 @@ class MediaGroupMessage extends AbstractMessage
     {
         $optionsResolver->setNormalizer(
             'media',
-            static fn (Options $_, array $media): string => json_encode($media, \JSON_THROW_ON_ERROR),
+            static fn (OptionsResolver $_, array $media): string => json_encode($media, \JSON_THROW_ON_ERROR),
         );
     }
 }

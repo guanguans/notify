@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Guanguans\Notify\MicrosoftTeams\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
-use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -93,7 +92,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
-            ->{Utils::methodNameOfSetDefault()}('sections', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('sections', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -114,7 +113,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ->setAllowedTypes('images', 'array')
                     ->setAllowedTypes('potentialAction', 'array');
             })
-            ->{Utils::methodNameOfSetDefault()}('potentialAction', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('potentialAction', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([

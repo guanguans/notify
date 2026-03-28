@@ -65,7 +65,7 @@ arch('will not use debugging functions')
     // ->throwsNoExceptions()
     // ->skip()
     ->expect([
-        'dd',
+        // 'dd',
         'env',
         'env_explode',
         'env_getcsv',

@@ -55,6 +55,8 @@ use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRect
 use Rector\ValueObject\PhpVersion;
 use RectorPest\Set\PestLevelSetList;
 use RectorPest\Set\PestSetList;
+use Symfony\Component\OptionsResolver\Options;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 return RectorConfig::configure()
     ->withPaths([__DIR__.'/benchmarks/', __DIR__.'/src/', __DIR__.'/tests/', __DIR__.'/composer-bump'])
@@ -135,6 +137,7 @@ return RectorConfig::configure()
     )
     ->withConfiguredRule(RenameClassRector::class, [
         Arr::class => Guanguans\Notify\Foundation\Support\Arr::class,
+        Options::class => OptionsResolver::class,
         Str::class => Guanguans\Notify\Foundation\Support\Str::class,
     ])
     ->withSkip([

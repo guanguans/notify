@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Chanify\Messages;
 
-use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -60,7 +59,7 @@ class TextMessage extends Message
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        $optionsResolver->{Utils::methodNameOfSetDefault()}('timeline', static function (OptionsResolver $optionsResolver): void {
+        $optionsResolver->setOptions('timeline', static function (OptionsResolver $optionsResolver): void {
             $optionsResolver
                 ->setDefined([
                     'code',

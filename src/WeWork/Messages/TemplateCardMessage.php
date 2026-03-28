@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\WeWork\Messages;
 
-use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -109,26 +108,26 @@ class TemplateCardMessage extends AbstractMessage
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
-            ->{Utils::methodNameOfSetDefault()}('source', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('source', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'icon_url',
                     'desc',
                     'desc_color',
                 ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('main_title', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('main_title', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'title',
                     'desc',
                 ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('emphasis_content', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('emphasis_content', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'title',
                     'desc',
                 ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('quote_area', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('quote_area', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'type',
                     'url',
@@ -138,7 +137,7 @@ class TemplateCardMessage extends AbstractMessage
                     'quote_text',
                 ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('card_action', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('card_action', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'type',
                     'url',
@@ -146,13 +145,13 @@ class TemplateCardMessage extends AbstractMessage
                     'pagepath',
                 ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('card_image', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('card_image', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'url',
                     'aspect_ratio',
                 ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('image_text_area', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('image_text_area', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'type',
                     'url',
@@ -163,7 +162,7 @@ class TemplateCardMessage extends AbstractMessage
                     'image_url',
                 ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('horizontal_content_list', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('horizontal_content_list', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -175,7 +174,7 @@ class TemplateCardMessage extends AbstractMessage
                         'userid',
                     ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('jump_list', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('jump_list', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -186,7 +185,7 @@ class TemplateCardMessage extends AbstractMessage
                         'pagepath',
                     ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('vertical_content_list', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('vertical_content_list', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([

@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Guanguans\Notify\Discord\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
-use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -77,7 +76,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        $optionsResolver->{Utils::methodNameOfSetDefault()}('embeds', static function (OptionsResolver $optionsResolver): void {
+        $optionsResolver->setOptions('embeds', static function (OptionsResolver $optionsResolver): void {
             $optionsResolver
                 ->setPrototype(true)
                 ->setDefined([
@@ -100,7 +99,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     int|string $value
                 ): float|int => \is_int($value) ? $value : hexdec($value))
                 ->setAllowedTypes('footer', 'array')
-                ->{Utils::methodNameOfSetDefault()}('footer', static function (OptionsResolver $optionsResolver): void {
+                ->setOptions('footer', static function (OptionsResolver $optionsResolver): void {
                     $optionsResolver->setDefined([
                         'text',
                         'icon_url',
@@ -108,7 +107,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ]);
                 })
                 ->setAllowedTypes('image', 'array')
-                ->{Utils::methodNameOfSetDefault()}('image', static function (OptionsResolver $optionsResolver): void {
+                ->setOptions('image', static function (OptionsResolver $optionsResolver): void {
                     $optionsResolver->setDefined([
                         'url',
                         'proxy_url',
@@ -117,7 +116,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ]);
                 })
                 ->setAllowedTypes('thumbnail', 'array')
-                ->{Utils::methodNameOfSetDefault()}('thumbnail', static function (OptionsResolver $optionsResolver): void {
+                ->setOptions('thumbnail', static function (OptionsResolver $optionsResolver): void {
                     $optionsResolver->setDefined([
                         'url',
                         'proxy_url',
@@ -126,7 +125,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ]);
                 })
                 ->setAllowedTypes('video', 'array')
-                ->{Utils::methodNameOfSetDefault()}('video', static function (OptionsResolver $optionsResolver): void {
+                ->setOptions('video', static function (OptionsResolver $optionsResolver): void {
                     $optionsResolver->setDefined([
                         'url',
                         'proxy_url',
@@ -135,14 +134,14 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ]);
                 })
                 ->setAllowedTypes('provider', 'array')
-                ->{Utils::methodNameOfSetDefault()}('provider', static function (OptionsResolver $optionsResolver): void {
+                ->setOptions('provider', static function (OptionsResolver $optionsResolver): void {
                     $optionsResolver->setDefined([
                         'name',
                         'url',
                     ]);
                 })
                 ->setAllowedTypes('author', 'array')
-                ->{Utils::methodNameOfSetDefault()}('author', static function (OptionsResolver $optionsResolver): void {
+                ->setOptions('author', static function (OptionsResolver $optionsResolver): void {
                     $optionsResolver->setDefined([
                         'name',
                         'url',
@@ -151,7 +150,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ]);
                 })
                 ->setAllowedTypes('fields', 'array')
-                ->{Utils::methodNameOfSetDefault()}('fields', static function (OptionsResolver $optionsResolver): void {
+                ->setOptions('fields', static function (OptionsResolver $optionsResolver): void {
                     $optionsResolver
                         ->setPrototype(true)
                         ->setDefined([

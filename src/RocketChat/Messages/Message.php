@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Guanguans\Notify\RocketChat\Messages;
 
 use Guanguans\Notify\Foundation\Concerns\AsNullUri;
-use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -70,7 +69,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        $optionsResolver->{Utils::methodNameOfSetDefault()}('attachments', static function (OptionsResolver $optionsResolver): void {
+        $optionsResolver->setOptions('attachments', static function (OptionsResolver $optionsResolver): void {
             $optionsResolver
                 ->setPrototype(true)
                 ->setDefined([
@@ -94,7 +93,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                 ->setAllowedTypes('collapsed', 'bool')
                 ->setAllowedTypes('title_link_download', 'bool')
                 ->setAllowedTypes('fields', 'array')
-                ->{Utils::methodNameOfSetDefault()}('fields', static function (OptionsResolver $optionsResolver): void {
+                ->setOptions('fields', static function (OptionsResolver $optionsResolver): void {
                     $optionsResolver
                         ->setPrototype(true)
                         ->setDefined([

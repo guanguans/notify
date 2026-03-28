@@ -17,7 +17,6 @@ use Composer\InstalledVersions;
 use Guanguans\Notify\Foundation\Message;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\StreamInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 // \define('MULTIPART_TRY_OPEN_FILE', 1 << 0);
 // \define('MULTIPART_TRY_OPEN_URL', 1 << 1);
@@ -28,23 +27,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class Utils
 {
-    /**
-     * @see \trigger_deprecation()
-     * @see \trigger_deprecation(
-     *     'symfony/options-resolver',
-     *     '7.3',
-     *     'Defining nested options via "setDefault()" is deprecated and will be removed in Symfony 8.0, use "setOptions()" method instead.'
-     * )
-     *
-     * @return value-of<array{'setOptions', 'setDefault'}>
-     */
-    public static function methodNameOfSetDefault(): string
-    {
-        return method_exists(OptionsResolver::class, 'setOptions')
-            ? 'setOptions'
-            : 'setDefault';
-    }
-
     /**
      * Return an array of defined properties for the given object.
      *

@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\DingTalk\Messages;
 
-use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -56,7 +55,7 @@ class BtnsActionCardMessage extends AbstractMessage
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        $optionsResolver->{Utils::methodNameOfSetDefault()}('btns', static function (OptionsResolver $optionsResolver): void {
+        $optionsResolver->setOptions('btns', static function (OptionsResolver $optionsResolver): void {
             $optionsResolver
                 ->setPrototype(true)
                 ->setDefined([

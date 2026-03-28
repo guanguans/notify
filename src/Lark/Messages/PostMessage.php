@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Lark\Messages;
 
-use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -51,7 +50,7 @@ class PostMessage extends AbstractMessage
 
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
-        $optionsResolver->{Utils::methodNameOfSetDefault()}('post', static function (OptionsResolver $optionsResolver): void {
+        $optionsResolver->setOptions('post', static function (OptionsResolver $optionsResolver): void {
             $optionsResolver
                 ->setPrototype(true)
                 ->setDefined([

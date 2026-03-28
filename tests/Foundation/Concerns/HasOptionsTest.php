@@ -26,7 +26,6 @@ use Guanguans\Notify\Foundation\Concerns\AsNullUri;
 use Guanguans\Notify\Foundation\Exceptions\BadMethodCallException;
 use Guanguans\Notify\Foundation\Exceptions\InvalidArgumentException;
 use Guanguans\Notify\Foundation\Message;
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 it('will throw InvalidArgumentException when argument is empty', function (): void {
@@ -64,13 +63,13 @@ it('can get options', function (): void {
         /** @var list<string> */
         protected array $defined = ['foo', 'bar'];
 
-        /** @var array<string, array{0: string, 1: string, 2?: (\Closure(\Symfony\Component\OptionsResolver\Options, mixed): string)|string}> */
+        /** @var array<string, array{0: string, 1: string, 2?: (\Closure(OptionsResolver, mixed): string)|string}> */
         protected array $deprecated = [
             'foo' => ['foo/bar', '1.0', 'The option "%name%" is deprecated.'],
             'bar' => ['bar/foo', '2.0', 'The option "%name%" is deprecated.'],
         ];
 
-        // /** @var array<string, \Closure(\Symfony\Component\OptionsResolver\Options, mixed): mixed> */
+        // /** @var array<string, \Closure(OptionsResolver, mixed): mixed> */
         // protected array $normalizers = [];
 
         /** @var array<string, mixed> */
@@ -104,12 +103,22 @@ it('can get options', function (): void {
         }
 
         /**
-         * @return array<string, \Closure(\Symfony\Component\OptionsResolver\Options $options, string $value): uppercase-string>
+         * @return array<string, \Closure(Symfony\Component\OptionsResolver\OptionsResolver $optionsResolver): void>
+         */
+        public function nestedOptions(): array
+        {
+            return [
+                'bar' => static function (OptionsResolver $optionsResolver): void {},
+            ];
+        }
+
+        /**
+         * @return array<string, \Closure(OptionsResolver $options, string $value): uppercase-string>
          */
         public function normalizers(): array
         {
             return [
-                'foo' => static fn (Options $_, string $value): string => strtoupper($value),
+                'foo' => static fn (OptionsResolver $_, string $value): string => strtoupper($value),
             ];
         }
     })

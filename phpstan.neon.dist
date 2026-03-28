@@ -232,8 +232,3 @@ parameters:
             paths:
                 - src/*/Messages/*Message.php
                 - src/Foundation/Support/Arr.php
-
-
-
-        - message: '#^Call to function method_exists\(\) with Symfony\\Component\\OptionsResolver\\OptionsResolver and ''setOptions'' will always evaluate to true\.$#'
-        - message: '#^Call to function method_exists\(\) with ''Symfony\\\\Component\\\\OptionsResolver\\\\OptionsResolver'' and ''setOptions'' will always evaluate to true\.$#'

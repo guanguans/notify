@@ -15,7 +15,6 @@ namespace Guanguans\Notify\ZohoCliq\Messages;
 
 use Guanguans\Notify\Foundation\Message;
 use Guanguans\Notify\Foundation\Support\Arr;
-use Guanguans\Notify\Foundation\Support\Utils;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -107,14 +106,14 @@ abstract class AbstractMessage extends Message
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
-            ->{Utils::methodNameOfSetDefault()}('bot', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('bot', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'name',
                         'image',
                     ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('card', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('card', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'title',
@@ -124,14 +123,14 @@ abstract class AbstractMessage extends Message
                         'preview',
                     ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('styles', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('styles', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'highlight',
                     ])
                     ->setAllowedTypes('highlight', 'bool');
             })
-            ->{Utils::methodNameOfSetDefault()}('slides', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('slides', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -140,7 +139,7 @@ abstract class AbstractMessage extends Message
                         'data',
                     ]);
             })
-            ->{Utils::methodNameOfSetDefault()}('buttons', static function (OptionsResolver $optionsResolver): void {
+            ->setOptions('buttons', static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
