@@ -1,6 +1,7 @@
 .build/
 .history/
 .idea/
+tests/Browser/Screenshots/
 vendor/
 
 /vendor-bin/*/*

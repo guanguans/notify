@@ -4,7 +4,6 @@
   xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
   bootstrap="vendor/autoload.php"
   cacheDirectory=".build/phpunit/"
-  cacheResultFile=".build/phpunit/test-results"
   colors="true"
   failOnDeprecation="true"
   failOnPhpunitWarning="false"

@@ -19,28 +19,58 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
+use Guanguans\Notify\Foundation\Authenticators\WsseAuthenticator;
+use Guanguans\Notify\Foundation\Caches\FileCache;
 use Guanguans\Notify\Foundation\Concerns\Dumpable;
 use Guanguans\Notify\Foundation\Support\ComposerScripts;
 
-arch('will not use debugging functions')
-    // ->throwsNoExceptions()
+arch()
     ->group(__DIR__, __FILE__)
+    // ->skip()
+    ->preset()->php()->ignoring([
+        Dumpable::class,
+    ]);
+
+arch()
+    ->group(__DIR__, __FILE__)
+    ->skip()
+    ->preset()->laravel()->ignoring([
+        ComposerScripts::class,
+        Dumpable::class,
+    ]);
+
+arch()
+    ->group(__DIR__, __FILE__)
+    // ->skip()
+    ->preset()->security()->ignoring([
+        'assert',
+        FileCache::class,
+        WsseAuthenticator::class,
+    ]);
+
+arch()
+    ->group(__DIR__, __FILE__)
+    ->skip()
+    ->preset()->strict()->ignoring([
+    ]);
+
+arch()
+    ->group(__DIR__, __FILE__)
+    ->skip()
+    ->preset()->relaxed()->ignoring([
+    ]);
+
+arch('will not use debugging functions')
+    ->group(__DIR__, __FILE__)
+    // ->throwsNoExceptions()
+    // ->skip()
     ->expect([
         'dd',
-        'die',
-        'dump',
-        'echo',
         'env',
         'env_explode',
         'env_getcsv',
         'exit',
-        'print',
-        'print_r',
         'printf',
-        'ray',
-        'trap',
-        'var_dump',
-        'var_export',
         'vprintf',
     ])
     // ->each

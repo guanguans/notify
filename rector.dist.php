@@ -154,6 +154,9 @@ return RectorConfig::configure()
         ArrowFunctionDelegatingCallToFirstClassCallableRector::class => [
             __DIR__.'/tests/Foundation/MessageTest.php',
         ],
+        JsonThrowOnErrorRector::class => [
+            __DIR__.'/tests/Pest.php',
+        ],
         RemoveParentDelegatingConstructorRector::class => [
             __DIR__.'/src/Zulip/Authenticator.php',
         ],
@@ -168,6 +171,7 @@ return RectorConfig::configure()
         RenameParamToMatchTypeRector::class => [
             __DIR__.'/src/Foundation/Rectors/',
             __DIR__.'/src/Foundation/Exceptions/RequestException.php',
+            __DIR__.'/tests/Pest.php',
         ],
         RenameVariableToMatchMethodCallReturnTypeRector::class => [
             __DIR__.'/src/Foundation/Rectors/',

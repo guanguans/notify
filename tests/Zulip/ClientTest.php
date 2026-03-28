@@ -36,6 +36,12 @@ beforeEach(function (): void {
         ]);
 });
 
+covers([
+    Authenticator::class,
+    Client::class,
+    Message::class,
+]);
+
 it('can send direct message', function (): void {
     $message = Message::make([
         'type' => 'direct',
