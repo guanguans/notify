@@ -17,9 +17,9 @@ use Guanguans\Notify\Foundation\Contracts\Authenticator;
 use GuzzleHttp\Middleware;
 use Psr\Http\Message\RequestInterface;
 
-class Authenticate
+readonly class Authenticate
 {
-    public function __construct(private readonly Authenticator $authenticator) {}
+    public function __construct(private Authenticator $authenticator) {}
 
     public function __invoke(callable $handler): callable
     {

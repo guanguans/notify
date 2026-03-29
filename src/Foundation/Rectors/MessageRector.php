@@ -69,7 +69,7 @@ final class MessageRector extends AbstractRector
             return null;
         }
 
-        // TODO: symfony/options-resolver:>=7.3 Refactor `*Message::configureOptionsResolver()` to `*Message::nested() by MessageRector`.
+        // TODO: symfony/options-resolver:>=8.0 Refactor `*Message::configureOptionsResolver()` to `*Message::nested() by MessageRector`.
         $this->updateAllowedTypesProperty($node);
         $this->updateMethodsOfListTypeOption($node);
         $this->updateDocCommentOfStmt($node);

@@ -19,6 +19,7 @@ class BearerAuthenticator extends OptionsAuthenticator
 {
     /**
      * @noinspection PhpAttributeCanBeAddedToOverriddenMemberInspection
+     * @noinspection SensitiveParameterInspection
      */
     public function __construct(
         #[\SensitiveParameter]

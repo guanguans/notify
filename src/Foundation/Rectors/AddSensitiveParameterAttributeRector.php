@@ -59,6 +59,7 @@ final class AddSensitiveParameterAttributeRector extends AbstractProxyRector
                 'secret',
                 'tempKey',
                 'token',
+                'usernameOrToken',
                 'webHook',
             ],
         ]);

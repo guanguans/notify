@@ -280,6 +280,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
 
     /**
      * Get a header from the response.
+     *
+     * @noinspection SensitiveParameterInspection
      */
     public function header(string $header): string
     {
@@ -482,6 +484,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * Throw an exception if the response status code matches the given code.
      *
      * @throws \Guanguans\Notify\Foundation\Exceptions\RequestException
+     *
+     * @noinspection SensitiveParameterInspection
      */
     public function throwIfStatus(callable|int $statusCode): self
     {
@@ -496,6 +500,8 @@ class Response extends \GuzzleHttp\Psr7\Response implements \ArrayAccess, \Strin
      * Throw an exception unless the response status code matches the given code.
      *
      * @throws \Guanguans\Notify\Foundation\Exceptions\RequestException
+     *
+     * @noinspection SensitiveParameterInspection
      */
     public function throwUnlessStatus(callable|int $statusCode): self
     {

@@ -20,6 +20,9 @@ use Guanguans\Notify\Foundation\Authenticators\BasicAuthenticator;
  */
 class Authenticator extends BasicAuthenticator
 {
+    /**
+     * @noinspection SensitiveParameterInspection
+     */
     public function __construct(
         string $botEmail,
         #[\SensitiveParameter]

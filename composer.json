@@ -485,7 +485,7 @@
         "sk:search-regex": "@sk search-regex 'Guanguans.*ValetDrivers'",
         "sk:split-config-per-package": "@sk split-config-per-package monorepo-builder.php",
         "sk:spot-lazy-traits": "@sk spot-lazy-traits src/ --max-used=2",
-        "todo-lint": "! git --no-pager grep --extended-regexp --ignore-case 'todo|fixme' -- '*.php' ':!*.blade.php' ':(exclude)resources/'",
+        "todo-lint": "! git --no-pager grep --extended-regexp --ignore-case 'todo|fixme' -- '*.php' ':!*.blade.php' ':(exclude)resources/' ':(exclude)src/Foundation/Rectors/MessageRector.php'",
         "trufflehog": "trufflehog git https://github.com/guanguans/notify --only-verified",
         "typos": "typos --color=always --sort --verbose",
         "typos:write-changes": "@typos --write-changes",

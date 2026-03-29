@@ -195,6 +195,7 @@ function fixtures_path(string $path = ''): string
 function response(
     mixed $body = null,
     int $status = 200,
+    #[SensitiveParameter]
     array $headers = [],
     string $version = '1.1',
     ?string $reason = null

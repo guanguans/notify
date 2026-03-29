@@ -42,8 +42,6 @@ namespace Guanguans\Notify\RocketChat;
  * --header 'Content-type: application/json' \
  * --data-raw '{"roomId": "{{room_id}}", "text": "This is a testing."}'
  * ```
- *
- * @noinspection GrazieInspection
  */
 class Client extends \Guanguans\Notify\Foundation\Client
 {

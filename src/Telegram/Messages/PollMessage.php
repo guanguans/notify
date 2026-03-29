@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Guanguans\Notify\Telegram\Messages;
 
-use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**

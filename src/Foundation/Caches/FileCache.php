@@ -134,7 +134,7 @@ class FileCache implements CacheInterface
         return $this->directory;
     }
 
-    protected function emptyPayload(): mixed
+    protected function emptyPayload(): null
     {
         return null;
     }
