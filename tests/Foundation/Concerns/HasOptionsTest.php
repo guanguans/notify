@@ -105,7 +105,7 @@ it('can get options', function (): void {
         /**
          * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
          */
-        public function nestedOptions(): array
+        public function nested(): array
         {
             return [
                 'bar' => static function (OptionsResolver $optionsResolver): void {},

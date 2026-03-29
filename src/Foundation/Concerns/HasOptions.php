@@ -46,7 +46,7 @@ trait HasOptions
     protected array $deprecated = [];
 
     // /** @var array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void> */
-    // protected array $nestedOptions = [];
+    // protected array $nested = [];
 
     // /** @var array<string, \Closure(OptionsResolver $optionsResolver, mixed $value): mixed> */
     // protected array $normalizers = [];
@@ -206,7 +206,7 @@ trait HasOptions
             $optionsResolver->setDeprecated($option, ...$arguments);
         }
 
-        foreach ($this->nestedOptions() as $option => $nested) {
+        foreach ($this->nested() as $option => $nested) {
             $optionsResolver->setOptions($option, $nested);
         }
 
@@ -246,7 +246,7 @@ trait HasOptions
     /**
      * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
      */
-    protected function nestedOptions(): array
+    protected function nested(): array
     {
         return [];
     }
