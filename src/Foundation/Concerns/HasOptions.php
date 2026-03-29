@@ -24,7 +24,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 trait HasOptions
 {
-    /** @var array<string, (\Closure(OptionsResolver, OptionsResolver): void)|mixed> */
+    /**
+     * @phpstan-var array<string, (\Closure(OptionsResolver $optionsResolver, OptionsResolver $previousOptionsResolver): mixed)|mixed>
+     *
+     * @var array<string, (\Closure(OptionsResolver, OptionsResolver): mixed)|mixed>
+     */
     protected array $defaults = [];
 
     /** @var list<string> */
@@ -34,13 +38,17 @@ trait HasOptions
     protected array $defined = [];
     protected bool $ignoreUndefined = true;
 
-    /** @var array<string, array{0: string, 1: string, 2?: (\Closure(OptionsResolver, mixed): string)|string}> */
+    /**
+     * @phpstan-var array<string, array{0: string, 1: string, 2?: (\Closure(OptionsResolver $optionsResolver, mixed $value): string)|string}>
+     *
+     * @var array<string, array{0: string, 1: string, 2?: (\Closure(OptionsResolver, mixed): string)|string}>
+     */
     protected array $deprecated = [];
 
-    // /** @var array<string, \Closure(OptionsResolver $resolver, OptionsResolver $parent): void> */
+    // /** @var array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void> */
     // protected array $nestedOptions = [];
 
-    // /** @var array<string, \Closure(OptionsResolver, mixed): mixed> */
+    // /** @var array<string, \Closure(OptionsResolver $optionsResolver, mixed $value): mixed> */
     // protected array $normalizers = [];
 
     /** @var array<string, mixed> */
@@ -175,7 +183,6 @@ trait HasOptions
     protected function configureAndResolveOptions(array $options, callable $callback): array
     {
         $optionsResolver = new OptionsResolver;
-
         $callback($optionsResolver);
 
         return $optionsResolver->resolve($options);
@@ -190,20 +197,15 @@ trait HasOptions
     {
         // // A prototype option can only be defined inside a nested option and during its resolution it will expect an array of arrays.
         // $optionsResolver->setPrototype($this->prototype);
-        $optionsResolver->setDefaults([...$this->defaults, ...$this->defaults()]);
+        $optionsResolver->setDefaults($this->defaults() + $this->defaults);
         $optionsResolver->setRequired($this->required);
         $optionsResolver->setDefined($this->defined);
         $optionsResolver->setIgnoreUndefined($this->ignoreUndefined);
 
-        /** @var array<string, array{0: string, 1: string, 2?: (\Closure(OptionsResolver, mixed): string)|string}> $deprecated */
-        $deprecated = [...$this->deprecated, ...$this->deprecated()];
-
-        foreach ($deprecated as $option => $arguments) {
+        foreach ($this->deprecated() + $this->deprecated as $option => $arguments) {
             $optionsResolver->setDeprecated($option, ...$arguments);
         }
 
-        // TODO: symfony/options-resolver:>=7.3 Refactor `*Message::configureOptionsResolver()` to `*Message::nestedOptions() by MessageRector`.
-        // TODO: symfony/options-resolver:>=7.3 Rename `OptionsResolver` param name.
         foreach ($this->nestedOptions() as $option => $nested) {
             $optionsResolver->setOptions($option, $nested);
         }
@@ -226,7 +228,7 @@ trait HasOptions
     }
 
     /**
-     * @return array<string, (\Closure(OptionsResolver $resolver, OptionsResolver $previousValue): void)|mixed>
+     * @return array<string, (\Closure(OptionsResolver $optionsResolver, OptionsResolver $previousOptionsResolver): mixed)|mixed>
      */
     protected function defaults(): array
     {
@@ -234,7 +236,7 @@ trait HasOptions
     }
 
     /**
-     * @return array<string, array{0: string, 1: string, 2?: (\Closure(OptionsResolver, mixed): string)|string}>
+     * @return array<string, array{0: string, 1: string, 2?: (\Closure(OptionsResolver $optionsResolver, mixed $value): string)|string}>
      */
     protected function deprecated(): array
     {
@@ -242,7 +244,7 @@ trait HasOptions
     }
 
     /**
-     * @return array<string, \Closure(OptionsResolver $resolver, OptionsResolver $parent): void>
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
      */
     protected function nestedOptions(): array
     {
@@ -250,7 +252,7 @@ trait HasOptions
     }
 
     /**
-     * @return array<string, \Closure(OptionsResolver, mixed): mixed>
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, mixed $value): mixed>
      */
     protected function normalizers(): array
     {

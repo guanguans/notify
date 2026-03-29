@@ -208,6 +208,9 @@ final class ComposerScripts
         require_once $event->getComposer()->getConfig()->get('vendor-dir').\DIRECTORY_SEPARATOR.'autoload.php';
     }
 
+    /**
+     * @param null|list<string> $argv
+     */
     public static function makeArgvInput(?array $argv = null, ?InputDefinition $inputDefinition = null): ArgvInput
     {
         static $argvInput;

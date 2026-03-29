@@ -54,7 +54,7 @@ it('can get options', function (): void {
     expect(new class(['foo' => 'foo']) extends Message {
         use AsNullUri;
 
-        /** @var array<string, mixed> */
+        /** @var array<string, (\Closure(OptionsResolver, OptionsResolver): mixed)|mixed> */
         protected array $defaults = ['foo' => 'bar'];
 
         /** @var list<string> */
@@ -69,9 +69,6 @@ it('can get options', function (): void {
             'bar' => ['bar/foo', '2.0', 'The option "%name%" is deprecated.'],
         ];
 
-        // /** @var array<string, \Closure(OptionsResolver, mixed): mixed> */
-        // protected array $normalizers = [];
-
         /** @var array<string, mixed> */
         protected array $allowedValues = ['foo' => ['foo', 'bar']];
 
@@ -83,16 +80,19 @@ it('can get options', function (): void {
         /** @var array<string, string> */
         protected array $infos = ['foo' => 'Invalid foo.'];
 
+        /**
+         * @return array<string, (\Closure(OptionsResolver $optionsResolver, OptionsResolver $previousOptionsResolver): mixed)|mixed>
+         */
         public function defaults(): array
         {
             return [
                 'foo' => 'bar',
-                'bar' => static function (OptionsResolver $optionsResolver): void {},
+                // 'bar' => static fn (OptionsResolver $optionsResolver): string => 'foo',
             ];
         }
 
         /**
-         * @return array<int|string, list<string>|string>
+         * @return array<string, array{0: string, 1: string, 2?: (\Closure(OptionsResolver $optionsResolver, mixed $value): string)|string}>
          */
         public function deprecated(): array
         {
@@ -103,7 +103,7 @@ it('can get options', function (): void {
         }
 
         /**
-         * @return array<string, \Closure(Symfony\Component\OptionsResolver\OptionsResolver $optionsResolver): void>
+         * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
          */
         public function nestedOptions(): array
         {
@@ -113,7 +113,7 @@ it('can get options', function (): void {
         }
 
         /**
-         * @return array<string, \Closure(OptionsResolver $options, string $value): uppercase-string>
+         * @return array<string, \Closure(OptionsResolver $optionsResolver, mixed $value): mixed>
          */
         public function normalizers(): array
         {
