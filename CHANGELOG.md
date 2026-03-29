@@ -8,6 +8,12 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="5.1.0"></a>
+## [5.1.0] - 2026-03-29
+### ✨ Features
+- **NotifyX:** Add NotifyX integration with client, message, and authenticator ([962c9b2](https://github.com/guanguans/notify/commit/962c9b2))
+
+
 <a name="5.0.0"></a>
 ## [5.0.0] - 2026-03-29
 ### ✨ Features
@@ -1597,7 +1603,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/5.0.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/5.1.0...HEAD
+[5.1.0]: https://github.com/guanguans/notify/compare/5.0.0...5.1.0
 [5.0.0]: https://github.com/guanguans/notify/compare/4.1.1...5.0.0
 [4.1.1]: https://github.com/guanguans/notify/compare/4.1.0...4.1.1
 [4.1.0]: https://github.com/guanguans/notify/compare/4.0.0...4.1.0
