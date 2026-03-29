@@ -8,6 +8,24 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="5.0.0"></a>
+## [5.0.0] - 2026-03-29
+### ✨ Features
+- **requirements:** Update minimum PHP version requirement to 8.2 ([5166255](https://github.com/guanguans/notify/commit/5166255))
+
+### 💅 Code Refactorings
+- apply inspection ([9cce653](https://github.com/guanguans/notify/commit/9cce653))
+- apply rector ([9b8fe8c](https://github.com/guanguans/notify/commit/9b8fe8c))
+- **options:** Rename nestedOptions to nested ([75e5014](https://github.com/guanguans/notify/commit/75e5014))
+- **options:** Improve type hints in HasOptions trait ([e407dea](https://github.com/guanguans/notify/commit/e407dea))
+- **options:** Simplify nested options handling in HasOptions ([4dc66d5](https://github.com/guanguans/notify/commit/4dc66d5))
+
+### 🤖 Continuous Integrations
+- **config:** Update pest config files ([22935d8](https://github.com/guanguans/notify/commit/22935d8))
+- **config:** Update github config files ([0fa4136](https://github.com/guanguans/notify/commit/0fa4136))
+- **config:** Update config files ([a3f89ea](https://github.com/guanguans/notify/commit/a3f89ea))
+
+
 <a name="4.1.1"></a>
 ## [4.1.1] - 2026-03-19
 ### 🐞 Bug Fixes
@@ -1579,7 +1597,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/4.1.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/5.0.0...HEAD
+[5.0.0]: https://github.com/guanguans/notify/compare/4.1.1...5.0.0
 [4.1.1]: https://github.com/guanguans/notify/compare/4.1.0...4.1.1
 [4.1.0]: https://github.com/guanguans/notify/compare/4.0.0...4.1.0
 [4.0.0]: https://github.com/guanguans/notify/compare/3.5.6...4.0.0
