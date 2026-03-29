@@ -72,6 +72,7 @@ final class MessageRector extends AbstractRector
         // TODO: symfony/options-resolver:>=8.0 Refactor `*Message::configureOptionsResolver()` to `*Message::nested() by MessageRector`.
         $this->updateAllowedTypesProperty($node);
         $this->updateMethodsOfListTypeOption($node);
+        $this->updateNestedMethod($node);
         $this->updateDocCommentOfStmt($node);
         $this->updateDocCommentOfClass($node); // Must be last update doc comment.
         $this->sortPropertiesOfClass($node);
@@ -344,5 +345,191 @@ final class MessageRector extends AbstractRector
                 true,
             );
         });
+    }
+
+    private function updateNestedMethod(Class_ $classNode): void
+    {
+        $configureMethod = collect($classNode->getMethods())
+            ->first(fn (ClassMethod $classMethod): bool => $this->isName($classMethod, 'configureOptionsResolver'));
+
+        if (!$configureMethod instanceof ClassMethod || [] === $configureMethod->params) {
+            return;
+        }
+
+        $resolverVar = $configureMethod->params[0]->var;
+        $resolverVarName = $resolverVar instanceof Node\Expr\Variable && \is_string($resolverVar->name)
+            ? $resolverVar->name
+            : null;
+
+        if (null === $resolverVarName) {
+            return;
+        }
+
+        $migrated = [];
+
+        foreach ($configureMethod->stmts ?? [] as $index => $stmt) {
+            if (!$stmt instanceof Stmt\Expression || !$stmt->expr instanceof Node\Expr\MethodCall) {
+                continue;
+            }
+
+            $calls = $this->flattenRootMethodCalls($stmt->expr, $resolverVarName);
+
+            if ([] === $calls) {
+                continue;
+            }
+
+            foreach ($calls as $call) {
+                if (
+                    !$call->name instanceof Node\Identifier
+                    || 'setOptions' !== $call->name->toString()
+                    || !isset($call->args[0], $call->args[1])
+                ) {
+                    continue;
+                }
+
+                $keyNode = $call->args[0]->value;
+                $key = $keyNode instanceof String_ ? $keyNode->value : $this->valueResolver->getValue($keyNode);
+
+                if (!\is_string($key)) {
+                    continue;
+                }
+
+                // 只迁移顶层 setOptions(key, closure)
+                $migrated[$key] = clone $call->args[1]->value;
+            }
+
+            // 从 configureOptionsResolver 中删除顶层 setOptions 调用
+            if ($this->removeTopLevelSetOptionsFromStmt($stmt, $resolverVarName)) {
+                unset($configureMethod->stmts[$index]);
+            }
+        }
+
+        if (null !== $configureMethod->stmts) {
+            $configureMethod->stmts = array_values($configureMethod->stmts);
+        }
+
+        if ([] === $migrated) {
+            return;
+        }
+
+        if ([] === ($configureMethod->stmts ?? [])) {
+            $classNode->stmts = array_values(array_filter(
+                $classNode->stmts,
+                static fn (Stmt $stmt): bool => $stmt !== $configureMethod
+            ));
+        }
+
+        $nestedMethod = $this->findOrCreateNestedMethod($classNode);
+        $arrayNode = $this->ensureNestedReturnArray($nestedMethod);
+
+        foreach ($migrated as $key => $valueExpr) {
+            $existing = collect($arrayNode->items)->first(
+                fn (?ArrayItem $item): bool => $item instanceof ArrayItem
+                    && $this->valueResolver->getValue($item->key) === $key
+            );
+
+            if ($existing instanceof ArrayItem) {
+                $existing->value = $valueExpr;
+
+                continue;
+            }
+
+            $arrayNode->items[] = new ArrayItem(
+                $valueExpr,
+                new String_($key),
+                attributes: [AttributeKey::COMMENTS => [new Comment('')]]
+            );
+        }
+    }
+
+    /**
+     * @return list<Node\Expr\MethodCall> root-first
+     */
+    private function flattenRootMethodCalls(Node\Expr\MethodCall $methodCall, string $rootVarName): array
+    {
+        $calls = [];
+        $cursor = $methodCall;
+
+        while ($cursor instanceof Node\Expr\MethodCall) {
+            $calls[] = $cursor;
+            $cursor = $cursor->var;
+        }
+
+        if (
+            !$cursor instanceof Node\Expr\Variable
+            || !\is_string($cursor->name)
+            || $cursor->name !== $rootVarName
+        ) {
+            return [];
+        }
+
+        return array_reverse($calls);
+    }
+
+    private function removeTopLevelSetOptionsFromStmt(Stmt\Expression $stmt, string $rootVarName): bool
+    {
+        if (!$stmt->expr instanceof Node\Expr\MethodCall) {
+            return false;
+        }
+
+        $calls = $this->flattenRootMethodCalls($stmt->expr, $rootVarName);
+
+        if ([] === $calls) {
+            return false;
+        }
+
+        $keptCalls = array_values(array_filter(
+            $calls,
+            static fn (Node\Expr\MethodCall $call): bool => !$call->name instanceof Node\Identifier
+                || 'setOptions' !== $call->name->toString()
+        ));
+
+        if ([] === $keptCalls) {
+            return true;
+        }
+
+        $expr = new Node\Expr\Variable($rootVarName);
+
+        foreach ($keptCalls as $keptCall) {
+            $expr = new Node\Expr\MethodCall($expr, $keptCall->name, $keptCall->args, $keptCall->getAttributes());
+        }
+
+        $stmt->expr = $expr;
+
+        return false;
+    }
+
+    private function findOrCreateNestedMethod(Class_ $classNode): ClassMethod
+    {
+        $nestedMethod = collect($classNode->getMethods())
+            ->first(fn (ClassMethod $classMethod): bool => $this->isName($classMethod, 'nested'));
+
+        if ($nestedMethod instanceof ClassMethod) {
+            return $nestedMethod;
+        }
+
+        $nestedMethod = $this->builderFactory
+            ->method('nested')
+            ->makeProtected()
+            ->setReturnType('array')
+            ->addStmt(new Stmt\Return_(new Array_([], [AttributeKey::KIND => Array_::KIND_SHORT])))
+            ->getNode();
+
+        $classNode->stmts[] = new Nop;
+        $classNode->stmts[] = $nestedMethod;
+
+        return $nestedMethod;
+    }
+
+    private function ensureNestedReturnArray(ClassMethod $nestedMethod): Array_
+    {
+        $returnStmt = $nestedMethod->stmts[0] ?? null;
+
+        if (!$returnStmt instanceof Stmt\Return_ || !$returnStmt->expr instanceof Array_) {
+            $nestedMethod->stmts = [new Stmt\Return_(new Array_([], [AttributeKey::KIND => Array_::KIND_SHORT]))];
+            $returnStmt = $nestedMethod->stmts[0];
+        }
+
+        return $returnStmt->expr;
     }
 }
