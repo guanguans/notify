@@ -1,7 +1,7 @@
 # notify
 
 > [!NOTE]
-> Push notification SDK(AnPush、Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NowPush、Ntfy、Push、Pushback、PushBullet、PushDeer、PushMe、Pushover、PushPlus、QQ、RocketChat、ServerChan、ShowdocPush、SimplePush、Slack、Telegram、WeWork、WPush、XiZhi、YiFengChuanHua、ZohoCliq、ZohoCliqWebHook、Zulip).
+> Push notification SDK(AnPush、Bark、Chanify、DingTalk、Discord、Gitter、GoogleChat、IGot、Lark、Mattermost、MicrosoftTeams、NotifyX、NowPush、Ntfy、Push、Pushback、PushBullet、PushDeer、PushMe、Pushover、PushPlus、QQ、RocketChat、ServerChan、ShowdocPush、SimplePush、Slack、Telegram、WeWork、WPush、XiZhi、YiFengChuanHua、ZohoCliq、ZohoCliqWebHook、Zulip).
 
 [![tests](https://github.com/guanguans/notify/actions/workflows/tests.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/tests.yml)
 [![php-cs-fixer](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/guanguans/notify/actions/workflows/php-cs-fixer.yml)
@@ -31,6 +31,7 @@
 * [Lark](src/Lark/README.md)
 * [Mattermost](src/Mattermost/README.md)
 * [MicrosoftTeams](src/MicrosoftTeams/README.md)
+* [NotifyX](src/NotifyX/README.md)
 * [~~NowPush~~](src/NowPush/README.md)
 * [Ntfy](src/Ntfy/README.md)
 * [Push](src/Push/README.md)
