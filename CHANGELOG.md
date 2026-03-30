@@ -8,6 +8,17 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="5.2.0"></a>
+## [5.2.0] - 2026-03-30
+### ✨ Features
+- **MessageRector:** Add normalizers method migration from configureOptionsResolver ([3183d96](https://github.com/guanguans/notify/commit/3183d96))
+- **MessageRector:** Implement nested method migration from configureOptionsResolver ([6c77943](https://github.com/guanguans/notify/commit/6c77943))
+
+### 💅 Code Refactorings
+- **Message:** Migrate configureOptionsResolver to nested method ([ac2146b](https://github.com/guanguans/notify/commit/ac2146b))
+- **monorepo-builder:** Remove local monorepo-builder.php and update composer script ([e3e8cd8](https://github.com/guanguans/notify/commit/e3e8cd8))
+
+
 <a name="5.1.0"></a>
 ## [5.1.0] - 2026-03-29
 ### ✨ Features
@@ -1603,7 +1614,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/5.1.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/5.2.0...HEAD
+[5.2.0]: https://github.com/guanguans/notify/compare/5.1.0...5.2.0
 [5.1.0]: https://github.com/guanguans/notify/compare/5.0.0...5.1.0
 [5.0.0]: https://github.com/guanguans/notify/compare/4.1.1...5.0.0
 [4.1.1]: https://github.com/guanguans/notify/compare/4.1.0...4.1.1
