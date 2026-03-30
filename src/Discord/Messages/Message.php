@@ -74,92 +74,97 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return $this;
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     */
+    protected function nested(): array
     {
-        $optionsResolver->setOptions('embeds', static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver
-                ->setPrototype(true)
-                ->setDefined([
-                    'title',
-                    'type',
-                    'description',
-                    'url',
-                    'timestamp',
-                    'color',
-                    'footer',
-                    'image',
-                    'thumbnail',
-                    'video',
-                    'provider',
-                    'author',
-                    'fields',
-                ])
-                ->setNormalizer('color', static fn (
-                    OptionsResolver $_,
-                    int|string $value
-                ): float|int => \is_int($value) ? $value : hexdec($value))
-                ->setAllowedTypes('footer', 'array')
-                ->setOptions('footer', static function (OptionsResolver $optionsResolver): void {
-                    $optionsResolver->setDefined([
-                        'text',
-                        'icon_url',
-                        'proxy_icon_url',
-                    ]);
-                })
-                ->setAllowedTypes('image', 'array')
-                ->setOptions('image', static function (OptionsResolver $optionsResolver): void {
-                    $optionsResolver->setDefined([
+        return [
+            'embeds' => static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setPrototype(true)
+                    ->setDefined([
+                        'title',
+                        'type',
+                        'description',
                         'url',
-                        'proxy_url',
-                        'height',
-                        'width',
-                    ]);
-                })
-                ->setAllowedTypes('thumbnail', 'array')
-                ->setOptions('thumbnail', static function (OptionsResolver $optionsResolver): void {
-                    $optionsResolver->setDefined([
-                        'url',
-                        'proxy_url',
-                        'height',
-                        'width',
-                    ]);
-                })
-                ->setAllowedTypes('video', 'array')
-                ->setOptions('video', static function (OptionsResolver $optionsResolver): void {
-                    $optionsResolver->setDefined([
-                        'url',
-                        'proxy_url',
-                        'height',
-                        'width',
-                    ]);
-                })
-                ->setAllowedTypes('provider', 'array')
-                ->setOptions('provider', static function (OptionsResolver $optionsResolver): void {
-                    $optionsResolver->setDefined([
-                        'name',
-                        'url',
-                    ]);
-                })
-                ->setAllowedTypes('author', 'array')
-                ->setOptions('author', static function (OptionsResolver $optionsResolver): void {
-                    $optionsResolver->setDefined([
-                        'name',
-                        'url',
-                        'icon_url',
-                        'proxy_icon_url',
-                    ]);
-                })
-                ->setAllowedTypes('fields', 'array')
-                ->setOptions('fields', static function (OptionsResolver $optionsResolver): void {
-                    $optionsResolver
-                        ->setPrototype(true)
-                        ->setDefined([
+                        'timestamp',
+                        'color',
+                        'footer',
+                        'image',
+                        'thumbnail',
+                        'video',
+                        'provider',
+                        'author',
+                        'fields',
+                    ])
+                    ->setNormalizer('color', static fn (
+                        OptionsResolver $_,
+                        int|string $value
+                    ): float|int => \is_int($value) ? $value : hexdec($value))
+                    ->setAllowedTypes('footer', 'array')
+                    ->setOptions('footer', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'text',
+                            'icon_url',
+                            'proxy_icon_url',
+                        ]);
+                    })
+                    ->setAllowedTypes('image', 'array')
+                    ->setOptions('image', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'url',
+                            'proxy_url',
+                            'height',
+                            'width',
+                        ]);
+                    })
+                    ->setAllowedTypes('thumbnail', 'array')
+                    ->setOptions('thumbnail', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'url',
+                            'proxy_url',
+                            'height',
+                            'width',
+                        ]);
+                    })
+                    ->setAllowedTypes('video', 'array')
+                    ->setOptions('video', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'url',
+                            'proxy_url',
+                            'height',
+                            'width',
+                        ]);
+                    })
+                    ->setAllowedTypes('provider', 'array')
+                    ->setOptions('provider', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
                             'name',
-                            'value',
-                            'inline',
-                        ])
-                        ->setAllowedTypes('inline', 'bool');
-                });
-        });
+                            'url',
+                        ]);
+                    })
+                    ->setAllowedTypes('author', 'array')
+                    ->setOptions('author', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver->setDefined([
+                            'name',
+                            'url',
+                            'icon_url',
+                            'proxy_icon_url',
+                        ]);
+                    })
+                    ->setAllowedTypes('fields', 'array')
+                    ->setOptions('fields', static function (OptionsResolver $optionsResolver): void {
+                        $optionsResolver
+                            ->setPrototype(true)
+                            ->setDefined([
+                                'name',
+                                'value',
+                                'inline',
+                            ])
+                            ->setAllowedTypes('inline', 'bool');
+                    });
+            },
+        ];
     }
 }

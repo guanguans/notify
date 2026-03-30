@@ -701,6 +701,34 @@
             "condition": [
                 {
                     "classFqn": [
+                        "Guanguans\\Notify\\NotifyX\\Messages\\Message"
+                    ],
+                    "newClassFqn": [
+                        "Guanguans\\Notify\\NotifyX\\Messages\\Message"
+                    ],
+                    "methodNames": [
+                        "make"
+                    ],
+                    "parameters": [
+                        1
+                    ],
+                    "place": "arrayKey"
+                }
+            ],
+            "options": {
+                "strings": [
+                    "content",
+                    "description",
+                    "team",
+                    "title"
+                ]
+            }
+        },
+        {
+            "complete": "staticStrings",
+            "condition": [
+                {
+                    "classFqn": [
                         "Guanguans\\Notify\\NowPush\\Messages\\Message"
                     ],
                     "newClassFqn": [

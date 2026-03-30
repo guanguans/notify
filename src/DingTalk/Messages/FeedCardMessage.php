@@ -47,17 +47,22 @@ class FeedCardMessage extends AbstractMessage
         return $this;
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     */
+    protected function nested(): array
     {
-        $optionsResolver->setOptions('links', static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver
-                ->setPrototype(true)
-                ->setDefined([
-                    'title',
-                    'messageURL',
-                    'picURL',
-                ]);
-        });
+        return [
+            'links' => static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setPrototype(true)
+                    ->setDefined([
+                        'title',
+                        'messageURL',
+                        'picURL',
+                    ]);
+            },
+        ];
     }
 
     protected function type(): string

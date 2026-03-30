@@ -103,22 +103,22 @@ it('can get options', function (): void {
         }
 
         /**
-         * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
-         */
-        public function nested(): array
-        {
-            return [
-                'bar' => static function (OptionsResolver $optionsResolver): void {},
-            ];
-        }
-
-        /**
          * @return array<string, \Closure(OptionsResolver $optionsResolver, mixed $value): mixed>
          */
         public function normalizers(): array
         {
             return [
                 'foo' => static fn (OptionsResolver $_, string $value): string => strtoupper($value),
+            ];
+        }
+
+        /**
+         * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+         */
+        public function nested(): array
+        {
+            return [
+                'bar' => static function (OptionsResolver $optionsResolver): void {},
             ];
         }
     })

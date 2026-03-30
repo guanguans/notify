@@ -57,16 +57,21 @@ class TextMessage extends Message
         'actions' => [],
     ];
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     */
+    protected function nested(): array
     {
-        $optionsResolver->setOptions('timeline', static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver
-                ->setDefined([
-                    'code',
-                    'timestamp',
-                    'items',
-                ])
-                ->setAllowedTypes('items', 'array');
-        });
+        return [
+            'timeline' => static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setDefined([
+                        'code',
+                        'timestamp',
+                        'items',
+                    ])
+                    ->setAllowedTypes('items', 'array');
+            },
+        ];
     }
 }

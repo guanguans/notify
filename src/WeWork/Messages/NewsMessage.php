@@ -47,18 +47,23 @@ class NewsMessage extends AbstractMessage
         return $this;
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     */
+    protected function nested(): array
     {
-        $optionsResolver->setOptions('articles', static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver
-                ->setPrototype(true)
-                ->setDefined([
-                    'title',
-                    'description',
-                    'url',
-                    'picurl',
-                ]);
-        });
+        return [
+            'articles' => static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setPrototype(true)
+                    ->setDefined([
+                        'title',
+                        'description',
+                        'url',
+                        'picurl',
+                    ]);
+            },
+        ];
     }
 
     protected function type(): string

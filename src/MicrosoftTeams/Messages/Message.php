@@ -89,10 +89,13 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return $this;
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     */
+    protected function nested(): array
     {
-        $optionsResolver
-            ->setOptions('sections', static function (OptionsResolver $optionsResolver): void {
+        return [
+            'sections' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -112,8 +115,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
                     ->setAllowedTypes('facts', 'array')
                     ->setAllowedTypes('images', 'array')
                     ->setAllowedTypes('potentialAction', 'array');
-            })
-            ->setOptions('potentialAction', static function (OptionsResolver $optionsResolver): void {
+            },
+            'potentialAction' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -148,6 +151,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                         'application/x-www-form-urlencoded',
                         'application/json',
                     ]);
-            });
+            },
+        ];
     }
 }

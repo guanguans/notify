@@ -105,29 +105,32 @@ class TemplateCardMessage extends AbstractMessage
         return $this;
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     */
+    protected function nested(): array
     {
-        $optionsResolver
-            ->setOptions('source', static function (OptionsResolver $optionsResolver): void {
+        return [
+            'source' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'icon_url',
                     'desc',
                     'desc_color',
                 ]);
-            })
-            ->setOptions('main_title', static function (OptionsResolver $optionsResolver): void {
+            },
+            'main_title' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'title',
                     'desc',
                 ]);
-            })
-            ->setOptions('emphasis_content', static function (OptionsResolver $optionsResolver): void {
+            },
+            'emphasis_content' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'title',
                     'desc',
                 ]);
-            })
-            ->setOptions('quote_area', static function (OptionsResolver $optionsResolver): void {
+            },
+            'quote_area' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'type',
                     'url',
@@ -136,22 +139,22 @@ class TemplateCardMessage extends AbstractMessage
                     'title',
                     'quote_text',
                 ]);
-            })
-            ->setOptions('card_action', static function (OptionsResolver $optionsResolver): void {
+            },
+            'card_action' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'type',
                     'url',
                     'appid',
                     'pagepath',
                 ]);
-            })
-            ->setOptions('card_image', static function (OptionsResolver $optionsResolver): void {
+            },
+            'card_image' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'url',
                     'aspect_ratio',
                 ]);
-            })
-            ->setOptions('image_text_area', static function (OptionsResolver $optionsResolver): void {
+            },
+            'image_text_area' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver->setDefined([
                     'type',
                     'url',
@@ -161,8 +164,8 @@ class TemplateCardMessage extends AbstractMessage
                     'desc',
                     'image_url',
                 ]);
-            })
-            ->setOptions('horizontal_content_list', static function (OptionsResolver $optionsResolver): void {
+            },
+            'horizontal_content_list' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -173,8 +176,8 @@ class TemplateCardMessage extends AbstractMessage
                         'media_id',
                         'userid',
                     ]);
-            })
-            ->setOptions('jump_list', static function (OptionsResolver $optionsResolver): void {
+            },
+            'jump_list' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -184,15 +187,16 @@ class TemplateCardMessage extends AbstractMessage
                         'appid',
                         'pagepath',
                     ]);
-            })
-            ->setOptions('vertical_content_list', static function (OptionsResolver $optionsResolver): void {
+            },
+            'vertical_content_list' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
                         'title',
                         'desc',
                     ]);
-            });
+            },
+        ];
     }
 
     protected function type(): string

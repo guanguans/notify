@@ -97,27 +97,32 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return $this;
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     */
+    protected function nested(): array
     {
-        $optionsResolver->setOptions('actions', static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver
-                ->setPrototype(true)
-                ->setDefined([
-                    'action', // [view, broadcast, http, click]
-                    'label',
-                    'clear',
+        return [
+            'actions' => static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setPrototype(true)
+                    ->setDefined([
+                        'action', // [view, broadcast, http, click]
+                        'label',
+                        'clear',
 
-                    'url', // view|http|click
-                    'intent', // broadcast
-                    'extras', // broadcast
-                    'method', // http
-                    'headers', // http
-                    'body', // http
-                    'method', // http
-                ])
-                ->setAllowedTypes('clear', 'bool')
-                ->setAllowedTypes('extras', 'array')
-                ->setAllowedTypes('headers', 'array');
-        });
+                        'url', // view|http|click
+                        'intent', // broadcast
+                        'extras', // broadcast
+                        'method', // http
+                        'headers', // http
+                        'body', // http
+                        'method', // http
+                    ])
+                    ->setAllowedTypes('clear', 'bool')
+                    ->setAllowedTypes('extras', 'array')
+                    ->setAllowedTypes('headers', 'array');
+            },
+        ];
     }
 }

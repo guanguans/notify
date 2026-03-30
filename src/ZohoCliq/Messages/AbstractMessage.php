@@ -103,17 +103,20 @@ abstract class AbstractMessage extends Message
         ]);
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     */
+    protected function nested(): array
     {
-        $optionsResolver
-            ->setOptions('bot', static function (OptionsResolver $optionsResolver): void {
+        return [
+            'bot' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'name',
                         'image',
                     ]);
-            })
-            ->setOptions('card', static function (OptionsResolver $optionsResolver): void {
+            },
+            'card' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'title',
@@ -122,15 +125,15 @@ abstract class AbstractMessage extends Message
                         'icon',
                         'preview',
                     ]);
-            })
-            ->setOptions('styles', static function (OptionsResolver $optionsResolver): void {
+            },
+            'styles' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'highlight',
                     ])
                     ->setAllowedTypes('highlight', 'bool');
-            })
-            ->setOptions('slides', static function (OptionsResolver $optionsResolver): void {
+            },
+            'slides' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -138,8 +141,8 @@ abstract class AbstractMessage extends Message
                         'title',
                         'data',
                     ]);
-            })
-            ->setOptions('buttons', static function (OptionsResolver $optionsResolver): void {
+            },
+            'buttons' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -149,6 +152,7 @@ abstract class AbstractMessage extends Message
                         'type',
                         'action',
                     ]);
-            });
+            },
+        ];
     }
 }

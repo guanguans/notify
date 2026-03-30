@@ -22,12 +22,17 @@ use PhpParser\Comment;
 use PhpParser\Node;
 use PhpParser\Node\ArrayItem;
 use PhpParser\Node\Expr\Array_;
+use PhpParser\Node\Expr\MethodCall;
+use PhpParser\Node\Expr\Variable;
+use PhpParser\Node\Identifier;
 use PhpParser\Node\Scalar\String_;
 use PhpParser\Node\Stmt;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
+use PhpParser\Node\Stmt\Expression;
 use PhpParser\Node\Stmt\Nop;
 use PhpParser\Node\Stmt\Property;
+use PhpParser\Node\Stmt\Return_;
 use PhpParser\Node\Stmt\Trait_;
 use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagNode;
@@ -70,7 +75,6 @@ final class MessageRector extends AbstractRector
             return null;
         }
 
-        // TODO: symfony/options-resolver:>=8.0 Refactor `*Message::configureOptionsResolver()` to `*Message::nested() by MessageRector`.
         $this->updateAllowedTypesProperty($node);
         $this->updateMethodsOfListTypeOption($node);
         $this->migrateConfigureOptionsResolverMethod($node);
@@ -352,10 +356,10 @@ final class MessageRector extends AbstractRector
     {
         foreach (
             [
-                'setDefault' => 'defaults',
-                'setDeprecated' => 'deprecated',
+                'setOptions' => 'nested',
                 'setNormalizer' => 'normalizers',
-                // 'setOptions' => 'nested',
+                'setDeprecated' => 'deprecated',
+                'setDefault' => 'defaults',
             ] as $sourceMethodName => $targetMethodName
         ) {
             $this->rawMigrateConfigureOptionsResolverMethod($classNode, $sourceMethodName, $targetMethodName);
@@ -376,26 +380,27 @@ final class MessageRector extends AbstractRector
             return;
         }
 
+        $returnNode = $this->findOrCreateConfigureOptionsMethod($classNode, $targetMethodName)->stmts[0];
+        \assert($returnNode instanceof Return_);
+        $this->upsertArrayItems($returnNode->expr, $migrated);
+
         if (empty($configureOptionsResolverMethodNode->stmts)) {
             $classNode->stmts = collect($classNode->stmts)
                 ->reject(static fn (Stmt $stmt): bool => $stmt === $configureOptionsResolverMethodNode)
                 ->values()
                 ->all();
         }
-
-        $arrayNode = $this->findOrCreateConfigureOptionsMethod($classNode, $targetMethodName)->stmts[0]->expr;
-        $this->upsertArrayItems($arrayNode, $migrated);
     }
 
     /**
-     * @return array<string, Node\Expr>
+     * @return array<string, \PhpParser\Node\Expr>
      */
     private function collectTopLevelMethodCalls(ClassMethod $configureOptionsResolverMethodNode, string $methodName): array
     {
         $migrated = [];
 
         foreach ($configureOptionsResolverMethodNode->stmts ?? [] as $index => $stmt) {
-            if (!$stmt instanceof Stmt\Expression || !$stmt->expr instanceof Node\Expr\MethodCall) {
+            if (!$stmt instanceof Expression || !$stmt->expr instanceof MethodCall) {
                 continue;
             }
 
@@ -407,7 +412,7 @@ final class MessageRector extends AbstractRector
 
             foreach ($calls as $call) {
                 if (
-                    !$call->name instanceof Node\Identifier
+                    !$call->name instanceof Identifier
                     || !isset($call->args[0], $call->args[1])
                     || !$this->isName($call->name, $methodName)
                 ) {
@@ -433,28 +438,28 @@ final class MessageRector extends AbstractRector
     }
 
     /**
-     * @return list<Node\Expr\MethodCall> root-first
+     * @return list<MethodCall>
      */
-    private function flattenRootMethodCalls(Node\Expr\MethodCall $methodCall): array
+    private function flattenRootMethodCalls(MethodCall $methodCall): array
     {
         $calls = [];
         $cursor = $methodCall;
 
-        while ($cursor instanceof Node\Expr\MethodCall) {
+        while ($cursor instanceof MethodCall) {
             $calls[] = $cursor;
             $cursor = $cursor->var;
         }
 
-        if (!$cursor instanceof Node\Expr\Variable || !\is_string($cursor->name)) {
+        if (!$cursor instanceof Variable || !\is_string($cursor->name)) {
             return [];
         }
 
         return array_reverse($calls);
     }
 
-    private function removeTopLevelMethodCallsFromStmt(Stmt\Expression $stmt, string $methodName): bool
+    private function removeTopLevelMethodCallsFromStmt(Expression $stmt, string $methodName): bool
     {
-        if (!$stmt->expr instanceof Node\Expr\MethodCall) {
+        if (!$stmt->expr instanceof MethodCall) {
             return false;
         }
 
@@ -466,7 +471,7 @@ final class MessageRector extends AbstractRector
 
         $keptCalls = array_values(array_filter(
             $calls,
-            static fn (Node\Expr\MethodCall $call): bool => !$call->name instanceof Node\Identifier
+            static fn (MethodCall $call): bool => !$call->name instanceof Identifier
                 || $call->name->toString() !== $methodName
         ));
 
@@ -476,14 +481,14 @@ final class MessageRector extends AbstractRector
 
         $rootVariable = $calls[0]->var;
 
-        if (!$rootVariable instanceof Node\Expr\Variable || !\is_string($rootVariable->name)) {
+        if (!$rootVariable instanceof Variable || !\is_string($rootVariable->name)) {
             return false;
         }
 
-        $expr = new Node\Expr\Variable($rootVariable->name);
+        $expr = new Variable($rootVariable->name);
 
         foreach ($keptCalls as $keptCall) {
-            $expr = new Node\Expr\MethodCall($expr, $keptCall->name, $keptCall->args, $keptCall->getAttributes());
+            $expr = new MethodCall($expr, $keptCall->name, $keptCall->args, $keptCall->getAttributes());
         }
 
         $stmt->expr = $expr;
@@ -503,17 +508,20 @@ final class MessageRector extends AbstractRector
             ->method($methodName)
             ->makeProtected()
             ->setReturnType('array')
-            ->addStmt(new Stmt\Return_(new Array_([], [AttributeKey::KIND => Array_::KIND_SHORT])))
+            ->addStmt(new Return_(new Array_([], [AttributeKey::KIND => Array_::KIND_SHORT])))
             ->getNode();
 
-        $classNode->stmts[] = new Nop;
-        $classNode->stmts[] = $arrayMethod;
+        $configureOptionsResolverMethodIndex = collect($classNode->stmts)->search(
+            fn (Stmt $stmtNode): bool => $this->isName($stmtNode, 'configureOptionsResolver'),
+            true
+        );
+        array_splice($classNode->stmts, $configureOptionsResolverMethodIndex + 1, 0, [new Nop, $arrayMethod]);
 
         return $arrayMethod;
     }
 
     /**
-     * @param array<string, Node\Expr> $items
+     * @param array<string, \PhpParser\Node\Expr> $items
      */
     private function upsertArrayItems(Array_ $arrayNode, array $items): void
     {

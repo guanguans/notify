@@ -59,10 +59,13 @@ class Message extends \Guanguans\Notify\Foundation\Message
         return "channels/{$this->getOption('channel_id')}/messages";
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     */
+    protected function nested(): array
     {
-        $optionsResolver
-            ->setOptions('embed', static function (OptionsResolver $optionsResolver): void {
+        return [
+            'embed' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'title',
@@ -84,8 +87,8 @@ class Message extends \Guanguans\Notify\Foundation\Message
                                 'name',
                             ]);
                     });
-            })
-            ->setOptions('ark', static function (OptionsResolver $optionsResolver): void {
+            },
+            'ark' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'template_id',
@@ -118,16 +121,16 @@ class Message extends \Guanguans\Notify\Foundation\Message
                                     });
                             });
                     });
-            })
-            ->setOptions('message_reference', static function (OptionsResolver $optionsResolver): void {
+            },
+            'message_reference' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'template_id',
                         'ignore_get_message_error',
                     ])
                     ->setAllowedTypes('ignore_get_message_error', 'bool');
-            })
-            ->setOptions('markdown', static function (OptionsResolver $optionsResolver): void {
+            },
+            'markdown' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'template_id',
@@ -144,6 +147,7 @@ class Message extends \Guanguans\Notify\Foundation\Message
                             ])
                             ->setAllowedTypes('values', 'array');
                     });
-            });
+            },
+        ];
     }
 }

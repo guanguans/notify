@@ -80,10 +80,13 @@ class TextMessage extends AbstractMessage
         return $this;
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     */
+    protected function nested(): array
     {
-        $optionsResolver
-            ->setOptions('entities', $defaultEntities = static function (OptionsResolver $optionsResolver): void {
+        return [
+            'entities' => $defaultEntities = static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setPrototype(true)
                     ->setDefined([
@@ -117,8 +120,8 @@ class TextMessage extends AbstractMessage
                             ->setAllowedTypes('can_read_all_group_messages', 'bool')
                             ->setAllowedTypes('supports_inline_queries', 'bool');
                     });
-            })
-            ->setOptions('link_preview_options', static function (OptionsResolver $optionsResolver): void {
+            },
+            'link_preview_options' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'is_disabled',
@@ -131,8 +134,8 @@ class TextMessage extends AbstractMessage
                     ->setAllowedTypes('prefer_small_media', 'bool')
                     ->setAllowedTypes('prefer_large_media', 'bool')
                     ->setAllowedTypes('show_above_text', 'bool');
-            })
-            ->setOptions('reply_parameters', static function (OptionsResolver $optionsResolver) use ($defaultEntities): void {
+            },
+            'reply_parameters' => static function (OptionsResolver $optionsResolver) use ($defaultEntities): void {
                 $optionsResolver
                     ->setDefined([
                         'message_id',
@@ -146,8 +149,8 @@ class TextMessage extends AbstractMessage
                     ->setAllowedTypes('allow_sending_without_reply', 'bool')
                     ->setAllowedTypes('quote_entities', 'array')
                     ->setOptions('quote_entities', $defaultEntities);
-            })
-            ->setOptions('reply_markup', static function (OptionsResolver $optionsResolver): void {
+            },
+            'reply_markup' => static function (OptionsResolver $optionsResolver): void {
                 $optionsResolver
                     ->setDefined([
                         'inline_keyboard', // InlineKeyboardMarkup
@@ -174,6 +177,7 @@ class TextMessage extends AbstractMessage
                     ->setAllowedTypes('selective', 'bool')
                     ->setAllowedTypes('remove_keyboard', 'bool')
                     ->setAllowedTypes('force_reply', 'bool');
-            });
+            },
+        ];
     }
 }

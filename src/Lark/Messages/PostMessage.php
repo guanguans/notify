@@ -48,17 +48,22 @@ class PostMessage extends AbstractMessage
         return $this;
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     */
+    protected function nested(): array
     {
-        $optionsResolver->setOptions('post', static function (OptionsResolver $optionsResolver): void {
-            $optionsResolver
-                ->setPrototype(true)
-                ->setDefined([
-                    'title',
-                    'content',
-                ])
-                ->setAllowedTypes('content', 'array');
-        });
+        return [
+            'post' => static function (OptionsResolver $optionsResolver): void {
+                $optionsResolver
+                    ->setPrototype(true)
+                    ->setDefined([
+                        'title',
+                        'content',
+                    ])
+                    ->setAllowedTypes('content', 'array');
+            },
+        ];
     }
 
     protected function type(): string
