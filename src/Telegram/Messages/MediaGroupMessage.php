@@ -62,11 +62,13 @@ class MediaGroupMessage extends AbstractMessage
         return 'bot{token}/sendMediaGroup';
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, mixed $value): mixed>
+     */
+    protected function normalizers(): array
     {
-        $optionsResolver->setNormalizer(
-            'media',
-            static fn (OptionsResolver $_, array $media): string => json_encode($media, \JSON_THROW_ON_ERROR),
-        );
+        return [
+            'media' => static fn (OptionsResolver $_, array $media): string => json_encode($media, \JSON_THROW_ON_ERROR),
+        ];
     }
 }

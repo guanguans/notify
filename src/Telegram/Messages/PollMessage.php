@@ -89,10 +89,16 @@ class PollMessage extends AbstractMessage
     protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
     {
         $optionsResolver
-            ->setAllowedTypes('options', 'array')
-            ->setNormalizer(
-                'options',
-                static fn (OptionsResolver $_, array $value): string => json_encode($value, \JSON_THROW_ON_ERROR),
-            );
+            ->setAllowedTypes('options', 'array');
+    }
+
+    /**
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, mixed $value): mixed>
+     */
+    protected function normalizers(): array
+    {
+        return [
+            'options' => static fn (OptionsResolver $_, array $value): string => json_encode($value, \JSON_THROW_ON_ERROR),
+        ];
     }
 }
