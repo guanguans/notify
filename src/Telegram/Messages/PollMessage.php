@@ -28,7 +28,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @method self isClosed(mixed $isClosed)
  * @method self messageThreadId(mixed $messageThreadId)
  * @method self openPeriod(mixed $openPeriod)
- * @method self options(mixed $options)
+ * @method self options(array|string $options)
  * @method self protectContent(mixed $protectContent)
  * @method self question(mixed $question)
  * @method self replyMarkup(mixed $replyMarkup)
@@ -62,6 +62,7 @@ class PollMessage extends AbstractMessage
     /** @var array<string, list<string>|string> */
     protected array $allowedTypes = [
         'explanation_entities' => 'array[]',
+        'options' => ['array', 'string'],
     ];
 
     /** @var array<string, mixed> */
@@ -86,19 +87,15 @@ class PollMessage extends AbstractMessage
         return 'bot{token}/sendPoll';
     }
 
-    protected function configureOptionsResolver(OptionsResolver $optionsResolver): void
-    {
-        $optionsResolver
-            ->setAllowedTypes('options', 'array');
-    }
-
     /**
      * @return array<string, \Closure(OptionsResolver $optionsResolver, mixed $value): mixed>
      */
     protected function normalizers(): array
     {
         return [
-            'options' => static fn (OptionsResolver $_, array $value): string => json_encode($value, \JSON_THROW_ON_ERROR),
+            'options' => static fn (OptionsResolver $_, array|string $value): string => \is_array($value)
+                ? json_encode($value, \JSON_THROW_ON_ERROR)
+                : $value,
         ];
     }
 }

@@ -226,6 +226,7 @@ it('can send poll message', function (): void {
             'This is option 1.',
             'This is option 2.',
         ],
+        // 'options' => '["This is option 1.","This is option 2."]',
         'explanation_entities' => [
             $explanationEntity = [
                 'type' => 'https://telegram.org',
