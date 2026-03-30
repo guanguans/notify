@@ -103,7 +103,7 @@
         "illuminate/support": "^12.56 || ^13.0",
         "jbelien/phpstan-sarif-formatter": "^1.2",
         "mockery/mockery": "^1.6",
-        "mrpunyapal/peststan": "^0.1",
+        "mrpunyapal/peststan": "^0.1 || ^0.2",
         "mrpunyapal/rector-pest": "^0.2",
         "nette/utils": "^4.1",
         "nicksdot/phpstan-phpstorm-error-identifiers": "^0.3",
