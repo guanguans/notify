@@ -5,6 +5,9 @@
         "peckphp/peck": "^0.2",
         "symplify/rule-doc-generator": "^12.2"
     },
+    "suggest": {
+        "mrpunyapal/pest-annotator-plugin": "php > 8.2"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
