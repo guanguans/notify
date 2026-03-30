@@ -206,12 +206,12 @@ trait HasOptions
             $optionsResolver->setDeprecated($option, ...$arguments);
         }
 
-        foreach ($this->nested() as $option => $nested) {
-            $optionsResolver->setOptions($option, $nested);
-        }
-
         foreach ($this->normalizers() as $option => $normalizer) {
             $optionsResolver->setNormalizer($option, $normalizer);
+        }
+
+        foreach ($this->nested() as $option => $nested) {
+            $optionsResolver->setOptions($option, $nested);
         }
 
         foreach ($this->allowedValues as $option => $allowedValue) {
@@ -244,17 +244,17 @@ trait HasOptions
     }
 
     /**
-     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, mixed $value): mixed>
      */
-    protected function nested(): array
+    protected function normalizers(): array
     {
         return [];
     }
 
     /**
-     * @return array<string, \Closure(OptionsResolver $optionsResolver, mixed $value): mixed>
+     * @return array<string, \Closure(OptionsResolver $optionsResolver, OptionsResolver $parentOptionsResolver): void>
      */
-    protected function normalizers(): array
+    protected function nested(): array
     {
         return [];
     }
