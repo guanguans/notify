@@ -100,7 +100,7 @@ it('clear', function (): void {
 
     expect($this->memoryCache->getKeys())->toHaveCount(2);
     $this->memoryCache->clear();
-    expect($this->memoryCache->getKeys())->toHaveCount(0);
+    expect($this->memoryCache->getKeys())->toBeEmpty();
 })->group(__DIR__, __FILE__);
 
 it('get multiple', function (): void {

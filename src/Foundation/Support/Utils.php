@@ -30,23 +30,21 @@ class Utils
     /**
      * Return an array of defined properties for the given object.
      *
-     * @param class-string<\Guanguans\Notify\Foundation\Message>|\Guanguans\Notify\Foundation\Message $object
+     * @param class-string<\Guanguans\Notify\Foundation\Message>|\Guanguans\Notify\Foundation\Message $message
      *
      * @throws \ReflectionException
      *
      * @return list<string>
      */
-    public static function definedFor(Message|string $object): array
+    public static function definedFor(Message|string $message): array
     {
-        if (\is_string($object)) {
-            $properties = (new \ReflectionClass($object))->getDefaultProperties();
-
-            return array_unique([...(array) ($properties['defined'] ?? []), ...(array) ($properties['required'] ?? [])]);
+        if (\is_object($message)) {
+            return array_unique((fn (): array => [...$this->defined, ...$this->required])->call($message));
         }
 
-        return array_unique(
-            (fn (): array => [...$this->defined ?? [], ...$this->required ?? []])->call($object)
-        );
+        $properties = (new \ReflectionClass($message))->getDefaultProperties();
+
+        return array_unique([...(array) ($properties['defined'] ?? []), ...(array) ($properties['required'] ?? [])]);
     }
 
     /**
