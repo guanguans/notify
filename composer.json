@@ -119,7 +119,7 @@
         "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0",
         "povils/phpmnd": "^3.6",
         "rector/argtyper": "^0.6",
-        "rector/jack": "^0.5",
+        "rector/jack": "^0.5 || ^1.0",
         "rector/swiss-knife": "^2.3",
         "rector/type-perfect": "^2.1",
         "roave/backward-compatibility-check": "^8.14",
