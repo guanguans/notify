@@ -1,8 +1,8 @@
 {
     "require-dev": {
         "php": ">=8.2",
-        "ergebnis/composer-normalize": "^2.50",
-        "peckphp/peck": "^0.2",
+        "ergebnis/composer-normalize": "^2.52",
+        "peckphp/peck": "^0.3",
         "symplify/rule-doc-generator": "^12.2"
     },
     "suggest": {

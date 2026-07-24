@@ -14,7 +14,7 @@ declare(strict_types=1);
  * @see https://github.com/guanguans/notify
  */
 
-use Ergebnis\Rector\Rules\Arrays\SortAssociativeArrayByKeyRector;
+use Ergebnis\Rector\Rules\Expressions\Arrays\SortAssociativeArrayByKeyRector;
 use Ergebnis\Rector\Rules\Faker\GeneratorPropertyFetchToMethodCallRector;
 use Ergebnis\Rector\Rules\Files\ReferenceNamespacedSymbolsRelativeToNamespacePrefixRector;
 use Guanguans\Notify\Foundation\Concerns\AsJson;
@@ -51,7 +51,6 @@ use Rector\Renaming\Rector\Name\RenameClassRector;
 use Rector\Strict\Rector\Empty_\DisallowedEmptyRuleFixerRector;
 use Rector\Transform\Rector\Scalar\ScalarValueToConstFetchRector;
 use Rector\Transform\Rector\String_\StringToClassConstantRector;
-use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRector;
 use Rector\ValueObject\PhpVersion;
 use RectorPest\Set\PestLevelSetList;
 use RectorPest\Set\PestSetList;
@@ -63,8 +62,8 @@ return RectorConfig::configure()
     ->withRootFiles()
     ->withSkip(['*/Fixtures/*', __DIR__.'/tests.php'])
     ->withCache(__DIR__.'/.build/rector/')
-    // ->withoutParallel()
-    ->withParallel()
+    ->withoutParallel()
+    // ->withParallel()
     ->withImportNames(importDocBlockNames: false, importShortClasses: false)
     // ->withImportNames(importNames: false)
     // ->withEditorUrl()
@@ -101,13 +100,12 @@ return RectorConfig::configure()
         MessageRector::class,
 
         ArraySpreadInsteadOfArrayMergeRector::class,
-        EnumCaseToPascalCaseRector::class,
+        // EnumCaseToPascalCaseRector::class,
         GeneratorPropertyFetchToMethodCallRector::class,
         JsonThrowOnErrorRector::class,
-        SafeDeclareStrictTypesRector::class,
         SortAssociativeArrayByKeyRector::class,
-        StaticArrowFunctionRector::class,
-        StaticClosureRector::class,
+        // StaticArrowFunctionRector::class,
+        // StaticClosureRector::class,
     ])
     ->withConfiguredRule(AddNoinspectionDocblockToFileFirstStmtRector::class, [
         '*/tests/*' => [
@@ -184,11 +182,11 @@ return RectorConfig::configure()
             __DIR__.'/src/',
             __DIR__.'/tests/',
         ],
-        StaticArrowFunctionRector::class => $staticClosureSkipPaths = [
-            __DIR__.'/tests/*Test.php',
-            __DIR__.'/tests/Pest.php',
-        ],
-        StaticClosureRector::class => $staticClosureSkipPaths,
+        // StaticArrowFunctionRector::class => $staticClosureSkipPaths = [
+        //     __DIR__.'/tests/*Test.php',
+        //     __DIR__.'/tests/Pest.php',
+        // ],
+        // StaticClosureRector::class => $staticClosureSkipPaths,
         StringToClassConstantRector::class => [
             __DIR__.'/benchmarks/',
             __DIR__.'/src/*/Messages/*.php',

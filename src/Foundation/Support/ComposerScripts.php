@@ -167,7 +167,7 @@ final class ComposerScripts
     {
         self::requireAutoload($event);
 
-        $file = __DIR__.'/../../../gitleaks-baseline.json';
+        $file = getcwd().'/gitleaks-baseline.json';
 
         if (!file_exists($file)) {
             (new PhpSubprocess([

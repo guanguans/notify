@@ -102,7 +102,7 @@ abstract class Message implements \ArrayAccess, \Stringable, Contracts\Message
 
     protected function toJson(int $options = \JSON_THROW_ON_ERROR | \JSON_UNESCAPED_UNICODE, int $depth = 512): string
     {
-        return \GuzzleHttp\Utils::jsonEncode($this->toPayload(), $options, $depth);
+        return json_encode($this->toPayload(), $options, $depth);
     }
 
     /**
