@@ -8,6 +8,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="5.2.1"></a>
+## [5.2.1] - 2026-07-24
+### ✨ Features
+- **Telegram:** Allow poll options to accept array or string ([58a1d5d](https://github.com/guanguans/notify/commit/58a1d5d))
+
+### 💅 Code Refactorings
+- **Utils:** Simplify array merging in defined and required properties ([7ef1f3e](https://github.com/guanguans/notify/commit/7ef1f3e))
+- **message:** Remove redundant return type annotation from make method ([56f0521](https://github.com/guanguans/notify/commit/56f0521))
+
+### 🤖 Continuous Integrations
+- **config:** Update config files ([b80de3c](https://github.com/guanguans/notify/commit/b80de3c))
+
+
 <a name="5.2.0"></a>
 ## [5.2.0] - 2026-03-30
 ### ✨ Features
@@ -1614,7 +1627,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/5.2.0...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/5.2.1...HEAD
+[5.2.1]: https://github.com/guanguans/notify/compare/5.2.0...5.2.1
 [5.2.0]: https://github.com/guanguans/notify/compare/5.1.0...5.2.0
 [5.1.0]: https://github.com/guanguans/notify/compare/5.0.0...5.1.0
 [5.0.0]: https://github.com/guanguans/notify/compare/4.1.1...5.0.0
