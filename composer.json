@@ -118,7 +118,6 @@
         "phpstan/phpstan-webmozart-assert": "^2.0",
         "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0",
         "povils/phpmnd": "^3.6",
-        "rector/argtyper": "^0.6",
         "rector/jack": "^1.0",
         "rector/swiss-knife": "^2.4",
         "rector/type-perfect": "^2.1",
@@ -217,8 +216,6 @@
         "app:lint-readme": "App\\Support\\ComposerScripts::lintReadme",
         "app:parse-phpdoc": "Guanguans\\RectorRules\\Support\\ComposerScripts::parsePhpdoc",
         "app:platform-lint": "Guanguans\\Notify\\Foundation\\Support\\ComposerScripts::platformLint",
-        "argtyper": "@php vendor/bin/argtyper --ansi -vv",
-        "argtyper:add-types": "@argtyper add-types .",
         "blade-formatter": "blade-formatter resources/views/*.blade.php resources/views/**/*.blade.php --ignore-path= --php-version=8.2 --progress",
         "blade-formatter:check-formatted": "@blade-formatter --check-formatted",
         "blade-formatter:write": "@blade-formatter --write",
@@ -269,7 +266,7 @@
             "@pest"
         ],
         "class-leak": "@php vendor/bin/class-leak --ansi -vv",
-        "class-leak:check": "@class-leak check src/ --skip-suffix=Message --skip-suffix=Client --skip-suffix=Authenticator --skip-suffix=Rector --skip-suffix=Cache --skip-suffix=Exception --skip-suffix=ComposerScripts --skip-path=Foundation/Concerns/",
+        "class-leak:check": "@class-leak check src/ --skip-suffix=Message --skip-suffix=Client --skip-suffix=Authenticator --skip-suffix=Rector --skip-suffix=Cache --skip-suffix=Exception --skip-suffix=ComposerScripts --skip-path=src/Foundation/Concerns/",
         "composer-bump": [
             "@putenv:php",
             "@composer-config:disable-process-timeout",

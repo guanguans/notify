@@ -126,7 +126,7 @@ final class HasHttpClientDocCommentRector extends AbstractRector
             ])
             ->merge([
                 'base_uri' => 'string',
-                'curl' => 'array',
+                RequestOptions::CURL => 'array',
             ])
             ->tap(static function (Collection $collection): void {
                 $asserter = static function (Collection $collection): never {
