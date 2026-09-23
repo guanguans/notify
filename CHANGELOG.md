@@ -8,6 +8,22 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="5.2.2"></a>
+## [5.2.2] - 2026-09-23
+### 📦 Builds
+- **deps:** Bump package versions in composer.json ([713beb5](https://github.com/guanguans/notify/commit/713beb5))
+
+### Pull Requests
+- Merge pull request [#201](https://github.com/guanguans/notify/issues/201) from guanguans/dependabot/github_actions/github/codeql-action-4.38.1
+- Merge pull request [#200](https://github.com/guanguans/notify/issues/200) from guanguans/dependabot/github_actions/github/codeql-action-4.38.0
+- Merge pull request [#199](https://github.com/guanguans/notify/issues/199) from guanguans/dependabot/github_actions/github/codeql-action-4.37.9
+- Merge pull request [#198](https://github.com/guanguans/notify/issues/198) from guanguans/dependabot/github_actions/github/codeql-action-4.37.8
+- Merge pull request [#197](https://github.com/guanguans/notify/issues/197) from guanguans/dependabot/github_actions/github/codeql-action-4.37.7
+- Merge pull request [#196](https://github.com/guanguans/notify/issues/196) from guanguans/dependabot/github_actions/github/codeql-action-4.37.6
+- Merge pull request [#194](https://github.com/guanguans/notify/issues/194) from guanguans/dependabot/github_actions/github/codeql-action-4.37.4
+- Merge pull request [#193](https://github.com/guanguans/notify/issues/193) from guanguans/dependabot/github_actions/github/codeql-action-4.37.3
+
+
 <a name="5.2.1"></a>
 ## [5.2.1] - 2026-07-24
 ### ✨ Features
@@ -1627,7 +1643,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/5.2.1...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/5.2.2...HEAD
+[5.2.2]: https://github.com/guanguans/notify/compare/5.2.1...5.2.2
 [5.2.1]: https://github.com/guanguans/notify/compare/5.2.0...5.2.1
 [5.2.0]: https://github.com/guanguans/notify/compare/5.1.0...5.2.0
 [5.1.0]: https://github.com/guanguans/notify/compare/5.0.0...5.1.0
