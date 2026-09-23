@@ -1,5 +1,6 @@
 <?php
 
+/** @noinspection PhpInternalEntityUsedInspection */
 declare(strict_types=1);
 
 /**
@@ -23,18 +24,23 @@ use GuzzleHttp\RequestOptions;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Illuminate\Support\Stringable;
+use PhpCsFixer\DocBlock\TypeExpression;
+use PhpCsFixer\Fixer\Phpdoc\PhpdocTypesOrderFixer;
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Trait_;
 use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagNode;
-use Psr\Http\Message\StreamInterface;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfo;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
 use Rector\Rector\AbstractRector;
 
 /**
+ * @mixin \PhpCsFixer\Fixer\Phpdoc\PhpdocTypesOrderFixer
+ *
  * @internal
+ *
+ * @method list<string> sortTypes(\PhpCsFixer\DocBlock\TypeExpression $typeExpression)
  */
 final class HasHttpClientDocCommentRector extends AbstractRector
 {
@@ -98,36 +104,22 @@ final class HasHttpClientDocCommentRector extends AbstractRector
                 (string) $reflectionClassConstant->getValue() => str($reflectionClassConstant->getDocComment())
                     ->match(
                         /** @lang PhpRegExp */
-                        // '/:\s*\((.*?)\)/',
-                        '/:\s*\((.*?)(?:,\s*default=.*?)?\)/',
+                        // '/:\s*\((.*?)(?:,\s*default=.*?)?\)/',
+                        '~:\s*\(((?:(?!,\s*default=)[^()]|(?<nested>\((?:[^()]|(?&nested))*\)))*)(?:,\s*default=.*?)?\)~',
                     )
                     ->whenEmpty(static fn (): Stringable => str('mixed'))
-                    ->explode($delimiter = '|')
-                    ->map(
-                        static fn (string $type) => str($type)
-                            ->replace(
-                                ['StreamInterface', CookieJarInterface::class],
-                                ['\\'.StreamInterface::class, '\\'.CookieJarInterface::class]
-                            )
-                            ->toString()
+                    ->replace(
+                        [CookieJarInterface::class, 'array-key', 'non-empty-array', '(callable&object)'],
+                        ['\\'.CookieJarInterface::class, 'int|string', 'array', 'callable']
                     )
-                    ->sort(static function (string $a, string $b): int {
-                        if ('null' !== $a && 'null' === $b) {
-                            return 1;
-                        }
-
-                        if ('null' === $a && 'null' !== $b) {
-                            return -1;
-                        }
-
-                        return strcasecmp(ltrim($a, '\\'), ltrim($b, '\\'));
-                    })
-                    ->implode($delimiter),
+                    ->pipe(fn (Stringable $types): string => implode(
+                        '|',
+                        /** @see \PhpCsFixer\Fixer\Phpdoc\PhpdocTypesOrderFixer::applyFix() */
+                        (fn (): array => $this->sortTypes(new TypeExpression($types->toString(), null, [])))
+                            ->call(new PhpdocTypesOrderFixer)
+                    )),
             ])
-            ->merge([
-                'base_uri' => 'string',
-                RequestOptions::CURL => 'array',
-            ])
+            ->merge(['base_uri' => 'string'])
             ->tap(static function (Collection $collection): void {
                 $asserter = static function (Collection $collection): never {
                     throw new LogicException(

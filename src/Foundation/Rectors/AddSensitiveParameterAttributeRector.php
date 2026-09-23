@@ -34,6 +34,8 @@ final class AddSensitiveParameterAttributeRector extends AbstractProxyRector
     }
 
     /**
+     * @see https://github.com/rectorphp/rector-src/blob/bc675f031ba86784696adb08f416548c9d4dc406/rules/Php82/Rector/Param/AddSensitiveParameterAttributeRector.php
+     *
      * @param \PhpParser\Node\Param $node
      *
      * @throws \Illuminate\Contracts\Container\BindingResolutionException

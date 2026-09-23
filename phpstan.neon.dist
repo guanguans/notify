@@ -11,6 +11,8 @@ includes:
 #    - vendor-bin/larastan/vendor/larastan/larastan/extension.neon
 #    - vendor/ekino/phpstan-banned-code/extension.neon
 #    - vendor/ergebnis/phpstan-rules/rules.neon
+#    - vendor/canvural/larastan-strict-rules/rules.neon
+#    - vendor/larastan/vendor/larastan/larastan/extension.neon
 #    - vendor/phpstan/phpstan-strict-rules/rules.neon
 #    - vendor/roave/no-floaters/rules.neon
 #    - vendor/shipmonk/dead-code-detector/rules.neon
@@ -18,6 +20,8 @@ includes:
 
 #    - vendor/symplify/phpstan-rules/config/code-complexity-rules.neon
 #    - vendor/symplify/phpstan-rules/config/configurable-rules.neon
+#    - vendor/symplify/phpstan-rules/config/ctor-rules.neon
+#    - vendor/symplify/phpstan-rules/config/mock-rules.neon
 #    - vendor/symplify/phpstan-rules/config/naming-rules.neon
 #    - vendor/symplify/phpstan-rules/config/static-rules.neon
     - vendor/symplify/phpstan-rules/config/symplify-rules.neon
@@ -58,6 +62,7 @@ parameters:
     phpVersion: 80200
     level: max
     editorUrl: 'phpstorm://open?file=%%file%%&line=%%line%%'
+#    errorFormat: symplify
     errorFormat: friendly
     friendly:
         lineBefore: 3
@@ -75,6 +80,16 @@ parameters:
             nativeThrowable: Guanguans\Notify\Foundation\Contracts\Throwable
 #    sidzIgnoreNumericStrings: true
     sidzIgnoreMagicNumbers: [-1, 0, 1, 2, 10, 16, 100, 512, 0o755, 1000, 1024, 200, 201, 202, 204, 300, 301, 302, 304, 400, 401, 402, 403, 404, 408, 409, 422, 429, 500, 600, 9999999999]
+#    # larastan
+#    larastanStrictRules:
+#        noFacade: false
+#        noGlobalLaravelFunction: false
+#        noValidationInController: false
+#    configDirectories:
+#        - config/
+#    checkOctaneCompatibility: true
+#    listenerPaths:
+#        - src/Listeners/
     cognitive_complexity:
         class: 42
         function: 8
@@ -82,19 +97,28 @@ parameters:
         dependency_tree_types:
 #            # only these explicit types are checked, nothing else
 #            - Rector\Contract\Rector\RectorInterface
+#    symplify:
+#        pathStrings: true
+#        ctor: true
+#        mocks: true
+#        laravelReturnType: true
+#        symfonyReturnType: true
     type_coverage:
         declare: 100
         param: 100
         return: 100
         constant: 100
         property: 100
-    type_perfect:
-        narrow_param: true
-        narrow_return: true
-        null_over_false: true
-        no_mixed: false
-        no_mixed_property: true
-        no_mixed_caller: false
+#    type_perfect:
+#        narrow_param: true
+#        narrow_return: true
+#        null_over_false: true
+#        no_mixed: false
+#        no_mixed_property: true
+#        no_mixed_caller: false
+#        no_param_type_removal: true
+#        no_isset_on_object: true
+#        no_empty_on_object: true
     unused_public:
         constants: true
         properties: true
@@ -103,9 +127,6 @@ parameters:
         template_paths:
 #            - resources/views/
     disallowedFunctionCalls:
-        -
-            function: 'env()'
-            message: 'use config() instead'
         -
             function: 'env_explode()'
             message: 'use config() instead'
@@ -232,3 +253,6 @@ parameters:
             paths:
                 - src/*/Messages/*Message.php
                 - src/Foundation/Support/Arr.php
+        -
+            identifier: isset.variable
+            path: src/Ntfy/Authenticator.php
