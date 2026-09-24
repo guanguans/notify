@@ -54,6 +54,7 @@ parameters:
     scanFiles:
 #        - vendor/composer/InstalledVersions.php
     excludePaths:
+        - src/Foundation/Exceptions/RequestException.php
         - src/Foundation/Rectors/
         - src/Foundation/Support/ComposerScripts.php
         - tests/Fixtures/

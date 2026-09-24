@@ -23,8 +23,10 @@ use Guanguans\Notify\Foundation\Support\Utils;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\RequestOptions;
 use GuzzleHttp\TransferStats;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use function Guanguans\Notify\Foundation\Support\tap;
 
@@ -38,7 +40,7 @@ use function Guanguans\Notify\Foundation\Support\tap;
  * @method \Guanguans\Notify\Foundation\Client allowRedirects(array|bool $allowRedirects)
  * @method \Guanguans\Notify\Foundation\Client auth(null|array{0: string, 1: string, 2?: null|string}|false|string $auth)
  * @method \Guanguans\Notify\Foundation\Client baseUri(string $baseUri)
- * @method \Guanguans\Notify\Foundation\Client body(null|bool|callable|float|int|\Iterator|\Psr\Http\Message\StreamInterface|resource|string|\Stringable $body)
+ * @method \Guanguans\Notify\Foundation\Client body(null|callable|\Iterator|\Psr\Http\Message\StreamInterface|resource|string|\Stringable $body)
  * @method \Guanguans\Notify\Foundation\Client cert(array{0: string, 1?: null|string}|string $cert)
  * @method \Guanguans\Notify\Foundation\Client certType(string $certType)
  * @method \Guanguans\Notify\Foundation\Client connectTimeout(float|int $connectTimeout)
@@ -66,14 +68,18 @@ use function Guanguans\Notify\Foundation\Support\tap;
  * @method \Guanguans\Notify\Foundation\Client proxy(array|string $proxy)
  * @method \Guanguans\Notify\Foundation\Client query(array<int|string, mixed>|string $query)
  * @method \Guanguans\Notify\Foundation\Client readTimeout(float|int $readTimeout)
+ * @method \Guanguans\Notify\Foundation\Client requestFactory(\Psr\Http\Message\RequestFactoryInterface $requestFactory)
+ * @method \Guanguans\Notify\Foundation\Client responseFactory(\Psr\Http\Message\ResponseFactoryInterface $responseFactory)
  * @method \Guanguans\Notify\Foundation\Client retries(int $retries)
  * @method \Guanguans\Notify\Foundation\Client sink(\Psr\Http\Message\StreamInterface|resource|string $sink)
  * @method \Guanguans\Notify\Foundation\Client sslKey(array{0: string, 1?: null|string}|string $sslKey)
  * @method \Guanguans\Notify\Foundation\Client sslKeyType(string $sslKeyType)
  * @method \Guanguans\Notify\Foundation\Client stream(bool $stream)
  * @method \Guanguans\Notify\Foundation\Client streamContext(array $streamContext)
+ * @method \Guanguans\Notify\Foundation\Client streamFactory(\Psr\Http\Message\StreamFactoryInterface $streamFactory)
  * @method \Guanguans\Notify\Foundation\Client synchronous(bool $synchronous)
  * @method \Guanguans\Notify\Foundation\Client timeout(float|int $timeout)
+ * @method \Guanguans\Notify\Foundation\Client uriFactory(\Psr\Http\Message\UriFactoryInterface $uriFactory)
  * @method \Guanguans\Notify\Foundation\Client verify(bool|string $verify)
  * @method \Guanguans\Notify\Foundation\Client version(float|int|string $version)
  *
@@ -88,9 +94,11 @@ trait HasHttpClient
 
     /** @var null|(callable(static): \GuzzleHttp\Client) */
     private $httpClientResolver;
+
+    /** @var null|HandlerStack<callable(RequestInterface, array<array-key, mixed>): PromiseInterface<ResponseInterface, mixed>> */
     private ?HandlerStack $handlerStack = null;
 
-    /** @var null|(callable(static): \GuzzleHttp\HandlerStack) */
+    /** @var null|(callable(static): HandlerStack<callable(RequestInterface, array<array-key, mixed>): PromiseInterface<ResponseInterface, mixed>>) */
     private $handlerStackResolver;
 
     /** @var array<string, mixed> */
@@ -155,6 +163,9 @@ trait HasHttpClient
         return $this->httpClientResolver ??= fn (): Client => new Client($this->allNormalizedHttpOptions());
     }
 
+    /**
+     * @param HandlerStack<callable(RequestInterface, array<array-key, mixed>): PromiseInterface<ResponseInterface, mixed>> $handlerStack
+     */
     public function setHandlerStack(HandlerStack $handlerStack): self
     {
         $this->handlerStack = $handlerStack;
@@ -162,13 +173,16 @@ trait HasHttpClient
         return $this;
     }
 
+    /**
+     * @return HandlerStack<callable(RequestInterface, array<array-key, mixed>): PromiseInterface<ResponseInterface, mixed>>
+     */
     public function getHandlerStack(): HandlerStack
     {
         return $this->handlerStack ??= $this->getHandlerStackResolver()($this);
     }
 
     /**
-     * @param (callable(static): \GuzzleHttp\HandlerStack) $handlerStackResolver
+     * @param (callable(static): HandlerStack<callable(RequestInterface, array<array-key, mixed>): PromiseInterface<ResponseInterface, mixed>>) $handlerStackResolver
      *
      * @noinspection PhpDocSignatureIsNotCompleteInspection
      */
@@ -180,7 +194,7 @@ trait HasHttpClient
     }
 
     /**
-     * @return (callable(static): \GuzzleHttp\HandlerStack)
+     * @return (callable(static): HandlerStack<callable(RequestInterface, array<array-key, mixed>): PromiseInterface<ResponseInterface, mixed>>)
      */
     public function getHandlerStackResolver(): callable
     {

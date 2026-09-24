@@ -30,6 +30,11 @@ use PhpParser\Node;
 use PhpParser\Node\Stmt\Trait_;
 use PHPStan\PhpDocParser\Ast\PhpDoc\GenericTagValueNode;
 use PHPStan\PhpDocParser\Ast\PhpDoc\PhpDocTagNode;
+use Psr\Http\Message\RequestFactoryInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\StreamInterface;
+use Psr\Http\Message\UriFactoryInterface;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfo;
 use Rector\BetterPhpDocParser\PhpDocInfo\PhpDocInfoFactory;
 use Rector\Comments\NodeDocBlock\DocBlockUpdater;
@@ -105,13 +110,21 @@ final class HasHttpClientDocCommentRector extends AbstractRector
                     ->match(
                         /** @lang PhpRegExp */
                         // '/:\s*\((.*?)(?:,\s*default=.*?)?\)/',
-                        '~:\s*\(((?:(?!,\s*default=)[^()]|(?<nested>\((?:[^()]|(?&nested))*\)))*)(?:,\s*default=.*?)?\)~',
+                        // '~:\s*\(((?:(?!,\s*default=)[^()]|(?<nested>\((?:[^()]|(?&nested))*\)))*)(?:,\s*default=.*?)?\)~',
+                        '~:\s*\(((?:(?!,\s*(?:\*\s*)?default\s*=)[^()]|(?<nested>\((?:[^()]|(?&nested))*\)))*)(?:,\s*(?:\*\s*)?default\s*=.*?)?\)~',
                     )
                     ->whenEmpty(static fn (): Stringable => str('mixed'))
-                    ->replace(
-                        [CookieJarInterface::class, 'array-key', 'non-empty-array', '(callable&object)'],
-                        ['\\'.CookieJarInterface::class, 'int|string', 'array', 'callable']
-                    )
+                    ->replace([CookieJarInterface::class], '\\'.CookieJarInterface::class)
+                    ->replace([RequestFactoryInterface::class], '\\'.RequestFactoryInterface::class)
+                    ->replace([ResponseFactoryInterface::class], '\\'.ResponseFactoryInterface::class)
+                    ->replace([StreamFactoryInterface::class], '\\'.StreamFactoryInterface::class)
+                    ->replace([UriFactoryInterface::class], '\\'.UriFactoryInterface::class)
+                    ->replace(['StreamInterface'], '\\'.StreamInterface::class)
+                    ->replace(['"v4"|"v6"', "'http'|'https'"], 'string')
+                    ->replace(['(callable&object)'], 'callable')
+                    ->replace(['array-key'], 'int|string')
+                    ->replace(['non-empty-array'], 'array')
+                    ->replaceMatches('~callable\([^()]*\)(?::\s*[^,)\s]+(?:\|[^,)\s]+)*)?~', 'callable')
                     ->pipe(fn (Stringable $types): string => implode(
                         '|',
                         /** @see \PhpCsFixer\Fixer\Phpdoc\PhpdocTypesOrderFixer::applyFix() */

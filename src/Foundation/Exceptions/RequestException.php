@@ -20,55 +20,116 @@ use GuzzleHttp\Exception\RequestException as GuzzleRequestException;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * @api
- */
-class RequestException extends GuzzleRequestException implements Throwable
-{
-    public static function wrapException(RequestInterface $request, \Throwable $e): GuzzleRequestException
-    {
-        return self::fromGuzzleRequestException(parent::wrapException($request, $e));
-    }
-
+if (method_exists(GuzzleRequestException::class, 'wrapException')) {
     /**
-     * @param array<string, mixed> $handlerContext
+     * @api
+     *
+     * @codeCoverageIgnore
      */
-    public static function createFromResponse(
-        Response $response,
-        ?\Throwable $previous = null,
-        array $handlerContext = [],
-        ?BodySummarizerInterface $bodySummarizer = null
-    ): self {
-        return self::create($response->request(), $response, $previous, $handlerContext, $bodySummarizer);
-    }
-
-    /**
-     * @param array<string, mixed> $handlerContext
-     */
-    public static function create(
-        RequestInterface $request,
-        ?ResponseInterface $response = null,
-        ?\Throwable $previous = null,
-        array $handlerContext = [],
-        ?BodySummarizerInterface $bodySummarizer = null
-    ): self {
-        return self::fromGuzzleRequestException(parent::create(
-            $request,
-            $response,
-            $previous,
-            $handlerContext,
-            $bodySummarizer,
-        ));
-    }
-
-    public static function fromGuzzleRequestException(GuzzleRequestException $requestException): self
+    class RequestException extends GuzzleRequestException implements Throwable
     {
-        return $requestException instanceof self ? $requestException : new self(
-            $requestException->getMessage(),
-            $requestException->getRequest(),
-            $requestException->getResponse(),
-            $requestException->getPrevious(),
-            $requestException->getHandlerContext(),
-        );
+        /**
+         * @noinspection PhpUndefinedMethodInspection
+         */
+        public static function wrapException(RequestInterface $request, \Throwable $e): GuzzleRequestException
+        {
+            return self::fromGuzzleRequestException(parent::wrapException($request, $e));
+        }
+
+        /**
+         * @param array<string, mixed> $handlerContext
+         */
+        public static function createFromResponse(
+            Response $response,
+            ?\Throwable $previous = null,
+            array $handlerContext = [],
+            ?BodySummarizerInterface $bodySummarizer = null
+        ): self {
+            $request = $response->request();
+            \assert($request instanceof RequestInterface);
+
+            return self::create($request, $response, $previous, $handlerContext, $bodySummarizer);
+        }
+
+        /**
+         * @param array<string, mixed> $handlerContext
+         *
+         * @noinspection PhpHierarchyChecksInspection
+         * @noinspection PhpParameterNameChangedDuringInheritanceInspection
+         * @noinspection PhpMethodParametersCountMismatchInspection
+         */
+        public static function create(
+            RequestInterface $request,
+            ?ResponseInterface $response = null,
+            ?\Throwable $previous = null,
+            array $handlerContext = [],
+            ?BodySummarizerInterface $bodySummarizer = null
+        ): self {
+            return self::fromGuzzleRequestException(parent::create(
+                $request,
+                $response,
+                $previous,
+                $handlerContext,
+                $bodySummarizer,
+            ));
+        }
+
+        /**
+         * @noinspection PhpPossiblePolymorphicInvocationInspection
+         * @noinspection PhpUndefinedMethodInspection
+         * @noinspection PhpMethodParametersCountMismatchInspection
+         */
+        public static function fromGuzzleRequestException(GuzzleRequestException $requestException): self
+        {
+            return $requestException instanceof self ? $requestException : new self(
+                $requestException->getMessage(),
+                $requestException->getRequest(),
+                $requestException->getResponse(),
+                $requestException->getPrevious(),
+                $requestException->getHandlerContext(),
+            );
+        }
+    }
+} else {
+    /**
+     * @api
+     */
+    class RequestException extends GuzzleRequestException implements Throwable
+    {
+        public static function createFromResponse(
+            Response $response,
+            ?\Throwable $previous = null,
+            ?BodySummarizerInterface $bodySummarizer = null
+        ): self {
+            $request = $response->request();
+            \assert($request instanceof RequestInterface);
+
+            return self::create($request, $response, $previous, $bodySummarizer);
+        }
+
+        public static function create(
+            #[\SensitiveParameter]
+            RequestInterface $request,
+            #[\SensitiveParameter]
+            ?ResponseInterface $response = null,
+            #[\SensitiveParameter]
+            ?\Throwable $previous = null,
+            ?BodySummarizerInterface $bodySummarizer = null
+        ): self {
+            return self::fromGuzzleRequestException(parent::create($request, $response, $previous, $bodySummarizer));
+        }
+
+        /**
+         * @see \GuzzleHttp\Exception\RequestException::__construct()
+         */
+        public static function fromGuzzleRequestException(GuzzleRequestException $requestException): self
+        {
+            return $requestException instanceof self ? $requestException : new self(
+                $requestException->getMessage(),
+                $requestException->getRequest(),
+                $requestException->getCode(),
+                $requestException->getPrevious(),
+            );
+        }
     }
 }

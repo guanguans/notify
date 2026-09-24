@@ -28,4 +28,4 @@ it('can wrap exception', function (): void {
         new Request('GET', 'uri'),
         new RuntimeException('message'),
     ))->toBeInstanceOf(RequestException::class);
-})->group(__DIR__, __FILE__);
+})->group(__DIR__, __FILE__)->skip(!method_exists(RequestException::class, 'wrapException'));
