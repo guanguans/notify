@@ -47,7 +47,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 error_reporting(\E_ALL & ~\E_DEPRECATED & ~\E_USER_DEPRECATED);
 
 return RectorConfig::configure()
-    ->withPaths([__DIR__.'/benchmarks/', __DIR__.'/src/', __DIR__.'/tests/', ...Utils::defaultRootFiles()])
+    ->withPaths([...Utils::defaultRootDirectories(), ...Utils::defaultRootFiles()])
     ->withRootFiles()
     ->withSkip(['*/Fixtures/*'])
     ->withSkip([
