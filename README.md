@@ -195,6 +195,7 @@ composer app:generate-ide-json
 composer app:platform-lint
 composer checks:required
 composer php-cs-fixer:fix
+composer ecs:fix
 composer test
 ```
 

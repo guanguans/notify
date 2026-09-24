@@ -55,8 +55,6 @@ final class ComposerScripts
      * @throws \JsonException
      * @throws \ReflectionException
      *
-     * @return int<0>|never-returns<1>
-     *
      * @noinspection PhpDocSignatureInspection
      */
     public static function generateIdeJson(Event $event): int
@@ -97,8 +95,6 @@ final class ComposerScripts
     }
 
     /**
-     * @return int<0>|never-returns<1>
-     *
      * @noinspection PhpDocSignatureInspection
      */
     public static function platformLint(Event $event): int

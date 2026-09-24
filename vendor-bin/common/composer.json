@@ -1,12 +1,11 @@
 {
     "require-dev": {
         "php": ">=8.2",
-        "ergebnis/composer-normalize": "^2.52",
-        "peckphp/peck": "^0.3",
+        "ergebnis/composer-normalize": "^2.53",
         "symplify/rule-doc-generator": "^12.2"
     },
     "suggest": {
-        "mrpunyapal/pest-annotator-plugin": "php > 8.2"
+        "foo/bar": "php > 8.2"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
