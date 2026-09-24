@@ -8,6 +8,15 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 
+<a name="5.3.0"></a>
+## [5.3.0] - 2026-09-24
+### 💅 Code Refactorings
+- **RequestException:** Enhance exception handling methods ([d337c7b](https://github.com/guanguans/notify/commit/d337c7b))
+
+### 📦 Builds
+- **deps:** update guzzlehttp/* version constraint ([04ddd6e](https://github.com/guanguans/notify/commit/04ddd6e))
+
+
 <a name="5.2.2"></a>
 ## [5.2.2] - 2026-09-23
 ### 📦 Builds
@@ -1643,7 +1652,8 @@ All notable changes to this project will be documented in this file.
 - Finish tests ([32e3c74](https://github.com/guanguans/notify/commit/32e3c74))
 
 
-[Unreleased]: https://github.com/guanguans/notify/compare/5.2.2...HEAD
+[Unreleased]: https://github.com/guanguans/notify/compare/5.3.0...HEAD
+[5.3.0]: https://github.com/guanguans/notify/compare/5.2.2...5.3.0
 [5.2.2]: https://github.com/guanguans/notify/compare/5.2.1...5.2.2
 [5.2.1]: https://github.com/guanguans/notify/compare/5.2.0...5.2.1
 [5.2.0]: https://github.com/guanguans/notify/compare/5.1.0...5.2.0
