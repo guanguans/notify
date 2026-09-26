@@ -59,7 +59,7 @@ class Utils
         $constants = (new \ReflectionClass(RequestOptions::class))->getConstants() + [
             // '_CONDITIONAL' => '_conditional',
             'BASE_URI' => 'base_uri',
-            'CURL' => 'curl',
+            // 'CURL' => 'curl',
         ];
 
         asort($constants);
@@ -226,8 +226,8 @@ class Utils
 
         return trim(implode(' ', array_map(
             static fn (mixed $value, string $name): string => "$name/$value",
-            $agents += $defaults,
-            array_keys($agents),
+            $finalAgents = array_filter($agents + $defaults, static fn (mixed $value): bool => null !== $value),
+            array_keys($finalAgents),
         )));
     }
 }
