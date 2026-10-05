@@ -118,7 +118,7 @@
         "phpstan/phpstan-webmozart-assert": "^2.0",
         "phpunit/phpunit": "^11.5 || ^12.0 || ^13.0",
         "povils/phpmnd": "^3.6",
-        "rector/jack": "^0.5",
+        "rector/jack": "^0.5 || ^1.0",
         "rector/swiss-knife": "^2.4",
         "roave/backward-compatibility-check": "^8.14",
         "roave/no-floaters": "^1.13",
